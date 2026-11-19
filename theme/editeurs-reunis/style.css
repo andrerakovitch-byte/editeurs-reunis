@@ -1,0 +1,470 @@
+/*
+Theme Name: Les Éditeurs réunis
+Theme URI: https://editeursreunis.fr
+Author: Les Éditeurs réunis
+Description: Le site de la librairie des Éditeurs réunis, de la maison d'édition YMCA-Press et du Centre culturel Alexandre Soljenitsyne. Direction artistique provisoire, d'après la maquette Wix : Montserrat, la pervenche, la barre noire et les boutons en pilule. Les couleurs, la police et les tailles sont dans theme.json ; le reste est ici.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 8.1
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: editeurs-reunis
+*/
+
+/* --------------------------------------------------------------------------
+   Les bases
+   -------------------------------------------------------------------------- */
+
+:root {
+	--er-ombre-livre: var(--wp--preset--shadow--livre);
+	--er-filet: 1px solid var(--wp--preset--color--filet);
+	--er-transition: 160ms ease;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	font-feature-settings: "kern";
+}
+
+:where(.wp-site-blocks) > * { margin-block-start: 0; }
+
+a { text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+
+sup { font-size: 0.62em; line-height: 0; }
+
+::selection { background: var(--wp--preset--color--accent); color: var(--wp--preset--color--contrast); }
+
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; animation: none !important; }
+}
+
+/* Les boutons : la pilule pleine (noire), la pilule cernée, la pilule blanche posée sur une image. */
+.wp-block-button.is-style-outline > .wp-block-button__link {
+	background: transparent;
+	color: var(--wp--preset--color--contrast);
+	border: 1px solid currentColor;
+	padding: 0.7em 1.5em;
+}
+.wp-block-button.is-style-outline > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--contrast);
+}
+.wp-block-button.is-style-pilule-blanche > .wp-block-button__link {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	border-color: var(--wp--preset--color--base);
+}
+.wp-element-button, .wp-block-button__link { transition: background var(--er-transition), color var(--er-transition); }
+
+/* Le surtitre : petites capitales espacées, comme « Communiqué de presse » sur la maquette. */
+.er-surtitre,
+.er-surtitre a,
+.er-petit-titre {
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 600;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.er-petit-titre { color: var(--wp--preset--color--discret); margin-block: 0 0.75rem; }
+* + .er-petit-titre { margin-block-start: 2rem; }
+
+/* Un lien qui mène plus loin : en gras, suivi d'une flèche. */
+.er-lien-fleche a {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.er-lien-fleche a::after { content: " →"; transition: margin var(--er-transition); }
+.er-lien-fleche a:hover::after { margin-inline-start: 0.25em; }
+
+/* --------------------------------------------------------------------------
+   L'en-tête : la barre noire, puis le nom et le menu
+   -------------------------------------------------------------------------- */
+
+.er-barre { padding-block: 0.45rem; font-size: var(--wp--preset--font-size--small); }
+.er-barre > .alignwide { gap: 1.5rem; align-items: center; }
+.er-barre a { color: inherit; text-decoration: none; }
+
+.er-chercher { margin: 0; width: min(26rem, 46vw); }
+.er-chercher .wp-block-search__inside-wrapper {
+	border: 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+	padding: 0;
+	background: transparent;
+}
+.er-chercher .wp-block-search__input {
+	background: transparent;
+	color: var(--wp--preset--color--base);
+	border: 0;
+	padding: 0.35rem 0;
+	font-size: var(--wp--preset--font-size--small);
+	font-family: inherit;
+}
+.er-chercher .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.72); }
+.er-chercher .wp-block-search__input:focus { outline: none; }
+.er-chercher .wp-block-search__inside-wrapper:focus-within { border-bottom-color: var(--wp--preset--color--base); }
+.er-chercher .wp-block-search__button {
+	background: transparent;
+	color: var(--wp--preset--color--base);
+	border: 0;
+	padding: 0 0 0 0.5rem;
+	margin: 0;
+}
+.er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.25rem; height: 1.25rem; }
+
+.er-compte { font-weight: 500; }
+.er-panier .wc-block-mini-cart__button { color: var(--wp--preset--color--base); padding: 0.25rem; }
+.er-panier .wc-block-mini-cart__badge {
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--contrast);
+	border-color: var(--wp--preset--color--noir);
+}
+
+.er-entete { padding-block: 1.35rem; border-bottom: var(--er-filet); background: var(--wp--preset--color--base); }
+.er-entete > .alignwide { align-items: center; gap: 2rem; }
+
+.er-logo { margin: 0; line-height: 1.55; }
+.er-logo a {
+	display: inline-block;
+	text-decoration: none;
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.46em;
+	text-transform: uppercase;
+	color: inherit;
+}
+.er-logo span { display: block; }
+
+.er-menu a { text-decoration: none; }
+.er-menu .wp-block-navigation-item__content:hover { text-decoration: underline; }
+.er-menu .wp-block-navigation__submenu-container {
+	border: var(--er-filet) !important;
+	padding: 0.6rem 0;
+	min-width: 15rem !important;
+	box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.3);
+}
+.er-menu .wp-block-navigation__submenu-container .wp-block-navigation-item__content { padding: 0.45rem 1.2rem; }
+.er-menu .wp-block-navigation__responsive-container.is-menu-open { padding: 1.5rem; }
+.er-menu .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { font-size: var(--wp--preset--font-size--large); gap: 1rem; }
+
+@media (max-width: 781px) {
+	.er-barre > .alignwide { gap: 1rem; }
+	.er-chercher { width: auto; flex: 1; }
+	.er-compte { display: none; }
+	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
+}
+
+/* --------------------------------------------------------------------------
+   L'accueil
+   -------------------------------------------------------------------------- */
+
+.er-section h2.wp-block-heading { margin-block: 0; }
+.er-section-tete { margin-block-end: var(--wp--preset--spacing--50); gap: 1rem; }
+.er-section-tete p { margin: 0; }
+
+/* À la une */
+.er-une-titre {
+	font-size: clamp(2.5rem, 6.2vw, 5.25rem);
+	line-height: 0.98;
+	letter-spacing: -0.025em;
+	margin-block: 0.75rem 1.5rem;
+}
+.er-une-titre em { font-weight: 500; }
+.er-une p.has-large-font-size { max-width: 30rem; line-height: 1.45; }
+.er-une-image { margin: 0; }
+.er-une-image img { width: 100%; max-width: 440px; aspect-ratio: 1; object-fit: cover; box-shadow: 0 30px 60px -30px rgba(16, 22, 66, 0.55); }
+.er-une-image a { display: block; }
+.er-une .wp-block-button.is-style-outline > .wp-block-button__link:hover { color: var(--wp--preset--color--accent); }
+
+/* Le livre du moment */
+.er-parution-auteur { color: var(--wp--preset--color--encre-2); font-weight: 500; margin-block-start: 0.5rem; }
+.er-couverture-seule img { box-shadow: var(--er-ombre-livre); max-height: 520px; width: auto; }
+
+/* Une entité, trois branches */
+.er-branches .wp-block-columns { row-gap: var(--wp--preset--spacing--50); }
+.er-branche-image { margin: 0 0 1.25rem; overflow: hidden; }
+.er-branche-image img { width: 100%; height: auto; transition: transform 600ms ease; }
+.er-branche-image a:hover img { transform: scale(1.03); }
+.er-branche h3 { margin-block: 0 0.5rem; }
+.er-branche h3 a { text-decoration: none; }
+.er-branche > p { color: var(--wp--preset--color--encre-2); margin-block: 0 1rem; }
+
+/* Les portes d'une branche : un rond cerné, comme sur la maquette, et un filet dessous. */
+.er-portes { list-style: none; padding: 0; margin: 0; }
+.er-portes li { border-top: var(--er-filet); }
+.er-portes li:last-child { border-bottom: var(--er-filet); }
+.er-portes a {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	padding: 0.7rem 0;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: var(--wp--preset--font-size--small);
+}
+.er-portes a::before {
+	content: "";
+	flex: none;
+	width: 0.95em;
+	height: 0.95em;
+	border-radius: 50%;
+	border: 1.5px solid currentColor;
+	background: radial-gradient(circle, currentColor 0 26%, transparent 30%);
+}
+.er-portes a:hover { text-decoration: underline; }
+
+/* Les anthologies, en escalier comme sur la maquette */
+.er-eventail.wp-block-gallery.has-nested-images { align-items: flex-start; }
+.er-eventail.wp-block-gallery.has-nested-images figure.wp-block-image { align-self: flex-start !important; }
+.er-eventail.wp-block-gallery.has-nested-images figure.wp-block-image img { box-shadow: var(--er-ombre-livre); height: auto; object-fit: contain; }
+.er-eventail.wp-block-gallery.has-nested-images figure.wp-block-image:nth-child(1) { margin-top: 4.5rem !important; }
+.er-eventail.wp-block-gallery.has-nested-images figure.wp-block-image:nth-child(2) { margin-top: 3rem !important; }
+.er-eventail.wp-block-gallery.has-nested-images figure.wp-block-image:nth-child(3) { margin-top: 1.5rem !important; }
+
+/* Les rayons, en pilules */
+.er-pilules { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.er-pilules li { margin: 0; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-pilules li a {
+	display: inline-block;
+	padding: 0.5em 1.05em;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+	font-weight: 500;
+	transition: border-color var(--er-transition), background var(--er-transition);
+}
+.er-pilules li a:hover { border-color: var(--wp--preset--color--contrast); }
+.er-pilules li.current-cat a { background: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+/* Le communiqué */
+.er-communique h2 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.15; }
+
+/* L'histoire */
+.er-bande { margin: 0; }
+.er-bande img { width: 100%; height: clamp(150px, 19vw, 280px); object-fit: cover; display: block; }
+.er-histoire h2 { margin: 0; }
+.er-histoire p.has-large-font-size { margin-block-start: 0; line-height: 1.5; }
+
+/* --------------------------------------------------------------------------
+   Les livres, en grille : l'accueil, la librairie, « Du même rayon »
+   -------------------------------------------------------------------------- */
+
+.er-livres {
+	row-gap: var(--wp--preset--spacing--50) !important;
+	column-gap: clamp(1rem, 2.2vw, 1.75rem) !important;
+	grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+@media (max-width: 1100px) { .er-livres { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+@media (max-width: 860px) { .er-livres { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+@media (max-width: 600px) { .er-livres { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+.er-livres > li { display: flex; flex-direction: column; gap: 0; }
+.er-couverture { margin-block-end: 0.85rem !important; }
+.er-couverture a { display: block; }
+.er-couverture img {
+	background: var(--wp--preset--color--doux);
+	box-shadow: var(--er-ombre-livre);
+	border-radius: 1px;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.er-livres > li:hover .er-couverture img { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
+
+.er-mentions { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem !important; font-size: 0; }
+.er-mentions .wp-block-post-terms__separator { display: none; }
+.er-mentions a {
+	font-size: 0.66rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 1;
+	padding: 0.42em 0.75em;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--contrast);
+}
+.er-mentions a[href*="tres-rare"] { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+.er-livre-titre { font-size: 1rem !important; font-weight: 600 !important; line-height: 1.3 !important; margin: 0 0 0.2rem !important; letter-spacing: 0; }
+.er-livre-titre a { text-decoration: none; }
+.er-livre-titre a:hover { text-decoration: underline; }
+.er-livre-auteur { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--encre-2); margin: 0 0 0.45rem !important; }
+.er-livre-auteur a { text-decoration: none; }
+.er-livre-prix { font-size: 0.95rem !important; margin: 0 !important; }
+.er-livre-stock { margin: 0 !important; text-align: left !important; }
+
+.wc-block-components-product-stock-indicator--in-stock,
+.wc-block-components-product-stock-indicator--available-on-backorder { display: none !important; }
+.wc-block-components-product-stock-indicator--out-of-stock {
+	color: var(--wp--preset--color--discret) !important;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   La librairie
+   -------------------------------------------------------------------------- */
+
+.er-librairie-tete .wp-block-query-title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	margin-block: 0.6rem 0.5rem;
+	letter-spacing: -0.025em;
+}
+.er-librairie-tete .wp-block-term-description { max-width: 46rem; color: var(--wp--preset--color--encre-2); }
+.er-filtres { margin-block: var(--wp--preset--spacing--40); display: grid; gap: 0.6rem; }
+.er-pilules-langues li a { border-style: dashed; }
+.er-tri { border-top: var(--er-filet); padding-block: 1rem; margin-block-end: var(--wp--preset--spacing--40); align-items: center; }
+.er-tri p, .er-tri .woocommerce-result-count { margin: 0; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-tri select, .woocommerce-ordering select {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	padding: 0.45em 2em 0.45em 1em;
+	background-color: var(--wp--preset--color--base);
+}
+.woocommerce-ordering { margin: 0 !important; }
+
+.wp-block-woocommerce-breadcrumbs, .woocommerce-breadcrumb { color: var(--wp--preset--color--discret); }
+.woocommerce-breadcrumb a { text-decoration: none; }
+
+.wp-block-query-pagination { margin-block-start: var(--wp--preset--spacing--50); font-weight: 500; }
+.wp-block-query-pagination a { text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   La fiche d'un livre
+   -------------------------------------------------------------------------- */
+
+.er-fiche-haut { row-gap: var(--wp--preset--spacing--50); }
+.er-fiche-couverture .woocommerce-product-gallery { margin: 0; }
+.er-fiche-couverture img { box-shadow: var(--er-ombre-livre); background: var(--wp--preset--color--doux); }
+.er-fiche-couverture .woocommerce-product-gallery__trigger { display: none; }
+
+.er-fiche-texte > * + * { margin-block-start: 1rem; }
+.er-fiche-titre { font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.04; letter-spacing: -0.02em; margin-block: 0.4rem 0 !important; }
+.er-fiche-auteur { font-size: var(--wp--preset--font-size--large); font-weight: 500; margin-block-start: 0.5rem !important; }
+.er-fiche-auteur a { text-decoration: none; }
+.er-fiche-auteur a:hover { text-decoration: underline; }
+.er-fiche-prix { margin-block-start: 1.5rem !important; font-weight: 600; }
+.er-fiche-resume { color: var(--wp--preset--color--encre-2); max-width: 36rem; margin-block-start: 1.5rem !important; }
+.er-fiche-resume > :first-child { margin-block-start: 0; }
+
+.er-fiche-panier form.cart { display: flex; gap: 0.75rem; align-items: stretch; flex-wrap: wrap; margin: 0; }
+.er-fiche-panier .quantity input {
+	width: 4.5rem;
+	height: 100%;
+	min-height: 3rem;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	text-align: center;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--medium);
+}
+.er-fiche-panier .single_add_to_cart_button,
+.woocommerce .er-fiche-panier button.button.alt {
+	background: var(--wp--preset--color--contrast) !important;
+	color: var(--wp--preset--color--base) !important;
+	border-radius: 999px !important;
+	padding: 0.9em 2em !important;
+	font-family: inherit;
+	font-weight: 600 !important;
+	font-size: var(--wp--preset--font-size--small) !important;
+	border: 0;
+}
+.er-fiche-panier .single_add_to_cart_button:hover { background: var(--wp--preset--color--encre-2) !important; }
+
+.er-fiche-infos { border-top: var(--er-filet); padding-top: 1.1rem; margin-block-start: 1.75rem !important; display: grid; gap: 0.45rem; font-size: var(--wp--preset--font-size--small); }
+.er-fiche-infos > * { margin: 0 !important; }
+.er-fiche-infos .wp-block-post-terms__prefix,
+.er-fiche-infos .wc-block-components-product-sku strong,
+.er-fiche-infos .wp-block-woocommerce-product-sku > span:first-child {
+	display: inline-block;
+	width: 7rem;
+	color: var(--wp--preset--color--discret);
+	font-weight: 500;
+	text-transform: none;
+}
+.er-fiche-infos a { text-decoration: none; }
+.er-fiche-infos a:hover { text-decoration: underline; }
+.er-fiche-retrait { color: var(--wp--preset--color--discret); }
+
+.er-meme-rayon > h2 { margin-block-end: var(--wp--preset--spacing--40); }
+
+/* --------------------------------------------------------------------------
+   Les pages, le journal
+   -------------------------------------------------------------------------- */
+
+.er-page-titre, .er-article-titre { letter-spacing: -0.025em; }
+.er-article-date { color: var(--wp--preset--color--discret); font-size: var(--wp--preset--font-size--small); }
+.er-articles .wp-block-post-title a { text-decoration: none; }
+.er-articles .wp-block-post-title a:hover { text-decoration: underline; }
+.er-articles > li { border-top: 1px solid var(--wp--preset--color--contrast); padding-top: 1rem; }
+
+/* --------------------------------------------------------------------------
+   Le pied
+   -------------------------------------------------------------------------- */
+
+.er-pied a { color: inherit; }
+.er-pied .er-logo { margin-block-end: 1.25rem; }
+.er-pied-discret { color: #BDBDB8; }
+.er-pied-titre {
+	font-size: var(--wp--preset--font-size--x-small) !important;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: #9C9C96 !important;
+	margin-block: 0 1rem;
+}
+.er-pied p { line-height: 1.65; }
+.er-pied-liens { list-style: none; padding: 0; margin: 0; font-size: var(--wp--preset--font-size--small); line-height: 2; }
+.er-pied-liens a { text-decoration: none; }
+.er-pied-liens a:hover { text-decoration: underline; }
+.er-pied-bas { border-top: 1px solid #333; margin-block-start: var(--wp--preset--spacing--50) !important; padding-top: 1.25rem; gap: 0.5rem 2rem; }
+.er-pied-bas p { margin: 0; }
+
+/* --------------------------------------------------------------------------
+   WooCommerce : panier, commande, avis
+   -------------------------------------------------------------------------- */
+
+.wc-block-components-button:not(.is-link),
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button {
+	border-radius: 999px !important;
+	font-family: inherit;
+	font-weight: 600;
+}
+.woocommerce-tabs, .woocommerce-Reviews { display: none; }
+
+/* --------------------------------------------------------------------------
+   Au téléphone : moins de défilement
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+	/* Les nouveautés deviennent une étagère qu'on fait glisser de côté. */
+	.er-nouveautes .er-livres {
+		grid-template-columns: none !important;
+		grid-auto-flow: column;
+		grid-auto-columns: 44%;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		margin-inline: calc(-1 * var(--wp--style--root--padding-left));
+		padding-inline: var(--wp--style--root--padding-left);
+		scroll-padding-inline: var(--wp--style--root--padding-left);
+		padding-block-end: 0.5rem;
+	}
+	.er-nouveautes .er-livres::-webkit-scrollbar { display: none; }
+	.er-nouveautes .er-livres > li { scroll-snap-align: start; }
+
+	.er-une-image img { max-width: 72%; }
+	.er-couverture-seule img { max-height: 340px; }
+	.er-branche-image img { aspect-ratio: 3 / 2 !important; object-position: 50% 25%; }
+	.er-fiche-couverture { max-width: 70%; }
+	.er-section-tete { margin-block-end: var(--wp--preset--spacing--40); }
+}
