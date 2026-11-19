@@ -26,6 +26,16 @@ add_action(
 	function () {
 		$version = wp_get_theme()->get( 'Version' );
 		wp_enqueue_style( 'editeurs-reunis', get_stylesheet_uri(), array(), $version );
+		wp_enqueue_script(
+			'editeurs-reunis-diaporama',
+			get_theme_file_uri( 'assets/js/diaporama.js' ),
+			array(),
+			$version,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
 	}
 );
 
@@ -39,6 +49,13 @@ add_action(
 			array(
 				'name'  => 'pilule-blanche',
 				'label' => 'Pilule blanche',
+			)
+		);
+		register_block_style(
+			'core/button',
+			array(
+				'name'  => 'fleche',
+				'label' => 'Cerné, avec une flèche',
 			)
 		);
 		register_block_style(

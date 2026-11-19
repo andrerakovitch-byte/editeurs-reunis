@@ -87,14 +87,15 @@ sup { font-size: 0.62em; line-height: 0; }
    L'en-tête : la barre noire, puis le nom et le menu
    -------------------------------------------------------------------------- */
 
-.er-barre { padding-block: 0.45rem; font-size: var(--wp--preset--font-size--small); }
-.er-barre > .alignwide { gap: 1.5rem; align-items: center; }
+.er-barre { padding-block: 0.5rem; font-size: 0.8125rem; }
+.er-barre > .alignwide { gap: 2.25rem; align-items: center; }
 .er-barre a { color: inherit; text-decoration: none; }
 
-.er-chercher { margin: 0; width: min(26rem, 46vw); }
+/* Comme sur la maquette : le champ sans cadre, le texte et la loupe en blanc sur le noir. */
+.er-chercher { margin: 0 1rem 0 0; width: min(22rem, 40vw); }
 .er-chercher .wp-block-search__inside-wrapper {
 	border: 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 	padding: 0;
 	background: transparent;
 }
@@ -102,11 +103,11 @@ sup { font-size: 0.62em; line-height: 0; }
 	background: transparent;
 	color: var(--wp--preset--color--base);
 	border: 0;
-	padding: 0.35rem 0;
-	font-size: var(--wp--preset--font-size--small);
+	padding: 0.3rem 0;
+	font-size: 0.8125rem;
 	font-family: inherit;
 }
-.er-chercher .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.72); }
+.er-chercher .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.82); }
 .er-chercher .wp-block-search__input:focus { outline: none; }
 .er-chercher .wp-block-search__inside-wrapper:focus-within { border-bottom-color: var(--wp--preset--color--base); }
 .er-chercher .wp-block-search__button {
@@ -116,33 +117,37 @@ sup { font-size: 0.62em; line-height: 0; }
 	padding: 0 0 0 0.5rem;
 	margin: 0;
 }
-.er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.25rem; height: 1.25rem; }
+.er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.2rem; height: 1.2rem; }
 
-.er-compte { font-weight: 500; }
+.er-compte { font-weight: 600; }
 .er-panier .wc-block-mini-cart__button { color: var(--wp--preset--color--base); padding: 0.25rem; }
 .er-panier .wc-block-mini-cart__badge {
-	background: var(--wp--preset--color--accent);
-	color: var(--wp--preset--color--contrast);
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--noir);
 	border-color: var(--wp--preset--color--noir);
+	font-weight: 700;
 }
 
-.er-entete { padding-block: 1.35rem; border-bottom: var(--er-filet); background: var(--wp--preset--color--base); }
+.er-entete { padding-block: 1.45rem; border-bottom: var(--er-filet); background: var(--wp--preset--color--base); }
 .er-entete > .alignwide { align-items: center; gap: 2rem; }
 
-.er-logo { margin: 0; line-height: 1.55; }
+/* Le nom sur deux lignes, en capitales très espacées, comme sur la maquette. */
+.er-logo { margin: 0; line-height: 1.45; }
 .er-logo a {
 	display: inline-block;
 	text-decoration: none;
-	font-size: 0.78rem;
-	font-weight: 600;
-	letter-spacing: 0.46em;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.95em;
 	text-transform: uppercase;
 	color: inherit;
 }
 .er-logo span { display: block; }
 
+.er-menu { font-size: 0.875rem; }
 .er-menu a { text-decoration: none; }
 .er-menu .wp-block-navigation-item__content:hover { text-decoration: underline; }
+.er-menu .wp-block-navigation__submenu-icon { margin-inline-start: 0.4em; }
 .er-menu .wp-block-navigation__submenu-container {
 	border: var(--er-filet) !important;
 	padding: 0.6rem 0;
@@ -153,11 +158,15 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-menu .wp-block-navigation__responsive-container.is-menu-open { padding: 1.5rem; }
 .er-menu .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { font-size: var(--wp--preset--font-size--large); gap: 1rem; }
 
+@media (max-width: 1180px) {
+	.er-logo a { letter-spacing: 0.6em; }
+}
 @media (max-width: 781px) {
 	.er-barre > .alignwide { gap: 1rem; }
-	.er-chercher { width: auto; flex: 1; }
+	.er-chercher { width: auto; flex: 1; margin: 0; }
 	.er-compte { display: none; }
-	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
+	.er-entete { padding-block: 1.1rem; }
+	.er-logo a { font-size: 0.66rem; letter-spacing: 0.42em; }
 }
 
 /* --------------------------------------------------------------------------
@@ -168,19 +177,169 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-section-tete { margin-block-end: var(--wp--preset--spacing--50); gap: 1rem; }
 .er-section-tete p { margin: 0; }
 
-/* À la une */
-.er-une-titre {
-	font-size: clamp(2.5rem, 6.2vw, 5.25rem);
-	line-height: 0.98;
-	letter-spacing: -0.025em;
-	margin-block: 0.75rem 1.5rem;
+/* Le diaporama à la une : chaque diapositive reprend la première de la maquette, la bande pervenche à gauche,
+   une photo (ou un aplat) dessous, le titre et le bouton en blanc, une image à droite. */
+.er-diaporama { position: relative; }
+.er-diapos {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
 }
-.er-une-titre em { font-weight: 500; }
-.er-une p.has-large-font-size { max-width: 30rem; line-height: 1.45; }
-.er-une-image { margin: 0; }
-.er-une-image img { width: 100%; max-width: 440px; aspect-ratio: 1; object-fit: cover; box-shadow: 0 30px 60px -30px rgba(16, 22, 66, 0.55); }
-.er-une-image a { display: block; }
-.er-une .wp-block-button.is-style-outline > .wp-block-button__link:hover { color: var(--wp--preset--color--accent); }
+.er-diapos::-webkit-scrollbar { display: none; }
+.er-diapos > .er-diapo {
+	flex: 0 0 100%;
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+	position: relative;
+	isolation: isolate;
+	margin: 0 !important;
+	min-height: clamp(560px, 45vw, 660px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-block: 4rem 6rem;
+	color: var(--wp--preset--color--base);
+}
+.er-diapo > .alignwide { width: 100%; }
+.er-diapo::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 24%;
+	background: var(--wp--preset--color--accent);
+	z-index: -1;
+}
+.er-diapo-samarcande { background-color: #2B2720; }
+.er-diapo-anthologies { background-color: #23302B; }
+.er-diapo-contenu { gap: var(--wp--preset--spacing--50); }
+
+.er-diapo-titre {
+	color: var(--wp--preset--color--base) !important;
+	font-size: clamp(2.5rem, 5.1vw, 4.5rem);
+	font-weight: 600;
+	line-height: 1.03;
+	letter-spacing: -0.02em;
+	margin: 0 0 1.1rem;
+	max-width: 11.5em;
+	text-shadow: 0 1px 24px rgba(16, 22, 66, 0.22);
+}
+.er-diapo-texte {
+	font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+	font-weight: 600;
+	line-height: 1.45;
+	max-width: 31rem;
+	margin: 0 0 1.75rem;
+	text-shadow: 0 1px 18px rgba(16, 22, 66, 0.22);
+}
+
+/* Le bouton cerné de blanc, une flèche dans un rond devant (« Écouter ici »). */
+.wp-block-button.is-style-fleche > .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6em;
+	background: transparent;
+	color: inherit;
+	border: 1px solid currentColor;
+	padding: 0.62em 1.3em 0.62em 0.85em;
+	font-weight: 600;
+}
+.wp-block-button.is-style-fleche > .wp-block-button__link::before {
+	content: "";
+	width: 1.25em;
+	height: 1.25em;
+	flex: none;
+	background: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M7.5 12h8.5M12.8 8.6 16.2 12l-3.4 3.4'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M7.5 12h8.5M12.8 8.6 16.2 12l-3.4 3.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.er-diapo .wp-block-button.is-style-fleche > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	border-color: var(--wp--preset--color--base);
+}
+
+.er-diapo-image { margin: 0 auto !important; text-align: center; }
+.er-diapo-image a { display: inline-block; }
+.er-diapo-image img { display: block; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); }
+.er-diapo-image-carree img { width: min(340px, 100%); aspect-ratio: 1; object-fit: cover; }
+.er-diapo-image-livre img { height: min(420px, 56vh); width: auto; }
+.er-diapo-image-libre img { width: min(540px, 100%); height: auto; box-shadow: none; }
+
+/* Les repères et les flèches, que diaporama.js ajoute */
+.er-diaporama-commandes {
+	position: absolute;
+	inset-inline: 0;
+	bottom: clamp(1rem, 2.6vw, 2rem);
+	width: min(var(--wp--style--global--wide-size), calc(100% - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right)));
+	margin-inline: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	pointer-events: none;
+}
+.er-diaporama-commandes > * { pointer-events: auto; }
+.er-diaporama-reperes { display: flex; gap: 0.5rem; }
+.er-diaporama-trait {
+	width: 3rem;
+	height: 44px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+.er-diaporama-trait span {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 3px;
+	border-radius: 2px;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.42);
+}
+.er-diaporama-trait span::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--wp--preset--color--base);
+	transform: scaleX(0);
+	transform-origin: left center;
+}
+.er-diaporama-trait[aria-current] span::after { transform: scaleX(1); }
+.er-diaporama.en-lecture .er-diaporama-trait[aria-current] span::after { animation: er-trait 7s linear both; }
+.er-diaporama.en-pause .er-diaporama-trait span::after,
+.er-diaporama.en-cache .er-diaporama-trait span::after { animation-play-state: paused; }
+@keyframes er-trait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.er-diaporama-fleches { display: flex; gap: 0.6rem; }
+.er-diaporama-fleche {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.75);
+	background: transparent;
+	color: var(--wp--preset--color--base);
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	transition: background var(--er-transition), color var(--er-transition);
+}
+.er-diaporama-fleche:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+.er-diaporama-precedente svg { transform: rotate(180deg); }
+.er-diaporama button:focus-visible { outline: 2px solid var(--wp--preset--color--base); outline-offset: 3px; }
+
+@media (max-width: 781px) {
+	.er-diapos > .er-diapo { min-height: 0; justify-content: flex-start; padding-block: 2.75rem 5.5rem; }
+	.er-diapo::before { width: 16%; }
+	.er-diapo-titre { font-size: 2.35rem; }
+	.er-diapo-image-carree img { width: 64%; }
+	.er-diapo-image-livre img { height: 250px; }
+	.er-diapo-image-libre img { width: 86%; }
+}
 
 /* Le livre du moment */
 .er-parution-auteur { color: var(--wp--preset--color--encre-2); font-weight: 500; margin-block-start: 0.5rem; }
@@ -462,7 +621,6 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-nouveautes .er-livres::-webkit-scrollbar { display: none; }
 	.er-nouveautes .er-livres > li { scroll-snap-align: start; }
 
-	.er-une-image img { max-width: 72%; }
 	.er-couverture-seule img { max-height: 340px; }
 	.er-branche-image img { aspect-ratio: 3 / 2 !important; object-position: 50% 25%; }
 	.er-fiche-couverture { max-width: 70%; }

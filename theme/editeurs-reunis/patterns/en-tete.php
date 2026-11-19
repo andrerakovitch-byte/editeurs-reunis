@@ -16,11 +16,11 @@
 <div class="wp-block-group er-barre has-base-color has-noir-background-color has-text-color has-background">
 	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:search {"label":"Chercher dans la librairie","showLabel":false,"placeholder":"Chercher un titre, un auteur…","buttonText":"Chercher","buttonPosition":"button-inside","buttonUseIcon":true,"query":{"post_type":"product"},"className":"er-chercher"} /-->
+		<!-- wp:search {"label":"Chercher dans la librairie","showLabel":false,"placeholder":"Rechercher un titre, un auteur…","buttonText":"Chercher","buttonPosition":"button-inside","buttonUseIcon":true,"query":{"post_type":"product"},"className":"er-chercher"} /-->
 
 		<!-- wp:woocommerce/customer-account {"displayStyle":"text_only","className":"er-compte"} /-->
 
-		<!-- wp:woocommerce/mini-cart {"hasHiddenPrice":true,"className":"er-panier"} /-->
+		<!-- wp:woocommerce/mini-cart {"hasHiddenPrice":true,"productCountVisibility":"always","className":"er-panier"} /-->
 	</div>
 	<!-- /wp:group -->
 </div>
@@ -35,15 +35,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"base","overlayTextColor":"contrast","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"2.25rem"}}} -->
-			<!-- wp:navigation-submenu {"label":"Librairie","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom"} -->
-				<!-- wp:navigation-link {"label":"Toute la librairie","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Littérature russe","url":"<?php echo er_rayon( 'litterature-russe' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Poésie","url":"<?php echo er_rayon( 'poesie' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Histoire","url":"<?php echo er_rayon( 'histoire' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Essais et biographies","url":"<?php echo er_rayon( 'essais-et-biographies' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Cinéma","url":"<?php echo er_rayon( 'cinema' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"Livres en russe","url":"<?php echo er_lien( 'langue/russe/' ); ?>","kind":"custom"} /-->
-			<!-- /wp:navigation-submenu -->
+			<!-- wp:navigation-link {"label":"Librairie","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom"} /-->
 
 			<!-- wp:navigation-submenu {"label":"Maison d’édition YMCA-Press","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} -->
 				<!-- wp:navigation-link {"label":"La maison d’édition","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} /-->
