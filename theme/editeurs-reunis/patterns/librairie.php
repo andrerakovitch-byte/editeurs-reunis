@@ -28,8 +28,6 @@
 
 	<!-- wp:group {"align":"wide","className":"er-filtres","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide er-filtres">
-		<!-- wp:categories {"taxonomy":"product_cat","showPostCounts":false,"showEmpty":false,"className":"er-pilules er-pilules-rayons"} /-->
-
 		<!-- wp:categories {"taxonomy":"langue","showPostCounts":false,"showEmpty":false,"className":"er-pilules er-pilules-langues"} /-->
 	</div>
 	<!-- /wp:group -->

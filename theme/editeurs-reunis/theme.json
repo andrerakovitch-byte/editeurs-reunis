@@ -20,6 +20,7 @@
 				{ "slug": "pierre", "name": "Pierre", "color": "#E7E4DD" },
 				{ "slug": "accent", "name": "Pervenche", "color": "#9DB5F5" },
 				{ "slug": "accent-pale", "name": "Pervenche pâle", "color": "#E4EBFD" },
+				{ "slug": "accent-texte", "name": "Pervenche foncée (texte)", "color": "#4F6AD8" },
 				{ "slug": "noir", "name": "Noir", "color": "#000000" }
 			]
 		},

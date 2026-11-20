@@ -27,6 +27,16 @@ add_action(
 		$version = wp_get_theme()->get( 'Version' );
 		wp_enqueue_style( 'editeurs-reunis', get_stylesheet_uri(), array(), $version );
 		wp_enqueue_script(
+			'editeurs-reunis-menu-librairie',
+			get_theme_file_uri( 'assets/js/menu-librairie.js' ),
+			array(),
+			$version,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		wp_enqueue_script(
 			'editeurs-reunis-diaporama',
 			get_theme_file_uri( 'assets/js/diaporama.js' ),
 			array(),
@@ -65,6 +75,20 @@ add_action(
 				'label' => 'Carte voilée',
 			)
 		);
+	}
+);
+
+/**
+ * Dans la librairie (ses pages, un rayon, un livre, un auteur, une langue, les promotions), « Librairie » est allumée
+ * dans le menu du haut.
+ */
+add_filter(
+	'body_class',
+	function ( $classes ) {
+		if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || is_page( 'promos' ) ) {
+			$classes[] = 'er-dans-la-librairie';
+		}
+		return $classes;
 	}
 );
 

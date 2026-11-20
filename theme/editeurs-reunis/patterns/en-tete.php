@@ -35,7 +35,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"base","overlayTextColor":"contrast","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"2.25rem"}}} -->
-			<!-- wp:navigation-link {"label":"Librairie","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom"} /-->
+			<!-- wp:navigation-link {"label":"Librairie","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom","className":"er-lien-librairie"} /-->
 
 			<!-- wp:navigation-submenu {"label":"Maison d’édition YMCA-Press","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} -->
 				<!-- wp:navigation-link {"label":"La maison d’édition","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} /-->

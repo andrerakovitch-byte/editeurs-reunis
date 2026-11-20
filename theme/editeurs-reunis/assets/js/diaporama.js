@@ -37,7 +37,7 @@
 
 		racine.setAttribute( 'role', 'region' );
 		racine.setAttribute( 'aria-roledescription', 'carrousel' );
-		racine.setAttribute( 'aria-label', 'À la une' );
+		racine.setAttribute( 'aria-label', racine.getAttribute( 'data-libelle' ) || 'À la une' );
 		diapos.forEach( function ( d, i ) {
 			d.setAttribute( 'role', 'group' );
 			d.setAttribute( 'aria-roledescription', 'diapositive' );
