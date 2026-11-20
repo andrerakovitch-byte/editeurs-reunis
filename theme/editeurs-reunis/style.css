@@ -746,7 +746,7 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   Le menu de la librairie, d'après la maquette : la devise, les rayons, le tiroir d'un grand rayon
+   Le menu de la librairie : la devise, les rayons, le tiroir de chaque entrée
    -------------------------------------------------------------------------- */
 
 /* « Librairie » allumée dans le menu du haut quand on est dans la librairie ; la pervenche foncée, pour se lire. */
@@ -769,7 +769,7 @@ sup { font-size: 0.62em; line-height: 0; }
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 0 2.25rem;
+	gap: 0 1.35rem;
 }
 .er-rayon { display: flex; align-items: center; margin: 0; }
 .er-rayon-lien {
@@ -779,6 +779,7 @@ sup { font-size: 0.62em; line-height: 0; }
 	font-weight: 500;
 	font-size: 0.9375rem;
 	color: var(--wp--preset--color--contrast);
+	white-space: nowrap;
 }
 .er-rayon-lien:hover { text-decoration: underline; }
 .er-rayon-lien[aria-current],
@@ -804,8 +805,8 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-a-tiroir.ouvert .er-rayon-ouvrir { color: var(--wp--preset--color--accent-texte); }
 .er-a-tiroir.ouvert .er-rayon-ouvrir svg { transform: rotate(180deg); }
 
-/* Le tiroir : sur toute la largeur, cerné de noir comme sur la maquette ; les sous-rayons à gauche, deux tuiles à
-   droite, chacune un tiers. */
+/* Le tiroir : sur toute la largeur, cerné de noir ; trois tiers : les sous-rayons, puis deux tuiles (ou quatre
+   couvertures, sur les deux tiers). */
 .er-tiroir {
 	display: none;
 	position: absolute;
@@ -817,23 +818,72 @@ sup { font-size: 0.62em; line-height: 0; }
 	box-shadow: 0 24px 40px -28px rgba(0, 0, 0, 0.35);
 }
 .er-a-tiroir.ouvert .er-tiroir { display: block; }
-.er-tiroir-dedans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: clamp(260px, 22vw, 330px); }
-.er-tiroir-liens {
-	list-style: none;
-	margin: 0;
-	padding: 1.75rem 2rem 1.75rem max(var(--wp--style--root--padding-left), calc((100vw - var(--wp--style--global--wide-size)) / 2));
+.er-tiroir-dedans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: clamp(300px, 25vw, 360px); }
+
+.er-tiroir-colonne {
+	box-sizing: border-box;
+	padding: 1.9rem 1.75rem 1.6rem max(var(--wp--style--root--padding-left), calc((100vw - var(--wp--style--global--wide-size)) / 2));
 	display: flex;
 	flex-direction: column;
-	gap: 0.15rem;
 }
-.er-tiroir-liens a { display: inline-block; padding: 0.3rem 0; text-decoration: none; font-weight: 500; }
+.er-tiroir-groupes { display: grid; grid-template-columns: repeat(var(--er-groupes, 1), minmax(0, 1fr)); gap: 1.5rem; }
+.er-tiroir-groupe-titre {
+	margin: 0 0 0.5rem;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--discret);
+}
+.er-tiroir-liens { list-style: none; margin: 0; padding: 0; }
+.er-tiroir-liens li { margin: 0; }
+.er-tiroir-liens a { display: inline-block; padding: 0.22rem 0; text-decoration: none; font-weight: 500; font-size: 0.9375rem; line-height: 1.45; }
 .er-tiroir-liens a:hover { color: var(--wp--preset--color--accent-texte); text-decoration: underline; }
-.er-tiroir-tout { margin-top: auto !important; padding-top: 0.75rem; }
-.er-tiroir-tout a { font-size: var(--wp--preset--font-size--small); font-weight: 600; }
-.er-tiroir-tout a::after { content: " →"; }
+.er-tiroir-tout { margin-top: auto; padding-top: 1rem; font-size: var(--wp--preset--font-size--small); font-weight: 600; text-decoration: none; color: var(--wp--preset--color--contrast); }
+.er-tiroir-tout::after { content: " →"; }
+.er-tiroir-tout:hover { text-decoration: underline; }
+.er-tiroir-phrase { margin: 0; font-size: clamp(1.4rem, 1.9vw, 1.65rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.015em; max-width: 12em; }
 
-.er-tuile { position: relative; overflow: hidden; color: var(--wp--preset--color--base); }
+/* Quatre couvertures : les livres en haut, à la même place ; les titres et les chiffres des meilleures ventes
+   alignés tout en bas, sur le plus long des titres. */
+.er-tiroir-vitrine {
+	grid-column: span 2;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1.75rem;
+	align-items: stretch;
+	padding: 2.1rem max(var(--wp--style--root--padding-right), calc((100vw - var(--wp--style--global--wide-size)) / 2)) 1.6rem 2rem;
+	border-left: var(--er-filet);
+}
+.er-vitrine-livre { display: flex; align-items: flex-end; gap: 0.6rem; min-width: 0; text-decoration: none; color: var(--wp--preset--color--contrast); }
+.er-vitrine-rang { flex: none; font-size: 4rem; font-weight: 600; line-height: 0.8; letter-spacing: -0.04em; color: var(--wp--preset--color--accent); }
+.er-vitrine-fiche { display: flex; flex-direction: column; align-items: flex-start; align-self: stretch; min-width: 0; }
+.er-tiroir .er-vitrine-fiche img { display: block; height: clamp(150px, 13vw, 200px); width: auto; max-width: 100%; box-shadow: var(--er-ombre-livre); }
+/* Les titres alignés en bas, eux aussi, sur la ligne des chiffres. */
+.er-vitrine-titre { margin-top: auto; padding-top: 0.75rem; font-size: var(--wp--preset--font-size--small); font-weight: 600; line-height: 1.3; }
+.er-vitrine-auteur { margin-top: 0.15rem; font-size: 0.8125rem; color: var(--wp--preset--color--encre-2); }
+.er-vitrine-livre:hover .er-vitrine-titre { text-decoration: underline; }
+
+/* Les tuiles : une seule mise en page, trois fonds (une photo ; un aplat et une couverture ; un aplat et une grande
+   lettre cyrillique). Le surtitre et le nom en haut à gauche, le bouton en bas à gauche, les flèches en bas à droite
+   quand la tuile a plusieurs vues. */
+.er-tuile-cadre { position: relative; overflow: hidden; }
+.er-tuile {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	box-sizing: border-box;
+	height: 100%;
+	padding: clamp(1.9rem, 2.6vw, 2.4rem) 2rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	color: var(--wp--preset--color--base);
+	background: #1E1C1A;
+}
 .er-tuile p { margin: 0; }
+.er-tuile-sur { position: relative; font-size: clamp(1rem, 1.25vw, 1.15rem); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1; margin-bottom: 0.45rem !important; }
+.er-tuile-nom { position: relative; font-size: clamp(1.85rem, 2.6vw, 2.35rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; max-width: 9.5em; }
+.er-tuile-bouton { position: relative; margin-top: auto !important; }
 .er-tuile-bouton a {
 	display: inline-flex;
 	align-items: center;
@@ -850,71 +900,72 @@ sup { font-size: 0.62em; line-height: 0; }
 	font-weight: 500;
 	transition: background var(--er-transition), color var(--er-transition);
 }
-.er-tuile-bouton a:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+.er-tuile-bouton a:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--base); }
 
-/* La première tuile : un petit diaporama (le même script que celui de l'accueil), sans repères, avec ses flèches.
-   Comme sur la maquette : le surtitre et le nom dans le haut, le nom en très grand ; le bouton en bas à gauche, sur
-   la même ligne que les flèches, en bas à droite. */
+.er-tuile .er-tuile-fond { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.er-tuile-voile { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.1) 75%); z-index: -1; }
+
+.er-aplat-vert { background: #2F4943; }
+.er-aplat-nuit { background: #101642; }
+.er-aplat-brun { background: #2C1F17; }
+.er-aplat-noir { background: #26231F; }
+.er-aplat-pervenche { background: var(--wp--preset--color--accent); color: var(--wp--preset--color--contrast); }
+.er-aplat-pervenche .er-tuile-bouton a:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--accent); border-color: var(--wp--preset--color--contrast); }
+
+.er-tuile-couverture .er-tuile-nom { max-width: calc(100% - 8.5rem); }
+.er-tuile .er-tuile-livre { position: absolute; right: 2.25rem; bottom: 1.85rem; height: min(52%, 185px); width: auto; box-shadow: 0 18px 36px -14px rgba(0, 0, 0, 0.6); z-index: -1; }
+
+.er-tuile-lettre .er-tuile-nom { max-width: 8em; }
+.er-tuile-glyphe {
+	position: absolute;
+	right: -0.04em;
+	bottom: -0.2em;
+	font-size: clamp(13rem, 20vw, 19rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.04em;
+	white-space: nowrap;
+	color: rgba(255, 255, 255, 0.11);
+	z-index: -1;
+	pointer-events: none;
+	user-select: none;
+}
+.er-tuile-glyphe-long { font-size: clamp(9rem, 13.5vw, 13rem); }
+.er-aplat-pervenche .er-tuile-glyphe { color: rgba(28, 28, 28, 0.12); }
+
+/* Une tuile à plusieurs vues : un petit diaporama (le script de l'accueil), sans repères, avec ses flèches. */
 .er-diaporama-mini, .er-diaporama-mini .er-diapos { height: 100%; }
-.er-diaporama-mini .er-diapos > .er-diapo.er-tuile-diapo {
+.er-diaporama-mini .er-diapos > .er-diapo.er-tuile {
 	box-sizing: border-box;
 	min-height: 0;
 	height: 100%;
-	padding: clamp(2rem, 4.2vw, 3.5rem) 2rem 1.4rem;
-	justify-content: flex-start;
-	background-color: #1E1C1A;
-	background-size: cover;
-}
-.er-diaporama-mini .er-tuile-diapo::before { content: ""; width: auto; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.12) 72%); z-index: -1; }
-.er-tuile-sur {
-	font-size: clamp(1.15rem, 1.6vw, 1.45rem);
-	font-weight: 600;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	line-height: 1;
-	margin: 0 0 0.35rem !important;
-}
-.er-tuile-nom.er-diapo-titre {
-	font-size: clamp(2.5rem, 4.4vw, 4rem);
-	font-weight: 600;
-	line-height: 1;
-	letter-spacing: -0.02em;
 	margin: 0 !important;
-	max-width: 9em;
-	text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+	padding: clamp(1.9rem, 2.6vw, 2.4rem) 2rem 1.5rem;
+	justify-content: flex-start;
 }
-.er-tuile-diapo .er-tuile-bouton { margin-top: auto !important; }
+.er-diaporama-mini .er-diapo.er-tuile::before { display: none; }
 .er-diaporama-mini .er-diaporama-reperes { display: none; }
-.er-diaporama-mini .er-diaporama-commandes { inset-inline: auto 1.5rem; bottom: 1.4rem; width: auto; margin: 0; }
+.er-diaporama-mini .er-diaporama-commandes { inset-inline: auto 1.5rem; bottom: 1.5rem; width: auto; margin: 0; }
 .er-diaporama-mini .er-diaporama-fleche { width: 40px; height: 40px; }
 
-/* La seconde : les anthologies */
-.er-tuile-anthologies {
-	background: #2F4943;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 1.25rem;
-	text-align: center;
-	padding: 1.5rem 2rem;
+@media (max-width: 1280px) {
+	.er-rayons-liste { gap: 0 0.9rem; }
+	.er-rayon-lien { font-size: 0.875rem; }
 }
-.er-tuile-anthologies img { position: absolute; right: -6%; bottom: -14%; width: 64%; opacity: 0.32; z-index: 0; pointer-events: none; }
-.er-tuile-anthologies > p { position: relative; z-index: 1; }
-.er-tuile-phrase { font-size: clamp(1.35rem, 1.9vw, 1.7rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; max-width: 20rem; }
-
 @media (max-width: 1100px) {
-	.er-rayons-liste { gap: 0 1.4rem; }
-	.er-tiroir-dedans { grid-template-columns: 1.2fr 1fr; }
-	.er-tuile-anthologies { display: none; }
+	.er-tiroir-dedans { grid-template-columns: 1.25fr 1fr; }
+	.er-tiroir-dedans > .er-tuile:last-child, .er-tiroir-dedans > .er-tuile-cadre + .er-tuile { display: none; }
+	.er-tiroir-vitrine { grid-column: span 1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.er-vitrine-livre:nth-child(n+3) { display: none; }
 }
 @media (max-width: 781px) {
 	.er-devise { font-size: var(--wp--preset--font-size--small); padding-block: 0.7rem; }
-	/* Les rayons sur une ligne qu'on fait glisser ; le tiroir ne montre plus que les sous-rayons. */
+	/* Les entrées sur une ligne qu'on fait glisser ; le tiroir ne montre plus que les sous-rayons. */
 	.er-rayons-liste { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; gap: 0 1.1rem; }
 	.er-rayons-liste::-webkit-scrollbar { display: none; }
 	.er-rayon { flex: none; }
 	.er-tiroir-dedans { grid-template-columns: 1fr; min-height: 0; }
-	.er-tuile { display: none; }
-	.er-tiroir-liens { padding: 1.25rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); }
+	.er-tuile, .er-tuile-cadre, .er-tiroir-vitrine { display: none !important; }
+	.er-tiroir-colonne { padding: 1.25rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); }
+	.er-tiroir-groupes { gap: 1rem; }
 }

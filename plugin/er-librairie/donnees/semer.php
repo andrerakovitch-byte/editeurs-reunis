@@ -286,47 +286,130 @@ function er_semer_terme( $nom, $slug, $taxonomie, $description = '', $parent = 0
 	return $id;
 }
 
-// Les rayons et leurs sous-rayons, dans l'ordre du menu de la librairie (la maquette Wix : Littérature, Apprendre le
-// russe, Arts, Jeunesse). Les sous-rayons d'Apprendre le russe et d'Arts sont une proposition, Jeunesse n'en a pas.
+// Les rayons et leurs sous-rayons, dans l'ordre du menu de la librairie (la maquette Wix, et la proposition du
+// 20 nov. : Histoire et Pensée et religion en plus). Un sous-rayon appartient à un groupe (« Par genre », « Par
+// époque »…), que le tiroir du menu montre en deux listes : la méta « er_groupe » du terme.
 $rayons = array(
 	'litterature'        => array(
 		'Littérature',
 		'Les classiques et les contemporains, en français et en russe.',
 		array(
-			'memoires'               => array( 'Mémoires', 'Témoignages, souvenirs, le Goulag et l’exil.' ),
-			'nouvelles-et-recits'    => array( 'Nouvelles et récits', '' ),
-			'poesie'                 => array( 'Poésie', 'De Blok à Goumilev, et les anthologies bilingues d’YMCA-Press.' ),
-			'recit-autobiographique' => array( 'Récit autobiographique', '' ),
-			'recit-de-voyage'        => array( 'Récit de voyage', '' ),
-			'romans'                 => array( 'Romans', '' ),
-			'theatre'                => array( 'Théâtre', '' ),
-			'essais'                 => array( 'Essais', '' ),
+			'Par genre'  => array(
+				'romans'              => 'Romans',
+				'nouvelles-et-recits' => 'Nouvelles et récits',
+				'poesie'              => 'Poésie',
+				'theatre'             => 'Théâtre',
+				'memoires'            => 'Mémoires et témoignages',
+				'recit-de-voyage'     => 'Récits de voyage',
+				'essais'              => 'Essais',
+			),
+			'Par époque' => array(
+				'classiques'         => 'Les classiques',
+				'age-d-argent'       => 'L’Âge d’argent',
+				'periode-sovietique' => 'La période soviétique',
+				'emigration'         => 'L’émigration',
+				'contemporains'      => 'Les contemporains',
+			),
+		),
+	),
+	'histoire'           => array(
+		'Histoire',
+		'L’histoire et la civilisation russes, de la Russie ancienne à aujourd’hui.',
+		array(
+			'Par période' => array(
+				'russie-ancienne'   => 'La Russie ancienne',
+				'empire'            => 'L’Empire',
+				'revolution-1917'   => '1917',
+				'urss'              => 'L’URSS',
+				'russie-aujourdhui' => 'La Russie d’aujourd’hui',
+			),
+			'Par thème'   => array(
+				'goulag'          => 'Le Goulag',
+				'emigration-russe' => 'L’émigration russe',
+				'biographies'     => 'Biographies',
+				'civilisation'    => 'Civilisation',
+			),
+		),
+	),
+	'pensee-et-religion' => array(
+		'Pensée et religion',
+		'La philosophie russe et la théologie orthodoxe.',
+		array(
+			'Pensée'   => array(
+				'philosophie-russe' => 'Philosophie russe',
+				'histoire-des-idees' => 'Histoire des idées',
+				'essais-politiques' => 'Essais politiques',
+			),
+			'Religion' => array(
+				'theologie-orthodoxe'   => 'Théologie orthodoxe',
+				'spiritualite-et-priere' => 'Spiritualité et prière',
+				'vies-de-saints'        => 'Vies de saints',
+				'icones'                => 'Icônes',
+				'liturgie'              => 'Liturgie',
+			),
 		),
 	),
 	'apprendre-le-russe' => array(
 		'Apprendre le russe',
 		'Des manuels, des dictionnaires et des guides pour vos voyages.',
 		array(
-			'manuels'       => array( 'Manuels', '' ),
-			'dictionnaires' => array( 'Dictionnaires', '' ),
+			'Méthodes' => array(
+				'debutant'                  => 'Débutant (A1–A2)',
+				'intermediaire'             => 'Intermédiaire (B1–B2)',
+				'avance'                    => 'Avancé (C1–C2)',
+				'grammaire-et-exercices'    => 'Grammaire et exercices',
+				'ecriture-et-prononciation' => 'Écriture et prononciation',
+			),
+			'Outils'   => array(
+				'dictionnaires'     => 'Dictionnaires',
+				'lectures-bilingues' => 'Lectures bilingues',
+				'livres-audio'      => 'Livres audio',
+				'guides-de-voyage'  => 'Guides de voyage',
+			),
 		),
 	),
 	'arts'               => array(
 		'Arts',
 		'Le cinéma, la musique, la peinture russes.',
 		array(
-			'cinema'  => array( 'Cinéma', 'Des scénarios et des livres sur le cinéma russe.' ),
-			'musique' => array( 'Musique', '' ),
+			'Arts' => array(
+				'cinema'            => 'Cinéma',
+				'musique'           => 'Musique',
+				'peinture'          => 'Peinture',
+				'theatre-et-ballet' => 'Théâtre et ballet',
+				'architecture'      => 'Architecture',
+				'photographie'      => 'Photographie',
+			),
 		),
 	),
-	'jeunesse'           => array( 'Jeunesse', '', array() ),
+	'jeunesse'           => array(
+		'Jeunesse',
+		'Des albums, des contes et des romans, en russe, en français ou dans les deux langues.',
+		array(
+			'Par âge'   => array(
+				'des-3-ans'   => 'Dès 3 ans',
+				'des-6-ans'   => 'Dès 6 ans',
+				'des-9-ans'   => 'Dès 9 ans',
+				'adolescents' => 'Adolescents',
+			),
+			'Par genre' => array(
+				'albums'          => 'Albums',
+				'contes-russes'   => 'Contes russes',
+				'romans-jeunesse' => 'Romans',
+				'livres-bilingues' => 'Livres bilingues',
+			),
+		),
+	),
 );
 $id_rayons = array();
 $ordre     = 0;
 foreach ( $rayons as $slug => $rayon ) {
 	$id_rayons[ $slug ] = er_semer_terme( $rayon[0], $slug, 'product_cat', $rayon[1], 0, ++$ordre );
-	foreach ( $rayon[2] as $sous_slug => $sous ) {
-		$id_rayons[ $sous_slug ] = er_semer_terme( $sous[0], $sous_slug, 'product_cat', $sous[1], $id_rayons[ $slug ], ++$ordre );
+	foreach ( $rayon[2] as $groupe => $sous ) {
+		foreach ( $sous as $sous_slug => $sous_nom ) {
+			$id_rayons[ $sous_slug ] = er_semer_terme( $sous_nom, $sous_slug, 'product_cat', '', $id_rayons[ $slug ], ++$ordre );
+			update_term_meta( $id_rayons[ $sous_slug ], 'er_groupe', $groupe );
+		}
 	}
 }
 // Le rayon par défaut de WooCommerce, vide, ne doit pas paraître.
@@ -345,6 +428,9 @@ $mentions = array(
 	'nouvelle-edition'    => 'Nouvelle édition',
 	'nouvelle-traduction' => 'Nouvelle traduction',
 	'tres-rare'           => 'Très rare',
+	'occasion'            => 'Occasion',
+	'fin-de-serie'        => 'Fin de série',
+	'edition-ancienne'    => 'Édition ancienne',
 );
 foreach ( $mentions as $slug => $nom ) {
 	er_semer_terme( $nom, $slug, 'product_tag' );
@@ -356,21 +442,21 @@ $dossier = __DIR__ . '/couvertures/';
 
 // Dans l'ordre de la maquette : le premier est le plus récent.
 $livres = array(
-	array( 'convoi-pour-samarcande', 'Convoi pour Samarcande', array( 'Gouzel Iakhina' ), '25', 'romans', 'francais', array( 'nouveaute' ), true, 'Le roman de Gouzel Iakhina sur la famine de 1921 : un train d’enfants affamés traverse la Russie jusqu’à Samarcande.' ),
-	array( 'scenarii-zviaguintsev', 'Сценарии кинофильмов Андрея Звягинцева', array( 'Андрей Звягинцев' ), '', 'cinema', 'russe', array(), false, 'Les scénarios des films d’Andreï Zviaguintsev, en russe.' ),
-	array( 'larchipel-du-goulag-cinquante-ans-apres', 'L’Archipel du Goulag, cinquante ans après', array( 'Alexandre Soljenitsyne', 'Georges Nivat' ), '', 'memoires', 'francais', array( 'nouveaute' ), false, 'Morceaux choisis de <em>L’Archipel du Goulag</em>, 1973-2023, sous la direction de Georges Nivat.' ),
-	array( 'put-filma', 'Путь фильма', array( 'Семён Ляшенко' ), '15', 'cinema', 'russe', array(), true, 'Un livre sur le cinéma, en russe.' ),
-	array( 'tchevengour', 'Tchevengour', array( 'Andreï Platonov' ), '24', 'romans', 'francais', array( 'nouvelle-edition' ), true, 'Le grand roman d’Andreï Platonov, écrit à la fin des années 1920 et publié en URSS seulement en 1988.' ),
-	array( 'le-docteur-jivago', 'Le Docteur Jivago', array( 'Boris Pasternak' ), '26', 'romans', 'francais', array( 'nouvelle-traduction' ), true, 'Le roman de Boris Pasternak, publié pour la première fois en Italie en 1957, dans une nouvelle traduction.' ),
-	array( 'voix-et-visages-du-goulag', 'Voix et visages du Goulag', array(), '35', 'memoires', 'francais', array(), true, '' ),
-	array( 'les-douze', 'Les Douze', array( 'Alexandre Blok' ), '20', 'poesie', 'francais', array(), true, 'Le poème d’Alexandre Blok sur la révolution, écrit en janvier 1918.' ),
-	array( 'ekaterina-ivanovna', 'Ekatérina Ivanovna, suivi de Requiem', array( 'Léonid Andréïev' ), '20', 'theatre', 'francais', array(), true, 'Deux pièces de Léonid Andréïev.' ),
-	array( 'les-enfants-de-la-volga', 'Les Enfants de la Volga', array( 'Gouzel Iakhina' ), '24', 'romans', 'francais', array(), true, 'Le deuxième roman de Gouzel Iakhina, chez les Allemands de la Volga.' ),
-	array( 'poesies-choisies-goumilev', 'Poésies choisies', array( 'Nikolaï Goumilev' ), '19', 'poesie', 'francais', array(), true, 'Un choix de poèmes de Nikolaï Goumilev.' ),
-	array( 'russkaia-poezia', 'Русская поэзия', array(), '200', 'poesie', 'russe', array( 'tres-rare' ), true, 'Un exemplaire rare, à voir à la librairie.' ),
-	array( 'dostoievski-zweig', 'Dostoïevski', array( 'Stefan Zweig' ), '7', 'essais', 'francais', array(), true, 'L’essai de Stefan Zweig sur Dostoïevski, tiré de <em>Trois Maîtres</em>.' ),
-	array( 'moussorgski-calvocoressi', 'Modeste Moussorgski', array( 'Michel D. Calvocoressi' ), '20', 'musique', 'francais', array(), true, 'La vie du compositeur, par Michel D. Calvocoressi.' ),
-	array( 'notes-dun-medecin', 'Notes d’un médecin', array( 'Vikenti Veressaïev' ), '', 'recit-autobiographique', 'francais', array(), true, 'Un jeune médecin raconte ses débuts à l’hôpital, ses doutes et ses erreurs. À sa parution, en 1901, le livre fit scandale ; il n’a rien perdu de sa franchise. Traduit du russe par Julie Bouvard, préface de Dimitri Bortnikov.' ),
+	array( 'convoi-pour-samarcande', 'Convoi pour Samarcande', array( 'Gouzel Iakhina' ), '25', array( 'romans', 'contemporains' ), 'francais', array( 'nouveaute' ), true, 'Le roman de Gouzel Iakhina sur la famine de 1921 : un train d’enfants affamés traverse la Russie jusqu’à Samarcande.' ),
+	array( 'scenarii-zviaguintsev', 'Сценарии кинофильмов Андрея Звягинцева', array( 'Андрей Звягинцев' ), '', array( 'cinema' ), 'russe', array(), false, 'Les scénarios des films d’Andreï Zviaguintsev, en russe.' ),
+	array( 'larchipel-du-goulag-cinquante-ans-apres', 'L’Archipel du Goulag, cinquante ans après', array( 'Alexandre Soljenitsyne', 'Georges Nivat' ), '', array( 'goulag' ), 'francais', array( 'nouveaute' ), false, 'Morceaux choisis de <em>L’Archipel du Goulag</em>, 1973-2023, sous la direction de Georges Nivat.' ),
+	array( 'put-filma', 'Путь фильма', array( 'Семён Ляшенко' ), '15', array( 'cinema' ), 'russe', array(), true, 'Un livre sur le cinéma, en russe.' ),
+	array( 'tchevengour', 'Tchevengour', array( 'Andreï Platonov' ), '24', array( 'romans', 'periode-sovietique' ), 'francais', array( 'nouvelle-edition' ), true, 'Le grand roman d’Andreï Platonov, écrit à la fin des années 1920 et publié en URSS seulement en 1988.' ),
+	array( 'le-docteur-jivago', 'Le Docteur Jivago', array( 'Boris Pasternak' ), '26', array( 'romans', 'periode-sovietique' ), 'francais', array( 'nouvelle-traduction' ), true, 'Le roman de Boris Pasternak, publié pour la première fois en Italie en 1957, dans une nouvelle traduction.' ),
+	array( 'voix-et-visages-du-goulag', 'Voix et visages du Goulag', array(), '35', array( 'goulag', 'memoires' ), 'francais', array(), true, '' ),
+	array( 'les-douze', 'Les Douze', array( 'Alexandre Blok' ), '20', array( 'poesie', 'age-d-argent' ), 'francais', array(), true, 'Le poème d’Alexandre Blok sur la révolution, écrit en janvier 1918.' ),
+	array( 'ekaterina-ivanovna', 'Ekatérina Ivanovna, suivi de Requiem', array( 'Léonid Andréïev' ), '20', array( 'theatre', 'age-d-argent' ), 'francais', array(), true, 'Deux pièces de Léonid Andréïev.' ),
+	array( 'les-enfants-de-la-volga', 'Les Enfants de la Volga', array( 'Gouzel Iakhina' ), '24', array( 'romans', 'contemporains' ), 'francais', array(), true, 'Le deuxième roman de Gouzel Iakhina, chez les Allemands de la Volga.' ),
+	array( 'poesies-choisies-goumilev', 'Poésies choisies', array( 'Nikolaï Goumilev' ), '19', array( 'poesie', 'age-d-argent' ), 'francais', array(), true, 'Un choix de poèmes de Nikolaï Goumilev.' ),
+	array( 'russkaia-poezia', 'Русская поэзия', array(), '200', array( 'poesie' ), 'russe', array( 'tres-rare' ), true, 'Un exemplaire rare, à voir à la librairie.' ),
+	array( 'dostoievski-zweig', 'Dostoïevski', array( 'Stefan Zweig' ), '7', array( 'essais' ), 'francais', array(), true, 'L’essai de Stefan Zweig sur Dostoïevski, tiré de <em>Trois Maîtres</em>.' ),
+	array( 'moussorgski-calvocoressi', 'Modeste Moussorgski', array( 'Michel D. Calvocoressi' ), '20', array( 'musique' ), 'francais', array(), true, 'La vie du compositeur, par Michel D. Calvocoressi.' ),
+	array( 'notes-dun-medecin', 'Notes d’un médecin', array( 'Vikenti Veressaïev' ), '', array( 'memoires', 'classiques' ), 'francais', array(), true, 'Un jeune médecin raconte ses débuts à l’hôpital, ses doutes et ses erreurs. À sa parution, en 1901, le livre fit scandale ; il n’a rien perdu de sa franchise. Traduit du russe par Julie Bouvard, préface de Dimitri Bortnikov.' ),
 );
 
 $fichiers_couvertures = array(
@@ -380,7 +466,7 @@ $fichiers_couvertures = array(
 
 $maintenant = time();
 foreach ( $livres as $rang => $livre ) {
-	list( $slug, $titre, $auteurs, $prix, $rayon, $langue, $mentions_livre, $en_stock, $presentation ) = $livre;
+	list( $slug, $titre, $auteurs, $prix, $rayons_livre, $langue, $mentions_livre, $en_stock, $presentation ) = $livre;
 
 	$existant = get_page_by_path( $slug, OBJECT, 'product' );
 	$produit  = $existant ? wc_get_product( $existant->ID ) : new WC_Product_Simple();
@@ -393,7 +479,14 @@ foreach ( $livres as $rang => $livre ) {
 	$produit->set_description( $presentation ? er_p( $presentation ) : '' );
 	$produit->set_short_description( '' );
 	$produit->set_stock_status( $en_stock ? 'instock' : 'outofstock' );
-	$produit->set_category_ids( array( $id_rayons[ $rayon ] ) );
+	$produit->set_category_ids(
+		array_map(
+			function ( $r ) use ( $id_rayons ) {
+				return $id_rayons[ $r ];
+			},
+			$rayons_livre
+		)
+	);
 	$produit->set_tag_ids(
 		array_values(
 			array_filter(
@@ -437,8 +530,8 @@ foreach ( $livres as $rang => $livre ) {
 	}
 }
 
-// Les rayons de la première ébauche, remplacés par l'arborescence de la maquette.
-foreach ( array( 'litterature-russe', 'histoire', 'essais-et-biographies' ) as $ancien ) {
+// Les rayons des premières ébauches, remplacés par l'arborescence du menu.
+foreach ( array( 'litterature-russe', 'essais-et-biographies', 'recit-autobiographique', 'manuels' ) as $ancien ) {
 	$terme = get_term_by( 'slug', $ancien, 'product_cat' );
 	if ( $terme && 0 === (int) $terme->count ) {
 		wp_delete_term( $terme->term_id, 'product_cat' );
