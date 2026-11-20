@@ -835,10 +835,13 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-tuile { position: relative; overflow: hidden; color: var(--wp--preset--color--base); }
 .er-tuile p { margin: 0; }
 .er-tuile-bouton a {
-	display: inline-block;
-	min-width: 9.5rem;
-	text-align: center;
-	padding: 0.6em 1.5em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-width: 10.5rem;
+	height: 40px;
+	padding: 0 1.6em;
 	border: 1px solid currentColor;
 	border-radius: 999px;
 	color: inherit;
@@ -849,22 +852,41 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-tuile-bouton a:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
 
-/* La première tuile : un petit diaporama (le même script que celui de l'accueil), sans repères, avec ses flèches. */
+/* La première tuile : un petit diaporama (le même script que celui de l'accueil), sans repères, avec ses flèches.
+   Comme sur la maquette : le surtitre et le nom dans le haut, le nom en très grand ; le bouton en bas à gauche, sur
+   la même ligne que les flèches, en bas à droite. */
 .er-diaporama-mini, .er-diaporama-mini .er-diapos { height: 100%; }
 .er-diaporama-mini .er-diapos > .er-diapo.er-tuile-diapo {
+	box-sizing: border-box;
 	min-height: 0;
 	height: 100%;
-	padding: 1.75rem 1.75rem 1.5rem 2rem;
+	padding: clamp(2rem, 4.2vw, 3.5rem) 2rem 1.4rem;
 	justify-content: flex-start;
 	background-color: #1E1C1A;
 	background-size: cover;
 }
-.er-diaporama-mini .er-tuile-diapo::before { content: ""; width: auto; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1) 70%); z-index: -1; }
-.er-tuile-sur { font-size: var(--wp--preset--font-size--large); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1; margin-top: 1rem !important; }
-.er-tuile-nom.er-diapo-titre { font-size: clamp(2rem, 3.4vw, 3rem); font-style: italic; font-weight: 500; margin: 0 0 auto; max-width: none; }
-.er-tuile-diapo .er-tuile-bouton { margin-top: auto; }
+.er-diaporama-mini .er-tuile-diapo::before { content: ""; width: auto; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.12) 72%); z-index: -1; }
+.er-tuile-sur {
+	font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	line-height: 1;
+	margin: 0 0 0.35rem !important;
+}
+.er-tuile-nom.er-diapo-titre {
+	font-size: clamp(2.5rem, 4.4vw, 4rem);
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	margin: 0 !important;
+	max-width: 9em;
+	text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+.er-tuile-diapo .er-tuile-bouton { margin-top: auto !important; }
 .er-diaporama-mini .er-diaporama-reperes { display: none; }
-.er-diaporama-mini .er-diaporama-commandes { inset-inline: auto 1.25rem; bottom: 1.4rem; width: auto; margin: 0; }
+.er-diaporama-mini .er-diaporama-commandes { inset-inline: auto 1.5rem; bottom: 1.4rem; width: auto; margin: 0; }
 .er-diaporama-mini .er-diaporama-fleche { width: 40px; height: 40px; }
 
 /* La seconde : les anthologies */
@@ -880,7 +902,7 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-tuile-anthologies img { position: absolute; right: -6%; bottom: -14%; width: 64%; opacity: 0.32; z-index: 0; pointer-events: none; }
 .er-tuile-anthologies > p { position: relative; z-index: 1; }
-.er-tuile-phrase { font-size: var(--wp--preset--font-size--large); font-weight: 600; line-height: 1.3; max-width: 19rem; }
+.er-tuile-phrase { font-size: clamp(1.35rem, 1.9vw, 1.7rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; max-width: 20rem; }
 
 @media (max-width: 1100px) {
 	.er-rayons-liste { gap: 0 1.4rem; }
