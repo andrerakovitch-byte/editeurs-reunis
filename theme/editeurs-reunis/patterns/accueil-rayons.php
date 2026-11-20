@@ -3,41 +3,37 @@
  * Title: Accueil — les rayons
  * Slug: editeurs-reunis/accueil-rayons
  * Categories: editeurs-reunis
- * Description: Les rayons de la librairie et les langues, en pilules, avec le nombre de livres.
+ * Description: Sur fond blanc : le titre dans la colonne pervenche ; à côté, les rayons et les langues de la librairie en pilules.
  *
  * @package editeurs-reunis
  */
 
 ?>
-<!-- wp:group {"align":"full","className":"er-section er-rayons-accueil","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull er-section er-rayons-accueil" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
-	<div class="wp-block-columns alignwide">
-		<!-- wp:column {"width":"34%"} -->
-		<div class="wp-block-column" style="flex-basis:34%">
-			<!-- wp:heading -->
-			<h2 class="wp-block-heading">Les rayons de la librairie</h2>
-			<!-- /wp:heading -->
-
-			<!-- wp:paragraph -->
-			<p>Littérature classique et contemporaine, poésie, histoire, pensée et théologie orthodoxe, manuels et dictionnaires : en russe et en français, neufs et d’occasion.</p>
+<!-- wp:group {"align":"full","className":"er-panneau er-panneau-clair er-rayons-accueil","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull er-panneau er-panneau-clair er-rayons-accueil">
+	<!-- wp:columns {"align":"wide","className":"er-panneau-colonnes","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+	<div class="wp-block-columns alignwide er-panneau-colonnes">
+		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
+		<div class="wp-block-column er-colonne" style="flex-basis:22%">
+			<!-- wp:paragraph {"className":"er-surtitre"} -->
+			<p class="er-surtitre">La librairie</p>
 			<!-- /wp:paragraph -->
+
+			<!-- wp:heading {"className":"er-panneau-titre"} -->
+			<h2 class="wp-block-heading er-panneau-titre">Les rayons</h2>
+			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"width":"66%"} -->
-		<div class="wp-block-column" style="flex-basis:66%">
-			<!-- wp:heading {"level":3,"className":"er-petit-titre"} -->
-			<h3 class="wp-block-heading er-petit-titre">Par rayon</h3>
-			<!-- /wp:heading -->
+		<!-- wp:column {"width":"78%","className":"er-champ"} -->
+		<div class="wp-block-column er-champ" style="flex-basis:78%">
+			<!-- wp:paragraph {"className":"er-chapeau"} -->
+			<p class="er-chapeau">Littérature classique et contemporaine, poésie, histoire, pensée et théologie orthodoxe, manuels et dictionnaires : en russe et en français, neufs et d’occasion.</p>
+			<!-- /wp:paragraph -->
 
-			<!-- wp:categories {"taxonomy":"product_cat","showPostCounts":true,"showEmpty":false,"className":"er-pilules"} /-->
+			<!-- wp:categories {"taxonomy":"product_cat","showPostCounts":true,"showEmpty":false,"className":"er-pilules er-pilules-grandes"} /-->
 
-			<!-- wp:heading {"level":3,"className":"er-petit-titre"} -->
-			<h3 class="wp-block-heading er-petit-titre">Par langue</h3>
-			<!-- /wp:heading -->
-
-			<!-- wp:categories {"taxonomy":"langue","showPostCounts":true,"showEmpty":false,"className":"er-pilules"} /-->
+			<!-- wp:categories {"taxonomy":"langue","showPostCounts":true,"showEmpty":false,"className":"er-pilules er-pilules-grandes er-pilules-langues"} /-->
 		</div>
 		<!-- /wp:column -->
 	</div>

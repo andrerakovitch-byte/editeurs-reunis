@@ -3,8 +3,7 @@
  * Title: Accueil — une entité, trois branches
  * Slug: editeurs-reunis/accueil-branches
  * Categories: editeurs-reunis
- * Description: La librairie, la maison d'édition et le centre culturel : chacun son image, deux lignes et ses portes
- * (les liens de l'ancienne « navigation rapide »).
+ * Description: Sur fond blanc : le titre dans la colonne pervenche ; à côté, la librairie, la maison d'édition et le centre culturel, chacun son image, deux lignes et ses portes (les liens de l'ancienne « navigation rapide »).
  *
  * @package editeurs-reunis
  */
@@ -29,9 +28,9 @@ $branches = array(
 		'alt'   => 'Photographie en noir et blanc : un groupe d’hommes en manteau dans une rue',
 		'lien'  => er_lien( 'ymca-press/' ),
 		'liens' => array(
-			'Les publications'       => er_lien( 'ymca-press/catalogue/' ),
-			'Un siècle d’histoire'   => er_lien( 'ymca-press/histoire/' ),
-			'Les Amis d’YMCA-Press'  => er_lien( 'ymca-press/amis-ymca-press/' ),
+			'Les publications'      => er_lien( 'ymca-press/catalogue/' ),
+			'Un siècle d’histoire'  => er_lien( 'ymca-press/histoire/' ),
+			'Les Amis d’YMCA-Press' => er_lien( 'ymca-press/amis-ymca-press/' ),
 		),
 	),
 	array(
@@ -50,39 +49,59 @@ $branches = array(
 	),
 );
 ?>
-<!-- wp:group {"align":"full","className":"er-section er-branches","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull er-section er-branches" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:heading {"textAlign":"center","align":"wide"} -->
-	<h2 class="wp-block-heading alignwide has-text-align-center">Une entité, trois branches</h2>
-	<!-- /wp:heading -->
-
-	<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|50"}}}} -->
-	<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--50)">
-		<?php foreach ( $branches as $branche ) : ?>
-		<!-- wp:column {"className":"er-branche"} -->
-		<div class="wp-block-column er-branche">
-			<!-- wp:image {"aspectRatio":"4/5","scale":"cover","sizeSlug":"full","linkDestination":"custom","className":"er-branche-image"} -->
-			<figure class="wp-block-image size-full er-branche-image"><a href="<?php echo $branche['lien']; // phpcs:ignore ?>"><img src="<?php echo er_image( $branche['image'] ); ?>" alt="<?php echo esc_attr( $branche['alt'] ); ?>" style="aspect-ratio:4/5;object-fit:cover"/></a></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:heading {"level":3} -->
-			<h3 class="wp-block-heading"><a href="<?php echo $branche['lien']; // phpcs:ignore ?>"><?php echo esc_html( $branche['titre'] ); ?></a></h3>
-			<!-- /wp:heading -->
-
-			<!-- wp:paragraph -->
-			<p><?php echo esc_html( $branche['texte'] ); ?></p>
+<!-- wp:group {"align":"full","className":"er-panneau er-panneau-clair er-branches","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull er-panneau er-panneau-clair er-branches">
+	<!-- wp:columns {"align":"wide","className":"er-panneau-colonnes","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+	<div class="wp-block-columns alignwide er-panneau-colonnes">
+		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
+		<div class="wp-block-column er-colonne" style="flex-basis:22%">
+			<!-- wp:paragraph {"className":"er-surtitre"} -->
+			<p class="er-surtitre">Qui nous sommes</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:list {"className":"er-portes"} -->
-			<ul class="wp-block-list er-portes">
-				<?php foreach ( $branche['liens'] as $titre => $lien ) : ?>
-				<!-- wp:list-item --><li><a href="<?php echo $lien; // phpcs:ignore ?>"><?php echo esc_html( $titre ); ?></a></li><!-- /wp:list-item -->
-				<?php endforeach; ?>
-			</ul>
-			<!-- /wp:list -->
+			<!-- wp:heading {"className":"er-panneau-titre"} -->
+			<h2 class="wp-block-heading er-panneau-titre">Une entité, trois branches</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph {"className":"er-colonne-texte"} -->
+			<p class="er-colonne-texte">La librairie, la maison d’édition YMCA-Press et le Centre culturel Alexandre Soljenitsyne.</p>
+			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
-		<?php endforeach; ?>
+
+		<!-- wp:column {"width":"78%","className":"er-champ"} -->
+		<div class="wp-block-column er-champ" style="flex-basis:78%">
+			<!-- wp:columns {"className":"er-trois","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40"}}}} -->
+			<div class="wp-block-columns er-trois">
+				<?php foreach ( $branches as $branche ) : ?>
+				<!-- wp:column {"className":"er-branche"} -->
+				<div class="wp-block-column er-branche">
+					<!-- wp:image {"sizeSlug":"full","linkDestination":"custom","className":"er-branche-image"} -->
+					<figure class="wp-block-image size-full er-branche-image"><a href="<?php echo $branche['lien']; // phpcs:ignore ?>" tabindex="-1"><img src="<?php echo er_image( $branche['image'] ); ?>" alt="<?php echo esc_attr( $branche['alt'] ); ?>"/></a></figure>
+					<!-- /wp:image -->
+
+					<!-- wp:heading {"level":3} -->
+					<h3 class="wp-block-heading"><a href="<?php echo $branche['lien']; // phpcs:ignore ?>"><?php echo esc_html( $branche['titre'] ); ?></a></h3>
+					<!-- /wp:heading -->
+
+					<!-- wp:paragraph -->
+					<p><?php echo esc_html( $branche['texte'] ); ?></p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:list {"className":"er-portes"} -->
+					<ul class="wp-block-list er-portes">
+						<?php foreach ( $branche['liens'] as $titre => $lien ) : ?>
+						<!-- wp:list-item --><li><a href="<?php echo $lien; // phpcs:ignore ?>"><?php echo esc_html( $titre ); ?></a></li><!-- /wp:list-item -->
+						<?php endforeach; ?>
+					</ul>
+					<!-- /wp:list -->
+				</div>
+				<!-- /wp:column -->
+				<?php endforeach; ?>
+			</div>
+			<!-- /wp:columns -->
+		</div>
+		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
 </div>

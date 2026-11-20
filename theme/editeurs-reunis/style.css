@@ -22,7 +22,11 @@ Text Domain: editeurs-reunis
 	--er-transition: 160ms ease;
 }
 
+/* La colonne pervenche : du bord de l'écran jusqu'à 22 % de la largeur du contenu. La même partout, pour que la
+   bande des diapositives et celle des sections tombent au même endroit. Sur body, où WordPress définit les marges. */
 body {
+	--er-contenu: min(100% - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right), var(--wp--style--global--wide-size));
+	--er-bande: calc((100% - var(--er-contenu)) / 2 + 0.22 * var(--er-contenu));
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
@@ -166,7 +170,7 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-chercher { width: auto; flex: 1; margin: 0; }
 	.er-compte { display: none; }
 	.er-entete { padding-block: 1.1rem; }
-	.er-logo a { font-size: 0.66rem; letter-spacing: 0.42em; }
+	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
 }
 
 /* --------------------------------------------------------------------------
@@ -174,8 +178,6 @@ sup { font-size: 0.62em; line-height: 0; }
    -------------------------------------------------------------------------- */
 
 .er-section h2.wp-block-heading { margin-block: 0; }
-.er-section-tete { margin-block-end: var(--wp--preset--spacing--50); gap: 1rem; }
-.er-section-tete p { margin: 0; }
 
 /* Le diaporama à la une : chaque diapositive reprend la première de la maquette, la bande pervenche à gauche,
    une photo (ou un aplat) dessous, le titre et le bouton en blanc, une image à droite. */
@@ -207,7 +209,7 @@ sup { font-size: 0.62em; line-height: 0; }
 	content: "";
 	position: absolute;
 	inset: 0 auto 0 0;
-	width: 24%;
+	width: var(--er-bande);
 	background: var(--wp--preset--color--accent);
 	z-index: -1;
 }
@@ -254,7 +256,8 @@ sup { font-size: 0.62em; line-height: 0; }
 	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M7.5 12h8.5M12.8 8.6 16.2 12l-3.4 3.4'/%3E%3C/svg%3E") center / contain no-repeat;
 	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M7.5 12h8.5M12.8 8.6 16.2 12l-3.4 3.4'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.er-diapo .wp-block-button.is-style-fleche > .wp-block-button__link:hover {
+.er-diapo .wp-block-button.is-style-fleche > .wp-block-button__link:hover,
+.er-panneau-sombre .wp-block-button.is-style-fleche > .wp-block-button__link:hover {
 	background: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
 	border-color: var(--wp--preset--color--base);
@@ -341,9 +344,125 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-diapo-image-libre img { width: 86%; }
 }
 
+/* --------------------------------------------------------------------------
+   Les panneaux de l'accueil, sur la base des diapositives
+   Toutes les sections portent la colonne pervenche à gauche. Les claires (fond blanc) y mettent leur titre, en
+   noir ; les sombres (un aplat ou une photo) sont des diapositives immobiles, le titre en blanc par-dessus.
+   -------------------------------------------------------------------------- */
+
+.er-accueil > .er-panneau { margin-block: 0 !important; }
+.er-panneau { position: relative; isolation: isolate; }
+.er-panneau::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: var(--er-bande);
+	background: var(--wp--preset--color--accent);
+	z-index: -1;
+}
+.er-panneau-colonnes { margin-block: 0; }
+
+/* Les claires */
+.er-panneau-clair { background: var(--wp--preset--color--base); padding-block: var(--wp--preset--spacing--60); }
+.er-panneau-clair + .er-panneau-clair { border-top: var(--er-filet); }
+.er-colonne { padding-inline-end: clamp(1rem, 2vw, 2rem); color: var(--wp--preset--color--contrast); }
+.er-colonne > * { margin-block: 0; }
+.er-champ { padding-inline-start: clamp(1.5rem, 3.2vw, 3.25rem); }
+.er-panneau-titre {
+	color: var(--wp--preset--color--contrast) !important;
+	font-size: clamp(1.9rem, 2.9vw, 2.6rem);
+	font-weight: 600;
+	line-height: 1.06;
+	letter-spacing: -0.02em;
+	margin: 0.7rem 0 1rem !important;
+}
+.er-colonne-texte { font-weight: 500; line-height: 1.5; margin: 0 0 1.5rem !important; }
+.er-panneau-clair .wp-block-button.is-style-fleche > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--contrast);
+}
+.er-chapeau { font-size: var(--wp--preset--font-size--large); line-height: 1.45; max-width: 40rem; margin: 0 0 1.75rem; }
+
+/* Les sombres : des diapositives immobiles */
+.er-panneau-sombre {
+	color: var(--wp--preset--color--base);
+	min-height: clamp(480px, 38vw, 580px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-block: var(--wp--preset--spacing--60);
+}
+.er-panneau-sombre > .alignwide { width: 100%; }
+.er-panneau-bas { min-height: clamp(380px, 30vw, 460px); }
+.er-parution { background-color: #26231F; }
+.er-communique { background-color: #101642; }
+.er-histoire { background-color: #2C1F17; }
+.er-panneau-sombre .er-diapo-titre, .er-panneau-sombre .er-diapo-texte { text-shadow: none; }
+.er-annee {
+	margin: 0;
+	text-align: right;
+	font-size: clamp(5rem, 11vw, 10rem);
+	font-weight: 600;
+	line-height: 0.9;
+	letter-spacing: -0.04em;
+	font-variant-numeric: lining-nums;
+}
+.er-annee span {
+	display: block;
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 600;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+	margin-block-end: 0.75rem;
+}
+.er-panneau-photo::after { content: ""; position: absolute; inset: 0; background: rgba(16, 22, 66, 0.62); z-index: -2; }
+/* Le surtitre d'un panneau sombre, en pastille blanche : lisible sur la bande comme sur l'aplat. */
+.er-panneau-sombre .er-surtitre {
+	display: inline-block;
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	padding: 0.5em 0.95em;
+	border-radius: 999px;
+	letter-spacing: 0.18em;
+	margin: 0 0 1.25rem;
+}
+.er-diapo-auteur { font-weight: 500; margin: -0.35rem 0 1rem; color: rgba(255, 255, 255, 0.86); }
+.er-communique-titre { font-size: clamp(2rem, 3.8vw, 3.3rem); max-width: 17em; }
+
+/* Les livres et les branches dans le champ */
+.er-panneau .er-livres { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.er-trois { row-gap: var(--wp--preset--spacing--50); margin: 0; }
+.er-branche-image img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* Les rayons, en grandes pilules */
+.er-pilules-grandes { margin-block-end: 0.75rem; }
+.er-pilules-grandes li { font-size: var(--wp--preset--font-size--medium); }
+.er-pilules-grandes li a { padding: 0.6em 1.25em; }
+
+@media (max-width: 1100px) {
+	.er-panneau .er-livres { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+
+/* Au téléphone, la colonne d'une section claire devient un bandeau pervenche en tête de la section ; les sombres
+   gardent une bande étroite à gauche, comme les diapositives. */
+@media (max-width: 781px) {
+	.er-panneau-clair::before, .er-pied::before { display: none; }
+	.er-panneau-clair, .er-pied { padding-top: 0 !important; }
+	.er-panneau-clair .er-colonne, .er-pied .er-colonne {
+		background: var(--wp--preset--color--accent);
+		margin-inline: calc(-1 * var(--wp--style--root--padding-left)) calc(-1 * var(--wp--style--root--padding-right)) !important;
+		padding: 2rem var(--wp--style--root--padding-right) 1.75rem var(--wp--style--root--padding-left);
+	}
+	.er-champ { padding-inline-start: 0; padding-top: 2rem; }
+	.er-panneau-sombre::before { width: 16%; }
+	.er-panneau-sombre { min-height: 0; }
+	.er-panneau-titre { font-size: 2rem; }
+	.er-annee { text-align: left; font-size: 4.5rem; }
+}
+
 /* Le livre du moment */
 .er-parution-auteur { color: var(--wp--preset--color--encre-2); font-weight: 500; margin-block-start: 0.5rem; }
-.er-couverture-seule img { box-shadow: var(--er-ombre-livre); max-height: 520px; width: auto; }
 
 /* Une entité, trois branches */
 .er-branches .wp-block-columns { row-gap: var(--wp--preset--spacing--50); }
@@ -403,13 +522,8 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-pilules li.current-cat a { background: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
 
 /* Le communiqué */
-.er-communique h2 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.15; }
 
 /* L'histoire */
-.er-bande { margin: 0; }
-.er-bande img { width: 100%; height: clamp(150px, 19vw, 280px); object-fit: cover; display: block; }
-.er-histoire h2 { margin: 0; }
-.er-histoire p.has-large-font-size { margin-block-start: 0; line-height: 1.5; }
 
 /* --------------------------------------------------------------------------
    Les livres, en grille : l'accueil, la librairie, « Du même rayon »
@@ -569,8 +683,14 @@ sup { font-size: 0.62em; line-height: 0; }
    Le pied
    -------------------------------------------------------------------------- */
 
+.er-pied { padding-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--50); }
 .er-pied a { color: inherit; }
-.er-pied .er-logo { margin-block-end: 1.25rem; }
+.er-pied .er-colonne { color: var(--wp--preset--color--contrast); }
+.er-pied .er-colonne p { line-height: 1.55; }
+.er-pied .er-colonne p + p { margin-block-start: 1rem; }
+.er-pied .er-logo { margin-block-end: 1.5rem; }
+.er-pied .er-logo a { font-size: 0.72rem; letter-spacing: 0.3em; }
+.er-pied-copyright { margin-block-start: 2.5rem !important; }
 .er-pied-discret { color: #BDBDB8; }
 .er-pied-titre {
 	font-size: var(--wp--preset--font-size--x-small) !important;
@@ -621,8 +741,6 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-nouveautes .er-livres::-webkit-scrollbar { display: none; }
 	.er-nouveautes .er-livres > li { scroll-snap-align: start; }
 
-	.er-couverture-seule img { max-height: 340px; }
 	.er-branche-image img { aspect-ratio: 3 / 2 !important; object-position: 50% 25%; }
 	.er-fiche-couverture { max-width: 70%; }
-	.er-section-tete { margin-block-end: var(--wp--preset--spacing--40); }
 }

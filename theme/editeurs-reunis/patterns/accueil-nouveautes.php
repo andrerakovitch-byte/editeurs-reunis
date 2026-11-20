@@ -3,30 +3,50 @@
  * Title: Accueil — nouveautés de la librairie
  * Slug: editeurs-reunis/accueil-nouveautes
  * Categories: editeurs-reunis
- * Description: Les dix derniers livres arrivés, en grand, et le lien vers toute la librairie.
+ * Description: Sur fond blanc : le titre dans la colonne pervenche, les huit derniers livres arrivés à côté.
  *
  * @package editeurs-reunis
  */
 
 ?>
-<!-- wp:group {"align":"full","className":"er-section er-nouveautes","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull er-section er-nouveautes" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:group {"align":"wide","className":"er-section-tete","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"bottom"}} -->
-	<div class="wp-block-group alignwide er-section-tete">
-		<!-- wp:heading -->
-		<h2 class="wp-block-heading">Nouveautés de la librairie</h2>
-		<!-- /wp:heading -->
+<!-- wp:group {"align":"full","className":"er-panneau er-panneau-clair er-nouveautes","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull er-panneau er-panneau-clair er-nouveautes">
+	<!-- wp:columns {"align":"wide","className":"er-panneau-colonnes","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+	<div class="wp-block-columns alignwide er-panneau-colonnes">
+		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
+		<div class="wp-block-column er-colonne" style="flex-basis:22%">
+			<!-- wp:paragraph {"className":"er-surtitre"} -->
+			<p class="er-surtitre">La librairie</p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:paragraph {"className":"er-lien-fleche"} -->
-		<p class="er-lien-fleche"><a href="<?php echo er_lien( 'librairie/' ); ?>">Toute la librairie</a></p>
-		<!-- /wp:paragraph -->
-	</div>
-	<!-- /wp:group -->
+			<!-- wp:heading {"className":"er-panneau-titre"} -->
+			<h2 class="wp-block-heading er-panneau-titre">Nouveautés</h2>
+			<!-- /wp:heading -->
 
-	<!-- wp:woocommerce/product-collection {"queryId":21,"query":{"perPage":10,"pages":1,"offset":0,"postType":"product","order":"desc","orderBy":"date","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false},"tagName":"div","displayLayout":{"type":"flex","columns":5,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"queryContextIncludes":["collection"],"align":"wide"} -->
-	<div class="wp-block-woocommerce-product-collection alignwide">
-		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<!-- wp:paragraph {"className":"er-colonne-texte"} -->
+			<p class="er-colonne-texte">Les derniers livres arrivés en rayon, en français et en russe.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-fleche"} -->
+				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_lien( 'librairie/' ); ?>">Toute la librairie</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"width":"78%","className":"er-champ"} -->
+		<div class="wp-block-column er-champ" style="flex-basis:78%">
+			<!-- wp:woocommerce/product-collection {"queryId":21,"query":{"perPage":8,"pages":1,"offset":0,"postType":"product","order":"desc","orderBy":"date","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false},"tagName":"div","displayLayout":{"type":"flex","columns":4,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"queryContextIncludes":["collection"]} -->
+			<div class="wp-block-woocommerce-product-collection">
+				<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			</div>
+			<!-- /wp:woocommerce/product-collection -->
+		</div>
+		<!-- /wp:column -->
 	</div>
-	<!-- /wp:woocommerce/product-collection -->
+	<!-- /wp:columns -->
 </div>
 <!-- /wp:group -->

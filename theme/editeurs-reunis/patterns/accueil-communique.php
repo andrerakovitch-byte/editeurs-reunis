@@ -3,32 +3,44 @@
  * Title: Accueil — communiqué
  * Slug: editeurs-reunis/accueil-communique
  * Categories: editeurs-reunis
- * Description: Un encadré pour un communiqué de presse ou une annonce importante.
+ * Description: Comme une diapositive, sans image : la bande pervenche, l'aplat bleu nuit, le titre du communiqué en blanc.
  *
  * @package editeurs-reunis
  */
 
 ?>
-<!-- wp:group {"align":"full","className":"er-section","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull er-section" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:group {"align":"wide","className":"er-communique","backgroundColor":"accent","textColor":"contrast","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"820px"}} -->
-	<div class="wp-block-group alignwide er-communique has-contrast-color has-accent-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--40)">
-		<!-- wp:paragraph {"align":"center","className":"er-surtitre"} -->
-		<p class="has-text-align-center er-surtitre">Communiqué de presse</p>
-		<!-- /wp:paragraph -->
+<!-- wp:group {"align":"full","className":"er-panneau er-panneau-sombre er-panneau-bas er-communique","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull er-panneau er-panneau-sombre er-panneau-bas er-communique">
+	<!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"er-diapo-contenu"} -->
+	<div class="wp-block-columns alignwide are-vertically-aligned-center er-diapo-contenu">
+		<!-- wp:column {"verticalAlignment":"center","width":"72%"} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:72%">
+			<!-- wp:paragraph {"className":"er-surtitre"} -->
+			<p class="er-surtitre">Communiqué de presse</p>
+			<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"textAlign":"center"} -->
-		<h2 class="wp-block-heading has-text-align-center">À propos de l’invasion de l’Ukraine par la Fédération de Russie</h2>
-		<!-- /wp:heading -->
+			<!-- wp:heading {"className":"er-diapo-titre er-communique-titre"} -->
+			<h2 class="wp-block-heading er-diapo-titre er-communique-titre">À propos de l’invasion de l’Ukraine par la Fédération de Russie</h2>
+			<!-- /wp:heading -->
 
-		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-		<div class="wp-block-buttons">
-			<!-- wp:button {"className":"is-style-outline"} -->
-			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo er_article( 'a-propos-de-linvasion-de-lukraine-par-la-federation-de-russie' ); ?>">Lire le communiqué</a></div>
-			<!-- /wp:button -->
+			<!-- wp:paragraph {"className":"er-diapo-texte"} -->
+			<p class="er-diapo-texte">Signé par Mélanie Rakovitch, le 28&nbsp;février 2022.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-fleche"} -->
+				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_article( 'a-propos-de-linvasion-de-lukraine-par-la-federation-de-russie' ); ?>">Lire le communiqué</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
 		</div>
-		<!-- /wp:buttons -->
+		<!-- /wp:column -->
+
+		<!-- wp:column {"width":"28%"} -->
+		<div class="wp-block-column" style="flex-basis:28%"></div>
+		<!-- /wp:column -->
 	</div>
-	<!-- /wp:group -->
+	<!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
