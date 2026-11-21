@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis 0.6.0\n"
+"Project-Id-Version: Les Éditeurs réunis 0.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/editeurs-reunis\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T17:46:57+00:00\n"
+"POT-Creation-Date: 2026-11-21T23:05:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: patterns/selection-etagere.php:205
 #: patterns/selection-table.php:255
-msgid "La révolution en un poème, en russe et en français."
+msgid "La révolution en un poème&nbsp;: douze gardes rouges dans la neige."
 msgstr ""
 
 #: patterns/selection-etagere.php:241

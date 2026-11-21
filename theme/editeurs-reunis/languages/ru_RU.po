@@ -1605,8 +1605,8 @@ msgid "Alexandre Blok · 1918"
 msgstr "Александр Блок · 1918"
 
 #: patterns/selection-etagere.php:205 patterns/selection-table.php:255
-msgid "La révolution en un poème, en russe et en français."
-msgstr "Революция в одной поэме, по-русски и по-французски."
+msgid "La révolution en un poème&nbsp;: douze gardes rouges dans la neige."
+msgstr "Революция в одной поэме: двенадцать красногвардейцев в снегу."
 
 #: patterns/selection-etagere.php:241 patterns/selection-table.php:291
 msgid "Anthologie · très rare"

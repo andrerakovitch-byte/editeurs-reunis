@@ -252,7 +252,7 @@
 						<!-- /wp:paragraph -->
 
 						<!-- wp:paragraph {"className":"er-une-livre-pourquoi"} -->
-						<p class="er-une-livre-pourquoi"><?php esc_html_e( 'La révolution en un poème, en russe et en français.', 'editeurs-reunis' ); ?></p>
+						<p class="er-une-livre-pourquoi"><?php esc_html_e( 'La révolution en un poème&nbsp;: douze gardes rouges dans la neige.', 'editeurs-reunis' ); ?></p>
 						<!-- /wp:paragraph -->
 
 						<!-- wp:group {"className":"er-une-achat","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->

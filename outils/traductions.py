@@ -1034,9 +1034,9 @@ T = {
     (None, 'Alexandre Blok · 1918'):
         ('Alexander Blok · 1918',
          'Александр Блок · 1918'),
-    (None, 'La révolution en un poème, en russe et en français.'):
-        ('The revolution in one poem, in Russian and in French.',
-         'Революция в одной поэме, по-русски и по-французски.'),
+    (None, 'La révolution en un poème&nbsp;: douze gardes rouges dans la neige.'):
+        ('The revolution in one poem: twelve Red Guards in the snow.',
+         'Революция в одной поэме: двенадцать красногвардейцев в снегу.'),
     (None, 'Anthologie · très rare'):
         ('Anthology · very rare',
          'Антология · большая редкость'),
