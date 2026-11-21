@@ -982,6 +982,94 @@ T = {
     (None, 'Refusé de son vivant, le livre ne paraît en entier en URSS qu’en 1988, presque quarante ans après la mort de son auteur, en 1951.'):
         ('Rejected in his lifetime, the book did not appear in full in the USSR until 1988, almost forty years after its author’s death in 1951.',
          'Отвергнутая при жизни автора, книга целиком вышла в СССР только в 1988 году, почти через сорок лет после его смерти в 1951 году.'),
+    # Une sélection, sous un titre (les compositions patterns/selection-*.php)
+    (None, 'Une sélection · la librairie'):
+        ('A selection · the bookshop',
+         'Подборка · книжный магазин'),
+    (None, 'Avant l’orage, 1901&nbsp;–&nbsp;1918'):
+        ('Before the storm, 1901&nbsp;–&nbsp;1918',
+         'Перед грозой, 1901&nbsp;–&nbsp;1918'),
+    (None, 'Entre un médecin qui dit ses erreurs et douze gardes rouges dans la neige, les dernières années d’un monde, et l’une des époques les plus inventives de la littérature russe.'):
+        ('Between a doctor admitting his mistakes and twelve Red Guards in the snow: the last years of a world, and one of the most inventive periods in Russian literature.',
+         'Между врачом, который признаётся в своих ошибках, и двенадцатью красногвардейцами в снегу — последние годы целого мира и одна из самых изобретательных эпох русской литературы.'),
+    (None, 'En 1901, un jeune médecin, Vikenti Veressaïev, raconte sans fard ses débuts à l’hôpital, ses doutes et ses erreurs&nbsp;: ses <em>Notes d’un médecin</em> font scandale. C’est le début d’un temps qu’on appellera après coup l’Âge d’argent, où la poésie, le théâtre et la prose russes se cherchent et se répondent.'):
+        ('In 1901 a young doctor, Vikenty Veresaev, gave a frank account of his first years at the hospital, his doubts and his mistakes: his <em>Memoirs of a Physician</em> caused a scandal. It was the start of what would later be called the Silver Age, when Russian poetry, theatre and prose searched for new forms and answered one another.',
+         'В 1901 году молодой врач Викентий Вересаев без прикрас рассказывает о своих первых шагах в больнице, о сомнениях и ошибках: его <em>«Записки врача»</em> вызывают скандал. Так начинается время, которое потом назовут Серебряным веком: русская поэзия, театр и проза ищут себя и откликаются друг другу.'),
+    (None, 'Au théâtre, Léonid Andréïev met en scène des âmes troublées (<em>Ekatérina Ivanovna</em>, 1912). En poésie, Nikolaï Goumilev, avec Anna Akhmatova et Ossip Mandelstam, veut des mots clairs et des choses précises, contre le flou du symbolisme&nbsp;: c’est l’acméisme.'):
+        ('In the theatre, Leonid Andreyev staged troubled souls (<em>Ekaterina Ivanovna</em>, 1912). In poetry, Nikolai Gumilev, with Anna Akhmatova and Osip Mandelstam, wanted clear words and precise things, against the vagueness of Symbolism: this was Acmeism.',
+         'В театре Леонид Андреев выводит на сцену смятённые души (<em>«Екатерина Ивановна»</em>, 1912). В поэзии Николай Гумилёв вместе с Анной Ахматовой и Осипом Мандельштамом хочет ясных слов и точных вещей, против символистской размытости: это акмеизм.'),
+    (None, 'En janvier 1918, Alexandre Blok salue la révolution dans <em>Les Douze</em>&nbsp;: douze gardes rouges marchent dans Petrograd, sous la neige, et le Christ marche devant eux. Trois ans plus tard, en août 1921, Blok meurt, et Goumilev est fusillé.'):
+        ('In January 1918 Alexander Blok hailed the revolution in <em>The Twelve</em>: twelve Red Guards march through Petrograd in the snow, and Christ walks ahead of them. Three years later, in August 1921, Blok died and Gumilev was shot.',
+         'В январе 1918 года Александр Блок приветствует революцию в поэме <em>«Двенадцать»</em>: двенадцать красногвардейцев идут по Петрограду под снегом, а впереди — Иисус Христос. Через три года, в августе 1921-го, Блок умирает, а Гумилёва расстреливают.'),
+    (None, 'Ces cinq livres, tous à la librairie, en racontent les années, du cabinet du médecin aux rues de Petrograd. Le plus rare est une anthologie en russe, dont nous n’avons qu’un exemplaire&nbsp;: on peut venir la feuilleter.'):
+        ('These five books, all at the bookshop, tell the story of those years, from the doctor’s consulting room to the streets of Petrograd. The rarest is an anthology in Russian, of which we have only one copy: come and browse it.',
+         'Эти пять книг, все — в нашем магазине, рассказывают о тех годах, от кабинета врача до улиц Петрограда. Самая редкая — антология на русском языке, у нас всего один экземпляр: её можно прийти полистать.'),
+    (None, 'Couverture&nbsp;: Notes d’un médecin'):
+        ('Cover: Memoirs of a Physician',
+         'Обложка: «Записки врача»'),
+    (None, 'Vikenti Veressaïev · 1901'):
+        ('Vikenty Veresaev · 1901',
+         'Викентий Вересаев · 1901'),
+    (None, 'Le livre qui fit scandale&nbsp;: un médecin dit ses doutes et ses erreurs.'):
+        ('The book that caused a scandal: a doctor speaks of his doubts and mistakes.',
+         'Книга, вызвавшая скандал: врач рассказывает о сомнениях и ошибках.'),
+    (None, 'Couverture&nbsp;: Ekatérina Ivanovna, suivi de Requiem'):
+        ('Cover: Ekaterina Ivanovna, followed by Requiem',
+         'Обложка: «Екатерина Ивановна. Реквием»'),
+    (None, 'Léonid Andréïev · 1912'):
+        ('Leonid Andreyev · 1912',
+         'Леонид Андреев · 1912'),
+    (None, 'Le théâtre d’Andréïev&nbsp;: deux pièces, des âmes troublées.'):
+        ('Andreyev’s theatre: two plays, troubled souls.',
+         'Театр Андреева: две пьесы, смятённые души.'),
+    (None, 'Couverture&nbsp;: Poésies choisies'):
+        ('Cover: Selected Poems',
+         'Обложка: «Избранные стихотворения»'),
+    (None, 'L’acméisme&nbsp;: le mot exact, contre le flou du symbolisme.'):
+        ('Acmeism: the exact word, against the vagueness of Symbolism.',
+         'Акмеизм: точное слово против символистской размытости.'),
+    (None, 'Couverture&nbsp;: Les Douze'):
+        ('Cover: The Twelve',
+         'Обложка: «Двенадцать»'),
+    (None, 'Alexandre Blok · 1918'):
+        ('Alexander Blok · 1918',
+         'Александр Блок · 1918'),
+    (None, 'La révolution en un poème, en russe et en français.'):
+        ('The revolution in one poem, in Russian and in French.',
+         'Революция в одной поэме, по-русски и по-французски.'),
+    (None, 'Anthologie · très rare'):
+        ('Anthology · very rare',
+         'Антология · большая редкость'),
+    (None, 'Un seul exemplaire, à venir feuilleter à la librairie.'):
+        ('A single copy, to come and browse at the bookshop.',
+         'Единственный экземпляр — приходите полистать в магазин.'),
+    (None, 'À voir, à écouter'):
+        ('To watch, to listen to',
+         'Смотреть и слушать'),
+    (None, 'Voir la vidéo&nbsp;: Blok, lu en russe et en français'):
+        ('Watch the video: Blok, read in Russian and in French',
+         'Смотреть видео: Блок по-русски и по-французски'),
+    (None, 'Vidéo · À voix haute'):
+        ('Video · Out loud',
+         'Видео · Вслух'),
+    (None, 'Blok, lu en russe et en français'):
+        ('Blok, read in Russian and in French',
+         'Блок по-русски и по-французски'),
+    (None, '[6 min] · [Prénom Nom], bénévole'):
+        ('[6 min] · [First name Surname], volunteer',
+         '[6 мин] · [имя и фамилия], волонтёр'),
+    (None, '<strong>L’encyclopédie</strong> <a href="%1$s">L’Âge d’argent, l’article du jour</a>'):
+        ('<strong>The encyclopedia</strong> <a href="%1$s">The Silver Age, article of the day</a>',
+         '<strong>Энциклопедия</strong> <a href="%1$s">Серебряный век, статья дня</a>'),
+    (None, '<strong>Podcast</strong> <a href="%1$s">[Un épisode sur Blok et Les Douze]</a>'):
+        ('<strong>Podcast</strong> <a href="%1$s">[An episode on Blok and The Twelve]</a>',
+         '<strong>Подкаст</strong> <a href="%1$s">[Выпуск о Блоке и «Двенадцати»]</a>'),
+    (None, 'Les cinq livres'):
+        ('The five books',
+         'Пять книг'),
+    (None, 'Toute la sélection, en librairie'):
+        ('The whole selection, at the bookshop',
+         'Вся подборка в магазине'),
 }
 
 LANGUES = {

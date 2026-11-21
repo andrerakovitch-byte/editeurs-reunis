@@ -107,6 +107,21 @@ Les compositions sont écrites d'après la maquette par un script (`proposition/
 aussi les modifier à la main. Les anciennes sections de l'accueil (le diaporama, les nouveautés, les branches…)
 restent dans `patterns/`, pour l'éditeur.
 
+## Une sélection, sous un titre
+
+Deux compositions à insérer où l'on veut (Compositions → Les Éditeurs réunis), pour mettre en valeur plusieurs livres
+sous un même titre éditorialisé, avec un texte qui explique quelque chose, comme un article, et « À voir, à écouter »
+(une vidéo, un épisode du podcast, un article de l'encyclopédie) : `selection-table` (la table, sur un aplat : le
+texte à gauche, les livres en liste à droite) et `selection-etagere` (l'étagère, sur le blanc : l'article sur trois
+colonnes, les livres debout sur un filet, la vidéo sur une bande pervenche). « Je garde A et B, les deux comme bloc
+WordPress que l'on peut charger » (André, 21 nov. 2026). Le contenu inséré est l'exemple du canevas, « Avant l'orage,
+1901 – 1918 » : on le remplace dans l'éditeur ; le prix et « Ajouter au panier » de chaque livre se lisent dans la
+librairie. L'image de la vidéo se remplace par une image de la vidéo. Au téléphone, la table montre les livres
+d'abord et replie l'article sous « Voir plus » ; l'étagère se fait glisser de côté.
+
+Pour une page faite de modules pleine largeur, le gabarit « Page en modules, pleine largeur » (`page-modules`). La
+bêta en montre une : `/librairie/selections/`.
+
 ## Les pages d'exemple de la bêta
 
 Pour voir la bêta en entier, les maquettes du canevas sont posées en pages, telles quelles (`semer.php`, avec le HTML

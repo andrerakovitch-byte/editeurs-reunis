@@ -154,51 +154,51 @@ msgstr "Cultural centre"
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: functions.php:472
+#: functions.php:475
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:473
+#: functions.php:476
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:474
+#: functions.php:477
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:475
+#: functions.php:478
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:476
+#: functions.php:479
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:477
+#: functions.php:480
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:478
+#: functions.php:481
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:479
+#: functions.php:482
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:480
+#: functions.php:483
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:481
+#: functions.php:484
 msgid "Arts"
 msgstr "Arts"
 
-#: functions.php:503
+#: functions.php:506
 msgid "Compte"
 msgstr "Account"
 
-#: functions.php:514 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:517 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Language"
 
@@ -849,7 +849,8 @@ msgstr ""
 msgid "Le livre du moment"
 msgstr "Book of the moment"
 
-#: patterns/accueil-parution.php:23
+#: patterns/accueil-parution.php:23 patterns/selection-etagere.php:77
+#: patterns/selection-table.php:127
 msgid "Notes d’un médecin"
 msgstr "Notes d’un médecin"
 
@@ -1451,6 +1452,228 @@ msgstr ""
 "Paris&nbsp;15<sup>e</sup>, and the <strong>Fondation Michalski</strong>, "
 "Montricher (Switzerland)."
 
+#: patterns/selection-etagere.php
+msgctxt "Pattern title"
+msgid "Une sélection — l’étagère, sur le blanc"
+msgstr ""
+
+#: patterns/selection-etagere.php
+msgctxt "Pattern description"
+msgid ""
+"Plusieurs livres sous un même titre : le titre en grand, un texte comme un "
+"article sur trois colonnes, puis les livres debout sur un filet, comme sur "
+"une étagère ; une vidéo ou un podcast sur une bande pervenche."
+msgstr ""
+
+#: patterns/selection-etagere.php:27 patterns/selection-table.php:25
+msgid "Une sélection · la librairie"
+msgstr "A selection · the bookshop"
+
+#: patterns/selection-etagere.php:31 patterns/selection-table.php:29
+msgid "Avant l’orage, 1901&nbsp;–&nbsp;1918"
+msgstr "Before the storm, 1901&nbsp;–&nbsp;1918"
+
+#: patterns/selection-etagere.php:39 patterns/selection-table.php:33
+msgid ""
+"Entre un médecin qui dit ses erreurs et douze gardes rouges dans la neige, "
+"les dernières années d’un monde, et l’une des époques les plus inventives de"
+" la littérature russe."
+msgstr ""
+"Between a doctor admitting his mistakes and twelve Red Guards in the snow: "
+"the last years of a world, and one of the most inventive periods in Russian "
+"literature."
+
+#: patterns/selection-etagere.php:49 patterns/selection-table.php:39
+msgid ""
+"En 1901, un jeune médecin, Vikenti Veressaïev, raconte sans fard ses débuts "
+"à l’hôpital, ses doutes et ses erreurs&nbsp;: ses <em>Notes d’un "
+"médecin</em> font scandale. C’est le début d’un temps qu’on appellera après "
+"coup l’Âge d’argent, où la poésie, le théâtre et la prose russes se "
+"cherchent et se répondent."
+msgstr ""
+"In 1901 a young doctor, Vikenty Veresaev, gave a frank account of his first "
+"years at the hospital, his doubts and his mistakes: his <em>Memoirs of a "
+"Physician</em> caused a scandal. It was the start of what would later be "
+"called the Silver Age, when Russian poetry, theatre and prose searched for "
+"new forms and answered one another."
+
+#: patterns/selection-etagere.php:53 patterns/selection-table.php:43
+msgid ""
+"Au théâtre, Léonid Andréïev met en scène des âmes troublées (<em>Ekatérina "
+"Ivanovna</em>, 1912). En poésie, Nikolaï Goumilev, avec Anna Akhmatova et "
+"Ossip Mandelstam, veut des mots clairs et des choses précises, contre le "
+"flou du symbolisme&nbsp;: c’est l’acméisme."
+msgstr ""
+"In the theatre, Leonid Andreyev staged troubled souls (<em>Ekaterina "
+"Ivanovna</em>, 1912). In poetry, Nikolai Gumilev, with Anna Akhmatova and "
+"Osip Mandelstam, wanted clear words and precise things, against the "
+"vagueness of Symbolism: this was Acmeism."
+
+#: patterns/selection-etagere.php:57 patterns/selection-table.php:47
+msgid ""
+"En janvier 1918, Alexandre Blok salue la révolution dans <em>Les "
+"Douze</em>&nbsp;: douze gardes rouges marchent dans Petrograd, sous la "
+"neige, et le Christ marche devant eux. Trois ans plus tard, en août 1921, "
+"Blok meurt, et Goumilev est fusillé."
+msgstr ""
+"In January 1918 Alexander Blok hailed the revolution in <em>The Twelve</em>:"
+" twelve Red Guards march through Petrograd in the snow, and Christ walks "
+"ahead of them. Three years later, in August 1921, Blok died and Gumilev was "
+"shot."
+
+#: patterns/selection-etagere.php:61 patterns/selection-table.php:51
+msgid ""
+"Ces cinq livres, tous à la librairie, en racontent les années, du cabinet du"
+" médecin aux rues de Petrograd. Le plus rare est une anthologie en russe, "
+"dont nous n’avons qu’un exemplaire&nbsp;: on peut venir la feuilleter."
+msgstr ""
+"These five books, all at the bookshop, tell the story of those years, from "
+"the doctor’s consulting room to the streets of Petrograd. The rarest is an "
+"anthology in Russian, of which we have only one copy: come and browse it."
+
+#: patterns/selection-etagere.php:71 patterns/selection-table.php:121
+msgid "Couverture&nbsp;: Notes d’un médecin"
+msgstr "Cover: Memoirs of a Physician"
+
+#: patterns/selection-etagere.php:81 patterns/selection-table.php:131
+msgid "Vikenti Veressaïev · 1901"
+msgstr "Vikenty Veresaev · 1901"
+
+#: patterns/selection-etagere.php:85 patterns/selection-table.php:135
+msgid ""
+"Le livre qui fit scandale&nbsp;: un médecin dit ses doutes et ses erreurs."
+msgstr ""
+"The book that caused a scandal: a doctor speaks of his doubts and mistakes."
+
+#: patterns/selection-etagere.php:97 patterns/selection-etagere.php:137
+#: patterns/selection-etagere.php:177 patterns/selection-etagere.php:217
+#: patterns/selection-etagere.php:257 patterns/selection-table.php:147
+#: patterns/selection-table.php:187 patterns/selection-table.php:227
+#: patterns/selection-table.php:267 patterns/selection-table.php:307
+#: patterns/une-jivago.php:119 patterns/une-poeme.php:101
+#: patterns/une-tchevengour.php:119
+msgid "Ajouter au panier"
+msgstr "Add to basket"
+
+#: patterns/selection-etagere.php:111 patterns/selection-table.php:161
+msgid "Couverture&nbsp;: Ekatérina Ivanovna, suivi de Requiem"
+msgstr "Cover: Ekaterina Ivanovna, followed by Requiem"
+
+#: patterns/selection-etagere.php:117 patterns/selection-table.php:167
+#: patterns/une-encyclopedie.php:140
+msgid "Ekatérina Ivanovna, suivi de Requiem"
+msgstr "Ekaterina Ivanovna, followed by Requiem"
+
+#: patterns/selection-etagere.php:121 patterns/selection-table.php:171
+msgid "Léonid Andréïev · 1912"
+msgstr "Leonid Andreyev · 1912"
+
+#: patterns/selection-etagere.php:125 patterns/selection-table.php:175
+msgid "Le théâtre d’Andréïev&nbsp;: deux pièces, des âmes troublées."
+msgstr "Andreyev’s theatre: two plays, troubled souls."
+
+#: patterns/selection-etagere.php:151 patterns/selection-table.php:201
+msgid "Couverture&nbsp;: Poésies choisies"
+msgstr "Cover: Selected Poems"
+
+#: patterns/selection-etagere.php:157 patterns/selection-table.php:207
+#: patterns/une-encyclopedie.php:120
+msgid "Poésies choisies"
+msgstr "Selected Poems"
+
+#: patterns/selection-etagere.php:161 patterns/selection-table.php:211
+#: patterns/une-encyclopedie.php:124
+msgid "Nikolaï Goumilev"
+msgstr "Nikolai Gumilev"
+
+#: patterns/selection-etagere.php:165 patterns/selection-table.php:215
+msgid "L’acméisme&nbsp;: le mot exact, contre le flou du symbolisme."
+msgstr "Acmeism: the exact word, against the vagueness of Symbolism."
+
+#: patterns/selection-etagere.php:191 patterns/selection-table.php:241
+msgid "Couverture&nbsp;: Les Douze"
+msgstr "Cover: The Twelve"
+
+#: patterns/selection-etagere.php:197 patterns/selection-table.php:247
+#: patterns/une-encyclopedie.php:100
+msgid "Les Douze"
+msgstr "The Twelve"
+
+#: patterns/selection-etagere.php:201 patterns/selection-table.php:251
+msgid "Alexandre Blok · 1918"
+msgstr "Alexander Blok · 1918"
+
+#: patterns/selection-etagere.php:205 patterns/selection-table.php:255
+msgid "La révolution en un poème, en russe et en français."
+msgstr "The revolution in one poem, in Russian and in French."
+
+#: patterns/selection-etagere.php:241 patterns/selection-table.php:291
+msgid "Anthologie · très rare"
+msgstr "Anthology · very rare"
+
+#: patterns/selection-etagere.php:245 patterns/selection-table.php:295
+msgid "Un seul exemplaire, à venir feuilleter à la librairie."
+msgstr "A single copy, to come and browse at the bookshop."
+
+#: patterns/selection-etagere.php:273 patterns/selection-table.php:59
+msgid "À voir, à écouter"
+msgstr "To watch, to listen to"
+
+#: patterns/selection-etagere.php:279 patterns/selection-table.php:65
+msgid "Voir la vidéo&nbsp;: Blok, lu en russe et en français"
+msgstr "Watch the video: Blok, read in Russian and in French"
+
+#: patterns/selection-etagere.php:285 patterns/selection-table.php:71
+msgid "Vidéo · À voix haute"
+msgstr "Video · Out loud"
+
+#: patterns/selection-etagere.php:289 patterns/selection-table.php:75
+msgid "Blok, lu en russe et en français"
+msgstr "Blok, read in Russian and in French"
+
+#: patterns/selection-etagere.php:293 patterns/selection-table.php:79
+msgid "[6 min] · [Prénom Nom], bénévole"
+msgstr "[6 min] · [First name Surname], volunteer"
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/selection-etagere.php:305 patterns/selection-table.php:91
+msgid ""
+"<strong>L’encyclopédie</strong> <a href=\"%1$s\">L’Âge d’argent, l’article "
+"du jour</a>"
+msgstr ""
+"<strong>The encyclopedia</strong> <a href=\"%1$s\">The Silver Age, article "
+"of the day</a>"
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/selection-etagere.php:313 patterns/selection-table.php:99
+msgid ""
+"<strong>Podcast</strong> <a href=\"%1$s\">[Un épisode sur Blok et Les "
+"Douze]</a>"
+msgstr ""
+"<strong>Podcast</strong> <a href=\"%1$s\">[An episode on Blok and The "
+"Twelve]</a>"
+
+#: patterns/selection-table.php
+msgctxt "Pattern title"
+msgid "Une sélection — la table, sur un aplat"
+msgstr ""
+
+#: patterns/selection-table.php
+msgctxt "Pattern description"
+msgid ""
+"Plusieurs livres sous un même titre : le titre, un texte comme un article, "
+"une vidéo ou un podcast ; à droite, les livres en liste, chacun avec ce qui "
+"le relie aux autres, le prix en petit et « Ajouter au panier »."
+msgstr ""
+
+#: patterns/selection-table.php:113
+msgid "Les cinq livres"
+msgstr "The five books"
+
+#: patterns/selection-table.php:321
+msgid "Toute la sélection, en librairie"
+msgstr "The whole selection, at the bookshop"
+
 #: patterns/une-archipel.php
 msgctxt "Pattern title"
 msgid "À la une — une affiche (L’Archipel du Goulag)"
@@ -1768,25 +1991,9 @@ msgstr "[34] books · [12] authors"
 msgid "Les livres cités, en librairie"
 msgstr "Books mentioned, at the bookshop"
 
-#: patterns/une-encyclopedie.php:100
-msgid "Les Douze"
-msgstr "The Twelve"
-
 #: patterns/une-encyclopedie.php:104
 msgid "Alexandre Blok"
 msgstr "Alexander Blok"
-
-#: patterns/une-encyclopedie.php:120
-msgid "Poésies choisies"
-msgstr "Selected Poems"
-
-#: patterns/une-encyclopedie.php:124
-msgid "Nikolaï Goumilev"
-msgstr "Nikolai Gumilev"
-
-#: patterns/une-encyclopedie.php:140
-msgid "Ekatérina Ivanovna, suivi de Requiem"
-msgstr "Ekaterina Ivanovna, followed by Requiem"
 
 #: patterns/une-encyclopedie.php:144
 msgid "Léonid Andréïev"
@@ -1955,11 +2162,6 @@ msgstr "Boris Pasternak"
 #: patterns/une-jivago.php:95
 msgid "nouvelle traduction"
 msgstr "new translation"
-
-#: patterns/une-jivago.php:119 patterns/une-poeme.php:101
-#: patterns/une-tchevengour.php:119
-msgid "Ajouter au panier"
-msgstr "Add to basket"
 
 #: patterns/une-jivago.php:122
 msgid "Feuilleter"

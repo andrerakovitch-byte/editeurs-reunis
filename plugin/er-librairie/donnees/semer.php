@@ -598,6 +598,19 @@ if ( $encyclopedie ) {
 if ( $parent_ymca ) {
 	er_semer_exemple( 'Un siècle d’histoire', 'histoire', $parent_ymca->ID, 'page-exemple', 1 );
 }
+
+// Une sélection, sous un titre : les deux compositions du thème, pour les voir dans la bêta (on les insère ailleurs
+// depuis l'éditeur : Compositions → Les Éditeurs réunis).
+$selections = er_semer_page(
+	'Une sélection, sous un titre',
+	'selections',
+	"<!-- wp:pattern {\"slug\":\"editeurs-reunis/selection-table\"} /-->\n\n<!-- wp:pattern {\"slug\":\"editeurs-reunis/selection-etagere\"} /-->",
+	$parent_lib,
+	9
+);
+if ( $selections && ! is_wp_error( $selections ) ) {
+	update_post_meta( $selections, '_wp_page_template', 'page-modules' );
+}
 if ( $parent_centre ) {
 	$videos = er_semer_exemple( 'Nos vidéos', 'videos', $parent_centre->ID, 'page-exemple', 4 );
 	if ( $videos ) {

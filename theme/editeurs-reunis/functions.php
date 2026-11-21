@@ -445,12 +445,15 @@ function er_prix( $slug ) {
 	if ( ! $produit->is_in_stock() ) {
 		return __( 'épuisé pour l’instant', 'editeurs-reunis' );
 	}
+	if ( '' === $produit->get_price() ) {
+		return '';
+	}
 	return html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $produit ) ) ), ENT_QUOTES, 'UTF-8' );
 }
 
 /**
- * L'adresse qui met un livre au panier (sans JavaScript, celle de WooCommerce) ; sa fiche s'il n'est plus en stock,
- * ou la librairie s'il n'existe pas.
+ * L'adresse qui met un livre au panier (sans JavaScript, celle de WooCommerce) ; sa fiche s'il n'est plus en stock ou
+ * n'a pas de prix, ou la librairie s'il n'existe pas.
  *
  * @param string $slug Le slug du livre.
  */
@@ -459,7 +462,7 @@ function er_ajout_panier( $slug ) {
 	if ( ! $produit ) {
 		return er_lien( 'librairie/' );
 	}
-	return esc_url( $produit->is_in_stock() ? $produit->add_to_cart_url() : get_permalink( $produit->get_id() ) );
+	return esc_url( $produit->is_purchasable() && $produit->is_in_stock() ? $produit->add_to_cart_url() : get_permalink( $produit->get_id() ) );
 }
 
 /**

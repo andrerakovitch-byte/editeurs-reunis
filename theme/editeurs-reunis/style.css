@@ -1699,7 +1699,8 @@ sup { font-size: 0.62em; line-height: 0; }
 
 .er-aplat-ymca { background: var(--wp--preset--color--maison-ymca); }
 
-.er-accueil > .er-une { margin-block: 0 !important; }
+.er-accueil > .er-une,
+.wp-block-post-content > .er-une { margin-block: 0 !important; }
 .er-une {
 	--er-une-encre: var(--wp--preset--color--contrast);
 	--er-une-doux: var(--wp--preset--color--encre-2);
@@ -2129,4 +2130,112 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-une-encyclo.er-une-repliable:not(.er-une-ouvert) .er-une-saviez > .er-une-livre:nth-child(n+3),
 	.er-une-encyclo.er-une-repliable:not(.er-une-ouvert) .er-une-encyclo-droite > .er-une-petit-titre:not(:first-child) { display: none !important; }
 	.er-une-poeme.er-une-repliable:not(.er-une-ouvert) .er-une-poeme-bas { padding-top: 1.25rem; }
+}
+
+/* --- Une sélection, sous un titre (patterns/selection-*.php) --------------------------------------------------
+   Plusieurs livres sous un même titre éditorialisé, un texte comme un article, et « À voir, à écouter » (une vidéo,
+   un podcast, un article). Deux mises en page à insérer : la table, sur un aplat ; l'étagère, sur le blanc. */
+
+.er-une-livre-pourquoi { font-size: 0.875rem; line-height: 1.5; color: var(--er-une-doux); }
+.er-une-achat { gap: 0.75rem; margin-top: 0.3rem !important; }
+.er-une-achat .er-une-prix { opacity: 1; color: var(--er-une-pale); }
+.er-une-achat .er-une-outils { margin: 0 !important; }
+.er-une-achat .er-une-prix:empty { display: none; }
+.er-une[class*="er-aplat-"] .er-une-achat .wp-block-button:not(.is-style-outline) .wp-block-button__link { background: #FFFFFF; border-color: #FFFFFF; color: var(--er-une-fond); }
+.er-une:not([class*="er-aplat-"]) .er-une-achat .wp-block-button__link { background: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--contrast); color: #FFFFFF; }
+
+/* « À voir, à écouter » */
+.er-une-a-voir,
+.er-une-bande-media { display: flex; flex-direction: column; }
+.er-une-media { gap: 1.1rem; padding-block: 0.9rem; border-top: 1px solid var(--er-une-filet); }
+.er-une .er-une-media .er-une-video { flex: none; width: 200px; margin: 0; }
+.er-une .er-une-media .er-une-video a::before { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+.er-une .er-une-media .er-une-video a::after { margin: -8px 0 0 -4px; border-width: 8px 0 8px 13px; }
+.er-une-media-texte { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.er-une-media-texte > * { margin: 0 !important; }
+.er-une-media-genre { font-size: 0.78rem; font-weight: 600; color: var(--er-une-pale); }
+.er-une-media-titre { font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
+.er-une-media-titre a { text-decoration: none; }
+.er-une-media-titre a:hover { text-decoration: underline; }
+.er-une-media-liens { border-bottom: 1px solid var(--er-une-filet); }
+.er-une-media-liens .er-une-plus:last-child { border-bottom: 0; }
+
+/* A · La table */
+.er-une-selection-texte { gap: 1.35rem !important; }
+.er-une-table .er-une-chapo { font-size: clamp(1.3rem, 1.85vw, 1.625rem); }
+.er-une-table .er-une-deux-colonnes { font-size: 1.0625rem; color: var(--er-une-encre); opacity: 0.94; }
+.er-une-selection-livres { gap: 0 !important; padding-top: 0.4rem; }
+.er-une-selection-livres .er-une-plus-titre { margin-bottom: 0.6rem !important; }
+.er-une-table .er-une-livres { border-bottom: 1px solid var(--er-une-filet); }
+.er-une-selection-livre { gap: 1.25rem; padding-block: 1rem; }
+.er-une-selection-livre .er-une-couverture img { height: 116px; }
+.er-une-selection-livre .er-une-livre-titre { font-size: 1.0625rem; }
+.er-une-selection-livre .er-une-livre-texte { gap: 0.3rem !important; }
+.er-une-selection-livres .er-une-lien { margin-top: 1rem !important; }
+
+/* B · L'étagère */
+.er-une .er-une-etagere-tete { align-items: flex-end; }
+.er-une-etagere-titre { font-size: clamp(3rem, 7vw, 6.25rem); font-weight: 600; line-height: 0.95; letter-spacing: -0.035em; }
+.er-une-etagere-chapo { margin-bottom: 0.5rem !important; font-size: clamp(1.25rem, 1.75vw, 1.5625rem); line-height: 1.28; }
+.er-une-trois-colonnes { columns: 3; column-gap: 2.75rem; column-rule: 1px solid var(--wp--preset--color--filet); padding-top: 1.75rem; border-top: 1px solid var(--wp--preset--color--filet); font-size: 1.03rem; line-height: 1.62; }
+.er-une-trois-colonnes > p { margin: 0 0 0.85em !important; }
+.er-une .er-une-etagere-livres { gap: 0 !important; margin-top: 1rem !important; }
+.er-une-etagere-livre { position: relative; display: flex; flex-direction: column; gap: 1.1rem; padding-inline-end: 2rem; min-width: 0; }
+.er-une-etagere-livre::after { content: ""; position: absolute; top: 250px; left: 0; right: 0; height: 3px; background: var(--wp--preset--color--contrast); }
+.er-une-etagere-livre .er-une-couverture { display: flex; align-items: flex-end; height: 250px; }
+.er-une-etagere-livre .er-une-couverture a { display: block; }
+.er-une .er-une-etagere-livre .er-une-couverture img { height: auto; max-height: 250px; max-width: 100%; }
+.er-une-etagere-livre .er-une-livre-texte { gap: 0.3rem !important; padding-top: 0.15rem; }
+.er-une-etagere-livre .er-une-livre-titre { font-size: 1rem; }
+.er-une-bande-media {
+	display: grid;
+	grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+	grid-template-rows: auto auto;
+	column-gap: 2.5rem;
+	margin-top: 2.5rem !important;
+	padding: 1.75rem 2rem;
+	background: var(--wp--preset--color--accent);
+	--er-une-filet: rgba(28, 28, 28, 0.25);
+	--er-une-pale: rgba(28, 28, 28, 0.66);
+}
+.er-une-bande-media > .er-une-plus-titre { grid-column: 1 / -1; margin-bottom: 0.4rem !important; color: rgba(28, 28, 28, 0.66); }
+.er-une-bande-media .er-une-media { border-top: 0; padding-block: 0; }
+.er-une .er-une-bande-media .er-une-video { width: 260px; }
+.er-une-bande-media .er-une-media-titre { font-size: clamp(1.4rem, 2vw, 1.875rem); letter-spacing: -0.015em; line-height: 1.1; }
+.er-une-bande-media .er-une-media-liens { align-self: center; border-top: 1px solid var(--er-une-filet); }
+
+@media (max-width: 1100px) {
+	.er-une .er-une-etagere-livres { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; row-gap: 2rem !important; }
+	.er-une-bande-media { grid-template-columns: 1fr; row-gap: 1rem; }
+}
+@media (max-width: 781px) {
+	.er-une-trois-colonnes { columns: 1; }
+	/* Les livres de l'étagère se font glisser de côté. */
+	.er-une .er-une-etagere-livres {
+		display: flex !important;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		margin-inline: calc(-1 * var(--wp--style--root--padding-right)) !important;
+		padding-inline: var(--wp--style--root--padding-left);
+		scrollbar-width: none;
+	}
+	.er-une-etagere-livre { flex: 0 0 62%; scroll-snap-align: start; }
+	.er-une-etagere-livre::after { top: 200px; }
+	.er-une-etagere-livre .er-une-couverture { height: 200px; }
+	.er-une .er-une-etagere-livre .er-une-couverture img { max-height: 200px; }
+	.er-une .er-une-media { flex-wrap: wrap !important; }
+	.er-une .er-une-media .er-une-video,
+	.er-une .er-une-bande-media .er-une-video { width: 100%; }
+	.er-une-bande-media { padding: 1.25rem; }
+	.er-une-selection-livre .er-une-couverture img { height: 96px; }
+	/* La table : les livres d'abord, le texte sous « Voir plus ». */
+	.er-une-table .wp-block-columns.er-une-colonnes { display: flex; flex-direction: column; gap: 1.1rem; }
+	.er-une-table .er-une-colonnes > .wp-block-column { display: contents; }
+	.er-une-table .er-une-rubrique { order: 1; }
+	.er-une-table .er-une-affiche-titre { order: 2; }
+	.er-une-table .er-une-chapo { order: 3; }
+	.er-une-table .er-une-selection-livres > * { order: 4; }
+	.er-une-table .er-une-a-voir { order: 5; }
+	.er-une-table .er-une-deux-colonnes { order: 6; }
+	.er-une-selection.er-une-repliable:not(.er-une-ouvert) :is(.er-une-trois-colonnes, .er-une-livre-pourquoi, .er-une-media-liens) { display: none !important; }
 }
