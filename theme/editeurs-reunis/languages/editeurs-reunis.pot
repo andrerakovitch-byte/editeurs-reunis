@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis 0.4.1\n"
+"Project-Id-Version: Les Éditeurs réunis 0.4.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/editeurs-reunis\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T15:39:35+00:00\n"
+"POT-Creation-Date: 2026-11-21T15:52:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -134,13 +134,13 @@ msgid "Nous trouver"
 msgstr ""
 
 #: functions.php:302
-#: patterns/en-tete.php:52
+#: patterns/en-tete.php:59
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr ""
 
 #: functions.php:303
-#: patterns/en-tete.php:53
+#: patterns/en-tete.php:60
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr ""
@@ -183,6 +183,20 @@ msgstr ""
 
 #: functions.php:399
 msgid "Arts"
+msgstr ""
+
+#: functions.php:420
+msgid "Compte"
+msgstr ""
+
+#: functions.php:431
+#: inc/recherche.php:182
+#: inc/recherche.php:264
+msgid "Langue"
+msgstr ""
+
+#: functions.php:440
+msgid "Panier"
 msgstr ""
 
 #: inc/recherche.php:40
@@ -255,7 +269,7 @@ msgstr ""
 
 #: inc/recherche.php:152
 #: inc/recherche.php:364
-#: patterns/en-tete.php:60
+#: patterns/en-tete.php:67
 msgid "Rechercher"
 msgstr ""
 
@@ -279,7 +293,7 @@ msgstr ""
 
 #: inc/recherche.php:165
 #: inc/recherche.php:363
-#: patterns/en-tete.php:60
+#: patterns/en-tete.php:67
 msgid "Fermer"
 msgstr ""
 
@@ -301,11 +315,6 @@ msgstr ""
 #: inc/recherche.php:181
 #: inc/recherche.php:243
 msgid "Rayon"
-msgstr ""
-
-#: inc/recherche.php:182
-#: inc/recherche.php:264
-msgid "Langue"
 msgstr ""
 
 #: inc/recherche.php:183
@@ -909,40 +918,25 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:45
+#: patterns/en-tete.php:52
 #: patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr ""
 
-#: patterns/en-tete.php:45
+#: patterns/en-tete.php:52
 #: patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr ""
 
-#: patterns/en-tete.php:51
+#: patterns/en-tete.php:58
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr ""
 
-#: patterns/en-tete.php:56
+#: patterns/en-tete.php:63
 msgid "Mon compte"
-msgstr ""
-
-#: patterns/en-tete.php:57
-#: patterns/page-introuvable.php:19
-msgid "Chercher dans la librairie"
-msgstr ""
-
-#: patterns/en-tete.php:57
-msgid "Rechercher un titre, un auteur…"
-msgstr ""
-
-#: patterns/en-tete.php:57
-#: patterns/journal-recherche.php:13
-#: patterns/page-introuvable.php:19
-msgid "Chercher"
 msgstr ""
 
 #: patterns/fiche-livre.php
@@ -1000,6 +994,11 @@ msgstr ""
 #: patterns/journal-recherche.php
 msgctxt "Pattern title"
 msgid "Chercher dans le journal"
+msgstr ""
+
+#: patterns/journal-recherche.php:13
+#: patterns/page-introuvable.php:19
+msgid "Chercher"
 msgstr ""
 
 #: patterns/journal-recherche.php:13
@@ -1298,6 +1297,10 @@ msgstr ""
 
 #: patterns/page-introuvable.php:17
 msgid "Elle a peut-être changé d’adresse. Cherchez un livre, ou repartez de la librairie."
+msgstr ""
+
+#: patterns/page-introuvable.php:19
+msgid "Chercher dans la librairie"
 msgstr ""
 
 #: patterns/page-introuvable.php:19

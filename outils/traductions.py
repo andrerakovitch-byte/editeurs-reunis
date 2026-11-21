@@ -218,6 +218,8 @@ T = {
     (None, 'Chercher un titre, un auteur, un sujet'): ('Search for a title, an author, a subject', 'Найти название, автора, тему'),
     (None, 'Un titre, un auteur, un sujet…'): ('A title, an author, a subject…', 'Название, автор, тема…'),
     (None, 'Effacer'): ('Clear', 'Стереть'),
+    (None, 'Compte'): ('Account', 'Кабинет'),
+    (None, 'Panier'): ('Basket', 'Корзина'),
     (None, 'Partout'): ('Everywhere', 'Везде'),
     (None, 'Le centre culturel'): ('The cultural centre', 'Культурный центр'),
     (None, 'Filtrer'): ('Filter', 'Фильтры'),

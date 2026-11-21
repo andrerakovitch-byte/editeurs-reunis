@@ -132,12 +132,12 @@ msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: functions.php:302 patterns/en-tete.php:52
+#: functions.php:302 patterns/en-tete.php:59
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "YMCA-Press publishers"
 
-#: functions.php:303 patterns/en-tete.php:53
+#: functions.php:303 patterns/en-tete.php:60
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Cultural centre"
@@ -181,6 +181,18 @@ msgstr "Religion"
 #: functions.php:399
 msgid "Arts"
 msgstr "Arts"
+
+#: functions.php:420
+msgid "Compte"
+msgstr "Account"
+
+#: functions.php:431 inc/recherche.php:182 inc/recherche.php:264
+msgid "Langue"
+msgstr "Language"
+
+#: functions.php:440
+msgid "Panier"
+msgstr "Basket"
 
 #: inc/recherche.php:40
 msgid "Soljenitsyne"
@@ -248,7 +260,7 @@ msgstr "from"
 msgid "à"
 msgstr "to"
 
-#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:60
+#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:67
 msgid "Rechercher"
 msgstr "Search"
 
@@ -268,7 +280,7 @@ msgstr "Clear"
 msgid "Recherche détaillée"
 msgstr "Advanced search"
 
-#: inc/recherche.php:165 inc/recherche.php:363 patterns/en-tete.php:60
+#: inc/recherche.php:165 inc/recherche.php:363 patterns/en-tete.php:67
 msgid "Fermer"
 msgstr "Close"
 
@@ -287,10 +299,6 @@ msgstr "Where to look"
 #: inc/recherche.php:181 inc/recherche.php:243
 msgid "Rayon"
 msgstr "Section"
-
-#: inc/recherche.php:182 inc/recherche.php:264
-msgid "Langue"
-msgstr "Language"
 
 #: inc/recherche.php:183 inc/recherche.php:269
 msgid "État"
@@ -965,37 +973,24 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:45 patterns/pied.php:23
+#: patterns/en-tete.php:52 patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr "Alexander Solzhenitsyn"
 
-#: patterns/en-tete.php:45 patterns/pied.php:23
+#: patterns/en-tete.php:52 patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr "Cultural Centre"
 
-#: patterns/en-tete.php:51
+#: patterns/en-tete.php:58
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr "Bookshop"
 
-#: patterns/en-tete.php:56
+#: patterns/en-tete.php:63
 msgid "Mon compte"
 msgstr "My account"
-
-#: patterns/en-tete.php:57 patterns/page-introuvable.php:19
-msgid "Chercher dans la librairie"
-msgstr "Search the bookshop"
-
-#: patterns/en-tete.php:57
-msgid "Rechercher un titre, un auteur…"
-msgstr "Search for a title or an author…"
-
-#: patterns/en-tete.php:57 patterns/journal-recherche.php:13
-#: patterns/page-introuvable.php:19
-msgid "Chercher"
-msgstr "Search"
 
 #: patterns/fiche-livre.php
 msgctxt "Pattern title"
@@ -1057,6 +1052,10 @@ msgstr "Nothing here yet."
 msgctxt "Pattern title"
 msgid "Chercher dans le journal"
 msgstr ""
+
+#: patterns/journal-recherche.php:13 patterns/page-introuvable.php:19
+msgid "Chercher"
+msgstr "Search"
 
 #: patterns/journal-recherche.php:13
 msgid "Chercher sur le site…"
@@ -1357,6 +1356,10 @@ msgid ""
 "librairie."
 msgstr ""
 "It may have moved. Search for a book, or start again from the bookshop."
+
+#: patterns/page-introuvable.php:19
+msgid "Chercher dans la librairie"
+msgstr "Search the bookshop"
 
 #: patterns/page-introuvable.php:19
 msgid "Chercher un titre, un auteur…"

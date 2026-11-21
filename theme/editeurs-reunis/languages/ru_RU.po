@@ -132,12 +132,12 @@ msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Как нас найти"
 
-#: functions.php:302 patterns/en-tete.php:52
+#: functions.php:302 patterns/en-tete.php:59
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "Издательство YMCA-Press"
 
-#: functions.php:303 patterns/en-tete.php:53
+#: functions.php:303 patterns/en-tete.php:60
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Культурный центр"
@@ -181,6 +181,18 @@ msgstr "Религия"
 #: functions.php:399
 msgid "Arts"
 msgstr "Искусство"
+
+#: functions.php:420
+msgid "Compte"
+msgstr "Кабинет"
+
+#: functions.php:431 inc/recherche.php:182 inc/recherche.php:264
+msgid "Langue"
+msgstr "Язык"
+
+#: functions.php:440
+msgid "Panier"
+msgstr "Корзина"
 
 #: inc/recherche.php:40
 msgid "Soljenitsyne"
@@ -248,7 +260,7 @@ msgstr "от"
 msgid "à"
 msgstr "до"
 
-#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:60
+#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:67
 msgid "Rechercher"
 msgstr "Поиск"
 
@@ -268,7 +280,7 @@ msgstr "Стереть"
 msgid "Recherche détaillée"
 msgstr "Расширенный поиск"
 
-#: inc/recherche.php:165 inc/recherche.php:363 patterns/en-tete.php:60
+#: inc/recherche.php:165 inc/recherche.php:363 patterns/en-tete.php:67
 msgid "Fermer"
 msgstr "Закрыть"
 
@@ -287,10 +299,6 @@ msgstr "Где искать"
 #: inc/recherche.php:181 inc/recherche.php:243
 msgid "Rayon"
 msgstr "Раздел"
-
-#: inc/recherche.php:182 inc/recherche.php:264
-msgid "Langue"
-msgstr "Язык"
 
 #: inc/recherche.php:183 inc/recherche.php:269
 msgid "État"
@@ -968,37 +976,24 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:45 patterns/pied.php:23
+#: patterns/en-tete.php:52 patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr "Культурный центр"
 
-#: patterns/en-tete.php:45 patterns/pied.php:23
+#: patterns/en-tete.php:52 patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr "Александра Солженицына"
 
-#: patterns/en-tete.php:51
+#: patterns/en-tete.php:58
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr "Магазин"
 
-#: patterns/en-tete.php:56
+#: patterns/en-tete.php:63
 msgid "Mon compte"
 msgstr "Личный кабинет"
-
-#: patterns/en-tete.php:57 patterns/page-introuvable.php:19
-msgid "Chercher dans la librairie"
-msgstr "Поиск по магазину"
-
-#: patterns/en-tete.php:57
-msgid "Rechercher un titre, un auteur…"
-msgstr "Название или автор…"
-
-#: patterns/en-tete.php:57 patterns/journal-recherche.php:13
-#: patterns/page-introuvable.php:19
-msgid "Chercher"
-msgstr "Найти"
 
 #: patterns/fiche-livre.php
 msgctxt "Pattern title"
@@ -1060,6 +1055,10 @@ msgstr "Пока ничего нет."
 msgctxt "Pattern title"
 msgid "Chercher dans le journal"
 msgstr ""
+
+#: patterns/journal-recherche.php:13 patterns/page-introuvable.php:19
+msgid "Chercher"
+msgstr "Найти"
 
 #: patterns/journal-recherche.php:13
 msgid "Chercher sur le site…"
@@ -1360,6 +1359,10 @@ msgid ""
 "librairie."
 msgstr ""
 "Возможно, у неё изменился адрес. Найдите книгу или вернитесь в магазин."
+
+#: patterns/page-introuvable.php:19
+msgid "Chercher dans la librairie"
+msgstr "Поиск по магазину"
 
 #: patterns/page-introuvable.php:19
 msgid "Chercher un titre, un auteur…"

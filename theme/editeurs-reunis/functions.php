@@ -412,12 +412,41 @@ add_shortcode(
 );
 add_shortcode( 'er_sous_menu', 'er_sous_menu' );
 
+// Le compte, en toutes lettres, dans la barre noire.
+add_shortcode(
+	'er_compte_entete',
+	function () {
+		$url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : er_lien( 'mon-compte/' );
+		return '<a class="er-compte" href="' . esc_url( $url ) . '"' . ( function_exists( 'is_account_page' ) && is_account_page() ? ' aria-current="page"' : '' ) . '>' . esc_html__( 'Compte', 'editeurs-reunis' ) . '</a>';
+	}
+);
+
+// Au bas du menu (≡) du téléphone, la langue : la barre n'a plus la place.
+add_shortcode(
+	'er_langues_menu',
+	function () {
+		if ( ! function_exists( 'er_selecteur_langues' ) ) {
+			return '';
+		}
+		return '<div class="er-menu-langues er-menu-telephone"><span class="er-menu-langues-titre">' . esc_html__( 'Langue', 'editeurs-reunis' ) . '</span>' . er_selecteur_langues() . '</div>';
+	}
+);
+
+// Le panier, en toutes lettres : le mot « Panier » devant la pastille, dans le bouton du mini-panier de WooCommerce (son
+// script ne refait pas le bouton, il n'en change que les attributs).
+add_filter(
+	'render_block_woocommerce/mini-cart',
+	function ( $html ) {
+		return preg_replace( '/(<button[^>]*class="wc-block-mini-cart__button"[^>]*>)/', '$1<span class="er-panier-mot" aria-hidden="true">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</span>', $html, 1 );
+	}
+);
+
 // Un code court dans un gabarit n'est pas déplié quand il vient d'une composition (les compositions passent après) :
 // on déplie les nôtres dans leur bloc HTML.
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return ( false !== strpos( $html, '[er_langues_entete]' ) || false !== strpos( $html, '[er_sous_menu]' ) ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|sous_menu|compte_entete)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 
