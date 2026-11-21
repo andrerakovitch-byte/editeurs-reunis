@@ -12,8 +12,9 @@
  *   pour la librairie, brun pour YMCA-Press, bleu nuit pour le centre culturel), la maison où l'on est soulignée ;
  *   puis le coin droit, en toutes lettres (A, retenu le 21 novembre) : « Rechercher », qui ouvre le panneau de
  *   recherche (inc/recherche.php) et devient « Fermer » ; « Compte » ; « Panier », avec une pastille pervenche quand
- *   il n'est pas vide ; les trois langues dans un interrupteur, la langue de la page en blanc plein. Entre 1280 et
- *   1440 px, « Maison d'édition YMCA-Press » devient « YMCA-Press ».
+ *   il n'est pas vide ; les trois langues dans un interrupteur, la langue de la page en blanc plein. « Rechercher »
+ *   et « Fermer » sont dans la même case : rien ne bouge quand on ouvre ou qu'on ferme. Dans la barre, « Maison
+ *   d'édition YMCA-Press » devient « YMCA-Press » (le nom long ne tient plus dans les 1280 px du site).
  * - Au téléphone : la loupe et le panier dans la barre ; le compte et la langue au bas du menu (≡).
  * - Dessous, le menu de la maison où l'on est, sur sa couleur : les rayons dans la librairie (la composition
  *   « menu-librairie », appelée par les gabarits de la boutique), les pages d'YMCA-Press ou du centre ailleurs (le code
@@ -64,7 +65,7 @@ $er_pages = er_pages_des_maisons();
 			<!-- wp:html -->[er_langues_menu]<!-- /wp:html -->
 		<!-- /wp:navigation -->
 
-		<!-- wp:html --><a class="er-loupe" href="<?php echo esc_url( er_lien_recherche() ); ?>" aria-controls="er-recherche" aria-expanded="false" aria-haspopup="dialog"><span class="er-loupe-icone" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="er-loupe-fermer" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></span><span class="er-loupe-mot" aria-hidden="true"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span><span class="screen-reader-text er-loupe-libelle"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span></a><!-- /wp:html -->
+		<!-- wp:html --><a class="er-loupe" href="<?php echo esc_url( er_lien_recherche() ); ?>" aria-controls="er-recherche" aria-expanded="false" aria-haspopup="dialog"><span class="er-loupe-repos" aria-hidden="true"><span class="er-loupe-icone"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="er-loupe-mot"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span></span><span class="er-loupe-fermer" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="er-loupe-fermer-mot"><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></span></span><span class="screen-reader-text er-loupe-libelle"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span></a><!-- /wp:html -->
 
 		<!-- wp:html -->[er_compte_entete]<!-- /wp:html -->
 

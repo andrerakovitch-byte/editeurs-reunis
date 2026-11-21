@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.4.2
+Version: 0.4.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -193,13 +193,17 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 @media (min-width: 1280px) and (max-width: 1439px) {
 	.er-barre .er-logo a { letter-spacing: 0.45em; }
+	/* Un peu moins d'air entre les objets : la barre tient en russe, où le nom et les maisons sont plus longs. */
+	.er-barre-dedans { gap: 1.35rem; }
+	.er-menu .wp-block-navigation__container, .er-menu .wp-block-navigation__responsive-container-content { gap: 1.35rem !important; }
 }
 
 /* La loupe : elle ouvre le panneau de recherche, puis devient « Fermer », une pilule blanche. Un filet la sépare des
-   maisons. */
+   maisons. Les deux états sont dans la même case, de la largeur du plus large : le compte, le panier et la langue ne
+   bougent pas quand on ouvre ou qu'on ferme (demande du 21 nov. 2026). */
 .er-loupe {
 	position: relative;
-	display: inline-flex;
+	display: inline-grid;
 	align-items: center;
 	color: var(--wp--preset--color--base);
 	text-decoration: none;
@@ -208,10 +212,14 @@ sup { font-size: 0.62em; line-height: 0; }
 /* « Rechercher », en toutes lettres, à côté de la loupe (pas au téléphone). */
 .er-loupe-mot { margin-inline-start: 0.3rem; font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
 .er-loupe:hover .er-loupe-mot { text-decoration: underline; text-underline-offset: 0.35em; }
-.er-loupe[aria-expanded="true"] .er-loupe-mot { display: none; }
 .er-loupe-icone svg { width: 18px; height: 18px; }
+.er-loupe-repos, .er-loupe-fermer { grid-area: 1 / 1; }
+.er-loupe-repos { display: inline-flex; align-items: center; }
 .er-loupe-fermer {
-	display: none;
+	display: inline-flex;
+	visibility: hidden;
+	justify-self: stretch;
+	justify-content: center;
 	align-items: center;
 	gap: 0.45rem;
 	height: 2.125rem;
@@ -223,8 +231,8 @@ sup { font-size: 0.62em; line-height: 0; }
 	font-weight: 600;
 	white-space: nowrap;
 }
-.er-loupe[aria-expanded="true"] .er-loupe-icone { display: none; }
-.er-loupe[aria-expanded="true"] .er-loupe-fermer { display: inline-flex; }
+.er-loupe[aria-expanded="true"] .er-loupe-repos { visibility: hidden; }
+.er-loupe[aria-expanded="true"] .er-loupe-fermer { visibility: visible; }
 @media (min-width: 1280px) {
 	.er-barre .er-loupe { padding-inline-start: 1.75rem; }
 	.er-barre .er-loupe::before {
@@ -297,9 +305,10 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-panier .wc-block-mini-cart__badge[hidden] { display: none; }
 
-/* Entre 1280 et 1440 px, le nom court d'YMCA-Press ; ailleurs, et dans le menu (≡), le nom long. */
+/* Dans la barre, le nom court d'YMCA-Press : à côté des gestes en toutes lettres, le nom long ne tient pas dans les
+   1280 px du site, en russe moins encore. Dans le menu (≡), le nom long. */
 .er-nom-court { display: none; }
-@media (min-width: 1280px) and (max-width: 1439px) {
+@media (min-width: 1280px) {
 	.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-nom-long { display: none; }
 	.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-nom-court { display: inline; }
 }
@@ -359,6 +368,10 @@ sup { font-size: 0.62em; line-height: 0; }
 	/* La loupe et le panier en icônes ; le compte et la langue passent au bas du menu (≡). */
 	.er-barre .er-compte, .er-barre-dedans > .er-langues, .er-loupe-mot, .er-panier-mot { display: none; }
 	.er-loupe-icone svg { width: 22px; height: 22px; }
+	/* Au téléphone, la croix seule, dans un rond de la taille de la loupe. */
+	.er-loupe-repos { justify-self: center; }
+	.er-loupe-fermer { width: 2.125rem; padding: 0; justify-self: center; }
+	.er-loupe-fermer-mot { display: none; }
 	.er-panier .wc-block-mini-cart__quantity-badge { position: relative; }
 	.er-panier .wc-block-mini-cart__icon { display: block; width: 26px; height: 26px; }
 	.er-barre .er-panier { margin-inline-end: 0.4rem; }

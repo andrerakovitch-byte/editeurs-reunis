@@ -38,8 +38,10 @@ couleur ni taille écrite en dur.
 Retenu le 21 novembre 2026. Une barre noire, la même partout : le nom, les trois maisons (Librairie, Maison
 d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa couleur, puis le coin droit en toutes
 lettres (disposition A, retenue le même jour) : « Rechercher », « Compte », « Panier » (avec une pastille pervenche
-quand il n'est pas vide), et les trois langues dans un interrupteur, la langue de la page en blanc plein. Entre 1280
-et 1440 px, « Maison d'édition YMCA-Press » devient « YMCA-Press » ; sous 960 px, « Compte » passe dans le menu (≡) ;
+quand il n'est pas vide), et les trois langues dans un interrupteur, la langue de la page en blanc plein. « Rechercher » devient « Fermer »
+dans la même case : rien ne bouge quand on ouvre ou qu'on ferme. Dans la barre, « Maison d'édition YMCA-Press »
+devient « YMCA-Press » : à côté des gestes en toutes lettres, le nom long ne tient pas dans les 1280 px du site
+(il reste entier dans le menu) ; sous 960 px, « Compte » passe dans le menu (≡) ;
 au téléphone, la barre garde la loupe et le panier, le compte et la langue vont au bas du menu. Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
 (ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel ; rien dessous sur
 l'accueil et les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
