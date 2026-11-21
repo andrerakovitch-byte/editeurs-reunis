@@ -412,12 +412,13 @@ add_shortcode(
 );
 add_shortcode( 'er_sous_menu', 'er_sous_menu' );
 
-// Le compte, en toutes lettres, dans la barre noire.
+// Le compte, en picto, dans la barre noire (son nom pour les lecteurs d'écran).
 add_shortcode(
 	'er_compte_entete',
 	function () {
 		$url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : er_lien( 'mon-compte/' );
-		return '<a class="er-compte" href="' . esc_url( $url ) . '"' . ( function_exists( 'is_account_page' ) && is_account_page() ? ' aria-current="page"' : '' ) . '>' . esc_html__( 'Compte', 'editeurs-reunis' ) . '</a>';
+		$picto = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+		return '<a class="er-compte er-picto" href="' . esc_url( $url ) . '"' . ( function_exists( 'is_account_page' ) && is_account_page() ? ' aria-current="page"' : '' ) . '>' . $picto . '<span class="screen-reader-text">' . esc_html__( 'Compte', 'editeurs-reunis' ) . '</span></a>';
 	}
 );
 
@@ -432,14 +433,6 @@ add_shortcode(
 	}
 );
 
-// Le panier, en toutes lettres : le mot « Panier » devant la pastille, dans le bouton du mini-panier de WooCommerce (son
-// script ne refait pas le bouton, il n'en change que les attributs).
-add_filter(
-	'render_block_woocommerce/mini-cart',
-	function ( $html ) {
-		return preg_replace( '/(<button[^>]*class="wc-block-mini-cart__button"[^>]*>)/', '$1<span class="er-panier-mot" aria-hidden="true">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</span>', $html, 1 );
-	}
-);
 
 // Un code court dans un gabarit n'est pas déplié quand il vient d'une composition (les compositions passent après) :
 // on déplie les nôtres dans leur bloc HTML.

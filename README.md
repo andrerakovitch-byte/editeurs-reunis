@@ -36,13 +36,12 @@ couleur ni taille écrite en dur.
 ## L'en-tête : trois maisons, trois couleurs
 
 Retenu le 21 novembre 2026. Une barre noire, la même partout : le nom, les trois maisons (Librairie, Maison
-d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa couleur, puis le coin droit en toutes
-lettres (disposition A, retenue le même jour) : « Rechercher », « Compte », « Panier » (avec une pastille pervenche
-quand il n'est pas vide), et les trois langues dans un interrupteur, la langue de la page en blanc plein. « Rechercher » devient « Fermer »
-dans la même case : rien ne bouge quand on ouvre ou qu'on ferme. Dans la barre, « Maison d'édition YMCA-Press »
-devient « YMCA-Press » : à côté des gestes en toutes lettres, le nom long ne tient pas dans les 1280 px du site
-(il reste entier dans le menu) ; sous 960 px, « Compte » passe dans le menu (≡) ;
-au téléphone, la barre garde la loupe et le panier, le compte et la langue vont au bas du menu. Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
+d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa couleur, puis le coin droit en pictos (disposition A′, retenue le même jour) : la loupe, le compte, le panier, chacun dans un
+rond de 36 px (au survol, le rond grisé ; sélectionné, le rond blanc et le picto noir, à la même place), le nombre de
+livres dans une pastille pervenche quand le panier n'est pas vide, et les trois langues dans un interrupteur, la
+langue de la page en blanc plein. Le nom garde l'espacement du logo d'origine (0,95 em) ; entre 1280 et 1440 px,
+« Maison d'édition YMCA-Press » devient « YMCA-Press » ; au téléphone, la barre garde la loupe et le panier, le compte
+et la langue vont au bas du menu (≡). Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
 (ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel. L'accueil du
 site montre la ligne de la librairie, « Accueil » souligné (son entrée « Accueil » y mène) ; l'onglet « Librairie »
 n'y est pas souligné : l'accueil n'est pas toute la librairie. Rien dessous sur les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
