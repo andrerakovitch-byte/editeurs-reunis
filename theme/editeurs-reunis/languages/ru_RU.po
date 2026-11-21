@@ -31,156 +31,513 @@ msgid ""
 "dans theme.json ; le reste est ici."
 msgstr ""
 
-#: functions.php:54
+#: functions.php:56
 msgid "carrousel"
 msgstr "карусель"
 
-#: functions.php:55
+#: functions.php:57
 msgid "diapositive"
 msgstr "слайд"
 
-#: functions.php:56
+#: functions.php:58
 msgid "À la une"
 msgstr "Главное"
 
 #. translators: 1: le rang de la diapositive, 2: le nombre de diapositives.
-#: functions.php:58
+#: functions.php:60
 msgid "%1$s sur %2$s"
 msgstr "%1$s из %2$s"
 
 #. translators: %s: le rang de la diapositive.
-#: functions.php:60
+#: functions.php:62
 msgid "Diapositive %s"
 msgstr "Слайд %s"
 
-#: functions.php:61
+#: functions.php:63
 msgid "Diapositive précédente"
 msgstr "Предыдущий слайд"
 
-#: functions.php:62
+#: functions.php:64
 msgid "Diapositive suivante"
 msgstr "Следующий слайд"
 
-#: functions.php:79
+#: functions.php:81
 msgid "Pilule blanche"
 msgstr "Белая кнопка-капсула"
 
-#: functions.php:86
+#: functions.php:88
 msgid "Cerné, avec une flèche"
 msgstr "С обводкой и стрелкой"
 
-#: functions.php:93
+#: functions.php:95
 msgid "Carte voilée"
 msgstr "Полупрозрачная карточка"
 
-#: functions.php:100
+#: functions.php:102
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Бумажная гамма (архивные материалы)"
 
-#: functions.php:268
+#: functions.php:270
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "Об издательстве"
 
-#: functions.php:269
+#: functions.php:271
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "Век истории"
 
-#: functions.php:270
+#: functions.php:272
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Каталог"
 
-#: functions.php:271
+#: functions.php:273
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Друзья YMCA-Press"
 
-#: functions.php:274
+#: functions.php:276
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "О центре"
 
-#: functions.php:275
+#: functions.php:277
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Мероприятия"
 
-#: functions.php:276
+#: functions.php:278
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Выставки"
 
-#: functions.php:277
+#: functions.php:279
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Подкасты"
 
-#: functions.php:278
+#: functions.php:280
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Видео"
 
-#: functions.php:279
+#: functions.php:281
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: functions.php:280
+#: functions.php:282
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Как нас найти"
 
-#: functions.php:300 patterns/en-tete.php:51
+#: functions.php:302 patterns/en-tete.php:52
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "Издательство YMCA-Press"
 
-#: functions.php:301 patterns/en-tete.php:52
+#: functions.php:303 patterns/en-tete.php:53
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Культурный центр"
 
-#: functions.php:388
+#: functions.php:390
 msgid "Par genre"
 msgstr "По жанрам"
 
-#: functions.php:389
+#: functions.php:391
 msgid "Par époque"
 msgstr "По эпохам"
 
-#: functions.php:390
+#: functions.php:392
 msgid "Par période"
 msgstr "По периодам"
 
-#: functions.php:391
+#: functions.php:393
 msgid "Par thème"
 msgstr "По темам"
 
-#: functions.php:392
+#: functions.php:394
 msgid "Par âge"
 msgstr "По возрасту"
 
-#: functions.php:393
+#: functions.php:395
 msgid "Méthodes"
 msgstr "Учебники"
 
-#: functions.php:394
+#: functions.php:396
 msgid "Outils"
 msgstr "Пособия"
 
-#: functions.php:395
+#: functions.php:397
 msgid "Pensée"
 msgstr "Философская мысль"
 
-#: functions.php:396
+#: functions.php:398
 msgid "Religion"
 msgstr "Религия"
 
-#: functions.php:397
+#: functions.php:399
 msgid "Arts"
 msgstr "Искусство"
+
+#: inc/recherche.php:40
+msgid "Soljenitsyne"
+msgstr "Солженицын"
+
+#: inc/recherche.php:41
+msgid "L’Archipel du Goulag"
+msgstr "Архипелаг ГУЛАГ"
+
+#: inc/recherche.php:42
+msgid "Akhmatova"
+msgstr "Ахматова"
+
+#: inc/recherche.php:43
+msgid "Gouzel Iakhina"
+msgstr "Гузель Яхина"
+
+#: inc/recherche.php:44
+msgid "Poésie"
+msgstr "Поэзия"
+
+#: inc/recherche.php:45
+msgid "Dictionnaire"
+msgstr "Словарь"
+
+#: inc/recherche.php:107
+msgid "Neuf"
+msgstr "Новые"
+
+#: inc/recherche.php:108
+msgid "Occasion"
+msgstr "Букинистика"
+
+#: inc/recherche.php:109
+msgid "Édition ancienne"
+msgstr "Старое издание"
+
+#: inc/recherche.php:110
+msgid "Très rare"
+msgstr "Большая редкость"
+
+#: inc/recherche.php:122
+msgid "de"
+msgstr "от"
+
+#: inc/recherche.php:124
+msgid "à"
+msgstr "до"
+
+#: inc/recherche.php:135 inc/recherche.php:345 patterns/en-tete.php:60
+msgid "Rechercher"
+msgstr "Поиск"
+
+#: inc/recherche.php:142
+msgid "Chercher un titre, un auteur, un sujet"
+msgstr "Найти название, автора, тему"
+
+#: inc/recherche.php:143
+msgid "Un titre, un auteur, un sujet…"
+msgstr "Название, автор, тема…"
+
+#: inc/recherche.php:145 inc/recherche.php:346
+msgid "Effacer"
+msgstr "Стереть"
+
+#: inc/recherche.php:147
+msgid "Recherche détaillée"
+msgstr "Расширенный поиск"
+
+#: inc/recherche.php:148 inc/recherche.php:344 patterns/en-tete.php:60
+msgid "Fermer"
+msgstr "Закрыть"
+
+#: inc/recherche.php:156
+msgid "Vos dernières recherches"
+msgstr "Вы недавно искали"
+
+#: inc/recherche.php:159
+msgid "On cherche souvent"
+msgstr "Часто ищут"
+
+#: inc/recherche.php:168
+msgid "Par rayon"
+msgstr "По разделам"
+
+#: inc/recherche.php:176
+msgid "Par langue"
+msgstr "По языку"
+
+#: inc/recherche.php:183
+msgid "Ailleurs sur le site"
+msgstr "Ещё на сайте"
+
+#: inc/recherche.php:185
+msgid "Les nouveautés de la librairie"
+msgstr "Новинки магазина"
+
+#: inc/recherche.php:186
+msgid "Le catalogue d’YMCA-Press, depuis 1921"
+msgstr "Каталог YMCA-Press с 1921 года"
+
+#: inc/recherche.php:187
+msgid "Les événements du centre, les podcasts, les vidéos"
+msgstr "Мероприятия центра, подкасты, видео"
+
+#: inc/recherche.php:192
+msgid "Les derniers arrivés"
+msgstr "Последние поступления"
+
+#: inc/recherche.php:219
+msgid "Titre"
+msgstr "Название"
+
+#: inc/recherche.php:219
+msgid "Un mot du titre"
+msgstr "Слово из названия"
+
+#: inc/recherche.php:220 inc/recherche.php:314
+msgid "Auteur"
+msgstr "Автор"
+
+#: inc/recherche.php:220
+msgid "Dans n’importe quelle écriture"
+msgstr "В любом написании"
+
+#: inc/recherche.php:221
+msgid "Traducteur, préfacier"
+msgstr "Переводчик, автор предисловия"
+
+#: inc/recherche.php:221
+msgid "Par exemple Georges Nivat"
+msgstr "Например, Жорж Нива"
+
+#: inc/recherche.php:222
+msgid "ISBN"
+msgstr "ISBN"
+
+#: inc/recherche.php:224
+msgid "Rayon"
+msgstr "Раздел"
+
+#: inc/recherche.php:226
+msgid "Tous les rayons"
+msgstr "Все разделы"
+
+#: inc/recherche.php:245
+msgid "Langue"
+msgstr "Язык"
+
+#: inc/recherche.php:246
+msgid "Éditeur"
+msgstr "Издательство"
+
+#: inc/recherche.php:246
+msgid "Par exemple YMCA-Press"
+msgstr "Например, YMCA-Press"
+
+#: inc/recherche.php:247
+msgid "Collection"
+msgstr "Серия"
+
+#: inc/recherche.php:247
+msgid "Toutes"
+msgstr "Все"
+
+#: inc/recherche.php:248
+msgid "Année d’édition"
+msgstr "Год издания"
+
+#: inc/recherche.php:249
+msgid "Prix"
+msgstr "Цена"
+
+#: inc/recherche.php:250
+msgid "État"
+msgstr "Состояние"
+
+#: inc/recherche.php:253
+msgid "Disponibilité"
+msgstr "Наличие"
+
+#: inc/recherche.php:254
+msgid "En stock seulement"
+msgstr "Только в наличии"
+
+#: inc/recherche.php:262
+msgid "Tout effacer"
+msgstr "Сбросить всё"
+
+#: inc/recherche.php:263
+msgid "Voir les livres"
+msgstr "Показать книги"
+
+#: inc/recherche.php:266
+msgid ""
+"Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres "
+"change à chaque choix."
+msgstr ""
+"Поля можно сочетать, а можно заполнить только одно; число книг меняется при "
+"каждом выборе."
+
+#: inc/recherche.php:270
+msgid ""
+"On cherche dans les trois langues : <strong>Dostoïevski</strong>, <strong "
+"lang=\"ru\">Достоевский</strong> ou <strong>Dostoevsky</strong> mènent au "
+"même auteur."
+msgstr ""
+"Искать можно на трёх языках: <strong>Достоевский</strong>, <strong "
+"lang=\"fr\">Dostoïevski</strong> или <strong lang=\"en\">Dostoevsky</strong>"
+" приведут к одному автору."
+
+#: inc/recherche.php:271
+msgid "choisir"
+msgstr "выбрать"
+
+#: inc/recherche.php:271
+msgid "Entrée"
+msgstr "Enter"
+
+#: inc/recherche.php:271
+msgid "ouvrir"
+msgstr "открыть"
+
+#: inc/recherche.php:271
+msgid "Échap"
+msgstr "Esc"
+
+#: inc/recherche.php:271
+msgid "fermer"
+msgstr "закрыть"
+
+#: inc/recherche.php:305
+msgid "Tout"
+msgstr "Всё"
+
+#: inc/recherche.php:306 inc/recherche.php:315
+msgid "Livres"
+msgstr "Книги"
+
+#: inc/recherche.php:307
+msgid "Auteurs"
+msgstr "Авторы"
+
+#: inc/recherche.php:308 inc/recherche.php:316
+msgid "Rayons"
+msgstr "Разделы"
+
+#: inc/recherche.php:309
+msgid "Encyclopédie"
+msgstr "Энциклопедия"
+
+#: inc/recherche.php:310 patterns/accueil-histoire.php:19
+msgid "YMCA-Press"
+msgstr "YMCA-Press"
+
+#: inc/recherche.php:311
+msgid "Centre culturel"
+msgstr "Культурный центр"
+
+#: inc/recherche.php:312
+msgid "Journal"
+msgstr "Журнал"
+
+#: inc/recherche.php:313 inc/recherche.php:321
+msgid "Pages"
+msgstr "Страницы"
+
+#: inc/recherche.php:317
+msgid "Dans l’encyclopédie"
+msgstr "В энциклопедии"
+
+#: inc/recherche.php:318
+msgid "Chez YMCA-Press"
+msgstr "В YMCA-Press"
+
+#: inc/recherche.php:319
+msgid "Au centre culturel"
+msgstr "В культурном центре"
+
+#: inc/recherche.php:320
+msgid "Dans le journal"
+msgstr "В журнале"
+
+#. translators: %s: le nom reconnu (un auteur).
+#: inc/recherche.php:323
+msgid "Résultats pour %s."
+msgstr "Результаты для: %s."
+
+#. translators: %s: les autres noms de l'auteur.
+#: inc/recherche.php:325
+msgid "Cherché aussi : %s."
+msgstr "Также искали: %s."
+
+#. translators: %s: ce qu'on a tapé.
+#: inc/recherche.php:327
+msgid ""
+"Rien pour « %s ». Essayez un autre mot, une autre écriture, ou la recherche "
+"détaillée."
+msgstr ""
+"По запросу «%s» ничего не найдено. Попробуйте другое слово, другое написание"
+" или расширенный поиск."
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:329
+msgid "Voir les %s livres"
+msgstr "Показать книги: %s"
+
+#: inc/recherche.php:330 patterns/accueil-une.php:31
+msgid "Voir le livre"
+msgstr "О книге"
+
+#: inc/recherche.php:331
+msgid "Aucun livre"
+msgstr "Нет книг"
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:333
+msgid "Les %s livres"
+msgstr "Все книги: %s"
+
+#: inc/recherche.php:334
+msgid "La page de l’auteur"
+msgstr "Страница автора"
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:336
+msgid "%s livres en rayon"
+msgstr "Книг на полках: %s"
+
+#: inc/recherche.php:337
+msgid "Un livre en rayon"
+msgstr "Одна книга на полках"
+
+#: inc/recherche.php:338
+msgid "en stock"
+msgstr "в наличии"
+
+#: inc/recherche.php:339
+msgid "épuisé pour l’instant"
+msgstr "пока нет в наличии"
+
+#: inc/recherche.php:340
+msgid ""
+"Les résultats changent à chaque lettre ; Entrée ouvre la page des livres "
+"trouvés."
+msgstr ""
+"Результаты обновляются с каждой буквой; Enter открывает страницу найденных "
+"книг."
+
+#: inc/recherche.php:341
+msgid "Vos critères :"
+msgstr "Ваши условия:"
+
+#. translators: %s: le critère qu'on retire.
+#: inc/recherche.php:343
+msgid "Retirer : %s"
+msgstr "Убрать: %s"
 
 #: patterns/accueil-anthologies.php
 msgctxt "Pattern title"
@@ -394,10 +751,6 @@ msgid ""
 "maison en blanc et, à droite, l'année de sa fondation."
 msgstr ""
 
-#: patterns/accueil-histoire.php:19
-msgid "YMCA-Press"
-msgstr "YMCA-Press"
-
 #: patterns/accueil-histoire.php:23
 msgid "Découvrez notre histoire centenaire"
 msgstr "Наша столетняя история"
@@ -558,10 +911,6 @@ msgstr ""
 "Новый роман Гузель Яхиной, автора <em>«Зулейха открывает глаза»</em>, — "
 "теперь в нашем магазине во французском переводе."
 
-#: patterns/accueil-une.php:31
-msgid "Voir le livre"
-msgstr "О книге"
-
 #: patterns/accueil-une.php:34
 msgid "Couverture de Convoi pour Samarcande, de Gouzel Iakhina"
 msgstr ""
@@ -597,36 +946,35 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:44 patterns/pied.php:23
+#: patterns/en-tete.php:45 patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr "Культурный центр"
 
-#: patterns/en-tete.php:44 patterns/pied.php:23
+#: patterns/en-tete.php:45 patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr "Александра Солженицына"
 
-#: patterns/en-tete.php:50
+#: patterns/en-tete.php:51
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr "Магазин"
 
-#: patterns/en-tete.php:55
+#: patterns/en-tete.php:56
 msgid "Mon compte"
 msgstr "Личный кабинет"
 
-#: patterns/en-tete.php:56 patterns/en-tete.php:59
-#: patterns/page-introuvable.php:19
+#: patterns/en-tete.php:57 patterns/page-introuvable.php:19
 msgid "Chercher dans la librairie"
 msgstr "Поиск по магазину"
 
-#: patterns/en-tete.php:56 patterns/en-tete.php:59
+#: patterns/en-tete.php:57
 msgid "Rechercher un titre, un auteur…"
 msgstr "Название или автор…"
 
-#: patterns/en-tete.php:56 patterns/en-tete.php:59
-#: patterns/journal-recherche.php:13 patterns/page-introuvable.php:19
+#: patterns/en-tete.php:57 patterns/journal-recherche.php:13
+#: patterns/page-introuvable.php:19
 msgid "Chercher"
 msgstr "Найти"
 
@@ -710,22 +1058,22 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:24
+#: patterns/librairie.php:28
 msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
 msgstr "Книжный магазин «Les Éditeurs réunis» — с 1925 года"
 
-#: patterns/librairie.php:55
+#: patterns/librairie.php:57
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr "Назад"
 
-#: patterns/librairie.php:57
+#: patterns/librairie.php:59
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr "Далее"
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:64
+#: patterns/librairie.php:66
 msgid ""
 "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou "
 "écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."

@@ -553,6 +553,31 @@ er_semer_page(
 <!-- /wp:woocommerce/product-collection -->'
 );
 
+// Les autres graphies des auteurs : la recherche trouve « Солженицын » et « Solzhenitsyn » comme « Soljenitsyne ».
+$graphies = array(
+	'Gouzel Iakhina'         => array( 'Гузель Яхина', 'Guzel Yakhina' ),
+	'Андрей Звягинцев'       => array( 'Andreï Zviaguintsev', 'Andrey Zvyagintsev' ),
+	'Alexandre Soljenitsyne' => array( 'Александр Солженицын', 'Aleksandr Solzhenitsyn' ),
+	'Andreï Platonov'        => array( 'Андрей Платонов', 'Andrei Platonov' ),
+	'Boris Pasternak'        => array( 'Борис Пастернак' ),
+	'Alexandre Blok'         => array( 'Александр Блок', 'Aleksandr Blok' ),
+	'Léonid Andréïev'        => array( 'Леонид Андреев', 'Leonid Andreyev' ),
+	'Nikolaï Goumilev'       => array( 'Николай Гумилёв', 'Nikolay Gumilyov' ),
+	'Семён Ляшенко'          => array( 'Sémione Liachenko', 'Semyon Lyashenko' ),
+	'Vikenti Veressaïev'     => array( 'Викентий Вересаев', 'Vikenty Veresaev' ),
+);
+foreach ( $graphies as $nom => $autres ) {
+	$auteur = get_term_by( 'name', $nom, 'auteur' );
+	if ( $auteur ) {
+		update_term_meta( $auteur->term_id, 'er_graphies', implode( "\n", $autres ) );
+	}
+}
+
+// L'index de la recherche, refait d'un coup.
+if ( function_exists( 'er_index_reconstruire' ) ) {
+	er_index_reconstruire();
+}
+
 flush_rewrite_rules();
 wc_delete_product_transients();
 

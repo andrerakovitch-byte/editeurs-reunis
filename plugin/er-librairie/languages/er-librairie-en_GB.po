@@ -24,50 +24,78 @@ msgid ""
 " changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:161
+#: er-librairie.php:163
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:175 er-librairie.php:181
+#: er-librairie.php:177 er-librairie.php:183
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:176
+#: er-librairie.php:178
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:177
+#: er-librairie.php:179
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:178
+#: er-librairie.php:180
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:179
+#: er-librairie.php:181
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:180
+#: er-librairie.php:182
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:195 er-librairie.php:200
+#: er-librairie.php:197 er-librairie.php:202
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:196
+#: er-librairie.php:198
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:197
+#: er-librairie.php:199
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:198
+#: er-librairie.php:200
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:199
+#: er-librairie.php:201
 msgid "Ajouter une langue"
 msgstr "Add language"
+
+#: inc/recherche.php:881 inc/recherche.php:889
+msgid "Autres graphies"
+msgstr "Other spellings"
+
+#: inc/recherche.php:883 inc/recherche.php:891
+msgid ""
+"Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
+"recherche les trouve toutes."
+msgstr ""
+"One per line: the name in Russian, in English, an older transliteration. The"
+" search finds them all."
+
+#: inc/recherche.php:911
+msgid "Traducteur, préfacier"
+msgstr "Translator, preface writer"
+
+#: inc/recherche.php:912
+msgid "Éditeur"
+msgstr "Publisher"
+
+#: inc/recherche.php:913
+msgid "Collection"
+msgstr "Series"
+
+#: inc/recherche.php:914
+msgid "Année d’édition"
+msgstr "Year of publication"

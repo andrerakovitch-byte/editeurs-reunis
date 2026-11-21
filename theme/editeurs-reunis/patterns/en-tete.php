@@ -10,7 +10,8 @@
  *
  * - La barre noire, la même partout : le nom ; les trois maisons, chacune précédée d'un point de sa couleur (vert
  *   pour la librairie, brun pour YMCA-Press, bleu nuit pour le centre culturel), la maison où l'on est soulignée ;
- *   la loupe, le compte, le panier ; la langue.
+ *   la loupe, qui ouvre le panneau de recherche (inc/recherche.php) et devient « Fermer » ; le compte, le panier ; la
+ *   langue.
  * - Dessous, le menu de la maison où l'on est, sur sa couleur : les rayons dans la librairie (la composition
  *   « menu-librairie », appelée par les gabarits de la boutique), les pages d'YMCA-Press ou du centre ailleurs (le code
  *   court [er_sous_menu]). Rien dessous sur l'accueil et les pages communes (panier, compte, pages légales).
@@ -56,7 +57,7 @@ $er_pages = er_pages_des_maisons();
 			<!-- wp:search {"label":"<?php echo er_attr( __( 'Chercher dans la librairie', 'editeurs-reunis' ) ); ?>","showLabel":false,"placeholder":"<?php echo er_attr( __( 'Rechercher un titre, un auteur…', 'editeurs-reunis' ) ); ?>","buttonText":"<?php echo er_attr( __( 'Chercher', 'editeurs-reunis' ) ); ?>","buttonPosition":"button-inside","buttonUseIcon":true,"query":{"post_type":"product"},"className":"er-menu-telephone er-chercher-menu"} /-->
 		<!-- /wp:navigation -->
 
-		<!-- wp:search {"label":"<?php echo er_attr( __( 'Chercher dans la librairie', 'editeurs-reunis' ) ); ?>","showLabel":false,"placeholder":"<?php echo er_attr( __( 'Rechercher un titre, un auteur…', 'editeurs-reunis' ) ); ?>","buttonText":"<?php echo er_attr( __( 'Chercher', 'editeurs-reunis' ) ); ?>","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true,"query":{"post_type":"product"},"className":"er-chercher"} /-->
+		<!-- wp:html --><a class="er-loupe" href="<?php echo esc_url( er_lien_recherche() ); ?>" aria-controls="er-recherche" aria-expanded="false" aria-haspopup="dialog"><span class="er-loupe-icone" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="er-loupe-fermer" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></span><span class="screen-reader-text er-loupe-libelle"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span></a><!-- /wp:html -->
 
 		<!-- wp:woocommerce/customer-account {"displayStyle":"icon_only","iconStyle":"line","iconClass":"wc-block-customer-account__account-icon","className":"er-compte"} /-->
 

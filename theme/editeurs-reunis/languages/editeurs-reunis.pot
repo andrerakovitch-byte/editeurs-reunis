@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis 0.3.0\n"
+"Project-Id-Version: Les Éditeurs réunis 0.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/editeurs-reunis\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T14:53:30+00:00\n"
+"POT-Creation-Date: 2026-11-21T15:20:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -30,159 +30,516 @@ msgstr ""
 msgid "Le site de la librairie des Éditeurs réunis, de la maison d'édition YMCA-Press et du Centre culturel Alexandre Soljenitsyne. Direction artistique provisoire, d'après la maquette Wix : Montserrat, la pervenche, la barre noire et les boutons en pilule. Les couleurs, la police et les tailles sont dans theme.json ; le reste est ici."
 msgstr ""
 
-#: functions.php:54
+#: functions.php:56
 msgid "carrousel"
 msgstr ""
 
-#: functions.php:55
+#: functions.php:57
 msgid "diapositive"
 msgstr ""
 
-#: functions.php:56
+#: functions.php:58
 msgid "À la une"
 msgstr ""
 
 #. translators: 1: le rang de la diapositive, 2: le nombre de diapositives.
-#: functions.php:58
+#: functions.php:60
 #, php-format
 msgid "%1$s sur %2$s"
 msgstr ""
 
 #. translators: %s: le rang de la diapositive.
-#: functions.php:60
+#: functions.php:62
 #, php-format
 msgid "Diapositive %s"
 msgstr ""
 
-#: functions.php:61
+#: functions.php:63
 msgid "Diapositive précédente"
 msgstr ""
 
-#: functions.php:62
+#: functions.php:64
 msgid "Diapositive suivante"
 msgstr ""
 
-#: functions.php:79
+#: functions.php:81
 msgid "Pilule blanche"
 msgstr ""
 
-#: functions.php:86
+#: functions.php:88
 msgid "Cerné, avec une flèche"
 msgstr ""
 
-#: functions.php:93
+#: functions.php:95
 msgid "Carte voilée"
 msgstr ""
 
-#: functions.php:100
+#: functions.php:102
 msgid "Ambiance papier (contenu patrimonial)"
-msgstr ""
-
-#: functions.php:268
-msgctxt "menu d’YMCA-Press"
-msgid "La maison d’édition"
-msgstr ""
-
-#: functions.php:269
-msgctxt "menu d’YMCA-Press"
-msgid "Un siècle d’histoire"
 msgstr ""
 
 #: functions.php:270
 msgctxt "menu d’YMCA-Press"
-msgid "Le catalogue"
+msgid "La maison d’édition"
 msgstr ""
 
 #: functions.php:271
 msgctxt "menu d’YMCA-Press"
+msgid "Un siècle d’histoire"
+msgstr ""
+
+#: functions.php:272
+msgctxt "menu d’YMCA-Press"
+msgid "Le catalogue"
+msgstr ""
+
+#: functions.php:273
+msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
-msgstr ""
-
-#: functions.php:274
-msgctxt "menu du centre culturel"
-msgid "Le centre"
-msgstr ""
-
-#: functions.php:275
-msgctxt "menu du centre culturel"
-msgid "Nos événements"
 msgstr ""
 
 #: functions.php:276
 msgctxt "menu du centre culturel"
-msgid "Nos expositions"
+msgid "Le centre"
 msgstr ""
 
 #: functions.php:277
 msgctxt "menu du centre culturel"
-msgid "Nos podcasts"
+msgid "Nos événements"
 msgstr ""
 
 #: functions.php:278
 msgctxt "menu du centre culturel"
-msgid "Nos vidéos"
+msgid "Nos expositions"
 msgstr ""
 
 #: functions.php:279
 msgctxt "menu du centre culturel"
-msgid "Le journal du centre"
+msgid "Nos podcasts"
 msgstr ""
 
 #: functions.php:280
 msgctxt "menu du centre culturel"
+msgid "Nos vidéos"
+msgstr ""
+
+#: functions.php:281
+msgctxt "menu du centre culturel"
+msgid "Le journal du centre"
+msgstr ""
+
+#: functions.php:282
+msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr ""
 
-#: functions.php:300
-#: patterns/en-tete.php:51
+#: functions.php:302
+#: patterns/en-tete.php:52
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr ""
 
-#: functions.php:301
-#: patterns/en-tete.php:52
+#: functions.php:303
+#: patterns/en-tete.php:53
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr ""
 
-#: functions.php:388
+#: functions.php:390
 msgid "Par genre"
 msgstr ""
 
-#: functions.php:389
+#: functions.php:391
 msgid "Par époque"
 msgstr ""
 
-#: functions.php:390
+#: functions.php:392
 msgid "Par période"
 msgstr ""
 
-#: functions.php:391
+#: functions.php:393
 msgid "Par thème"
 msgstr ""
 
-#: functions.php:392
+#: functions.php:394
 msgid "Par âge"
 msgstr ""
 
-#: functions.php:393
+#: functions.php:395
 msgid "Méthodes"
 msgstr ""
 
-#: functions.php:394
+#: functions.php:396
 msgid "Outils"
 msgstr ""
 
-#: functions.php:395
+#: functions.php:397
 msgid "Pensée"
 msgstr ""
 
-#: functions.php:396
+#: functions.php:398
 msgid "Religion"
 msgstr ""
 
-#: functions.php:397
+#: functions.php:399
 msgid "Arts"
+msgstr ""
+
+#: inc/recherche.php:40
+msgid "Soljenitsyne"
+msgstr ""
+
+#: inc/recherche.php:41
+msgid "L’Archipel du Goulag"
+msgstr ""
+
+#: inc/recherche.php:42
+msgid "Akhmatova"
+msgstr ""
+
+#: inc/recherche.php:43
+msgid "Gouzel Iakhina"
+msgstr ""
+
+#: inc/recherche.php:44
+msgid "Poésie"
+msgstr ""
+
+#: inc/recherche.php:45
+msgid "Dictionnaire"
+msgstr ""
+
+#: inc/recherche.php:107
+msgid "Neuf"
+msgstr ""
+
+#: inc/recherche.php:108
+msgid "Occasion"
+msgstr ""
+
+#: inc/recherche.php:109
+msgid "Édition ancienne"
+msgstr ""
+
+#: inc/recherche.php:110
+msgid "Très rare"
+msgstr ""
+
+#: inc/recherche.php:122
+msgid "de"
+msgstr ""
+
+#: inc/recherche.php:124
+msgid "à"
+msgstr ""
+
+#: inc/recherche.php:135
+#: inc/recherche.php:345
+#: patterns/en-tete.php:60
+msgid "Rechercher"
+msgstr ""
+
+#: inc/recherche.php:142
+msgid "Chercher un titre, un auteur, un sujet"
+msgstr ""
+
+#: inc/recherche.php:143
+msgid "Un titre, un auteur, un sujet…"
+msgstr ""
+
+#: inc/recherche.php:145
+#: inc/recherche.php:346
+msgid "Effacer"
+msgstr ""
+
+#: inc/recherche.php:147
+msgid "Recherche détaillée"
+msgstr ""
+
+#: inc/recherche.php:148
+#: inc/recherche.php:344
+#: patterns/en-tete.php:60
+msgid "Fermer"
+msgstr ""
+
+#: inc/recherche.php:156
+msgid "Vos dernières recherches"
+msgstr ""
+
+#: inc/recherche.php:159
+msgid "On cherche souvent"
+msgstr ""
+
+#: inc/recherche.php:168
+msgid "Par rayon"
+msgstr ""
+
+#: inc/recherche.php:176
+msgid "Par langue"
+msgstr ""
+
+#: inc/recherche.php:183
+msgid "Ailleurs sur le site"
+msgstr ""
+
+#: inc/recherche.php:185
+msgid "Les nouveautés de la librairie"
+msgstr ""
+
+#: inc/recherche.php:186
+msgid "Le catalogue d’YMCA-Press, depuis 1921"
+msgstr ""
+
+#: inc/recherche.php:187
+msgid "Les événements du centre, les podcasts, les vidéos"
+msgstr ""
+
+#: inc/recherche.php:192
+msgid "Les derniers arrivés"
+msgstr ""
+
+#: inc/recherche.php:219
+msgid "Titre"
+msgstr ""
+
+#: inc/recherche.php:219
+msgid "Un mot du titre"
+msgstr ""
+
+#: inc/recherche.php:220
+#: inc/recherche.php:314
+msgid "Auteur"
+msgstr ""
+
+#: inc/recherche.php:220
+msgid "Dans n’importe quelle écriture"
+msgstr ""
+
+#: inc/recherche.php:221
+msgid "Traducteur, préfacier"
+msgstr ""
+
+#: inc/recherche.php:221
+msgid "Par exemple Georges Nivat"
+msgstr ""
+
+#: inc/recherche.php:222
+msgid "ISBN"
+msgstr ""
+
+#: inc/recherche.php:224
+msgid "Rayon"
+msgstr ""
+
+#: inc/recherche.php:226
+msgid "Tous les rayons"
+msgstr ""
+
+#: inc/recherche.php:245
+msgid "Langue"
+msgstr ""
+
+#: inc/recherche.php:246
+msgid "Éditeur"
+msgstr ""
+
+#: inc/recherche.php:246
+msgid "Par exemple YMCA-Press"
+msgstr ""
+
+#: inc/recherche.php:247
+msgid "Collection"
+msgstr ""
+
+#: inc/recherche.php:247
+msgid "Toutes"
+msgstr ""
+
+#: inc/recherche.php:248
+msgid "Année d’édition"
+msgstr ""
+
+#: inc/recherche.php:249
+msgid "Prix"
+msgstr ""
+
+#: inc/recherche.php:250
+msgid "État"
+msgstr ""
+
+#: inc/recherche.php:253
+msgid "Disponibilité"
+msgstr ""
+
+#: inc/recherche.php:254
+msgid "En stock seulement"
+msgstr ""
+
+#: inc/recherche.php:262
+msgid "Tout effacer"
+msgstr ""
+
+#: inc/recherche.php:263
+msgid "Voir les livres"
+msgstr ""
+
+#: inc/recherche.php:266
+msgid "Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres change à chaque choix."
+msgstr ""
+
+#: inc/recherche.php:270
+msgid "On cherche dans les trois langues : <strong>Dostoïevski</strong>, <strong lang=\"ru\">Достоевский</strong> ou <strong>Dostoevsky</strong> mènent au même auteur."
+msgstr ""
+
+#: inc/recherche.php:271
+msgid "choisir"
+msgstr ""
+
+#: inc/recherche.php:271
+msgid "Entrée"
+msgstr ""
+
+#: inc/recherche.php:271
+msgid "ouvrir"
+msgstr ""
+
+#: inc/recherche.php:271
+msgid "Échap"
+msgstr ""
+
+#: inc/recherche.php:271
+msgid "fermer"
+msgstr ""
+
+#: inc/recherche.php:305
+msgid "Tout"
+msgstr ""
+
+#: inc/recherche.php:306
+#: inc/recherche.php:315
+msgid "Livres"
+msgstr ""
+
+#: inc/recherche.php:307
+msgid "Auteurs"
+msgstr ""
+
+#: inc/recherche.php:308
+#: inc/recherche.php:316
+msgid "Rayons"
+msgstr ""
+
+#: inc/recherche.php:309
+msgid "Encyclopédie"
+msgstr ""
+
+#: inc/recherche.php:310
+#: patterns/accueil-histoire.php:19
+msgid "YMCA-Press"
+msgstr ""
+
+#: inc/recherche.php:311
+msgid "Centre culturel"
+msgstr ""
+
+#: inc/recherche.php:312
+msgid "Journal"
+msgstr ""
+
+#: inc/recherche.php:313
+#: inc/recherche.php:321
+msgid "Pages"
+msgstr ""
+
+#: inc/recherche.php:317
+msgid "Dans l’encyclopédie"
+msgstr ""
+
+#: inc/recherche.php:318
+msgid "Chez YMCA-Press"
+msgstr ""
+
+#: inc/recherche.php:319
+msgid "Au centre culturel"
+msgstr ""
+
+#: inc/recherche.php:320
+msgid "Dans le journal"
+msgstr ""
+
+#. translators: %s: le nom reconnu (un auteur).
+#: inc/recherche.php:323
+#, php-format
+msgid "Résultats pour %s."
+msgstr ""
+
+#. translators: %s: les autres noms de l'auteur.
+#: inc/recherche.php:325
+#, php-format
+msgid "Cherché aussi : %s."
+msgstr ""
+
+#. translators: %s: ce qu'on a tapé.
+#: inc/recherche.php:327
+#, php-format
+msgid "Rien pour « %s ». Essayez un autre mot, une autre écriture, ou la recherche détaillée."
+msgstr ""
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:329
+#, php-format
+msgid "Voir les %s livres"
+msgstr ""
+
+#: inc/recherche.php:330
+#: patterns/accueil-une.php:31
+msgid "Voir le livre"
+msgstr ""
+
+#: inc/recherche.php:331
+msgid "Aucun livre"
+msgstr ""
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:333
+#, php-format
+msgid "Les %s livres"
+msgstr ""
+
+#: inc/recherche.php:334
+msgid "La page de l’auteur"
+msgstr ""
+
+#. translators: %s: un nombre de livres.
+#: inc/recherche.php:336
+#, php-format
+msgid "%s livres en rayon"
+msgstr ""
+
+#: inc/recherche.php:337
+msgid "Un livre en rayon"
+msgstr ""
+
+#: inc/recherche.php:338
+msgid "en stock"
+msgstr ""
+
+#: inc/recherche.php:339
+msgid "épuisé pour l’instant"
+msgstr ""
+
+#: inc/recherche.php:340
+msgid "Les résultats changent à chaque lettre ; Entrée ouvre la page des livres trouvés."
+msgstr ""
+
+#: inc/recherche.php:341
+msgid "Vos critères :"
+msgstr ""
+
+#. translators: %s: le critère qu'on retire.
+#: inc/recherche.php:343
+#, php-format
+msgid "Retirer : %s"
 msgstr ""
 
 #: patterns/accueil-anthologies.php
@@ -372,10 +729,6 @@ msgctxt "Pattern description"
 msgid "Comme une diapositive : la bande pervenche, un aplat brun, l'histoire de la maison en blanc et, à droite, l'année de sa fondation."
 msgstr ""
 
-#: patterns/accueil-histoire.php:19
-msgid "YMCA-Press"
-msgstr ""
-
 #: patterns/accueil-histoire.php:23
 msgid "Découvrez notre histoire centenaire"
 msgstr ""
@@ -503,10 +856,6 @@ msgstr ""
 msgid "Le nouveau roman de Gouzel Iakhina, l’auteure de <em>Zouleikha ouvre les yeux</em>, est arrivé à la librairie."
 msgstr ""
 
-#: patterns/accueil-une.php:31
-msgid "Voir le livre"
-msgstr ""
-
 #: patterns/accueil-une.php:34
 msgid "Couverture de Convoi pour Samarcande, de Gouzel Iakhina"
 msgstr ""
@@ -537,40 +886,37 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:44
+#: patterns/en-tete.php:45
 #: patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr ""
 
-#: patterns/en-tete.php:44
+#: patterns/en-tete.php:45
 #: patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr ""
 
-#: patterns/en-tete.php:50
+#: patterns/en-tete.php:51
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr ""
 
-#: patterns/en-tete.php:55
+#: patterns/en-tete.php:56
 msgid "Mon compte"
 msgstr ""
 
-#: patterns/en-tete.php:56
-#: patterns/en-tete.php:59
+#: patterns/en-tete.php:57
 #: patterns/page-introuvable.php:19
 msgid "Chercher dans la librairie"
 msgstr ""
 
-#: patterns/en-tete.php:56
-#: patterns/en-tete.php:59
+#: patterns/en-tete.php:57
 msgid "Rechercher un titre, un auteur…"
 msgstr ""
 
-#: patterns/en-tete.php:56
-#: patterns/en-tete.php:59
+#: patterns/en-tete.php:57
 #: patterns/journal-recherche.php:13
 #: patterns/page-introuvable.php:19
 msgid "Chercher"
@@ -652,22 +998,22 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:24
+#: patterns/librairie.php:28
 msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
 msgstr ""
 
-#: patterns/librairie.php:55
+#: patterns/librairie.php:57
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr ""
 
-#: patterns/librairie.php:57
+#: patterns/librairie.php:59
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr ""
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:64
+#: patterns/librairie.php:66
 #, php-format
 msgid "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
 msgstr ""

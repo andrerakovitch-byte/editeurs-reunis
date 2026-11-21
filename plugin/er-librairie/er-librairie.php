@@ -18,6 +18,8 @@ add_action(
 	1
 );
 
+require __DIR__ . '/inc/recherche.php';
+
 /* Les langues --------------------------------------------------------------------------------------------------
  *
  * Le site est en trois langues : le français, le russe et l'anglais. Polylang (avec son extension pour WooCommerce)

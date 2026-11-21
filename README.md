@@ -47,6 +47,22 @@ les auteurs et les promotions pour la librairie ; les pages sous `ymca-press/` p
 `centre-culturel/`, le journal et « Nous trouver » pour le centre. Les couleurs sont dans `theme.json` (« Maison · »
 et « Point · »), les pages des menus dans `er_pages_des_maisons()`.
 
+## La recherche
+
+La loupe de la barre noire ouvre un panneau (`theme/…/inc/recherche.php`, `assets/js/recherche.js`) : avant de taper,
+des pistes (les dernières recherches, les recherches fréquentes, les rayons, les langues, les derniers arrivés) ; en
+tapant, les résultats rangés par genre (l'auteur, les livres, les rayons, YMCA-Press, le centre, le journal), chacun
+avec le point de sa maison ; « Recherche détaillée » déplie des champs qui se combinent (titre, auteur, traducteur,
+ISBN, rayon, langue, éditeur, collection, année d'édition, prix, état, en stock) et compte les livres à chaque choix.
+
+L'extension tient l'index (`plugin/…/inc/recherche.php`, une table `er_index` refaite à chaque enregistrement) et
+l'API que lit le panneau : `/wp-json/er/v1/chercher?q=` et `/wp-json/er/v1/livres?er_auteur=…`. L'index connaît les
+trois écritures : Dostoïevski, Достоевский, Dostoevsky et « dostoievski » ont la même clé ; pour un nom qui y
+échappe, la fiche d'un auteur a un champ « Autres graphies ». La recherche des livres de WordPress
+(`?s=…&post_type=product`) passe par le même index, et la librairie lit les critères de la recherche détaillée dans
+son adresse (`/librairie/?er_auteur=iakhina&er_stock=1`). La fiche d'un livre a quatre champs de plus : traducteur,
+éditeur, collection, année d'édition.
+
 ## Les livres
 
 Un livre est un produit WooCommerce (Produits → Ajouter) :

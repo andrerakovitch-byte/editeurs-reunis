@@ -11,6 +11,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require get_template_directory() . '/inc/recherche.php';
+
 add_action(
 	'after_setup_theme',
 	function () {
