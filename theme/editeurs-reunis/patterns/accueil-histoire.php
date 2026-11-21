@@ -16,21 +16,21 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"64%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:64%">
 			<!-- wp:paragraph {"className":"er-surtitre"} -->
-			<p class="er-surtitre">YMCA-Press</p>
+			<p class="er-surtitre"><?php esc_html_e( 'YMCA-Press', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"className":"er-diapo-titre"} -->
-			<h2 class="wp-block-heading er-diapo-titre">Découvrez notre histoire centenaire</h2>
+			<h2 class="wp-block-heading er-diapo-titre"><?php esc_html_e( 'Découvrez notre histoire centenaire', 'editeurs-reunis' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"er-diapo-texte"} -->
-			<p class="er-diapo-texte">L’histoire centenaire des éditions YMCA-Press, cœur vibrant de la littérature russe du XX<sup>e</sup>&nbsp;siècle, entre Bounine, Akhmatova, Mandelstam, Boulgakov et Soljenitsyne.</p>
+			<p class="er-diapo-texte"><?php echo wp_kses_post( __( 'L’histoire centenaire des éditions YMCA-Press, cœur vibrant de la littérature russe du XX<sup>e</sup>&nbsp;siècle, entre Bounine, Akhmatova, Mandelstam, Boulgakov et Soljenitsyne.', 'editeurs-reunis' ) ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-fleche"} -->
-				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_lien( 'ymca-press/histoire/' ); ?>">Un siècle d’histoire</a></div>
+				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_lien( 'ymca-press/histoire/' ); ?>"><?php esc_html_e( 'Un siècle d’histoire', 'editeurs-reunis' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -40,7 +40,7 @@
 		<!-- wp:column {"verticalAlignment":"center","width":"36%"} -->
 		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:36%">
 			<!-- wp:paragraph {"className":"er-annee"} -->
-			<p class="er-annee"><span>Depuis</span> 1921</p>
+			<p class="er-annee"><span><?php echo esc_html_x( 'Depuis', 'Depuis 1921', 'editeurs-reunis' ); ?></span> 1921</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

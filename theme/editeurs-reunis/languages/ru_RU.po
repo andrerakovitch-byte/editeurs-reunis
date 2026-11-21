@@ -1,0 +1,1069 @@
+# Premier jet, à faire relire par un russophone de la maison avant la mise en ligne.
+msgid ""
+msgstr ""
+"Project-Id-Version: editeurs-reunis\n"
+"Language-Team: Русский\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Domain: editeurs-reunis\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+#: style.css
+msgid "Les Éditeurs réunis"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://editeursreunis.fr"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid ""
+"Le site de la librairie des Éditeurs réunis, de la maison d'édition YMCA-"
+"Press et du Centre culturel Alexandre Soljenitsyne. Direction artistique "
+"provisoire, d'après la maquette Wix : Montserrat, la pervenche, la barre "
+"noire et les boutons en pilule. Les couleurs, la police et les tailles sont "
+"dans theme.json ; le reste est ici."
+msgstr ""
+
+#: functions.php:54
+msgid "carrousel"
+msgstr "карусель"
+
+#: functions.php:55
+msgid "diapositive"
+msgstr "слайд"
+
+#: functions.php:56
+msgid "À la une"
+msgstr "Главное"
+
+#. translators: 1: le rang de la diapositive, 2: le nombre de diapositives.
+#: functions.php:58
+msgid "%1$s sur %2$s"
+msgstr "%1$s из %2$s"
+
+#. translators: %s: le rang de la diapositive.
+#: functions.php:60
+msgid "Diapositive %s"
+msgstr "Слайд %s"
+
+#: functions.php:61
+msgid "Diapositive précédente"
+msgstr "Предыдущий слайд"
+
+#: functions.php:62
+msgid "Diapositive suivante"
+msgstr "Следующий слайд"
+
+#: functions.php:79
+msgid "Pilule blanche"
+msgstr "Белая кнопка-капсула"
+
+#: functions.php:86
+msgid "Cerné, avec une flèche"
+msgstr "С обводкой и стрелкой"
+
+#: functions.php:93
+msgid "Carte voilée"
+msgstr "Полупрозрачная карточка"
+
+#: functions.php:100
+msgid "Ambiance papier (contenu patrimonial)"
+msgstr "Бумажная гамма (архивные материалы)"
+
+#: functions.php:291
+msgid "Par genre"
+msgstr "По жанрам"
+
+#: functions.php:292
+msgid "Par époque"
+msgstr "По эпохам"
+
+#: functions.php:293
+msgid "Par période"
+msgstr "По периодам"
+
+#: functions.php:294
+msgid "Par thème"
+msgstr "По темам"
+
+#: functions.php:295
+msgid "Par âge"
+msgstr "По возрасту"
+
+#: functions.php:296
+msgid "Méthodes"
+msgstr "Учебники"
+
+#: functions.php:297
+msgid "Outils"
+msgstr "Пособия"
+
+#: functions.php:298
+msgid "Pensée"
+msgstr "Философская мысль"
+
+#: functions.php:299
+msgid "Religion"
+msgstr "Религия"
+
+#: functions.php:300
+msgid "Arts"
+msgstr "Искусство"
+
+#: patterns/accueil-anthologies.php
+msgctxt "Pattern title"
+msgid "Accueil — les anthologies"
+msgstr ""
+
+#: patterns/accueil-anthologies.php
+msgctxt "Pattern description"
+msgid ""
+"Une collection mise en avant : quelques lignes et ses couvertures en "
+"éventail."
+msgstr ""
+
+#: patterns/accueil-anthologies.php:19
+msgid "Nos meilleures ventes YMCA-Press"
+msgstr "Бестселлеры YMCA-Press"
+
+#: patterns/accueil-anthologies.php:23 patterns/accueil-une.php:40
+msgid "Anthologies de la poésie russe"
+msgstr "Антологии русской поэзии"
+
+#: patterns/accueil-anthologies.php:27
+msgid "Bilingues russe-français, en quatre volumes"
+msgstr "Двуязычные, русско-французские, в четырёх томах"
+
+#: patterns/accueil-anthologies.php:31
+msgid ""
+"Un panorama saisissant de la poésie russe à travers son histoire, de ses "
+"origines jusqu’à son expression la plus contemporaine."
+msgstr ""
+"Яркая панорама русской поэзии на протяжении всей её истории — от истоков до "
+"наших дней."
+
+#: patterns/accueil-anthologies.php:37 patterns/accueil-une.php:42
+msgid "Le rayon poésie"
+msgstr "Раздел поэзии"
+
+#: patterns/accueil-anthologies.php:49
+msgid "Anthologie de la poésie russe du XVIIIᵉ siècle"
+msgstr "Антология русской поэзии XVIII века"
+
+#: patterns/accueil-anthologies.php:53
+msgid "Anthologie de la poésie russe du XIXᵉ siècle"
+msgstr "Антология русской поэзии XIX века"
+
+#: patterns/accueil-anthologies.php:57
+msgid "Anthologie de la poésie russe : la renaissance du XXᵉ siècle"
+msgstr "Антология русской поэзии: возрождение XX века"
+
+#: patterns/accueil-anthologies.php:61
+msgid "Anthologie de la poésie russe du début du XXIᵉ siècle"
+msgstr "Антология русской поэзии начала XXI века"
+
+#: patterns/accueil-branches.php
+msgctxt "Pattern title"
+msgid "Accueil — une entité, trois branches"
+msgstr ""
+
+#: patterns/accueil-branches.php
+msgctxt "Pattern description"
+msgid ""
+"Sur fond blanc : le titre dans la colonne pervenche ; à côté, la librairie, "
+"la maison d'édition et le centre culturel, chacun son image, deux lignes et "
+"ses portes (les liens de l'ancienne « navigation rapide »)."
+msgstr ""
+
+#: patterns/accueil-branches.php:13
+msgid "Librairie des Éditeurs réunis"
+msgstr "Книжный магазин «Les Éditeurs réunis»"
+
+#: patterns/accueil-branches.php:14
+msgid ""
+"Au cœur du quartier latin depuis un demi-siècle, des livres neufs et "
+"d’occasion, en russe et en français."
+msgstr ""
+"Уже полвека в самом сердце Латинского квартала: новые и букинистические "
+"книги на русском и французском языках."
+
+#: patterns/accueil-branches.php:16
+msgid "Portrait de Pouchkine par Vassili Tropinine"
+msgstr "Портрет Пушкина работы Василия Тропинина"
+
+#: patterns/accueil-branches.php:19
+msgid "La librairie en ligne"
+msgstr "Интернет-магазин"
+
+#: patterns/accueil-branches.php:20
+msgid "Les livres en russe"
+msgstr "Книги на русском языке"
+
+#: patterns/accueil-branches.php:21
+msgid "Nous trouver"
+msgstr "Как нас найти"
+
+#: patterns/accueil-branches.php:25
+msgid "Maison d’édition YMCA-Press"
+msgstr "Издательство YMCA-Press"
+
+#: patterns/accueil-branches.php:26
+msgid ""
+"Un siècle d’édition russe en exil, de Bounine à Soljenitsyne : l’histoire et"
+" le catalogue de la maison."
+msgstr ""
+"Век русского книгоиздания в эмиграции, от Бунина до Солженицына: история и "
+"каталог издательства."
+
+#: patterns/accueil-branches.php:28
+msgid ""
+"Photographie en noir et blanc : un groupe d’hommes en manteau dans une rue"
+msgstr "Чёрно-белая фотография: группа мужчин в пальто на улице"
+
+#: patterns/accueil-branches.php:31
+msgid "Les publications"
+msgstr "Издания"
+
+#: patterns/accueil-branches.php:32 patterns/accueil-histoire.php:33
+msgid "Un siècle d’histoire"
+msgstr "Век истории"
+
+#: patterns/accueil-branches.php:33
+msgid "Les Amis d’YMCA-Press"
+msgstr "Друзья YMCA-Press"
+
+#: patterns/accueil-branches.php:37
+msgid "Centre culturel Soljenitsyne"
+msgstr "Культурный центр Солженицына"
+
+#: patterns/accueil-branches.php:38
+msgid ""
+"Rencontres, expositions, podcasts et vidéos autour de la littérature et de "
+"l’histoire russes."
+msgstr "Встречи, выставки, подкасты и видео о русской литературе и истории."
+
+#: patterns/accueil-branches.php:40
+msgid "Portrait d’Anna Akhmatova par Nathan Altman"
+msgstr "Портрет Анны Ахматовой работы Натана Альтмана"
+
+#: patterns/accueil-branches.php:43
+msgid "Nos événements"
+msgstr "Мероприятия"
+
+#: patterns/accueil-branches.php:44
+msgid "Nos expositions"
+msgstr "Выставки"
+
+#: patterns/accueil-branches.php:45
+msgid "Nos podcasts"
+msgstr "Подкасты"
+
+#: patterns/accueil-branches.php:46
+msgid "Nos vidéos"
+msgstr "Видео"
+
+#: patterns/accueil-branches.php:47
+msgid "Le journal du centre"
+msgstr "Журнал центра"
+
+#: patterns/accueil-branches.php:59
+msgid "Qui nous sommes"
+msgstr "Кто мы"
+
+#: patterns/accueil-branches.php:63
+msgid "Une entité, trois branches"
+msgstr "Один дом, три направления"
+
+#: patterns/accueil-branches.php:67
+msgid ""
+"La librairie, la maison d’édition YMCA-Press et le Centre culturel Alexandre"
+" Soljenitsyne."
+msgstr ""
+"Книжный магазин, издательство YMCA-Press и Культурный центр Александра "
+"Солженицына."
+
+#: patterns/accueil-communique.php
+msgctxt "Pattern title"
+msgid "Accueil — communiqué"
+msgstr ""
+
+#: patterns/accueil-communique.php
+msgctxt "Pattern description"
+msgid ""
+"Comme une diapositive, sans image : la bande pervenche, l'aplat bleu nuit, "
+"le titre du communiqué en blanc."
+msgstr ""
+
+#: patterns/accueil-communique.php:19
+msgid "Communiqué de presse"
+msgstr "Пресс-релиз"
+
+#: patterns/accueil-communique.php:23
+msgid "À propos de l’invasion de l’Ukraine par la Fédération de Russie"
+msgstr "О вторжении Российской Федерации в Украину"
+
+#: patterns/accueil-communique.php:27
+msgid "Signé par Mélanie Rakovitch, le 28&nbsp;février 2022."
+msgstr "Подписано Мелани Ракович 28&nbsp;февраля 2022&nbsp;года."
+
+#: patterns/accueil-communique.php:33
+msgid "Lire le communiqué"
+msgstr "Читать заявление"
+
+#: patterns/accueil-histoire.php
+msgctxt "Pattern title"
+msgid "Accueil — notre histoire"
+msgstr ""
+
+#: patterns/accueil-histoire.php
+msgctxt "Pattern description"
+msgid ""
+"Comme une diapositive : la bande pervenche, un aplat brun, l'histoire de la "
+"maison en blanc et, à droite, l'année de sa fondation."
+msgstr ""
+
+#: patterns/accueil-histoire.php:19
+msgid "YMCA-Press"
+msgstr "YMCA-Press"
+
+#: patterns/accueil-histoire.php:23
+msgid "Découvrez notre histoire centenaire"
+msgstr "Наша столетняя история"
+
+#: patterns/accueil-histoire.php:27
+msgid ""
+"L’histoire centenaire des éditions YMCA-Press, cœur vibrant de la "
+"littérature russe du XX<sup>e</sup>&nbsp;siècle, entre Bounine, Akhmatova, "
+"Mandelstam, Boulgakov et Soljenitsyne."
+msgstr ""
+"Столетняя история издательства YMCA-Press — живого сердца русской литературы"
+" XX&nbsp;века: Бунин, Ахматова, Мандельштам, Булгаков, Солженицын."
+
+#: patterns/accueil-histoire.php:43
+msgctxt "Depuis 1921"
+msgid "Depuis"
+msgstr "Год основания"
+
+#: patterns/accueil-nouveautes.php
+msgctxt "Pattern title"
+msgid "Accueil — nouveautés de la librairie"
+msgstr ""
+
+#: patterns/accueil-nouveautes.php
+msgctxt "Pattern description"
+msgid ""
+"Sur fond blanc : le titre dans la colonne pervenche, les huit derniers "
+"livres arrivés à côté."
+msgstr ""
+
+#: patterns/accueil-nouveautes.php:19 patterns/accueil-rayons.php:19
+msgid "La librairie"
+msgstr "Книжный магазин"
+
+#: patterns/accueil-nouveautes.php:23
+msgid "Nouveautés"
+msgstr "Новинки"
+
+#: patterns/accueil-nouveautes.php:27 patterns/menu-librairie.php:257
+msgid "Les derniers livres arrivés en rayon, en français et en russe."
+msgstr "Последние поступления на французском и русском языках."
+
+#: patterns/accueil-nouveautes.php:33
+msgid "Toute la librairie"
+msgstr "Все книги"
+
+#: patterns/accueil-parution.php
+msgctxt "Pattern title"
+msgid "Accueil — le livre du moment"
+msgstr ""
+
+#: patterns/accueil-parution.php
+msgctxt "Pattern description"
+msgid ""
+"Comme une diapositive du diaporama : la bande pervenche, un aplat sombre, le"
+" titre en blanc, la couverture à droite."
+msgstr ""
+
+#: patterns/accueil-parution.php:19
+msgid "Le livre du moment"
+msgstr "Наш выбор"
+
+#: patterns/accueil-parution.php:23
+msgid "Notes d’un médecin"
+msgstr "Записки врача"
+
+#: patterns/accueil-parution.php:27
+msgid ""
+"Vikenti Veressaïev, traduit du russe par Julie Bouvard, préface de Dimitri "
+"Bortnikov"
+msgstr ""
+"Викентий Вересаев, во французском переводе Жюли Бувар, с предисловием "
+"Дмитрия Бортникова"
+
+#: patterns/accueil-parution.php:31
+msgid ""
+"Un jeune médecin raconte ses débuts à l’hôpital, ses doutes et ses erreurs. "
+"À sa parution, en 1901, le livre fit scandale ; il n’a rien perdu de sa "
+"franchise."
+msgstr ""
+"Молодой врач рассказывает о первых годах в больнице, о своих сомнениях и "
+"ошибках. В 1901 году книга вызвала скандал — и до сих пор не утратила своей "
+"откровенности."
+
+#: patterns/accueil-parution.php:37
+msgid "Découvrir le livre"
+msgstr "О книге"
+
+#: patterns/accueil-parution.php:47
+msgid "Couverture de Notes d’un médecin, de Vikenti Veressaïev"
+msgstr "Обложка французского издания «Записок врача» Викентия Вересаева"
+
+#: patterns/accueil-rayons.php
+msgctxt "Pattern title"
+msgid "Accueil — les rayons"
+msgstr ""
+
+#: patterns/accueil-rayons.php
+msgctxt "Pattern description"
+msgid ""
+"Sur fond blanc : le titre dans la colonne pervenche ; à côté, les rayons et "
+"les langues de la librairie en pilules."
+msgstr ""
+
+#: patterns/accueil-rayons.php:23
+msgid "Les rayons"
+msgstr "Разделы"
+
+#: patterns/accueil-rayons.php:31
+msgid ""
+"Littérature classique et contemporaine, poésie, histoire, pensée et "
+"théologie orthodoxe, manuels et dictionnaires : en russe et en français, "
+"neufs et d’occasion."
+msgstr ""
+"Классическая и современная литература, поэзия, история, философия и "
+"православное богословие, учебники и словари — на русском и французском, "
+"новые и букинистические."
+
+#: patterns/accueil-une.php
+msgctxt "Pattern title"
+msgid "Accueil — le diaporama à la une"
+msgstr ""
+
+#: patterns/accueil-une.php
+msgctxt "Pattern description"
+msgid ""
+"Le grand bandeau d'ouverture, qui défile : chaque diapositive reprend la "
+"première de la maquette (la bande pervenche à gauche, une photo ou un aplat,"
+" le titre en blanc, un bouton cerné, une image à droite)."
+msgstr ""
+
+#: patterns/accueil-une.php:18
+msgid "Les secrets de l’Archipel du Goulag"
+msgstr "Тайны «Архипелага ГУЛАГ»"
+
+#: patterns/accueil-une.php:19
+msgid ""
+"Un podcast inédit pour comprendre les mystères d’un livre hors du commun."
+msgstr "Новый подкаст о загадках необыкновенной книги."
+
+#: patterns/accueil-une.php:20
+msgid "Écouter ici"
+msgstr "Слушать"
+
+#: patterns/accueil-une.php:23
+msgid "Pochette du podcast « Les secrets de L’Archipel du Goulag »"
+msgstr "Обложка подкаста «Тайны „Архипелага ГУЛАГ“»"
+
+#: patterns/accueil-une.php:29
+msgid "Convoi pour Samarcande"
+msgstr "Эшелон на Самарканд"
+
+#: patterns/accueil-une.php:30
+msgid ""
+"Le nouveau roman de Gouzel Iakhina, l’auteure de <em>Zouleikha ouvre les "
+"yeux</em>, est arrivé à la librairie."
+msgstr ""
+"Новый роман Гузель Яхиной, автора <em>«Зулейха открывает глаза»</em>, — "
+"теперь в нашем магазине во французском переводе."
+
+#: patterns/accueil-une.php:31
+msgid "Voir le livre"
+msgstr "О книге"
+
+#: patterns/accueil-une.php:34
+msgid "Couverture de Convoi pour Samarcande, de Gouzel Iakhina"
+msgstr ""
+"Обложка французского издания романа Гузель Яхиной «Эшелон на Самарканд»"
+
+#: patterns/accueil-une.php:41
+msgid ""
+"Nos meilleures ventes YMCA-Press : quatre volumes bilingues russe-français, "
+"du XVIII<sup>e</sup>&nbsp;siècle à nos jours."
+msgstr ""
+"Бестселлеры YMCA-Press: четыре двуязычных русско-французских тома, от "
+"XVIII&nbsp;века до наших дней."
+
+#: patterns/accueil-une.php:45
+msgid "Les quatre volumes de l’Anthologie de la poésie russe"
+msgstr "Четыре тома «Антологии русской поэзии»"
+
+#: patterns/article-navigation.php
+msgctxt "Pattern title"
+msgid "Article précédent, article suivant"
+msgstr ""
+
+#: patterns/article-navigation.php:13
+msgid "Article précédent"
+msgstr "Предыдущая статья"
+
+#: patterns/article-navigation.php:14
+msgid "Article suivant"
+msgstr "Следующая статья"
+
+#: patterns/en-tete.php
+msgctxt "Pattern title"
+msgid "En-tête"
+msgstr ""
+
+#: patterns/en-tete.php:22 patterns/page-introuvable.php:19
+msgid "Chercher dans la librairie"
+msgstr "Поиск по магазину"
+
+#: patterns/en-tete.php:22
+msgid "Rechercher un titre, un auteur…"
+msgstr "Название или автор…"
+
+#: patterns/en-tete.php:22 patterns/journal-recherche.php:13
+#: patterns/page-introuvable.php:19
+msgid "Chercher"
+msgstr "Найти"
+
+#: patterns/en-tete.php:37 patterns/pied.php:23
+msgctxt "logo, première ligne"
+msgid "Centre culturel"
+msgstr "Культурный центр"
+
+#: patterns/en-tete.php:37 patterns/pied.php:23
+msgctxt "logo, seconde ligne"
+msgid "Alexandre Soljenitsyne"
+msgstr "Александра Солженицына"
+
+#: patterns/en-tete.php:41
+msgctxt "menu du haut"
+msgid "Librairie"
+msgstr "Магазин"
+
+#: patterns/en-tete.php:43
+msgctxt "menu du haut"
+msgid "Maison d’édition YMCA-Press"
+msgstr "Издательство YMCA-Press"
+
+#: patterns/en-tete.php:44
+msgctxt "menu du haut"
+msgid "La maison d’édition"
+msgstr "Об издательстве"
+
+#: patterns/en-tete.php:45
+msgctxt "menu du haut"
+msgid "Un siècle d’histoire"
+msgstr "Век истории"
+
+#: patterns/en-tete.php:46
+msgctxt "menu du haut"
+msgid "Le catalogue"
+msgstr "Каталог"
+
+#: patterns/en-tete.php:47
+msgctxt "menu du haut"
+msgid "Les Amis d’YMCA-Press"
+msgstr "Друзья YMCA-Press"
+
+#: patterns/en-tete.php:50
+msgctxt "menu du haut"
+msgid "Le centre culturel"
+msgstr "Культурный центр"
+
+#: patterns/en-tete.php:51
+msgctxt "menu du haut"
+msgid "Le centre"
+msgstr "О центре"
+
+#: patterns/en-tete.php:52
+msgctxt "menu du haut"
+msgid "Nos événements"
+msgstr "Мероприятия"
+
+#: patterns/en-tete.php:53
+msgctxt "menu du haut"
+msgid "Nos expositions"
+msgstr "Выставки"
+
+#: patterns/en-tete.php:54
+msgctxt "menu du haut"
+msgid "Nos podcasts"
+msgstr "Подкасты"
+
+#: patterns/en-tete.php:55
+msgctxt "menu du haut"
+msgid "Nos vidéos"
+msgstr "Видео"
+
+#: patterns/en-tete.php:56
+msgctxt "menu du haut"
+msgid "Le journal du centre"
+msgstr "Журнал центра"
+
+#: patterns/en-tete.php:57
+msgctxt "menu du haut"
+msgid "Nous trouver"
+msgstr "Как нас найти"
+
+#: patterns/fiche-livre.php
+msgctxt "Pattern title"
+msgid "La fiche d'un livre"
+msgstr ""
+
+#: patterns/fiche-livre.php:47
+msgctxt "fiche d’un livre"
+msgid "Rayon"
+msgstr "Раздел"
+
+#: patterns/fiche-livre.php:49
+msgctxt "fiche d’un livre"
+msgid "Langue"
+msgstr "Язык"
+
+#: patterns/fiche-livre.php:51
+msgctxt "fiche d’un livre"
+msgid "Auteur"
+msgstr "Автор"
+
+#: patterns/fiche-livre.php:53
+msgctxt "fiche d’un livre"
+msgid "Référence"
+msgstr "Артикул"
+
+#: patterns/fiche-livre.php:58
+msgid ""
+"Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-"
+"Geneviève, du mardi au samedi."
+msgstr ""
+"Книгу можно также спросить в магазине: 11, rue de la Montagne-Sainte-"
+"Geneviève, со вторника по субботу."
+
+#: patterns/fiche-livre.php:68
+msgid "Du même rayon"
+msgstr "Из того же раздела"
+
+#: patterns/journal-liste.php
+msgctxt "Pattern title"
+msgid "Les articles du journal"
+msgstr ""
+
+#: patterns/journal-liste.php:24
+msgctxt "pagination du journal"
+msgid "Plus récents"
+msgstr "Более новые"
+
+#: patterns/journal-liste.php:26
+msgctxt "pagination du journal"
+msgid "Plus anciens"
+msgstr "Более ранние"
+
+#: patterns/journal-liste.php:29
+msgid "Rien pour l’instant."
+msgstr "Пока ничего нет."
+
+#: patterns/journal-recherche.php
+msgctxt "Pattern title"
+msgid "Chercher dans le journal"
+msgstr ""
+
+#: patterns/journal-recherche.php:13
+msgid "Chercher sur le site…"
+msgstr "Поиск по сайту…"
+
+#: patterns/journal-titre.php
+msgctxt "Pattern title"
+msgid "Le titre du journal"
+msgstr ""
+
+#: patterns/journal-titre.php:14
+msgctxt "titre de la page du journal"
+msgid "Le journal du centre"
+msgstr "Журнал центра"
+
+#: patterns/librairie.php
+msgctxt "Pattern title"
+msgid "La librairie"
+msgstr ""
+
+#: patterns/librairie.php:50
+msgctxt "pagination des livres"
+msgid "Précédents"
+msgstr "Назад"
+
+#: patterns/librairie.php:52
+msgctxt "pagination des livres"
+msgid "Suivants"
+msgstr "Далее"
+
+#. translators: %s: l'adresse de la librairie.
+#: patterns/librairie.php:59
+msgid ""
+"Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou "
+"écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
+msgstr ""
+"Ничего не найдено. <a href=\"%s\">Посмотрите весь каталог</a> или напишите "
+"нам: на полках у нас гораздо больше книг, чем на сайте."
+
+#: patterns/menu-librairie.php
+msgctxt "Pattern title"
+msgid "Le menu de la librairie"
+msgstr ""
+
+#: patterns/menu-librairie.php:116
+msgctxt "tuile du menu, surtitre"
+msgid "Classiques"
+msgstr "Классика"
+
+#: patterns/menu-librairie.php:116
+msgctxt "tuile du menu, nom"
+msgid "Pouchkine"
+msgstr "Пушкин"
+
+#: patterns/menu-librairie.php:117
+msgctxt "tuile du menu, surtitre"
+msgid "Les contemporains"
+msgstr "Современная проза"
+
+#: patterns/menu-librairie.php:117
+msgctxt "tuile du menu, nom"
+msgid "Gouzel Iakhina"
+msgstr "Гузель Яхина"
+
+#: patterns/menu-librairie.php:120
+msgctxt "tuile du menu, surtitre"
+msgid "Le livre du moment"
+msgstr "Наш выбор"
+
+#: patterns/menu-librairie.php:120
+msgctxt "tuile du menu, nom"
+msgid "Notes d’un médecin"
+msgstr "Записки врача"
+
+#: patterns/menu-librairie.php:123
+msgctxt "tuile du menu, surtitre"
+msgid "L’émigration"
+msgstr "Эмиграция"
+
+#: patterns/menu-librairie.php:123
+msgctxt "tuile du menu, nom"
+msgid "Un siècle d’YMCA-Press"
+msgstr "Век YMCA-Press"
+
+#: patterns/menu-librairie.php:124
+msgctxt "tuile du menu, surtitre"
+msgid "Le Goulag"
+msgstr "ГУЛАГ"
+
+#: patterns/menu-librairie.php:124
+msgctxt "tuile du menu, nom"
+msgid "L’Archipel, cinquante ans après"
+msgstr "«Архипелаг» пятьдесят лет спустя"
+
+#: patterns/menu-librairie.php:127
+msgctxt "tuile du menu, surtitre"
+msgid "Philosophie"
+msgstr "Философия"
+
+#: patterns/menu-librairie.php:127
+msgctxt "tuile du menu, nom"
+msgid "Berdiaev, Boulgakov, Florensky"
+msgstr "Бердяев, Булгаков, Флоренский"
+
+#: patterns/menu-librairie.php:128
+msgctxt "tuile du menu, surtitre"
+msgid "Spiritualité"
+msgstr "Духовность"
+
+#: patterns/menu-librairie.php:128
+msgctxt "tuile du menu, nom"
+msgid "Théologie orthodoxe"
+msgstr "Православное богословие"
+
+#: patterns/menu-librairie.php:131
+msgctxt "tuile du menu, surtitre"
+msgid "Débuter"
+msgstr "Для начинающих"
+
+#: patterns/menu-librairie.php:131
+msgctxt "tuile du menu, nom"
+msgid "Les manuels pour commencer"
+msgstr "Учебники для начинающих"
+
+#: patterns/menu-librairie.php:132
+msgctxt "tuile du menu, surtitre"
+msgid "Les dictionnaires"
+msgstr "Словари"
+
+#: patterns/menu-librairie.php:132
+msgctxt "tuile du menu, nom"
+msgid "Français-russe, russe-français"
+msgstr "Французско-русские и русско-французские"
+
+#: patterns/menu-librairie.php:135
+msgctxt "tuile du menu, surtitre"
+msgid "Cinéma"
+msgstr "Кино"
+
+#: patterns/menu-librairie.php:135
+msgctxt "tuile du menu, nom"
+msgid "Les scénarios de Zviaguintsev"
+msgstr "Сценарии Звягинцева"
+
+#: patterns/menu-librairie.php:136
+msgctxt "tuile du menu, surtitre"
+msgid "Musique"
+msgstr "Музыка"
+
+#: patterns/menu-librairie.php:136
+msgctxt "tuile du menu, nom"
+msgid "Moussorgski, par Calvocoressi"
+msgstr "Мусоргский в книге Кальвокоресси"
+
+#: patterns/menu-librairie.php:139
+msgctxt "tuile du menu, surtitre"
+msgid "Contes russes"
+msgstr "Русские сказки"
+
+#: patterns/menu-librairie.php:139
+msgctxt "tuile du menu, nom"
+msgid "Il était une fois"
+msgstr "Жили-были"
+
+#: patterns/menu-librairie.php:140
+msgctxt "tuile du menu, surtitre"
+msgid "Bilingue"
+msgstr "Двуязычные книги"
+
+#: patterns/menu-librairie.php:140
+msgctxt "tuile du menu, nom"
+msgid "Lire en deux langues"
+msgstr "Читать на двух языках"
+
+#: patterns/menu-librairie.php:143
+msgctxt "tuile du menu, surtitre"
+msgid "Très rare"
+msgstr "Большая редкость"
+
+#: patterns/menu-librairie.php:144
+msgctxt "tuile du menu, surtitre"
+msgid "Occasions"
+msgstr "Букинистика"
+
+#: patterns/menu-librairie.php:144
+msgctxt "tuile du menu, nom"
+msgid "Des livres d’occasion, en russe et en français"
+msgstr "Букинистические книги на русском и французском"
+
+#: patterns/menu-librairie.php:164
+msgid "Découvrir"
+msgstr "Подробнее"
+
+#. translators: %s: le nom de la tuile, lu après « Découvrir ».
+#: patterns/menu-librairie.php:164
+msgid " : %s"
+msgstr ": %s"
+
+#. translators: %s: le nom d'un rayon.
+#: patterns/menu-librairie.php:176
+msgid "À découvrir, %s"
+msgstr "Рекомендуем: %s"
+
+#. translators: %s: le nom d'une entrée du menu de la librairie.
+#: patterns/menu-librairie.php:222
+msgid "Ouvrir %s"
+msgstr "Открыть раздел «%s»"
+
+#: patterns/menu-librairie.php:228
+msgctxt "menu de la librairie"
+msgid "Accueil"
+msgstr "Главная"
+
+#. translators: %s: le nom d'un rayon.
+#: patterns/menu-librairie.php:237
+msgid "Tout le rayon %s"
+msgstr "Весь раздел «%s»"
+
+#: patterns/menu-librairie.php:245
+msgctxt "menu de la librairie"
+msgid "Nos meilleures ventes"
+msgstr "Бестселлеры"
+
+#: patterns/menu-librairie.php:250
+msgid "Ce que nos lecteurs achètent le plus."
+msgstr "То, что наши читатели покупают чаще всего."
+
+#: patterns/menu-librairie.php:250
+msgid "Toutes nos meilleures ventes"
+msgstr "Все бестселлеры"
+
+#: patterns/menu-librairie.php:252
+msgctxt "menu de la librairie"
+msgid "Nouveautés"
+msgstr "Новинки"
+
+#: patterns/menu-librairie.php:257
+msgid "Toutes les nouveautés"
+msgstr "Все новинки"
+
+#: patterns/menu-librairie.php:259
+msgctxt "menu de la librairie"
+msgid "Promos"
+msgstr "Скидки"
+
+#: patterns/menu-librairie.php:262
+msgid "Bonnes affaires"
+msgstr "Выгодные предложения"
+
+#: patterns/menu-librairie.php:263
+msgid "Livres d’occasion"
+msgstr "Букинистика"
+
+#: patterns/menu-librairie.php:264
+msgid "Fins de série"
+msgstr "Последние экземпляры"
+
+#: patterns/menu-librairie.php:265
+msgid "Livres soldés"
+msgstr "Книги со скидкой"
+
+#: patterns/menu-librairie.php:267
+msgid "Raretés"
+msgstr "Редкости"
+
+#: patterns/menu-librairie.php:268
+msgid "Exemplaires rares"
+msgstr "Редкие экземпляры"
+
+#: patterns/menu-librairie.php:269
+msgid "Éditions anciennes"
+msgstr "Старые издания"
+
+#: patterns/menu-librairie.php:272
+msgid "Toutes les promos"
+msgstr "Все скидки"
+
+#: patterns/menu-librairie.php:283
+msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
+msgstr "Книжный магазин «Les Éditeurs réunis» — с 1925 года"
+
+#: patterns/menu-librairie.php:284
+msgid "Les rayons de la librairie"
+msgstr "Разделы магазина"
+
+#: patterns/page-introuvable.php
+msgctxt "Pattern title"
+msgid "Page introuvable"
+msgstr ""
+
+#: patterns/page-introuvable.php:14
+msgid "Cette page n’existe pas"
+msgstr "Такой страницы нет"
+
+#: patterns/page-introuvable.php:17
+msgid ""
+"Elle a peut-être changé d’adresse. Cherchez un livre, ou repartez de la "
+"librairie."
+msgstr ""
+"Возможно, у неё изменился адрес. Найдите книгу или вернитесь в магазин."
+
+#: patterns/page-introuvable.php:19
+msgid "Chercher un titre, un auteur…"
+msgstr "Название или автор…"
+
+#: patterns/pied.php
+msgctxt "Pattern title"
+msgid "Pied de page"
+msgstr ""
+
+#: patterns/pied.php:27
+msgid "Notre équipe est uniquement composée de bénévoles."
+msgstr "Вся наша команда — волонтёры."
+
+#: patterns/pied.php:27
+msgid "Rejoindre l’Association des Amis d’YMCA-Press"
+msgstr "Вступить в Общество друзей YMCA-Press"
+
+#: patterns/pied.php:43
+msgctxt "titre du pied de page"
+msgid "La librairie"
+msgstr "Магазин"
+
+#: patterns/pied.php:51
+msgid "Du mardi au samedi, de 10&nbsp;h&nbsp;30 à 18&nbsp;h&nbsp;30"
+msgstr "Со вторника по субботу, с&nbsp;10:30 до&nbsp;18:30"
+
+#: patterns/pied.php:51
+msgid "Fermée le dimanche et le lundi"
+msgstr "Воскресенье и понедельник — выходные"
+
+#: patterns/pied.php:63
+msgctxt "titre du pied de page"
+msgid "Informations"
+msgstr "Информация"
+
+#: patterns/pied.php:68
+msgid "Conditions générales de vente"
+msgstr "Условия продажи"
+
+#: patterns/pied.php:69
+msgid "Livraison et retours"
+msgstr "Доставка и возврат"
+
+#: patterns/pied.php:70
+msgid "Questions fréquentes"
+msgstr "Частые вопросы"
+
+#: patterns/pied.php:71
+msgid "Politique de confidentialité"
+msgstr "Политика конфиденциальности"
+
+#: patterns/pied.php:72
+msgid "Mentions légales"
+msgstr "Правовая информация"
+
+#: patterns/pied.php:81
+msgctxt "titre du pied de page"
+msgid "Depuis un demi-siècle"
+msgstr "Уже полвека"
+
+#: patterns/pied.php:85
+msgid ""
+"Au cœur du quartier latin, un vaste choix de livres neufs et d’occasion en "
+"russe et en français : la littérature russe classique et moderne, l’histoire"
+" et la civilisation russes, la pensée philosophique et la théologie "
+"orthodoxe, des manuels, des dictionnaires et des guides pour vos voyages."
+msgstr ""
+"В самом сердце Латинского квартала — большой выбор новых и букинистических "
+"книг на русском и французском языках: классическая и современная русская "
+"литература, история и культура России, философия и православное богословие, "
+"учебники, словари и путеводители."
+
+#: patterns/pied.php:89
+msgid ""
+"Avec nos partenaires <strong>ACER-MJO</strong>, 91, rue Olivier-de-Serres, "
+"Paris&nbsp;15<sup>e</sup>, et la <strong>Fondation Michalski</strong>, "
+"Montricher (Suisse)."
+msgstr ""
+"Наши партнёры — <strong>ACER-MJO</strong> (91, rue Olivier-de-Serres, "
+"Paris&nbsp;15<sup>e</sup>) и <strong>Fondation Michalski</strong> "
+"(Montricher, Швейцария)."

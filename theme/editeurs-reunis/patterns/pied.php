@@ -20,11 +20,11 @@
 		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
 		<div class="wp-block-column er-colonne" style="flex-basis:22%">
 			<!-- wp:paragraph {"className":"er-logo"} -->
-			<p class="er-logo"><a href="<?php echo er_lien(); ?>"><span>Centre culturel</span> <span>Alexandre Soljenitsyne</span></a></p>
+			<p class="er-logo"><a href="<?php echo er_lien(); ?>"><span><?php echo esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ); ?></span> <span><?php echo esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ); ?></span></a></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size">Notre équipe est uniquement composée de bénévoles. <a href="<?php echo er_lien( 'ymca-press/amis-ymca-press/' ); ?>">Rejoindre l’Association des Amis d’YMCA-Press</a></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'Notre équipe est uniquement composée de bénévoles.', 'editeurs-reunis' ); ?> <a href="<?php echo er_lien( 'ymca-press/amis-ymca-press/' ); ?>"><?php esc_html_e( 'Rejoindre l’Association des Amis d’YMCA-Press', 'editeurs-reunis' ); ?></a></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"fontSize":"x-small","className":"er-pied-copyright"} -->
@@ -40,7 +40,7 @@
 				<!-- wp:column -->
 				<div class="wp-block-column">
 					<!-- wp:heading {"level":2,"className":"er-pied-titre"} -->
-					<h2 class="wp-block-heading er-pied-titre">La librairie</h2>
+					<h2 class="wp-block-heading er-pied-titre"><?php echo esc_html_x( 'La librairie', 'titre du pied de page', 'editeurs-reunis' ); ?></h2>
 					<!-- /wp:heading -->
 
 					<!-- wp:paragraph {"fontSize":"small"} -->
@@ -48,7 +48,7 @@
 					<!-- /wp:paragraph -->
 
 					<!-- wp:paragraph {"fontSize":"small"} -->
-					<p class="has-small-font-size">Du mardi au samedi, de 10&nbsp;h&nbsp;30 à 18&nbsp;h&nbsp;30<br><span class="er-pied-discret">Fermée le dimanche et le lundi</span></p>
+					<p class="has-small-font-size"><?php echo wp_kses_post( __( 'Du mardi au samedi, de 10&nbsp;h&nbsp;30 à 18&nbsp;h&nbsp;30', 'editeurs-reunis' ) ); ?><br><span class="er-pied-discret"><?php esc_html_e( 'Fermée le dimanche et le lundi', 'editeurs-reunis' ); ?></span></p>
 					<!-- /wp:paragraph -->
 
 					<!-- wp:paragraph {"fontSize":"small"} -->
@@ -60,16 +60,16 @@
 				<!-- wp:column -->
 				<div class="wp-block-column">
 					<!-- wp:heading {"level":2,"className":"er-pied-titre"} -->
-					<h2 class="wp-block-heading er-pied-titre">Informations</h2>
+					<h2 class="wp-block-heading er-pied-titre"><?php echo esc_html_x( 'Informations', 'titre du pied de page', 'editeurs-reunis' ); ?></h2>
 					<!-- /wp:heading -->
 
 					<!-- wp:list {"className":"er-pied-liens"} -->
 					<ul class="wp-block-list er-pied-liens">
-						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'conditions-generales-de-vente/' ); ?>">Conditions générales de vente</a></li><!-- /wp:list-item -->
-						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'livraison-et-retours/' ); ?>">Livraison et retours</a></li><!-- /wp:list-item -->
-						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'faq/' ); ?>">Questions fréquentes</a></li><!-- /wp:list-item -->
-						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'politique-de-confidentialite/' ); ?>">Politique de confidentialité</a></li><!-- /wp:list-item -->
-						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'mentions-legales/' ); ?>">Mentions légales</a></li><!-- /wp:list-item -->
+						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'conditions-generales-de-vente/' ); ?>"><?php esc_html_e( 'Conditions générales de vente', 'editeurs-reunis' ); ?></a></li><!-- /wp:list-item -->
+						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'livraison-et-retours/' ); ?>"><?php esc_html_e( 'Livraison et retours', 'editeurs-reunis' ); ?></a></li><!-- /wp:list-item -->
+						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'faq/' ); ?>"><?php esc_html_e( 'Questions fréquentes', 'editeurs-reunis' ); ?></a></li><!-- /wp:list-item -->
+						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'politique-de-confidentialite/' ); ?>"><?php esc_html_e( 'Politique de confidentialité', 'editeurs-reunis' ); ?></a></li><!-- /wp:list-item -->
+						<!-- wp:list-item --><li><a href="<?php echo er_lien( 'mentions-legales/' ); ?>"><?php esc_html_e( 'Mentions légales', 'editeurs-reunis' ); ?></a></li><!-- /wp:list-item -->
 					</ul>
 					<!-- /wp:list -->
 				</div>
@@ -78,15 +78,15 @@
 				<!-- wp:column {"width":"38%"} -->
 				<div class="wp-block-column" style="flex-basis:38%">
 					<!-- wp:heading {"level":2,"className":"er-pied-titre"} -->
-					<h2 class="wp-block-heading er-pied-titre">Depuis un demi-siècle</h2>
+					<h2 class="wp-block-heading er-pied-titre"><?php echo esc_html_x( 'Depuis un demi-siècle', 'titre du pied de page', 'editeurs-reunis' ); ?></h2>
 					<!-- /wp:heading -->
 
 					<!-- wp:paragraph {"fontSize":"small","className":"er-pied-discret"} -->
-					<p class="has-small-font-size er-pied-discret">Au cœur du quartier latin, un vaste choix de livres neufs et d’occasion en russe et en français : la littérature russe classique et moderne, l’histoire et la civilisation russes, la pensée philosophique et la théologie orthodoxe, des manuels, des dictionnaires et des guides pour vos voyages.</p>
+					<p class="has-small-font-size er-pied-discret"><?php esc_html_e( 'Au cœur du quartier latin, un vaste choix de livres neufs et d’occasion en russe et en français : la littérature russe classique et moderne, l’histoire et la civilisation russes, la pensée philosophique et la théologie orthodoxe, des manuels, des dictionnaires et des guides pour vos voyages.', 'editeurs-reunis' ); ?></p>
 					<!-- /wp:paragraph -->
 
 					<!-- wp:paragraph {"fontSize":"x-small","className":"er-pied-discret"} -->
-					<p class="has-x-small-font-size er-pied-discret">Avec nos partenaires <strong>ACER-MJO</strong>, 91, rue Olivier-de-Serres, Paris&nbsp;15<sup>e</sup>, et la <strong>Fondation Michalski</strong>, Montricher (Suisse).</p>
+					<p class="has-x-small-font-size er-pied-discret"><?php echo wp_kses_post( __( 'Avec nos partenaires <strong>ACER-MJO</strong>, 91, rue Olivier-de-Serres, Paris&nbsp;15<sup>e</sup>, et la <strong>Fondation Michalski</strong>, Montricher (Suisse).', 'editeurs-reunis' ) ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:column -->

@@ -1,0 +1,73 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: er-librairie\n"
+"Language-Team: English (UK)\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: er-librairie\n"
+
+#. Plugin Name of the plugin
+#: er-librairie.php
+msgid "Les Éditeurs réunis — librairie"
+msgstr ""
+
+#. Description of the plugin
+#: er-librairie.php
+msgid ""
+"Les données de la librairie : auteurs et langues des livres, et des "
+"traductions de secours pour WooCommerce tant que son paquet de langue "
+"français n'est pas installé. Séparée du thème : la direction artistique peut"
+" changer sans toucher aux livres."
+msgstr ""
+
+#: er-librairie.php:161
+msgid "Langue du site"
+msgstr "Site language"
+
+#: er-librairie.php:175 er-librairie.php:181
+msgid "Auteurs"
+msgstr "Authors"
+
+#: er-librairie.php:176
+msgid "Auteur"
+msgstr "Author"
+
+#: er-librairie.php:177
+msgid "Chercher un auteur"
+msgstr "Search authors"
+
+#: er-librairie.php:178
+msgid "Tous les auteurs"
+msgstr "All authors"
+
+#: er-librairie.php:179
+msgid "Modifier l’auteur"
+msgstr "Edit author"
+
+#: er-librairie.php:180
+msgid "Ajouter un auteur"
+msgstr "Add author"
+
+#: er-librairie.php:195 er-librairie.php:200
+msgid "Langues"
+msgstr "Languages"
+
+#: er-librairie.php:196
+msgid "Langue"
+msgstr "Language"
+
+#: er-librairie.php:197
+msgid "Toutes les langues"
+msgstr "All languages"
+
+#: er-librairie.php:198
+msgid "Modifier la langue"
+msgstr "Edit language"
+
+#: er-librairie.php:199
+msgid "Ajouter une langue"
+msgstr "Add language"

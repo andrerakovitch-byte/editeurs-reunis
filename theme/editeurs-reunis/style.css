@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.1.0
+Version: 0.2.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -124,6 +124,16 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.2rem; height: 1.2rem; }
 
 .er-compte { font-weight: 600; }
+
+/* Le sélecteur de langue, au bout gauche de la barre noire : FR · RU · EN. La langue de la page en blanc, les autres
+   en gris clair ; une langue où la page n'est pas traduite mène à l'accueil de cette langue, en plus discret. */
+.er-barre .er-langues { margin-right: auto; }
+.er-langues ul { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.er-langues li + li::before { content: "·"; margin-inline: 0.5em; color: rgba(255, 255, 255, 0.5); }
+.er-langue { font-weight: 600; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.62) !important; }
+.er-langue:hover, .er-langue:focus-visible { color: var(--wp--preset--color--base) !important; }
+.er-langue-actuelle { color: var(--wp--preset--color--base) !important; }
+.er-langue-absente { color: rgba(255, 255, 255, 0.5) !important; }
 .er-panier .wc-block-mini-cart__button { color: var(--wp--preset--color--base); padding: 0.25rem; }
 .er-panier .wc-block-mini-cart__badge {
 	background: var(--wp--preset--color--base);

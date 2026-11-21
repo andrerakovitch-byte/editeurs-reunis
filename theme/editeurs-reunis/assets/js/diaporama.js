@@ -9,6 +9,24 @@
 ( function () {
 	'use strict';
 
+	// Les mots du diaporama, dans la langue de la page (functions.php les donne ; le français en secours).
+	var T = window.erDiaporamaTextes || {
+		carrousel: 'carrousel',
+		diapositive: 'diapositive',
+		alaune: 'À la une',
+		position: '%1$s sur %2$s',
+		numero: 'Diapositive %s',
+		precedente: 'Diapositive précédente',
+		suivante: 'Diapositive suivante',
+	};
+	function format( modele ) {
+		var valeurs = Array.prototype.slice.call( arguments, 1 );
+		var rang = 0;
+		return modele.replace( /%(?:(\d)\$)?s/g, function ( tout, n ) {
+			return String( valeurs[ n ? n - 1 : rang++ ] );
+		} );
+	}
+
 	var moinsDAnimations = window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
 
 	function bouton( classe, libelle, dessin ) {
@@ -36,12 +54,12 @@
 		}
 
 		racine.setAttribute( 'role', 'region' );
-		racine.setAttribute( 'aria-roledescription', 'carrousel' );
-		racine.setAttribute( 'aria-label', racine.getAttribute( 'data-libelle' ) || 'À la une' );
+		racine.setAttribute( 'aria-roledescription', T.carrousel );
+		racine.setAttribute( 'aria-label', racine.getAttribute( 'data-libelle' ) || T.alaune );
 		diapos.forEach( function ( d, i ) {
 			d.setAttribute( 'role', 'group' );
-			d.setAttribute( 'aria-roledescription', 'diapositive' );
-			d.setAttribute( 'aria-label', ( i + 1 ) + ' sur ' + n );
+			d.setAttribute( 'aria-roledescription', T.diapositive );
+			d.setAttribute( 'aria-label', format( T.position, i + 1, n ) );
 		} );
 
 		var commandes = document.createElement( 'div' );
@@ -50,7 +68,7 @@
 		reperes.className = 'er-diaporama-reperes';
 		var traits = diapos.map( function ( d, i ) {
 			var titre = d.querySelector( '.er-diapo-titre' );
-			var t = bouton( 'er-diaporama-trait', ( titre ? titre.textContent : 'Diapositive ' + ( i + 1 ) ), '<span></span>' );
+			var t = bouton( 'er-diaporama-trait', ( titre ? titre.textContent : format( T.numero, i + 1 ) ), '<span></span>' );
 			t.addEventListener( 'click', function () {
 				aller( i );
 			} );
@@ -59,8 +77,8 @@
 		} );
 		var fleches = document.createElement( 'div' );
 		fleches.className = 'er-diaporama-fleches';
-		var precedente = bouton( 'er-diaporama-fleche er-diaporama-precedente', 'Diapositive précédente', FLECHE );
-		var suivante = bouton( 'er-diaporama-fleche', 'Diapositive suivante', FLECHE );
+		var precedente = bouton( 'er-diaporama-fleche er-diaporama-precedente', T.precedente, FLECHE );
+		var suivante = bouton( 'er-diaporama-fleche', T.suivante, FLECHE );
 		precedente.addEventListener( 'click', function () {
 			aller( actuelle - 1 );
 		} );

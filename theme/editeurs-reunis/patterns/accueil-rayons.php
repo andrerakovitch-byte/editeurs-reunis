@@ -16,11 +16,11 @@
 		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
 		<div class="wp-block-column er-colonne" style="flex-basis:22%">
 			<!-- wp:paragraph {"className":"er-surtitre"} -->
-			<p class="er-surtitre">La librairie</p>
+			<p class="er-surtitre"><?php esc_html_e( 'La librairie', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"className":"er-panneau-titre"} -->
-			<h2 class="wp-block-heading er-panneau-titre">Les rayons</h2>
+			<h2 class="wp-block-heading er-panneau-titre"><?php esc_html_e( 'Les rayons', 'editeurs-reunis' ); ?></h2>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:column -->
@@ -28,7 +28,7 @@
 		<!-- wp:column {"width":"78%","className":"er-champ"} -->
 		<div class="wp-block-column er-champ" style="flex-basis:78%">
 			<!-- wp:paragraph {"className":"er-chapeau"} -->
-			<p class="er-chapeau">Littérature classique et contemporaine, poésie, histoire, pensée et théologie orthodoxe, manuels et dictionnaires : en russe et en français, neufs et d’occasion.</p>
+			<p class="er-chapeau"><?php esc_html_e( 'Littérature classique et contemporaine, poésie, histoire, pensée et théologie orthodoxe, manuels et dictionnaires : en russe et en français, neufs et d’occasion.', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:categories {"taxonomy":"product_cat","showPostCounts":true,"showEmpty":false,"className":"er-pilules er-pilules-grandes"} /-->

@@ -50,21 +50,23 @@ $er_rayons = function ( $parent ) {
 	return $termes;
 };
 
-// Où l'on est : le rayon ouvert (ou son parent), ou l'une des entrées fixes.
-$actif = '';
+// Où l'on est : le rayon ouvert (ou son parent), ou l'une des entrées fixes. Les rayons et les mentions sont
+// reconnus par leur slug français, dans toutes les langues.
+$actif     = '';
+$objet     = get_queried_object();
+$reference = $objet instanceof WP_Term ? er_slug_reference( $objet ) : '';
 if ( function_exists( 'is_shop' ) && is_shop() && empty( $_GET['orderby'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 	$actif = 'accueil';
 } elseif ( isset( $_GET['orderby'] ) && 'popularity' === $_GET['orderby'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 	$actif = 'ventes';
-} elseif ( is_tax( 'product_tag', 'nouveaute' ) ) {
+} elseif ( is_tax( 'product_tag' ) && 'nouveaute' === $reference ) {
 	$actif = 'nouveautes';
-} elseif ( is_page( 'promos' ) || is_tax( 'product_tag', array( 'occasion', 'fin-de-serie', 'tres-rare', 'edition-ancienne' ) ) ) {
+} elseif ( 'promos' === er_page_reference() || ( is_tax( 'product_tag' ) && in_array( $reference, array( 'occasion', 'fin-de-serie', 'tres-rare', 'edition-ancienne' ), true ) ) ) {
 	$actif = 'promos';
 } elseif ( is_tax( 'product_cat' ) ) {
-	$terme    = get_queried_object();
-	$ancetres = get_ancestors( $terme->term_id, 'product_cat' );
-	$haut     = $ancetres ? get_term( end( $ancetres ), 'product_cat' ) : $terme;
-	$actif    = $haut->slug;
+	$ancetres = get_ancestors( $objet->term_id, 'product_cat' );
+	$haut     = $ancetres ? get_term( end( $ancetres ), 'product_cat' ) : $objet;
+	$actif    = er_slug_reference( $haut );
 }
 
 /* Les livres ------------------------------------------------------------------------------------------------- */
@@ -111,35 +113,35 @@ $tuiles = array(
 	'litterature'        => array(
 		array(
 			'vues' => array(
-				array( 'fond' => 'photo', 'image' => er_image( 'branche-librairie.jpg' ), 'position' => '50% 28%', 'sur' => 'Classiques', 'nom' => 'Pouchkine', 'lien' => er_rayon( 'classiques' ) ),
-				array( 'fond' => 'couverture', 'aplat' => 'nuit', 'livre' => 'convoi-pour-samarcande', 'sur' => 'Les contemporains', 'nom' => 'Gouzel Iakhina', 'lien' => er_rayon( 'contemporains' ) ),
+				array( 'fond' => 'photo', 'image' => er_image( 'branche-librairie.jpg' ), 'position' => '50% 28%', 'sur' => _x( 'Classiques', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Pouchkine', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'classiques' ) ),
+				array( 'fond' => 'couverture', 'aplat' => 'nuit', 'livre' => 'convoi-pour-samarcande', 'sur' => _x( 'Les contemporains', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Gouzel Iakhina', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'contemporains' ) ),
 			),
 		),
-		array( 'fond' => 'couverture', 'aplat' => 'vert', 'livre' => 'notes-dun-medecin', 'sur' => 'Le livre du moment', 'nom' => 'Notes d’un médecin', 'lien' => er_livre( 'notes-dun-medecin' ) ),
+		array( 'fond' => 'couverture', 'aplat' => 'vert', 'livre' => 'notes-dun-medecin', 'sur' => _x( 'Le livre du moment', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Notes d’un médecin', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_livre( 'notes-dun-medecin' ) ),
 	),
 	'histoire'           => array(
-		array( 'fond' => 'photo', 'image' => er_image( 'branche-ymca-press.jpg' ), 'position' => '50% 40%', 'sur' => 'L’émigration', 'nom' => 'Un siècle d’YMCA-Press', 'lien' => er_lien( 'ymca-press/histoire/' ) ),
-		array( 'fond' => 'couverture', 'aplat' => 'brun', 'livre' => 'larchipel-du-goulag-cinquante-ans-apres', 'sur' => 'Le Goulag', 'nom' => 'L’Archipel, cinquante ans après', 'lien' => er_livre( 'larchipel-du-goulag-cinquante-ans-apres' ) ),
+		array( 'fond' => 'photo', 'image' => er_image( 'branche-ymca-press.jpg' ), 'position' => '50% 40%', 'sur' => _x( 'L’émigration', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Un siècle d’YMCA-Press', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_lien( 'ymca-press/histoire/' ) ),
+		array( 'fond' => 'couverture', 'aplat' => 'brun', 'livre' => 'larchipel-du-goulag-cinquante-ans-apres', 'sur' => _x( 'Le Goulag', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'L’Archipel, cinquante ans après', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_livre( 'larchipel-du-goulag-cinquante-ans-apres' ) ),
 	),
 	'pensee-et-religion' => array(
-		array( 'fond' => 'lettre', 'aplat' => 'nuit', 'lettre' => 'Ф', 'sur' => 'Philosophie', 'nom' => 'Berdiaev, Boulgakov, Florensky', 'lien' => er_rayon( 'philosophie-russe' ) ),
-		array( 'fond' => 'lettre', 'aplat' => 'noir', 'lettre' => 'Б', 'sur' => 'Spiritualité', 'nom' => 'Théologie orthodoxe', 'lien' => er_rayon( 'theologie-orthodoxe' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'nuit', 'lettre' => 'Ф', 'sur' => _x( 'Philosophie', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Berdiaev, Boulgakov, Florensky', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'philosophie-russe' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'noir', 'lettre' => 'Б', 'sur' => _x( 'Spiritualité', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Théologie orthodoxe', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'theologie-orthodoxe' ) ),
 	),
 	'apprendre-le-russe' => array(
-		array( 'fond' => 'lettre', 'aplat' => 'pervenche', 'lettre' => 'Аа', 'sur' => 'Débuter', 'nom' => 'Les manuels pour commencer', 'lien' => er_rayon( 'debutant' ) ),
-		array( 'fond' => 'lettre', 'aplat' => 'nuit', 'lettre' => 'Я', 'sur' => 'Les dictionnaires', 'nom' => 'Français-russe, russe-français', 'lien' => er_rayon( 'dictionnaires' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'pervenche', 'lettre' => 'Аа', 'sur' => _x( 'Débuter', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Les manuels pour commencer', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'debutant' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'nuit', 'lettre' => 'Я', 'sur' => _x( 'Les dictionnaires', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Français-russe, russe-français', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'dictionnaires' ) ),
 	),
 	'arts'               => array(
-		array( 'fond' => 'couverture', 'aplat' => 'noir', 'livre' => 'scenarii-zviaguintsev', 'sur' => 'Cinéma', 'nom' => 'Les scénarios de Zviaguintsev', 'lien' => er_livre( 'scenarii-zviaguintsev' ) ),
-		array( 'fond' => 'couverture', 'aplat' => 'nuit', 'livre' => 'moussorgski-calvocoressi', 'sur' => 'Musique', 'nom' => 'Moussorgski, par Calvocoressi', 'lien' => er_livre( 'moussorgski-calvocoressi' ) ),
+		array( 'fond' => 'couverture', 'aplat' => 'noir', 'livre' => 'scenarii-zviaguintsev', 'sur' => _x( 'Cinéma', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Les scénarios de Zviaguintsev', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_livre( 'scenarii-zviaguintsev' ) ),
+		array( 'fond' => 'couverture', 'aplat' => 'nuit', 'livre' => 'moussorgski-calvocoressi', 'sur' => _x( 'Musique', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Moussorgski, par Calvocoressi', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_livre( 'moussorgski-calvocoressi' ) ),
 	),
 	'jeunesse'           => array(
-		array( 'fond' => 'lettre', 'aplat' => 'pervenche', 'lettre' => 'Ж', 'sur' => 'Contes russes', 'nom' => 'Il était une fois', 'lien' => er_rayon( 'contes-russes' ) ),
-		array( 'fond' => 'lettre', 'aplat' => 'vert', 'lettre' => 'Ё', 'sur' => 'Bilingue', 'nom' => 'Lire en deux langues', 'lien' => er_rayon( 'livres-bilingues' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'pervenche', 'lettre' => 'Ж', 'sur' => _x( 'Contes russes', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Il était une fois', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'contes-russes' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'vert', 'lettre' => 'Ё', 'sur' => _x( 'Bilingue', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Lire en deux langues', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_rayon( 'livres-bilingues' ) ),
 	),
 	'promos'             => array(
-		array( 'fond' => 'couverture', 'aplat' => 'brun', 'livre' => 'russkaia-poezia', 'sur' => 'Très rare', 'nom' => 'Русская поэзия', 'lien' => er_livre( 'russkaia-poezia' ) ),
-		array( 'fond' => 'lettre', 'aplat' => 'vert', 'lettre' => 'б/у', 'sur' => 'Occasions', 'nom' => 'Des livres d’occasion, en russe et en français', 'lien' => er_lien( 'mention/occasion/' ) ),
+		array( 'fond' => 'couverture', 'aplat' => 'brun', 'livre' => 'russkaia-poezia', 'sur' => _x( 'Très rare', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => 'Русская поэзия', 'lien' => er_livre( 'russkaia-poezia' ) ),
+		array( 'fond' => 'lettre', 'aplat' => 'vert', 'lettre' => 'б/у', 'sur' => _x( 'Occasions', 'tuile du menu, surtitre', 'editeurs-reunis' ), 'nom' => _x( 'Des livres d’occasion, en russe et en français', 'tuile du menu, nom', 'editeurs-reunis' ), 'lien' => er_mention( 'occasion' ) ),
 	),
 );
 
@@ -159,7 +161,7 @@ $vue = function ( $t, $classes = '' ) use ( $couverture ) {
 	return '<div class="er-tuile er-tuile-' . esc_attr( $t['fond'] ) . $aplat . ' ' . $classes . '">' . $fond
 		. '<p class="er-tuile-sur">' . esc_html( $t['sur'] ) . '</p>'
 		. '<p class="er-tuile-nom">' . esc_html( $t['nom'] ) . '</p>'
-		. '<p class="er-tuile-bouton"><a href="' . esc_url( $t['lien'] ) . '">Découvrir<span class="screen-reader-text"> : ' . esc_html( $t['nom'] ) . '</span></a></p></div>';
+		. '<p class="er-tuile-bouton"><a href="' . esc_url( $t['lien'] ) . '">' . esc_html__( 'Découvrir', 'editeurs-reunis' ) . '<span class="screen-reader-text">' . esc_html( sprintf( /* translators: %s: le nom de la tuile, lu après « Découvrir ». */ __( ' : %s', 'editeurs-reunis' ), $t['nom'] ) ) . '</span></a></p></div>';
 };
 
 // Une tuile : une vue, ou plusieurs en petit diaporama (le script de l'accueil).
@@ -171,7 +173,7 @@ $tuile = function ( $t, $rayon ) use ( $vue ) {
 	foreach ( $t['vues'] as $v ) {
 		$vues .= $vue( $v, 'er-diapo' );
 	}
-	return '<div class="er-tuile-cadre er-diaporama er-diaporama-mini" data-libelle="' . esc_attr( 'À découvrir, ' . $rayon ) . '"><div class="er-diapos">' . $vues . '</div></div>';
+	return '<div class="er-tuile-cadre er-diaporama er-diaporama-mini" data-libelle="' . esc_attr( sprintf( /* translators: %s: le nom d'un rayon. */ __( 'À découvrir, %s', 'editeurs-reunis' ), $rayon ) ) . '"><div class="er-diapos">' . $vues . '</div></div>';
 };
 
 /* Le tiroir --------------------------------------------------------------------------------------------------- */
@@ -179,7 +181,7 @@ $tuile = function ( $t, $rayon ) use ( $vue ) {
 $colonne = function ( $groupes, $tout_libelle, $tout_lien ) {
 	$html = '<div class="er-tiroir-colonne"><div class="er-tiroir-groupes" style="--er-groupes:' . count( $groupes ) . '">';
 	foreach ( $groupes as $titre => $liens ) {
-		$html .= '<div class="er-tiroir-groupe">' . ( $titre ? '<p class="er-tiroir-groupe-titre">' . esc_html( $titre ) . '</p>' : '' ) . '<ul class="er-tiroir-liens">';
+		$html .= '<div class="er-tiroir-groupe">' . ( $titre ? '<p class="er-tiroir-groupe-titre">' . esc_html( er_groupe_libelle( $titre ) ) . '</p>' : '' ) . '<ul class="er-tiroir-liens">';
 		foreach ( $liens as $libelle => $lien ) {
 			$html .= '<li><a href="' . esc_url( $lien ) . '">' . esc_html( $libelle ) . '</a></li>';
 		}
@@ -217,13 +219,13 @@ $entree = function ( $cle, $libelle, $lien, $tiroir = '' ) use ( $actif, $chevro
 	}
 	$id = 'er-tiroir-' . $cle;
 	return '<li class="er-rayon er-a-tiroir"><a class="er-rayon-lien" href="' . esc_url( $lien ) . '"' . $courant . '>' . esc_html( $libelle ) . '</a>'
-		. '<button type="button" class="er-rayon-ouvrir" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '" aria-label="' . esc_attr( 'Ouvrir ' . $libelle ) . '">' . $chevron . '</button>'
+		. '<button type="button" class="er-rayon-ouvrir" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: le nom d'une entrée du menu de la librairie. */ __( 'Ouvrir %s', 'editeurs-reunis' ), $libelle ) ) . '">' . $chevron . '</button>'
 		. '<div class="er-tiroir" id="' . esc_attr( $id ) . '"><div class="er-tiroir-dedans">' . $tiroir . '</div></div></li>';
 };
 
 /* Les entrées ------------------------------------------------------------------------------------------------- */
 
-$entrees = array( $entree( 'accueil', 'Accueil', er_lien( 'librairie/' ) ) );
+$entrees = array( $entree( 'accueil', _x( 'Accueil', 'menu de la librairie', 'editeurs-reunis' ), er_lien( 'librairie/' ) ) );
 
 foreach ( $er_rayons( 0 ) as $rayon ) {
 	$groupes = array();
@@ -231,51 +233,55 @@ foreach ( $er_rayons( 0 ) as $rayon ) {
 		$groupe                            = (string) get_term_meta( $sous->term_id, 'er_groupe', true );
 		$groupes[ $groupe ][ $sous->name ] = get_term_link( $sous );
 	}
-	$contenu = $colonne( $groupes, 'Tout le rayon ' . $rayon->name, get_term_link( $rayon ) );
-	foreach ( $tuiles[ $rayon->slug ] ?? array() as $t ) {
+	$cle     = er_slug_reference( $rayon );
+	$contenu = $colonne( $groupes, sprintf( /* translators: %s: le nom d'un rayon. */ __( 'Tout le rayon %s', 'editeurs-reunis' ), $rayon->name ), get_term_link( $rayon ) );
+	foreach ( $tuiles[ $cle ] ?? array() as $t ) {
 		$contenu .= $tuile( $t, $rayon->name );
 	}
-	$entrees[] = $entree( $rayon->slug, $rayon->name, get_term_link( $rayon ), $contenu );
+	$entrees[] = $entree( $cle, $rayon->name, get_term_link( $rayon ), $contenu );
 }
 
 $lien_ventes = add_query_arg( 'orderby', 'popularity', er_lien( 'librairie/' ) );
+$ventes      = _x( 'Nos meilleures ventes', 'menu de la librairie', 'editeurs-reunis' );
 $entrees[]   = $entree(
 	'ventes',
-	'Nos meilleures ventes',
+	$ventes,
 	$lien_ventes,
-	$colonne_texte( 'Nos meilleures ventes', 'Ce que nos lecteurs achètent le plus.', 'Toutes nos meilleures ventes', $lien_ventes ) . $vitrine( $vitrine_livres( 'ventes' ), true )
+	$colonne_texte( $ventes, __( 'Ce que nos lecteurs achètent le plus.', 'editeurs-reunis' ), __( 'Toutes nos meilleures ventes', 'editeurs-reunis' ), $lien_ventes ) . $vitrine( $vitrine_livres( 'ventes' ), true )
 );
-$entrees[] = $entree(
+$nouveautes = _x( 'Nouveautés', 'menu de la librairie', 'editeurs-reunis' );
+$entrees[]  = $entree(
 	'nouveautes',
-	'Nouveautés',
-	er_lien( 'mention/nouveaute/' ),
-	$colonne_texte( 'Nouveautés', 'Les derniers livres arrivés en rayon, en français et en russe.', 'Toutes les nouveautés', er_lien( 'mention/nouveaute/' ) ) . $vitrine( $vitrine_livres( 'date' ), false )
+	$nouveautes,
+	er_mention( 'nouveaute' ),
+	$colonne_texte( $nouveautes, __( 'Les derniers livres arrivés en rayon, en français et en russe.', 'editeurs-reunis' ), __( 'Toutes les nouveautés', 'editeurs-reunis' ), er_mention( 'nouveaute' ) ) . $vitrine( $vitrine_livres( 'date' ), false )
 );
-$promos = $colonne(
+$promos_nom = _x( 'Promos', 'menu de la librairie', 'editeurs-reunis' );
+$promos     = $colonne(
 	array(
-		'Bonnes affaires' => array(
-			'Livres d’occasion' => er_lien( 'mention/occasion/' ),
-			'Fins de série'     => er_lien( 'mention/fin-de-serie/' ),
-			'Livres soldés'     => er_lien( 'promos/' ),
+		__( 'Bonnes affaires', 'editeurs-reunis' ) => array(
+			__( 'Livres d’occasion', 'editeurs-reunis' ) => er_mention( 'occasion' ),
+			__( 'Fins de série', 'editeurs-reunis' )     => er_mention( 'fin-de-serie' ),
+			__( 'Livres soldés', 'editeurs-reunis' )     => er_lien( 'promos/' ),
 		),
-		'Raretés'         => array(
-			'Exemplaires rares'  => er_lien( 'mention/tres-rare/' ),
-			'Éditions anciennes' => er_lien( 'mention/edition-ancienne/' ),
+		__( 'Raretés', 'editeurs-reunis' )         => array(
+			__( 'Exemplaires rares', 'editeurs-reunis' )  => er_mention( 'tres-rare' ),
+			__( 'Éditions anciennes', 'editeurs-reunis' ) => er_mention( 'edition-ancienne' ),
 		),
 	),
-	'Toutes les promos',
+	__( 'Toutes les promos', 'editeurs-reunis' ),
 	er_lien( 'promos/' )
 );
 foreach ( $tuiles['promos'] as $t ) {
-	$promos .= $tuile( $t, 'Promos' );
+	$promos .= $tuile( $t, $promos_nom );
 }
-$entrees[] = $entree( 'promos', 'Promos', er_lien( 'promos/' ), $promos );
+$entrees[] = $entree( 'promos', $promos_nom, er_lien( 'promos/' ), $promos );
 ?>
 <!-- wp:group {"align":"full","className":"er-librairie-entete","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull er-librairie-entete">
 	<!-- wp:html -->
-	<p class="er-devise">Les Éditeurs réunis, librairie de référence depuis 1925</p>
-	<nav class="er-rayons-nav" aria-label="Les rayons de la librairie">
+	<p class="er-devise"><?php esc_html_e( 'Les Éditeurs réunis, librairie de référence depuis 1925', 'editeurs-reunis' ); ?></p>
+	<nav class="er-rayons-nav" aria-label="<?php esc_attr_e( 'Les rayons de la librairie', 'editeurs-reunis' ); ?>">
 		<ul class="er-rayons-liste">
 			<?php echo implode( '', $entrees ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</ul>

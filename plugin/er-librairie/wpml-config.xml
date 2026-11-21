@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Ce que Polylang doit traduire (il lit ce fichier, au format de WPML).
+	Les auteurs ont un nom par langue (Солженицын, Soljenitsyne, Solzhenitsyn) ; les langues des livres aussi
+	(russe, русский, Russian). Les livres, les rayons et les mentions sont réglés par Polylang pour WooCommerce.
+-->
+<wpml-config>
+	<taxonomies>
+		<taxonomy translate="1">auteur</taxonomy>
+		<taxonomy translate="1">langue</taxonomy>
+	</taxonomies>
+</wpml-config>

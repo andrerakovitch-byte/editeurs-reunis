@@ -16,21 +16,21 @@
 		<!-- wp:column {"width":"22%","className":"er-colonne"} -->
 		<div class="wp-block-column er-colonne" style="flex-basis:22%">
 			<!-- wp:paragraph {"className":"er-surtitre"} -->
-			<p class="er-surtitre">La librairie</p>
+			<p class="er-surtitre"><?php esc_html_e( 'La librairie', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"className":"er-panneau-titre"} -->
-			<h2 class="wp-block-heading er-panneau-titre">Nouveautés</h2>
+			<h2 class="wp-block-heading er-panneau-titre"><?php esc_html_e( 'Nouveautés', 'editeurs-reunis' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"er-colonne-texte"} -->
-			<p class="er-colonne-texte">Les derniers livres arrivés en rayon, en français et en russe.</p>
+			<p class="er-colonne-texte"><?php esc_html_e( 'Les derniers livres arrivés en rayon, en français et en russe.', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-fleche"} -->
-				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_lien( 'librairie/' ); ?>">Toute la librairie</a></div>
+				<div class="wp-block-button is-style-fleche"><a class="wp-block-button__link wp-element-button" href="<?php echo er_lien( 'librairie/' ); ?>"><?php esc_html_e( 'Toute la librairie', 'editeurs-reunis' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

@@ -47,14 +47,19 @@
 		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 
 		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-			<!-- wp:query-pagination-previous {"label":"Précédents"} /-->
+			<!-- wp:query-pagination-previous {"label":"<?php echo er_attr( _x( 'Précédents', 'pagination des livres', 'editeurs-reunis' ) ); ?>"} /-->
 			<!-- wp:query-pagination-numbers /-->
-			<!-- wp:query-pagination-next {"label":"Suivants"} /-->
+			<!-- wp:query-pagination-next {"label":"<?php echo er_attr( _x( 'Suivants', 'pagination des livres', 'editeurs-reunis' ) ); ?>"} /-->
 		<!-- /wp:query-pagination -->
 
 		<!-- wp:woocommerce/product-collection-no-results -->
 			<!-- wp:paragraph -->
-			<p>Aucun livre ne correspond. <a href="<?php echo er_lien( 'librairie/' ); ?>">Voir toute la librairie</a>, ou écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne.</p>
+			<p><?php
+			printf(
+				wp_kses_post( /* translators: %s: l'adresse de la librairie. */ __( 'Aucun livre ne correspond. <a href="%s">Voir toute la librairie</a>, ou écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne.', 'editeurs-reunis' ) ),
+				er_lien( 'librairie/' ) // phpcs:ignore WordPress.Security.EscapeOutput
+			);
+			?></p>
 			<!-- /wp:paragraph -->
 		<!-- /wp:woocommerce/product-collection-no-results -->
 	</div>

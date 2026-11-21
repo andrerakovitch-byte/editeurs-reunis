@@ -44,18 +44,18 @@
 
 			<!-- wp:group {"className":"er-fiche-infos","layout":{"type":"default"}} -->
 			<div class="wp-block-group er-fiche-infos">
-				<!-- wp:post-terms {"term":"product_cat","prefix":"Rayon"} /-->
+				<!-- wp:post-terms {"term":"product_cat","prefix":"<?php echo er_attr( _x( 'Rayon', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 
-				<!-- wp:post-terms {"term":"langue","prefix":"Langue"} /-->
+				<!-- wp:post-terms {"term":"langue","prefix":"<?php echo er_attr( _x( 'Langue', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 
-				<!-- wp:post-terms {"term":"auteur","prefix":"Auteur"} /-->
+				<!-- wp:post-terms {"term":"auteur","prefix":"<?php echo er_attr( _x( 'Auteur', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 
-				<!-- wp:woocommerce/product-sku {"prefix":"Référence"} /-->
+				<!-- wp:woocommerce/product-sku {"prefix":"<?php echo er_attr( _x( 'Référence', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 			</div>
 			<!-- /wp:group -->
 
 			<!-- wp:paragraph {"className":"er-fiche-retrait","fontSize":"small"} -->
-			<p class="er-fiche-retrait has-small-font-size">Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-Geneviève, du mardi au samedi.</p>
+			<p class="er-fiche-retrait has-small-font-size"><?php esc_html_e( 'Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-Geneviève, du mardi au samedi.', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -65,7 +65,7 @@
 	<!-- wp:woocommerce/product-collection {"align":"wide","queryId":41,"query":{"perPage":5,"pages":1,"offset":0,"postType":"product","order":"desc","orderBy":"date","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":false}},"tagName":"div","displayLayout":{"type":"flex","columns":5,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"],"className":"er-meme-rayon","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
 	<div class="wp-block-woocommerce-product-collection alignwide er-meme-rayon" style="margin-top:var(--wp--preset--spacing--60)">
 		<!-- wp:heading -->
-		<h2 class="wp-block-heading">Du même rayon</h2>
+		<h2 class="wp-block-heading"><?php esc_html_e( 'Du même rayon', 'editeurs-reunis' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>

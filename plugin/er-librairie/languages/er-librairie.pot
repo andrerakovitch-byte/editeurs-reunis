@@ -1,0 +1,75 @@
+# Copyright (C) 2026 
+# This file is distributed under the same license as the Les Éditeurs réunis — librairie plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Les Éditeurs réunis — librairie 0.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/er-librairie\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-21T14:21:22+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: er-librairie\n"
+
+#. Plugin Name of the plugin
+#: er-librairie.php
+msgid "Les Éditeurs réunis — librairie"
+msgstr ""
+
+#. Description of the plugin
+#: er-librairie.php
+msgid "Les données de la librairie : auteurs et langues des livres, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres."
+msgstr ""
+
+#: er-librairie.php:161
+msgid "Langue du site"
+msgstr ""
+
+#: er-librairie.php:175
+#: er-librairie.php:181
+msgid "Auteurs"
+msgstr ""
+
+#: er-librairie.php:176
+msgid "Auteur"
+msgstr ""
+
+#: er-librairie.php:177
+msgid "Chercher un auteur"
+msgstr ""
+
+#: er-librairie.php:178
+msgid "Tous les auteurs"
+msgstr ""
+
+#: er-librairie.php:179
+msgid "Modifier l’auteur"
+msgstr ""
+
+#: er-librairie.php:180
+msgid "Ajouter un auteur"
+msgstr ""
+
+#: er-librairie.php:195
+#: er-librairie.php:200
+msgid "Langues"
+msgstr ""
+
+#: er-librairie.php:196
+msgid "Langue"
+msgstr ""
+
+#: er-librairie.php:197
+msgid "Toutes les langues"
+msgstr ""
+
+#: er-librairie.php:198
+msgid "Modifier la langue"
+msgstr ""
+
+#: er-librairie.php:199
+msgid "Ajouter une langue"
+msgstr ""
