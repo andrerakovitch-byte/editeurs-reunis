@@ -395,9 +395,9 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-panneau-sombre > .alignwide { width: 100%; }
 .er-panneau-bas { min-height: clamp(380px, 30vw, 460px); }
-.er-parution { background-color: #26231F; }
-.er-communique { background-color: #101642; }
-.er-histoire { background-color: #2C1F17; }
+.er-parution { background-color: var(--wp--preset--color--aplat-noir); }
+.er-communique { background-color: var(--wp--preset--color--aplat-nuit); }
+.er-histoire { background-color: var(--wp--preset--color--aplat-brun); }
 .er-panneau-sombre .er-diapo-titre, .er-panneau-sombre .er-diapo-texte { text-shadow: none; }
 .er-annee {
 	margin: 0;
@@ -905,10 +905,10 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-tuile .er-tuile-fond { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .er-tuile-voile { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.1) 75%); z-index: -1; }
 
-.er-aplat-vert { background: #2F4943; }
-.er-aplat-nuit { background: #101642; }
-.er-aplat-brun { background: #2C1F17; }
-.er-aplat-noir { background: #26231F; }
+.er-aplat-vert { background: var(--wp--preset--color--aplat-vert); }
+.er-aplat-nuit { background: var(--wp--preset--color--aplat-nuit); }
+.er-aplat-brun { background: var(--wp--preset--color--aplat-brun); }
+.er-aplat-noir { background: var(--wp--preset--color--aplat-noir); }
 .er-aplat-pervenche { background: var(--wp--preset--color--accent); color: var(--wp--preset--color--contrast); }
 .er-aplat-pervenche .er-tuile-bouton a:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--accent); border-color: var(--wp--preset--color--contrast); }
 
@@ -969,3 +969,25 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-tiroir-colonne { padding: 1.25rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); }
 	.er-tiroir-groupes { gap: 1rem; }
 }
+
+/* --------------------------------------------------------------------------
+   L'ambiance papier : la palette chaude, pour le contenu patrimonial
+   -------------------------------------------------------------------------- */
+
+/* Deux registres de couleurs (décision du 21 nov. 2026). La DA actuelle reste celle du site : la navigation, la
+   librairie, l'accueil, les pages de service. La palette chaude, relevée sur les rayonnages de la librairie, habille
+   le contenu patrimonial et éditorial : les archives, « Notre histoire », « Il y a cent ans », le Paris de l'émigration,
+   l'histoire de la littérature. On l'applique à une page entière (classe sur body) ou à un bloc Groupe (style
+   « Ambiance papier »). La pervenche y reste, mais seulement en signal : les liens, les mentions, les pastilles. */
+.er-ambiance-papier,
+.is-style-ambiance-papier {
+	--wp--preset--color--base: #FBF8F1;
+	--wp--preset--color--doux: var(--wp--preset--color--papier);
+	--wp--preset--color--filet: var(--wp--preset--color--filet-papier);
+	--wp--preset--color--aplat-nuit: var(--wp--preset--color--reliure);
+	--wp--preset--color--aplat-vert: var(--wp--preset--color--rayonnage);
+	--wp--preset--color--aplat-brun: var(--wp--preset--color--cuir);
+	background-color: var(--wp--preset--color--papier-clair);
+}
+.er-ambiance-papier .er-aplat-pervenche,
+.is-style-ambiance-papier .er-aplat-pervenche { background: var(--wp--preset--color--ocre); }

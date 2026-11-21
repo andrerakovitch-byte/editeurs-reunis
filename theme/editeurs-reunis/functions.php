@@ -75,6 +75,13 @@ add_action(
 				'label' => 'Carte voilée',
 			)
 		);
+		register_block_style(
+			'core/group',
+			array(
+				'name'  => 'ambiance-papier',
+				'label' => 'Ambiance papier (contenu patrimonial)',
+			)
+		);
 	}
 );
 

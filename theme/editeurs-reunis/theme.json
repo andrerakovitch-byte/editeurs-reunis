@@ -21,7 +21,18 @@
 				{ "slug": "accent", "name": "Pervenche", "color": "#9DB5F5" },
 				{ "slug": "accent-pale", "name": "Pervenche pâle", "color": "#E4EBFD" },
 				{ "slug": "accent-texte", "name": "Pervenche foncée (texte)", "color": "#4F6AD8" },
-				{ "slug": "noir", "name": "Noir", "color": "#000000" }
+				{ "slug": "noir", "name": "Noir", "color": "#000000" },
+				{ "slug": "aplat-nuit", "name": "Aplat nuit", "color": "#101642" },
+				{ "slug": "aplat-vert", "name": "Aplat vert", "color": "#2F4943" },
+				{ "slug": "aplat-brun", "name": "Aplat brun", "color": "#2C1F17" },
+				{ "slug": "aplat-noir", "name": "Aplat noir", "color": "#26231F" },
+				{ "slug": "papier-clair", "name": "Contenu · papier clair", "color": "#FBF8F1" },
+				{ "slug": "papier", "name": "Contenu · papier", "color": "#F1E9DA" },
+				{ "slug": "filet-papier", "name": "Contenu · filet papier", "color": "#DCD2C0" },
+				{ "slug": "ocre", "name": "Contenu · ocre", "color": "#A87F32" },
+				{ "slug": "reliure", "name": "Contenu · reliure", "color": "#6B2A27" },
+				{ "slug": "rayonnage", "name": "Contenu · rayonnage", "color": "#23403D" },
+				{ "slug": "cuir", "name": "Contenu · cuir", "color": "#7A5233" }
 			]
 		},
 		"typography": {
