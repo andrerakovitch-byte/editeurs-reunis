@@ -81,7 +81,7 @@ refaites en blocs. Deux gabarits les accueillent : `page-exemple`, et `page-exem
 librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette entière est réduite à l'écran
 (`assets/js/exemple.js`).
 
-- `/accueil-proposition/` : l'accueil comme une revue (proposition du 21 novembre) ;
+- `/accueil-proposition/` : l'accueil « à la une », d'après le Programme commun (proposition du 21 novembre) ;
 - `/librairie/encyclopedie/`, et dessous `age-d-argent/`, `soljenitsyne/`, `platonov/` : l'encyclopédie, un chapitre,
   deux pages d'auteur ;
 - `/ymca-press/histoire/` : Un siècle d'histoire ;
