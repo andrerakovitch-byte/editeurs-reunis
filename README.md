@@ -43,8 +43,9 @@ dans la même case : rien ne bouge quand on ouvre ou qu'on ferme. Dans la barre,
 devient « YMCA-Press » : à côté des gestes en toutes lettres, le nom long ne tient pas dans les 1280 px du site
 (il reste entier dans le menu) ; sous 960 px, « Compte » passe dans le menu (≡) ;
 au téléphone, la barre garde la loupe et le panier, le compte et la langue vont au bas du menu. Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
-(ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel ; rien dessous sur
-l'accueil et les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
+(ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel. L'accueil du
+site montre la ligne de la librairie, « Accueil » souligné (son entrée « Accueil » y mène) ; l'onglet « Librairie »
+n'y est pas souligné : l'accueil n'est pas toute la librairie. Rien dessous sur les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
 maisons et leurs pages.
 
 La maison d'une page se déduit d'elle-même (`er_maison()` dans `functions.php`) : la boutique, les rayons, les livres,

@@ -18,7 +18,8 @@
  * - Au téléphone : la loupe et le panier dans la barre ; le compte et la langue au bas du menu (≡).
  * - Dessous, le menu de la maison où l'on est, sur sa couleur : les rayons dans la librairie (la composition
  *   « menu-librairie », appelée par les gabarits de la boutique), les pages d'YMCA-Press ou du centre ailleurs (le code
- *   court [er_sous_menu]). Rien dessous sur l'accueil et les pages communes (panier, compte, pages légales).
+ *   court [er_sous_menu]). Sur l'accueil, la ligne de la librairie, « Accueil » souligné ; rien dessous sur les pages
+ *   communes (panier, compte, pages légales).
  * - Plus de menus déroulants à l'ordinateur ; au téléphone, le menu (≡) montre les trois maisons et leurs pages, le
  *   compte et la langue.
  *

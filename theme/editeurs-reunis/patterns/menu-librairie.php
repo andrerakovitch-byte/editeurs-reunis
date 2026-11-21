@@ -5,8 +5,10 @@
  * Categories: editeurs-reunis
  * Inserter: no
  *
- * La ligne verte de la librairie, sous la barre noire de l'en-tête : ses rayons (Accueil, les grands rayons, Nos
- * meilleures ventes, Nouveautés, Promos). La devise est passée sous le titre de la librairie (composition « librairie »).
+ * La ligne verte de la librairie, sous la barre noire de l'en-tête : Accueil, les grands rayons, Nos meilleures ventes,
+ * Nouveautés, Promos. « Accueil » est la page d'accueil du site, qui montre aussi cette ligne (décision du 21 nov.
+ * 2026 : la navigation en est plus simple) ; l'accueil n'est pas toute la librairie, l'onglet « Librairie » de la
+ * barre noire n'y est donc pas souligné. La devise est passée sous le titre de la librairie (composition « librairie »).
  * Chaque entrée (sauf Accueil) ouvre un tiroir sur toute la largeur :
  * - un grand rayon : ses sous-rayons à gauche, en une ou deux listes (le groupe d'un sous-rayon est sa méta
  *   « er_groupe »), et deux tuiles ;
@@ -56,7 +58,7 @@ $er_rayons = function ( $parent ) {
 $actif     = '';
 $objet     = get_queried_object();
 $reference = $objet instanceof WP_Term ? er_slug_reference( $objet ) : '';
-if ( function_exists( 'is_shop' ) && is_shop() && empty( $_GET['orderby'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+if ( is_front_page() ) {
 	$actif = 'accueil';
 } elseif ( isset( $_GET['orderby'] ) && 'popularity' === $_GET['orderby'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 	$actif = 'ventes';
@@ -226,7 +228,7 @@ $entree = function ( $cle, $libelle, $lien, $tiroir = '' ) use ( $actif, $chevro
 
 /* Les entrées ------------------------------------------------------------------------------------------------- */
 
-$entrees = array( $entree( 'accueil', _x( 'Accueil', 'menu de la librairie', 'editeurs-reunis' ), er_lien( 'librairie/' ) ) );
+$entrees = array( $entree( 'accueil', _x( 'Accueil', 'menu de la librairie', 'editeurs-reunis' ), er_lien() ) );
 
 foreach ( $er_rayons( 0 ) as $rayon ) {
 	$groupes = array();
