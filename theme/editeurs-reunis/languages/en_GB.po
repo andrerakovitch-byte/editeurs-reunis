@@ -77,43 +77,108 @@ msgstr "Veiled card"
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Paper ambience (heritage content)"
 
-#: functions.php:291
+#: functions.php:268
+msgctxt "menu d’YMCA-Press"
+msgid "La maison d’édition"
+msgstr "The publishing house"
+
+#: functions.php:269
+msgctxt "menu d’YMCA-Press"
+msgid "Un siècle d’histoire"
+msgstr "A century of history"
+
+#: functions.php:270
+msgctxt "menu d’YMCA-Press"
+msgid "Le catalogue"
+msgstr "Catalogue"
+
+#: functions.php:271
+msgctxt "menu d’YMCA-Press"
+msgid "Les Amis d’YMCA-Press"
+msgstr "Friends of YMCA-Press"
+
+#: functions.php:274
+msgctxt "menu du centre culturel"
+msgid "Le centre"
+msgstr "About the centre"
+
+#: functions.php:275
+msgctxt "menu du centre culturel"
+msgid "Nos événements"
+msgstr "Events"
+
+#: functions.php:276
+msgctxt "menu du centre culturel"
+msgid "Nos expositions"
+msgstr "Exhibitions"
+
+#: functions.php:277
+msgctxt "menu du centre culturel"
+msgid "Nos podcasts"
+msgstr "Podcasts"
+
+#: functions.php:278
+msgctxt "menu du centre culturel"
+msgid "Nos vidéos"
+msgstr "Videos"
+
+#: functions.php:279
+msgctxt "menu du centre culturel"
+msgid "Le journal du centre"
+msgstr "The Centre’s journal"
+
+#: functions.php:280
+msgctxt "menu du centre culturel"
+msgid "Nous trouver"
+msgstr "Find us"
+
+#: functions.php:300 patterns/en-tete.php:51
+msgctxt "menu du haut"
+msgid "Maison d’édition YMCA-Press"
+msgstr "YMCA-Press publishers"
+
+#: functions.php:301 patterns/en-tete.php:52
+msgctxt "menu du haut"
+msgid "Le centre culturel"
+msgstr "Cultural centre"
+
+#: functions.php:388
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:292
+#: functions.php:389
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:293
+#: functions.php:390
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:294
+#: functions.php:391
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:295
+#: functions.php:392
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:296
+#: functions.php:393
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:297
+#: functions.php:394
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:298
+#: functions.php:395
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:299
+#: functions.php:396
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:300
+#: functions.php:397
 msgid "Arts"
 msgstr "Arts"
 
@@ -373,7 +438,7 @@ msgstr "The bookshop"
 msgid "Nouveautés"
 msgstr "New arrivals"
 
-#: patterns/accueil-nouveautes.php:27 patterns/menu-librairie.php:257
+#: patterns/accueil-nouveautes.php:27 patterns/menu-librairie.php:258
 msgid "Les derniers livres arrivés en rayon, en français et en russe."
 msgstr "The latest books on our shelves, in French and in Russian."
 
@@ -533,98 +598,38 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:22 patterns/page-introuvable.php:19
-msgid "Chercher dans la librairie"
-msgstr "Search the bookshop"
-
-#: patterns/en-tete.php:22
-msgid "Rechercher un titre, un auteur…"
-msgstr "Search for a title or an author…"
-
-#: patterns/en-tete.php:22 patterns/journal-recherche.php:13
-#: patterns/page-introuvable.php:19
-msgid "Chercher"
-msgstr "Search"
-
-#: patterns/en-tete.php:37 patterns/pied.php:23
+#: patterns/en-tete.php:44 patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr "Alexander Solzhenitsyn"
 
-#: patterns/en-tete.php:37 patterns/pied.php:23
+#: patterns/en-tete.php:44 patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr "Cultural Centre"
 
-#: patterns/en-tete.php:41
+#: patterns/en-tete.php:50
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr "Bookshop"
 
-#: patterns/en-tete.php:43
-msgctxt "menu du haut"
-msgid "Maison d’édition YMCA-Press"
-msgstr "YMCA-Press publishers"
-
-#: patterns/en-tete.php:44
-msgctxt "menu du haut"
-msgid "La maison d’édition"
-msgstr "The publishing house"
-
-#: patterns/en-tete.php:45
-msgctxt "menu du haut"
-msgid "Un siècle d’histoire"
-msgstr "A century of history"
-
-#: patterns/en-tete.php:46
-msgctxt "menu du haut"
-msgid "Le catalogue"
-msgstr "Catalogue"
-
-#: patterns/en-tete.php:47
-msgctxt "menu du haut"
-msgid "Les Amis d’YMCA-Press"
-msgstr "Friends of YMCA-Press"
-
-#: patterns/en-tete.php:50
-msgctxt "menu du haut"
-msgid "Le centre culturel"
-msgstr "Cultural centre"
-
-#: patterns/en-tete.php:51
-msgctxt "menu du haut"
-msgid "Le centre"
-msgstr "About the centre"
-
-#: patterns/en-tete.php:52
-msgctxt "menu du haut"
-msgid "Nos événements"
-msgstr "Events"
-
-#: patterns/en-tete.php:53
-msgctxt "menu du haut"
-msgid "Nos expositions"
-msgstr "Exhibitions"
-
-#: patterns/en-tete.php:54
-msgctxt "menu du haut"
-msgid "Nos podcasts"
-msgstr "Podcasts"
-
 #: patterns/en-tete.php:55
-msgctxt "menu du haut"
-msgid "Nos vidéos"
-msgstr "Videos"
+msgid "Mon compte"
+msgstr "My account"
 
-#: patterns/en-tete.php:56
-msgctxt "menu du haut"
-msgid "Le journal du centre"
-msgstr "The Centre’s journal"
+#: patterns/en-tete.php:56 patterns/en-tete.php:59
+#: patterns/page-introuvable.php:19
+msgid "Chercher dans la librairie"
+msgstr "Search the bookshop"
 
-#: patterns/en-tete.php:57
-msgctxt "menu du haut"
-msgid "Nous trouver"
-msgstr "Find us"
+#: patterns/en-tete.php:56 patterns/en-tete.php:59
+msgid "Rechercher un titre, un auteur…"
+msgstr "Search for a title or an author…"
+
+#: patterns/en-tete.php:56 patterns/en-tete.php:59
+#: patterns/journal-recherche.php:13 patterns/page-introuvable.php:19
+msgid "Chercher"
+msgstr "Search"
 
 #: patterns/fiche-livre.php
 msgctxt "Pattern title"
@@ -706,18 +711,22 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:50
+#: patterns/librairie.php:24
+msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
+msgstr "Les Éditeurs réunis, a Paris bookshop since 1925"
+
+#: patterns/librairie.php:55
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr "Previous"
 
-#: patterns/librairie.php:52
+#: patterns/librairie.php:57
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr "Next"
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:59
+#: patterns/librairie.php:64
 msgid ""
 "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou "
 "écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
@@ -730,242 +739,238 @@ msgctxt "Pattern title"
 msgid "Le menu de la librairie"
 msgstr ""
 
-#: patterns/menu-librairie.php:116
+#: patterns/menu-librairie.php:117
 msgctxt "tuile du menu, surtitre"
 msgid "Classiques"
 msgstr "Classics"
 
-#: patterns/menu-librairie.php:116
+#: patterns/menu-librairie.php:117
 msgctxt "tuile du menu, nom"
 msgid "Pouchkine"
 msgstr "Pushkin"
 
-#: patterns/menu-librairie.php:117
+#: patterns/menu-librairie.php:118
 msgctxt "tuile du menu, surtitre"
 msgid "Les contemporains"
 msgstr "Contemporary writers"
 
-#: patterns/menu-librairie.php:117
+#: patterns/menu-librairie.php:118
 msgctxt "tuile du menu, nom"
 msgid "Gouzel Iakhina"
 msgstr "Guzel Yakhina"
 
-#: patterns/menu-librairie.php:120
+#: patterns/menu-librairie.php:121
 msgctxt "tuile du menu, surtitre"
 msgid "Le livre du moment"
 msgstr "Book of the moment"
 
-#: patterns/menu-librairie.php:120
+#: patterns/menu-librairie.php:121
 msgctxt "tuile du menu, nom"
 msgid "Notes d’un médecin"
 msgstr "Notes d’un médecin"
 
-#: patterns/menu-librairie.php:123
+#: patterns/menu-librairie.php:124
 msgctxt "tuile du menu, surtitre"
 msgid "L’émigration"
 msgstr "The emigration"
 
-#: patterns/menu-librairie.php:123
+#: patterns/menu-librairie.php:124
 msgctxt "tuile du menu, nom"
 msgid "Un siècle d’YMCA-Press"
 msgstr "A century of YMCA-Press"
 
-#: patterns/menu-librairie.php:124
+#: patterns/menu-librairie.php:125
 msgctxt "tuile du menu, surtitre"
 msgid "Le Goulag"
 msgstr "The Gulag"
 
-#: patterns/menu-librairie.php:124
+#: patterns/menu-librairie.php:125
 msgctxt "tuile du menu, nom"
 msgid "L’Archipel, cinquante ans après"
 msgstr "The Archipelago, fifty years on"
 
-#: patterns/menu-librairie.php:127
+#: patterns/menu-librairie.php:128
 msgctxt "tuile du menu, surtitre"
 msgid "Philosophie"
 msgstr "Philosophy"
 
-#: patterns/menu-librairie.php:127
+#: patterns/menu-librairie.php:128
 msgctxt "tuile du menu, nom"
 msgid "Berdiaev, Boulgakov, Florensky"
 msgstr "Berdyaev, Bulgakov, Florensky"
 
-#: patterns/menu-librairie.php:128
+#: patterns/menu-librairie.php:129
 msgctxt "tuile du menu, surtitre"
 msgid "Spiritualité"
 msgstr "Spirituality"
 
-#: patterns/menu-librairie.php:128
+#: patterns/menu-librairie.php:129
 msgctxt "tuile du menu, nom"
 msgid "Théologie orthodoxe"
 msgstr "Orthodox theology"
 
-#: patterns/menu-librairie.php:131
+#: patterns/menu-librairie.php:132
 msgctxt "tuile du menu, surtitre"
 msgid "Débuter"
 msgstr "Getting started"
 
-#: patterns/menu-librairie.php:131
+#: patterns/menu-librairie.php:132
 msgctxt "tuile du menu, nom"
 msgid "Les manuels pour commencer"
 msgstr "Textbooks for beginners"
 
-#: patterns/menu-librairie.php:132
+#: patterns/menu-librairie.php:133
 msgctxt "tuile du menu, surtitre"
 msgid "Les dictionnaires"
 msgstr "Dictionaries"
 
-#: patterns/menu-librairie.php:132
+#: patterns/menu-librairie.php:133
 msgctxt "tuile du menu, nom"
 msgid "Français-russe, russe-français"
 msgstr "French–Russian, Russian–French"
 
-#: patterns/menu-librairie.php:135
+#: patterns/menu-librairie.php:136
 msgctxt "tuile du menu, surtitre"
 msgid "Cinéma"
 msgstr "Cinema"
 
-#: patterns/menu-librairie.php:135
+#: patterns/menu-librairie.php:136
 msgctxt "tuile du menu, nom"
 msgid "Les scénarios de Zviaguintsev"
 msgstr "Zvyagintsev’s screenplays"
 
-#: patterns/menu-librairie.php:136
+#: patterns/menu-librairie.php:137
 msgctxt "tuile du menu, surtitre"
 msgid "Musique"
 msgstr "Music"
 
-#: patterns/menu-librairie.php:136
+#: patterns/menu-librairie.php:137
 msgctxt "tuile du menu, nom"
 msgid "Moussorgski, par Calvocoressi"
 msgstr "Mussorgsky, by Calvocoressi"
 
-#: patterns/menu-librairie.php:139
+#: patterns/menu-librairie.php:140
 msgctxt "tuile du menu, surtitre"
 msgid "Contes russes"
 msgstr "Russian fairy tales"
 
-#: patterns/menu-librairie.php:139
+#: patterns/menu-librairie.php:140
 msgctxt "tuile du menu, nom"
 msgid "Il était une fois"
 msgstr "Once upon a time"
 
-#: patterns/menu-librairie.php:140
+#: patterns/menu-librairie.php:141
 msgctxt "tuile du menu, surtitre"
 msgid "Bilingue"
 msgstr "Bilingual"
 
-#: patterns/menu-librairie.php:140
+#: patterns/menu-librairie.php:141
 msgctxt "tuile du menu, nom"
 msgid "Lire en deux langues"
 msgstr "Reading in two languages"
 
-#: patterns/menu-librairie.php:143
+#: patterns/menu-librairie.php:144
 msgctxt "tuile du menu, surtitre"
 msgid "Très rare"
 msgstr "Very rare"
 
-#: patterns/menu-librairie.php:144
+#: patterns/menu-librairie.php:145
 msgctxt "tuile du menu, surtitre"
 msgid "Occasions"
 msgstr "Second-hand"
 
-#: patterns/menu-librairie.php:144
+#: patterns/menu-librairie.php:145
 msgctxt "tuile du menu, nom"
 msgid "Des livres d’occasion, en russe et en français"
 msgstr "Second-hand books, in Russian and in French"
 
-#: patterns/menu-librairie.php:164
+#: patterns/menu-librairie.php:165
 msgid "Découvrir"
 msgstr "Discover"
 
 #. translators: %s: le nom de la tuile, lu après « Découvrir ».
-#: patterns/menu-librairie.php:164
+#: patterns/menu-librairie.php:165
 msgid " : %s"
 msgstr ": %s"
 
 #. translators: %s: le nom d'un rayon.
-#: patterns/menu-librairie.php:176
+#: patterns/menu-librairie.php:177
 msgid "À découvrir, %s"
 msgstr "Discover: %s"
 
 #. translators: %s: le nom d'une entrée du menu de la librairie.
-#: patterns/menu-librairie.php:222
+#: patterns/menu-librairie.php:223
 msgid "Ouvrir %s"
 msgstr "Open %s"
 
-#: patterns/menu-librairie.php:228
+#: patterns/menu-librairie.php:229
 msgctxt "menu de la librairie"
 msgid "Accueil"
 msgstr "Home"
 
 #. translators: %s: le nom d'un rayon.
-#: patterns/menu-librairie.php:237
+#: patterns/menu-librairie.php:238
 msgid "Tout le rayon %s"
 msgstr "All of %s"
 
-#: patterns/menu-librairie.php:245
+#: patterns/menu-librairie.php:246
 msgctxt "menu de la librairie"
 msgid "Nos meilleures ventes"
 msgstr "Bestsellers"
 
-#: patterns/menu-librairie.php:250
+#: patterns/menu-librairie.php:251
 msgid "Ce que nos lecteurs achètent le plus."
 msgstr "What our readers buy most."
 
-#: patterns/menu-librairie.php:250
+#: patterns/menu-librairie.php:251
 msgid "Toutes nos meilleures ventes"
 msgstr "All bestsellers"
 
-#: patterns/menu-librairie.php:252
+#: patterns/menu-librairie.php:253
 msgctxt "menu de la librairie"
 msgid "Nouveautés"
 msgstr "New arrivals"
 
-#: patterns/menu-librairie.php:257
+#: patterns/menu-librairie.php:258
 msgid "Toutes les nouveautés"
 msgstr "All new arrivals"
 
-#: patterns/menu-librairie.php:259
+#: patterns/menu-librairie.php:260
 msgctxt "menu de la librairie"
 msgid "Promos"
 msgstr "Offers"
 
-#: patterns/menu-librairie.php:262
+#: patterns/menu-librairie.php:263
 msgid "Bonnes affaires"
 msgstr "Bargains"
 
-#: patterns/menu-librairie.php:263
+#: patterns/menu-librairie.php:264
 msgid "Livres d’occasion"
 msgstr "Second-hand books"
 
-#: patterns/menu-librairie.php:264
+#: patterns/menu-librairie.php:265
 msgid "Fins de série"
 msgstr "End of line"
 
-#: patterns/menu-librairie.php:265
+#: patterns/menu-librairie.php:266
 msgid "Livres soldés"
 msgstr "Books on sale"
 
-#: patterns/menu-librairie.php:267
+#: patterns/menu-librairie.php:268
 msgid "Raretés"
 msgstr "Rarities"
 
-#: patterns/menu-librairie.php:268
+#: patterns/menu-librairie.php:269
 msgid "Exemplaires rares"
 msgstr "Rare copies"
 
-#: patterns/menu-librairie.php:269
+#: patterns/menu-librairie.php:270
 msgid "Éditions anciennes"
 msgstr "Old editions"
 
-#: patterns/menu-librairie.php:272
+#: patterns/menu-librairie.php:273
 msgid "Toutes les promos"
 msgstr "All offers"
-
-#: patterns/menu-librairie.php:283
-msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
-msgstr "Les Éditeurs réunis, a Paris bookshop since 1925"
 
 #: patterns/menu-librairie.php:284
 msgid "Les rayons de la librairie"

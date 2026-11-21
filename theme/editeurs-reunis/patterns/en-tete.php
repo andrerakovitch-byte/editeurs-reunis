@@ -6,58 +6,66 @@
  * Block Types: core/template-part/header
  * Inserter: no
  *
- * La barre noire (la langue, chercher un livre, le compte, le panier), puis le nom et le menu. Le sélecteur de langue
- * est un code court, pour rester juste même si l'en-tête est retouché dans l'éditeur du site.
+ * L'en-tête retenu le 21 novembre 2026 (B3 : « noir dessus, la couleur dessous »).
+ *
+ * - La barre noire, la même partout : le nom ; les trois maisons, chacune précédée d'un point de sa couleur (vert
+ *   pour la librairie, brun pour YMCA-Press, bleu nuit pour le centre culturel), la maison où l'on est soulignée ;
+ *   la loupe, le compte, le panier ; la langue.
+ * - Dessous, le menu de la maison où l'on est, sur sa couleur : les rayons dans la librairie (la composition
+ *   « menu-librairie », appelée par les gabarits de la boutique), les pages d'YMCA-Press ou du centre ailleurs (le code
+ *   court [er_sous_menu]). Rien dessous sur l'accueil et les pages communes (panier, compte, pages légales).
+ * - Plus de menus déroulants à l'ordinateur ; au téléphone, le menu (≡) montre les trois maisons et leurs pages, la
+ *   recherche et le compte.
+ *
+ * La langue et le menu de la maison sont des codes courts, pour rester justes même si l'en-tête est retouché dans
+ * l'éditeur du site.
  *
  * @package editeurs-reunis
  */
 
+$er_lien_maison = function ( $libelle, $chemin, $cle, $pages = array() ) {
+	$classe = 'er-onglet er-onglet-' . $cle;
+	if ( ! $pages ) {
+		return '<!-- wp:navigation-link {"label":"' . er_attr( $libelle ) . '","url":"' . er_lien( $chemin ) . '","kind":"custom","className":"' . $classe . '"} /-->';
+	}
+	$html = '<!-- wp:navigation-submenu {"label":"' . er_attr( $libelle ) . '","url":"' . er_lien( $chemin ) . '","kind":"custom","className":"' . $classe . '"} -->';
+	foreach ( $pages as $page_chemin => $page_libelle ) {
+		$html .= '<!-- wp:navigation-link {"label":"' . er_attr( $page_libelle ) . '","url":"' . er_lien( $page_chemin ) . '","kind":"custom"} /-->';
+	}
+	return $html . '<!-- /wp:navigation-submenu -->';
+};
+$er_pages = er_pages_des_maisons();
 ?>
 <!-- wp:group {"className":"er-barre","backgroundColor":"noir","textColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group er-barre has-base-color has-noir-background-color has-text-color has-background">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:html -->[er_langues_entete]<!-- /wp:html -->
-
-		<!-- wp:search {"label":"<?php echo er_attr( __( 'Chercher dans la librairie', 'editeurs-reunis' ) ); ?>","showLabel":false,"placeholder":"<?php echo er_attr( __( 'Rechercher un titre, un auteur…', 'editeurs-reunis' ) ); ?>","buttonText":"<?php echo er_attr( __( 'Chercher', 'editeurs-reunis' ) ); ?>","buttonPosition":"button-inside","buttonUseIcon":true,"query":{"post_type":"product"},"className":"er-chercher"} /-->
-
-		<!-- wp:woocommerce/customer-account {"displayStyle":"text_only","className":"er-compte"} /-->
-
-		<!-- wp:woocommerce/mini-cart {"hasHiddenPrice":true,"productCountVisibility":"always","className":"er-panier"} /-->
-	</div>
-	<!-- /wp:group -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"er-entete","layout":{"type":"constrained"}} -->
-<div class="wp-block-group er-entete">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group alignwide">
+	<!-- wp:group {"align":"wide","className":"er-barre-dedans","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide er-barre-dedans">
 		<!-- wp:paragraph {"className":"er-logo"} -->
 		<p class="er-logo"><a href="<?php echo er_lien(); ?>" rel="home"><span><?php echo esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ); ?></span> <span><?php echo esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ); ?></span></a></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"base","overlayTextColor":"contrast","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"2.25rem"}}} -->
-			<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Librairie', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'librairie/' ); ?>","kind":"custom","className":"er-lien-librairie"} /-->
-
-			<!-- wp:navigation-submenu {"label":"<?php echo er_attr( _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} -->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'La maison d’édition', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'ymca-press/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Un siècle d’histoire', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'ymca-press/histoire/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Le catalogue', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'ymca-press/catalogue/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Les Amis d’YMCA-Press', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'ymca-press/amis-ymca-press/' ); ?>","kind":"custom"} /-->
-			<!-- /wp:navigation-submenu -->
-
-			<!-- wp:navigation-submenu {"label":"<?php echo er_attr( _x( 'Le centre culturel', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/' ); ?>","kind":"custom"} -->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Le centre', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Nos événements', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/evenements/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Nos expositions', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/expositions/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Nos podcasts', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/podcasts/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Nos vidéos', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'centre-culturel/videos/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Le journal du centre', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'journal/' ); ?>","kind":"custom"} /-->
-				<!-- wp:navigation-link {"label":"<?php echo er_attr( _x( 'Nous trouver', 'menu du haut', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'nous-trouver/' ); ?>","kind":"custom"} /-->
-			<!-- /wp:navigation-submenu -->
+		<!-- wp:navigation {"overlayMenu":"always","overlayBackgroundColor":"noir","overlayTextColor":"base","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"1.75rem"}}} -->
+			<?php
+			// phpcs:disable WordPress.Security.EscapeOutput -- du balisage de blocs, échappé pièce à pièce.
+			echo $er_lien_maison( _x( 'Librairie', 'menu du haut', 'editeurs-reunis' ), 'librairie/', 'librairie' );
+			echo $er_lien_maison( _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ), 'ymca-press/', 'ymca', $er_pages['ymca'] );
+			echo $er_lien_maison( _x( 'Le centre culturel', 'menu du haut', 'editeurs-reunis' ), 'centre-culturel/', 'centre', $er_pages['centre'] );
+			// phpcs:enable
+			?>
+			<!-- wp:navigation-link {"label":"<?php echo er_attr( __( 'Mon compte', 'editeurs-reunis' ) ); ?>","url":"<?php echo er_lien( 'mon-compte/' ); ?>","kind":"custom","className":"er-menu-telephone"} /-->
+			<!-- wp:search {"label":"<?php echo er_attr( __( 'Chercher dans la librairie', 'editeurs-reunis' ) ); ?>","showLabel":false,"placeholder":"<?php echo er_attr( __( 'Rechercher un titre, un auteur…', 'editeurs-reunis' ) ); ?>","buttonText":"<?php echo er_attr( __( 'Chercher', 'editeurs-reunis' ) ); ?>","buttonPosition":"button-inside","buttonUseIcon":true,"query":{"post_type":"product"},"className":"er-menu-telephone er-chercher-menu"} /-->
 		<!-- /wp:navigation -->
+
+		<!-- wp:search {"label":"<?php echo er_attr( __( 'Chercher dans la librairie', 'editeurs-reunis' ) ); ?>","showLabel":false,"placeholder":"<?php echo er_attr( __( 'Rechercher un titre, un auteur…', 'editeurs-reunis' ) ); ?>","buttonText":"<?php echo er_attr( __( 'Chercher', 'editeurs-reunis' ) ); ?>","buttonPosition":"button-only","buttonUseIcon":true,"isSearchFieldHidden":true,"query":{"post_type":"product"},"className":"er-chercher"} /-->
+
+		<!-- wp:woocommerce/customer-account {"displayStyle":"icon_only","iconStyle":"line","iconClass":"wc-block-customer-account__account-icon","className":"er-compte"} /-->
+
+		<!-- wp:woocommerce/mini-cart {"hasHiddenPrice":true,"productCountVisibility":"always","className":"er-panier"} /-->
+
+		<!-- wp:html -->[er_langues_entete]<!-- /wp:html -->
 	</div>
 	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:html -->[er_sous_menu]<!-- /wp:html -->

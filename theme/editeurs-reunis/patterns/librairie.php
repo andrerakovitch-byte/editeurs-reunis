@@ -19,6 +19,11 @@
 		<!-- wp:woocommerce/breadcrumbs {"fontSize":"x-small"} /-->
 
 		<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
+<?php if ( function_exists( 'is_shop' ) && is_shop() && ! is_search() ) : ?>
+		<!-- wp:paragraph {"className":"er-devise"} -->
+		<p class="er-devise"><?php esc_html_e( 'Les Éditeurs réunis, librairie de référence depuis 1925', 'editeurs-reunis' ); ?></p>
+		<!-- /wp:paragraph -->
+<?php endif; ?>
 
 		<!-- wp:query-title {"type":"search"} /-->
 

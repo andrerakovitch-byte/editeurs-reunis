@@ -349,6 +349,8 @@ add_filter(
 			'Menu'                                   => 'Menu',
 			'Submenu'                                => 'Sous-menu',
 			'Skip to content'                        => 'Aller au contenu',
+			'Expand search field'                    => 'Ouvrir la recherche',
+			'Submit Search'                          => 'Lancer la recherche',
 		);
 		return isset( $secours[ $texte ] ) ? $secours[ $texte ] : $traduction;
 	},

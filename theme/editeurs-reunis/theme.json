@@ -32,7 +32,13 @@
 				{ "slug": "ocre", "name": "Contenu · ocre", "color": "#A87F32" },
 				{ "slug": "reliure", "name": "Contenu · reliure", "color": "#6B2A27" },
 				{ "slug": "rayonnage", "name": "Contenu · rayonnage", "color": "#23403D" },
-				{ "slug": "cuir", "name": "Contenu · cuir", "color": "#7A5233" }
+				{ "slug": "cuir", "name": "Contenu · cuir", "color": "#7A5233" },
+				{ "slug": "maison-librairie", "name": "Maison · librairie, vert rayonnage", "color": "#2F4943" },
+				{ "slug": "maison-ymca", "name": "Maison · YMCA-Press, brun reliure", "color": "#553826" },
+				{ "slug": "maison-centre", "name": "Maison · centre culturel, bleu nuit", "color": "#101642" },
+				{ "slug": "point-librairie", "name": "Point · librairie, sur le noir", "color": "#5A9C8C" },
+				{ "slug": "point-ymca", "name": "Point · YMCA-Press, sur le noir", "color": "#B8744A" },
+				{ "slug": "point-centre", "name": "Point · centre culturel, sur le noir", "color": "#5465EA" }
 			]
 		},
 		"typography": {

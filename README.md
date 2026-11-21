@@ -33,6 +33,20 @@ Elle reprend la maquette Wix : Montserrat, la pervenche `#9DB5F5`, la barre noir
 changer, on touche à `theme.json` et à `style.css`, et seulement à eux : les sections et les gabarits n'ont aucune
 couleur ni taille écrite en dur.
 
+## L'en-tête : trois maisons, trois couleurs
+
+Retenu le 21 novembre 2026. Une barre noire, la même partout : le nom, les trois maisons (Librairie, Maison
+d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa couleur, puis la loupe, le compte, le
+panier et la langue. Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
+(ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel ; rien dessous sur
+l'accueil et les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
+maisons et leurs pages.
+
+La maison d'une page se déduit d'elle-même (`er_maison()` dans `functions.php`) : la boutique, les rayons, les livres,
+les auteurs et les promotions pour la librairie ; les pages sous `ymca-press/` pour YMCA-Press ; les pages sous
+`centre-culturel/`, le journal et « Nous trouver » pour le centre. Les couleurs sont dans `theme.json` (« Maison · »
+et « Point · »), les pages des menus dans `er_pages_des_maisons()`.
+
 ## Les livres
 
 Un livre est un produit WooCommerce (Produits → Ajouter) :

@@ -5,7 +5,8 @@
  * Categories: editeurs-reunis
  * Inserter: no
  *
- * La devise de la librairie, puis ses rayons : Accueil, les grands rayons, Nos meilleures ventes, Nouveautés, Promos.
+ * La ligne verte de la librairie, sous la barre noire de l'en-tête : ses rayons (Accueil, les grands rayons, Nos
+ * meilleures ventes, Nouveautés, Promos). La devise est passée sous le titre de la librairie (composition « librairie »).
  * Chaque entrée (sauf Accueil) ouvre un tiroir sur toute la largeur :
  * - un grand rayon : ses sous-rayons à gauche, en une ou deux listes (le groupe d'un sous-rayon est sa méta
  *   « er_groupe »), et deux tuiles ;
@@ -280,7 +281,6 @@ $entrees[] = $entree( 'promos', $promos_nom, er_lien( 'promos/' ), $promos );
 <!-- wp:group {"align":"full","className":"er-librairie-entete","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull er-librairie-entete">
 	<!-- wp:html -->
-	<p class="er-devise"><?php esc_html_e( 'Les Éditeurs réunis, librairie de référence depuis 1925', 'editeurs-reunis' ); ?></p>
 	<nav class="er-rayons-nav" aria-label="<?php esc_attr_e( 'Les rayons de la librairie', 'editeurs-reunis' ); ?>">
 		<ul class="er-rayons-liste">
 			<?php echo implode( '', $entrees ); // phpcs:ignore WordPress.Security.EscapeOutput ?>

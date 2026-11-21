@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.2.0
+Version: 0.3.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -88,46 +88,178 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-lien-fleche a:hover::after { margin-inline-start: 0.25em; }
 
 /* --------------------------------------------------------------------------
-   L'en-tête : la barre noire, puis le nom et le menu
+   L'en-tête : la barre noire, puis le menu de la maison sur sa couleur
    -------------------------------------------------------------------------- */
 
-.er-barre { padding-block: 0.5rem; font-size: 0.8125rem; }
-.er-barre > .alignwide { gap: 2.25rem; align-items: center; }
+/* Retenu le 21 novembre 2026 (« B3 ») : la barre noire, la même partout, avec le nom, les trois maisons, les outils
+   et la langue ; dessous, le menu de la maison où l'on est, sur sa couleur. Chaque maison a sa couleur et son point,
+   la même teinte éclaircie pour se voir sur le noir. La classe de la maison est sur le corps de la page
+   (er-maison-librairie, er-maison-ymca, er-maison-centre ; functions.php). */
+.er-maison-librairie { --er-maison: var(--wp--preset--color--maison-librairie); }
+.er-maison-ymca { --er-maison: var(--wp--preset--color--maison-ymca); }
+.er-maison-centre { --er-maison: var(--wp--preset--color--maison-centre); }
+.er-onglet-librairie { --er-point: var(--wp--preset--color--point-librairie); }
+.er-onglet-ymca { --er-point: var(--wp--preset--color--point-ymca); }
+.er-onglet-centre { --er-point: var(--wp--preset--color--point-centre); }
+
+.er-barre { padding-block: 0.75rem; font-size: 0.8125rem; }
+.er-barre-dedans { gap: 1.75rem; align-items: center; }
 .er-barre a { color: inherit; text-decoration: none; }
 
-/* Comme sur la maquette : le champ sans cadre, le texte et la loupe en blanc sur le noir. */
-.er-chercher { margin: 0 1rem 0 0; width: min(22rem, 40vw); }
-.er-chercher .wp-block-search__inside-wrapper {
-	border: 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-	padding: 0;
-	background: transparent;
+/* Le nom sur deux lignes, en capitales très espacées (plus petit dans la barre que dans le pied). */
+.er-logo { margin: 0; line-height: 1.45; }
+.er-logo a {
+	display: inline-block;
+	text-decoration: none;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.95em;
+	text-transform: uppercase;
+	color: inherit;
 }
+.er-logo span { display: block; }
+.er-barre .er-logo { margin-inline-end: auto; }
+.er-barre .er-logo a { font-size: 0.6875rem; letter-spacing: 0.62em; white-space: nowrap; }
+
+/* Les trois maisons : un point de couleur, le nom ; la maison où l'on est en blanc, soulignée. */
+.er-menu { font-size: 0.875rem; }
+.er-menu a { text-decoration: none; }
+.er-menu .er-onglet { flex: none; }
+.er-menu .er-onglet > .wp-block-navigation-item__content {
+	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	color: rgba(255, 255, 255, 0.78);
+	font-weight: 500;
+}
+.er-menu .er-onglet > .wp-block-navigation-item__content::before {
+	content: "";
+	flex: none;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--er-point);
+}
+.er-menu .er-onglet > .wp-block-navigation-item__content:hover,
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content { color: var(--wp--preset--color--base); }
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content { font-weight: 600; }
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content .wp-block-navigation-item__label {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.55em;
+}
+
+/* À l'ordinateur, plus de menus déroulants : le menu de la maison est dessous. Les pages des maisons, la recherche et
+   le compte n'apparaissent que dans le menu du téléphone. */
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container,
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-icon,
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-menu-telephone { display: none !important; }
+
+/* Le menu (≡) jusqu'à 1200 px, en plein écran, noir ; les trois maisons en grand avec leur point, leurs pages dessous. */
+.er-menu .wp-block-navigation__responsive-container-open { color: var(--wp--preset--color--base); }
+.er-menu .wp-block-navigation__responsive-container.is-menu-open { padding: 1.25rem var(--wp--style--root--padding-right) 2rem var(--wp--style--root--padding-left); }
+.er-menu .is-menu-open .wp-block-navigation__container { gap: 1.6rem; }
+.er-menu .is-menu-open .wp-block-navigation__responsive-container-content,
+.er-menu .is-menu-open .wp-block-navigation__container,
+.er-menu .is-menu-open .wp-block-navigation-item,
+.er-menu .is-menu-open .wp-block-navigation__submenu-container { align-items: flex-start !important; text-align: start; }
+.er-menu .is-menu-open .er-onglet > .wp-block-navigation-item__content { font-size: var(--wp--preset--font-size--large); color: var(--wp--preset--color--base); }
+.er-menu .is-menu-open .wp-block-navigation__submenu-container { padding: 0.6rem 0 0 17px !important; gap: 0.55rem; }
+.er-menu .is-menu-open .wp-block-navigation__submenu-container a { font-size: 0.9375rem; color: rgba(255, 255, 255, 0.78); }
+.er-menu .is-menu-open .er-menu-telephone > a { font-size: 0.9375rem; }
+.er-menu .is-menu-open .er-chercher-menu { width: 100%; margin-top: 0.5rem; }
+.er-menu .is-menu-open .er-chercher-menu .wp-block-search__inside-wrapper { border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.4); padding: 0; background: transparent; }
+.er-menu .is-menu-open .er-chercher-menu .wp-block-search__input { background: transparent; color: var(--wp--preset--color--base); border: 0; padding: 0.5rem 0; font-family: inherit; }
+.er-menu .is-menu-open .er-chercher-menu .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.er-menu .is-menu-open .er-chercher-menu .wp-block-search__button { background: transparent; color: var(--wp--preset--color--base); border: 0; padding: 0 0 0 0.5rem; margin: 0; }
+.er-menu .is-menu-open .er-chercher-menu .wp-block-search__button svg { fill: currentColor; }
+
+/* À partir de 1280 px, les trois maisons sont dans la barre (le menu de WordPress ne passe en ligne qu'à 600 px ; ici,
+   « toujours en menu », puis en ligne à partir de 1280). */
+@media (min-width: 1280px) {
+	.er-menu .wp-block-navigation__responsive-container-open.always-shown { display: none; }
+	.er-menu .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) {
+		display: block;
+		position: relative;
+		width: 100%;
+		z-index: auto;
+		background-color: inherit;
+	}
+	.er-menu .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-close { display: none; }
+}
+@media (max-width: 1279px) {
+	.er-barre .er-menu { order: 10; }
+}
+@media (min-width: 1280px) and (max-width: 1439px) {
+	.er-barre .er-logo a { letter-spacing: 0.45em; }
+}
+
+/* La loupe : un clic ouvre le champ dans la barre, en blanc sur le noir. Un filet la sépare des maisons. */
+.er-chercher { margin: 0; position: relative; }
+@media (min-width: 1280px) {
+	.er-barre .er-chercher { padding-inline-start: 1.75rem; }
+	.er-barre .er-chercher::before {
+		content: "";
+		position: absolute;
+		inset-inline-start: 0;
+		top: 50%;
+		width: 1px;
+		height: 20px;
+		margin-top: -10px;
+		background: rgba(255, 255, 255, 0.3);
+	}
+}
+.er-chercher .wp-block-search__inside-wrapper { border: 0; padding: 0; background: transparent; }
 .er-chercher .wp-block-search__input {
 	background: transparent;
 	color: var(--wp--preset--color--base);
 	border: 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 0;
 	padding: 0.3rem 0;
 	font-size: 0.8125rem;
 	font-family: inherit;
 }
-.er-chercher .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.82); }
-.er-chercher .wp-block-search__input:focus { outline: none; }
-.er-chercher .wp-block-search__inside-wrapper:focus-within { border-bottom-color: var(--wp--preset--color--base); }
+.er-chercher .wp-block-search__input::placeholder { color: rgba(255, 255, 255, 0.75); }
+.er-chercher .wp-block-search__input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.er-chercher .wp-block-search__input:focus { outline: none; border-bottom-color: var(--wp--preset--color--base); }
 .er-chercher .wp-block-search__button {
 	background: transparent;
 	color: var(--wp--preset--color--base);
 	border: 0;
-	padding: 0 0 0 0.5rem;
+	padding: 0.25rem;
 	margin: 0;
 }
-.er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.2rem; height: 1.2rem; }
+.er-chercher .wp-block-search__button svg { fill: currentColor; width: 1.25rem; height: 1.25rem; }
+/* Ouvert, le champ s'étend vers la gauche, à la place des maisons (qui s'effacent le temps de chercher), sans rien
+   pousser. */
+.er-barre-dedans:has(.er-chercher:not(.wp-block-search__searchfield-hidden)) .er-menu { visibility: hidden; }
+.er-barre .er-chercher:not(.wp-block-search__searchfield-hidden) .wp-block-search__input {
+	position: absolute;
+	inset-inline-end: 2.25rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: min(34rem, 55vw);
+	height: 2.5rem;
+	box-sizing: border-box;
+	padding: 0;
+	font-size: 0.875rem;
+	background: var(--wp--preset--color--noir);
+	z-index: 5;
+}
 
-.er-compte { font-weight: 600; }
+.er-compte a, .er-compte .wc-block-customer-account__account-icon { color: var(--wp--preset--color--base); }
+.er-compte svg { width: 1.25rem; height: 1.25rem; }
 
-/* Le sélecteur de langue, au bout gauche de la barre noire : FR · RU · EN. La langue de la page en blanc, les autres
-   en gris clair ; une langue où la page n'est pas traduite mène à l'accueil de cette langue, en plus discret. */
-.er-barre .er-langues { margin-right: auto; }
+/* Le sélecteur de langue, au bout de la barre : FR · RU · EN. La langue de la page en blanc, les autres en gris
+   clair ; une langue où la page n'est pas traduite mène à l'accueil de cette langue, en plus discret. */
 .er-langues ul { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
 .er-langues li + li::before { content: "·"; margin-inline: 0.5em; color: rgba(255, 255, 255, 0.5); }
 .er-langue { font-weight: 600; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.62) !important; }
@@ -142,44 +274,52 @@ sup { font-size: 0.62em; line-height: 0; }
 	font-weight: 700;
 }
 
-.er-entete { padding-block: 1.45rem; border-bottom: var(--er-filet); background: var(--wp--preset--color--base); }
-.er-entete > .alignwide { align-items: center; gap: 2rem; }
-
-/* Le nom sur deux lignes, en capitales très espacées, comme sur la maquette. */
-.er-logo { margin: 0; line-height: 1.45; }
-.er-logo a {
-	display: inline-block;
+/* Le menu de la maison, sur sa couleur : les pages d'YMCA-Press ou du centre culturel (la librairie a ses rayons, plus
+   bas). Sur une ligne qu'on fait glisser de côté quand elle déborde. */
+.er-sous-menu { background: var(--er-maison); color: var(--wp--preset--color--base); }
+.er-sous-menu ul {
+	list-style: none;
+	box-sizing: content-box;
+	max-width: var(--wp--style--global--wide-size);
+	margin: 0 auto;
+	padding: 0 var(--wp--style--root--padding-right) 0 var(--wp--style--root--padding-left);
+	display: flex;
+	gap: 0 1.6rem;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.er-sous-menu ul::-webkit-scrollbar { display: none; }
+.er-sous-menu li { flex: none; }
+.er-sous-menu a {
+	display: block;
+	padding: 0.8rem 0;
+	color: rgba(255, 255, 255, 0.86);
+	font-size: 0.875rem;
+	font-weight: 500;
+	white-space: nowrap;
 	text-decoration: none;
-	font-size: 0.8125rem;
-	font-weight: 700;
-	letter-spacing: 0.95em;
-	text-transform: uppercase;
-	color: inherit;
 }
-.er-logo span { display: block; }
-
-.er-menu { font-size: 0.875rem; }
-.er-menu a { text-decoration: none; }
-.er-menu .wp-block-navigation-item__content:hover { text-decoration: underline; }
-.er-menu .wp-block-navigation__submenu-icon { margin-inline-start: 0.4em; }
-.er-menu .wp-block-navigation__submenu-container {
-	border: var(--er-filet) !important;
-	padding: 0.6rem 0;
-	min-width: 15rem !important;
-	box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.3);
+.er-sous-menu a:hover { color: var(--wp--preset--color--base); text-decoration: underline; text-underline-offset: 0.45em; }
+.er-sous-menu a[aria-current] {
+	color: var(--wp--preset--color--base);
+	font-weight: 600;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.45em;
 }
-.er-menu .wp-block-navigation__submenu-container .wp-block-navigation-item__content { padding: 0.45rem 1.2rem; }
-.er-menu .wp-block-navigation__responsive-container.is-menu-open { padding: 1.5rem; }
-.er-menu .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { font-size: var(--wp--preset--font-size--large); gap: 1rem; }
 
 @media (max-width: 1180px) {
 	.er-logo a { letter-spacing: 0.6em; }
 }
 @media (max-width: 781px) {
-	.er-barre > .alignwide { gap: 1rem; }
-	.er-chercher { width: auto; flex: 1; margin: 0; }
-	.er-compte { display: none; }
-	.er-entete { padding-block: 1.1rem; }
+	.er-barre { padding-block: 0.8rem; }
+	.er-barre-dedans { gap: 0.8rem; }
+	.er-barre .er-logo a { font-size: 0.5625rem; letter-spacing: 0.2em; }
+	.er-barre .er-chercher, .er-barre .er-compte { display: none; }
+	.er-barre .er-langues { order: 5; }
+	.er-barre .er-panier { order: 6; }
+	.er-langue { font-size: 0.6875rem; letter-spacing: 0.05em; }
+	.er-langues li + li::before { margin-inline: 0.35em; }
 	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
 }
 
@@ -759,45 +899,37 @@ sup { font-size: 0.62em; line-height: 0; }
    Le menu de la librairie : la devise, les rayons, le tiroir de chaque entrée
    -------------------------------------------------------------------------- */
 
-/* « Librairie » allumée dans le menu du haut quand on est dans la librairie ; la pervenche foncée, pour se lire. */
-.er-dans-la-librairie .er-lien-librairie > a,
-.er-dans-la-librairie .er-lien-librairie .wp-block-navigation-item__content { color: var(--wp--preset--color--accent-texte); }
-
-.er-librairie-entete { position: relative; z-index: 20; background: var(--wp--preset--color--base); border-bottom: var(--er-filet); margin-block: 0 !important; }
-.er-devise {
-	margin: 0;
-	padding: 0.95rem var(--wp--style--root--padding-right) 0.95rem var(--wp--style--root--padding-left);
-	text-align: center;
-	font-size: 0.9375rem;
-	font-weight: 500;
-	border-bottom: var(--er-filet);
-}
+/* La ligne verte de la librairie, sous la barre noire : les rayons en blanc sur le vert rayonnage. */
+.er-librairie-entete { position: relative; z-index: 20; background: var(--wp--preset--color--maison-librairie); margin-block: 0 !important; }
 .er-rayons-liste {
 	list-style: none;
-	margin: 0;
-	padding: 0.35rem var(--wp--style--root--padding-right) 0.35rem var(--wp--style--root--padding-left);
+	box-sizing: content-box;
+	max-width: var(--wp--style--global--wide-size);
+	margin: 0 auto;
+	padding: 0 var(--wp--style--root--padding-right) 0 var(--wp--style--root--padding-left);
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: flex-start;
 	gap: 0 1.35rem;
 }
 .er-rayon { display: flex; align-items: center; margin: 0; }
 .er-rayon-lien {
 	display: inline-block;
-	padding: 0.7rem 0;
+	padding: 0.8rem 0;
 	text-decoration: none;
 	font-weight: 500;
-	font-size: 0.9375rem;
-	color: var(--wp--preset--color--contrast);
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.88);
 	white-space: nowrap;
 }
-.er-rayon-lien:hover { text-decoration: underline; }
+.er-rayon-lien:hover { color: var(--wp--preset--color--base); text-decoration: underline; text-underline-offset: 0.45em; }
 .er-rayon-lien[aria-current],
 .er-a-tiroir.ouvert > .er-rayon-lien {
-	color: var(--wp--preset--color--accent-texte);
+	color: var(--wp--preset--color--base);
+	font-weight: 600;
 	text-decoration: underline;
-	text-decoration-thickness: 1.5px;
-	text-underline-offset: 0.4em;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.45em;
 }
 .er-rayon-ouvrir {
 	width: 24px;
@@ -808,12 +940,15 @@ sup { font-size: 0.62em; line-height: 0; }
 	margin-inline-start: 0.15rem;
 	border: 0;
 	background: none;
-	color: inherit;
+	color: rgba(255, 255, 255, 0.88);
 	cursor: pointer;
 }
 .er-rayon-ouvrir svg { transition: transform var(--er-transition); }
-.er-a-tiroir.ouvert .er-rayon-ouvrir { color: var(--wp--preset--color--accent-texte); }
+.er-a-tiroir.ouvert .er-rayon-ouvrir { color: var(--wp--preset--color--base); }
 .er-a-tiroir.ouvert .er-rayon-ouvrir svg { transform: rotate(180deg); }
+
+/* La devise, sous le titre de la librairie. */
+.er-devise { margin: 0.75rem 0 0; font-size: var(--wp--preset--font-size--medium); color: var(--wp--preset--color--encre-2); }
 
 /* Le tiroir : sur toute la largeur, cerné de noir ; trois tiers : les sous-rayons, puis deux tuiles (ou quatre
    couvertures, sur les deux tiers). */
@@ -969,7 +1104,6 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-vitrine-livre:nth-child(n+3) { display: none; }
 }
 @media (max-width: 781px) {
-	.er-devise { font-size: var(--wp--preset--font-size--small); padding-block: 0.7rem; }
 	/* Les entrées sur une ligne qu'on fait glisser ; le tiroir ne montre plus que les sous-rayons. */
 	.er-rayons-liste { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; gap: 0 1.1rem; }
 	.er-rayons-liste::-webkit-scrollbar { display: none; }
@@ -1014,8 +1148,7 @@ sup { font-size: 0.62em; line-height: 0; }
 	--wp--preset--color--aplat-vert: #2F4943;
 	--wp--preset--color--aplat-brun: #2C1F17;
 }
-.er-ambiance-papier header.wp-block-template-part,
-.er-ambiance-papier .er-librairie-entete { background-color: #FFFFFF; }
+.er-ambiance-papier header.wp-block-template-part { background-color: #FFFFFF; }
 .er-ambiance-papier header.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier footer.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier .er-librairie-entete .er-aplat-pervenche { background: var(--wp--preset--color--accent); }

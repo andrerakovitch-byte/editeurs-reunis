@@ -187,6 +187,20 @@ T = {
     ('menu du haut', 'Le journal du centre'): ('The Centre’s journal', 'Журнал центра'),
     ('menu du haut', 'Nous trouver'): ('Find us', 'Как нас найти'),
 
+    # Les menus des maisons, sous la barre noire (et dans le menu du téléphone)
+    ('menu d’YMCA-Press', 'La maison d’édition'): ('The publishing house', 'Об издательстве'),
+    ('menu d’YMCA-Press', 'Un siècle d’histoire'): ('A century of history', 'Век истории'),
+    ('menu d’YMCA-Press', 'Le catalogue'): ('Catalogue', 'Каталог'),
+    ('menu d’YMCA-Press', 'Les Amis d’YMCA-Press'): ('Friends of YMCA-Press', 'Друзья YMCA-Press'),
+    ('menu du centre culturel', 'Le centre'): ('About the centre', 'О центре'),
+    ('menu du centre culturel', 'Nos événements'): ('Events', 'Мероприятия'),
+    ('menu du centre culturel', 'Nos expositions'): ('Exhibitions', 'Выставки'),
+    ('menu du centre culturel', 'Nos podcasts'): ('Podcasts', 'Подкасты'),
+    ('menu du centre culturel', 'Nos vidéos'): ('Videos', 'Видео'),
+    ('menu du centre culturel', 'Le journal du centre'): ('The Centre’s journal', 'Журнал центра'),
+    ('menu du centre culturel', 'Nous trouver'): ('Find us', 'Как нас найти'),
+    (None, 'Mon compte'): ('My account', 'Личный кабинет'),
+
     # La fiche d'un livre
     ('fiche d’un livre', 'Rayon'): ('Section', 'Раздел'),
     ('fiche d’un livre', 'Langue'): ('Language', 'Язык'),

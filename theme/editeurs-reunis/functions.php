@@ -104,13 +104,17 @@ add_action(
 );
 
 /**
- * Dans la librairie (ses pages, un rayon, un livre, un auteur, une langue, les promotions), « Librairie » est allumée
- * dans le menu du haut.
+ * La maison de la page sur le corps de la page : er-maison-librairie, er-maison-ymca ou er-maison-centre (rien sur
+ * l'accueil et les pages communes). L'en-tête en tire la maison soulignée et la couleur du menu du dessous.
  */
 add_filter(
 	'body_class',
 	function ( $classes ) {
-		if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || 'promos' === er_page_reference() ) {
+		$maison = er_maison();
+		if ( $maison ) {
+			$classes[] = 'er-maison-' . $maison;
+		}
+		if ( 'librairie' === $maison ) {
 			$classes[] = 'er-dans-la-librairie';
 		}
 		return $classes;
@@ -209,6 +213,99 @@ function er_page_reference() {
 		}
 	}
 	return (string) get_post_field( 'post_name', $id );
+}
+
+/**
+ * Le chemin français de la page affichée (« ymca-press/histoire »), quelle que soit sa langue ; '' hors d'une page.
+ */
+function er_chemin_reference() {
+	if ( ! is_page() ) {
+		return '';
+	}
+	$id = get_queried_object_id();
+	if ( function_exists( 'pll_get_post' ) && function_exists( 'pll_default_language' ) ) {
+		$original = pll_get_post( $id, pll_default_language() );
+		if ( $original ) {
+			$id = $original;
+		}
+	}
+	return trim( (string) get_page_uri( $id ), '/' );
+}
+
+/* Les trois maisons ---------------------------------------------------------------------------------------------
+ *
+ * La librairie, la maison d'édition YMCA-Press et le centre culturel. Chaque page appartient à l'une d'elles, ou à
+ * aucune (l'accueil, le panier, le compte, les pages légales, la recherche) ; l'en-tête en tire sa couleur.
+ */
+
+/**
+ * La maison de la page affichée : 'librairie', 'ymca', 'centre', ou ''.
+ */
+function er_maison() {
+	if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || 'promos' === er_page_reference() ) {
+		return 'librairie';
+	}
+	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
+		return 'centre'; // Le journal du centre.
+	}
+	$racine = strtok( er_chemin_reference(), '/' );
+	if ( 'ymca-press' === $racine ) {
+		return 'ymca';
+	}
+	if ( in_array( $racine, array( 'centre-culturel', 'journal', 'nous-trouver' ), true ) ) {
+		return 'centre';
+	}
+	return '';
+}
+
+/**
+ * Les pages d'YMCA-Press et du centre culturel, par leur chemin français : le menu du dessous à l'ordinateur, le menu
+ * (≡) au téléphone. Les rayons de la librairie viennent, eux, des catégories de WooCommerce.
+ */
+function er_pages_des_maisons() {
+	return array(
+		'ymca'   => array(
+			'ymca-press/'                 => _x( 'La maison d’édition', 'menu d’YMCA-Press', 'editeurs-reunis' ),
+			'ymca-press/histoire/'        => _x( 'Un siècle d’histoire', 'menu d’YMCA-Press', 'editeurs-reunis' ),
+			'ymca-press/catalogue/'       => _x( 'Le catalogue', 'menu d’YMCA-Press', 'editeurs-reunis' ),
+			'ymca-press/amis-ymca-press/' => _x( 'Les Amis d’YMCA-Press', 'menu d’YMCA-Press', 'editeurs-reunis' ),
+		),
+		'centre' => array(
+			'centre-culturel/'             => _x( 'Le centre', 'menu du centre culturel', 'editeurs-reunis' ),
+			'centre-culturel/evenements/'  => _x( 'Nos événements', 'menu du centre culturel', 'editeurs-reunis' ),
+			'centre-culturel/expositions/' => _x( 'Nos expositions', 'menu du centre culturel', 'editeurs-reunis' ),
+			'centre-culturel/podcasts/'    => _x( 'Nos podcasts', 'menu du centre culturel', 'editeurs-reunis' ),
+			'centre-culturel/videos/'      => _x( 'Nos vidéos', 'menu du centre culturel', 'editeurs-reunis' ),
+			'journal/'                     => _x( 'Le journal du centre', 'menu du centre culturel', 'editeurs-reunis' ),
+			'nous-trouver/'                => _x( 'Nous trouver', 'menu du centre culturel', 'editeurs-reunis' ),
+		),
+	);
+}
+
+/**
+ * Le menu du dessous, sur la couleur de la maison, pour YMCA-Press et le centre culturel (la librairie a le sien,
+ * avec ses rayons et leurs tiroirs). La page où l'on est est soulignée ; un article du journal souligne le journal.
+ */
+function er_sous_menu() {
+	$maison = er_maison();
+	$pages  = er_pages_des_maisons();
+	if ( ! isset( $pages[ $maison ] ) ) {
+		return '';
+	}
+	$ici = er_chemin_reference();
+	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
+		$ici = 'journal';
+	}
+	$noms  = array(
+		'ymca'   => _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ),
+		'centre' => _x( 'Le centre culturel', 'menu du haut', 'editeurs-reunis' ),
+	);
+	$liens = '';
+	foreach ( $pages[ $maison ] as $chemin => $libelle ) {
+		$courant = trim( $chemin, '/' ) === $ici ? ' aria-current="page"' : '';
+		$liens  .= '<li><a href="' . er_lien( $chemin ) . '"' . $courant . '>' . esc_html( $libelle ) . '</a></li>';
+	}
+	return '<nav class="er-sous-menu" aria-label="' . esc_attr( $noms[ $maison ] ) . '"><ul>' . $liens . '</ul></nav>';
 }
 
 /**
@@ -311,13 +408,30 @@ add_shortcode(
 		return function_exists( 'er_selecteur_langues' ) ? er_selecteur_langues() : '';
 	}
 );
+add_shortcode( 'er_sous_menu', 'er_sous_menu' );
+
 // Un code court dans un gabarit n'est pas déplié quand il vient d'une composition (les compositions passent après) :
-// on le déplie dans son bloc HTML.
+// on déplie les nôtres dans leur bloc HTML.
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return false !== strpos( $html, '[er_langues_entete]' ) ? do_shortcode( $html ) : $html;
+		return ( false !== strpos( $html, '[er_langues_entete]' ) || false !== strpos( $html, '[er_sous_menu]' ) ) ? do_shortcode( $html ) : $html;
 	}
+);
+
+/**
+ * WooCommerce accroche de lui-même un compte et un panier après le menu de l'en-tête : l'en-tête a déjà les siens.
+ */
+add_filter(
+	'hooked_block_types',
+	function ( $blocs, $position, $ancre ) {
+		if ( 'core/navigation' === $ancre ) {
+			$blocs = array_values( array_diff( $blocs, array( 'woocommerce/customer-account', 'woocommerce/mini-cart' ) ) );
+		}
+		return $blocs;
+	},
+	20,
+	3
 );
 
 /**
