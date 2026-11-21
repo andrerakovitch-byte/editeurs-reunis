@@ -73,6 +73,20 @@ trois écritures : Dostoïevski, Достоевский, Dostoevsky et « dostoi
 son adresse (`/librairie/?er_auteur=iakhina&er_stock=1`). La fiche d'un livre a quatre champs de plus : traducteur,
 éditeur, collection, année d'édition.
 
+## Les pages d'exemple de la bêta
+
+Pour voir la bêta en entier, les maquettes du canevas sont posées en pages, telles quelles (`semer.php`, avec le HTML
+et les images de `plugin/…/donnees/exemples/`), sous un bandeau pervenche pâle « Page d'exemple » : elles seront
+refaites en blocs. Deux gabarits les accueillent : `page-exemple`, et `page-exemple-librairie` (avec les rayons de la
+librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette entière est réduite à l'écran
+(`assets/js/exemple.js`).
+
+- `/accueil-proposition/` : l'accueil comme une revue (proposition du 21 novembre) ;
+- `/librairie/encyclopedie/`, et dessous `age-d-argent/`, `soljenitsyne/`, `platonov/` : l'encyclopédie, un chapitre,
+  deux pages d'auteur ;
+- `/ymca-press/histoire/` : Un siècle d'histoire ;
+- `/centre-culturel/videos/`, et dessous `une-video/` ; `/centre-culturel/paris-emigration/`.
+
 ## Les livres
 
 Un livre est un produit WooCommerce (Produits → Ajouter) :

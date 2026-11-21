@@ -39,6 +39,19 @@ add_action(
 				'in_footer' => true,
 			)
 		);
+		// Les pages d'exemple (les maquettes du canevas, dans la bêta) : réduites, sous 1 100 px.
+		if ( is_page_template( array( 'page-exemple', 'page-exemple-librairie' ) ) ) {
+			wp_enqueue_script(
+				'editeurs-reunis-exemple',
+				get_theme_file_uri( 'assets/js/exemple.js' ),
+				array(),
+				$version,
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
 		wp_enqueue_script(
 			'editeurs-reunis-diaporama',
 			get_theme_file_uri( 'assets/js/diaporama.js' ),
@@ -251,6 +264,9 @@ function er_maison() {
 		return 'centre'; // Le journal du centre.
 	}
 	$racine = strtok( er_chemin_reference(), '/' );
+	if ( 'librairie' === $racine ) {
+		return 'librairie'; // L'encyclopédie, sous la librairie.
+	}
 	if ( 'ymca-press' === $racine ) {
 		return 'ymca';
 	}

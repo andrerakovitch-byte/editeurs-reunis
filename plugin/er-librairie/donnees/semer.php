@@ -553,6 +553,61 @@ er_semer_page(
 <!-- /wp:woocommerce/product-collection -->'
 );
 
+/* Les pages d'exemple ------------------------------------------------------------------------------------------ */
+
+/**
+ * Une page d'exemple pour la bêta : une maquette du canevas, posée telle quelle (le HTML de donnees/exemples/, fait par
+ * l'outil des propositions), sous un bandeau qui dit ce qu'elle est. Elle sera refaite en blocs.
+ *
+ * @param string $titre   Le titre.
+ * @param string $slug    Le slug, et le nom du fichier.
+ * @param int    $parent  La page parente.
+ * @param string $gabarit Le gabarit : page-exemple, ou page-exemple-librairie (avec les rayons de la librairie).
+ * @param int    $ordre   Sa place parmi ses sœurs.
+ */
+function er_semer_exemple( $titre, $slug, $parent = 0, $gabarit = 'page-exemple', $ordre = 0 ) {
+	$fichier = __DIR__ . '/exemples/' . $slug . '.html';
+	if ( ! file_exists( $fichier ) ) {
+		return 0;
+	}
+	$html = str_replace(
+		array( '{{IMAGES}}', '{{SITE}}' ),
+		array( plugins_url( 'donnees/exemples/images', dirname( __DIR__ ) . '/er-librairie.php' ), untrailingslashit( home_url() ) ),
+		file_get_contents( $fichier ) // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	);
+	$note    = '<p class="er-exemple-note"><strong>Page d’exemple.</strong> La maquette du canevas, posée telle quelle pour voir la bêta ; elle sera refaite en blocs, modifiables dans WordPress. Les liens ne mènent pas encore partout.</p>';
+	$contenu = "<!-- wp:html -->\n<div class=\"er-exemple\">{$note}<div class=\"er-exemple-cadre\"><div class=\"er-exemple-dedans\">{$html}</div></div></div>\n<!-- /wp:html -->";
+	$id      = er_semer_page( $titre, $slug, $contenu, $parent, $ordre );
+	if ( $id && ! is_wp_error( $id ) ) {
+		update_post_meta( $id, '_wp_page_template', $gabarit );
+	}
+	return $id;
+}
+
+// Les maquettes ont des styles et des images en ligne : WordPress ne doit pas les filtrer.
+kses_remove_filters();
+$parent_ymca   = get_page_by_path( 'ymca-press' );
+$parent_centre = get_page_by_path( 'centre-culturel' );
+$parent_lib    = (int) get_option( 'woocommerce_shop_page_id' );
+er_semer_exemple( 'L’accueil, une proposition', 'accueil-proposition', 0, 'page-exemple-librairie' );
+$encyclopedie = er_semer_exemple( 'L’encyclopédie', 'encyclopedie', $parent_lib, 'page-exemple-librairie' );
+if ( $encyclopedie ) {
+	er_semer_exemple( 'L’Âge d’argent', 'age-d-argent', $encyclopedie, 'page-exemple-librairie', 1 );
+	er_semer_exemple( 'Alexandre Soljenitsyne', 'soljenitsyne', $encyclopedie, 'page-exemple-librairie', 2 );
+	er_semer_exemple( 'Andreï Platonov', 'platonov', $encyclopedie, 'page-exemple-librairie', 3 );
+}
+if ( $parent_ymca ) {
+	er_semer_exemple( 'Un siècle d’histoire', 'histoire', $parent_ymca->ID, 'page-exemple', 1 );
+}
+if ( $parent_centre ) {
+	$videos = er_semer_exemple( 'Nos vidéos', 'videos', $parent_centre->ID, 'page-exemple', 4 );
+	if ( $videos ) {
+		er_semer_exemple( 'Une vidéo', 'une-video', $videos, 'page-exemple', 1 );
+	}
+	er_semer_exemple( 'Le Paris de l’émigration russe', 'paris-emigration', $parent_centre->ID, 'page-exemple', 6 );
+}
+kses_init();
+
 // Les autres graphies des auteurs : la recherche trouve « Солженицын » et « Solzhenitsyn » comme « Soljenitsyne ».
 $graphies = array(
 	'Gouzel Iakhina'         => array( 'Гузель Яхина', 'Guzel Yakhina' ),
