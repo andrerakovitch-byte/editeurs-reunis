@@ -381,6 +381,20 @@ sup { font-size: 0.62em; line-height: 0; }
    n'imposent pas les leurs. */
 .er-exemple-dedans :is(h1, h2, h3, h4, h5, h6, a) { color: inherit; }
 
+/* « Notre histoire », en pages (la version retenue, dans la variante chaude) : la barre de chaque page reste en bas
+   de l'écran tant qu'on lit la page ; la fiche d'un auteur s'ouvre au survol ou au clavier. Le cadre coupe sans
+   devenir une zone de défilement (overflow: clip), sinon la barre ne pourrait pas rester en bas de l'écran. */
+.er-exemple-cadre { overflow: clip; }
+.er-histoire-page { overflow: clip !important; }
+.er-histoire-barre { position: sticky; bottom: 0; z-index: 4; }
+.er-histoire-barre a[aria-label] { transition: background var(--er-transition), color var(--er-transition); }
+.er-histoire-barre a[aria-label]:hover,
+.er-histoire-barre a[aria-label]:focus-visible { background: #FFFFFF; color: #000000 !important; }
+.er-histoire-fin { opacity: 0.3; }
+.er-fiche-auteur { display: none; }
+.er-auteur-survol:hover .er-fiche-auteur,
+.er-auteur-survol:focus-within .er-fiche-auteur { display: block; }
+
 /* --------------------------------------------------------------------------
    La recherche : le panneau qu'ouvre la loupe (inc/recherche.php, assets/js/recherche.js)
    -------------------------------------------------------------------------- */

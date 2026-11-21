@@ -132,7 +132,10 @@ librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette ent
 
 - `/librairie/encyclopedie/`, et dessous `age-d-argent/`, `soljenitsyne/`, `platonov/` : l'encyclopédie, un chapitre,
   deux pages d'auteur ;
-- `/ymca-press/histoire/` : Un siècle d'histoire ;
+- `/ymca-press/histoire/` : Un siècle d'histoire, dans la version retenue : « en pages » (dix chapitres en quatorze
+  pages de même hauteur), dans la variante chaude, celle du patrimoine (décidé le 21 nov.). La barre noire de chaque
+  page reste en bas de l'écran pendant qu'on la lit, ses flèches mènent à la page d'avant et à celle d'après, et la
+  fiche d'un auteur souligné s'ouvre au survol ou au clavier (`style.css`, « Notre histoire, en pages ») ;
 - `/centre-culturel/videos/`, et dessous `une-video/` ; `/centre-culturel/paris-emigration/`.
 
 ## Les livres
