@@ -113,6 +113,23 @@ function er_panneau_recherche() {
 	$courant_etats   = (array) er_critere_courant( 'etat' );
 	$courant_rayon   = (array) er_critere_courant( 'rayon' );
 
+	// Où chercher : les trois maisons ; puis, pour les livres, le rayon, la langue, l'état. Des boutons à presser (un
+	// seul pour « Où chercher », plusieurs ailleurs), jamais des liens : ils filtrent ce qu'on tape.
+	$maisons = array(
+		'tout'      => __( 'Partout', 'editeurs-reunis' ),
+		'librairie' => __( 'La librairie', 'editeurs-reunis' ),
+		'ymca'      => __( 'YMCA-Press', 'editeurs-reunis' ),
+		'centre'    => __( 'Le centre culturel', 'editeurs-reunis' ),
+	);
+	$filtre = function ( $nom, $libelle, $options, $un_seul = false ) {
+		$html = '<fieldset class="er-filtre" data-er-filtre="' . esc_attr( $nom ) . '"' . ( $un_seul ? ' data-er-un-seul' : '' ) . '><legend class="er-filtre-titre">' . esc_html( $libelle ) . '</legend><div class="er-filtre-choix">';
+		foreach ( $options as $valeur => $texte ) {
+			$presse = $un_seul && 'tout' === $valeur;
+			$point  = 'maison' === $nom && 'tout' !== $valeur ? er_point_maison( $valeur ) : '';
+			$html  .= '<button type="button" class="er-choix' . ( $presse ? ' est-active' : '' ) . '" aria-pressed="' . ( $presse ? 'true' : 'false' ) . '" data-er-valeur="' . esc_attr( $valeur ) . '">' . $point . '<span>' . esc_html( $texte ) . '</span></button>';
+		}
+		return $html . '</div></fieldset>';
+	};
 	$champ_texte = function ( $nom, $libelle, $aide, $liste = '' ) {
 		return '<label class="er-rd-champ"><span class="er-rd-libelle">' . esc_html( $libelle ) . '</span>'
 			. '<input type="text" name="er_' . esc_attr( $nom ) . '" value="' . esc_attr( er_critere_courant( $nom ) ) . '" placeholder="' . esc_attr( $aide ) . '" autocomplete="off"' . ( $liste ? ' list="' . esc_attr( $liste ) . '"' : '' ) . '></label>';
@@ -147,70 +164,72 @@ function er_panneau_recherche() {
 					<button type="button" class="er-recherche-bascule" aria-expanded="false" aria-controls="er-recherche-detaillee"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?><?php echo $chev; // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 					<button type="button" class="er-recherche-fermer" data-er-fermer><?php echo $croix; // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></button>
 				</div>
-				<p class="er-recherche-pour" hidden></p>
-				<div class="er-recherche-portees" hidden></div>
+				<div class="er-recherche-corps">
+					<aside class="er-recherche-filtres" aria-label="<?php esc_attr_e( 'Filtrer', 'editeurs-reunis' ); ?>">
+						<button type="button" class="er-recherche-filtrer" aria-expanded="false" aria-controls="er-recherche-groupes"><?php esc_html_e( 'Filtrer', 'editeurs-reunis' ); ?><span class="er-recherche-nombre" hidden></span><?php echo $chev; // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
+						<div class="er-recherche-groupes" id="er-recherche-groupes">
+							<div class="er-filtres-tete">
+								<p class="er-recherche-surtitre"><?php esc_html_e( 'Filtrer', 'editeurs-reunis' ); ?></p>
+								<button type="button" class="er-filtres-effacer" hidden><?php esc_html_e( 'Tout effacer', 'editeurs-reunis' ); ?></button>
+							</div>
+							<?php
+							// phpcs:disable WordPress.Security.EscapeOutput -- les filtres sont échappés pièce à pièce.
+							echo $filtre( 'maison', __( 'Où chercher', 'editeurs-reunis' ), $maisons, true );
+							?>
+							<div class="er-filtres-livres">
+								<?php
+								echo $filtre( 'rayon', __( 'Rayon', 'editeurs-reunis' ), wp_list_pluck( $rayons, 'name', 'slug' ) );
+								echo $filtre( 'langue', __( 'Langue', 'editeurs-reunis' ), wp_list_pluck( $langues, 'name', 'slug' ) );
+								echo $filtre( 'etat', __( 'État', 'editeurs-reunis' ), $etats );
+								// phpcs:enable
+								?>
+							</div>
+						</div>
+					</aside>
 
-				<div class="er-recherche-pistes">
-					<div class="er-recherche-colonne">
-						<div class="er-recherche-recentes" hidden>
-							<p class="er-recherche-surtitre"><?php esc_html_e( 'Vos dernières recherches', 'editeurs-reunis' ); ?></p>
-							<ul class="er-recherche-lignes"></ul>
+					<div class="er-recherche-principal">
+						<p class="er-recherche-pour" hidden></p>
+						<div class="er-recherche-portees" hidden></div>
+
+						<div class="er-recherche-pistes">
+							<div class="er-recherche-colonne">
+								<div class="er-recherche-recentes" hidden>
+									<p class="er-recherche-surtitre"><?php esc_html_e( 'Vos dernières recherches', 'editeurs-reunis' ); ?></p>
+									<ul class="er-recherche-lignes"></ul>
+								</div>
+								<p class="er-recherche-surtitre"><?php esc_html_e( 'On cherche souvent', 'editeurs-reunis' ); ?></p>
+								<ul class="er-recherche-lignes">
+									<?php foreach ( er_recherches_frequentes() as $frequente ) : ?>
+										<li><a class="er-r-lien er-recherche-proposition" href="<?php echo esc_url( er_lien_recherche( $frequente ) ); ?>" data-er-texte="<?php echo esc_attr( $frequente ); ?>"><?php echo esc_html( $frequente ); ?></a></li>
+									<?php endforeach; ?>
+								</ul>
+							</div>
+							<?php if ( $livres ) : ?>
+								<div class="er-recherche-colonne">
+									<p class="er-recherche-surtitre"><?php esc_html_e( 'Les derniers arrivés', 'editeurs-reunis' ); ?></p>
+									<ul class="er-recherche-derniers">
+										<?php foreach ( $livres as $livre ) : ?>
+											<?php $auteurs = wp_get_post_terms( $livre->get_id(), 'auteur', array( 'fields' => 'names' ) ); ?>
+											<li><a class="er-r-lien" href="<?php echo esc_url( get_permalink( $livre->get_id() ) ); ?>">
+												<?php if ( $livre->get_image_id() ) : ?>
+													<img src="<?php echo esc_url( wp_get_attachment_image_url( $livre->get_image_id(), 'woocommerce_thumbnail' ) ); ?>" alt="" loading="lazy">
+												<?php else : ?>
+													<span class="er-r-couverture-vide" aria-hidden="true"></span>
+												<?php endif; ?>
+												<span class="er-r-titre"><?php echo esc_html( $livre->get_name() ); ?></span>
+												<?php if ( $auteurs && ! is_wp_error( $auteurs ) ) : ?>
+													<span class="er-r-sous"><?php echo esc_html( implode( ', ', $auteurs ) ); ?></span>
+												<?php endif; ?>
+											</a></li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+							<?php endif; ?>
 						</div>
-						<p class="er-recherche-surtitre"><?php esc_html_e( 'On cherche souvent', 'editeurs-reunis' ); ?></p>
-						<ul class="er-recherche-lignes">
-							<?php foreach ( er_recherches_frequentes() as $frequente ) : ?>
-								<li><a class="er-r-lien er-recherche-proposition" href="<?php echo esc_url( er_lien_recherche( $frequente ) ); ?>" data-er-texte="<?php echo esc_attr( $frequente ); ?>"><?php echo esc_html( $frequente ); ?></a></li>
-							<?php endforeach; ?>
-						</ul>
+
+						<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
 					</div>
-					<div class="er-recherche-colonne">
-						<?php if ( $rayons ) : ?>
-							<p class="er-recherche-surtitre"><?php esc_html_e( 'Par rayon', 'editeurs-reunis' ); ?></p>
-							<ul class="er-recherche-rayons">
-								<?php foreach ( $rayons as $rayon ) : ?>
-									<li><a class="er-r-lien" href="<?php echo esc_url( get_term_link( $rayon ) ); ?>"><?php echo esc_html( $rayon->name ); ?></a></li>
-								<?php endforeach; ?>
-							</ul>
-						<?php endif; ?>
-						<?php if ( $langues ) : ?>
-							<p class="er-recherche-surtitre"><?php esc_html_e( 'Par langue', 'editeurs-reunis' ); ?></p>
-							<ul class="er-recherche-langues">
-								<?php foreach ( $langues as $langue ) : ?>
-									<li><a class="er-r-lien" href="<?php echo esc_url( get_term_link( $langue ) ); ?>"><?php echo esc_html( $langue->name ); ?></a></li>
-								<?php endforeach; ?>
-							</ul>
-						<?php endif; ?>
-						<p class="er-recherche-surtitre"><?php esc_html_e( 'Ailleurs sur le site', 'editeurs-reunis' ); ?></p>
-						<ul class="er-recherche-ailleurs">
-							<li><a class="er-r-lien" href="<?php echo esc_url( er_mention( 'nouveaute' ) ); ?>"><?php echo er_point_maison( 'librairie' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Les nouveautés de la librairie', 'editeurs-reunis' ); ?></a></li>
-							<li><a class="er-r-lien" href="<?php echo er_lien( 'ymca-press/catalogue/' ); ?>"><?php echo er_point_maison( 'ymca' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Le catalogue d’YMCA-Press, depuis 1921', 'editeurs-reunis' ); ?></a></li>
-							<li><a class="er-r-lien" href="<?php echo er_lien( 'centre-culturel/evenements/' ); ?>"><?php echo er_point_maison( 'centre' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Les événements du centre, les podcasts, les vidéos', 'editeurs-reunis' ); ?></a></li>
-						</ul>
-					</div>
-					<?php if ( $livres ) : ?>
-						<div class="er-recherche-colonne">
-							<p class="er-recherche-surtitre"><?php esc_html_e( 'Les derniers arrivés', 'editeurs-reunis' ); ?></p>
-							<ul class="er-recherche-derniers">
-								<?php foreach ( $livres as $livre ) : ?>
-									<?php $auteurs = wp_get_post_terms( $livre->get_id(), 'auteur', array( 'fields' => 'names' ) ); ?>
-									<li><a class="er-r-lien" href="<?php echo esc_url( get_permalink( $livre->get_id() ) ); ?>">
-										<?php if ( $livre->get_image_id() ) : ?>
-											<img src="<?php echo esc_url( wp_get_attachment_image_url( $livre->get_image_id(), 'woocommerce_thumbnail' ) ); ?>" alt="" loading="lazy">
-										<?php else : ?>
-											<span class="er-r-couverture-vide" aria-hidden="true"></span>
-										<?php endif; ?>
-										<span class="er-r-titre"><?php echo esc_html( $livre->get_name() ); ?></span>
-										<?php if ( $auteurs && ! is_wp_error( $auteurs ) ) : ?>
-											<span class="er-r-sous"><?php echo esc_html( implode( ', ', $auteurs ) ); ?></span>
-										<?php endif; ?>
-									</a></li>
-								<?php endforeach; ?>
-							</ul>
-						</div>
-					<?php endif; ?>
 				</div>
-
-				<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
 
 				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" hidden>
 					<div class="er-rd-grille">
@@ -344,6 +363,13 @@ add_action(
 						'fermer'        => __( 'Fermer', 'editeurs-reunis' ),
 						'rechercher'    => __( 'Rechercher', 'editeurs-reunis' ),
 						'effacer_recentes' => __( 'Effacer', 'editeurs-reunis' ),
+						'aucun_filtre'  => __( 'Aucun livre ne répond à ces filtres. Retirez-en un, ou essayez la recherche détaillée.', 'editeurs-reunis' ),
+						/* translators: %s: ce qu'on a tapé. */
+						'aucun_texte_filtre' => __( 'Rien pour « %s » avec ces filtres. Retirez-en un, ou essayez un autre mot.', 'editeurs-reunis' ),
+						'champ_tout'    => __( 'Un titre, un auteur, un sujet…', 'editeurs-reunis' ),
+						'champ_librairie' => __( 'Un titre, un auteur, un rayon…', 'editeurs-reunis' ),
+						'champ_ymca'    => __( 'Dans le catalogue d’YMCA-Press…', 'editeurs-reunis' ),
+						'champ_centre'  => __( 'Dans les événements et le journal du centre…', 'editeurs-reunis' ),
 					),
 				)
 			) . ';',

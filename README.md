@@ -49,14 +49,19 @@ et « Point · »), les pages des menus dans `er_pages_des_maisons()`.
 
 ## La recherche
 
-La loupe de la barre noire ouvre un panneau (`theme/…/inc/recherche.php`, `assets/js/recherche.js`) : avant de taper,
-des pistes (les dernières recherches, les recherches fréquentes, les rayons, les langues, les derniers arrivés) ; en
+La loupe de la barre noire ouvre un panneau (`theme/…/inc/recherche.php`, `assets/js/recherche.js`). À gauche, les
+filtres : où chercher (partout, la librairie, YMCA-Press, le centre culturel), puis, pour les livres, le rayon, la
+langue et l'état. Ce sont des boutons qu'on presse, jamais des liens (décision du 21 nov. 2026) : ils filtrent ce
+qu'on tape, et seuls, sans texte, montrent les livres qui y répondent ; au téléphone, ils se replient sous « Filtrer ».
+À droite, avant de taper, des pistes (les dernières recherches, les recherches fréquentes, les derniers arrivés) ; en
 tapant, les résultats rangés par genre (l'auteur, les livres, les rayons, YMCA-Press, le centre, le journal), chacun
-avec le point de sa maison ; « Recherche détaillée » déplie des champs qui se combinent (titre, auteur, traducteur,
-ISBN, rayon, langue, éditeur, collection, année d'édition, prix, état, en stock) et compte les livres à chaque choix.
+avec le point de sa maison ; Entrée emporte le texte et les filtres. « Recherche détaillée » reprend les filtres et
+déplie des champs qui se combinent (titre, auteur, traducteur, ISBN, rayon, langue, éditeur, collection, année
+d'édition, prix, état, en stock) ; elle compte les livres à chaque choix.
 
 L'extension tient l'index (`plugin/…/inc/recherche.php`, une table `er_index` refaite à chaque enregistrement) et
-l'API que lit le panneau : `/wp-json/er/v1/chercher?q=` et `/wp-json/er/v1/livres?er_auteur=…`. L'index connaît les
+l'API que lit le panneau : `/wp-json/er/v1/chercher?q=` (avec `er_rayon[]`, `er_langue[]`, `er_etat[]`, les livres
+seulement) et `/wp-json/er/v1/livres?er_auteur=…`. L'index connaît les
 trois écritures : Dostoïevski, Достоевский, Dostoevsky et « dostoievski » ont la même clé ; pour un nom qui y
 échappe, la fiche d'un auteur a un champ « Autres graphies ». La recherche des livres de WordPress
 (`?s=…&post_type=product`) passe par le même index, et la librairie lit les critères de la recherche détaillée dans

@@ -27,12 +27,22 @@
 	var recentes = panneau.querySelector( '.er-recherche-recentes' );
 	var voir = detaillee.querySelector( '.er-rd-voir' );
 	var criteres = detaillee.querySelector( '.er-rd-criteres' );
+	var corps = panneau.querySelector( '.er-recherche-corps' );
+	var cadreFiltres = panneau.querySelector( '.er-recherche-filtres' );
+	var filtrer = panneau.querySelector( '.er-recherche-filtrer' );
+	var nombreFiltres = panneau.querySelector( '.er-recherche-nombre' );
+	var effacerFiltres = panneau.querySelector( '.er-filtres-effacer' );
+	var filtresLivres = panneau.querySelector( '.er-filtres-livres' );
+	var postType = formulaire.querySelector( 'input[name="post_type"]' );
 
 	var ouvert = false;
 	var dernier = null; // L'élément qui avait la main avant l'ouverture.
 	var defilement = 0;
 	var donnees = null;
 	var portee = 'tout';
+	// Les filtres de la colonne de gauche : où chercher (une maison), puis, pour les livres, rayons, langues, états.
+	var filtres = { maison: 'tout', rayon: [], langue: [], etat: [] };
+	var LIVRES = [ 'rayon', 'langue', 'etat' ];
 	var minuterie;
 	var compteur;
 	var demande = 0;
@@ -223,13 +233,29 @@
 			+ echapper( M[ 'g_' + nom ] ) + ' <span class="er-r-compte">' + compte + '</span></h2>' + ( plus || '' ) + '</div>' + contenu + '</section>';
 	}
 
+	function dansLaMaison( nom ) {
+		return 'tout' === filtres.maison || MAISON[ nom ] === filtres.maison;
+	}
 	function rendre() {
 		var d = donnees;
 		if ( ! d ) {
 			return;
 		}
-		var c = d.comptes || {};
+		var c = Object.assign( {}, d.comptes || {} );
 		var g = d.groupes || {};
+		if ( d.filtre ) {
+			rendreFiltre( d );
+			return;
+		}
+		// La maison choisie : seulement ses genres, et « Tout » compte ce qu'elle a.
+		if ( 'tout' !== filtres.maison ) {
+			c.tout = ORDRE.reduce( function ( somme, nom ) {
+				return somme + ( dansLaMaison( nom ) && 'rayons' !== nom ? ( c[ nom ] || 0 ) : 0 );
+			}, 0 );
+		}
+		if ( 'tout' !== portee && ! dansLaMaison( portee ) ) {
+			portee = 'tout';
+		}
 		// Le nom reconnu.
 		if ( d.pour ) {
 			pour.innerHTML = format( echapper( M.pour ), '<strong>' + echapper( d.pour ) + '</strong>' ) + ( d.aussi && d.aussi.length ? ' ' + echapper( format( M.aussi, d.aussi.join( ', ' ) ) ) : '' );
@@ -239,7 +265,7 @@
 		}
 		// Les genres, avec leurs nombres.
 		portees.innerHTML = PORTEES.filter( function ( p ) {
-			return p === 'tout' || p === portee || c[ p ];
+			return p === 'tout' || ( dansLaMaison( p ) && ( p === portee || c[ p ] ) );
 		} ).map( function ( p ) {
 			return '<button type="button" class="er-pilule' + ( p === portee ? ' est-active' : '' ) + '" aria-pressed="' + ( p === portee ) + '" data-er-portee="' + p + '">'
 				+ echapper( M[ p ] ) + ' <span>' + ( c[ p ] || 0 ) + '</span></button>';
@@ -251,7 +277,7 @@
 			return;
 		}
 		var montre = function ( nom ) {
-			return ( g[ nom ] || [] ).length && ( portee === 'tout' || portee === nom || ( portee === 'livres' && nom === 'rayons' ) );
+			return ( g[ nom ] || [] ).length && dansLaMaison( nom ) && ( portee === 'tout' || portee === nom || ( portee === 'livres' && nom === 'rayons' ) );
 		};
 		var gauche = '';
 		var droite = '';
@@ -286,16 +312,46 @@
 				gauche += html;
 			}
 		} );
-		var pied = c.livres > 0
+		var pied = c.livres > 0 && dansLaMaison( 'livres' )
 			? '<div class="er-r-pied"><p>' + echapper( M.entree ) + '</p><a class="er-r-voir" href="' + echapper( d.livres ) + '">' + echapper( c.livres === 1 ? M.voir_livre : format( M.voir_livres, c.livres ) ) + FLECHE + '</a></div>'
 			: '';
 		resultats.innerHTML = '<div class="er-r-grille' + ( droite && gauche ? '' : ' er-r-grille-seule' ) + '"><div class="er-r-colonne">' + gauche + '</div><div class="er-r-colonne">' + droite + '</div></div>' + pied;
 	}
 
+	// Des filtres de livres choisis : rien que les livres qui y répondent (et au texte, s'il y en a un).
+	function rendreFiltre( d ) {
+		var n = ( d.comptes || {} ).livres || 0;
+		var liste = ( d.groupes || {} ).livres || [];
+		pour.hidden = true;
+		portees.hidden = true;
+		if ( ! n ) {
+			resultats.innerHTML = '<p class="er-r-aucun">' + echapper( d.requete ? format( M.aucun_texte_filtre, d.requete ) : M.aucun_filtre ) + '</p>';
+			return;
+		}
+		var plus = n > liste.length ? '<a class="er-r-tout" href="' + echapper( d.livres ) + '">' + echapper( format( M.tous_livres, n ) ) + FLECHE + '</a>' : '';
+		resultats.innerHTML = '<div class="er-r-grille er-r-grille-seule"><div class="er-r-colonne">'
+			+ groupe( 'livres', '<ul class="er-r-livres">' + liste.map( livre ).join( '' ) + '</ul>', n, plus ) + '</div></div>'
+			+ '<div class="er-r-pied"><p>' + echapper( M.entree ) + '</p><a class="er-r-voir" href="' + echapper( d.livres ) + '">' + echapper( n === 1 ? M.voir_livre : format( M.voir_livres, n ) ) + FLECHE + '</a></div>';
+	}
+
+	function filtresDeLivres() {
+		return LIVRES.some( function ( f ) {
+			return filtres[ f ].length;
+		} );
+	}
+	function parametresFiltres( p ) {
+		LIVRES.forEach( function ( f ) {
+			filtres[ f ].forEach( function ( v ) {
+				p.append( 'er_' + f + '[]', v );
+			} );
+		} );
+		return p;
+	}
+
 	function chercher() {
 		var texte = champ.value.trim();
 		effacer.hidden = ! champ.value;
-		if ( ! texte ) {
+		if ( ! texte && ! filtresDeLivres() ) {
 			donnees = null;
 			resultats.hidden = true;
 			portees.hidden = true;
@@ -304,7 +360,7 @@
 			return;
 		}
 		var numero = ++demande;
-		api( 'chercher', new URLSearchParams( { q: texte } ) ).then( function ( d ) {
+		api( 'chercher', parametresFiltres( new URLSearchParams( { q: texte } ) ) ).then( function ( d ) {
 			if ( numero !== demande ) {
 				return; // Une réponse plus ancienne que la dernière lettre tapée.
 			}
@@ -336,9 +392,25 @@
 		}
 		if ( ! champ.value.trim() ) {
 			e.preventDefault();
+			if ( donnees && donnees.filtre && donnees.livres ) {
+				window.location.href = donnees.livres; // Des filtres sans texte : la page des livres filtrés.
+			}
 			return;
 		}
 		garderRecente( champ.value );
+		// Les filtres partent avec le texte ; hors de la librairie, on cherche dans tout le site.
+		formulaire.querySelectorAll( '.er-filtre-cache' ).forEach( function ( el ) {
+			el.remove();
+		} );
+		postType.disabled = 'ymca' === filtres.maison || 'centre' === filtres.maison;
+		parametresFiltres( new URLSearchParams() ).forEach( function ( v, k ) {
+			var cache = document.createElement( 'input' );
+			cache.type = 'hidden';
+			cache.className = 'er-filtre-cache';
+			cache.name = k;
+			cache.value = v;
+			formulaire.appendChild( cache );
+		} );
 	} );
 	portees.addEventListener( 'click', function ( e ) {
 		var bouton = e.target.closest( '[data-er-portee]' );
@@ -362,6 +434,88 @@
 			garderRecente( champ.value );
 		}
 	} );
+
+	/* Les filtres ----------------------------------------------------------------------------------------------- */
+
+	function montrerFiltres() {
+		cadreFiltres.querySelectorAll( '.er-filtre' ).forEach( function ( groupeFiltre ) {
+			var nom = groupeFiltre.getAttribute( 'data-er-filtre' );
+			groupeFiltre.querySelectorAll( '.er-choix' ).forEach( function ( choix ) {
+				var v = choix.getAttribute( 'data-er-valeur' );
+				var presse = 'maison' === nom ? filtres.maison === v : filtres[ nom ].indexOf( v ) > -1;
+				choix.setAttribute( 'aria-pressed', presse ? 'true' : 'false' );
+				choix.classList.toggle( 'est-active', presse );
+			} );
+		} );
+		// Les filtres des livres n'ont pas de sens chez YMCA-Press ni au centre.
+		filtresLivres.hidden = 'ymca' === filtres.maison || 'centre' === filtres.maison;
+		var n = ( 'tout' !== filtres.maison ? 1 : 0 ) + LIVRES.reduce( function ( somme, f ) {
+			return somme + filtres[ f ].length;
+		}, 0 );
+		effacerFiltres.hidden = ! n;
+		nombreFiltres.hidden = ! n;
+		nombreFiltres.textContent = n;
+		champ.placeholder = M[ 'champ_' + filtres.maison ] || M.champ_tout;
+	}
+	cadreFiltres.addEventListener( 'click', function ( e ) {
+		var choix = e.target.closest( '.er-choix' );
+		if ( ! choix ) {
+			return;
+		}
+		var nom = choix.closest( '.er-filtre' ).getAttribute( 'data-er-filtre' );
+		var v = choix.getAttribute( 'data-er-valeur' );
+		if ( 'maison' === nom ) {
+			filtres.maison = v;
+			if ( 'ymca' === v || 'centre' === v ) {
+				LIVRES.forEach( function ( f ) {
+					filtres[ f ] = [];
+				} );
+			}
+		} else {
+			var i = filtres[ nom ].indexOf( v );
+			if ( i > -1 ) {
+				filtres[ nom ].splice( i, 1 );
+			} else {
+				filtres[ nom ].push( v );
+				filtres.maison = 'librairie'; // Un rayon, une langue, un état : on cherche des livres, à la librairie.
+			}
+		}
+		portee = 'tout';
+		montrerFiltres();
+		if ( ! detaillee.hidden ) {
+			basculer( false );
+		}
+		chercher();
+	} );
+	effacerFiltres.addEventListener( 'click', function () {
+		filtres = { maison: 'tout', rayon: [], langue: [], etat: [] };
+		portee = 'tout';
+		montrerFiltres();
+		chercher();
+		champ.focus();
+	} );
+	// Au téléphone, les filtres se replient sous un bouton.
+	filtrer.addEventListener( 'click', function () {
+		var deplie = ! cadreFiltres.classList.contains( 'est-deplie' );
+		cadreFiltres.classList.toggle( 'est-deplie', deplie );
+		filtrer.setAttribute( 'aria-expanded', deplie ? 'true' : 'false' );
+	} );
+	// La recherche détaillée reprend les filtres choisis, s'il y en a.
+	function reprendreFiltres() {
+		if ( ! filtresDeLivres() ) {
+			return;
+		}
+		[ 'langue', 'etat' ].forEach( function ( f ) {
+			detaillee.querySelectorAll( 'input[name="er_' + f + '[]"]' ).forEach( function ( caseACocher ) {
+				caseACocher.checked = filtres[ f ].indexOf( caseACocher.value ) > -1;
+			} );
+		} );
+		var choixRayon = detaillee.querySelector( 'select[name="er_rayon[]"]' );
+		if ( choixRayon ) {
+			choixRayon.value = filtres.rayon[ 0 ] || '';
+		}
+	}
+	montrerFiltres();
 
 	/* Le clavier ------------------------------------------------------------------------------------------------- */
 
@@ -418,15 +572,17 @@
 
 	function basculer( montrer ) {
 		detaillee.hidden = ! montrer;
+		corps.hidden = montrer;
 		bascule.setAttribute( 'aria-expanded', montrer ? 'true' : 'false' );
 		bascule.classList.toggle( 'est-active', montrer );
 		if ( montrer ) {
+			reprendreFiltres();
 			pistes.hidden = true;
 			resultats.hidden = true;
 			portees.hidden = true;
 			pour.hidden = true;
 			compter();
-		} else if ( ! champ.value.trim() ) {
+		} else if ( ! champ.value.trim() && ! filtresDeLivres() ) {
 			pistes.hidden = false;
 		} else if ( donnees ) {
 			resultats.hidden = false;

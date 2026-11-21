@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.4.0
+Version: 0.4.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -316,6 +316,10 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-point-librairie { background: var(--wp--preset--color--maison-librairie); }
 .er-point-ymca { background: var(--wp--preset--color--maison-ymca); }
 .er-point-centre { background: var(--wp--preset--color--maison-centre); }
+/* Sur le noir d'un choix pressé, les points prennent les teintes claires de la barre noire. */
+.er-choix.est-active .er-point-librairie { background: var(--wp--preset--color--point-librairie); }
+.er-choix.est-active .er-point-ymca { background: var(--wp--preset--color--point-ymca); }
+.er-choix.est-active .er-point-centre { background: var(--wp--preset--color--point-centre); }
 
 .er-recherche-ouverte, .er-recherche-ouverte body { overflow: hidden; }
 .er-recherche { position: fixed; inset: var(--er-recherche-haut, 56px) 0 0 0; z-index: 9990; }
@@ -427,8 +431,56 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-pilule.est-active { font-weight: 600; }
 .er-pilule.est-active span { color: rgba(255, 255, 255, 0.65); }
 
-/* Avant de taper : les pistes, en trois colonnes. */
-.er-recherche-pistes { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 3.5rem; margin-top: 2.25rem; }
+/* Le corps : à gauche les filtres, des boutons qu'on presse (jamais des liens) ; à droite ce qu'on trouve. */
+.er-recherche-corps { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 3.5rem; align-items: start; margin-top: 2.25rem; }
+.er-recherche-corps[hidden] { display: none; }
+.er-recherche-filtrer { display: none; }
+.er-filtres-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.er-filtres-tete .er-recherche-surtitre { margin: 0; }
+.er-filtres-effacer {
+	border: 0;
+	background: none;
+	padding: 0;
+	font: inherit;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+	cursor: pointer;
+}
+.er-filtres-effacer[hidden], .er-filtres-livres[hidden], .er-recherche-nombre[hidden] { display: none; }
+.er-filtre { min-width: 0; margin: 0.9rem 0 0; padding: 0.9rem 0 0; border: 0; border-top: 1px solid var(--wp--preset--color--filet); }
+/* Flottante, la légende ne coupe pas le filet. */
+.er-filtre-titre { float: left; width: 100%; margin: 0 0 0.55rem; padding: 0; font-size: 0.8125rem; font-weight: 600; color: var(--wp--preset--color--contrast); }
+.er-filtre-choix { clear: both; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.er-choix {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	min-height: 2rem;
+	padding: 0.3rem 0.75rem;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	background: var(--wp--preset--color--base);
+	font: inherit;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1.2;
+	color: var(--wp--preset--color--contrast);
+	text-align: start;
+	cursor: pointer;
+	transition: background var(--er-transition), border-color var(--er-transition), color var(--er-transition);
+}
+.er-choix:hover { border-color: var(--wp--preset--color--contrast); }
+.er-choix.est-active { border-color: var(--wp--preset--color--contrast); background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); font-weight: 600; }
+.er-choix:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 2px; }
+.er-recherche-principal { min-width: 0; }
+.er-recherche-principal > .er-recherche-pour { margin: 0 0 0.9rem; }
+.er-recherche-principal > .er-recherche-portees { margin-top: 0; }
+
+/* Avant de taper : les pistes, en deux colonnes. */
+.er-recherche-pistes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 3.5rem; }
 .er-recherche-colonne > .er-recherche-surtitre:not(:first-child) { margin-top: 1.75rem; }
 .er-recherche-recentes[hidden] + .er-recherche-surtitre { margin-top: 0; }
 .er-recherche-lignes a {
@@ -441,8 +493,8 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-recherche-lignes a svg { flex: none; color: var(--wp--preset--color--discret); }
 .er-recherche-lignes a:hover, .er-recherche-lignes a:focus-visible { text-decoration: underline; text-underline-offset: 0.3em; }
-.er-recherche-rayons, .er-recherche-langues, .er-r-rayons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.er-recherche-rayons a, .er-r-rayons a {
+.er-r-rayons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.er-r-rayons a {
 	display: inline-flex;
 	align-items: center;
 	height: 2.25rem;
@@ -453,19 +505,6 @@ sup { font-size: 0.62em; line-height: 0; }
 	font-size: 0.875rem;
 	font-weight: 500;
 }
-.er-recherche-langues a {
-	display: inline-flex;
-	align-items: center;
-	height: 2.25rem;
-	padding: 0 1rem;
-	border: 1px solid var(--wp--preset--color--filet);
-	border-radius: 999px;
-	font-size: 0.875rem;
-	font-weight: 500;
-}
-.er-recherche-ailleurs { display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9375rem; }
-.er-recherche-ailleurs a { display: flex; align-items: center; gap: 0.65rem; }
-.er-recherche-ailleurs a:hover { text-decoration: underline; text-underline-offset: 0.3em; }
 .er-recherche-derniers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
 .er-recherche-derniers a, .er-r-livre { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
 .er-recherche-derniers img, .er-r-livre img, .er-r-couverture-vide {
@@ -508,7 +547,8 @@ sup { font-size: 0.62em; line-height: 0; }
 /* En tapant : les résultats, rangés par genre. */
 .er-r-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 3.5rem; margin-top: 2rem; }
 .er-r-grille-seule { grid-template-columns: minmax(0, 1fr); }
-.er-r-grille-seule .er-r-livres { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.er-r-grille-seule .er-r-livres { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.er-r-grille:not(.er-r-grille-seule) .er-r-livres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .er-r-colonne { display: flex; flex-direction: column; gap: 1.75rem; }
 .er-r-colonne:empty { display: none; }
 .er-r-groupe-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
@@ -685,8 +725,11 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-recherche-detaillee:not([hidden]) ~ .er-recherche-aide { display: none; }
 
 @media (max-width: 1100px) {
-	.er-recherche-pistes { grid-template-columns: 1fr 1fr; }
-	.er-recherche-pistes > :nth-child(3) { grid-column: 1 / -1; }
+	.er-recherche-corps { grid-template-columns: 12.5rem minmax(0, 1fr); gap: 2.5rem; }
+	.er-recherche-pistes { gap: 2.5rem; }
+	.er-recherche-derniers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.er-recherche-derniers li:nth-child(3) { display: none; }
+	.er-recherche-resultats .er-r-grille-seule .er-r-livres { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	.er-rd-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.er-r-grille { grid-template-columns: minmax(0, 1fr); }
 }
@@ -702,9 +745,35 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-recherche-champ input[type="search"] { font-size: 1.375rem; }
 	.er-recherche-portees { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--wp--style--root--padding-left)); padding-inline: var(--wp--style--root--padding-left); }
 	.er-recherche-portees::-webkit-scrollbar { display: none; }
-	.er-recherche-pistes { grid-template-columns: 1fr; gap: 2rem; margin-top: 1.5rem; }
-	.er-recherche-pistes > :nth-child(3) { grid-column: auto; }
-	.er-r-livres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	/* Les filtres, repliés sous un bouton, au-dessus de ce qu'on trouve. */
+	.er-recherche-corps { display: block; margin-top: 1rem; }
+	.er-recherche-filtres { position: static; margin-bottom: 1.25rem; }
+	.er-recherche-filtrer {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		height: 2.375rem;
+		padding: 0 1rem;
+		border: 1px solid var(--wp--preset--color--filet);
+		border-radius: 999px;
+		background: var(--wp--preset--color--base);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--wp--preset--color--contrast);
+		cursor: pointer;
+	}
+	.er-recherche-filtrer svg { transition: transform var(--er-transition); }
+	.er-recherche-filtres.est-deplie .er-recherche-filtrer svg { transform: rotate(180deg); }
+	.er-recherche-nombre { display: inline-flex; align-items: center; justify-content: center; min-width: 1.3rem; height: 1.3rem; padding: 0 0.3rem; border-radius: 999px; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); font-size: 0.75rem; }
+	.er-recherche-groupes { display: none; padding-top: 0.25rem; }
+	.er-recherche-filtres.est-deplie .er-recherche-groupes { display: block; }
+	.er-filtres-tete .er-recherche-surtitre { display: none; }
+	.er-filtres-tete { justify-content: flex-end; margin-top: 0.75rem; }
+	.er-recherche-pistes { grid-template-columns: 1fr; gap: 2rem; }
+	.er-recherche-derniers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.er-recherche-derniers li:nth-child(3) { display: list-item; }
+	.er-recherche-resultats .er-r-grille .er-r-livres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.er-r-lettre { width: 3.5rem; height: 4.5rem; font-size: 2.4rem; }
 	.er-r-auteur { gap: 0.9rem; padding: 0.9rem; }
 	.er-r-pied { flex-direction: column; align-items: stretch; }

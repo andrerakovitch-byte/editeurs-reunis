@@ -484,6 +484,10 @@ function er_api_chercher( $requete ) {
 		'groupes' => new stdClass(),
 		'livres'  => '',
 	);
+	$criteres = er_criteres( $requete->get_query_params() );
+	if ( $criteres ) {
+		return rest_ensure_response( er_api_chercher_filtre( $texte, $cle, $criteres ) );
+	}
 	if ( '' === $cle ) {
 		return rest_ensure_response( $vide );
 	}
@@ -594,6 +598,61 @@ function er_api_chercher( $requete ) {
 				function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' )
 			),
 		)
+	);
+}
+
+/**
+ * La réponse de l'API quand des filtres sont choisis (un rayon, une langue, un état) : les livres seulement, ceux qui
+ * répondent au texte (s'il y en a un) et aux filtres.
+ *
+ * @param string $texte    Ce qu'on a tapé (peut être vide).
+ * @param string $cle      Sa clé.
+ * @param array  $criteres Les filtres (er_criteres).
+ */
+function er_api_chercher_filtre( $texte, $cle, $criteres ) {
+	$args = array_merge(
+		array(
+			'post_type'      => 'product',
+			'post_status'    => 'publish',
+			'posts_per_page' => 8,
+			'fields'         => 'ids',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		),
+		er_criteres_requete( $criteres )
+	);
+	if ( '' !== $cle ) {
+		$trouves          = er_livres_trouves( $texte );
+		$args['post__in'] = isset( $args['post__in'] ) ? array_values( array_intersect( $trouves, $args['post__in'] ) ) : $trouves;
+		$args['post__in'] = $args['post__in'] ? $args['post__in'] : array( 0 );
+		$args['orderby']  = 'post__in';
+	}
+	$q      = new WP_Query( $args );
+	$livres = array_values( array_filter( array_map( 'er_resultat_livre', $q->posts ) ) );
+
+	// La page des livres trouvés garde le texte et les filtres.
+	$parametres = array();
+	foreach ( $criteres as $champ => $valeur ) {
+		$parametres[ 'er_' . $champ ] = true === $valeur ? '1' : $valeur;
+	}
+	if ( '' !== $cle ) {
+		$parametres['s']         = $texte;
+		$parametres['post_type'] = 'product';
+		$base                    = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
+	} else {
+		$base = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+	}
+	return array(
+		'requete' => $texte,
+		'pour'    => '',
+		'aussi'   => array(),
+		'filtre'  => true,
+		'comptes' => array(
+			'livres' => (int) $q->found_posts,
+			'tout'   => (int) $q->found_posts,
+		),
+		'groupes' => array( 'livres' => $livres ),
+		'livres'  => add_query_arg( urlencode_deep( $parametres ), $base ),
 	);
 }
 
@@ -824,7 +883,8 @@ function er_criteres_requete( $criteres ) {
 add_action(
 	'pre_get_posts',
 	function ( $q ) {
-		if ( is_admin() || ! $q->is_main_query() || ! ( $q->is_post_type_archive( 'product' ) || $q->is_tax( get_object_taxonomies( 'product' ) ) ) ) {
+		$livres = $q->is_post_type_archive( 'product' ) || $q->is_tax( get_object_taxonomies( 'product' ) ) || ( $q->is_search() && 'product' === $q->get( 'post_type' ) );
+		if ( is_admin() || ! $q->is_main_query() || ! $livres ) {
 			return;
 		}
 		$criteres = er_criteres( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification
@@ -834,11 +894,15 @@ add_action(
 		foreach ( er_criteres_requete( $criteres ) as $cle => $valeur ) {
 			if ( in_array( $cle, array( 'tax_query', 'meta_query' ), true ) ) {
 				$valeur = array_merge( (array) $q->get( $cle ), $valeur );
+			} elseif ( 'post__in' === $cle && $q->get( 'post__in' ) ) {
+				// La recherche a déjà choisi ses livres : on garde ceux qui répondent aussi aux critères.
+				$valeur = array_values( array_intersect( (array) $q->get( 'post__in' ), $valeur ) );
+				$valeur = $valeur ? $valeur : array( 0 );
 			}
 			$q->set( $cle, $valeur );
 		}
 	},
-	20
+	21
 );
 
 /**

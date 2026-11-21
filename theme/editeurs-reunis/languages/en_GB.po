@@ -222,159 +222,161 @@ msgstr "Old edition"
 msgid "Très rare"
 msgstr "Very rare"
 
+#: inc/recherche.php:119
+msgid "Partout"
+msgstr "Everywhere"
+
+#: inc/recherche.php:120 patterns/accueil-nouveautes.php:19
+#: patterns/accueil-rayons.php:19
+msgid "La librairie"
+msgstr "The bookshop"
+
+#: inc/recherche.php:121 inc/recherche.php:329
+#: patterns/accueil-histoire.php:19
+msgid "YMCA-Press"
+msgstr "YMCA-Press"
+
 #: inc/recherche.php:122
+msgid "Le centre culturel"
+msgstr "The cultural centre"
+
+#: inc/recherche.php:139
 msgid "de"
 msgstr "from"
 
-#: inc/recherche.php:124
+#: inc/recherche.php:141
 msgid "à"
 msgstr "to"
 
-#: inc/recherche.php:135 inc/recherche.php:345 patterns/en-tete.php:60
+#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:60
 msgid "Rechercher"
 msgstr "Search"
 
-#: inc/recherche.php:142
+#: inc/recherche.php:159
 msgid "Chercher un titre, un auteur, un sujet"
 msgstr "Search for a title, an author, a subject"
 
-#: inc/recherche.php:143
+#: inc/recherche.php:160 inc/recherche.php:369
 msgid "Un titre, un auteur, un sujet…"
 msgstr "A title, an author, a subject…"
 
-#: inc/recherche.php:145 inc/recherche.php:346
+#: inc/recherche.php:162 inc/recherche.php:365
 msgid "Effacer"
 msgstr "Clear"
 
-#: inc/recherche.php:147
+#: inc/recherche.php:164
 msgid "Recherche détaillée"
 msgstr "Advanced search"
 
-#: inc/recherche.php:148 inc/recherche.php:344 patterns/en-tete.php:60
+#: inc/recherche.php:165 inc/recherche.php:363 patterns/en-tete.php:60
 msgid "Fermer"
 msgstr "Close"
 
-#: inc/recherche.php:156
-msgid "Vos dernières recherches"
-msgstr "Your recent searches"
+#: inc/recherche.php:168 inc/recherche.php:169 inc/recherche.php:172
+msgid "Filtrer"
+msgstr "Filter"
 
-#: inc/recherche.php:159
-msgid "On cherche souvent"
-msgstr "Often searched"
-
-#: inc/recherche.php:168
-msgid "Par rayon"
-msgstr "By section"
-
-#: inc/recherche.php:176
-msgid "Par langue"
-msgstr "By language"
-
-#: inc/recherche.php:183
-msgid "Ailleurs sur le site"
-msgstr "Elsewhere on the site"
-
-#: inc/recherche.php:185
-msgid "Les nouveautés de la librairie"
-msgstr "New arrivals at the bookshop"
-
-#: inc/recherche.php:186
-msgid "Le catalogue d’YMCA-Press, depuis 1921"
-msgstr "The YMCA-Press catalogue, since 1921"
-
-#: inc/recherche.php:187
-msgid "Les événements du centre, les podcasts, les vidéos"
-msgstr "The Centre’s events, podcasts and videos"
-
-#: inc/recherche.php:192
-msgid "Les derniers arrivés"
-msgstr "Just in"
-
-#: inc/recherche.php:219
-msgid "Titre"
-msgstr "Title"
-
-#: inc/recherche.php:219
-msgid "Un mot du titre"
-msgstr "A word from the title"
-
-#: inc/recherche.php:220 inc/recherche.php:314
-msgid "Auteur"
-msgstr "Author"
-
-#: inc/recherche.php:220
-msgid "Dans n’importe quelle écriture"
-msgstr "In any spelling or script"
-
-#: inc/recherche.php:221
-msgid "Traducteur, préfacier"
-msgstr "Translator, preface writer"
-
-#: inc/recherche.php:221
-msgid "Par exemple Georges Nivat"
-msgstr "For example Georges Nivat"
-
-#: inc/recherche.php:222
-msgid "ISBN"
-msgstr "ISBN"
-
-#: inc/recherche.php:224
-msgid "Rayon"
-msgstr "Section"
-
-#: inc/recherche.php:226
-msgid "Tous les rayons"
-msgstr "All sections"
-
-#: inc/recherche.php:245
-msgid "Langue"
-msgstr "Language"
-
-#: inc/recherche.php:246
-msgid "Éditeur"
-msgstr "Publisher"
-
-#: inc/recherche.php:246
-msgid "Par exemple YMCA-Press"
-msgstr "For example YMCA-Press"
-
-#: inc/recherche.php:247
-msgid "Collection"
-msgstr "Series"
-
-#: inc/recherche.php:247
-msgid "Toutes"
-msgstr "All"
-
-#: inc/recherche.php:248
-msgid "Année d’édition"
-msgstr "Year of publication"
-
-#: inc/recherche.php:249
-msgid "Prix"
-msgstr "Price"
-
-#: inc/recherche.php:250
-msgid "État"
-msgstr "Condition"
-
-#: inc/recherche.php:253
-msgid "Disponibilité"
-msgstr "Availability"
-
-#: inc/recherche.php:254
-msgid "En stock seulement"
-msgstr "In stock only"
-
-#: inc/recherche.php:262
+#: inc/recherche.php:173 inc/recherche.php:281
 msgid "Tout effacer"
 msgstr "Clear all"
 
-#: inc/recherche.php:263
+#: inc/recherche.php:177
+msgid "Où chercher"
+msgstr "Where to look"
+
+#: inc/recherche.php:181 inc/recherche.php:243
+msgid "Rayon"
+msgstr "Section"
+
+#: inc/recherche.php:182 inc/recherche.php:264
+msgid "Langue"
+msgstr "Language"
+
+#: inc/recherche.php:183 inc/recherche.php:269
+msgid "État"
+msgstr "Condition"
+
+#: inc/recherche.php:197
+msgid "Vos dernières recherches"
+msgstr "Your recent searches"
+
+#: inc/recherche.php:200
+msgid "On cherche souvent"
+msgstr "Often searched"
+
+#: inc/recherche.php:209
+msgid "Les derniers arrivés"
+msgstr "Just in"
+
+#: inc/recherche.php:238
+msgid "Titre"
+msgstr "Title"
+
+#: inc/recherche.php:238
+msgid "Un mot du titre"
+msgstr "A word from the title"
+
+#: inc/recherche.php:239 inc/recherche.php:333
+msgid "Auteur"
+msgstr "Author"
+
+#: inc/recherche.php:239
+msgid "Dans n’importe quelle écriture"
+msgstr "In any spelling or script"
+
+#: inc/recherche.php:240
+msgid "Traducteur, préfacier"
+msgstr "Translator, preface writer"
+
+#: inc/recherche.php:240
+msgid "Par exemple Georges Nivat"
+msgstr "For example Georges Nivat"
+
+#: inc/recherche.php:241
+msgid "ISBN"
+msgstr "ISBN"
+
+#: inc/recherche.php:245
+msgid "Tous les rayons"
+msgstr "All sections"
+
+#: inc/recherche.php:265
+msgid "Éditeur"
+msgstr "Publisher"
+
+#: inc/recherche.php:265
+msgid "Par exemple YMCA-Press"
+msgstr "For example YMCA-Press"
+
+#: inc/recherche.php:266
+msgid "Collection"
+msgstr "Series"
+
+#: inc/recherche.php:266
+msgid "Toutes"
+msgstr "All"
+
+#: inc/recherche.php:267
+msgid "Année d’édition"
+msgstr "Year of publication"
+
+#: inc/recherche.php:268
+msgid "Prix"
+msgstr "Price"
+
+#: inc/recherche.php:272
+msgid "Disponibilité"
+msgstr "Availability"
+
+#: inc/recherche.php:273
+msgid "En stock seulement"
+msgstr "In stock only"
+
+#: inc/recherche.php:282
 msgid "Voir les livres"
 msgstr "See the books"
 
-#: inc/recherche.php:266
+#: inc/recherche.php:285
 msgid ""
 "Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres "
 "change à chaque choix."
@@ -382,7 +384,7 @@ msgstr ""
 "The fields combine, and you can fill in just one; the number of books "
 "updates with every choice."
 
-#: inc/recherche.php:270
+#: inc/recherche.php:289
 msgid ""
 "On cherche dans les trois langues : <strong>Dostoïevski</strong>, <strong "
 "lang=\"ru\">Достоевский</strong> ou <strong>Dostoevsky</strong> mènent au "
@@ -392,90 +394,86 @@ msgstr ""
 "lang=\"ru\">Достоевский</strong> or <strong lang=\"fr\">Dostoïevski</strong>"
 " lead to the same author."
 
-#: inc/recherche.php:271
+#: inc/recherche.php:290
 msgid "choisir"
 msgstr "choose"
 
-#: inc/recherche.php:271
+#: inc/recherche.php:290
 msgid "Entrée"
 msgstr "Enter"
 
-#: inc/recherche.php:271
+#: inc/recherche.php:290
 msgid "ouvrir"
 msgstr "open"
 
-#: inc/recherche.php:271
+#: inc/recherche.php:290
 msgid "Échap"
 msgstr "Esc"
 
-#: inc/recherche.php:271
+#: inc/recherche.php:290
 msgid "fermer"
 msgstr "close"
 
-#: inc/recherche.php:305
+#: inc/recherche.php:324
 msgid "Tout"
 msgstr "All"
 
-#: inc/recherche.php:306 inc/recherche.php:315
+#: inc/recherche.php:325 inc/recherche.php:334
 msgid "Livres"
 msgstr "Books"
 
-#: inc/recherche.php:307
+#: inc/recherche.php:326
 msgid "Auteurs"
 msgstr "Authors"
 
-#: inc/recherche.php:308 inc/recherche.php:316
+#: inc/recherche.php:327 inc/recherche.php:335
 msgid "Rayons"
 msgstr "Sections"
 
-#: inc/recherche.php:309
+#: inc/recherche.php:328
 msgid "Encyclopédie"
 msgstr "Encyclopaedia"
 
-#: inc/recherche.php:310 patterns/accueil-histoire.php:19
-msgid "YMCA-Press"
-msgstr "YMCA-Press"
-
-#: inc/recherche.php:311
+#: inc/recherche.php:330
 msgid "Centre culturel"
 msgstr "Cultural centre"
 
-#: inc/recherche.php:312
+#: inc/recherche.php:331
 msgid "Journal"
 msgstr "Journal"
 
-#: inc/recherche.php:313 inc/recherche.php:321
+#: inc/recherche.php:332 inc/recherche.php:340
 msgid "Pages"
 msgstr "Pages"
 
-#: inc/recherche.php:317
+#: inc/recherche.php:336
 msgid "Dans l’encyclopédie"
 msgstr "In the encyclopaedia"
 
-#: inc/recherche.php:318
+#: inc/recherche.php:337
 msgid "Chez YMCA-Press"
 msgstr "At YMCA-Press"
 
-#: inc/recherche.php:319
+#: inc/recherche.php:338
 msgid "Au centre culturel"
 msgstr "At the cultural centre"
 
-#: inc/recherche.php:320
+#: inc/recherche.php:339
 msgid "Dans le journal"
 msgstr "In the journal"
 
 #. translators: %s: le nom reconnu (un auteur).
-#: inc/recherche.php:323
+#: inc/recherche.php:342
 msgid "Résultats pour %s."
 msgstr "Results for %s."
 
 #. translators: %s: les autres noms de l'auteur.
-#: inc/recherche.php:325
+#: inc/recherche.php:344
 msgid "Cherché aussi : %s."
 msgstr "Also searched: %s."
 
 #. translators: %s: ce qu'on a tapé.
-#: inc/recherche.php:327
+#: inc/recherche.php:346
 msgid ""
 "Rien pour « %s ». Essayez un autre mot, une autre écriture, ou la recherche "
 "détaillée."
@@ -484,59 +482,84 @@ msgstr ""
 "search."
 
 #. translators: %s: un nombre de livres.
-#: inc/recherche.php:329
+#: inc/recherche.php:348
 msgid "Voir les %s livres"
 msgstr "See the %s books"
 
-#: inc/recherche.php:330 patterns/accueil-une.php:31
+#: inc/recherche.php:349 patterns/accueil-une.php:31
 msgid "Voir le livre"
 msgstr "See the book"
 
-#: inc/recherche.php:331
+#: inc/recherche.php:350
 msgid "Aucun livre"
 msgstr "No books"
 
 #. translators: %s: un nombre de livres.
-#: inc/recherche.php:333
+#: inc/recherche.php:352
 msgid "Les %s livres"
 msgstr "All %s books"
 
-#: inc/recherche.php:334
+#: inc/recherche.php:353
 msgid "La page de l’auteur"
 msgstr "The author’s page"
 
 #. translators: %s: un nombre de livres.
-#: inc/recherche.php:336
+#: inc/recherche.php:355
 msgid "%s livres en rayon"
 msgstr "%s books on our shelves"
 
-#: inc/recherche.php:337
+#: inc/recherche.php:356
 msgid "Un livre en rayon"
 msgstr "One book on our shelves"
 
-#: inc/recherche.php:338
+#: inc/recherche.php:357
 msgid "en stock"
 msgstr "in stock"
 
-#: inc/recherche.php:339
+#: inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: inc/recherche.php:340
+#: inc/recherche.php:359
 msgid ""
 "Les résultats changent à chaque lettre ; Entrée ouvre la page des livres "
 "trouvés."
 msgstr ""
 "Results update with every letter; Enter opens the page of books found."
 
-#: inc/recherche.php:341
+#: inc/recherche.php:360
 msgid "Vos critères :"
 msgstr "Your criteria:"
 
 #. translators: %s: le critère qu'on retire.
-#: inc/recherche.php:343
+#: inc/recherche.php:362
 msgid "Retirer : %s"
 msgstr "Remove: %s"
+
+#: inc/recherche.php:366
+msgid ""
+"Aucun livre ne répond à ces filtres. Retirez-en un, ou essayez la recherche "
+"détaillée."
+msgstr ""
+"No book matches these filters. Remove one, or try the detailed search."
+
+#. translators: %s: ce qu'on a tapé.
+#: inc/recherche.php:368
+msgid ""
+"Rien pour « %s » avec ces filtres. Retirez-en un, ou essayez un autre mot."
+msgstr "Nothing for “%s” with these filters. Remove one, or try another word."
+
+#: inc/recherche.php:370
+msgid "Un titre, un auteur, un rayon…"
+msgstr "A title, an author, a section…"
+
+#: inc/recherche.php:371
+msgid "Dans le catalogue d’YMCA-Press…"
+msgstr "In the YMCA-Press catalogue…"
+
+#: inc/recherche.php:372
+msgid "Dans les événements et le journal du centre…"
+msgstr "In the centre’s events and journal…"
 
 #: patterns/accueil-anthologies.php
 msgctxt "Pattern title"
@@ -781,10 +804,6 @@ msgid ""
 "Sur fond blanc : le titre dans la colonne pervenche, les huit derniers "
 "livres arrivés à côté."
 msgstr ""
-
-#: patterns/accueil-nouveautes.php:19 patterns/accueil-rayons.php:19
-msgid "La librairie"
-msgstr "The bookshop"
 
 #: patterns/accueil-nouveautes.php:23
 msgid "Nouveautés"
