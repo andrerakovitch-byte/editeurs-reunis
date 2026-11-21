@@ -412,6 +412,576 @@ T = {
     (None, 'Toutes les langues'): ('All languages', 'Все языки'),
     (None, 'Modifier la langue'): ('Edit language', 'Изменить язык'),
     (None, 'Ajouter une langue'): ('Add language', 'Добавить язык'),
+    # L'accueil, à la une (les compositions patterns/une-*.php)
+    (None, 'Voir plus'): ('Show more', 'Показать ещё'),
+    (None, 'Voir moins'): ('Show less', 'Свернуть'),
+    (None, 'À la une · YMCA-Press, la librairie, le centre'):
+        ('Featured · YMCA-Press, the bookshop, the centre',
+         'Главное · YMCA-Press, книжный магазин, культурный центр'),
+    (None, 'Couverture de L’Archipel du Goulag, cinquante ans après'):
+        ('Cover of The Gulag Archipelago, Fifty Years On',
+         'Обложка книги «Архипелаг ГУЛАГ пятьдесят лет спустя»'),
+    (None, 'Paru'):
+        ('Published',
+         'Вышла'),
+    (None, '28 décembre 1973, en russe'):
+        ('28 December 1973, in Russian',
+         '28 декабря 1973 года, по-русски'),
+    (None, 'YMCA-Press, Paris'):
+        ('YMCA-Press, Paris',
+         'YMCA-Press, Париж'),
+    (None, 'Alexandre Soljenitsyne'):
+        ('Alexander Solzhenitsyn',
+         'Александр Солженицын'),
+    (None, '[nombre]'):
+        ('[number]',
+         '[число]'),
+    (None, 'À la librairie'):
+        ('At the bookshop',
+         'В магазине'),
+    (None, 'le recueil de 2023'):
+        ('the 2023 collection',
+         'сборник 2023 года'),
+    (None, 'Me prévenir de son retour'):
+        ('Tell me when it’s back',
+         'Сообщить о поступлении'),
+    (None, 'Écouter le podcast'):
+        ('Listen to the podcast',
+         'Слушать подкаст'),
+    (None, 'Les archives de 1973'):
+        ('The 1973 archives',
+         'Архивы 1973 года'),
+    (None, 'Pour aller plus loin'):
+        ('Further reading',
+         'Чтобы узнать больше'),
+    (None, '<strong>En librairie</strong> <a href="%1$s"><em>Voix et visages du Goulag</em></a>'):
+        ('<strong>At the bookshop</strong> <a href="%1$s"><em>Voix et visages du Goulag</em></a>',
+         '<strong>В магазине</strong> <a href="%1$s"><em>Голоса и лица ГУЛАГа</em></a>'),
+    (None, 'Un autre livre du rayon, pour entendre d’autres voix des camps que celle de Soljenitsyne.'):
+        ('Another book from the same shelf, to hear voices from the camps other than Solzhenitsyn’s.',
+         'Ещё одна книга с той же полки: другие голоса из лагерей, кроме голоса Солженицына.'),
+    (None, '<strong>L’encyclopédie</strong> <a href="%1$s">Le Goulag</a>'):
+        ('<strong>The encyclopedia</strong> <a href="%1$s">The Gulag</a>',
+         '<strong>Энциклопедия</strong> <a href="%1$s">ГУЛАГ</a>'),
+    (None, 'Les camps et leurs témoins&nbsp;: Chalamov, Guinzbourg, Soljenitsyne, et pour chacun les livres qu’on trouve ici.'):
+        ('The camps and their witnesses: Shalamov, Ginzburg, Solzhenitsyn, and for each one the books you can find here.',
+         'Лагеря и их свидетели: Шаламов, Гинзбург, Солженицын, и для каждого — книги, которые у нас есть.'),
+    (None, '<strong>Podcast</strong> <a href="%1$s"><em>Les secrets de L’Archipel du Goulag</em></a>'):
+        ('<strong>Podcast</strong> <a href="%1$s"><em>The Secrets of The Gulag Archipelago</em></a>',
+         '<strong>Подкаст</strong> <a href="%1$s"><em>Тайны «Архипелага ГУЛАГ»</em></a>'),
+    (None, 'L’histoire d’un manuscrit caché, recopié, sorti d’URSS, épisode par épisode.'):
+        ('The story of a manuscript hidden, copied and smuggled out of the USSR, episode by episode.',
+         'История рукописи, которую прятали, переписывали и вывезли из СССР, — серия за серией.'),
+    (None, 'Le livre de Soljenitsyne sur les camps soviétiques paraît d’abord en russe, à Paris, chez YMCA-Press, avant de faire le tour du monde.'):
+        ('Solzhenitsyn’s book on the Soviet camps first came out in Russian, in Paris, from YMCA-Press, before going round the world.',
+         'Книга Солженицына о советских лагерях сначала вышла по-русски в Париже, в YMCA-Press, а потом обошла весь мир.'),
+    (None, 'Soljenitsyne et Nikita Struve à l’imprimerie'):
+        ('Solzhenitsyn and Nikita Struve at the printing works',
+         'Солженицын и Никита Струве в типографии'),
+    (None, 'Soljenitsyne, Nikita Struve, Léonide Lifar et Serge Béresniak. Photo Hélène Lifar.'):
+        ('Solzhenitsyn, Nikita Struve, Léonide Lifar and Serge Béresniak. Photo: Hélène Lifar.',
+         'Солженицын, Никита Струве, Леонид Лифарь и Сергей Бересняк. Фото Элен Лифарь.'),
+    (None, 'Soljenitsyne l’écrit en secret, entre 1958 et 1968, à partir de ses années de camp et de plus de deux cents témoignages d’anciens détenus. Il le sous-titre «&nbsp;essai d’investigation littéraire&nbsp;»&nbsp;: ni roman ni livre d’histoire, mais les deux à la fois.'):
+        ('Solzhenitsyn wrote it in secret between 1958 and 1968, drawing on his years in the camps and on more than two hundred accounts by former prisoners. He subtitled it “an experiment in literary investigation”: neither a novel nor a history book, but both at once.',
+         'Солженицын писал его тайно, с 1958 по 1968 год, по собственному лагерному опыту и более чем двумстам свидетельствам бывших заключённых. Подзаголовок — «опыт художественного исследования»: не роман и не историческая книга, а то и другое сразу.'),
+    (None, 'En 1973, le KGB saisit l’un des exemplaires du manuscrit&nbsp;; l’auteur décide de le faire publier sans attendre. Le premier tome paraît à Paris le 28 décembre. En février 1974, Soljenitsyne est arrêté, déchu de sa citoyenneté et expulsé d’URSS.'):
+        ('In 1973 the KGB seized one of the copies of the manuscript; the author decided to have it published at once. The first volume came out in Paris on 28 December. In February 1974 Solzhenitsyn was arrested, stripped of his citizenship and expelled from the USSR.',
+         'В 1973 году КГБ изъял один из экземпляров рукописи, и автор решил печатать книгу немедленно. Первый том вышел в Париже 28 декабря. В феврале 1974 года Солженицына арестовали, лишили гражданства и выслали из СССР.'),
+    (None, 'Cinquante ans après, le recueil dirigé par Georges Nivat, <em>L’Archipel du Goulag, cinquante ans après</em>, en reprend les pages essentielles, avec les lectures qu’on en a faites depuis. Au centre culturel, un podcast en plusieurs épisodes, <em>Les secrets de L’Archipel du Goulag</em>, raconte les mystères d’un livre hors du commun.'):
+        ('Fifty years on, the collection edited by Georges Nivat, <em>L’Archipel du Goulag, cinquante ans après</em>, brings together its essential pages and the readings it has had since. At the cultural centre, a podcast in several episodes, <em>The Secrets of The Gulag Archipelago</em>, tells the mysteries of an extraordinary book.',
+         'Пятьдесят лет спустя сборник под редакцией Жоржа Нива, <em>«Архипелаг ГУЛАГ» пятьдесят лет спустя</em>, собирает главные страницы книги и то, как её читали с тех пор. В культурном центре подкаст в нескольких выпусках, <em>Тайны «Архипелага ГУЛАГ»</em>, рассказывает о загадках этой необыкновенной книги.'),
+    (None, 'Le journal du centre · L’article du mois'):
+        ('The centre’s journal · Article of the month',
+         'Журнал центра · Статья месяца'),
+    (None, 'Le Paris de l’émigration russe'):
+        ('The Paris of the Russian emigration',
+         'Париж русской эмиграции'),
+    (None, 'Une cathédrale, un institut de théologie, des cafés, une cité d’artistes, des usines, un cimetière&nbsp;: dix lieux pour raconter la ville où s’est installée, après 1917, la Russie en exil.'):
+        ('A cathedral, a theological institute, cafés, an artists’ colony, factories, a cemetery: ten places that tell the story of the city where Russia in exile settled after 1917.',
+         'Собор, богословский институт, кафе, городок художников, заводы, кладбище: десять мест, по которым можно рассказать о городе, где после 1917 года обосновалась Россия в изгнании.'),
+    (None, 'Un groupe d’étudiants russes devant une maison, à la fin des années 1920'):
+        ('A group of Russian students in front of a house, in the late 1920s',
+         'Группа русских студентов перед домом, конец 1920-х годов'),
+    (None, 'Congrès de l’Action chrétienne des étudiants russes, à la fin des années 1920&nbsp;: Berdiaev au centre.'):
+        ('A congress of the Russian Student Christian Movement, in the late 1920s: Berdyaev in the centre.',
+         'Съезд Русского студенческого христианского движения, конец 1920-х годов. В центре — Бердяев.'),
+    (None, 'Après la révolution et la guerre civile, des dizaines de milliers de Russes s’installent à Paris, qui devient, avec Berlin et Prague, l’une des capitales de l’émigration.'):
+        ('After the revolution and the civil war, tens of thousands of Russians settled in Paris, which became, with Berlin and Prague, one of the capitals of the emigration.',
+         'После революции и Гражданской войны в Париже поселились десятки тысяч русских, и он стал, вместе с Берлином и Прагой, одной из столиц эмиграции.'),
+    (None, 'La cathédrale Saint-Alexandre-Nevski, rue Daru, en est le cœur&nbsp;; l’institut de théologie Saint-Serge ouvre en 1925, rue de Crimée. Beaucoup travaillent aux usines Renault de Billancourt&nbsp;; beaucoup reposent au cimetière de Sainte-Geneviève-des-Bois.'):
+        ('Saint Alexander Nevsky Cathedral, on the rue Daru, is its heart; the Saint Sergius Theological Institute opened in 1925, on the rue de Crimée. Many worked at the Renault factories in Billancourt; many lie in the cemetery of Sainte-Geneviève-des-Bois.',
+         'Её сердце — собор Александра Невского на улице Дарю; в 1925 году на улице Крымэ открывается Свято-Сергиевский богословский институт. Многие работают на заводах «Рено» в Бийанкуре; многие похоронены на кладбище Сент-Женевьев-де-Буа.'),
+    (None, 'L’article suit ces lieux un à un, sur une carte, avec trois promenades à faire à pied. La librairie, rue de la Montagne-Sainte-Geneviève, en est l’une des adresses.'):
+        ('The article follows these places one by one, on a map, with three walks to do on foot. The bookshop, on the rue de la Montagne-Sainte-Geneviève, is one of the addresses.',
+         'Статья проходит по этим местам одно за другим, по карте, с тремя пешими прогулками. Книжный магазин на улице Монтань-Сент-Женевьев — один из этих адресов.'),
+    (None, 'Par [l’auteur] · [date] · dix lieux, trois promenades, [4] vidéos'):
+        ('By [author] · [date] · ten places, three walks, [4] videos',
+         'Автор: [имя] · [дата] · десять мест, три прогулки, [4] видео'),
+    (None, 'Lire l’article'):
+        ('Read the article',
+         'Читать статью'),
+    (None, 'Les billets'):
+        ('Columns',
+         'Заметки'),
+    (None, 'Les billets d’Yves Hamant'):
+        ('Yves Hamant’s columns',
+         'Заметки Ива Амана'),
+    (None, 'Anne-Marie Pelletier, Résister avec Vassily Grossman'):
+        ('Anne-Marie Pelletier, Résister avec Vassily Grossman',
+         'Анн-Мари Пеллетье, «Сопротивляться вместе с Василием Гроссманом»'),
+    (None, 'Yves Hamant lit le livre qu’Anne-Marie Pelletier consacre à Vassily Grossman, l’auteur de <em>Vie et destin</em>, et à ce que résister veut dire chez lui.'):
+        ('Yves Hamant reads Anne-Marie Pelletier’s book on Vasily Grossman, the author of <em>Life and Fate</em>, and on what resistance means in his work.',
+         'Ив Аман читает книгу Анн-Мари Пеллетье о Василии Гроссмане, авторе романа <em>«Жизнь и судьба»</em>, и о том, что значит у него сопротивляться.'),
+    (None, 'Yves Hamant · 27 janvier · 10 min'):
+        ('Yves Hamant · 27 January · 10 min',
+         'Ив Аман · 27 января · 10 мин'),
+    (None, 'Les billets de Dominique Samson'):
+        ('Dominique Samson’s columns',
+         'Заметки Доминик Самсон'),
+    (None, 'Du jardin secret des Lykov, vieux-croyants de Sibérie'):
+        ('The secret garden of the Lykovs, Old Believers in Siberia',
+         'Тайный сад Лыковых, сибирских старообрядцев'),
+    (None, 'En 1978, des géologues découvrent dans la taïga une famille de vieux-croyants, les Lykov, coupée du monde depuis plus de quarante ans. Dominique Samson raconte leur jardin.'):
+        ('In 1978, geologists found in the taiga a family of Old Believers, the Lykovs, cut off from the world for more than forty years. Dominique Samson tells the story of their garden.',
+         'В 1978 году геологи нашли в тайге семью старообрядцев Лыковых, больше сорока лет жившую вдали от мира. Доминик Самсон рассказывает об их саде.'),
+    (None, 'Dominique Samson · 13 avril 2023 · 28 min'):
+        ('Dominique Samson · 13 April 2023 · 28 min',
+         'Доминик Самсон · 13 апреля 2023 · 28 мин'),
+    (None, 'Le journal, en russe'):
+        ('The journal, in Russian',
+         'Журнал, по-русски'),
+    (None, 'Irina Roskina revient sur <em lang="ru">Четыре главы</em>, le livre de souvenirs littéraires de Natalia Roskina, paru chez YMCA-Press en 1980.'):
+        ('Irina Roskina looks back at <em lang="ru">Четыре главы</em> (Four Chapters), Natalia Roskina’s literary memoir, published by YMCA-Press in 1980.',
+         'Ирина Роскина вспоминает книгу <em lang="ru">«Четыре главы»</em> — литературные воспоминания Наталии Роскиной, вышедшие в YMCA-Press в 1980 году.'),
+    (None, '28 septembre · 6 min'):
+        ('28 September · 6 min',
+         '28 сентября · 6 мин'),
+    (None, 'Les billets de Georges Nivat'):
+        ('Georges Nivat’s columns',
+         'Заметки Жоржа Нива'),
+    (None, 'Quand un chardonneret s’échappe dans le métro'):
+        ('When a goldfinch gets loose in the metro',
+         'Когда щегол вырывается на волю в метро'),
+    (None, '[Deux lignes&nbsp;: de quoi parle le billet.]'):
+        ('[Two lines: what the column is about.]',
+         '[Две строки: о чём заметка.]'),
+    (None, 'Georges Nivat · 28 décembre 2024 · 3 min'):
+        ('Georges Nivat · 28 December 2024 · 3 min',
+         'Жорж Нива · 28 декабря 2024 · 3 мин'),
+    (None, '<strong>Ils écrivent dans le journal&nbsp;:</strong> Georges Nivat, Yves Hamant, Anne Hogenhuis, Françoise Lesourd, Cécile Vaissié, Anita Davidenkoff, Anne Misslin, Nikolaï Tikhonchuk, Véronique Jobert, François de Saint-Chéron, Marguerite Léna, Nikita Struve, Dominique Samson et Margarita Sokolova.'):
+        ('<strong>They write for the journal:</strong> Georges Nivat, Yves Hamant, Anne Hogenhuis, Françoise Lesourd, Cécile Vaissié, Anita Davidenkoff, Anne Misslin, Nikolai Tikhonchuk, Véronique Jobert, François de Saint-Chéron, Marguerite Léna, Nikita Struve, Dominique Samson and Margarita Sokolova.',
+         '<strong>В журнале пишут:</strong> Жорж Нива, Ив Аман, Анн Огенюи, Франсуаза Лесур, Сесиль Вессье, Анита Давиденкофф, Анн Мисслен, Николай Тихончук, Вероника Жобер, Франсуа де Сен-Шерон, Маргерит Лена, Никита Струве, Доминик Самсон и Маргарита Соколова.'),
+    (None, 'Tout le journal'):
+        ('The whole journal',
+         'Весь журнал'),
+    (None, 'Retraduire · la librairie'):
+        ('Retranslating · the bookshop',
+         'Новый перевод · книжный магазин'),
+    (None, 'Le Docteur Jivago'):
+        ('Doctor Zhivago',
+         'Доктор Живаго'),
+    (None, 'Couverture du Docteur Jivago'):
+        ('Cover of Doctor Zhivago',
+         'Обложка «Доктора Живаго»'),
+    (None, 'Première édition'):
+        ('First edition',
+         'Первое издание'),
+    (None, 'Milan, 1957, en italien'):
+        ('Milan, 1957, in Italian',
+         'Милан, 1957, по-итальянски'),
+    (None, '[éditeur de la nouvelle traduction]'):
+        ('[publisher of the new translation]',
+         '[издатель нового перевода]'),
+    (None, 'Boris Pasternak'):
+        ('Boris Pasternak',
+         'Борис Пастернак'),
+    (None, 'nouvelle traduction'):
+        ('new translation',
+         'новый перевод'),
+    (None, 'Ajouter au panier'):
+        ('Add to basket',
+         'В корзину'),
+    (None, 'Feuilleter'):
+        ('Look inside',
+         'Полистать'),
+    (None, 'Pasternak, dans l’encyclopédie'):
+        ('Pasternak, in the encyclopedia',
+         'Пастернак в энциклопедии'),
+    (None, '<strong>En librairie</strong> <a href="%1$s">Platonov, <em>Tchevengour</em></a>'):
+        ('<strong>At the bookshop</strong> <a href="%1$s">Platonov, <em>Chevengur</em></a>',
+         '<strong>В магазине</strong> <a href="%1$s">Платонов, <em>«Чевенгур»</em></a>'),
+    (None, 'Lui aussi écrit sous Staline et refusé de son vivant&nbsp;: paru en entier en URSS en 1988, la même année que Jivago.'):
+        ('Also written under Stalin and turned down in its author’s lifetime: published in full in the USSR in 1988, the same year as Zhivago.',
+         'Тоже написан при Сталине и отвергнут при жизни автора: целиком вышел в СССР в 1988 году, в один год с «Живаго».'),
+    (None, '<strong>Journal du centre</strong> <a href="%1$s"><em>Le Docteur Jivago</em>, par Georges Nivat</a>'):
+        ('<strong>The centre’s journal</strong> <a href="%1$s"><em>Doctor Zhivago</em>, by Georges Nivat</a>',
+         '<strong>Журнал центра</strong> <a href="%1$s"><em>«Доктор Живаго»</em>: статья Жоржа Нива</a>'),
+    (None, '[Deux lignes&nbsp;: de quoi parle l’article.]'):
+        ('[Two lines: what the article is about.]',
+         '[Две строки: о чём статья.]'),
+    (None, '<strong>Le fonds d’archives</strong> <a href="%1$s">Interdits là-bas, publiés ailleurs</a>'):
+        ('<strong>The archives</strong> <a href="%1$s">Banned there, published elsewhere</a>',
+         '<strong>Архив</strong> <a href="%1$s">Запрещённые там, изданные здесь</a>'),
+    (None, 'Les livres qui ont paru d’abord à l’étranger, ou des décennies après avoir été écrits.'):
+        ('Books that first came out abroad, or decades after they were written.',
+         'Книги, которые сначала вышли за границей или через десятилетия после того, как были написаны.'),
+    (None, 'Le roman de Pasternak a paru d’abord en italien, à Milan, en 1957, avant toute édition en russe&nbsp;; une nouvelle traduction le fait relire.'):
+        ('Pasternak’s novel first came out in Italian, in Milan, in 1957, before any edition in Russian; a new translation sends us back to it.',
+         'Роман Пастернака сначала вышел по-итальянски, в Милане, в 1957 году, раньше любого русского издания; новый перевод заставляет его перечитать.'),
+    (None, 'Une bougie derrière une vitre givrée'):
+        ('A candle behind a frosted window',
+         'Свеча за замёрзшим окном'),
+    (None, 'Une bougie derrière une vitre givrée&nbsp;: l’image que le roman a rendue célèbre.'):
+        ('A candle behind a frosted window: the image the novel made famous.',
+         'Свеча за замёрзшим окном — образ, который роман сделал знаменитым.'),
+    (None, 'Pasternak l’écrit pendant dix ans, de la fin de la guerre au milieu des années 1950&nbsp;: la vie d’un médecin et poète, Iouri Jivago, dans la Russie de la révolution et de la guerre civile, et son amour pour Lara.'):
+        ('Pasternak wrote it over ten years, from the end of the war to the mid-1950s: the life of a doctor and poet, Yuri Zhivago, in the Russia of the revolution and the civil war, and his love for Lara.',
+         'Пастернак писал его десять лет, с конца войны до середины 1950-х: жизнь врача и поэта Юрия Живаго в России революции и Гражданской войны и его любовь к Ларе.'),
+    (None, 'Refusé par les revues soviétiques, le manuscrit passe à l’Ouest&nbsp;; l’éditeur Giangiacomo Feltrinelli le publie à Milan en novembre 1957. L’année suivante, Pasternak reçoit le prix Nobel de littérature&nbsp;; sous la pression du pouvoir, il le refuse.'):
+        ('Turned down by Soviet journals, the manuscript reached the West; the publisher Giangiacomo Feltrinelli brought it out in Milan in November 1957. The following year Pasternak was awarded the Nobel Prize in Literature; under pressure from the authorities, he declined it.',
+         'Отвергнутая советскими журналами рукопись попала на Запад; издатель Джанджакомо Фельтринелли выпустил роман в Милане в ноябре 1957 года. На следующий год Пастернак получил Нобелевскую премию по литературе и под давлением власти от неё отказался.'),
+    (None, 'En URSS, le roman ne paraît qu’en 1988, dans la revue <em>Novy Mir</em>, trente ans après le Nobel.'):
+        ('In the USSR the novel did not appear until 1988, in the journal <em>Novy Mir</em>, thirty years after the Nobel.',
+         'В СССР роман вышел только в 1988 году, в журнале <em>«Новый мир»</em>, через тридцать лет после Нобелевской премии.'),
+    (None, '[Une phrase du libraire&nbsp;: ce que la nouvelle traduction change à la lecture.]'):
+        ('[A sentence from the bookseller: what the new translation changes for the reader.]',
+         '[Фраза книготорговца: что меняет новый перевод.]'),
+    (None, 'Une page · Alexandre Blok, 1912'):
+        ('A page · Alexander Blok, 1912',
+         'Страница · Александр Блок, 1912'),
+    (None, 'Une rue la nuit&nbsp;: un réverbère, une pharmacie, le canal'):
+        ('A street at night: a street lamp, a chemist’s, the canal',
+         'Улица ночью: фонарь, аптека, канал'),
+    (None, 'La nuit, la rue, le réverbère, la pharmacie&nbsp;; et dans l’eau du canal, les mêmes, à l’envers.'):
+        ('The night, the street, the lamp, the chemist’s; and in the water of the canal, the same again, upside down.',
+         'Ночь, улица, фонарь, аптека — и в воде канала то же самое, вверх ногами.'),
+    (None, 'Nuit, rue, réverbère, pharmacie&nbsp;: quatre mots, et la ville de Blok est là. Le poème est écrit le 10 octobre 1912&nbsp;; il fait partie du cycle «&nbsp;Danses macabres&nbsp;».'):
+        ('Night, street, lamp, chemist’s: four words, and Blok’s city is there. The poem was written on 10 October 1912; it belongs to the cycle “Dances of Death”.',
+         'Ночь, улица, фонарь, аптека: четыре слова — и вот он, город Блока. Стихотворение написано 10 октября 1912 года и входит в цикл «Пляски смерти».'),
+    (None, 'Les deux strophes se répondent&nbsp;: la seconde reprend la première à rebours, de la nuit au réverbère, comme un reflet dans l’eau glacée du canal. Vivre encore un quart de siècle n’y changera rien&nbsp;: tout recommencera.'):
+        ('The two stanzas answer each other: the second takes up the first in reverse, from the night to the lamp, like a reflection in the icy water of the canal. Living another quarter of a century will change nothing: it will all begin again.',
+         'Две строфы отвечают друг другу: вторая повторяет первую в обратном порядке, от ночи к фонарю, как отражение в ледяной воде канала. Проживи ещё хоть четверть века — ничего не изменится: всё повторится.'),
+    (None, 'Blok est le grand poète du symbolisme russe. Six ans plus tard, en janvier 1918, il écrit <em>Les Douze</em>, le poème de la révolution&nbsp;: douze gardes rouges marchent dans Petrograd, sous la neige.'):
+        ('Blok is the great poet of Russian Symbolism. Six years later, in January 1918, he wrote <em>The Twelve</em>, the poem of the revolution: twelve Red Guards march through Petrograd in the snow.',
+         'Блок — главный поэт русского символизма. Через шесть лет, в январе 1918 года, он пишет <em>«Двенадцать»</em>, поэму о революции: двенадцать красногвардейцев идут по Петрограду под снегом.'),
+    (None, 'En librairie'):
+        ('At the bookshop',
+         'В магазине'),
+    (None, 'Couverture des Douze, d’Alexandre Blok'):
+        ('Cover of The Twelve, by Alexander Blok',
+         'Обложка поэмы Александра Блока «Двенадцать»'),
+    (None, '<em>Les Douze</em>'):
+        ('<em>The Twelve</em>',
+         '<em>«Двенадцать»</em>'),
+    (None, 'Alexandre Blok · le poème de janvier 1918'):
+        ('Alexander Blok · the poem of January 1918',
+         'Александр Блок · поэма января 1918 года'),
+    (None, 'Et la traduction du libraire, vers à vers, dans <a href="%1$s">l’encyclopédie</a>.'):
+        ('And the bookseller’s line-by-line translation, in <a href="%1$s">the encyclopedia</a>.',
+         'И подстрочный перевод книготорговца — в <a href="%1$s">энциклопедии</a>.'),
+    (None, 'Les vidéos du centre · Le Paris de l’émigration'):
+        ('The centre’s videos · The Paris of the emigration',
+         'Видео центра · Париж эмиграции'),
+    (None, 'Mère Marie et ses compagnons au foyer de la rue de Lourmel&nbsp;; voir la vidéo'):
+        ('Mother Maria and her companions at the rue de Lourmel hostel; watch the video',
+         'Мать Мария и её товарищи в приюте на улице Лурмель; смотреть видео'),
+    (None, 'Sainte Marie de Paris, deuxième à gauche, au foyer de la rue de Lourmel.'):
+        ('Saint Maria of Paris, second from left, at the rue de Lourmel hostel.',
+         'Святая Мария Парижская, вторая слева, в приюте на улице Лурмель.'),
+    (None, 'La rue de Lourmel et mère Marie'):
+        ('The rue de Lourmel and Mother Maria',
+         'Улица Лурмель и мать Мария'),
+    (None, 'Au 77, rue de Lourmel, dans le quinzième arrondissement, mère Marie Skobtsova ouvre en 1935 un foyer pour les plus pauvres de l’émigration&nbsp;: on y loge, on y mange, on y prie.'):
+        ('At 77 rue de Lourmel, in the fifteenth arrondissement, Mother Maria Skobtsova opened a hostel in 1935 for the poorest of the emigration: people slept, ate and prayed there.',
+         'В доме 77 на улице Лурмель, в пятнадцатом округе, мать Мария (Скобцова) открывает в 1935 году приют для самых бедных эмигрантов: здесь живут, едят и молятся.'),
+    (None, 'Sous l’Occupation, la maison cache des Juifs et leur fournit de faux papiers. Arrêtée en 1943, mère Marie meurt à Ravensbrück en mars 1945. L’Église orthodoxe l’a canonisée en 2004.'):
+        ('Under the Occupation the house hid Jews and gave them false papers. Arrested in 1943, Mother Maria died at Ravensbrück in March 1945. The Orthodox Church canonised her in 2004.',
+         'Во время оккупации в доме прячут евреев и делают им фальшивые документы. Арестованная в 1943 году, мать Мария погибла в Равенсбрюке в марте 1945 года. В 2004 году Православная церковь причислила её к лику святых.'),
+    (None, '[Une phrase&nbsp;: ce que la vidéo montre de la rue aujourd’hui.]'):
+        ('[A sentence: what the video shows of the street today.]',
+         '[Фраза: что видео показывает об улице сегодня.]'),
+    (None, '[14 min] · Réalisée par [Prénom Nom], bénévole · [date]'):
+        ('[14 min] · Made by [First name Surname], volunteer · [date]',
+         '[14 мин] · Автор: [имя и фамилия], волонтёр · [дата]'),
+    (None, 'Six séries, des rendez-vous'):
+        ('Six series, regular slots',
+         'Шесть циклов, регулярные выпуски'),
+    (None, 'Plutôt que des vidéos isolées, des séries&nbsp;: on y revient, comme à une émission.'):
+        ('Series rather than one-off videos: you come back to them, as you would to a programme.',
+         'Не отдельные видео, а циклы: к ним возвращаешься, как к передаче.'),
+    (None, 'Un livre, cinq minutes'):
+        ('One book, five minutes',
+         'Одна книга, пять минут'),
+    (None, '[8] vidéos'):
+        ('[8] videos',
+         '[8] видео'),
+    (None, 'Un lecteur, un livre de la librairie, cinq minutes pour donner envie.'):
+        ('One reader, one book from the bookshop, five minutes to make you want it.',
+         'Один читатель, одна книга из магазина и пять минут, чтобы её захотелось прочесть.'),
+    (None, 'Le Paris de l’émigration'):
+        ('The Paris of the emigration',
+         'Париж эмиграции'),
+    (None, '[4] vidéos'):
+        ('[4] videos',
+         '[4] видео'),
+    (None, 'Un lieu par épisode&nbsp;: la rue Daru, la rue de Lourmel, Montparnasse, Sainte-Geneviève-des-Bois.'):
+        ('One place per episode: the rue Daru, the rue de Lourmel, Montparnasse, Sainte-Geneviève-des-Bois.',
+         'Одно место в каждом выпуске: улица Дарю, улица Лурмель, Монпарнас, Сент-Женевьев-де-Буа.'),
+    (None, 'À voix haute'):
+        ('Out loud',
+         'Вслух'),
+    (None, '[12] vidéos'):
+        ('[12] videos',
+         '[12] видео'),
+    (None, 'Des poèmes et des pages lus en russe et en français, de Pouchkine à Blok.'):
+        ('Poems and pages read in Russian and in French, from Pushkin to Blok.',
+         'Стихи и страницы прозы, прочитанные по-русски и по-французски, от Пушкина до Блока.'),
+    (None, 'Dans les archives'):
+        ('In the archives',
+         'В архиве'),
+    (None, '[3] vidéos'):
+        ('[3] videos',
+         '[3] видео'),
+    (None, 'On ouvre une boîte des archives d’YMCA-Press, et on raconte ce qu’on y trouve.'):
+        ('We open a box from the YMCA-Press archives and tell what we find inside.',
+         'Открываем коробку из архива YMCA-Press и рассказываем, что в ней нашлось.'),
+    (None, 'Les entretiens'):
+        ('Conversations',
+         'Беседы'),
+    (None, '[6] vidéos'):
+        ('[6] videos',
+         '[6] видео'),
+    (None, 'Des traducteurs, des auteurs, des chercheurs, invités au centre.'):
+        ('Translators, authors and researchers, invited to the centre.',
+         'Переводчики, авторы, исследователи — гости центра.'),
+    (None, 'Premiers pas en russe'):
+        ('First steps in Russian',
+         'Первые шаги в русском'),
+    (None, '[10] vidéos'):
+        ('[10] videos',
+         '[10] видео'),
+    (None, 'Des leçons courtes, pour accompagner les manuels de la librairie.'):
+        ('Short lessons to go with the coursebooks sold at the bookshop.',
+         'Короткие уроки в помощь учебникам из нашего магазина.'),
+    (None, 'Toutes les vidéos'):
+        ('All the videos',
+         'Все видео'),
+    (None, 'L’article du jour'):
+        ('Article of the day',
+         'Статья дня'),
+    (None, 'L’Âge d’argent'):
+        ('The Silver Age',
+         'Серебряный век'),
+    (None, 'On appelle <strong>Âge d’argent</strong> (<em lang="ru">Серебряный век</em>) la période de la poésie russe qui va des années 1890 à 1921, par opposition à l’«&nbsp;<em>Âge d’or</em>&nbsp;» de Pouchkine<sup>1</sup>. Trois courants s’y succèdent et s’y opposent&nbsp;: le <a href="%1$s">symbolisme</a> d’Alexandre Blok et d’Andreï Biély, l’<a href="%1$s">acméisme</a> de Nikolaï Goumilev, d’Anna Akhmatova et d’Ossip Mandelstam, qui veulent des mots clairs et des choses précises, et le <a href="%1$s">futurisme</a> de Khlebnikov et de Maïakovski.'):
+        ('The <strong>Silver Age</strong> (<em lang="ru">Серебряный век</em>) is the name given to the period of Russian poetry from the 1890s to 1921, as opposed to Pushkin’s “<em>Golden Age</em>”<sup>1</sup>. Three movements followed and opposed one another: the <a href="%1$s">Symbolism</a> of Alexander Blok and Andrei Bely; the <a href="%1$s">Acmeism</a> of Nikolai Gumilev, Anna Akhmatova and Osip Mandelstam, who wanted clear words and precise things; and the <a href="%1$s">Futurism</a> of Khlebnikov and Mayakovsky.',
+         '<strong>Серебряным веком</strong> (<em lang="ru">Серебряный век</em>) называют период русской поэзии с 1890-х годов до 1921 года, в отличие от пушкинского «<em>золотого века</em>»<sup>1</sup>. В нём сменяют друг друга и спорят три течения: <a href="%1$s">символизм</a> Александра Блока и Андрея Белого, <a href="%1$s">акмеизм</a> Николая Гумилёва, Анны Ахматовой и Осипа Мандельштама, которым нужны ясные слова и точные вещи, и <a href="%1$s">футуризм</a> Хлебникова и Маяковского.'),
+    (None, 'La révolution en fait éclater la communauté. Blok salue Octobre dans <a href="%1$s"><em>Les Douze</em></a>, en janvier 1918&nbsp;; en août 1921, il meurt à Petrograd, et Goumilev est fusillé, accusé de complot<sup>2</sup>. Beaucoup de ceux qui restent sont réduits au silence&nbsp;; d’autres partent, et l’Âge d’argent se prolonge dans l’<a href="%2$s">émigration</a>, à Berlin, à Prague et à Paris.'):
+        ('The revolution broke the community apart. Blok hailed October in <a href="%1$s"><em>The Twelve</em></a>, in January 1918; in August 1921 he died in Petrograd, and Gumilev was shot, accused of conspiracy<sup>2</sup>. Many of those who stayed were silenced; others left, and the Silver Age lived on in the <a href="%2$s">emigration</a>, in Berlin, Prague and Paris.',
+         'Революция разрушила это сообщество. Блок приветствует Октябрь в поэме <a href="%1$s"><em>«Двенадцать»</em></a>, в январе 1918 года; в августе 1921 года он умирает в Петрограде, а Гумилёва расстреливают по обвинению в заговоре<sup>2</sup>. Многих из оставшихся заставили замолчать; другие уехали, и Серебряный век продолжился в <a href="%2$s">эмиграции</a> — в Берлине, Праге и Париже.'),
+    (None, 'Portrait d’Anna Akhmatova par Natan Altman'):
+        ('Portrait of Anna Akhmatova by Natan Altman',
+         'Портрет Анны Ахматовой работы Натана Альтмана'),
+    (None, 'Anna Akhmatova par Natan Altman, 1914&nbsp;: l’Âge d’argent, en un portrait.'):
+        ('Anna Akhmatova by Natan Altman, 1914: the Silver Age in a single portrait.',
+         'Анна Ахматова работы Натана Альтмана, 1914: Серебряный век в одном портрете.'),
+    (None, 'Article détaillé&nbsp;: <a href="%1$s">L’Âge d’argent</a> · Voir aussi&nbsp;: <a href="%2$s">Alexandre Soljenitsyne</a>, <a href="%3$s">Andreï Platonov</a>'):
+        ('Main article: <a href="%1$s">The Silver Age</a> · See also: <a href="%2$s">Alexander Solzhenitsyn</a>, <a href="%3$s">Andrei Platonov</a>',
+         'Подробнее: <a href="%1$s">Серебряный век</a> · См. также: <a href="%2$s">Александр Солженицын</a>, <a href="%3$s">Андрей Платонов</a>'),
+    (None, 'Le terme s’impose après coup&nbsp;; ses limites, surtout la date de départ, varient selon les historiens.'):
+        ('The term took hold after the fact; its limits, especially its starting date, vary from one historian to another.',
+         'Термин утвердился задним числом; его границы, особенно начальная дата, у разных историков разные.'),
+    (None, 'L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992.'):
+        ('The “<em>Tagantsev affair</em>”: Gumilev was rehabilitated in 1992.',
+         '«<em>Дело Таганцева</em>»: Гумилёв реабилитирован в 1992 году.'),
+    (None, 'Âge d’argent'):
+        ('Silver Age',
+         'Серебряный век'),
+    (None, 'Période'):
+        ('Period',
+         'Период'),
+    (None, 'vers 1890 – 1921'):
+        ('c. 1890 – 1921',
+         'около 1890 – 1921'),
+    (None, 'Lieux'):
+        ('Places',
+         'Места'),
+    (None, 'Saint-Pétersbourg, Moscou'):
+        ('Saint Petersburg, Moscow',
+         'Санкт-Петербург, Москва'),
+    (None, 'Courants'):
+        ('Movements',
+         'Течения'),
+    (None, 'symbolisme, acméisme, futurisme'):
+        ('Symbolism, Acmeism, Futurism',
+         'символизм, акмеизм, футуризм'),
+    (None, 'Figures'):
+        ('Key figures',
+         'Имена'),
+    (None, 'Blok, Biély, Akhmatova, Goumilev, Mandelstam, Tsvetaïeva, Maïakovski'):
+        ('Blok, Bely, Akhmatova, Gumilev, Mandelstam, Tsvetaeva, Mayakovsky',
+         'Блок, Белый, Ахматова, Гумилёв, Мандельштам, Цветаева, Маяковский'),
+    (None, 'Fin'):
+        ('End',
+         'Конец'),
+    (None, '1921&nbsp;: mort de Blok, exécution de Goumilev'):
+        ('1921: death of Blok, execution of Gumilev',
+         '1921: смерть Блока, расстрел Гумилёва'),
+    (None, '[34] livres · [12] auteurs'):
+        ('[34] books · [12] authors',
+         '[34] книги · [12] авторов'),
+    (None, 'Les livres cités, en librairie'):
+        ('Books mentioned, at the bookshop',
+         'Упомянутые книги в магазине'),
+    (None, 'Les Douze'):
+        ('The Twelve',
+         'Двенадцать'),
+    (None, 'Alexandre Blok'):
+        ('Alexander Blok',
+         'Александр Блок'),
+    (None, 'Poésies choisies'):
+        ('Selected Poems',
+         'Избранные стихотворения'),
+    (None, 'Nikolaï Goumilev'):
+        ('Nikolai Gumilev',
+         'Николай Гумилёв'),
+    (None, 'Ekatérina Ivanovna, suivi de Requiem'):
+        ('Ekaterina Ivanovna, followed by Requiem',
+         'Екатерина Ивановна. Реквием'),
+    (None, 'Léonid Andréïev'):
+        ('Leonid Andreyev',
+         'Леонид Андреев'),
+    (None, '[Un livre d’Anna Akhmatova]'):
+        ('[A book by Anna Akhmatova]',
+         '[Книга Анны Ахматовой]'),
+    (None, 'à choisir dans le catalogue'):
+        ('to be chosen from the catalogue',
+         'выбрать в каталоге'),
+    (None, '[Un livre d’Ossip Mandelstam]'):
+        ('[A book by Osip Mandelstam]',
+         '[Книга Осипа Мандельштама]'),
+    (None, '[Un livre d’Andreï Biély]'):
+        ('[A book by Andrei Bely]',
+         '[Книга Андрея Белого]'),
+    (None, 'Le saviez-vous&nbsp;?'):
+        ('Did you know?',
+         'А вы знали?'),
+    (None, '… que <a href="%1$s"><em>Le Docteur Jivago</em></a> de Pasternak a paru pour la première fois en italien, à Milan, en 1957, avant toute édition en russe&nbsp;?'):
+        ('… that Pasternak’s <a href="%1$s"><em>Doctor Zhivago</em></a> was first published in Italian, in Milan, in 1957, before any edition in Russian?',
+         '…что <a href="%1$s"><em>«Доктор Живаго»</em></a> Пастернака впервые вышел по-итальянски, в Милане, в 1957 году, раньше любого русского издания?'),
+    (None, '… que <a href="%1$s"><em>Tchevengour</em></a>, écrit par Platonov à la fin des années 1920, n’a paru en entier en URSS qu’en 1988&nbsp;?'):
+        ('… that <a href="%1$s"><em>Chevengur</em></a>, written by Platonov in the late 1920s, was not published in full in the USSR until 1988?',
+         '…что <a href="%1$s"><em>«Чевенгур»</em></a>, написанный Платоновым в конце 1920-х, целиком вышел в СССР только в 1988 году?'),
+    (None, '… que <a href="%1$s"><em>L’Archipel du Goulag</em></a> a paru d’abord en russe, à Paris, chez YMCA-Press, le 28 décembre 1973&nbsp;?'):
+        ('… that <a href="%1$s"><em>The Gulag Archipelago</em></a> first came out in Russian, in Paris, from YMCA-Press, on 28 December 1973?',
+         '…что <a href="%1$s"><em>«Архипелаг ГУЛАГ»</em></a> впервые вышел по-русски в Париже, в YMCA-Press, 28 декабря 1973 года?'),
+    (None, '… que les <a href="%1$s"><em>Notes d’un médecin</em></a> de Veressaïev, sur les débuts d’un jeune médecin, firent scandale à leur parution, en 1901&nbsp;?'):
+        ('… that Veresaev’s <a href="%1$s"><em>Memoirs of a Physician</em></a>, about a young doctor’s first years, caused a scandal when they came out in 1901?',
+         '…что <a href="%1$s"><em>«Записки врача»</em></a> Вересаева, о первых шагах молодого врача, вызвали скандал, когда вышли в 1901 году?'),
+    (None, 'En novembre'):
+        ('In November',
+         'В ноябре'),
+    (None, '7 novembre 1917'):
+        ('7 November 1917',
+         '7 ноября 1917'),
+    (None, 'La révolution d’Octobre (25 octobre dans le calendrier julien).'):
+        ('The October Revolution (25 October in the Julian calendar).',
+         'Октябрьская революция (25 октября по юлианскому календарю).'),
+    (None, '9 novembre 1818'):
+        ('9 November 1818',
+         '9 ноября 1818'),
+    (None, 'Naissance d’Ivan Tourguéniev, à Orel.'):
+        ('Ivan Turgenev is born in Oryol.',
+         'Родился Иван Тургенев, в Орле.'),
+    (None, '9 novembre 1933'):
+        ('9 November 1933',
+         '9 ноября 1933'),
+    (None, 'Ivan Bounine reçoit le prix Nobel de littérature, le premier écrivain russe à l’obtenir.'):
+        ('Ivan Bunin is awarded the Nobel Prize in Literature, the first Russian writer to receive it.',
+         'Иван Бунин получает Нобелевскую премию по литературе — первым из русских писателей.'),
+    (None, '11 novembre 1821'):
+        ('11 November 1821',
+         '11 ноября 1821'),
+    (None, 'Naissance de Fiodor Dostoïevski, à Moscou.'):
+        ('Fyodor Dostoevsky is born in Moscow.',
+         'Родился Фёдор Достоевский, в Москве.'),
+    (None, '20 novembre 1910'):
+        ('20 November 1910',
+         '20 ноября 1910'),
+    (None, 'Mort de Léon Tolstoï, à la gare d’Astapovo.'):
+        ('Leo Tolstoy dies at Astapovo station.',
+         'Умер Лев Толстой, на станции Астапово.'),
+    (None, '28 novembre 1880'):
+        ('28 November 1880',
+         '28 ноября 1880'),
+    (None, 'Naissance d’Alexandre Blok, à Saint-Pétersbourg.'):
+        ('Alexander Blok is born in Saint Petersburg.',
+         'Родился Александр Блок, в Санкт-Петербурге.'),
+    (None, 'Dates du calendrier grégorien.'):
+        ('Dates in the Gregorian calendar.',
+         'Даты по григорианскому календарю.'),
+    (None, 'Un livre, une vie · la librairie'):
+        ('A book, a life · the bookshop',
+         'Книга и жизнь · книжный магазин'),
+    (None, 'Tchevengour'):
+        ('Chevengur',
+         'Чевенгур'),
+    (None, 'Couverture de Tchevengour, d’Andreï Platonov'):
+        ('Cover of Chevengur, by Andrei Platonov',
+         'Обложка романа Андрея Платонова «Чевенгур»'),
+    (None, 'Paru en URSS'):
+        ('Published in the USSR',
+         'Вышел в СССР'),
+    (None, 'en entier, en 1988'):
+        ('in full, in 1988',
+         'целиком, в 1988 году'),
+    (None, '[éditeur de la nouvelle édition]'):
+        ('[publisher of the new edition]',
+         '[издатель нового издания]'),
+    (None, 'Andreï Platonov'):
+        ('Andrei Platonov',
+         'Андрей Платонов'),
+    (None, 'nouvelle édition'):
+        ('new edition',
+         'новое издание'),
+    (None, 'Platonov, dans l’encyclopédie'):
+        ('Platonov, in the encyclopedia',
+         'Платонов в энциклопедии'),
+    (None, '<strong>En librairie</strong> <a href="%1$s">Boulgakov, <em>Le Maître et Marguerite</em></a>'):
+        ('<strong>At the bookshop</strong> <a href="%1$s">Bulgakov, <em>The Master and Margarita</em></a>',
+         '<strong>В магазине</strong> <a href="%1$s">Булгаков, <em>«Мастер и Маргарита»</em></a>'),
+    (None, 'Écrit lui aussi dans les années 1930, sans espoir de publication&nbsp;; paru en URSS, censuré, en 1966-1967.'):
+        ('Also written in the 1930s with no hope of publication; it came out in the USSR, censored, in 1966–1967.',
+         'Тоже написан в 1930-е годы без надежды на публикацию; вышел в СССР с цензурными сокращениями в 1966–1967 годах.'),
+    (None, '<strong>Vidéo</strong> <a href="%1$s">Zamiatine, <em>Nous</em>, vu par André Markowicz</a>'):
+        ('<strong>Video</strong> <a href="%1$s">Zamyatin’s <em>We</em>, seen by André Markowicz</a>',
+         '<strong>Видео</strong> <a href="%1$s">Замятин, <em>«Мы»</em>, глазами Андре Марковича</a>'),
+    (None, 'Une autre utopie, écrite en 1920&nbsp;: refusée en URSS, elle paraît d’abord en anglais, à New York, en 1924.'):
+        ('Another utopia, written in 1920: turned down in the USSR, it first came out in English, in New York, in 1924.',
+         'Ещё одна утопия, написанная в 1920 году: отвергнутая в СССР, она сначала вышла по-английски, в Нью-Йорке, в 1924 году.'),
+    (None, '<strong>Le fonds d’archives</strong> <a href="%1$s">1917, et après</a>'):
+        ('<strong>The archives</strong> <a href="%1$s">1917 and after</a>',
+         '<strong>Архив</strong> <a href="%1$s">1917-й и после</a>'),
+    (None, 'La révolution vue par ceux qui l’ont vécue, de Blok à Platonov.'):
+        ('The revolution seen by those who lived through it, from Blok to Platonov.',
+         'Революция глазами тех, кто её пережил, от Блока до Платонова.'),
+    (None, 'Le roman d’une utopie communiste dans un bourg de la steppe, que son auteur n’a jamais vu paraître en entier.'):
+        ('The novel of a communist utopia in a steppe village, which its author never saw published in full.',
+         'Роман о коммунистической утопии в степном городке, который автор так и не увидел изданным целиком.'),
+    (None, 'Le soleil sur la steppe, un petit bourg'):
+        ('The sun over the steppe, a small village',
+         'Солнце над степью, маленький городок'),
+    (None, 'Le bourg de Tchevengour&nbsp;: on a cessé de travailler, le soleil travaille pour tous.'):
+        ('The village of Chevengur: people have stopped working, and the sun works for everyone.',
+         'Чевенгур: люди перестали работать, солнце трудится за всех.'),
+    (None, 'Platonov écrit Tchevengour à la fin des années 1920. Dans un bourg perdu de la steppe, une poignée de révolutionnaires décide que le communisme est arrivé&nbsp;: ils chassent les «&nbsp;bourgeois&nbsp;», cessent de travailler, et laissent le soleil travailler pour eux.'):
+        ('Platonov wrote Chevengur in the late 1920s. In a remote steppe village, a handful of revolutionaries decide that communism has arrived: they drive out the “bourgeois”, stop working, and let the sun work for them.',
+         'Платонов пишет «Чевенгур» в конце 1920-х годов. В затерянном степном городке горстка революционеров решает, что коммунизм наступил: они изгоняют «буржуев», перестают работать и предоставляют солнцу трудиться за них.'),
+    (None, 'Sa langue, faite de mots de la propagande pris au pied de la lettre, est l’une des plus singulières de la littérature russe&nbsp;: on y entend à la fois l’espoir de la révolution et son absurdité.'):
+        ('His language, made of propaganda words taken literally, is one of the most singular in Russian literature: in it you hear both the hope of the revolution and its absurdity.',
+         'Его язык, сложенный из слов пропаганды, понятых буквально, — один из самых необычных в русской литературе: в нём слышны и надежда революции, и её абсурд.'),
+    (None, 'Refusé de son vivant, le livre ne paraît en entier en URSS qu’en 1988, presque quarante ans après la mort de son auteur, en 1951.'):
+        ('Rejected in his lifetime, the book did not appear in full in the USSR until 1988, almost forty years after its author’s death in 1951.',
+         'Отвергнутая при жизни автора, книга целиком вышла в СССР только в 1988 году, почти через сорок лет после его смерти в 1951 году.'),
 }
 
 LANGUES = {

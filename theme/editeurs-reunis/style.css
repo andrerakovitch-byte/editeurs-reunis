@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.5.1
+Version: 0.6.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -1688,3 +1688,445 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-ambiance-papier header.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier footer.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier .er-librairie-entete .er-aplat-pervenche { background: var(--wp--preset--color--accent); }
+
+/* --------------------------------------------------------------------------
+   L'accueil, à la une (21 nov. 2026)
+   Les modules de la maquette « L'accueil, à la une » : des affiches pleine largeur sur l'aplat d'une maison, le
+   journal, une page (un poème), les vidéos, l'encyclopédie du jour. Le texte est la matière ; les faits, le prix et
+   les boutons restent en petit. Le gras est le demi-gras de la DA (600). Chaque module est une composition
+   (patterns/une-*.php), en blocs de WordPress.
+   -------------------------------------------------------------------------- */
+
+.er-aplat-ymca { background: var(--wp--preset--color--maison-ymca); }
+
+.er-accueil > .er-une { margin-block: 0 !important; }
+.er-une {
+	--er-une-encre: var(--wp--preset--color--contrast);
+	--er-une-doux: var(--wp--preset--color--encre-2);
+	--er-une-pale: var(--wp--preset--color--discret);
+	--er-une-filet: var(--wp--preset--color--filet);
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding-block: clamp(3rem, 5.5vw, 5rem);
+	background-color: var(--wp--preset--color--base);
+	color: var(--er-une-encre);
+}
+.er-une.er-aplat-ymca, .er-une.er-aplat-vert, .er-une.er-aplat-noir, .er-une.er-aplat-nuit {
+	--er-une-encre: #FFFFFF;
+	--er-une-doux: rgba(255, 255, 255, 0.78);
+	--er-une-pale: rgba(255, 255, 255, 0.64);
+	--er-une-filet: rgba(255, 255, 255, 0.24);
+}
+.er-une.er-aplat-ymca { --er-une-fond: var(--wp--preset--color--maison-ymca); background-color: var(--er-une-fond); }
+.er-une.er-aplat-vert { --er-une-fond: var(--wp--preset--color--aplat-vert); background-color: var(--er-une-fond); }
+.er-une.er-aplat-noir { --er-une-fond: var(--wp--preset--color--aplat-noir); background-color: var(--er-une-fond); }
+.er-une.er-aplat-nuit { --er-une-fond: var(--wp--preset--color--aplat-nuit); background-color: var(--er-une-fond); }
+.er-une + .er-une:not([class*="er-aplat-"]) { border-top: 0; }
+
+/* L'espacement : les modules le règlent eux-mêmes, pas l'écart des blocs. */
+.er-une :where(p, h2, h3, figure, ol, ul) { margin-block: 0; }
+.er-une .wp-block-columns.er-une-colonnes { gap: clamp(2.5rem, 4.6vw, 4.5rem); margin-block: 0; align-items: flex-start; }
+.er-une .wp-block-column,
+.er-une .er-une-dedans,
+.er-une .er-une-billet-texte,
+.er-une .er-une-ref-texte,
+.er-une .er-une-plus-loin,
+.er-une .er-une-serie-texte,
+.er-une .er-une-livre-texte { display: flex; flex-direction: column; gap: 1.1rem; min-width: 0; }
+.er-une .wp-block-column > *,
+.er-une .er-une-dedans > *,
+.er-une .er-une-billet-texte > *,
+.er-une .er-une-ref-texte > *,
+.er-une .er-une-plus-loin > *,
+.er-une .er-une-serie-texte > *,
+.er-une .er-une-livre-texte > *,
+.er-une .er-une-fait > *,
+.er-une .er-une-faits > *,
+.er-une .er-une-plus > *,
+.er-une .er-une-billets > *,
+.er-une .er-une-series > *,
+.er-une .er-une-livres > *,
+.er-une .er-une-saviez > *,
+.er-une .er-une-fiche > *,
+.er-une .er-une-fiche-tete > *,
+.er-une .er-une-deux-colonnes > * { margin-block: 0; }
+.er-une a:not(.wp-element-button) { color: inherit; }
+.er-une :is(h2, h3) a,
+.er-une .er-une-plus-quoi a,
+.er-une .er-une-serie-titre a,
+.er-une .er-une-livre-titre a,
+.er-une .er-une-ref-titre a { text-decoration: none; }
+.er-une :is(h2, h3) a:hover,
+.er-une .er-une-plus-quoi a:hover,
+.er-une .er-une-serie-titre a:hover,
+.er-une .er-une-livre-titre a:hover,
+.er-une .er-une-ref-titre a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+
+/* Le grand mot russe, ton sur ton, au bas de l'aplat : un dessin, que les lecteurs d'écran taisent. */
+.er-une > .er-une-glyphe {
+	position: absolute;
+	right: -30px;
+	bottom: -0.22em;
+	z-index: -1;
+	width: max-content;
+	max-width: none;
+	margin: 0;
+	font-size: clamp(8rem, 19.5vw, 17.5rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.04em;
+	white-space: nowrap;
+	color: rgba(255, 255, 255, 0.05);
+	pointer-events: none;
+	user-select: none;
+}
+.er-une-poeme > .er-une-glyphe { font-size: clamp(9rem, 21vw, 18.75rem); color: rgba(28, 28, 28, 0.06); }
+
+/* La rubrique (sur une affiche) et le surtitre (ailleurs), avec le point de chaque maison. */
+.er-une-rubrique { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; color: var(--er-une-doux); }
+.er-une-surtitre {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--er-une-pale);
+}
+.er-une [class*="er-points-"]::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; }
+.er-une .er-points-librairie::before { background: var(--wp--preset--color--maison-librairie); }
+.er-une .er-points-ymca::before { background: var(--wp--preset--color--maison-ymca); }
+.er-une .er-points-centre::before { background: var(--wp--preset--color--maison-centre); }
+.er-une[class*="er-aplat-"] .er-points-librairie::before { background: var(--wp--preset--color--point-librairie); }
+.er-une[class*="er-aplat-"] .er-points-ymca::before { background: var(--wp--preset--color--point-ymca); }
+.er-une[class*="er-aplat-"] .er-points-centre::before { background: var(--wp--preset--color--point-centre); }
+.er-une .er-points-tous::before {
+	width: 32px;
+	border-radius: 0;
+	background:
+		radial-gradient(circle 4px at 4px 50%, var(--wp--preset--color--point-ymca) 96%, transparent 100%),
+		radial-gradient(circle 4px at 16px 50%, var(--wp--preset--color--point-librairie) 96%, transparent 100%),
+		radial-gradient(circle 4px at 28px 50%, var(--wp--preset--color--point-centre) 96%, transparent 100%);
+}
+
+/* Les liens d'une ligne (« Lire l'article », « Tout le journal ») et les lignes discrètes. */
+.er-une-lien { font-size: 0.875rem; font-weight: 600; }
+.er-une-lien a { text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.er-une-lien a:hover { border-bottom-width: 2px; }
+.er-une-meta { font-size: 0.875rem; line-height: 1.5; color: var(--er-une-pale); }
+.er-une-prix { font-size: 0.8125rem; font-weight: 400; opacity: 0.75; white-space: nowrap; }
+
+/* Le texte en deux colonnes. */
+.er-une-deux-colonnes { columns: 2; column-gap: 2.5rem; font-size: 1.09375rem; line-height: 1.62; }
+.er-une-deux-colonnes > p { margin: 0 0 0.85em !important; }
+
+/* Les photos et les dessins, avec leur légende. */
+.er-une .wp-block-image img { display: block; }
+.er-une .er-une-photo img,
+.er-une .er-une-video img { width: 100%; height: auto; aspect-ratio: 7 / 4; object-fit: cover; }
+.er-une .er-une-photo-large img { aspect-ratio: 2 / 1; }
+.er-une .er-une-gris img { filter: grayscale(1); }
+.er-une .er-une-dessin img { width: 100%; height: auto; }
+.er-une .wp-block-image figcaption { margin: 0.5rem 0 0; font-size: 0.8125rem; line-height: 1.45; text-align: start; color: var(--er-une-pale); }
+.er-une .er-une-couverture { flex: none; margin: 0; }
+.er-une .er-une-couverture img { width: auto; height: 150px; box-shadow: var(--er-ombre-livre); }
+
+/* --- Une affiche : à gauche ce qui situe, à droite le texte ------------------------------------------------- */
+
+.er-une-affiche-titre {
+	color: var(--er-une-encre) !important;
+	font-size: clamp(2.75rem, 6.1vw, 5.5rem);
+	font-weight: 600;
+	line-height: 0.98;
+	letter-spacing: -0.03em;
+	overflow-wrap: break-word;
+	hyphens: manual;
+}
+.er-une-affiche-titre.er-une-titre-long { font-size: clamp(2.5rem, 5.2vw, 4.75rem); }
+.er-une-faits { display: flex; align-items: flex-end; gap: 1.75rem; margin-top: 0.75rem !important; padding-top: 1.1rem; border-top: 1px solid var(--er-une-filet); }
+.er-une-faits-grille { flex: 1; gap: 0.875rem 2.125rem !important; }
+.er-une-fait-cle { margin-bottom: 0.2rem !important; font-size: 0.78rem; color: var(--er-une-pale); }
+.er-une-fait-valeur { font-size: 1rem; font-weight: 600; line-height: 1.35; }
+.er-une-fait-petit .er-une-fait-valeur { font-size: 0.875rem; font-weight: 400; color: var(--er-une-doux); }
+
+.er-une-outils { gap: 0.5rem; margin-top: 0.4rem !important; }
+.er-une .er-une-outils .wp-block-button__link { padding: 0.62em 1em; font-size: 0.84rem; font-weight: 600; line-height: 1.2; white-space: nowrap; }
+.er-une[class*="er-aplat-"] .er-une-outils .wp-block-button:not(.is-style-outline) .wp-block-button__link {
+	background: #FFFFFF;
+	border-color: #FFFFFF;
+	color: var(--er-une-fond);
+}
+.er-une[class*="er-aplat-"] .er-une-outils .wp-block-button:not(.is-style-outline) .wp-block-button__link:hover { background: transparent; color: #FFFFFF; }
+.er-une[class*="er-aplat-"] .er-une-outils .is-style-outline .wp-block-button__link {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: var(--er-une-filet);
+	color: #FFFFFF;
+}
+.er-une[class*="er-aplat-"] .er-une-outils .is-style-outline .wp-block-button__link:hover { background: #FFFFFF; border-color: #FFFFFF; color: var(--er-une-fond); }
+.er-une-outils-petits .wp-block-button__link { padding: 0.5em 0.95em !important; font-size: 0.8125rem !important; }
+
+.er-une-plus-loin { gap: 0 !important; padding-top: 1.6rem; }
+.er-une-plus-titre { margin-bottom: 0.4rem !important; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--er-une-pale); }
+.er-une-plus { padding-block: 0.75rem; border-top: 1px solid var(--er-une-filet); }
+.er-une-plus:last-child { border-bottom: 1px solid var(--er-une-filet); }
+.er-une-plus-quoi { font-size: 0.97rem; line-height: 1.4; }
+.er-une-plus-quoi strong { font-weight: 600; margin-inline-end: 0.35em; }
+.er-une-plus-pourquoi { margin-top: 0.25rem !important; font-size: 0.906rem; line-height: 1.5; color: var(--er-une-doux); }
+
+.er-une-affiche-droite { gap: 1.5rem !important; padding-top: 2.1rem; }
+.er-une-chapo { font-size: clamp(1.35rem, 1.95vw, 1.75rem); font-weight: 600; line-height: 1.24; letter-spacing: -0.01em; }
+.er-une-affiche .er-une-deux-colonnes { color: var(--er-une-encre); opacity: 0.94; }
+
+/* --- Le journal ------------------------------------------------------------------------------------------- */
+
+.er-une-journal-article { gap: 1.15rem !important; }
+.er-une-journal-titre { font-size: clamp(2.25rem, 4.2vw, 3.75rem); font-weight: 600; line-height: 1; letter-spacing: -0.025em; }
+.er-une-journal-chapo { font-size: clamp(1.2rem, 1.7vw, 1.5rem); font-weight: 500; line-height: 1.35; }
+.er-une-journal .er-une-deux-colonnes { font-size: 1.0625rem; line-height: 1.65; }
+.er-une-pied { gap: 0.5rem 1.25rem; align-items: baseline; }
+.er-une-journal-billets { gap: 0 !important; }
+.er-une-billets { margin-top: 0.6rem !important; border-bottom: 1px solid var(--er-une-filet); }
+.er-une-billet { display: flex; gap: 1.125rem; align-items: flex-start; padding-block: 1.25rem; border-top: 1px solid var(--er-une-filet); }
+.er-une-billet-texte { gap: 0.5rem !important; }
+.er-une-billet-serie { font-size: 0.75rem; font-weight: 600; color: var(--er-une-pale); }
+.er-une-billet-titre { font-size: clamp(1.2rem, 1.6vw, 1.4375rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.er-une-billet-chapo { font-size: 1rem; line-height: 1.55; color: var(--er-une-doux); }
+.er-une-billet-meta { font-size: 0.8125rem; color: var(--er-une-pale); }
+.er-une-contributeurs { margin-top: 1.4rem !important; font-size: 0.9375rem; line-height: 1.6; color: var(--er-une-doux); }
+.er-une-contributeurs strong { font-weight: 600; color: var(--er-une-encre); }
+.er-une-journal-billets .er-une-lien { margin-top: 0.9rem !important; }
+
+/* La lettrine : un aplat, une grande lettre russe ton sur ton. */
+.er-lettrine {
+	flex: none;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 7.5rem;
+	height: 9.375rem;
+	font-size: 10.5rem;
+	font-weight: 600;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.32);
+	text-align: center;
+}
+.er-lettrine::first-line { line-height: 1; }
+.er-lettrine { padding-top: calc((9.375rem - 1em) / 2 - 0.04em); box-sizing: border-box; }
+.er-lettrine.er-aplat-pervenche { color: rgba(28, 28, 28, 0.28); }
+.er-lettrine-petite { width: 4.5rem; height: 4.5rem; font-size: 5.25rem; padding-top: calc((4.5rem - 1em) / 2 - 0.04em); color: rgba(255, 255, 255, 0.34); }
+.er-une-videos .er-lettrine-petite.er-aplat-nuit { background: #2A3478; }
+.er-lettrine-livre { width: 2.625rem; height: 4rem; font-size: 2.875rem; padding-top: calc((4rem - 1em) / 2 - 0.04em); box-shadow: var(--er-ombre-livre); }
+
+/* --- Une page : le poème ---------------------------------------------------------------------------------- */
+
+.er-une-dedans { gap: 2.5rem !important; }
+.er-une .er-une-poeme-haut { align-items: center; }
+.er-une-strophes { gap: 2.1rem !important; }
+.er-une-strophe { font-size: clamp(1.15rem, 2.4vw, 2.125rem); font-weight: 500; line-height: 1.32; letter-spacing: -0.01em; white-space: nowrap; }
+.er-une .wp-block-columns.er-une-poeme-bas { gap: 2.25rem; padding-top: 1.75rem; border-top: 1px solid rgba(28, 28, 28, 0.3); }
+.er-une-poeme-bas p { font-size: 1.03rem; line-height: 1.6; }
+.er-une-en-librairie { gap: 0.6rem !important; }
+.er-une .er-une-en-librairie .er-une-plus-titre { margin: 0 !important; }
+.er-une-ref { gap: 1rem; padding-block: 0.875rem; border-top: 1px solid rgba(28, 28, 28, 0.25); border-bottom: 1px solid rgba(28, 28, 28, 0.25); }
+.er-une-ref .er-une-couverture img { height: 104px; }
+.er-une-ref-texte { gap: 0.25rem !important; }
+.er-une-ref-titre { font-size: 0.9375rem !important; font-weight: 600; }
+.er-une-ref-auteur { font-size: 0.8125rem !important; line-height: 1.4 !important; color: var(--er-une-doux); }
+.er-une-ref .er-une-outils { margin-top: 0.35rem !important; }
+.er-une-note { font-size: 0.875rem !important; line-height: 1.5 !important; color: var(--er-une-doux); }
+
+/* --- Les vidéos ------------------------------------------------------------------------------------------- */
+
+.er-une-videos-une { gap: 1.1rem !important; }
+.er-une .er-une-video a { position: relative; display: block; }
+.er-une .er-une-video img { aspect-ratio: 16 / 9; object-position: 20% 40%; }
+.er-une .er-une-video a::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 72px;
+	height: 72px;
+	margin: -36px 0 0 -36px;
+	border-radius: 50%;
+	background: #FFFFFF;
+	transition: transform var(--er-transition);
+}
+.er-une .er-une-video a::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -11px 0 0 -6px;
+	border-style: solid;
+	border-width: 11px 0 11px 18px;
+	border-color: transparent transparent transparent var(--wp--preset--color--contrast);
+}
+.er-une .er-une-video a:hover::before { transform: scale(1.06); }
+.er-une-videos-titre { margin-top: 0.4rem !important; font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; color: var(--er-une-encre) !important; }
+.er-une-videos-series { gap: 0.6rem !important; }
+.er-une-videos-chapo { margin: 0.4rem 0 0.25rem !important; font-size: clamp(1.15rem, 1.55vw, 1.375rem); font-weight: 500; line-height: 1.35; }
+.er-une-series { border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
+.er-une-serie { display: flex; gap: 1rem; align-items: center; padding-block: 0.875rem; border-top: 1px solid rgba(255, 255, 255, 0.22); }
+.er-une-serie-texte { gap: 0.25rem !important; }
+.er-une-serie-tete { gap: 0.75rem; }
+.er-une-serie-titre { font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+.er-une-serie-nombre { font-size: 0.8125rem; color: var(--er-une-pale); white-space: nowrap; }
+.er-une-serie-desc { font-size: 0.9375rem; line-height: 1.5; color: rgba(255, 255, 255, 0.82); }
+.er-une-videos-series .er-une-lien { margin-top: 0.75rem !important; }
+
+/* --- L'encyclopédie du jour ------------------------------------------------------------------------------- */
+
+.er-une .er-une-encyclo-article { gap: 2.25rem; margin: 0; }
+.er-une-encyclo-texte { gap: 1.1rem !important; }
+.er-une-encyclo-titre { font-size: clamp(2.2rem, 3.6vw, 3.25rem); font-weight: 600; line-height: 1; letter-spacing: -0.025em; }
+.er-une-encyclo-texte > .er-une-texte { font-size: 1.0625rem; line-height: 1.65; }
+.er-une-encyclo a:not(.wp-element-button) { text-decoration-color: var(--wp--preset--color--accent); text-decoration-thickness: 2px; }
+.er-une-encyclo :is(h2, h3, .er-une-livre-titre) a { text-decoration: none; }
+.er-une .er-une-encyclo-texte .er-une-photo img { aspect-ratio: 1400 / 831; }
+.er-une-notes { padding-left: 1.4rem; font-size: 0.8125rem; line-height: 1.6; color: var(--er-une-doux); }
+.er-une-encyclo-cote { gap: 1.5rem !important; }
+.er-une-fiche { border: 1px solid var(--wp--preset--color--contrast); background: var(--wp--preset--color--base); }
+.er-une-fiche-tete { position: relative; overflow: hidden; height: 120px; box-sizing: border-box; padding: 1.1rem 1.25rem; color: #FFFFFF; }
+.er-une-fiche-tete > * { position: relative; }
+.er-une .er-une-fiche-tete > .er-une-fiche-mot { position: absolute; right: -10px; bottom: -0.24em; margin: 0; font-size: 7.5rem; font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: rgba(255, 255, 255, 0.12); white-space: nowrap; }
+.er-une-fiche-titre { font-size: 1.125rem; font-weight: 600; }
+.er-une-fiche-ru { font-size: 0.8125rem; opacity: 0.8; }
+.er-une .er-une-fiche-rangs { margin: 0; padding: 0.4rem 1.1rem 0.9rem; }
+.er-une .er-une-fiche-rangs table { border-collapse: collapse; }
+.er-une .er-une-fiche-rangs td { padding: 0.55rem 0.75rem 0.55rem 0; border: 0; border-top: 1px solid var(--wp--preset--color--filet); font-size: 0.8125rem; line-height: 1.5; vertical-align: top; color: var(--wp--preset--color--encre-2); }
+.er-une .er-une-fiche-rangs td:first-child { width: 5.75rem; font-weight: 600; color: var(--wp--preset--color--contrast); }
+.er-une .er-une-fiche-rangs tr:first-child td { border-top: 0; }
+.er-une-livres { border-bottom: 1px solid var(--er-une-filet); }
+.er-une-livres .er-une-surtitre { margin-bottom: 0.5rem !important; }
+.er-une-livre { gap: 0.875rem; padding-block: 0.75rem; border-top: 1px solid var(--er-une-filet); }
+.er-une-livre .er-une-couverture img { height: 64px; }
+.er-une-livre-texte { gap: 0.125rem !important; }
+.er-une-livre-titre { font-size: 0.9375rem; font-weight: 600; line-height: 1.35; }
+.er-une-livre-auteur { font-size: 0.8125rem; color: var(--er-une-doux); }
+.er-une-encyclo-droite { gap: 1rem !important; }
+.er-une-petit-titre { padding-bottom: 0.75rem; border-bottom: 1px solid var(--wp--preset--color--contrast); font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; }
+.er-une-petit-titre:not(:first-child) { margin-top: 1.5rem !important; }
+.er-une-saviez .er-une-livre:first-child { border-top: 0; }
+.er-une-saviez .er-une-couverture img { height: 58px; }
+.er-une-saviez-texte { font-size: 0.9375rem; line-height: 1.55; }
+.er-une .er-une-mois { margin: 0; }
+.er-une .er-une-mois table { border-collapse: collapse; }
+.er-une .er-une-mois td { padding: 0.625rem 0.75rem 0.625rem 0; border: 0; border-bottom: 1px solid var(--wp--preset--color--filet); font-size: 0.875rem; line-height: 1.5; vertical-align: top; color: var(--wp--preset--color--encre-2); }
+.er-une .er-une-mois td:first-child { width: 8.25rem; font-size: 0.8125rem; font-weight: 600; color: var(--wp--preset--color--contrast); }
+
+/* --- Sur une tablette et au téléphone ---------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+	.er-une .wp-block-columns.er-une-colonnes:not(.er-une-poeme-bas) { flex-wrap: wrap !important; }
+	.er-une .er-une-colonnes:not(.er-une-poeme-bas) > .wp-block-column { flex-basis: 100% !important; }
+	.er-une .er-une-poeme-bas { flex-wrap: wrap !important; }
+	.er-une .er-une-poeme-bas > .wp-block-column { flex-basis: calc(50% - 1.25rem) !important; }
+	.er-une-affiche-droite { padding-top: 0; }
+}
+@media (max-width: 781px) {
+	.er-une-deux-colonnes { columns: 1; }
+	.er-une-faits { gap: 1.25rem; }
+	.er-une .er-une-faits .er-une-couverture img { height: 110px; }
+	.er-une-faits-grille { gap: 0.75rem 1.25rem !important; }
+	.er-lettrine { width: 5.5rem; height: 6.875rem; font-size: 7.75rem; padding-top: calc((6.875rem - 1em) / 2 - 0.04em); }
+	.er-lettrine-petite { width: 3.5rem; height: 3.5rem; font-size: 4rem; padding-top: calc((3.5rem - 1em) / 2 - 0.04em); }
+	.er-lettrine-livre { width: 2.625rem; height: 4rem; font-size: 2.875rem; padding-top: calc((4rem - 1em) / 2 - 0.04em); }
+	.er-une .er-une-poeme-bas > .wp-block-column { flex-basis: 100% !important; }
+	.er-une-encyclo-cote { flex-basis: 100% !important; }
+}
+@media (max-width: 781px) {
+	.er-une-strophe { font-size: min(1.45rem, 4.85vw); }
+}
+@media (max-width: 340px) {
+	.er-une-strophe { white-space: normal; }
+}
+@media (max-width: 600px) {
+	.er-une .er-une-outils .wp-block-button__link { white-space: normal; }
+}
+
+/* --- Au téléphone : l'essentiel, puis « Voir plus » --------------------------------------------------------
+   Chaque module garde son titre sur l'aplat, sa photo ou son dessin, sa phrase et son bouton principal ; le texte,
+   les faits, « Pour aller plus loin », les chapôs des billets et des séries se déplient sous « Voir plus » (une.js).
+   Sans JavaScript, rien n'est replié. */
+.er-une-voir-plus { display: none; }
+@media (max-width: 781px) {
+	.er-une > .er-une-voir-plus {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		width: auto;
+		max-width: none;
+		margin: 1.75rem 0 0 !important;
+		padding: 0.72em 1.35em;
+		border: 1px solid currentColor;
+		border-radius: 999px;
+		background: transparent;
+		color: var(--er-une-encre);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.2;
+		cursor: pointer;
+	}
+	.er-une > .er-une-voir-plus::after {
+		content: "";
+		width: 0.42em;
+		height: 0.42em;
+		border-right: 1.5px solid currentColor;
+		border-bottom: 1.5px solid currentColor;
+		transform: translateY(-0.12em) rotate(45deg);
+	}
+	.er-une-ouvert > .er-une-voir-plus::after { transform: translateY(0.12em) rotate(-135deg); }
+	.er-une > .er-une-voir-plus:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+	/* Les affiches : la rubrique, le titre, l'image, la phrase, le bouton ; puis le reste. */
+	.er-une-affiche .wp-block-columns.er-une-colonnes { display: flex; flex-direction: column; gap: 1.1rem; }
+	.er-une-affiche .er-une-colonnes > .wp-block-column { display: contents; }
+	.er-une-affiche .er-une-rubrique { order: 1; }
+	.er-une-affiche .er-une-affiche-titre { order: 2; }
+	.er-une-affiche .er-une-affiche-droite > .wp-block-image { order: 3; }
+	.er-une-affiche .er-une-chapo { order: 4; font-size: 1.25rem; }
+	.er-une-affiche .er-une-outils { order: 5; }
+	.er-une-affiche .er-une-faits { order: 6; }
+	.er-une-affiche .er-une-deux-colonnes { order: 7; }
+	.er-une-affiche .er-une-plus-loin { order: 8; }
+
+	/* Le journal et l'encyclopédie : la photo juste sous le titre. */
+	.er-une-journal-article > *,
+	.er-une-encyclo-texte > * { order: 5; }
+	:is(.er-une-journal-article, .er-une-encyclo-texte) > .er-une-surtitre { order: 1; }
+	:is(.er-une-journal-article, .er-une-encyclo-texte) > :is(.er-une-journal-titre, .er-une-encyclo-titre) { order: 2; }
+	:is(.er-une-journal-article, .er-une-encyclo-texte) > .wp-block-image { order: 3; }
+	.er-une-journal-article > .er-une-journal-chapo,
+	.er-une-encyclo-texte > .er-une-texte { order: 4; }
+
+	/* Les billets et les séries : une liste courte, la lettrine et le titre. */
+	.er-une .er-une-billet .er-lettrine { width: 4rem; height: 5rem; font-size: 5.5rem; padding-top: calc((5rem - 1em) / 2 - 0.04em); }
+	.er-une-billet { gap: 0.9rem; padding-block: 0.9rem; }
+	.er-une-billet-texte { gap: 0.3rem !important; }
+
+	/* Replié */
+	.er-une-repliable:not(.er-une-ouvert) :is(
+		.er-une-faits,
+		.er-une-deux-colonnes,
+		.er-une-plus-loin,
+		.er-une-outils .is-style-outline,
+		.er-une-meta,
+		.er-une-billet-chapo,
+		.er-une-billet-meta,
+		.er-une-contributeurs,
+		.er-une-serie-desc,
+		.er-une-notes,
+		.er-une-encyclo-cote,
+		.er-une-mois
+	),
+	.er-une-poeme.er-une-repliable:not(.er-une-ouvert) .er-une-poeme-bas > .wp-block-column:not(.er-une-en-librairie),
+	.er-une-poeme.er-une-repliable:not(.er-une-ouvert) .er-une-poeme-bas .er-une-note,
+	.er-une-encyclo.er-une-repliable:not(.er-une-ouvert) .er-une-encyclo-texte > .er-une-texte ~ .er-une-texte,
+	.er-une-encyclo.er-une-repliable:not(.er-une-ouvert) .er-une-saviez > .er-une-livre:nth-child(n+3),
+	.er-une-encyclo.er-une-repliable:not(.er-une-ouvert) .er-une-encyclo-droite > .er-une-petit-titre:not(:first-child) { display: none !important; }
+	.er-une-poeme.er-une-repliable:not(.er-une-ouvert) .er-une-poeme-bas { padding-top: 1.25rem; }
+}

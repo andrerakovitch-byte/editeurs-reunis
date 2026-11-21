@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis 0.4.2\n"
+"Project-Id-Version: Les Éditeurs réunis 0.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/editeurs-reunis\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T15:52:06+00:00\n"
+"POT-Creation-Date: 2026-11-21T17:29:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -30,173 +30,182 @@ msgstr ""
 msgid "Le site de la librairie des Éditeurs réunis, de la maison d'édition YMCA-Press et du Centre culturel Alexandre Soljenitsyne. Direction artistique provisoire, d'après la maquette Wix : Montserrat, la pervenche, la barre noire et les boutons en pilule. Les couleurs, la police et les tailles sont dans theme.json ; le reste est ici."
 msgstr ""
 
-#: functions.php:56
+#: functions.php:70
+msgid "Voir plus"
+msgstr ""
+
+#: functions.php:71
+msgid "Voir moins"
+msgstr ""
+
+#: functions.php:90
 msgid "carrousel"
 msgstr ""
 
-#: functions.php:57
+#: functions.php:91
 msgid "diapositive"
 msgstr ""
 
-#: functions.php:58
+#: functions.php:92
 msgid "À la une"
 msgstr ""
 
 #. translators: 1: le rang de la diapositive, 2: le nombre de diapositives.
-#: functions.php:60
+#: functions.php:94
 #, php-format
 msgid "%1$s sur %2$s"
 msgstr ""
 
 #. translators: %s: le rang de la diapositive.
-#: functions.php:62
+#: functions.php:96
 #, php-format
 msgid "Diapositive %s"
 msgstr ""
 
-#: functions.php:63
+#: functions.php:97
 msgid "Diapositive précédente"
 msgstr ""
 
-#: functions.php:64
+#: functions.php:98
 msgid "Diapositive suivante"
 msgstr ""
 
-#: functions.php:81
+#: functions.php:115
 msgid "Pilule blanche"
 msgstr ""
 
-#: functions.php:88
+#: functions.php:122
 msgid "Cerné, avec une flèche"
 msgstr ""
 
-#: functions.php:95
+#: functions.php:129
 msgid "Carte voilée"
 msgstr ""
 
-#: functions.php:102
+#: functions.php:136
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr ""
 
-#: functions.php:270
+#: functions.php:307
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr ""
 
-#: functions.php:271
+#: functions.php:308
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr ""
 
-#: functions.php:272
+#: functions.php:309
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr ""
 
-#: functions.php:273
+#: functions.php:310
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr ""
 
-#: functions.php:276
+#: functions.php:313
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr ""
 
-#: functions.php:277
+#: functions.php:314
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr ""
 
-#: functions.php:278
+#: functions.php:315
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr ""
 
-#: functions.php:279
+#: functions.php:316
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr ""
 
-#: functions.php:280
+#: functions.php:317
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr ""
 
-#: functions.php:281
+#: functions.php:318
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr ""
 
-#: functions.php:282
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr ""
 
-#: functions.php:302
-#: patterns/en-tete.php:59
+#: functions.php:339
+#: patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr ""
 
-#: functions.php:303
-#: patterns/en-tete.php:60
+#: functions.php:340
+#: patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr ""
 
-#: functions.php:390
+#: functions.php:446
+#: inc/recherche.php:358
+msgid "épuisé pour l’instant"
+msgstr ""
+
+#: functions.php:472
 msgid "Par genre"
 msgstr ""
 
-#: functions.php:391
+#: functions.php:473
 msgid "Par époque"
 msgstr ""
 
-#: functions.php:392
+#: functions.php:474
 msgid "Par période"
 msgstr ""
 
-#: functions.php:393
+#: functions.php:475
 msgid "Par thème"
 msgstr ""
 
-#: functions.php:394
+#: functions.php:476
 msgid "Par âge"
 msgstr ""
 
-#: functions.php:395
+#: functions.php:477
 msgid "Méthodes"
 msgstr ""
 
-#: functions.php:396
+#: functions.php:478
 msgid "Outils"
 msgstr ""
 
-#: functions.php:397
+#: functions.php:479
 msgid "Pensée"
 msgstr ""
 
-#: functions.php:398
+#: functions.php:480
 msgid "Religion"
 msgstr ""
 
-#: functions.php:399
+#: functions.php:481
 msgid "Arts"
 msgstr ""
 
-#: functions.php:420
+#: functions.php:503
 msgid "Compte"
 msgstr ""
 
-#: functions.php:431
+#: functions.php:514
 #: inc/recherche.php:182
 #: inc/recherche.php:264
 msgid "Langue"
-msgstr ""
-
-#: functions.php:440
-msgid "Panier"
 msgstr ""
 
 #: inc/recherche.php:40
@@ -204,6 +213,7 @@ msgid "Soljenitsyne"
 msgstr ""
 
 #: inc/recherche.php:41
+#: patterns/une-archipel.php:29
 msgid "L’Archipel du Goulag"
 msgstr ""
 
@@ -269,7 +279,7 @@ msgstr ""
 
 #: inc/recherche.php:152
 #: inc/recherche.php:364
-#: patterns/en-tete.php:67
+#: patterns/en-tete.php:70
 msgid "Rechercher"
 msgstr ""
 
@@ -293,7 +303,6 @@ msgstr ""
 
 #: inc/recherche.php:165
 #: inc/recherche.php:363
-#: patterns/en-tete.php:67
 msgid "Fermer"
 msgstr ""
 
@@ -344,6 +353,9 @@ msgstr ""
 
 #: inc/recherche.php:239
 #: inc/recherche.php:333
+#: patterns/une-archipel.php:67
+#: patterns/une-jivago.php:67
+#: patterns/une-tchevengour.php:67
 msgid "Auteur"
 msgstr ""
 
@@ -368,6 +380,9 @@ msgid "Tous les rayons"
 msgstr ""
 
 #: inc/recherche.php:265
+#: patterns/une-archipel.php:55
+#: patterns/une-jivago.php:55
+#: patterns/une-tchevengour.php:55
 msgid "Éditeur"
 msgstr ""
 
@@ -388,6 +403,9 @@ msgid "Année d’édition"
 msgstr ""
 
 #: inc/recherche.php:268
+#: patterns/une-archipel.php:103
+#: patterns/une-jivago.php:103
+#: patterns/une-tchevengour.php:103
 msgid "Prix"
 msgstr ""
 
@@ -463,6 +481,9 @@ msgstr ""
 
 #: inc/recherche.php:332
 #: inc/recherche.php:340
+#: patterns/une-archipel.php:79
+#: patterns/une-jivago.php:79
+#: patterns/une-tchevengour.php:79
 msgid "Pages"
 msgstr ""
 
@@ -537,10 +558,6 @@ msgstr ""
 
 #: inc/recherche.php:357
 msgid "en stock"
-msgstr ""
-
-#: inc/recherche.php:358
-msgid "épuisé pour l’instant"
 msgstr ""
 
 #: inc/recherche.php:359
@@ -794,7 +811,7 @@ msgid "Nouveautés"
 msgstr ""
 
 #: patterns/accueil-nouveautes.php:27
-#: patterns/menu-librairie.php:258
+#: patterns/menu-librairie.php:260
 msgid "Les derniers livres arrivés en rayon, en français et en russe."
 msgstr ""
 
@@ -918,24 +935,24 @@ msgctxt "Pattern title"
 msgid "En-tête"
 msgstr ""
 
-#: patterns/en-tete.php:52
+#: patterns/en-tete.php:55
 #: patterns/pied.php:23
 msgctxt "logo, première ligne"
 msgid "Centre culturel"
 msgstr ""
 
-#: patterns/en-tete.php:52
+#: patterns/en-tete.php:55
 #: patterns/pied.php:23
 msgctxt "logo, seconde ligne"
 msgid "Alexandre Soljenitsyne"
 msgstr ""
 
-#: patterns/en-tete.php:58
+#: patterns/en-tete.php:61
 msgctxt "menu du haut"
 msgid "Librairie"
 msgstr ""
 
-#: patterns/en-tete.php:63
+#: patterns/en-tete.php:66
 msgid "Mon compte"
 msgstr ""
 
@@ -1045,244 +1062,244 @@ msgctxt "Pattern title"
 msgid "Le menu de la librairie"
 msgstr ""
 
-#: patterns/menu-librairie.php:117
+#: patterns/menu-librairie.php:119
 msgctxt "tuile du menu, surtitre"
 msgid "Classiques"
 msgstr ""
 
-#: patterns/menu-librairie.php:117
+#: patterns/menu-librairie.php:119
 msgctxt "tuile du menu, nom"
 msgid "Pouchkine"
 msgstr ""
 
-#: patterns/menu-librairie.php:118
+#: patterns/menu-librairie.php:120
 msgctxt "tuile du menu, surtitre"
 msgid "Les contemporains"
 msgstr ""
 
-#: patterns/menu-librairie.php:118
+#: patterns/menu-librairie.php:120
 msgctxt "tuile du menu, nom"
 msgid "Gouzel Iakhina"
 msgstr ""
 
-#: patterns/menu-librairie.php:121
+#: patterns/menu-librairie.php:123
 msgctxt "tuile du menu, surtitre"
 msgid "Le livre du moment"
 msgstr ""
 
-#: patterns/menu-librairie.php:121
+#: patterns/menu-librairie.php:123
 msgctxt "tuile du menu, nom"
 msgid "Notes d’un médecin"
 msgstr ""
 
-#: patterns/menu-librairie.php:124
+#: patterns/menu-librairie.php:126
 msgctxt "tuile du menu, surtitre"
 msgid "L’émigration"
 msgstr ""
 
-#: patterns/menu-librairie.php:124
+#: patterns/menu-librairie.php:126
 msgctxt "tuile du menu, nom"
 msgid "Un siècle d’YMCA-Press"
 msgstr ""
 
-#: patterns/menu-librairie.php:125
+#: patterns/menu-librairie.php:127
 msgctxt "tuile du menu, surtitre"
 msgid "Le Goulag"
 msgstr ""
 
-#: patterns/menu-librairie.php:125
+#: patterns/menu-librairie.php:127
 msgctxt "tuile du menu, nom"
 msgid "L’Archipel, cinquante ans après"
 msgstr ""
 
-#: patterns/menu-librairie.php:128
+#: patterns/menu-librairie.php:130
 msgctxt "tuile du menu, surtitre"
 msgid "Philosophie"
 msgstr ""
 
-#: patterns/menu-librairie.php:128
+#: patterns/menu-librairie.php:130
 msgctxt "tuile du menu, nom"
 msgid "Berdiaev, Boulgakov, Florensky"
 msgstr ""
 
-#: patterns/menu-librairie.php:129
+#: patterns/menu-librairie.php:131
 msgctxt "tuile du menu, surtitre"
 msgid "Spiritualité"
 msgstr ""
 
-#: patterns/menu-librairie.php:129
+#: patterns/menu-librairie.php:131
 msgctxt "tuile du menu, nom"
 msgid "Théologie orthodoxe"
 msgstr ""
 
-#: patterns/menu-librairie.php:132
+#: patterns/menu-librairie.php:134
 msgctxt "tuile du menu, surtitre"
 msgid "Débuter"
 msgstr ""
 
-#: patterns/menu-librairie.php:132
+#: patterns/menu-librairie.php:134
 msgctxt "tuile du menu, nom"
 msgid "Les manuels pour commencer"
 msgstr ""
 
-#: patterns/menu-librairie.php:133
+#: patterns/menu-librairie.php:135
 msgctxt "tuile du menu, surtitre"
 msgid "Les dictionnaires"
 msgstr ""
 
-#: patterns/menu-librairie.php:133
+#: patterns/menu-librairie.php:135
 msgctxt "tuile du menu, nom"
 msgid "Français-russe, russe-français"
 msgstr ""
 
-#: patterns/menu-librairie.php:136
+#: patterns/menu-librairie.php:138
 msgctxt "tuile du menu, surtitre"
 msgid "Cinéma"
 msgstr ""
 
-#: patterns/menu-librairie.php:136
+#: patterns/menu-librairie.php:138
 msgctxt "tuile du menu, nom"
 msgid "Les scénarios de Zviaguintsev"
 msgstr ""
 
-#: patterns/menu-librairie.php:137
+#: patterns/menu-librairie.php:139
 msgctxt "tuile du menu, surtitre"
 msgid "Musique"
 msgstr ""
 
-#: patterns/menu-librairie.php:137
+#: patterns/menu-librairie.php:139
 msgctxt "tuile du menu, nom"
 msgid "Moussorgski, par Calvocoressi"
 msgstr ""
 
-#: patterns/menu-librairie.php:140
+#: patterns/menu-librairie.php:142
 msgctxt "tuile du menu, surtitre"
 msgid "Contes russes"
 msgstr ""
 
-#: patterns/menu-librairie.php:140
+#: patterns/menu-librairie.php:142
 msgctxt "tuile du menu, nom"
 msgid "Il était une fois"
 msgstr ""
 
-#: patterns/menu-librairie.php:141
+#: patterns/menu-librairie.php:143
 msgctxt "tuile du menu, surtitre"
 msgid "Bilingue"
 msgstr ""
 
-#: patterns/menu-librairie.php:141
+#: patterns/menu-librairie.php:143
 msgctxt "tuile du menu, nom"
 msgid "Lire en deux langues"
 msgstr ""
 
-#: patterns/menu-librairie.php:144
+#: patterns/menu-librairie.php:146
 msgctxt "tuile du menu, surtitre"
 msgid "Très rare"
 msgstr ""
 
-#: patterns/menu-librairie.php:145
+#: patterns/menu-librairie.php:147
 msgctxt "tuile du menu, surtitre"
 msgid "Occasions"
 msgstr ""
 
-#: patterns/menu-librairie.php:145
+#: patterns/menu-librairie.php:147
 msgctxt "tuile du menu, nom"
 msgid "Des livres d’occasion, en russe et en français"
 msgstr ""
 
-#: patterns/menu-librairie.php:165
+#: patterns/menu-librairie.php:167
 msgid "Découvrir"
 msgstr ""
 
 #. translators: %s: le nom de la tuile, lu après « Découvrir ».
-#: patterns/menu-librairie.php:165
+#: patterns/menu-librairie.php:167
 #, php-format
 msgid " : %s"
 msgstr ""
 
 #. translators: %s: le nom d'un rayon.
-#: patterns/menu-librairie.php:177
+#: patterns/menu-librairie.php:179
 #, php-format
 msgid "À découvrir, %s"
 msgstr ""
 
 #. translators: %s: le nom d'une entrée du menu de la librairie.
-#: patterns/menu-librairie.php:223
+#: patterns/menu-librairie.php:225
 #, php-format
 msgid "Ouvrir %s"
 msgstr ""
 
-#: patterns/menu-librairie.php:229
+#: patterns/menu-librairie.php:231
 msgctxt "menu de la librairie"
 msgid "Accueil"
 msgstr ""
 
 #. translators: %s: le nom d'un rayon.
-#: patterns/menu-librairie.php:238
+#: patterns/menu-librairie.php:240
 #, php-format
 msgid "Tout le rayon %s"
 msgstr ""
 
-#: patterns/menu-librairie.php:246
+#: patterns/menu-librairie.php:248
 msgctxt "menu de la librairie"
 msgid "Nos meilleures ventes"
 msgstr ""
 
-#: patterns/menu-librairie.php:251
+#: patterns/menu-librairie.php:253
 msgid "Ce que nos lecteurs achètent le plus."
 msgstr ""
 
-#: patterns/menu-librairie.php:251
+#: patterns/menu-librairie.php:253
 msgid "Toutes nos meilleures ventes"
 msgstr ""
 
-#: patterns/menu-librairie.php:253
+#: patterns/menu-librairie.php:255
 msgctxt "menu de la librairie"
 msgid "Nouveautés"
 msgstr ""
 
-#: patterns/menu-librairie.php:258
+#: patterns/menu-librairie.php:260
 msgid "Toutes les nouveautés"
 msgstr ""
 
-#: patterns/menu-librairie.php:260
+#: patterns/menu-librairie.php:262
 msgctxt "menu de la librairie"
 msgid "Promos"
 msgstr ""
 
-#: patterns/menu-librairie.php:263
+#: patterns/menu-librairie.php:265
 msgid "Bonnes affaires"
 msgstr ""
 
-#: patterns/menu-librairie.php:264
+#: patterns/menu-librairie.php:266
 msgid "Livres d’occasion"
 msgstr ""
 
-#: patterns/menu-librairie.php:265
+#: patterns/menu-librairie.php:267
 msgid "Fins de série"
 msgstr ""
 
-#: patterns/menu-librairie.php:266
+#: patterns/menu-librairie.php:268
 msgid "Livres soldés"
 msgstr ""
 
-#: patterns/menu-librairie.php:268
+#: patterns/menu-librairie.php:270
 msgid "Raretés"
 msgstr ""
 
-#: patterns/menu-librairie.php:269
+#: patterns/menu-librairie.php:271
 msgid "Exemplaires rares"
 msgstr ""
 
-#: patterns/menu-librairie.php:270
+#: patterns/menu-librairie.php:272
 msgid "Éditions anciennes"
 msgstr ""
 
-#: patterns/menu-librairie.php:273
+#: patterns/menu-librairie.php:275
 msgid "Toutes les promos"
 msgstr ""
 
-#: patterns/menu-librairie.php:284
+#: patterns/menu-librairie.php:286
 msgid "Les rayons de la librairie"
 msgstr ""
 
@@ -1369,4 +1386,875 @@ msgstr ""
 
 #: patterns/pied.php:89
 msgid "Avec nos partenaires <strong>ACER-MJO</strong>, 91, rue Olivier-de-Serres, Paris&nbsp;15<sup>e</sup>, et la <strong>Fondation Michalski</strong>, Montricher (Suisse)."
+msgstr ""
+
+#: patterns/une-archipel.php
+msgctxt "Pattern title"
+msgid "À la une — une affiche (L’Archipel du Goulag)"
+msgstr ""
+
+#: patterns/une-archipel.php
+msgctxt "Pattern description"
+msgid "Une affiche sur l’aplat d’une maison : à gauche ce qui situe (la rubrique, le titre, les faits, les boutons, pour aller plus loin), à droite le texte et sa photo."
+msgstr ""
+
+#: patterns/une-archipel.php:25
+msgid "À la une · YMCA-Press, la librairie, le centre"
+msgstr ""
+
+#: patterns/une-archipel.php:35
+msgid "Couverture de L’Archipel du Goulag, cinquante ans après"
+msgstr ""
+
+#: patterns/une-archipel.php:43
+msgid "Paru"
+msgstr ""
+
+#: patterns/une-archipel.php:47
+msgid "28 décembre 1973, en russe"
+msgstr ""
+
+#: patterns/une-archipel.php:59
+msgid "YMCA-Press, Paris"
+msgstr ""
+
+#: patterns/une-archipel.php:71
+msgid "Alexandre Soljenitsyne"
+msgstr ""
+
+#: patterns/une-archipel.php:83
+#: patterns/une-jivago.php:83
+#: patterns/une-tchevengour.php:83
+msgid "[nombre]"
+msgstr ""
+
+#: patterns/une-archipel.php:91
+#: patterns/une-encyclopedie.php:80
+#: patterns/une-jivago.php:91
+#: patterns/une-tchevengour.php:91
+msgid "À la librairie"
+msgstr ""
+
+#: patterns/une-archipel.php:95
+msgid "le recueil de 2023"
+msgstr ""
+
+#: patterns/une-archipel.php:119
+msgid "Me prévenir de son retour"
+msgstr ""
+
+#: patterns/une-archipel.php:122
+msgid "Écouter le podcast"
+msgstr ""
+
+#: patterns/une-archipel.php:125
+msgid "Les archives de 1973"
+msgstr ""
+
+#: patterns/une-archipel.php:133
+#: patterns/une-jivago.php:133
+#: patterns/une-tchevengour.php:130
+msgid "Pour aller plus loin"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-archipel.php:139
+#, php-format
+msgid "<strong>En librairie</strong> <a href=\"%1$s\"><em>Voix et visages du Goulag</em></a>"
+msgstr ""
+
+#: patterns/une-archipel.php:143
+msgid "Un autre livre du rayon, pour entendre d’autres voix des camps que celle de Soljenitsyne."
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-archipel.php:151
+#, php-format
+msgid "<strong>L’encyclopédie</strong> <a href=\"%1$s\">Le Goulag</a>"
+msgstr ""
+
+#: patterns/une-archipel.php:155
+msgid "Les camps et leurs témoins&nbsp;: Chalamov, Guinzbourg, Soljenitsyne, et pour chacun les livres qu’on trouve ici."
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-archipel.php:163
+#, php-format
+msgid "<strong>Podcast</strong> <a href=\"%1$s\"><em>Les secrets de L’Archipel du Goulag</em></a>"
+msgstr ""
+
+#: patterns/une-archipel.php:167
+msgid "L’histoire d’un manuscrit caché, recopié, sorti d’URSS, épisode par épisode."
+msgstr ""
+
+#: patterns/une-archipel.php:179
+msgid "Le livre de Soljenitsyne sur les camps soviétiques paraît d’abord en russe, à Paris, chez YMCA-Press, avant de faire le tour du monde."
+msgstr ""
+
+#: patterns/une-archipel.php:183
+msgid "Soljenitsyne et Nikita Struve à l’imprimerie"
+msgstr ""
+
+#: patterns/une-archipel.php:183
+msgid "Soljenitsyne, Nikita Struve, Léonide Lifar et Serge Béresniak. Photo Hélène Lifar."
+msgstr ""
+
+#: patterns/une-archipel.php:189
+msgid "Soljenitsyne l’écrit en secret, entre 1958 et 1968, à partir de ses années de camp et de plus de deux cents témoignages d’anciens détenus. Il le sous-titre «&nbsp;essai d’investigation littéraire&nbsp;»&nbsp;: ni roman ni livre d’histoire, mais les deux à la fois."
+msgstr ""
+
+#: patterns/une-archipel.php:193
+msgid "En 1973, le KGB saisit l’un des exemplaires du manuscrit&nbsp;; l’auteur décide de le faire publier sans attendre. Le premier tome paraît à Paris le 28 décembre. En février 1974, Soljenitsyne est arrêté, déchu de sa citoyenneté et expulsé d’URSS."
+msgstr ""
+
+#: patterns/une-archipel.php:197
+msgid "Cinquante ans après, le recueil dirigé par Georges Nivat, <em>L’Archipel du Goulag, cinquante ans après</em>, en reprend les pages essentielles, avec les lectures qu’on en a faites depuis. Au centre culturel, un podcast en plusieurs épisodes, <em>Les secrets de L’Archipel du Goulag</em>, raconte les mystères d’un livre hors du commun."
+msgstr ""
+
+#: patterns/une-encyclopedie.php
+msgctxt "Pattern title"
+msgid "À la une — l’encyclopédie du jour"
+msgstr ""
+
+#: patterns/une-encyclopedie.php
+msgctxt "Pattern description"
+msgid "L’article du jour, avec sa fiche, son portrait et les livres qu’il cite ; à côté, « Le saviez-vous ? » et les dates du mois."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:25
+msgid "L’article du jour"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:29
+msgid "L’Âge d’argent"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:33
+#, php-format
+msgid "On appelle <strong>Âge d’argent</strong> (<em lang=\"ru\">Серебряный век</em>) la période de la poésie russe qui va des années 1890 à 1921, par opposition à l’«&nbsp;<em>Âge d’or</em>&nbsp;» de Pouchkine<sup>1</sup>. Trois courants s’y succèdent et s’y opposent&nbsp;: le <a href=\"%1$s\">symbolisme</a> d’Alexandre Blok et d’Andreï Biély, l’<a href=\"%1$s\">acméisme</a> de Nikolaï Goumilev, d’Anna Akhmatova et d’Ossip Mandelstam, qui veulent des mots clairs et des choses précises, et le <a href=\"%1$s\">futurisme</a> de Khlebnikov et de Maïakovski."
+msgstr ""
+
+#. translators: %1$s, %2$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:37
+#, php-format
+msgid "La révolution en fait éclater la communauté. Blok salue Octobre dans <a href=\"%1$s\"><em>Les Douze</em></a>, en janvier 1918&nbsp;; en août 1921, il meurt à Petrograd, et Goumilev est fusillé, accusé de complot<sup>2</sup>. Beaucoup de ceux qui restent sont réduits au silence&nbsp;; d’autres partent, et l’Âge d’argent se prolonge dans l’<a href=\"%2$s\">émigration</a>, à Berlin, à Prague et à Paris."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:41
+msgid "Portrait d’Anna Akhmatova par Natan Altman"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:41
+msgid "Anna Akhmatova par Natan Altman, 1914&nbsp;: l’Âge d’argent, en un portrait."
+msgstr ""
+
+#. translators: %1$s, %2$s, %3$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:45
+#, php-format
+msgid "Article détaillé&nbsp;: <a href=\"%1$s\">L’Âge d’argent</a> · Voir aussi&nbsp;: <a href=\"%2$s\">Alexandre Soljenitsyne</a>, <a href=\"%3$s\">Andreï Platonov</a>"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:50
+msgid "Le terme s’impose après coup&nbsp;; ses limites, surtout la date de départ, varient selon les historiens."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:53
+msgid "L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:70
+msgid "Âge d’argent"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Période"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "vers 1890 – 1921"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Lieux"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Saint-Pétersbourg, Moscou"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Courants"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "symbolisme, acméisme, futurisme"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Figures"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Blok, Biély, Akhmatova, Goumilev, Mandelstam, Tsvetaïeva, Maïakovski"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "Fin"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "1921&nbsp;: mort de Blok, exécution de Goumilev"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:80
+msgid "[34] livres · [12] auteurs"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:88
+msgid "Les livres cités, en librairie"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:100
+msgid "Les Douze"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:104
+msgid "Alexandre Blok"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:120
+msgid "Poésies choisies"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:124
+msgid "Nikolaï Goumilev"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:140
+msgid "Ekatérina Ivanovna, suivi de Requiem"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:144
+msgid "Léonid Andréïev"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:160
+msgid "[Un livre d’Anna Akhmatova]"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:164
+#: patterns/une-encyclopedie.php:184
+#: patterns/une-encyclopedie.php:204
+msgid "à choisir dans le catalogue"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:180
+msgid "[Un livre d’Ossip Mandelstam]"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:200
+msgid "[Un livre d’Andreï Biély]"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:222
+msgid "Le saviez-vous&nbsp;?"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:234
+#, php-format
+msgid "… que <a href=\"%1$s\"><em>Le Docteur Jivago</em></a> de Pasternak a paru pour la première fois en italien, à Milan, en 1957, avant toute édition en russe&nbsp;?"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:246
+#, php-format
+msgid "… que <a href=\"%1$s\"><em>Tchevengour</em></a>, écrit par Platonov à la fin des années 1920, n’a paru en entier en URSS qu’en 1988&nbsp;?"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:258
+#, php-format
+msgid "… que <a href=\"%1$s\"><em>L’Archipel du Goulag</em></a> a paru d’abord en russe, à Paris, chez YMCA-Press, le 28 décembre 1973&nbsp;?"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-encyclopedie.php:270
+#, php-format
+msgid "… que les <a href=\"%1$s\"><em>Notes d’un médecin</em></a> de Veressaïev, sur les débuts d’un jeune médecin, firent scandale à leur parution, en 1901&nbsp;?"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:278
+msgid "En novembre"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "7 novembre 1917"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "La révolution d’Octobre (25 octobre dans le calendrier julien)."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "9 novembre 1818"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "Naissance d’Ivan Tourguéniev, à Orel."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "9 novembre 1933"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "Ivan Bounine reçoit le prix Nobel de littérature, le premier écrivain russe à l’obtenir."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "11 novembre 1821"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "Naissance de Fiodor Dostoïevski, à Moscou."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "20 novembre 1910"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "Mort de Léon Tolstoï, à la gare d’Astapovo."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "28 novembre 1880"
+msgstr ""
+
+#: patterns/une-encyclopedie.php:282
+msgid "Naissance d’Alexandre Blok, à Saint-Pétersbourg."
+msgstr ""
+
+#: patterns/une-encyclopedie.php:286
+msgid "Dates du calendrier grégorien."
+msgstr ""
+
+#: patterns/une-jivago.php
+msgctxt "Pattern title"
+msgid "À la une — une affiche (Le Docteur Jivago)"
+msgstr ""
+
+#: patterns/une-jivago.php
+msgctxt "Pattern description"
+msgid "Une affiche sur le vert de la librairie : un livre, ses faits, ses boutons, pour aller plus loin, et le texte avec son dessin."
+msgstr ""
+
+#: patterns/une-jivago.php:25
+msgid "Retraduire · la librairie"
+msgstr ""
+
+#: patterns/une-jivago.php:29
+msgid "Le Docteur Jivago"
+msgstr ""
+
+#: patterns/une-jivago.php:35
+msgid "Couverture du Docteur Jivago"
+msgstr ""
+
+#: patterns/une-jivago.php:43
+msgid "Première édition"
+msgstr ""
+
+#: patterns/une-jivago.php:47
+msgid "Milan, 1957, en italien"
+msgstr ""
+
+#: patterns/une-jivago.php:59
+msgid "[éditeur de la nouvelle traduction]"
+msgstr ""
+
+#: patterns/une-jivago.php:71
+msgid "Boris Pasternak"
+msgstr ""
+
+#: patterns/une-jivago.php:95
+msgid "nouvelle traduction"
+msgstr ""
+
+#: patterns/une-jivago.php:119
+#: patterns/une-poeme.php:101
+#: patterns/une-tchevengour.php:119
+msgid "Ajouter au panier"
+msgstr ""
+
+#: patterns/une-jivago.php:122
+msgid "Feuilleter"
+msgstr ""
+
+#: patterns/une-jivago.php:125
+msgid "Pasternak, dans l’encyclopédie"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-jivago.php:139
+#, php-format
+msgid "<strong>En librairie</strong> <a href=\"%1$s\">Platonov, <em>Tchevengour</em></a>"
+msgstr ""
+
+#: patterns/une-jivago.php:143
+msgid "Lui aussi écrit sous Staline et refusé de son vivant&nbsp;: paru en entier en URSS en 1988, la même année que Jivago."
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-jivago.php:151
+#, php-format
+msgid "<strong>Journal du centre</strong> <a href=\"%1$s\"><em>Le Docteur Jivago</em>, par Georges Nivat</a>"
+msgstr ""
+
+#: patterns/une-jivago.php:155
+msgid "[Deux lignes&nbsp;: de quoi parle l’article.]"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-jivago.php:163
+#, php-format
+msgid "<strong>Le fonds d’archives</strong> <a href=\"%1$s\">Interdits là-bas, publiés ailleurs</a>"
+msgstr ""
+
+#: patterns/une-jivago.php:167
+msgid "Les livres qui ont paru d’abord à l’étranger, ou des décennies après avoir été écrits."
+msgstr ""
+
+#: patterns/une-jivago.php:179
+msgid "Le roman de Pasternak a paru d’abord en italien, à Milan, en 1957, avant toute édition en russe&nbsp;; une nouvelle traduction le fait relire."
+msgstr ""
+
+#: patterns/une-jivago.php:183
+msgid "Une bougie derrière une vitre givrée"
+msgstr ""
+
+#: patterns/une-jivago.php:183
+msgid "Une bougie derrière une vitre givrée&nbsp;: l’image que le roman a rendue célèbre."
+msgstr ""
+
+#: patterns/une-jivago.php:189
+msgid "Pasternak l’écrit pendant dix ans, de la fin de la guerre au milieu des années 1950&nbsp;: la vie d’un médecin et poète, Iouri Jivago, dans la Russie de la révolution et de la guerre civile, et son amour pour Lara."
+msgstr ""
+
+#: patterns/une-jivago.php:193
+msgid "Refusé par les revues soviétiques, le manuscrit passe à l’Ouest&nbsp;; l’éditeur Giangiacomo Feltrinelli le publie à Milan en novembre 1957. L’année suivante, Pasternak reçoit le prix Nobel de littérature&nbsp;; sous la pression du pouvoir, il le refuse."
+msgstr ""
+
+#: patterns/une-jivago.php:197
+msgid "En URSS, le roman ne paraît qu’en 1988, dans la revue <em>Novy Mir</em>, trente ans après le Nobel."
+msgstr ""
+
+#: patterns/une-jivago.php:201
+msgid "[Une phrase du libraire&nbsp;: ce que la nouvelle traduction change à la lecture.]"
+msgstr ""
+
+#: patterns/une-journal.php
+msgctxt "Pattern title"
+msgid "À la une — le journal du centre"
+msgstr ""
+
+#: patterns/une-journal.php
+msgctxt "Pattern description"
+msgid "L’article du mois en grand, avec sa photo et deux colonnes de texte ; à côté, les derniers billets et ceux qui écrivent dans le journal."
+msgstr ""
+
+#: patterns/une-journal.php:21
+msgid "Le journal du centre · L’article du mois"
+msgstr ""
+
+#: patterns/une-journal.php:25
+msgid "Le Paris de l’émigration russe"
+msgstr ""
+
+#: patterns/une-journal.php:29
+msgid "Une cathédrale, un institut de théologie, des cafés, une cité d’artistes, des usines, un cimetière&nbsp;: dix lieux pour raconter la ville où s’est installée, après 1917, la Russie en exil."
+msgstr ""
+
+#: patterns/une-journal.php:33
+msgid "Un groupe d’étudiants russes devant une maison, à la fin des années 1920"
+msgstr ""
+
+#: patterns/une-journal.php:33
+msgid "Congrès de l’Action chrétienne des étudiants russes, à la fin des années 1920&nbsp;: Berdiaev au centre."
+msgstr ""
+
+#: patterns/une-journal.php:39
+msgid "Après la révolution et la guerre civile, des dizaines de milliers de Russes s’installent à Paris, qui devient, avec Berlin et Prague, l’une des capitales de l’émigration."
+msgstr ""
+
+#: patterns/une-journal.php:43
+msgid "La cathédrale Saint-Alexandre-Nevski, rue Daru, en est le cœur&nbsp;; l’institut de théologie Saint-Serge ouvre en 1925, rue de Crimée. Beaucoup travaillent aux usines Renault de Billancourt&nbsp;; beaucoup reposent au cimetière de Sainte-Geneviève-des-Bois."
+msgstr ""
+
+#: patterns/une-journal.php:47
+msgid "L’article suit ces lieux un à un, sur une carte, avec trois promenades à faire à pied. La librairie, rue de la Montagne-Sainte-Geneviève, en est l’une des adresses."
+msgstr ""
+
+#: patterns/une-journal.php:55
+msgid "Par [l’auteur] · [date] · dix lieux, trois promenades, [4] vidéos"
+msgstr ""
+
+#: patterns/une-journal.php:59
+msgid "Lire l’article"
+msgstr ""
+
+#: patterns/une-journal.php:69
+msgid "Les billets"
+msgstr ""
+
+#: patterns/une-journal.php:83
+msgid "Les billets d’Yves Hamant"
+msgstr ""
+
+#: patterns/une-journal.php:87
+msgid "Anne-Marie Pelletier, Résister avec Vassily Grossman"
+msgstr ""
+
+#: patterns/une-journal.php:91
+msgid "Yves Hamant lit le livre qu’Anne-Marie Pelletier consacre à Vassily Grossman, l’auteur de <em>Vie et destin</em>, et à ce que résister veut dire chez lui."
+msgstr ""
+
+#: patterns/une-journal.php:95
+msgid "Yves Hamant · 27 janvier · 10 min"
+msgstr ""
+
+#: patterns/une-journal.php:111
+msgid "Les billets de Dominique Samson"
+msgstr ""
+
+#: patterns/une-journal.php:115
+msgid "Du jardin secret des Lykov, vieux-croyants de Sibérie"
+msgstr ""
+
+#: patterns/une-journal.php:119
+msgid "En 1978, des géologues découvrent dans la taïga une famille de vieux-croyants, les Lykov, coupée du monde depuis plus de quarante ans. Dominique Samson raconte leur jardin."
+msgstr ""
+
+#: patterns/une-journal.php:123
+msgid "Dominique Samson · 13 avril 2023 · 28 min"
+msgstr ""
+
+#: patterns/une-journal.php:139
+msgid "Le journal, en russe"
+msgstr ""
+
+#: patterns/une-journal.php:147
+msgid "Irina Roskina revient sur <em lang=\"ru\">Четыре главы</em>, le livre de souvenirs littéraires de Natalia Roskina, paru chez YMCA-Press en 1980."
+msgstr ""
+
+#: patterns/une-journal.php:151
+msgid "28 septembre · 6 min"
+msgstr ""
+
+#: patterns/une-journal.php:167
+msgid "Les billets de Georges Nivat"
+msgstr ""
+
+#: patterns/une-journal.php:171
+msgid "Quand un chardonneret s’échappe dans le métro"
+msgstr ""
+
+#: patterns/une-journal.php:175
+msgid "[Deux lignes&nbsp;: de quoi parle le billet.]"
+msgstr ""
+
+#: patterns/une-journal.php:179
+msgid "Georges Nivat · 28 décembre 2024 · 3 min"
+msgstr ""
+
+#: patterns/une-journal.php:189
+msgid "<strong>Ils écrivent dans le journal&nbsp;:</strong> Georges Nivat, Yves Hamant, Anne Hogenhuis, Françoise Lesourd, Cécile Vaissié, Anita Davidenkoff, Anne Misslin, Nikolaï Tikhonchuk, Véronique Jobert, François de Saint-Chéron, Marguerite Léna, Nikita Struve, Dominique Samson et Margarita Sokolova."
+msgstr ""
+
+#: patterns/une-journal.php:193
+msgid "Tout le journal"
+msgstr ""
+
+#: patterns/une-poeme.php
+msgctxt "Pattern title"
+msgid "À la une — une page (un poème)"
+msgstr ""
+
+#: patterns/une-poeme.php
+msgctxt "Pattern description"
+msgid "Un poème en entier, en grand, en russe, avec un dessin ; dessous, trois paragraphes pour le lire, et le livre à la librairie."
+msgstr ""
+
+#: patterns/une-poeme.php:23
+msgid "Une page · Alexandre Blok, 1912"
+msgstr ""
+
+#: patterns/une-poeme.php:43
+msgid "Une rue la nuit&nbsp;: un réverbère, une pharmacie, le canal"
+msgstr ""
+
+#: patterns/une-poeme.php:43
+msgid "La nuit, la rue, le réverbère, la pharmacie&nbsp;; et dans l’eau du canal, les mêmes, à l’envers."
+msgstr ""
+
+#: patterns/une-poeme.php:55
+msgid "Nuit, rue, réverbère, pharmacie&nbsp;: quatre mots, et la ville de Blok est là. Le poème est écrit le 10 octobre 1912&nbsp;; il fait partie du cycle «&nbsp;Danses macabres&nbsp;»."
+msgstr ""
+
+#: patterns/une-poeme.php:63
+msgid "Les deux strophes se répondent&nbsp;: la seconde reprend la première à rebours, de la nuit au réverbère, comme un reflet dans l’eau glacée du canal. Vivre encore un quart de siècle n’y changera rien&nbsp;: tout recommencera."
+msgstr ""
+
+#: patterns/une-poeme.php:71
+msgid "Blok est le grand poète du symbolisme russe. Six ans plus tard, en janvier 1918, il écrit <em>Les Douze</em>, le poème de la révolution&nbsp;: douze gardes rouges marchent dans Petrograd, sous la neige."
+msgstr ""
+
+#: patterns/une-poeme.php:79
+msgid "En librairie"
+msgstr ""
+
+#: patterns/une-poeme.php:85
+msgid "Couverture des Douze, d’Alexandre Blok"
+msgstr ""
+
+#: patterns/une-poeme.php:91
+msgid "<em>Les Douze</em>"
+msgstr ""
+
+#: patterns/une-poeme.php:95
+msgid "Alexandre Blok · le poème de janvier 1918"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-poeme.php:111
+#, php-format
+msgid "Et la traduction du libraire, vers à vers, dans <a href=\"%1$s\">l’encyclopédie</a>."
+msgstr ""
+
+#: patterns/une-tchevengour.php
+msgctxt "Pattern title"
+msgid "À la une — une affiche (Tchevengour)"
+msgstr ""
+
+#: patterns/une-tchevengour.php
+msgctxt "Pattern description"
+msgid "Une affiche sur le noir : un livre, ses faits, ses boutons, pour aller plus loin, et le texte avec son dessin."
+msgstr ""
+
+#: patterns/une-tchevengour.php:25
+msgid "Un livre, une vie · la librairie"
+msgstr ""
+
+#: patterns/une-tchevengour.php:29
+msgid "Tchevengour"
+msgstr ""
+
+#: patterns/une-tchevengour.php:35
+msgid "Couverture de Tchevengour, d’Andreï Platonov"
+msgstr ""
+
+#: patterns/une-tchevengour.php:43
+msgid "Paru en URSS"
+msgstr ""
+
+#: patterns/une-tchevengour.php:47
+msgid "en entier, en 1988"
+msgstr ""
+
+#: patterns/une-tchevengour.php:59
+msgid "[éditeur de la nouvelle édition]"
+msgstr ""
+
+#: patterns/une-tchevengour.php:71
+msgid "Andreï Platonov"
+msgstr ""
+
+#: patterns/une-tchevengour.php:95
+msgid "nouvelle édition"
+msgstr ""
+
+#: patterns/une-tchevengour.php:122
+msgid "Platonov, dans l’encyclopédie"
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-tchevengour.php:136
+#, php-format
+msgid "<strong>En librairie</strong> <a href=\"%1$s\">Boulgakov, <em>Le Maître et Marguerite</em></a>"
+msgstr ""
+
+#: patterns/une-tchevengour.php:140
+msgid "Écrit lui aussi dans les années 1930, sans espoir de publication&nbsp;; paru en URSS, censuré, en 1966-1967."
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-tchevengour.php:148
+#, php-format
+msgid "<strong>Vidéo</strong> <a href=\"%1$s\">Zamiatine, <em>Nous</em>, vu par André Markowicz</a>"
+msgstr ""
+
+#: patterns/une-tchevengour.php:152
+msgid "Une autre utopie, écrite en 1920&nbsp;: refusée en URSS, elle paraît d’abord en anglais, à New York, en 1924."
+msgstr ""
+
+#. translators: %1$s : l’adresse d’une page du site.
+#: patterns/une-tchevengour.php:160
+#, php-format
+msgid "<strong>Le fonds d’archives</strong> <a href=\"%1$s\">1917, et après</a>"
+msgstr ""
+
+#: patterns/une-tchevengour.php:164
+msgid "La révolution vue par ceux qui l’ont vécue, de Blok à Platonov."
+msgstr ""
+
+#: patterns/une-tchevengour.php:176
+msgid "Le roman d’une utopie communiste dans un bourg de la steppe, que son auteur n’a jamais vu paraître en entier."
+msgstr ""
+
+#: patterns/une-tchevengour.php:180
+msgid "Le soleil sur la steppe, un petit bourg"
+msgstr ""
+
+#: patterns/une-tchevengour.php:180
+msgid "Le bourg de Tchevengour&nbsp;: on a cessé de travailler, le soleil travaille pour tous."
+msgstr ""
+
+#: patterns/une-tchevengour.php:186
+msgid "Platonov écrit Tchevengour à la fin des années 1920. Dans un bourg perdu de la steppe, une poignée de révolutionnaires décide que le communisme est arrivé&nbsp;: ils chassent les «&nbsp;bourgeois&nbsp;», cessent de travailler, et laissent le soleil travailler pour eux."
+msgstr ""
+
+#: patterns/une-tchevengour.php:190
+msgid "Sa langue, faite de mots de la propagande pris au pied de la lettre, est l’une des plus singulières de la littérature russe&nbsp;: on y entend à la fois l’espoir de la révolution et son absurdité."
+msgstr ""
+
+#: patterns/une-tchevengour.php:194
+msgid "Refusé de son vivant, le livre ne paraît en entier en URSS qu’en 1988, presque quarante ans après la mort de son auteur, en 1951."
+msgstr ""
+
+#: patterns/une-videos.php
+msgctxt "Pattern title"
+msgid "À la une — les vidéos du centre"
+msgstr ""
+
+#: patterns/une-videos.php
+msgctxt "Pattern description"
+msgid "Une vidéo à voir, avec son histoire ; à côté, les séries des bénévoles, chacune en une phrase."
+msgstr ""
+
+#: patterns/une-videos.php:25
+msgid "Les vidéos du centre · Le Paris de l’émigration"
+msgstr ""
+
+#: patterns/une-videos.php:29
+msgid "Mère Marie et ses compagnons au foyer de la rue de Lourmel&nbsp;; voir la vidéo"
+msgstr ""
+
+#: patterns/une-videos.php:29
+msgid "Sainte Marie de Paris, deuxième à gauche, au foyer de la rue de Lourmel."
+msgstr ""
+
+#: patterns/une-videos.php:33
+msgid "La rue de Lourmel et mère Marie"
+msgstr ""
+
+#: patterns/une-videos.php:39
+msgid "Au 77, rue de Lourmel, dans le quinzième arrondissement, mère Marie Skobtsova ouvre en 1935 un foyer pour les plus pauvres de l’émigration&nbsp;: on y loge, on y mange, on y prie."
+msgstr ""
+
+#: patterns/une-videos.php:43
+msgid "Sous l’Occupation, la maison cache des Juifs et leur fournit de faux papiers. Arrêtée en 1943, mère Marie meurt à Ravensbrück en mars 1945. L’Église orthodoxe l’a canonisée en 2004."
+msgstr ""
+
+#: patterns/une-videos.php:47
+msgid "[Une phrase&nbsp;: ce que la vidéo montre de la rue aujourd’hui.]"
+msgstr ""
+
+#: patterns/une-videos.php:53
+msgid "[14 min] · Réalisée par [Prénom Nom], bénévole · [date]"
+msgstr ""
+
+#: patterns/une-videos.php:61
+msgid "Six séries, des rendez-vous"
+msgstr ""
+
+#: patterns/une-videos.php:65
+msgid "Plutôt que des vidéos isolées, des séries&nbsp;: on y revient, comme à une émission."
+msgstr ""
+
+#: patterns/une-videos.php:81
+msgid "Un livre, cinq minutes"
+msgstr ""
+
+#: patterns/une-videos.php:85
+msgid "[8] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:91
+msgid "Un lecteur, un livre de la librairie, cinq minutes pour donner envie."
+msgstr ""
+
+#: patterns/une-videos.php:109
+msgid "Le Paris de l’émigration"
+msgstr ""
+
+#: patterns/une-videos.php:113
+msgid "[4] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:119
+msgid "Un lieu par épisode&nbsp;: la rue Daru, la rue de Lourmel, Montparnasse, Sainte-Geneviève-des-Bois."
+msgstr ""
+
+#: patterns/une-videos.php:137
+msgid "À voix haute"
+msgstr ""
+
+#: patterns/une-videos.php:141
+msgid "[12] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:147
+msgid "Des poèmes et des pages lus en russe et en français, de Pouchkine à Blok."
+msgstr ""
+
+#: patterns/une-videos.php:165
+msgid "Dans les archives"
+msgstr ""
+
+#: patterns/une-videos.php:169
+msgid "[3] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:175
+msgid "On ouvre une boîte des archives d’YMCA-Press, et on raconte ce qu’on y trouve."
+msgstr ""
+
+#: patterns/une-videos.php:193
+msgid "Les entretiens"
+msgstr ""
+
+#: patterns/une-videos.php:197
+msgid "[6] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:203
+msgid "Des traducteurs, des auteurs, des chercheurs, invités au centre."
+msgstr ""
+
+#: patterns/une-videos.php:221
+msgid "Premiers pas en russe"
+msgstr ""
+
+#: patterns/une-videos.php:225
+msgid "[10] vidéos"
+msgstr ""
+
+#: patterns/une-videos.php:231
+msgid "Des leçons courtes, pour accompagner les manuels de la librairie."
+msgstr ""
+
+#: patterns/une-videos.php:241
+msgid "Toutes les vidéos"
 msgstr ""

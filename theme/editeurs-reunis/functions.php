@@ -52,6 +52,27 @@ add_action(
 				)
 			);
 		}
+		// L'accueil, à la une : au téléphone, « Voir plus » sous l'essentiel de chaque module.
+		wp_enqueue_script(
+			'editeurs-reunis-une',
+			get_theme_file_uri( 'assets/js/une.js' ),
+			array(),
+			$version,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		wp_add_inline_script(
+			'editeurs-reunis-une',
+			'window.erUneTextes = ' . wp_json_encode(
+				array(
+					'plus'  => __( 'Voir plus', 'editeurs-reunis' ),
+					'moins' => __( 'Voir moins', 'editeurs-reunis' ),
+				)
+			) . ';',
+			'before'
+		);
 		wp_enqueue_script(
 			'editeurs-reunis-diaporama',
 			get_theme_file_uri( 'assets/js/diaporama.js' ),
@@ -394,6 +415,51 @@ function er_article( $slug ) {
 function er_livre( $slug ) {
 	$livre = get_page_by_path( $slug, OBJECT, 'product' );
 	return $livre ? esc_url( get_permalink( er_traduction( $livre->ID ) ) ) : er_lien( 'librairie/' );
+}
+
+/**
+ * Le livre de la librairie (un produit WooCommerce) d'après son slug français, dans la langue de la page.
+ *
+ * @param string $slug Le slug du livre.
+ * @return WC_Product|null
+ */
+function er_produit( $slug ) {
+	if ( ! function_exists( 'wc_get_product' ) ) {
+		return null;
+	}
+	$livre = get_page_by_path( $slug, OBJECT, 'product' );
+	return $livre ? wc_get_product( er_traduction( $livre->ID ) ) : null;
+}
+
+/**
+ * Le prix d'un livre, en texte (« 26,00 € »), pour le dire en petit à côté de « En librairie » ; « épuisé pour
+ * l'instant » s'il n'est plus en stock. Lu dans la librairie à chaque affichage : la composition ne le recopie pas.
+ *
+ * @param string $slug Le slug du livre.
+ */
+function er_prix( $slug ) {
+	$produit = er_produit( $slug );
+	if ( ! $produit ) {
+		return '';
+	}
+	if ( ! $produit->is_in_stock() ) {
+		return __( 'épuisé pour l’instant', 'editeurs-reunis' );
+	}
+	return html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $produit ) ) ), ENT_QUOTES, 'UTF-8' );
+}
+
+/**
+ * L'adresse qui met un livre au panier (sans JavaScript, celle de WooCommerce) ; sa fiche s'il n'est plus en stock,
+ * ou la librairie s'il n'existe pas.
+ *
+ * @param string $slug Le slug du livre.
+ */
+function er_ajout_panier( $slug ) {
+	$produit = er_produit( $slug );
+	if ( ! $produit ) {
+		return er_lien( 'librairie/' );
+	}
+	return esc_url( $produit->is_in_stock() ? $produit->add_to_cart_url() : get_permalink( $produit->get_id() ) );
 }
 
 /**

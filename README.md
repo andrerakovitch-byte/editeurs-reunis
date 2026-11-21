@@ -18,7 +18,7 @@ n'est gardé quand on ferme l'onglet.
   - `theme.json` : la direction artistique, toute entière (les couleurs, la police Montserrat, les tailles, les
     espacements, les boutons en pilule).
   - `style.css` : le reste du dessin (l'en-tête, les fiches des livres, le pied).
-  - `patterns/` : les sections de l'accueil, l'en-tête, le pied, la librairie et la fiche d'un livre.
+  - `patterns/` : les modules de l'accueil (`une-*.php`), l'en-tête, le pied, la librairie et la fiche d'un livre.
   - `templates/` et `parts/` : les gabarits, qui ne font qu'appeler les sections.
 - `plugin/er-librairie/` : l'extension de la librairie, séparée du thème pour que les livres survivent à un
   changement de dessin : les auteurs et les langues des livres, et des traductions de secours pour WooCommerce.
@@ -73,6 +73,40 @@ trois écritures : Dostoïevski, Достоевский, Dostoevsky et « dostoi
 son adresse (`/librairie/?er_auteur=iakhina&er_stock=1`). La fiche d'un livre a quatre champs de plus : traducteur,
 éditeur, collection, année d'édition.
 
+## L'accueil, à la une
+
+L'accueil du site (`templates/front-page.html`) est fait des modules de la maquette « L'accueil, à la une » du canevas,
+chacun une composition en blocs de WordPress, qu'on modifie dans l'éditeur de site (21 nov. 2026 : « garde ces
+modules stp sauf le dernier [l'index], regarde les modifications et ajoute-les au site », André) :
+
+- `une-archipel`, `une-jivago`, `une-tchevengour` : des affiches pleine largeur sur l'aplat d'une maison (brun
+  d'YMCA-Press, vert de la librairie, noir). À gauche la rubrique et le point de chaque maison, le titre, les faits en
+  petit (le prix compris, en petit, pour informer plutôt que vendre), les boutons, et « Pour aller plus loin », où
+  chaque lien dit ce qu'il est (En librairie, L'encyclopédie, Journal du centre, Vidéo, Podcast, Le fonds d'archives)
+  et, en une phrase, pourquoi il est là. À droite la phrase en demi-gras, une photo des archives ou un dessin
+  (`assets/images/une-*.svg`), et le texte sur deux colonnes ;
+- `une-journal` : l'article du mois et sa photo ; à côté, les billets, chacun avec sa lettrine (une lettre russe sur
+  un aplat) ;
+- `une-poeme` : une page, le poème de Blok en entier, la rue dessinée, trois paragraphes et le livre à la librairie ;
+- `une-videos` : une vidéo à voir et les six séries des bénévoles ;
+- `une-encyclopedie` : l'article du jour, sa fiche, son portrait et les livres qu'il cite ; « Le saviez-vous ? » et
+  les dates du mois.
+
+Les prix et les boutons « Ajouter au panier » sont lus dans la librairie à chaque affichage (`er_prix()`,
+`er_ajout_panier()`, `functions.php`) : « épuisé pour l'instant » quand un livre n'est plus en stock. Les grands mots
+russes ton sur ton et les lettrines sont des blocs HTML, cachés aux lecteurs d'écran. Les textes entre crochets sont à
+écrire ; ceux des compositions se traduisent comme le reste du thème (`outils/traductions.py`).
+
+Au téléphone, chaque module garde l'essentiel : le titre sur son aplat, la photo ou le dessin, la phrase, le bouton
+principal ; le texte, les faits et « Pour aller plus loin » se déplient sous « Voir plus » (`assets/js/une.js` ; sans
+JavaScript, tout est montré). Les billets et les séries y deviennent une liste courte, la lettrine et le titre
+(« sur mobile trouve un affichage adapté : soit tu utilises le Voir plus, garde l'essentiel, et plutôt photo et
+titres avec aplat de couleurs », André, 21 nov.).
+
+Les compositions sont écrites d'après la maquette par un script (`proposition/blocs_une.py`, hors du dépôt) ; on peut
+aussi les modifier à la main. Les anciennes sections de l'accueil (le diaporama, les nouveautés, les branches…)
+restent dans `patterns/`, pour l'éditeur.
+
 ## Les pages d'exemple de la bêta
 
 Pour voir la bêta en entier, les maquettes du canevas sont posées en pages, telles quelles (`semer.php`, avec le HTML
@@ -81,7 +115,6 @@ refaites en blocs. Deux gabarits les accueillent : `page-exemple`, et `page-exem
 librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette entière est réduite à l'écran
 (`assets/js/exemple.js`).
 
-- `/accueil-proposition/` : l'accueil « à la une », d'après le Programme commun (proposition du 21 novembre) ;
 - `/librairie/encyclopedie/`, et dessous `age-d-argent/`, `soljenitsyne/`, `platonov/` : l'encyclopédie, un chapitre,
   deux pages d'auteur ;
 - `/ymca-press/histoire/` : Un siècle d'histoire ;

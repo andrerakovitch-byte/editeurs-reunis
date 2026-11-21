@@ -589,7 +589,6 @@ kses_remove_filters();
 $parent_ymca   = get_page_by_path( 'ymca-press' );
 $parent_centre = get_page_by_path( 'centre-culturel' );
 $parent_lib    = (int) get_option( 'woocommerce_shop_page_id' );
-er_semer_exemple( 'L’accueil, une proposition', 'accueil-proposition', 0, 'page-exemple-librairie' );
 $encyclopedie = er_semer_exemple( 'L’encyclopédie', 'encyclopedie', $parent_lib, 'page-exemple-librairie' );
 if ( $encyclopedie ) {
 	er_semer_exemple( 'L’Âge d’argent', 'age-d-argent', $encyclopedie, 'page-exemple-librairie', 1 );
