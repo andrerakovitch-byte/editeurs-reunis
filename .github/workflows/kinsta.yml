@@ -19,6 +19,10 @@ on:
         description: "Premier passage : activer, ajouter les langues, semer le contenu de l'ébauche"
         type: boolean
         default: false
+      couvertures:
+        description: "Relevé des couvertures : le nombre de livres par qualité"
+        type: boolean
+        default: false
 
 concurrency: kinsta
 
@@ -68,6 +72,10 @@ jobs:
             wp eval-file wp-content/plugins/er-librairie/donnees/semer.php
             wp rewrite structure "/%postname%/"
             wp rewrite flush'
+
+      - name: Le relevé des couvertures
+        if: inputs.couvertures
+        run: $SSH "$QUI@$HOTE" 'cd public && wp er couvertures'
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

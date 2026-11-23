@@ -24,53 +24,119 @@ msgid ""
 " changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:165
+#: er-librairie.php:166
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:179 er-librairie.php:185 inc/import.php:26
+#: er-librairie.php:180 er-librairie.php:186 inc/import.php:26
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:180
+#: er-librairie.php:181
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:181
+#: er-librairie.php:182
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:182
+#: er-librairie.php:183
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:183
+#: er-librairie.php:184
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:184
+#: er-librairie.php:185
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:199 er-librairie.php:204 inc/import.php:27
+#: er-librairie.php:200 er-librairie.php:205 inc/import.php:27
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:200
+#: er-librairie.php:201
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:201
+#: er-librairie.php:202
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:202
+#: er-librairie.php:203
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:203
+#: er-librairie.php:204
 msgid "Ajouter une langue"
 msgstr "Add language"
+
+#: inc/couvertures.php:58
+msgid "Trop petites"
+msgstr "Too small"
+
+#: inc/couvertures.php:59
+msgid "Absentes"
+msgstr "Missing"
+
+#: inc/couvertures.php:60
+msgid "Passables"
+msgstr "Acceptable"
+
+#: inc/couvertures.php:61
+msgid "Bonnes"
+msgstr "Good"
+
+#: inc/couvertures.php:105 inc/couvertures.php:124
+msgid "Les couvertures"
+msgstr "Covers"
+
+#: inc/couvertures.php:106
+msgid "Couvertures"
+msgstr "Covers"
+
+#: inc/couvertures.php:125
+msgid ""
+"Une couverture est bonne à partir de 800 pixels de haut : nette même en "
+"grand sur la fiche. Passable, de 450 à 800 pixels : nette dans les listes, "
+"montrée à sa taille sur la fiche. En dessous de 450 pixels, le site la "
+"remplace par une couverture typographique (le titre et l’auteur), jusqu’à ce"
+" qu’une meilleure image arrive. Les livres en stock viennent en tête."
+msgstr ""
+"A cover is good from 800 pixels high: sharp even large on the book page. "
+"Acceptable, from 450 to 800 pixels: sharp in lists, shown at its own size on"
+" the book page. Below 450 pixels, the site replaces it with a typographic "
+"cover (title and author) until a better image arrives. Books in stock come "
+"first."
+
+#: inc/couvertures.php:133
+msgid "Livre"
+msgstr "Book"
+
+#: inc/couvertures.php:133
+msgid "Taille de l’image"
+msgstr "Image size"
+
+#: inc/couvertures.php:133
+msgid "Stock"
+msgstr "Stock"
+
+#: inc/couvertures.php:141
+msgid "En stock"
+msgstr "In stock"
+
+#: inc/couvertures.php:141
+msgid "Épuisé"
+msgstr "Out of stock"
+
+#: inc/couvertures.php:142
+msgid "Changer la couverture"
+msgstr "Change the cover"
+
+#: inc/couvertures.php:145
+msgid "Aucun livre."
+msgstr "No books."
 
 #: inc/fiche.php:20
 msgctxt "fiche d’un livre"

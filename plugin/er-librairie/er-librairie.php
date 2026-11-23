@@ -21,6 +21,7 @@ add_action(
 require __DIR__ . '/inc/recherche.php';
 require __DIR__ . '/inc/import.php';
 require __DIR__ . '/inc/fiche.php';
+require __DIR__ . '/inc/couvertures.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *

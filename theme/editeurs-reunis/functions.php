@@ -560,6 +560,67 @@ function er_fiche_livre() {
 }
 
 /**
+ * La couverture typographique : pour un livre sans photo, ou dont la photo est trop petite pour rester nette
+ * (moins de 450 px de haut : er_couverture_qualite(), dans l'extension). L'auteur en haut, le titre, l'éditeur en bas
+ * avec le point de sa maison ; un livre d'YMCA-Press sur l'aplat brun de la maison. Elle prend la place de la photo
+ * dans les grilles et sur la fiche, jusqu'à ce qu'une meilleure image arrive.
+ *
+ * @param WC_Product $produit Le livre.
+ */
+function er_couverture_typo( $produit ) {
+	$auteurs = wp_get_post_terms( $produit->get_id(), 'auteur', array( 'fields' => 'names' ) );
+	$auteur  = is_array( $auteurs ) ? implode( ', ', array_slice( $auteurs, 0, 2 ) ) : '';
+	$editeur = (string) $produit->get_meta( 'er_editeur' );
+	$ymca    = (bool) preg_match( '/ymca|имка/iu', $editeur );
+	$titre   = $produit->get_name();
+	$russe   = (bool) preg_match( '/\p{Cyrillic}/u', $titre );
+	return '<span class="er-couverture-typo' . ( $ymca ? ' er-couverture-typo--ymca' : '' ) . '"><span class="er-couverture-typo__page">'
+		. ( $auteur ? '<span class="er-couverture-typo__auteur"' . ( preg_match( '/\p{Cyrillic}/u', $auteur ) ? ' lang="ru"' : '' ) . '>' . esc_html( $auteur ) . '</span>' : '' )
+		. '<span class="er-couverture-typo__titre"' . ( $russe ? ' lang="ru"' : '' ) . '>' . esc_html( wptexturize( $titre ) ) . '</span>'
+		. ( $editeur ? '<span class="er-couverture-typo__editeur">' . esc_html( $editeur ) . '</span>' : '' )
+		. '</span></span>';
+}
+
+/**
+ * Faut-il la couverture typographique pour ce livre ? Sans l'extension, jamais (la photo telle quelle).
+ *
+ * @param WC_Product $produit Le livre.
+ */
+function er_couverture_a_remplacer( $produit ) {
+	return $produit && function_exists( 'er_couverture_qualite' ) && in_array( er_couverture_qualite( $produit ), array( 'petite', 'absente' ), true );
+}
+
+// Dans les grilles : le bloc de l'image du livre.
+add_filter(
+	'render_block_woocommerce/product-image',
+	function ( $html, $bloc, $instance ) {
+		$id      = isset( $instance->context['postId'] ) ? (int) $instance->context['postId'] : get_the_ID();
+		$produit = $id ? wc_get_product( $id ) : null;
+		if ( ! er_couverture_a_remplacer( $produit ) ) {
+			return $html;
+		}
+		$classe = trim( 'wc-block-components-product-image wp-block-woocommerce-product-image ' . ( $bloc['attrs']['className'] ?? '' ) );
+		return '<div class="' . esc_attr( $classe ) . '"><a href="' . esc_url( $produit->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . er_couverture_typo( $produit ) . '</a></div>';
+	},
+	10,
+	3
+);
+
+// Sur la fiche : l'image principale de la galerie (ou son espace réservé, quand il n'y a pas d'image).
+add_filter(
+	'woocommerce_single_product_image_thumbnail_html',
+	function ( $html, $image ) {
+		global $product;
+		if ( ! $product || ( $image && (int) $image !== (int) $product->get_image_id() ) || ! er_couverture_a_remplacer( $product ) ) {
+			return $html;
+		}
+		return '<div class="woocommerce-product-gallery__image er-fiche-typo">' . er_couverture_typo( $product ) . '</div>';
+	},
+	10,
+	2
+);
+
+/**
  * Un livre sans prix (épuisé, ou prix à confirmer) n'affiche rien plutôt qu'un prix vide.
  */
 add_filter(

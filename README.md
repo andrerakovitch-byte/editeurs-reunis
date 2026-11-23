@@ -145,6 +145,13 @@ La fiche d'un livre montre, sous le rayon, la langue et l'auteur, ce que l'exten
 vide ne paraît pas (le bloc `er/fiche-champs`, `plugin/…/inc/fiche.php`). La référence `WIX-…` d'un livre venu de Wix
 ne paraît pas.
 
+Les couvertures : une image d'au moins 800 px de haut est bonne ; de 450 à 800 px, passable (montrée à sa taille sur
+la fiche, jamais agrandie) ; en dessous, ou sans image, le thème montre une couverture typographique, l'auteur, le
+titre et l'éditeur sur le papier du système (sur l'aplat brun pour YMCA-Press), dans les grilles et sur la fiche
+(`er_couverture_typo()`, dans `functions.php`). Le relevé est dans Produits → Couvertures (les livres en stock d'abord,
+avec un lien pour changer l'image), et en ligne de commande, `wp er couvertures` (le workflow « Déployer chez Kinsta »,
+case « Relevé des couvertures », en donne les comptes).
+
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
 - son **rayon** est une catégorie de produit (Littérature russe, Poésie, Histoire, Essais et biographies, Cinéma) ;

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Les Éditeurs réunis — librairie plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis — librairie 0.2.0\n"
+"Project-Id-Version: Les Éditeurs réunis — librairie 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/er-librairie\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T15:59:50+00:00\n"
+"POT-Creation-Date: 2026-11-23T16:09:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -24,56 +24,113 @@ msgstr ""
 msgid "Les données de la librairie : auteurs et langues des livres, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:165
+#: er-librairie.php:166
 msgid "Langue du site"
 msgstr ""
 
-#: er-librairie.php:179
-#: er-librairie.php:185
+#: er-librairie.php:180
+#: er-librairie.php:186
 #: inc/import.php:26
 msgid "Auteurs"
 msgstr ""
 
-#: er-librairie.php:180
+#: er-librairie.php:181
 msgid "Auteur"
 msgstr ""
 
-#: er-librairie.php:181
+#: er-librairie.php:182
 msgid "Chercher un auteur"
 msgstr ""
 
-#: er-librairie.php:182
+#: er-librairie.php:183
 msgid "Tous les auteurs"
 msgstr ""
 
-#: er-librairie.php:183
+#: er-librairie.php:184
 msgid "Modifier l’auteur"
 msgstr ""
 
-#: er-librairie.php:184
+#: er-librairie.php:185
 msgid "Ajouter un auteur"
 msgstr ""
 
-#: er-librairie.php:199
-#: er-librairie.php:204
+#: er-librairie.php:200
+#: er-librairie.php:205
 #: inc/import.php:27
 msgid "Langues"
 msgstr ""
 
-#: er-librairie.php:200
+#: er-librairie.php:201
 msgid "Langue"
 msgstr ""
 
-#: er-librairie.php:201
+#: er-librairie.php:202
 msgid "Toutes les langues"
 msgstr ""
 
-#: er-librairie.php:202
+#: er-librairie.php:203
 msgid "Modifier la langue"
 msgstr ""
 
-#: er-librairie.php:203
+#: er-librairie.php:204
 msgid "Ajouter une langue"
+msgstr ""
+
+#: inc/couvertures.php:58
+msgid "Trop petites"
+msgstr ""
+
+#: inc/couvertures.php:59
+msgid "Absentes"
+msgstr ""
+
+#: inc/couvertures.php:60
+msgid "Passables"
+msgstr ""
+
+#: inc/couvertures.php:61
+msgid "Bonnes"
+msgstr ""
+
+#: inc/couvertures.php:105
+#: inc/couvertures.php:124
+msgid "Les couvertures"
+msgstr ""
+
+#: inc/couvertures.php:106
+msgid "Couvertures"
+msgstr ""
+
+#: inc/couvertures.php:125
+msgid "Une couverture est bonne à partir de 800 pixels de haut : nette même en grand sur la fiche. Passable, de 450 à 800 pixels : nette dans les listes, montrée à sa taille sur la fiche. En dessous de 450 pixels, le site la remplace par une couverture typographique (le titre et l’auteur), jusqu’à ce qu’une meilleure image arrive. Les livres en stock viennent en tête."
+msgstr ""
+
+#: inc/couvertures.php:133
+msgid "Livre"
+msgstr ""
+
+#: inc/couvertures.php:133
+msgid "Taille de l’image"
+msgstr ""
+
+#: inc/couvertures.php:133
+msgid "Stock"
+msgstr ""
+
+#: inc/couvertures.php:141
+msgid "En stock"
+msgstr ""
+
+#: inc/couvertures.php:141
+msgid "Épuisé"
+msgstr ""
+
+#: inc/couvertures.php:142
+msgid "Changer la couverture"
+msgstr ""
+
+#: inc/couvertures.php:145
+msgid "Aucun livre."
 msgstr ""
 
 #: inc/fiche.php:20
