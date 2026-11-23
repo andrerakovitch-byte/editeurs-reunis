@@ -338,15 +338,12 @@ function er_reco_carte( $pid, $classe = 'er-reco-livre' ) {
 }
 
 /**
- * L'initiale du nom de famille d'un auteur, en cyrillique quand il a un nom russe (П pour Pasternak).
+ * L'initiale du nom de famille d'un auteur, toujours en cyrillique (П pour Pasternak, Б pour Brodsky).
  *
  * @param WP_Term $auteur L'auteur.
  */
 function er_reco_initiale( $auteur ) {
-	$noms = array_merge( array( $auteur->name ), function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $auteur->term_id ) : array() );
-	$cyr  = array_values( array_filter( $noms, fn( $n ) => preg_match( '/\p{Cyrillic}/u', $n ) ) );
-	$nom  = trim( $cyr ? $cyr[0] : $auteur->name );
-	return mb_substr( (string) preg_replace( '/^.*\s/u', '', $nom ), 0, 1 );
+	return er_initiale_cyrillique( $auteur->name, function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $auteur->term_id ) : array() );
 }
 
 /**
@@ -408,7 +405,7 @@ function er_reco_contenu( $cid ) {
 		$genre = __( 'Le journal', 'er-librairie' );
 		// La lettrine : l'initiale cyrillique de la première personne dont parle l'article, sinon celle du titre.
 		$gens   = wp_get_post_terms( $cid, 'auteur' );
-		$lettre = $gens && ! is_wp_error( $gens ) ? er_reco_initiale( $gens[0] ) : mb_substr( trim( $titre, ' «»"“”' ), 0, 1 );
+		$lettre = $gens && ! is_wp_error( $gens ) ? er_reco_initiale( $gens[0] ) : er_initiale_cyrillique( $titre, array(), false );
 	}
 	return '<li class="er-reco-article"><a href="' . esc_url( get_permalink( $cid ) ) . '"><span class="er-reco-lettrine" lang="ru" aria-hidden="true">' . esc_html( $lettre ) . '</span>'
 		. '<span class="er-reco-article-texte"><span class="er-reco-genre">' . $point . esc_html( $genre ) . '</span><span class="er-reco-contenu-titre">' . esc_html( $titre ) . '</span>'

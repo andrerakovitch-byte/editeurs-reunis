@@ -47,6 +47,53 @@ function er_cle_recherche( $texte ) {
 	return trim( preg_replace( '/\s+/', ' ', $t ) );
 }
 
+/* L'initiale en cyrillique ------------------------------------------------------------------------------------- */
+
+/**
+ * L'initiale d'un nom, toujours en cyrillique (décision du 23 nov. 2026) : les vignettes des auteurs, dans la
+ * recherche et sur la fiche d'un livre, montrent une lettre russe sur un aplat. D'abord le nom écrit en cyrillique,
+ * s'il est connu (le nom lui-même ou l'une de ses « Autres graphies ») ; sinon le début du nom latin, transcrit à la
+ * française (Ch → Ш, Tch → Ч, J → Ж, Ou → У, Ia → Я) : Б pour Brodsky, Ш pour Chalamov, Ц pour Zweig.
+ *
+ * @param string $nom      Le nom.
+ * @param array  $graphies Ses autres graphies.
+ * @param bool   $famille  Le nom de famille (le dernier mot), sinon le premier mot (pour un titre).
+ */
+function er_initiale_cyrillique( $nom, $graphies = array(), $famille = true ) {
+	$mot = function ( $texte ) use ( $famille ) {
+		$mots = preg_split( '/[\s\x{00A0}]+/u', trim( (string) preg_replace( '/[«»"“”()\[\]]/u', ' ', $texte ) ), -1, PREG_SPLIT_NO_EMPTY );
+		return $mots ? ( $famille ? end( $mots ) : reset( $mots ) ) : '';
+	};
+	foreach ( array_merge( array( $nom ), (array) $graphies ) as $n ) {
+		$m = $mot( $n );
+		if ( preg_match( '/\p{Cyrillic}/u', $m ) ) {
+			return mb_strtoupper( mb_substr( (string) preg_replace( '/^[^\p{L}]+/u', '', $m ), 0, 1 ) );
+		}
+	}
+	$m = (string) preg_replace( '/^[^a-z]+/', '', strtolower( remove_accents( (string) $mot( $nom ) ) ) );
+	if ( '' === $m ) {
+		return '';
+	}
+	// Les débuts de deux lettres ou plus d'abord, puis les lettres seules.
+	$debuts = array(
+		'chtch' => 'Щ', 'shch' => 'Щ', 'sch' => 'Щ', 'tch' => 'Ч', 'ch' => 'Ш', 'sh' => 'Ш', 'kh' => 'Х', 'zh' => 'Ж',
+		'ts' => 'Ц', 'tz' => 'Ц', 'zw' => 'Ц', 'iou' => 'Ю', 'you' => 'Ю', 'yu' => 'Ю', 'iu' => 'Ю', 'ia' => 'Я', 'ya' => 'Я',
+		'io' => 'Ё', 'yo' => 'Ё', 'ie' => 'Е', 'ye' => 'Е', 'eh' => 'Э', 'ou' => 'У', 'ph' => 'Ф', 'th' => 'Т',
+		'ce' => 'С', 'ci' => 'С', 'cy' => 'С',
+	);
+	foreach ( $debuts as $debut => $lettre ) {
+		if ( 0 === strpos( $m, $debut ) ) {
+			return $lettre;
+		}
+	}
+	$lettres = array(
+		'a' => 'А', 'b' => 'Б', 'c' => 'К', 'd' => 'Д', 'e' => 'Е', 'f' => 'Ф', 'g' => 'Г', 'h' => 'Х', 'i' => 'И',
+		'j' => 'Ж', 'k' => 'К', 'l' => 'Л', 'm' => 'М', 'n' => 'Н', 'o' => 'О', 'p' => 'П', 'q' => 'К', 'r' => 'Р',
+		's' => 'С', 't' => 'Т', 'u' => 'У', 'v' => 'В', 'w' => 'В', 'x' => 'К', 'y' => 'И', 'z' => 'З',
+	);
+	return isset( $lettres[ $m[0] ] ) ? $lettres[ $m[0] ] : mb_strtoupper( mb_substr( $m, 0, 1 ) );
+}
+
 /* L'index -------------------------------------------------------------------------------------------------------- */
 
 /**
@@ -585,15 +632,14 @@ function er_api_chercher( $requete ) {
 				continue;
 			}
 			$graphies             = 'auteurs' === $groupe ? er_autres_graphies( $terme->term_id ) : array();
-			$cyrillique           = array_values( array_filter( array_merge( array( $terme->name ), $graphies ), fn( $g ) => preg_match( '/\p{Cyrillic}/u', $g ) ) );
 			$lien                 = get_term_link( $terme );
 			$groupes[ $groupe ][] = array(
 				'titre'    => $terme->name,
 				'url'      => is_wp_error( $lien ) ? '' : $lien,
 				'livres'   => (int) $terme->count,
 				'graphies' => $graphies,
-				// L'initiale du nom de famille, en cyrillique quand l'auteur a un nom russe : Д pour Dostoïevski.
-				'lettre'   => mb_substr( (string) preg_replace( '/^.*\s/u', '', trim( $cyrillique ? $cyrillique[0] : $terme->name ) ), 0, 1 ),
+				// L'initiale du nom de famille, toujours en cyrillique : Д pour Dostoïevski, Б pour Brodsky.
+				'lettre'   => er_initiale_cyrillique( $terme->name, $graphies ),
 			);
 		} elseif ( 'sujet' === $l->genre ) {
 			$terme = get_term( (int) $l->objet, 'er_sujet' );

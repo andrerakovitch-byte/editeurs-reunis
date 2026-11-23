@@ -175,6 +175,13 @@ ensemble, à défaut l'un ou l'autre). Un livre ne paraît qu'une fois, les livr
 paraît pas. « Autour de ce livre » dépend des étiquettes : il se remplit à mesure qu'on pose les sujets et « Autour
 de » sur les livres. `wp er voisins <slug>` (le workflow, champ « boutique ») montre les trois rangées d'un livre.
 
+Les vignettes des auteurs (la recherche, la fiche d'un livre, la lettrine d'un article dans « Autour de ce livre »)
+montrent toujours une initiale en cyrillique (décision du 23 nov. 2026) : celle du nom écrit en cyrillique s'il est
+connu (le nom ou ses « Autres graphies »), sinon le début du nom latin transcrit à la française — Б pour Brodsky,
+Ш pour Chalamov, Ч pour Tchekhov, Ж pour Jivago. Une seule fonction pour tout le site, `er_initiale_cyrillique()`
+(`plugin/…/inc/recherche.php`) : toute nouvelle vignette d'initiale s'en sert (les initiales des signatures du journal,
+côté centre, aussi).
+
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
 - son **rayon** est une catégorie de produit (Littérature russe, Poésie, Histoire, Essais et biographies, Cinéma) ;
