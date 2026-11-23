@@ -637,6 +637,7 @@ T = {
     (None, 'Les chroniques'): ('Columns', 'Колонки'),
     (None, 'Toutes les chroniques'): ('All columns', 'Все колонки'),
     (None, 'Grand format'): ('Long read', 'Большой материал'),
+    (None, 'Depuis %s'): ('Since %s', 'С %s года'),
     (None, '%d texte'): (('%d piece', '%d pieces'), ('%d текст', '%d текста', '%d текстов')),
     (None, 'Tous les textes'): ('All pieces', 'Все тексты'),
     (None, 'Les pages du journal'): ('Journal pages', 'Страницы журнала'),

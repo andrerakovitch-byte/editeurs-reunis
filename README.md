@@ -274,8 +274,10 @@ Le journal se lit comme un journal en ligne (la piste D du canevas « Le journal
 entretien, hommage, archive, document), relu avec ses étiquettes (`genre` dans `journal-etiquettes.json`) ; le genre
 et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag et dissidence ».
 
-- **L'en-tête du journal** (`er/journal-tete`) : le titre, les genres en pilules (et « En russe », les textes en russe
-  ou bilingues, d'après `er_langues`), puis les neuf sujets les plus fournis, les autres derrière « Tous les sujets ».
+- **L'en-tête du journal** (`er/journal-tete`, « le bandeau », choisi le 23 nov. parmi quatre) : sur l'aplat du
+  centre, sous son menu, le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque effacé, puis les
+  genres en onglets (et « En russe », les textes en russe ou bilingues, d'après `er_langues`) ; dessous, sur le blanc,
+  les neuf sujets les plus fournis, les autres derrière « Tous les sujets ».
 - **La une** (`er/journal-corps`, à la première page) : le texte à la une, le dernier **épinglé** (« Mettre en
   avant » dans l'éditeur), sinon le plus récent qui a une image ; deux autres dessous ; à droite, le fil des six
   derniers. Puis, sur le fond doux, les chroniques (ceux qui signent au moins deux chroniques, leur portrait de

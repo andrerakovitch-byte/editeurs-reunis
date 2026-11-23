@@ -347,12 +347,13 @@ function er_journal_tete() {
 	$page   = (int) get_option( 'page_for_posts' );
 	$titre  = $page ? get_the_title( $page ) : __( 'Le journal du centre', 'er-librairie' );
 	$titre  = '<a href="' . esc_url( er_journal_lien() ) . '">' . esc_html( html_entity_decode( $titre, ENT_QUOTES, 'UTF-8' ) ) . '</a>';
-	$pilule = function ( $lien, $texte, $actif ) {
-		return '<a class="er-j-pilule' . ( $actif ? ' est-actif' : '' ) . '" href="' . esc_url( $lien ) . '"' . ( $actif ? ' aria-current="page"' : '' ) . '>' . esc_html( $texte ) . '</a>';
+	$onglet = function ( $lien, $texte, $actif ) {
+		return '<a class="er-j-onglet' . ( $actif ? ' est-actif' : '' ) . '" href="' . esc_url( $lien ) . '"' . ( $actif ? ' aria-current="page"' : '' ) . '>' . esc_html( $texte ) . '</a>';
 	};
 
-	$pilules = $pilule( er_journal_lien(), __( 'À la une', 'er-librairie' ), 'une' === $vue );
+	$onglets = $onglet( er_journal_lien(), __( 'À la une', 'er-librairie' ), 'une' === $vue );
 	$genres  = get_terms( array( 'taxonomy' => 'er_genre', 'hide_empty' => true ) );
+	$genres  = is_wp_error( $genres ) ? array() : $genres;
 	$ordre   = array_keys( er_genres() );
 	usort(
 		$genres,
@@ -362,16 +363,27 @@ function er_journal_tete() {
 			return ( false === $ia ? 99 : $ia ) <=> ( false === $ib ? 99 : $ib );
 		}
 	);
-	foreach ( is_wp_error( $genres ) ? array() : $genres as $g ) {
+	foreach ( $genres as $g ) {
 		$lien = get_term_link( $g );
 		if ( ! is_wp_error( $lien ) ) {
-			$pilules .= $pilule( $lien, er_journal_genre_pluriel( $g ), 'genre' === $quoi && $objet && $objet->term_id === $g->term_id );
+			$onglets .= $onglet( $lien, er_journal_genre_pluriel( $g ), 'genre' === $quoi && $objet && $objet->term_id === $g->term_id );
 		}
 	}
 	$russes = get_posts( array( 'post_type' => 'post', 'numberposts' => 1, 'fields' => 'ids', 'meta_query' => array( array( 'key' => 'er_langues', 'value' => 'ru', 'compare' => 'LIKE' ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
 	if ( $russes ) {
-		$pilules .= $pilule( er_journal_lien( array( 'en' => 'russe' ) ), __( 'En russe', 'er-librairie' ), 'russe' === $quoi );
+		$onglets .= $onglet( er_journal_lien( array( 'en' => 'russe' ) ), __( 'En russe', 'er-librairie' ), 'russe' === $quoi );
 	}
+
+	// « Le centre culturel · Depuis 2020 · 67 textes »
+	$premier = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids', 'order' => 'ASC', 'ignore_sticky_posts' => true ) );
+	$total   = (int) wp_count_posts( 'post' )->publish;
+	$faits   = array( __( 'Le centre culturel', 'er-librairie' ) );
+	if ( $premier ) {
+		/* translators: %s: une année */
+		$faits[] = sprintf( __( 'Depuis %s', 'er-librairie' ), get_the_date( 'Y', $premier[0] ) );
+	}
+	/* translators: %d: un nombre de textes */
+	$faits[] = sprintf( _n( '%d texte', '%d textes', $total, 'er-librairie' ), $total );
 
 	$sujets = er_journal_sujets();
 	$mots   = '';
@@ -389,12 +401,15 @@ function er_journal_tete() {
 		$mots .= '<details class="er-j-autres"><summary>' . esc_html__( 'Tous les sujets', 'er-librairie' ) . '</summary><div>' . $autres . '</div></details>';
 	}
 
-	return '<section class="er-j-tete alignfull"><div class="er-j-g">'
+	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; les genres en onglets à son pied ;
+	// « Журнал » en grand, presque effacé, en décor. Puis les sujets, sur le blanc.
+	return '<section class="er-j-tete alignfull"><span class="er-j-lettre" lang="ru" aria-hidden="true">Журнал</span><div class="er-j-g">'
+		. '<p class="er-j-faits"><span class="er-j-point" aria-hidden="true"></span>' . esc_html( implode( ' · ', $faits ) ) . '</p>'
 		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
 		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
-		. '<nav class="er-j-genres" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '">' . $pilules . '</nav>'
-		. ( $mots ? '<nav class="er-j-sujets" aria-label="' . esc_attr__( 'Les sujets du journal', 'er-librairie' ) . '"><span class="er-j-sujets-titre">' . esc_html__( 'Sujets', 'er-librairie' ) . '</span>' . $mots . '</nav>' : '' )
-		. '</div></section>';
+		. '<nav class="er-j-genres" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '">' . $onglets . '</nav>'
+		. '</div></section>'
+		. ( $mots ? '<section class="er-j-sujets-bande alignfull"><div class="er-j-g"><nav class="er-j-sujets" aria-label="' . esc_attr__( 'Les sujets du journal', 'er-librairie' ) . '"><span class="er-j-sujets-titre">' . esc_html__( 'Sujets', 'er-librairie' ) . '</span>' . $mots . '</nav></div></section>' : '' );
 }
 
 /* Le corps : la une, ou une liste ------------------------------------------------------------------------------- */

@@ -405,7 +405,7 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
-#: inc/journal-une.php:276 inc/journal-une.php:526 inc/journal-une.php:608
+#: inc/journal-une.php:276 inc/journal-une.php:547 inc/journal-une.php:629
 #: inc/journal.php:72 inc/medias.php:202 inc/sujets.php:414 inc/sujets.php:417
 msgid "j F Y"
 msgstr "j F Y"
@@ -419,7 +419,7 @@ msgid "En français"
 msgstr "На французском"
 
 #: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:256
-#: inc/journal-une.php:367 inc/journal-une.php:599
+#: inc/journal-une.php:374 inc/journal-une.php:620
 msgid "En russe"
 msgstr "На русском"
 
@@ -836,19 +836,36 @@ msgstr[2] "%d мин чтения"
 msgid "%d min"
 msgstr "%d мин"
 
-#: inc/journal-une.php:342 inc/journal-une.php:638
+#: inc/journal-une.php:348 inc/journal-une.php:659
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: inc/journal-une.php:348
+#: inc/journal-une.php:354
 msgid "À la une"
 msgstr "Главное"
 
-#: inc/journal-une.php:383 inc/sujets.php:36
+#: inc/journal-une.php:380
+msgid "Le centre culturel"
+msgstr "Культурный центр"
+
+#. translators: %s: une année
+#: inc/journal-une.php:383
+msgid "Depuis %s"
+msgstr "С %s года"
+
+#. translators: %d: un nombre de textes
+#: inc/journal-une.php:386 inc/journal-une.php:598 inc/journal-une.php:626
+msgid "%d texte"
+msgid_plural "%d textes"
+msgstr[0] "%d текст"
+msgstr[1] "%d текста"
+msgstr[2] "%d текстов"
+
+#: inc/journal-une.php:401 inc/sujets.php:36
 msgid "Tous les sujets"
 msgstr "Все темы"
 
-#: inc/journal-une.php:388
+#: inc/journal-une.php:409
 msgid ""
 "Chroniques, critiques, essais et archives : la littérature russe et son "
 "histoire, par ceux qui la lisent et la traduisent."
@@ -856,83 +873,75 @@ msgstr ""
 "Колонки, рецензии, эссе и архивы: русская литература и её история глазами "
 "тех, кто её читает и переводит."
 
-#: inc/journal-une.php:389
+#: inc/journal-une.php:410
 msgid "Les genres du journal"
 msgstr "Рубрики журнала"
 
-#: inc/journal-une.php:390
+#: inc/journal-une.php:412
 msgid "Les sujets du journal"
 msgstr "Темы журнала"
 
-#: inc/journal-une.php:390 inc/sujets.php:33 inc/sujets.php:42
+#: inc/journal-une.php:412 inc/sujets.php:33 inc/sujets.php:42
 #: inc/sujets.php:385
 msgid "Sujets"
 msgstr "Темы"
 
-#: inc/journal-une.php:443 inc/journal-une.php:614 inc/medias.php:231
+#: inc/journal-une.php:464 inc/journal-une.php:635 inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr "Пока ничего нет."
 
-#: inc/journal-une.php:461
+#: inc/journal-une.php:482
 msgid "Le fil"
 msgstr "Лента"
 
-#: inc/journal-une.php:461
+#: inc/journal-une.php:482
 msgid "Du plus récent au plus ancien"
 msgstr "Сначала новые"
 
-#: inc/journal-une.php:464
+#: inc/journal-une.php:485
 msgctxt "date courte du fil"
 msgid "j M Y"
 msgstr "j M Y"
 
-#: inc/journal-une.php:468
+#: inc/journal-une.php:489
 msgid "Tout le fil"
 msgstr "Вся лента"
 
 #. translators: 1: le nombre de chroniques, 2: l'année de la première
-#: inc/journal-une.php:523
+#: inc/journal-une.php:544
 msgid "%1$d chronique depuis %2$s"
 msgid_plural "%1$d chroniques depuis %2$s"
 msgstr[0] "%1$d колонка с %2$s года"
 msgstr[1] "%1$d колонки с %2$s года"
 msgstr[2] "%1$d колонок с %2$s года"
 
-#: inc/journal-une.php:544
+#: inc/journal-une.php:565
 msgid "Les chroniques"
 msgstr "Колонки"
 
-#: inc/journal-une.php:547
+#: inc/journal-une.php:568
 msgid "Toutes les chroniques"
 msgstr "Все колонки"
 
-#: inc/journal-une.php:554
+#: inc/journal-une.php:575
 msgid "Grand format"
 msgstr "Большой материал"
 
-#. translators: %d: un nombre de textes
-#: inc/journal-une.php:577 inc/journal-une.php:605
-msgid "%d texte"
-msgid_plural "%d textes"
-msgstr[0] "%d текст"
-msgstr[1] "%d текста"
-msgstr[2] "%d текстов"
-
-#: inc/journal-une.php:601
+#: inc/journal-une.php:622
 msgid "Tous les textes"
 msgstr "Все тексты"
 
-#: inc/journal-une.php:621
+#: inc/journal-une.php:642
 msgctxt "pagination du journal"
 msgid "Plus récents"
 msgstr "Более новые"
 
-#: inc/journal-une.php:622
+#: inc/journal-une.php:643
 msgctxt "pagination du journal"
 msgid "Plus anciens"
 msgstr "Более ранние"
 
-#: inc/journal-une.php:625
+#: inc/journal-une.php:646
 msgid "Les pages du journal"
 msgstr "Страницы журнала"
 

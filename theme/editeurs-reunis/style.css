@@ -2634,15 +2634,21 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-doux { background: var(--wp--preset--color--doux); }
 .er-j-g a { color: inherit; text-decoration: none; }
 
-/* L'en-tête du journal */
-.er-j-tete { padding-block: 96px 32px; }
-.er-j-tete .er-j-g { row-gap: 32px; align-items: end; }
+/* L'en-tête du journal : le bandeau sur l'aplat du centre, sous son menu ; « Журнал » en décor ; les genres en
+   onglets ; puis les sujets sur le blanc */
+.er-j-tete { position: relative; overflow: hidden; padding-top: 64px; background: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); border-top: 1px solid rgba(255, 255, 255, 0.24); }
+.er-j-tete .er-j-g { position: relative; row-gap: 16px; align-items: end; }
+.er-j-lettre { position: absolute; right: -40px; bottom: -70px; font-size: 260px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; opacity: 0.07; pointer-events: none; white-space: nowrap; }
+.er-j-faits { grid-column: 1 / -1; margin: 0; display: flex; align-items: center; gap: 8px; font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.64); }
+.er-j-point { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--point-centre); }
 .er-j-titre { grid-column: 1 / span 7; margin: 0; font-size: 3.5rem; line-height: 1.04; font-weight: 600; letter-spacing: -0.025em; }
-.er-j-chapo { grid-column: 8 / span 5; margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: var(--wp--preset--color--encre-2); }
-.er-j-genres { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; }
-.er-j-g .er-j-pilule { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border: 1px solid currentColor; border-radius: 999px; font-size: 0.875rem; font-weight: 600; white-space: nowrap; transition: background var(--er-transition), color var(--er-transition); }
-.er-j-g .er-j-pilule:hover, .er-j-g .er-j-pilule.est-actif { background: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
-.er-j-sujets { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; padding-block: 14px; border-block: 1px solid var(--wp--preset--color--filet); }
+.er-j-tete .er-j-titre, .er-j-tete .er-j-titre a { color: var(--wp--preset--color--base); }
+.er-j-chapo { grid-column: 8 / span 5; margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: rgba(255, 255, 255, 0.78); }
+.er-j-genres { grid-column: 1 / -1; margin-top: 40px; display: flex; gap: 28px; border-top: 1px solid rgba(255, 255, 255, 0.24); overflow-x: auto; scrollbar-width: none; }
+.er-j-g .er-j-onglet { padding-block: 16px; border-bottom: 2px solid transparent; font-size: 0.875rem; font-weight: 600; color: rgba(255, 255, 255, 0.78); white-space: nowrap; }
+.er-j-g .er-j-onglet:hover { color: var(--wp--preset--color--base); }
+.er-j-g .er-j-onglet.est-actif { color: var(--wp--preset--color--base); border-bottom-color: var(--wp--preset--color--base); }
+.er-j-sujets { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; padding-block: 14px; border-bottom: 1px solid var(--wp--preset--color--filet); }
 .er-j-sujets a, .er-j-autres summary { font-size: 0.875rem; font-weight: 600; }
 .er-j-sujets a:hover, .er-j-sujets a.est-actif { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
 .er-j-sujets-titre, .er-j-sur { font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
@@ -2650,6 +2656,7 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-autres summary::-webkit-details-marker { display: none; }
 .er-j-autres[open] { flex-basis: 100%; }
 .er-j-autres > div { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+.er-j-une { padding-top: 40px; }
 
 /* Les morceaux d'un texte : surtitre, titres, chapô, ligne d'auteur, image */
 .er-j-sur { margin: 0; }
@@ -2676,7 +2683,7 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-g .er-j-sortie { display: inline-block; margin-top: 16px; font-size: 0.875rem; font-weight: 600; text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
 
 /* La une : le texte choisi sur huit colonnes, deux autres dessous ; le fil sur quatre */
-.er-j-une { padding-top: 16px; }
+
 .er-j-une .er-j-g { row-gap: 48px; }
 .er-j-une-gauche { grid-column: 1 / span 8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 .er-j-principale { grid-column: 1 / -1; }
@@ -2731,9 +2738,10 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-j-g { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 24px; }
 	.er-j-g > * { grid-column: 1 / -1; }
 	.er-j-module { padding-block: 72px; }
-	.er-j-une { padding-top: 16px; }
-	.er-j-tete { padding-top: 72px; }
+	.er-j-une { padding-top: 40px; }
+	.er-j-tete { padding-top: 48px; }
 	.er-j-titre { font-size: 2.875rem; }
+	.er-j-lettre { font-size: 180px; bottom: -48px; }
 	.er-j-chapo, .er-j-chapo-texte { font-size: 1.125rem; }
 	.er-j-t-module { font-size: 2.125rem; }
 	.er-j-titre-sec h1, .er-j-titre-sec h2 { font-size: 1.5rem; }
@@ -2750,14 +2758,17 @@ sup { font-size: 0.62em; line-height: 0; }
 @media (max-width: 719px) {
 	.er-j-g { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; }
 	.er-j-module { padding-block: 56px; }
-	.er-j-une { padding-top: 16px; }
-	.er-j-tete { padding-top: 56px; }
+	.er-j-une { padding-top: 32px; }
+	.er-j-tete { padding-top: 40px; }
 	.er-j-titre { font-size: 2.25rem; }
+	.er-j-lettre { font-size: 120px; bottom: -32px; right: -24px; }
+	.er-j-genres { gap: 20px; margin-top: 24px; }
 	.er-j-chapo, .er-j-chapo-texte { font-size: 1.0625rem; }
 	.er-j-t-module { font-size: 1.75rem; }
 	.er-j-titre-sec h1, .er-j-titre-sec h2 { font-size: 1.375rem; }
 	.er-j-t-bloc { font-size: 1.125rem; }
-	.er-j-genres, .er-j-sujets { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+	.er-j-sujets { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+	.er-j-sujets a, .er-j-sujets-titre { white-space: nowrap; }
 	.er-j-une-gauche, .er-j-chroniques { grid-template-columns: minmax(0, 1fr); }
 	.er-j-fil li a { grid-template-columns: 64px minmax(0, 1fr); }
 	.er-j-ligne { grid-template-columns: minmax(0, 1fr) 96px; column-gap: 16px; }
