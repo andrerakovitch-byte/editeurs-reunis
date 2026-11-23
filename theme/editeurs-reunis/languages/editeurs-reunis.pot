@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T23:05:59+00:00\n"
+"POT-Creation-Date: 2026-11-23T15:59:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -978,16 +978,16 @@ msgctxt "fiche d’un livre"
 msgid "Auteur"
 msgstr ""
 
-#: patterns/fiche-livre.php:53
+#: patterns/fiche-livre.php:55
 msgctxt "fiche d’un livre"
 msgid "Référence"
 msgstr ""
 
-#: patterns/fiche-livre.php:58
+#: patterns/fiche-livre.php:60
 msgid "Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-Geneviève, du mardi au samedi."
 msgstr ""
 
-#: patterns/fiche-livre.php:68
+#: patterns/fiche-livre.php:70
 msgid "Du même rayon"
 msgstr ""
 
@@ -1769,7 +1769,7 @@ msgid "Le terme s’impose après coup&nbsp;; ses limites, surtout la date de d�
 msgstr ""
 
 #: patterns/une-encyclopedie.php:53
-msgid "L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992."
+msgid "L’«&nbsp;<em>affaire Tagantsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992."
 msgstr ""
 
 #: patterns/une-encyclopedie.php:70

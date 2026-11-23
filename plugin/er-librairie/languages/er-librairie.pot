@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T15:20:14+00:00\n"
+"POT-Creation-Date: 2026-11-23T15:59:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -24,78 +24,135 @@ msgstr ""
 msgid "Les données de la librairie : auteurs et langues des livres, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:163
+#: er-librairie.php:165
 msgid "Langue du site"
 msgstr ""
 
-#: er-librairie.php:177
-#: er-librairie.php:183
+#: er-librairie.php:179
+#: er-librairie.php:185
+#: inc/import.php:26
 msgid "Auteurs"
 msgstr ""
 
-#: er-librairie.php:178
+#: er-librairie.php:180
 msgid "Auteur"
 msgstr ""
 
-#: er-librairie.php:179
+#: er-librairie.php:181
 msgid "Chercher un auteur"
 msgstr ""
 
-#: er-librairie.php:180
+#: er-librairie.php:182
 msgid "Tous les auteurs"
 msgstr ""
 
-#: er-librairie.php:181
+#: er-librairie.php:183
 msgid "Modifier l’auteur"
 msgstr ""
 
-#: er-librairie.php:182
+#: er-librairie.php:184
 msgid "Ajouter un auteur"
 msgstr ""
 
-#: er-librairie.php:197
-#: er-librairie.php:202
+#: er-librairie.php:199
+#: er-librairie.php:204
+#: inc/import.php:27
 msgid "Langues"
 msgstr ""
 
-#: er-librairie.php:198
+#: er-librairie.php:200
 msgid "Langue"
 msgstr ""
 
-#: er-librairie.php:199
+#: er-librairie.php:201
 msgid "Toutes les langues"
 msgstr ""
 
-#: er-librairie.php:200
+#: er-librairie.php:202
 msgid "Modifier la langue"
 msgstr ""
 
-#: er-librairie.php:201
+#: er-librairie.php:203
 msgid "Ajouter une langue"
 msgstr ""
 
-#: inc/recherche.php:881
-#: inc/recherche.php:889
-msgid "Autres graphies"
+#: inc/fiche.php:20
+msgctxt "fiche d’un livre"
+msgid "Traduction"
 msgstr ""
 
-#: inc/recherche.php:883
-#: inc/recherche.php:891
-msgid "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La recherche les trouve toutes."
-msgstr ""
-
-#: inc/recherche.php:911
-msgid "Traducteur, préfacier"
-msgstr ""
-
-#: inc/recherche.php:912
+#: inc/fiche.php:21
+msgctxt "fiche d’un livre"
 msgid "Éditeur"
 msgstr ""
 
-#: inc/recherche.php:913
+#: inc/fiche.php:22
+msgctxt "fiche d’un livre"
 msgid "Collection"
 msgstr ""
 
-#: inc/recherche.php:914
+#: inc/fiche.php:23
+msgctxt "fiche d’un livre"
+msgid "Parution"
+msgstr ""
+
+#: inc/fiche.php:24
+msgctxt "fiche d’un livre"
+msgid "Pages"
+msgstr ""
+
+#: inc/fiche.php:25
+msgctxt "fiche d’un livre"
+msgid "Format"
+msgstr ""
+
+#: inc/fiche.php:26
+msgctxt "fiche d’un livre"
+msgid "ISBN"
+msgstr ""
+
+#: inc/import.php:28
+msgid "Rayons"
+msgstr ""
+
+#: inc/import.php:29
+msgid "Mentions"
+msgstr ""
+
+#: inc/import.php:30
+msgid "Slug"
+msgstr ""
+
+#: inc/recherche.php:945
+#: inc/recherche.php:953
+msgid "Autres graphies"
+msgstr ""
+
+#: inc/recherche.php:947
+#: inc/recherche.php:955
+msgid "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La recherche les trouve toutes."
+msgstr ""
+
+#: inc/recherche.php:975
+msgid "Traducteur, préfacier"
+msgstr ""
+
+#: inc/recherche.php:976
+msgid "Éditeur"
+msgstr ""
+
+#: inc/recherche.php:977
+msgid "Collection"
+msgstr ""
+
+#: inc/recherche.php:978
 msgid "Année d’édition"
+msgstr ""
+
+#: inc/recherche.php:979
+msgid "Nombre de pages"
+msgstr ""
+
+#: inc/recherche.php:980
+msgid "Format (poche, broché, relié…)"
 msgstr ""

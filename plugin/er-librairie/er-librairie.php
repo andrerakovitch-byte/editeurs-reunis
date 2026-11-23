@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Les Éditeurs réunis — librairie
  * Description: Les données de la librairie : auteurs et langues des livres, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Requires Plugins: woocommerce
  * Text Domain: er-librairie
  * Domain Path: /languages
@@ -20,6 +20,7 @@ add_action(
 
 require __DIR__ . '/inc/recherche.php';
 require __DIR__ . '/inc/import.php';
+require __DIR__ . '/inc/fiche.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *

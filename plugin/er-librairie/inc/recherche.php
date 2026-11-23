@@ -976,6 +976,8 @@ function er_champs_livre() {
 		'er_editeur'    => __( 'Éditeur', 'er-librairie' ),
 		'er_collection' => __( 'Collection', 'er-librairie' ),
 		'er_annee'      => __( 'Année d’édition', 'er-librairie' ),
+		'er_pages'      => __( 'Nombre de pages', 'er-librairie' ),
+		'er_format'     => __( 'Format (poche, broché, relié…)', 'er-librairie' ),
 	);
 }
 add_action(
@@ -987,7 +989,7 @@ add_action(
 				array(
 					'id'    => $cle,
 					'label' => $libelle,
-					'type'  => 'er_annee' === $cle ? 'number' : 'text',
+					'type'  => in_array( $cle, array( 'er_annee', 'er_pages' ), true ) ? 'number' : 'text',
 				)
 			);
 		}

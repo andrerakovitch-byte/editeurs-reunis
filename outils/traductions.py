@@ -253,6 +253,10 @@ T = {
     (None, 'Collection'): ('Series', 'Серия'),
     (None, 'Toutes'): ('All', 'Все'),
     (None, 'Année d’édition'): ('Year of publication', 'Год издания'),
+    (None, 'Nombre de pages'): ('Number of pages', 'Число страниц'),
+    (None, 'Mentions'): ('Labels', 'Пометки'),
+    (None, 'Slug'): ('Slug', 'Слаг'),
+    (None, 'Format (poche, broché, relié…)'): ('Format (paperback, hardback…)', 'Формат (карманный, в обложке, в переплёте…)'),
     (None, 'Prix'): ('Price', 'Цена'),
     (None, 'État'): ('Condition', 'Состояние'),
     (None, 'Disponibilité'): ('Availability', 'Наличие'),
@@ -306,6 +310,13 @@ T = {
     ('fiche d’un livre', 'Langue'): ('Language', 'Язык'),
     ('fiche d’un livre', 'Auteur'): ('Author', 'Автор'),
     ('fiche d’un livre', 'Référence'): ('Reference', 'Артикул'),
+    ('fiche d’un livre', 'Traduction'): ('Translation', 'Перевод'),
+    ('fiche d’un livre', 'Éditeur'): ('Publisher', 'Издательство'),
+    ('fiche d’un livre', 'Collection'): ('Series', 'Серия'),
+    ('fiche d’un livre', 'Parution'): ('Published', 'Год издания'),
+    ('fiche d’un livre', 'Pages'): ('Pages', 'Страниц'),
+    ('fiche d’un livre', 'Format'): ('Format', 'Формат'),
+    ('fiche d’un livre', 'ISBN'): ('ISBN', 'ISBN'),
     (None, 'Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-Geneviève, du mardi au samedi.'):
         ('You can also ask for it at the bookshop, 11 rue de la Montagne-Sainte-Geneviève, Tuesday to Saturday.',
          'Книгу можно также спросить в магазине: 11, rue de la Montagne-Sainte-Geneviève, со вторника по субботу.'),
@@ -790,7 +801,7 @@ T = {
     (None, 'Le terme s’impose après coup&nbsp;; ses limites, surtout la date de départ, varient selon les historiens.'):
         ('The term took hold after the fact; its limits, especially its starting date, vary from one historian to another.',
          'Термин утвердился задним числом; его границы, особенно начальная дата, у разных историков разные.'),
-    (None, 'L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992.'):
+    (None, 'L’«&nbsp;<em>affaire Tagantsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992.'):
         ('The “<em>Tagantsev affair</em>”: Gumilev was rehabilitated in 1992.',
          '«<em>Дело Таганцева</em>»: Гумилёв реабилитирован в 1992 году.'),
     (None, 'Âge d’argent'):

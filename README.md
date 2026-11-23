@@ -140,6 +140,11 @@ librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette ent
 
 ## Les livres
 
+La fiche d'un livre montre, sous le rayon, la langue et l'auteur, ce que l'extension garde du livre : traduction,
+éditeur, collection, parution, pages, format et ISBN (le champ « GTIN, UPC, EAN ou ISBN » de WooCommerce) ; une ligne
+vide ne paraît pas (le bloc `er/fiche-champs`, `plugin/…/inc/fiche.php`). La référence `WIX-…` d'un livre venu de Wix
+ne paraît pas.
+
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
 - son **rayon** est une catégorie de produit (Littérature russe, Poésie, Histoire, Essais et biographies, Cinéma) ;
@@ -183,7 +188,9 @@ auteurs tirés du nom (« Titre - Auteur »), le traducteur, l'éditeur, la coll
 lignes de la description quand elles sont nettes, les rayons, la langue et les mentions tirés des catégories et des
 rubans, les couvertures par leur adresse chez Wix, le poids en grammes ; jamais le prix d'achat. Chaque livre a pour
 référence `WIX-` et le début de son identifiant Wix : réimporter avec « Mettre à jour les produits existants » met à
-jour le prix et le stock sans doublon. Les colonnes Auteurs, Langues, Rayons, Mentions et Slug sont lues par
+jour le prix et le stock sans doublon. Les pages et le format, tirés aussi des descriptions, sont repris à part dans
+`complement-pages-format.csv` (la référence et ces deux champs), à importer en « mettant à jour » un catalogue déjà
+en place. Les colonnes Auteurs, Langues, Rayons, Mentions et Slug sont lues par
 l'extension (`inc/import.php`) ; un livre d'exemple de `semer.php` est remplacé par son équivalent Wix. La conversion
 écrit aussi `a-revoir.md` (titres douteux, livres sans rayon, graphies réunies) et `echantillon.md`.
 

@@ -24,59 +24,106 @@ msgid ""
 " changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:163
+#: er-librairie.php:165
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:177 er-librairie.php:183
+#: er-librairie.php:179 er-librairie.php:185 inc/import.php:26
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:178
+#: er-librairie.php:180
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:179
+#: er-librairie.php:181
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:180
+#: er-librairie.php:182
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:181
+#: er-librairie.php:183
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:182
+#: er-librairie.php:184
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:197 er-librairie.php:202
+#: er-librairie.php:199 er-librairie.php:204 inc/import.php:27
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:198
+#: er-librairie.php:200
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:199
+#: er-librairie.php:201
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:200
+#: er-librairie.php:202
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:201
+#: er-librairie.php:203
 msgid "Ajouter une langue"
 msgstr "Add language"
 
-#: inc/recherche.php:881 inc/recherche.php:889
+#: inc/fiche.php:20
+msgctxt "fiche d’un livre"
+msgid "Traduction"
+msgstr "Translation"
+
+#: inc/fiche.php:21
+msgctxt "fiche d’un livre"
+msgid "Éditeur"
+msgstr "Publisher"
+
+#: inc/fiche.php:22
+msgctxt "fiche d’un livre"
+msgid "Collection"
+msgstr "Series"
+
+#: inc/fiche.php:23
+msgctxt "fiche d’un livre"
+msgid "Parution"
+msgstr "Published"
+
+#: inc/fiche.php:24
+msgctxt "fiche d’un livre"
+msgid "Pages"
+msgstr "Pages"
+
+#: inc/fiche.php:25
+msgctxt "fiche d’un livre"
+msgid "Format"
+msgstr "Format"
+
+#: inc/fiche.php:26
+msgctxt "fiche d’un livre"
+msgid "ISBN"
+msgstr "ISBN"
+
+#: inc/import.php:28
+msgid "Rayons"
+msgstr "Sections"
+
+#: inc/import.php:29
+msgid "Mentions"
+msgstr "Labels"
+
+#: inc/import.php:30
+msgid "Slug"
+msgstr "Slug"
+
+#: inc/recherche.php:945 inc/recherche.php:953
 msgid "Autres graphies"
 msgstr "Other spellings"
 
-#: inc/recherche.php:883 inc/recherche.php:891
+#: inc/recherche.php:947 inc/recherche.php:955
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -84,18 +131,26 @@ msgstr ""
 "One per line: the name in Russian, in English, an older transliteration. The"
 " search finds them all."
 
-#: inc/recherche.php:911
+#: inc/recherche.php:975
 msgid "Traducteur, préfacier"
 msgstr "Translator, preface writer"
 
-#: inc/recherche.php:912
+#: inc/recherche.php:976
 msgid "Éditeur"
 msgstr "Publisher"
 
-#: inc/recherche.php:913
+#: inc/recherche.php:977
 msgid "Collection"
 msgstr "Series"
 
-#: inc/recherche.php:914
+#: inc/recherche.php:978
 msgid "Année d’édition"
 msgstr "Year of publication"
+
+#: inc/recherche.php:979
+msgid "Nombre de pages"
+msgstr "Number of pages"
+
+#: inc/recherche.php:980
+msgid "Format (poche, broché, relié…)"
+msgstr "Format (paperback, hardback…)"

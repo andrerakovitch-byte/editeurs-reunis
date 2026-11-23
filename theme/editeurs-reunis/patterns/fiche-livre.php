@@ -50,6 +50,8 @@
 
 				<!-- wp:post-terms {"term":"auteur","prefix":"<?php echo er_attr( _x( 'Auteur', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 
+				<!-- wp:er/fiche-champs /-->
+
 				<!-- wp:woocommerce/product-sku {"prefix":"<?php echo er_attr( _x( 'Référence', 'fiche d’un livre', 'editeurs-reunis' ) ); ?>"} /-->
 			</div>
 			<!-- /wp:group -->

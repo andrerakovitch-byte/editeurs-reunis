@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.6.1
+Version: 0.6.2
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -1354,7 +1354,10 @@ sup { font-size: 0.62em; line-height: 0; }
 
 .er-fiche-infos { border-top: var(--er-filet); padding-top: 1.1rem; margin-block-start: 1.75rem !important; display: grid; gap: 0.45rem; font-size: var(--wp--preset--font-size--small); }
 .er-fiche-infos > * { margin: 0 !important; }
+.er-fiche-infos .wp-block-er-fiche-champs { display: contents; }
+.er-fiche-infos .er-fiche-champ { margin: 0; }
 .er-fiche-infos .wp-block-post-terms__prefix,
+.er-fiche-infos .er-fiche-champ__libelle,
 .er-fiche-infos .wc-block-components-product-sku strong,
 .er-fiche-infos .wp-block-woocommerce-product-sku > span:first-child {
 	display: inline-block;

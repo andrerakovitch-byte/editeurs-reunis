@@ -50,7 +50,7 @@
 					<li><?php esc_html_e( 'Le terme s’impose après coup&nbsp;; ses limites, surtout la date de départ, varient selon les historiens.', 'editeurs-reunis' ); ?></li>
 					<!-- /wp:list-item -->
 					<!-- wp:list-item -->
-					<li><?php echo wp_kses_post( __( 'L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992.', 'editeurs-reunis' ) ); ?></li>
+					<li><?php echo wp_kses_post( __( 'L’«&nbsp;<em>affaire Tagantsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en 1992.', 'editeurs-reunis' ) ); ?></li>
 					<!-- /wp:list-item --></ol>
 					<!-- /wp:list -->
 				</div>

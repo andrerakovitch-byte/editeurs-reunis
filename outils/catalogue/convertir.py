@@ -6,6 +6,7 @@
   import-woocommerce.csv   le fichier à téléverser dans Produits → Importer (sans le prix d'achat de Wix)
   echantillon.md           dix livres convertis, pour relire avant d'importer
   a-revoir.md              ce que la conversion n'a pas su trancher
+  complement-pages-format.csv   les pages et le format seuls, à importer en « mettant à jour » un catalogue déjà là
 
 Le titre et les auteurs viennent du nom Wix (« Titre - Auteur ») ; le traducteur, l'éditeur, la collection et l'année,
 des premières lignes de la description, seulement quand elles sont nettes (la description reste entière) ; les
@@ -273,7 +274,7 @@ def traducteur(tete):
 
 def details(L):
     """Les premières lignes de la description → traducteur, éditeur, collection, année (vides si rien de net)."""
-    d = {'traducteur': '', 'editeur': '', 'collection': '', 'annee': ''}
+    d = {'traducteur': '', 'editeur': '', 'collection': '', 'annee': '', 'pages': '', 'format': ''}
     tete = ' ¶ '.join(L[:4])
     d['traducteur'] = traducteur(tete)
     m = re.search(r'[Cc]ollection\s+(?:«\s*)?([^,;¶»]+?)(?:\s*»)?(?=\s*[,;¶]|\s*\(n|$)', tete) or re.search(r'Серия\s+«?([^,;¶»]+)»?', tete)
@@ -293,6 +294,13 @@ def details(L):
             d['editeur'], d['annee'] = canon_editeur(editeur), annee
             break
         if d['editeur']:
+            break
+    m = re.search(r'(?<![\d-])(\d{2,4})\s*(?:p\.|pages\b|pp\.|стр\b\.?|с\.)', tete)  # « 228 p. », « 420 стр. »
+    if m and 8 <= int(m.group(1)) <= 3000:
+        d['pages'] = m.group(1)
+    for motif, nom in ((r'\bpoche\b', 'Poche'), (r'\bbroché\b', 'Broché'), (r'\brelié\b|переплет|переплёт', 'Relié')):
+        if re.search(motif, tete, re.I):
+            d['format'] = nom
             break
     if not d['annee']:
         m = re.search(r'(?:^|[\s,;(])((?:18|19|20)\d\d)\s*(?:,|г\.)?\s*\d+\s*(?:p\.|pages|стр|с\.)', tete)
@@ -398,6 +406,7 @@ for l in lignes_wix:
         'Mentions': ' | '.join(mentions),
         'Meta: er_traducteur': det['traducteur'], 'Meta: er_editeur': det['editeur'],
         'Meta: er_collection': det['collection'], 'Meta: er_annee': det['annee'],
+        'Meta: er_pages': det['pages'], 'Meta: er_format': det['format'],
     })
 
 # Les graphies d'un même auteur : la plus fréquente l'emporte.
@@ -435,13 +444,20 @@ with open('import-woocommerce.csv', 'w', newline='', encoding='utf-8') as f:
     w.writeheader()
     w.writerows(produits)
 
+with open('complement-pages-format.csv', 'w', newline='', encoding='utf-8') as f:
+    w = csv.writer(f)
+    w.writerow(['SKU', 'Meta: er_pages', 'Meta: er_format'])
+    for p in produits:
+        if p['Meta: er_pages'] or p['Meta: er_format']:
+            w.writerow([p['SKU'], p['Meta: er_pages'], p['Meta: er_format']])
+
 # Les éditeurs trouvés, pour relecture.
 editeurs = collections.Counter(p['Meta: er_editeur'] for p in produits if p['Meta: er_editeur'])
 
 with open('a-revoir.md', 'w', encoding='utf-8') as f:
     f.write(f'# Le catalogue Wix : ce qui est à revoir\n\n{len(produits)} livres convertis.\n\n')
     f.write('## Les champs remplis\n\n')
-    for k in ('Auteurs', 'Meta: er_traducteur', 'Meta: er_editeur', 'Meta: er_collection', 'Meta: er_annee', 'Rayons', 'Images', 'Slug'):
+    for k in ('Auteurs', 'Meta: er_traducteur', 'Meta: er_editeur', 'Meta: er_collection', 'Meta: er_annee', 'Meta: er_pages', 'Meta: er_format', 'Rayons', 'Images', 'Slug'):
         f.write(f'- {k} : {sum(1 for p in produits if p[k])}\n')
     f.write('\n## Les éditeurs trouvés\n\n' + ''.join(f'- {e} ({n})\n' for e, n in editeurs.most_common()) + '\n')
     for titre, items in revoir.items():

@@ -24,59 +24,106 @@ msgid ""
 " changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:163
+#: er-librairie.php:165
 msgid "Langue du site"
 msgstr "Язык сайта"
 
-#: er-librairie.php:177 er-librairie.php:183
+#: er-librairie.php:179 er-librairie.php:185 inc/import.php:26
 msgid "Auteurs"
 msgstr "Авторы"
 
-#: er-librairie.php:178
+#: er-librairie.php:180
 msgid "Auteur"
 msgstr "Автор"
 
-#: er-librairie.php:179
+#: er-librairie.php:181
 msgid "Chercher un auteur"
 msgstr "Найти автора"
 
-#: er-librairie.php:180
+#: er-librairie.php:182
 msgid "Tous les auteurs"
 msgstr "Все авторы"
 
-#: er-librairie.php:181
+#: er-librairie.php:183
 msgid "Modifier l’auteur"
 msgstr "Изменить автора"
 
-#: er-librairie.php:182
+#: er-librairie.php:184
 msgid "Ajouter un auteur"
 msgstr "Добавить автора"
 
-#: er-librairie.php:197 er-librairie.php:202
+#: er-librairie.php:199 er-librairie.php:204 inc/import.php:27
 msgid "Langues"
 msgstr "Языки"
 
-#: er-librairie.php:198
+#: er-librairie.php:200
 msgid "Langue"
 msgstr "Язык"
 
-#: er-librairie.php:199
+#: er-librairie.php:201
 msgid "Toutes les langues"
 msgstr "Все языки"
 
-#: er-librairie.php:200
+#: er-librairie.php:202
 msgid "Modifier la langue"
 msgstr "Изменить язык"
 
-#: er-librairie.php:201
+#: er-librairie.php:203
 msgid "Ajouter une langue"
 msgstr "Добавить язык"
 
-#: inc/recherche.php:881 inc/recherche.php:889
+#: inc/fiche.php:20
+msgctxt "fiche d’un livre"
+msgid "Traduction"
+msgstr "Перевод"
+
+#: inc/fiche.php:21
+msgctxt "fiche d’un livre"
+msgid "Éditeur"
+msgstr "Издательство"
+
+#: inc/fiche.php:22
+msgctxt "fiche d’un livre"
+msgid "Collection"
+msgstr "Серия"
+
+#: inc/fiche.php:23
+msgctxt "fiche d’un livre"
+msgid "Parution"
+msgstr "Год издания"
+
+#: inc/fiche.php:24
+msgctxt "fiche d’un livre"
+msgid "Pages"
+msgstr "Страниц"
+
+#: inc/fiche.php:25
+msgctxt "fiche d’un livre"
+msgid "Format"
+msgstr "Формат"
+
+#: inc/fiche.php:26
+msgctxt "fiche d’un livre"
+msgid "ISBN"
+msgstr "ISBN"
+
+#: inc/import.php:28
+msgid "Rayons"
+msgstr "Разделы"
+
+#: inc/import.php:29
+msgid "Mentions"
+msgstr "Пометки"
+
+#: inc/import.php:30
+msgid "Slug"
+msgstr "Слаг"
+
+#: inc/recherche.php:945 inc/recherche.php:953
 msgid "Autres graphies"
 msgstr "Другие написания"
 
-#: inc/recherche.php:883 inc/recherche.php:891
+#: inc/recherche.php:947 inc/recherche.php:955
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -84,18 +131,26 @@ msgstr ""
 "По одному в строке: имя по-русски, по-английски, старая транскрипция. Поиск "
 "найдёт любое."
 
-#: inc/recherche.php:911
+#: inc/recherche.php:975
 msgid "Traducteur, préfacier"
 msgstr "Переводчик, автор предисловия"
 
-#: inc/recherche.php:912
+#: inc/recherche.php:976
 msgid "Éditeur"
 msgstr "Издательство"
 
-#: inc/recherche.php:913
+#: inc/recherche.php:977
 msgid "Collection"
 msgstr "Серия"
 
-#: inc/recherche.php:914
+#: inc/recherche.php:978
 msgid "Année d’édition"
 msgstr "Год издания"
+
+#: inc/recherche.php:979
+msgid "Nombre de pages"
+msgstr "Число страниц"
+
+#: inc/recherche.php:980
+msgid "Format (poche, broché, relié…)"
+msgstr "Формат (карманный, в обложке, в переплёте…)"

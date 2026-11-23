@@ -1024,12 +1024,12 @@ msgctxt "fiche d’un livre"
 msgid "Auteur"
 msgstr "Автор"
 
-#: patterns/fiche-livre.php:53
+#: patterns/fiche-livre.php:55
 msgctxt "fiche d’un livre"
 msgid "Référence"
 msgstr "Артикул"
 
-#: patterns/fiche-livre.php:58
+#: patterns/fiche-livre.php:60
 msgid ""
 "Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-"
 "Geneviève, du mardi au samedi."
@@ -1037,7 +1037,7 @@ msgstr ""
 "Книгу можно также спросить в магазине: 11, rue de la Montagne-Sainte-"
 "Geneviève, со вторника по субботу."
 
-#: patterns/fiche-livre.php:68
+#: patterns/fiche-livre.php:70
 msgid "Du même rayon"
 msgstr "Из того же раздела"
 
@@ -1933,8 +1933,8 @@ msgstr ""
 
 #: patterns/une-encyclopedie.php:53
 msgid ""
-"L’«&nbsp;<em>affaire Taganstsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité "
-"en 1992."
+"L’«&nbsp;<em>affaire Tagantsev</em>&nbsp;»&nbsp;: Goumilev est réhabilité en"
+" 1992."
 msgstr "«<em>Дело Таганцева</em>»: Гумилёв реабилитирован в 1992 году."
 
 #: patterns/une-encyclopedie.php:70
