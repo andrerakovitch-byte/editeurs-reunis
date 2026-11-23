@@ -8,11 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       quoi:
-        description: "plan, ou evenements"
+        description: "plan, evenements ou medias"
         default: plan
       brut:
         description: "Garder le HTML des N premières pages (pour lire leur forme)"
         default: "0"
+      pages:
+        description: "medias : des pages d'événement à relire, séparées par des virgules"
+        default: ""
 
 permissions:
   contents: write
@@ -22,8 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: yt-dlp (la liste des vidéos des chaînes citées, sans rien télécharger)
+        if: inputs.quoi == 'medias'
+        run: pip install --quiet yt-dlp
       - name: Lire
-        run: python3 outils/wix/pages.py "${{ inputs.quoi }}" --brut "${{ inputs.brut }}"
+        env:
+          PAGES: ${{ inputs.pages }}
+        run: python3 outils/wix/pages.py "${{ inputs.quoi }}" --brut "${{ inputs.brut }}" --pages "$PAGES"
       - name: Déposer sur la branche wix-pages
         run: |
           cd sortie

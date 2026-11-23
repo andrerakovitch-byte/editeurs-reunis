@@ -8,6 +8,11 @@ main.
     python3 outils/wix/pages.py evenements [--brut N]    → evenements.json : chaque page d'événement, ses données
                                                            structurées (JSON-LD, Open Graph) et les données de Wix ;
                                                            avec --brut, le HTML des N premières pages, pour lire leur forme
+    python3 outils/wix/pages.py medias [--pages a,b]     → medias.json : les vidéos et les enregistrements que citent
+                                                           les pages /videos et /podcast et l'accueil (liens YouTube,
+                                                           Vimeo, SoundCloud…), les vidéos des chaînes YouTube citées
+                                                           (yt-dlp, la liste seule, sans rien télécharger), le flux des
+                                                           podcasts ; avec --pages, ces pages d'événement relues
 
 Une demande par seconde, pas plus.
 """
@@ -119,6 +124,75 @@ def evenements(brut=0):
     return resultat
 
 
+MEDIAS = re.compile(
+    r'https?://(?:www\.|m\.|music\.)?(?:youtube\.com|youtu\.be|youtube-nocookie\.com|vimeo\.com|player\.vimeo\.com|'
+    r'soundcloud\.com|w\.soundcloud\.com|facebook\.com|fb\.watch|dailymotion\.com|dai\.ly|ausha\.co|podcast\.ausha\.co|'
+    r'anchor\.fm|open\.spotify\.com|podcasts\.apple\.com|feeds\.[a-z0-9.-]+|[a-z0-9.-]*\.(?:rss|xml))[^\s"\'<>\\)]*', re.I)
+
+
+def liens_medias(texte):
+    texte = texte.replace('\\/', '/').replace('\\u002F', '/').replace('&amp;', '&')
+    return sorted({m.group(0).rstrip('.,;') for m in MEDIAS.finditer(texte)})
+
+
+def chaine_youtube(url):
+    """La liste des vidéos d'une chaîne ou d'une liste de lecture YouTube, par yt-dlp, sans rien télécharger."""
+    import subprocess
+    cibles = [url]
+    if re.search(r'youtube\.com/(?:@|c/|channel/|user/)', url) and '/videos' not in url:
+        cibles = [url.rstrip('/') + '/videos', url.rstrip('/') + '/streams']
+    videos = []
+    for cible in cibles:
+        r = subprocess.run(['yt-dlp', '--flat-playlist', '-J', '--extractor-args', 'youtubetab:approximate_date', cible],
+                           capture_output=True, text=True, timeout=300)
+        if r.returncode != 0:
+            videos.append({'erreur': r.stderr[-500:], 'cible': cible})
+            continue
+        donnees = json.loads(r.stdout)
+        for e in donnees.get('entries') or []:
+            videos.append({k: e.get(k) for k in ('id', 'title', 'url', 'upload_date', 'timestamp', 'duration', 'description')})
+    return videos
+
+
+def medias(pages=()):
+    resultat = {'pages': {}, 'liens': {}, 'chaines': {}, 'flux': {}, 'evenements': []}
+    os.makedirs(os.path.join(SORTIE, 'brut'), exist_ok=True)
+    for nom in ('videos', 'podcast', ''):
+        try:
+            html = lire(f'{SITE}/{nom}')
+        except Exception as erreur:
+            resultat['pages'][nom or 'accueil'] = {'erreur': str(erreur)}
+            continue
+        open(os.path.join(SORTIE, 'brut', f'{nom or "accueil"}.html'), 'w').write(html)
+        wix = donnees_wix(html)
+        if wix:
+            json.dump(wix, open(os.path.join(SORTIE, 'brut', f'{nom or "accueil"}-wix.json'), 'w'), ensure_ascii=False)
+        resultat['pages'][nom or 'accueil'] = {'meta': meta(html), 'taille': len(html)}
+        resultat['liens'][nom or 'accueil'] = liens_medias(html)
+    tous = sorted({l for ls in resultat['liens'].values() for l in ls})
+    for url in tous:
+        if re.search(r'youtube\.com/(?:@|c/|channel/|user/|playlist)', url) and url not in resultat['chaines']:
+            try:
+                resultat['chaines'][url] = chaine_youtube(url)
+            except Exception as erreur:
+                resultat['chaines'][url] = [{'erreur': str(erreur)}]
+        elif re.search(r'\.(?:rss|xml)(?:$|\?)|feeds\.|/rss', url):
+            try:
+                resultat['flux'][url] = lire(url)
+            except Exception as erreur:
+                resultat['flux'][url] = str(erreur)
+    for url in pages:
+        try:
+            html = lire(url)
+        except Exception as erreur:
+            resultat['evenements'].append({'url': url, 'erreur': str(erreur)})
+            continue
+        wix = donnees_wix(html)
+        resultat['evenements'].append({'url': url, 'meta': meta(html), 'json_ld': json_ld(html),
+                                       'wix': chercher_evenement(wix) if wix else None, 'taille': len(html)})
+    return resultat
+
+
 if __name__ == '__main__':
     os.makedirs(SORTIE, exist_ok=True)
     quoi = sys.argv[1] if len(sys.argv) > 1 else 'plan'
@@ -132,3 +206,11 @@ if __name__ == '__main__':
         r = evenements(brut)
         json.dump(r, open(os.path.join(SORTIE, 'evenements.json'), 'w'), ensure_ascii=False, indent=1)
         print(len(r), 'pages lues ;', sum(1 for x in r if x.get('json_ld')), 'avec JSON-LD ;', sum(1 for x in r if x.get('wix')), 'avec les données de Wix')
+    elif quoi == 'medias':
+        pages = sys.argv[sys.argv.index('--pages') + 1].split(',') if '--pages' in sys.argv else []
+        r = medias([p for p in pages if p.strip()])
+        json.dump(r, open(os.path.join(SORTIE, 'medias.json'), 'w'), ensure_ascii=False, indent=1)
+        for nom, liens in r['liens'].items():
+            print(nom, len(liens), 'liens')
+        for url, videos in r['chaines'].items():
+            print(url, len(videos), 'vidéos')
