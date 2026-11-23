@@ -9,7 +9,8 @@
  *   retiré de la règle (er_sans_lien). Un titre qui commence par un article (le, la, les, l’) se reconnaît aussi sans
  *   lui : « l’auteur du Docteur Jivago ».
  * - Un titre se reconnaît partout dans le texte quand il est assez distinctif : trois mots au moins hors article, ou
- *   deux mots qui portent chacun une majuscule (« Docteur Jivago »). Les autres (« Tchevengour », « Les Douze »,
+ *   deux mots qui portent chacun une majuscule (« Docteur Jivago »). Un titre qui est le nom d'une personne (la
+ *   biographie « Ossip Mandelstam ») ne se lie que cité : sinon chaque mention du poète mènerait au livre. Les autres (« Tchevengour », « Les Douze »,
  *   « Tout passe ») seulement quand ils sont cités : seuls en italique, ou entre guillemets « ». Dans tous les cas, le
  *   premier mot garde sa majuscule.
  * - Un livre n'est lié qu'une fois par page, à sa première mention ; jamais dans un lien, un titre (h1 à h6), un bouton,
@@ -87,6 +88,21 @@ function er_liens_sommier() {
 		'key'     => 'er_sans_lien',
 		'compare' => 'NOT EXISTS',
 	);
+	// Les noms des personnes (et leurs autres graphies) : un titre qui en est un ne se lie que cité.
+	$personnes = array();
+	$termes    = get_terms(
+		array(
+			'taxonomy'   => 'auteur',
+			'hide_empty' => false,
+			'number'     => 5000,
+		)
+	);
+	foreach ( is_wp_error( $termes ) ? array() : $termes as $t ) {
+		$noms = array_merge( array( $t->name ), function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $t->term_id ) : array() );
+		foreach ( $noms as $nom ) {
+			$personnes[ er_liens_cle( wp_list_pluck( er_liens_mots( $nom ), 0 ) ) ] = true;
+		}
+	}
 	$candidats = array();
 	foreach ( ( new WP_Query( $args ) )->posts as $id ) {
 		$titres = array( html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) );
@@ -115,7 +131,7 @@ function er_liens_sommier() {
 				}
 				foreach ( $variantes as $v ) {
 					$cle    = er_liens_cle( $v );
-					$pleins = count( array_filter( $v, fn( $m ) => ! er_liens_article( $m ) ) );
+					$pleins = isset( $personnes[ $cle ] ) ? 1 : count( array_filter( $v, fn( $m ) => ! er_liens_article( $m ) ) );
 					// Deux livres au même titre : celui qui est en stock, sinon le plus récent.
 					if ( isset( $candidats[ $cle ] ) ) {
 						list( $autre, , $autre_stock ) = $candidats[ $cle ];
