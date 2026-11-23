@@ -14,13 +14,14 @@ main.
                                                            (yt-dlp, la liste seule, sans rien télécharger), le flux des
                                                            podcasts ; avec --pages, ces pages d'événement relues
 
-Une demande par seconde, pas plus.
+Une demande toutes les deux secondes, pas plus ; une pause quand le site le demande (429).
 """
 import json
 import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -29,11 +30,20 @@ SORTIE = 'sortie'
 AGENT = 'Mozilla/5.0 (compatible; editeurs-reunis-migration/1.0; +https://github.com/andrerakovitch-byte/editeurs-reunis)'
 
 
-def lire(url):
-    time.sleep(1)
-    req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr-FR,fr;q=0.9'})
-    with urllib.request.urlopen(req, timeout=40) as r:
-        return r.read().decode('utf-8', 'replace')
+def lire(url, essais=6):
+    """Une page, en douceur : une demande toutes les deux secondes ; si le site demande d'attendre (429, ou une
+    erreur passagère), on attend ce qu'il dit, sinon de plus en plus longtemps, et on réessaie."""
+    for essai in range(essais):
+        time.sleep(2)
+        req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr-FR,fr;q=0.9'})
+        try:
+            with urllib.request.urlopen(req, timeout=40) as r:
+                return r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as erreur:
+            if erreur.code not in (429, 500, 502, 503, 504) or essai == essais - 1:
+                raise
+            attente = erreur.headers.get('Retry-After')
+            time.sleep(int(attente) if attente and attente.isdigit() else min(300, 30 * 2 ** essai))
 
 
 def plan():
