@@ -523,7 +523,7 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
-#: inc/journal-une.php:276 inc/journal-une.php:547 inc/journal-une.php:629
+#: inc/journal-une.php:276 inc/journal-une.php:548 inc/journal-une.php:630
 #: inc/journal.php:72 inc/medias.php:202 inc/sujets.php:414 inc/sujets.php:417
 msgid "j F Y"
 msgstr "j F Y"
@@ -537,7 +537,7 @@ msgid "En français"
 msgstr "In French"
 
 #: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:256
-#: inc/journal-une.php:374 inc/journal-une.php:620
+#: inc/journal-une.php:374 inc/journal-une.php:621
 msgid "En russe"
 msgstr "In Russian"
 
@@ -950,7 +950,7 @@ msgstr[1] "%d min read"
 msgid "%d min"
 msgstr "%d min"
 
-#: inc/journal-une.php:348 inc/journal-une.php:659
+#: inc/journal-une.php:348 inc/journal-une.php:660
 msgid "Le journal du centre"
 msgstr "The Centre’s journal"
 
@@ -968,17 +968,13 @@ msgid "Depuis %s"
 msgstr "Since %s"
 
 #. translators: %d: un nombre de textes
-#: inc/journal-une.php:386 inc/journal-une.php:598 inc/journal-une.php:626
+#: inc/journal-une.php:386 inc/journal-une.php:599 inc/journal-une.php:627
 msgid "%d texte"
 msgid_plural "%d textes"
 msgstr[0] "%d piece"
 msgstr[1] "%d pieces"
 
-#: inc/journal-une.php:401 inc/sujets.php:36
-msgid "Tous les sujets"
-msgstr "All subjects"
-
-#: inc/journal-une.php:409
+#: inc/journal-une.php:393
 msgid ""
 "Chroniques, critiques, essais et archives : la littérature russe et son "
 "histoire, par ceux qui la lisent et la traduisent."
@@ -986,74 +982,77 @@ msgstr ""
 "Columns, reviews, essays and archives: Russian literature and its history, "
 "by those who read and translate it."
 
-#: inc/journal-une.php:410
+#: inc/journal-une.php:394
 msgid "Les genres du journal"
 msgstr "Journal sections"
 
-#: inc/journal-une.php:412
-msgid "Les sujets du journal"
-msgstr "Journal topics"
+#. translators: %d: un nombre de sujets
+#: inc/journal-une.php:407
+msgid "Les sujets"
+msgstr "Topics"
 
-#: inc/journal-une.php:412 inc/sujets.php:33 inc/sujets.php:42
-#: inc/sujets.php:385
-msgid "Sujets"
-msgstr "Subjects"
+#. translators: %d: un nombre de sujets
+#: inc/journal-une.php:407
+msgid "%d sujet"
+msgid_plural "%d sujets"
+msgstr[0] "%d topic"
+msgstr[1] "%d topics"
 
-#: inc/journal-une.php:464 inc/journal-une.php:635 inc/medias.php:231
+#: inc/journal-une.php:463 inc/journal-une.php:636 inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr "Nothing here yet."
 
-#: inc/journal-une.php:482
+#: inc/journal-une.php:481
 msgid "Le fil"
 msgstr "Latest"
 
-#: inc/journal-une.php:482
+#: inc/journal-une.php:481
 msgid "Du plus récent au plus ancien"
 msgstr "Newest first"
 
-#: inc/journal-une.php:485
+#: inc/journal-une.php:484
 msgctxt "date courte du fil"
 msgid "j M Y"
 msgstr "j M Y"
 
-#: inc/journal-une.php:489
+#: inc/journal-une.php:488
 msgid "Tout le fil"
 msgstr "All pieces"
 
 #. translators: 1: le nombre de chroniques, 2: l'année de la première
-#: inc/journal-une.php:544
+#: inc/journal-une.php:545
 msgid "%1$d chronique depuis %2$s"
 msgid_plural "%1$d chroniques depuis %2$s"
 msgstr[0] "%1$d column since %2$s"
 msgstr[1] "%1$d columns since %2$s"
 
-#: inc/journal-une.php:565
+#: inc/journal-une.php:566
 msgid "Les chroniques"
 msgstr "Columns"
 
-#: inc/journal-une.php:568
+#: inc/journal-une.php:569
 msgid "Toutes les chroniques"
 msgstr "All columns"
 
-#: inc/journal-une.php:575
+#: inc/journal-une.php:576
 msgid "Grand format"
 msgstr "Long read"
 
-#: inc/journal-une.php:622
+#: inc/journal-une.php:623
 msgid "Tous les textes"
 msgstr "All pieces"
 
-#: inc/journal-une.php:642
+#: inc/journal-une.php:643
 msgctxt "pagination du journal"
 msgid "Plus récents"
 msgstr "Newer"
 
-#: inc/journal-une.php:643
+#: inc/journal-une.php:644
 msgctxt "pagination du journal"
 msgid "Plus anciens"
 msgstr "Older"
 
-#: inc/journal-une.php:646
+#: inc/journal-une.php:647
 msgid "Les pages du journal"
 msgstr "Journal pages"
 
@@ -1176,6 +1175,10 @@ msgstr "Number of pages"
 msgid "Format (poche, broché, relié…)"
 msgstr "Format (paperback, hardback…)"
 
+#: inc/sujets.php:33 inc/sujets.php:42 inc/sujets.php:385
+msgid "Sujets"
+msgstr "Subjects"
+
 #: inc/sujets.php:34
 msgid "Sujet"
 msgstr "Subject"
@@ -1183,6 +1186,10 @@ msgstr "Subject"
 #: inc/sujets.php:35
 msgid "Chercher un sujet"
 msgstr "Search subjects"
+
+#: inc/sujets.php:36
+msgid "Tous les sujets"
+msgstr "All subjects"
 
 #: inc/sujets.php:37
 msgid "Modifier le sujet"

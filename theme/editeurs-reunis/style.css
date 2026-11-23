@@ -2685,7 +2685,7 @@ sup { font-size: 0.62em; line-height: 0; }
 /* La une : le texte choisi sur huit colonnes, deux autres dessous ; le fil sur quatre */
 
 .er-j-une .er-j-g { row-gap: 48px; }
-.er-j-une-gauche { grid-column: 1 / span 8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.er-j-une-gauche { grid-column: 1 / span 8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-self: start; align-content: start; }
 .er-j-principale { grid-column: 1 / -1; }
 .er-j-principale .er-j-image { aspect-ratio: 16 / 9; margin-bottom: 8px; }
 .er-j-seconde { padding-top: 24px; border-top: 1px solid var(--wp--preset--color--filet); }
@@ -2696,6 +2696,12 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-fil li:first-child a { border-top: 0; }
 .er-j-fil-date { padding-top: 2px; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
 .er-j-fil-texte { display: flex; flex-direction: column; gap: 6px; }
+.er-j-fil-sujets { align-self: stretch; margin-top: 48px; }
+.er-j-fil .er-j-fil-sujets ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+.er-j-fil .er-j-fil-sujets li a { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding-block: 10px; border-top: 1px solid var(--wp--preset--color--filet); font-size: 0.875rem; font-weight: 600; }
+.er-j-fil .er-j-fil-sujets li:nth-child(-n + 2) a { border-top: 0; }
+.er-j-fil-sujets li a span { font-size: 0.8125rem; font-weight: 400; color: var(--wp--preset--color--discret); }
+.er-j-fil-sujets li a:hover { color: var(--wp--preset--color--accent-texte); }
 
 /* Les chroniques et le grand format */
 .er-j-chroniques { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }

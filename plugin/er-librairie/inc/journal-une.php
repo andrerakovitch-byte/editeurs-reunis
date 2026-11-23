@@ -385,31 +385,30 @@ function er_journal_tete() {
 	/* translators: %d: un nombre de textes */
 	$faits[] = sprintf( _n( '%d texte', '%d textes', $total, 'er-librairie' ), $total );
 
-	$sujets = er_journal_sujets();
-	$mots   = '';
-	$autres = '';
-	foreach ( $sujets as $i => list( $t, $n ) ) {
-		$actif = 'sujet' === $quoi && $objet && $objet->term_id === $t->term_id;
-		$lien  = '<a href="' . esc_url( er_journal_lien( array( 'sujet' => $t->slug ) ) ) . '"' . ( $actif ? ' aria-current="page" class="est-actif"' : '' ) . '>' . esc_html( $t->name ) . '</a>';
-		if ( $i < 9 ) {
-			$mots .= $lien;
-		} else {
-			$autres .= $lien;
-		}
-	}
-	if ( $autres ) {
-		$mots .= '<details class="er-j-autres"><summary>' . esc_html__( 'Tous les sujets', 'er-librairie' ) . '</summary><div>' . $autres . '</div></details>';
-	}
-
 	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; les genres en onglets à son pied ;
-	// « Журнал » en grand, presque effacé, en décor. Puis les sujets, sur le blanc.
+	// « Журнал » en grand, presque effacé, en décor. Les sujets sont sous le fil, à la une.
 	return '<section class="er-j-tete alignfull"><span class="er-j-lettre" lang="ru" aria-hidden="true">Журнал</span><div class="er-j-g">'
 		. '<p class="er-j-faits"><span class="er-j-point" aria-hidden="true"></span>' . esc_html( implode( ' · ', $faits ) ) . '</p>'
 		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
 		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
 		. '<nav class="er-j-genres" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '">' . $onglets . '</nav>'
-		. '</div></section>'
-		. ( $mots ? '<section class="er-j-sujets-bande alignfull"><div class="er-j-g"><nav class="er-j-sujets" aria-label="' . esc_attr__( 'Les sujets du journal', 'er-librairie' ) . '"><span class="er-j-sujets-titre">' . esc_html__( 'Sujets', 'er-librairie' ) . '</span>' . $mots . '</nav></div></section>' : '' );
+		. '</div></section>';
+}
+
+/**
+ * Les sujets du journal, sous le fil : chacun et son nombre de textes, sur deux colonnes.
+ */
+function er_journal_liste_sujets() {
+	$sujets = er_journal_sujets();
+	if ( ! $sujets ) {
+		return '';
+	}
+	/* translators: %d: un nombre de sujets */
+	$html = '<div class="er-j-fil-sujets"><div class="er-j-titre-sec"><h2>' . esc_html__( 'Les sujets', 'er-librairie' ) . '</h2><span>' . esc_html( sprintf( _n( '%d sujet', '%d sujets', count( $sujets ), 'er-librairie' ), count( $sujets ) ) ) . '</span></div><ul>';
+	foreach ( $sujets as list( $t, $n ) ) {
+		$html .= '<li><a href="' . esc_url( er_journal_lien( array( 'sujet' => $t->slug ) ) ) . '">' . esc_html( $t->name ) . '<span>' . (int) $n . '</span></a></li>';
+	}
+	return $html . '</ul></div>';
 }
 
 /* Le corps : la une, ou une liste ------------------------------------------------------------------------------- */
@@ -486,7 +485,9 @@ function er_journal_une() {
 			. ( $genre ? '<span class="er-j-sur"><span class="er-j-genre">' . esc_html( $genre->name ) . '</span></span>' : '' )
 			. er_journal_titre( $id, 'span', 'er-j-t-fil' ) . er_journal_auteur( $id, false ) . '</span></a></li>';
 	}
-	$html .= '</ul><a class="er-j-sortie" href="' . esc_url( er_journal_lien( array( 'fil' => '' ) ) ) . '">' . esc_html__( 'Tout le fil', 'er-librairie' ) . '</a></aside>';
+	$html .= '</ul><a class="er-j-sortie" href="' . esc_url( er_journal_lien( array( 'fil' => '' ) ) ) . '">' . esc_html__( 'Tout le fil', 'er-librairie' ) . '</a>';
+	$html .= er_journal_liste_sujets();
+	$html .= '</aside>';
 	$html .= '</div></section>';
 
 	$html .= er_journal_chroniques( $vus );
