@@ -151,6 +151,8 @@ jobs:
           curl -sL "$URL/sujet/poesie/" -o sortie/page-poesie.html || true
           curl -sL "$URL/post/du-jardin-secret-des-lykov-vieux-croyants-de-siberie" -o sortie/page-article.html || true
           curl -sL "$URL/wp-json/er/v1/chercher?q=raskol" -o sortie/recherche-raskol.json || true
+          curl -sL "$URL/journal/" -o sortie/page-journal.html || true
+          curl -sL "$URL/journal/genre/critique/" -o sortie/page-critiques.html || true
 
       - name: Une commande de l'extension
         if: inputs.er != ''
