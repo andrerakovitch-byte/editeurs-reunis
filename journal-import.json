@@ -30,7 +30,9 @@
    "Donbass",
    "guerre en Ukraine"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "наталия-роскина-четыре-главы-ymca-press-1980-ирина-роскина-мимоходом-virgola-2026",
@@ -69,7 +71,9 @@
    "Zabolotski",
    "Virgola"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "ru"
  },
  {
   "wix_slug": "pour-le-10e-anniversaire-du-décès-de-nikita-struve-éditeur-slavisant-professeur",
@@ -106,7 +110,9 @@
    "slaviste",
    "anniversaire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "hommage",
+  "langues": "fr ru"
  },
  {
   "wix_slug": "anne-marie-pelletier-résister-avec-vassily-grossman",
@@ -143,7 +149,9 @@
    "totalitarisme",
    "Karl Jaspers"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "ignat-soljénitsyne-discours-pour-l-inauguration-de-la-plaque-commémorant-la-publication-le-28-déc",
@@ -180,12 +188,14 @@
    "mairie de Paris",
    "discours"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr"
  },
  {
   "wix_slug": "hommage-à-alexandre-soljénitsyne",
   "slug": "hommage-à-alexandre-soljénitsyne",
-  "titre": "Hommage à Alexandre Soljénitsyne, par Laurence Patrice, adjointe à la mairie de Paris",
+  "titre": "Hommage à Alexandre Soljénitsyne",
   "date": "2025-02-10 18:24:21",
   "signature": "Laurence Patrice",
   "extrait": "Le jeudi 30 janvier 2025, la mairie de Paris et la mairie du 5-e arrondissement inauguraient au 11 rue de la Montagne Sainte Geneviève une plaque commémorant la parution de l’Archipel du Goulag, d’Alexandre Soljénitsyne, le 28 décembre 1973, aux éditions YMCA-PRESS.",
@@ -217,7 +227,9 @@
    "discours",
    "hommage"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "hommage",
+  "langues": "fr"
  },
  {
   "wix_slug": "quand-un-chardonneret-s-échappe-dans-le-métro",
@@ -251,7 +263,9 @@
    "métro de Londres",
    "Poems on the Underground"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "avec-geneviève-johannet-disparaît-un-extraordinaire-observatoire-de-la-russie",
@@ -286,7 +300,9 @@
    "L’Archipel du Goulag",
    "José Johannet"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "hommage",
+  "langues": "fr"
  },
  {
   "wix_slug": "archipel-du-goulag-50-ans-soljenitsyne",
@@ -328,7 +344,9 @@
    "1973",
    "YMCA-Press"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "archive",
+  "langues": "fr ru"
  },
  {
   "wix_slug": "boris-akounine-archipel-du-goulag-soljenitsyne",
@@ -367,7 +385,9 @@
    "censure",
    "témoignage"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "entretien",
+  "langues": "fr ru"
  },
  {
   "wix_slug": "du-jardin-secret-des-lykov-vieux-croyants-de-sibérie",
@@ -375,7 +395,7 @@
   "titre": "Du jardin secret des Lykov, vieux-croyants de Sibérie",
   "date": "2023-04-13 18:52:16",
   "signature": "Dominique Samson Normand de Chambourg",
-  "extrait": "« Alors si l’arbre vénéneux (le Tsar) voit se dessécher ses racines (le Synode), ses branches (les fonctionnaires nobles) et ses feuilles (les policiers) se dessècheront aussi » [1] L’exposition « Paysages russes au temps de Tolstoï »",
+  "extrait": "En 1978, des géologues survolent les monts Saïan et aperçoivent un jardin au milieu de la taïga : celui d’une famille de vieux-croyants coupée du monde depuis 1929.",
   "image": "https://static.wixstatic.com/media/26fb71_79e8ebe62059481eb9ce90c2ca666073~mv2.jpg",
   "contenu": "<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« Alors si l’arbre vénéneux (le Tsar) voit se dessécher ses racines (le Synode), ses branches (les fonctionnaires nobles) et ses feuilles (les policiers) se dessècheront aussi » [1]</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>L’exposition « Paysages russes au temps de Tolstoï » organisée par la <em>National Gallery</em> de Londres (23 juin – 12 septembre 2004) témoigne tant de l’omniprésence de la nature dans le quotidien et l’imaginaire russe que d’un genre devenu majeur dans la peinture russe de la seconde moitié du XIXe siècle. À travers quelques 70 tableaux, une quinzaine de peintres, le contact charnel de l’homme russe et de la nature se fait souvent spirituel dans cette société majoritairement rurale, dont l’<em>intelligentsia</em>, fût-elle moscovite ou pétersbourgeoise, passe encore une partie de l’année dans de vastes domaines familiaux lorsqu’elle ne dépense pas ses fermages en Europe. Ce lien brusquement exacerbé par la querelle entre les Slavophiles et les Occidentalistes, souligné par l’interdiction ancienne de jurons souillant la Terre-Mère ou le fantôme de l’historien B. Rybakov parlant de <em>dvoeverie</em> (double foi christianisme/paganisme) à propos de la spiritualité russe, trouve ici une parfaite illustration. Dans l’exposition, un tableau d’Isaac Levitan (1800-1900), ami intime de Tchekhov, reflète à sa façon cette communion de l’homme et de la Création : « Sur la route de Vladimirka » évoque « un chemin de boue et de douleurs conduisant en Sibérie et à l’exil ». Deux mots familiers pour une famille devenue célèbre à cause de son jardin. Un jardin sibérien arraché à l’État soviétique et à la taïga par une famille de vieux-croyants hors du monde. Un jardin à la fois physique et métaphorique qui allait trahir ceux qui l’avaient créé.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_79e8ebe62059481eb9ce90c2ca666073~mv2.jpg\" alt=\"\"/><figcaption class=\"wp-element-caption\">La route de Vladimirka, Isaak Ilyich Levitan, 1892, Galerie Tretiakov</figcaption></figure>\n<!-- /wp:image -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Le corps du jardin</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>C’est précisément en Sibérie méridionale, sur le versant nord du Saïan occidental, que la famille Lykov a achevé un exil initié par les grands-parents à partir de 1929, alors que le régime soviétique entreprenait de resserrer son emprise effective partout dans le pays, y compris en Sibérie [2]. Mais avant d’entrer dans le vif du sujet, il convient de rappeler, à toutes fins utiles, quelques éléments qui constitueront d’emblée un cadre formel.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>La Sibérie, conquise au XVIe siècle par Ermark et ses Cosaques, offerte à la Couronne russe, est colonisée tout au long du XVIIe siècle dans un flux ininterrompu jusqu’à ce jour. Loin des jardins impériaux de Pierre le Grand sur lesquels ont longtemps veillé des dynasties de jardiniers germaniques (hollandais et allemands, notamment, faute d’une apparente acclimatation possible des Anglais et des Écossais), la nature sibérienne symbolise une majesté barbare et fantastique jusqu’au Moyen Âge, puis infernale ou romantique, suivant les auteurs. Les colons russes apporteront les armes à feu, la vodka, mais aussi le mot profane de « jardin » (<em>sad</em>), suggérant les tournesols, l’aneth et les dahlias désormais traditionnels, le plus souvent étranger à la conception autochtone de l’espace [3] (Vahruševa, 2002, p. 309), mais néanmoins adopté tel quel dans les dictionnaires de langues autochtones de Sibérie occidentale (<em>Nenecko-russkij slovar’</em>, 1965, p. 521 ; <em>Russko-neneckij slovar’</em>, 1948, p. 249). De même, l’orthodoxie et sa langue liturgique introduiront en terre chamanique le terme religieux de « jardin » : <em>vertograd</em>.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>C’est également au XVIIe siècle que se produit un événement majeur de l’histoire de l’Église orthodoxe russe : le Raskol. En effet, sur fond de banalisation du servage et de développement de la sphère d’influence d’un État autocratique, le pays se centralise. Y compris dans le domaine spirituel, où arguant des erreurs accumulées par les copistes depuis la christianisation de la Russie au Xe siècle et de la formation souvent approximative des clercs face au développement rapide des églises, l’évêque Nikon (1605-1681) choisi par le Tsar Alexis [4] , décide de remettre dans le droit chemin la liturgie et les rituels de l’Église orthodoxe. Un travail destiné à « rétablir l’unité du culte en Russie face à la naïveté de la manifestation du sentiment religieux » (Vasili, 1890, p. 310), mais qui sera à l’origine d’un schisme, d’une dissidence « religieuse, sociale, culturelle, artistique dont l’importance a toujours été reconnue, que ce soit par les écrivains qui l’ont reflétée, les publicistes des années 1860 ou les bolcheviks » (Niqueux, 1997, p. 15). La reprise en main centralisatrice, « politique », pour ne pas dire « idéologique » de la vieille Foi par des esprits réformateurs, heurte profondément et durablement une partie des croyants : nombre de fidèles, qu’ils soient aristocrates (Miloslavski, Khovanski [5], Morozov [6]) ou paysans, s’opposent à l’ingérence d’une hiérarchie dans la foi héritée de Byzance, dans la foi de leurs pères ; le baptême de la Russie désormais profané par la tentation du « siècle » et l’autocratie du temporel, ouvrait la voie à « l’Antéchrist à visage humain » (Pierre le Grand), bientôt annoncé par une épidémie de peste (1654-1655) et confirmé par la mort de l’empereur lui-même (1676).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le dialogue de sourds entre frères ennemis orthodoxes tourne à l’anathème (1656 et 1667) [7], puis au drame : sous Alexis et Sophie, les partisans de la vieille Foi sont brûlés sur des bûchers quand ils ne s’immolent pas eux-mêmes, sont torturés ou exilés.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_c6b10f601daf44fdb88ecaa51df58721~mv2.jpg\" alt=\"\"/><figcaption class=\"wp-element-caption\">Exil d’Avvakoum en Sibérie. S. Miloradovitch, 1898 Musée d’histoire des religions, St Pétersbourg</figcaption></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>Tel l’archiprêtre Avvakoum (1620-1682), condamné à un exil à Tobolsk en Sibérie occidentale, à Poustozersk, important centre administratif où les Samoyèdes (act. Nénètses) s’acquittent de leur impôt en fourrures. Mais l’exil, la rencontre avec les forcément diaboliques « chamanes » — terme qu’il introduit dans la langue russe —, ne détourneront pas Avvakoum de sa foi. Lors du concile de 1682 destiné à éradiquer définitivement la Vieille Foi, la mort est décrétée pour le symbole de résistance que représentent les prisonniers de Poustozersk : Epiphane le moine, Lazare le prêtre, Théodore le diacre dont la langue coupée avait repoussé par miracle et l’archiprêtre Avvakoum s’envolent en fumée <em>stricto sensu</em>, sous forme d’oies ou de colonnes blanches gagnant le ciel dans la mémoire collective. C’est la fin d’un monde. La fin du monde pour nombre de vieux-croyants : 1666 devait être le début du règne de la Bête [8], des vieux-croyants sibériens attendaient la mort, des cantiques sur les lèvres et gisant dans leurs cercueils.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_281825a229bb415d82463248142d92a4~mv2.jpg\" alt=\"\"/><figcaption class=\"wp-element-caption\">Immolation d’Avvakoum, Petr Miassoïedov, 1897</figcaption></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>En définitive, ce sont à peu près 20 000 morts volontaires ou non qui cherchent le salut entre 1672 et 1691. Tandis que à Tioumen, en 1679, trois cent vieux-croyants s’immolent par le feu en priant. C’est d’ailleurs de la région de Tjumen’, moins de trois siècles plus tard, que viennent Ossip Lykov et son épouse. Un couple de vieux-croyants qui entreprend en 1929 une fuite en avant à laquelle leur fils Karp, son épouse Akoulina et leurs quatre enfants — Savvine, Natalia, Dmitri et Agafia — mettront un terme dans un jardin. D’ailleurs le mot<em> sad</em> provient du verbe <em>sažat’/sadit’</em> qui signifie à la fois « planter », mais aussi « inviter, prier quelqu’un à s’asseoir ». Un jardin donc, créé de toutes pièces à partir de la taïga et qui dessine ainsi une île sur le continent. Un jardin de chair et d’os, parce que les Lykov l’ont investi par leur travail incessant, mais aussi le jardin secret d’une famille qui prépare son salut éternel. Un jardin dans le jardin.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_d824bd1c70134778acae859ad46dbfac~mv2.jpg\" alt=\"\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>C’est le corps du jardin qui a trahi la présence des Lykov. À une quinzaine de kilomètres de la rivière Abakan, à mille mètres environs sur le flanc septentrional des Monts Saïan, perdus au milieu d’une forêt sibérienne de mélèzes et de cèdres [9], les Lykov étaient invisibles. Hors du monde. À quelques 250 kilomètres en amont des autres hommes. Et puis un été, une équipe de géologues soviétiques en quête de gisement ferrugineux a survolé en hélicoptère la région et observé une singulière « calvitie » (Peskov, 1992, p. 33) sur la montagne. C’était en 1978. Un terrain déboisé, parcouru par endroit de sillons, évoquait un improbable jardin.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Fruit d’un labeur de quarante ans « dans le désert », le jardin des Lykov a été arraché au chaos apparent de la forêt, aux ours, aux rongeurs, aux loups et à un lynx. Façonné par la volonté de survivre d’une famille, ensemencé par des graines qui ont suivi la vie de pèlerin des Lykov, menacé par la fonte parfois tardive des neiges et les prédateurs, le jardin n’est jamais acquis : son entretien exige le meilleur des Lykov. Comme cette année mémorable où perça un unique épi de seigle qui, pieusement veillé par les Lykov, donna, dans sa maturité, dix-huit grains (<em>ibid</em>., p. 70). Ou cette autre année qui, au contraire, avait vu disparaître la carotte du jardin potager parce qu’un rongeur avait mangé les dernières graines. La taïga prélevait à sa façon l’impôt dont les vieux-croyants refus refusaient de s’acquitter, dénonçant dans un même élan les autorités impériale et religieuse, puis les kolkhozes parasites. Les Lykov ne sont responsables que devant Dieu, et leur jardin veut être leur prière au Créateur.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Aussi le thé, « plante maudite par Dieu », le sucre « tentation antichrétienne », le tabac, « herbe du diable » sont-ils toujours proscrits dans les représentations lykoviennes, héritières de la pensée du <em>Raskol</em> :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« Le Diable, se présentant chaque jour à Noé sous un nouveau déguisement, avait essayé à plusieurs reprises de le convaincre de lui révéler le secret du lieu de la construction de l’Arche. Mais, ce dernier, prévenu par Dieu, avait toujours refusé, jusqu’au jour où le Diable eut l’idée de lui apprendre à fumer du tabac. Enivré par la fumée, Noé laissa échapper le secret qu’il avait si bien gardé jusque là et dès lors, il retrouva, chaque matin, entièrement défait, le travail qu’il avait accompli la veille. »</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>Outre les pois, les navets, l’oignon, le chanvre et le seigle, la pomme de terre constitue la base de la nourriture des Lykov. Initialement condamnée par les vieux-croyants qui l’associent au « tsar pécheur » — « pécheur est donc son fruit » — qui l’a importé d’Europe, la consommation du « tubercule immonde et satanique », de cette « plante démoniaque de perdition » atteste néanmoins d’une communauté non pas figée comme on l’a trop souvent décrite, mais capable de s’adapter partiellement à de nouvelles conditions, humaines comme physiques. Savvine et Dmitri n’ontils pas appris seuls à travailler le cuir et l’écorce de bouleau ? Pour revenir à la pomme de terre, celle-ci est accommodée de multiples façons : pilée avec du seigle, des graines de chanvre et de l’eau, la pomme de terre donne une sorte de crêpe noire qui fait office de pain, séchée en fines lamelles, elle constitue le plat de base ordinaire. La bouillie de seigle étant réservée pour « les jours de sainte fête » (Peskov, 1992, p. 63). Enfin, le tubercule peut même suppléer à la prière contre le mal de dents : « Si la prière n’y peut rien, nous tenons la bouche ouverte sur une pomme de terre brûlante (<em>ibid</em>., pp. 119-120).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le jardin est aussi une porte. Tantôt fermée, tantôt ouverte, sur la taïga. Malgré ses dangers, la forêt offre une économie de subsistance saisonnière qui complète le jardin nourricier des Lykov : la chasse à l’élan et au renne sauvage, la pêche à l’ombre et aux salmonidés, la cueillette de « fruits divins » (<em>ibid</em>, p. 64 ) — la framboise, l’airelle rouge, la myrtille, le cassis et la course aux pommes de cèdres tombées sur le toit de la maison ou encore suspendues aux arbres. La forêt sibérienne leur procure également nombre de « plantes, utiles dons de Dieu » (<em>ibid</em>, p. 72), notamment pour la pharmacopée de la famille : orties préparées en soupe en guise de fortifiant, décoction de rhubarbe contre les problèmes intestinaux, ortie et framboise contre le refroidissement, onction de salive et de résine d’épicéa pour soigner une blessure, etc. Les Lykov ont encore mentionné « l’huile d’épicéa à base d’aiguilles bouillies, les champignons d’arbre, les branche de cassis, d’épilobe » comme la base de décoctions, ainsi que des préparations à partir de « l’oignon sauvage, de la myrtille, du lédon de marais, de la flouve, de la tanaisie » (<em>ibid</em>).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Les Lykov s’en tiennent à la Création. Des herbes séchées des marais qui servent de doublure aux vêtements de chanvre ou de matelas jusqu’aux bouleaux (qui poussaient également dans le jardin) dont la famille buvait la sève et tirait de lourds sabots et la vaisselle. En passant par l’écorce de bouleau et le jus de chèvrefeuille qui ont permis à Akoulina de transmettre à ses enfants l’art de la lecture et de l’écriture du vieux slave qu’elle-même tenait des Saintes Écritures.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>En définitive, les Lykov vivent à l’air libre le plus clair du temps. Dans la taïga ou dans le jardin. Là où, dépris des passions du monde, les Lykov sacrifient à l’humilité du travail et œuvrent à leur salut éternel. Leurs pieds nus mêlés à la neige pour arracher les pommes de terre ou à l’eau glacée du torrent poissonneux, le cadavre de Savvine reposant dans une congère jusqu’au printemps et celui de Dmitri gisant dans un tronc de cèdre au pied d’un cèdre, les Lykov épousent l’innocence de la Création divine. Faible devant Dieu, fort face au monde, leur cœur pur est à l’image de cette Création initiale. Tout le reste les détourne du visage de Dieu. Le jardin simple des Lykov, source de vie, les ramène toujours au <em>Pancreator</em>.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">L’âme du jardin</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Au-delà du jardin visible sculpté par les outils de jardinage d’Ossip Lykov emportés (en même temps que les douze livres religieux) et conservés depuis son départ, en 1929, de la communauté vieille-croyante de Tichi, à quelle force invisible répond l’existence érémitique de la famille ? Quel jardin secret cache le jardin sibérien des Lykov ? Loin des ermites ornementaux qui ont fleuri dans les annonces des journaux et les jardins anglais des XVIIIe et XIXe siècles [10], les Lykov cultivent leur singularité face au monde des apparences. Le jardin invisible qui habite, qui anime les Lykov, répond, à mon sens, à une lecture trine :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Religieuse</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>L’anathème contre les vieux-croyants a été levé par l’Église orthodoxe russe en 1971 et par l’Église russe hors-frontières en 1974. Encore l’absolution destinée à « guérir les blessures douloureuses, pour anciennes qu’elles soient, [et] qui furent jadis causées principalement par la présomption des pouvoirs séculiers » (<em>Journal</em>…, 1971, pp. 8-9), concernet-elle seulement les <em>popovcy</em> ou vieux-croyants prêtrisants. Ceux-là même qui avaient été jugé les moins dangereux en 1842, lorsque le Saint-Synode avait inventorié les vieux-croyants et les sectateurs en trois catégories à la demande du ministère de l’Intérieur : « moins dangereuse », « dangereuse », « très dangereuse ». Ceux-là même encore, qui en 1862, déclaraient leur loyauté envers les autorités officielles et religieuses de l’empire. Le cas des <em>bespopovcy</em> ou vieux-croyants sans prêtres et des sectateurs apparus après le <em>Raskol</em>, lui, n’était pas résolu.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>D’ailleurs l’un des visiteurs des Lykov rapporte que « au mot de Nikon, ils crachent et se signent de deux doigts. Ils parlent de Pierre Ier comme de leur ennemi intime » (Peskov, 1992, p. 12), de « celui qui trancha la barbe des chrétiens et s’empuantit de tabac » ou encore d’« antéchrist à visage humain » (<em>ibid</em>., p. 46) ; trois cents ans après la mort du patriarche Nikon, Karp Ossipovič répète en 1982 que « c’est par lui, ce débauché, que tout a commencé » (<em>ibid</em>, p. 58). Comment comprendre en effet que 100 ans après la publication du <em>Sto glav</em> qui réaffirmait les canons de l’Église et la malédiction qui frapperait celui qui ne bénirait pas tel le Christ et ne se signe pas de deux doigts (1551), que moins d’un siècle après <em>L’instruction aux chrétiens orthodoxes relative à l’interdiction de se raser la barbe</em> (1646), Pierre le Grand impose fiscalement le port de cette même barbe ? Lui qui avait aussi décapité le patriarcat afin de créer un Saint-Synode (1721) aux mains de « fonctionnaires » et parfois de laïcs et jeté les vieux-croyants hors de sa capitale [11] ? Les mises à mort de la seconde moitié du XVIIe siècle, la double taxation, les humiliations (à partir de 1722 un oukase prévoit que les vieux-croyants devront porter dans le dos un carré de drap rouge bordé de jaune ; ils ne peuvent posséder des terres, travailler chez un orthodoxe et peuvent se voir confisquer leurs biens à tout moment) et la pression civile grandissante (service militaire, recensement, etc.) du XVIIIe siècle, ont convaincu les plus fermes dans leur Foi de se vouer à l’errance pour sauver tant leur corps que leur âme. D’ailleurs, après avoir donné son assentiment aux <em>gori</em> ou immolations par le feu, Avvakoum avait ensuite encouragé ses fidèles à cacher leur vieille foi à travers les bois et les montagnes pour la protéger. Si certaines familles sont restées en ville, leur présence est comme une ombre sur le manteau du Christ, un reproche dans les yeux du Tsar : même lors de la famine de 1891, lorsqu’une descendante de la dynastie Morozova « dotée de la beauté et d’une grande fortune, avait, demandé qu’on lui permette de distribuer UN MILLION de roubles aux affamés, mais directement, sans passer par les prêtres, ni les fonctionnaires, on ne lui en donna pas l’autorisation » (Leskov, 1986, p. 13). La Vieille Foi, étrangère sur sa propre terre, errait encore Russie.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_e1e5e23478f2496ba010e5576c89b8ab~mv2.jpg\" alt=\"\"/><figcaption class=\"wp-element-caption\">La Boyarine Morozova, Vassili Sourikov, 1887, Galerie Tretiakov</figcaption></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>Ainsi le baron suédois trouva-t-il à Chabarowa, petit village du nord de la Russie européenne, non loin de Pustozersk où avait été exilé l’archiprêtre aux XVIIe siècle et où le 6 octobre 1826 le Samoyède Taseleï Vylkin avait été miraculé sous les yeux de la mission d’Arkhangelsk (1825-1830) [12], une communauté de 9 marchands vieux-croyants et de Samoyèdes vivant en parfaite concorde : « Les Samoyèdes, disent les marchands de Poustozersk, attachent à leurs idoles la même importance que nous à nos images sacrées ; et cela leur semble tout naturel » (Nordenskjöld, 1883, pp. 74-75). Lorsque l’historien soviétique V.I. Malychev se rendit à Poustozersk en 1934, les habitants de la vingtaine de maisons de la paroisse, d’ascendance vieille-croyante, avaient oublié les noms des compagnons d’exil d’Avvakoum, mais gardé dans l’église transformée en musée local une croix de l’archiprêtre. Aujourd’hui la seconde prédiction d’Avvakoum s’est vérifiée : le lieu de son martyr est devenu un « désert » où les herbes folles étouffent en silence les derniers vestiges de l’ancienne cité.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Trois cents ans plus tard, les Lykov n’avaient pas non plus oublié la leçon. « La mère s’en prenait toujours à papa : il faut vivre en ermitage. C’est le salut » confiait Agafia à un interlocuteur (Peskov, 1992, p. 55). Fuir comme l’avait expérimenté Avvakoum à plusieurs reprises. Fuir tout ce qui aliénait le corps et l’âme, « dans le désert ». L’homme fait à l’image de Dieu était mort en Russie. C’est désormais l’empereur qui modelait les hommes. L’empereur usurpateur qui trônait en majesté dans l’Église : comme Nikon avait perdu l’oreille d’Alexis Mikhaïlovitch à partir de 1658, l’Église orthodoxe avait perdu la foi de ses pères pour devenir le bras armé du pouvoir :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« Ce n’est pas la vérité que vous détenez, mais le pouvoir. Et un pouvoir qui vous vient du gouvernement, avec qui vous marchez main dans la main. Vous êtes des ennemis du Christ : vous vous êtes emparés des terres, des gens et de leurs biens. Je m’étonne que vous n’ayez pas songé à nous faire payer l’eau que nous buvons, l’air que nous respirons et la lumière du soleil qui nous éclaire (pp. 49-50). Où trouver ne fût-ce qu’une étincelle de la douceur du Christ dans votre doctrine ? Vous êtes comparable à Caïn &amp; Nabuchodonosor, aux scribes et aux Pharisiens hypocrites qui paraissent justes, mais sont au-dedans d’eux-mêmes comme des tombeaux pleins d’ossements. Les hiérarques ne déplorent-ils pas que les vieux-croyants répandent l’instruction ? Et ne reprochent-ils pas implicitement au gouvernement de ne rien faire contre cet instrument de propagande (p. 111) ? Ce ne sont pas des pasteurs, mais des loups ravisseurs (p. 113). Les magistrats du Synode et du Sénat sont comme les juges qui, selon le prophète Mischée, haïssent le bien et aiment le mal, pervertissent ce qui est droit, arrachent la peau du peuple, brisent ses os et dévorent sa chair (p. 115).</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>Les hiérarques ne persécutent pas les vieux-croyants pour leurs rites, qui leur importent peu, mais parce qu’ils ne se soumettent pas à leur pouvoir (p. 59). Ils les pillent pour qu’ils viennent grossir la foule de leurs fidèles (p. 79). Ce sont des serviteurs de Mammon dans la nouvelle Égypte du nouveau Pharaon, de mauvais pasteurs comme ceux que dénoncent Ezéchiel et Jérémie. Ce ne sont pas des serviteurs de Dieu, mais de la police (p. 91) » [13] .</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>La collusion entre les pouvoirs temporels et spirituels, plus ou moins grande suivant les souverains, aboutirait en définitive à deux oukases (1905-1906) sous Nicolas II accordant la liberté de conscience religieuse et la reconnaissance de nombres de droits pour la communauté des vieux-croyants. Jusqu’à la Révolution, la Vieille Foi dispersée à travers les bois et les monts de la Russie — et plus loin encore puisque 3 000 sans prêtres émigrent aux États-Unis au début du XXe siècle (en Pennsylvanie et dans le Michigan notamment) — connaîtrait son âge d’or. Et lui donnant discrètement raison, le <em>sobor</em> de 1917, premier concile tenu depuis des siècles à la faveur des troubles révolutionnaires, restaure le patriarcat et affirme aussitôt la totale indépendance de l’Église orthodoxe russe face à tout pouvoir politique.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Socio-politique</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Le jardin secret des Lykov est né aussi d’une dissidence sociale, d’une échappée belle face au jeune pouvoir soviétique. Si l’on considère que l’impératrice Elisabeth institue par oukase le nom de <em>raskol’niki</em> (« schismatiques ») en 1745, au détriment de celui de <em>starovery</em> (vieux-croyant) – l’oukase élisabéthain est annulé en 1783, mais un nouvel oukase doit condamner le terme de <em>raskol’nik</em> en 1905 –, que « la plupart des ordonnances sur les vieux-croyants sont restées secrètes jusqu’à leur publication en 1875 par le ministère de l’Intérieur [14] – certains souverains légiférant drastiquement sur le sujet, telles les 495 ordonnances de Nicolas Ier –, le contentieux entre le régime impérial et les communautés de la Vieille Foi pèse lourd dans l’histoire russe. Néanmoins par le maintien de leurs valeurs au fil du temps et la nécessité d’asseoir un statut social toujours menacé, les vieux-croyants ont constitué des dynasties d’artisans et d’industriels largement impliquées dans le développement industriel de la Russie. C’est pourquoi très naturellement nombre de révolutionnaires de la seconde moitié du XIXe siècle (1860) ont cherché un soutien face à l’ennemi commun : l’empereur autocrate. Symboliquement d’ailleurs, c’est la même année, en 1861, que coïncident la publication de <a href=\"https://editions-syrtes.com/produit/vie-de-larchipretre-avvakum-lui-meme/\"><em><span style=\"text-decoration: underline\">La Vie de l’archiprêtre Avvakoum écrite par lui-même</span></em></a> et l’abolition du servage. Nombre de révolutionnaires russes tel Ogarev affirment que « la liberté de la foi est la pierre angulaire de la liberté russe », que c’est de la liberté religieuse que naîtra le salut social (« Lettre au moine », <em>Veče</em>, n° 22, p. 103). La force de cette communauté malmenée par l’histoire, son attachement à la Russie rurale, rendent susceptible une alliance entre la Vieille Foi et la Jeune Révolution. Ainsi en 1896 Lénine [15] reçut-il 50 000 francs or de la part des milieux vieux-croyants tandis que, en 1905, Savva Morozov finançait une fraction du parti social-démocrate ainsi que la publication de la revue <em>Iskra</em> (<em>L’étincelle</em>). Nombre de Bolcheviks sont par ailleurs issue d’une famille de vieux-croyants, tel Kazakov devenu secrétaire de cellule à l’usine <em>Commune de Paris</em> et cité par L. Trotsky dans ses Réflexions post-révolutionnaires (<em>Les questions du mode de vie</em>, 1923) :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« En 1917, je me trouvai pris dans le tourbillon de la Révolution à laquelle je participai. Ma famille me considéra tout d’abord comme un ermite qui a fui sa famille, comme un vaurien, etc. Je me retrouvai à l’armée. De retour de l’armée, je revins au village. Je prenais place à table et ne priais pas. On dit alors à mon père : ‘Comment se fait-il que le fils d’un vieux-croyant s’asseye à table sans faire le signe de la croix ? Le diable va lui entrer par la bouche’. Je commençais alors à manifester ma conscience communiste et à faire de la propagande dans ma famille. Je voulus procéder de même au village pour y faire disparaître les vieux préjugés. Je militais ainsi pendant quelques années. »</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>Dans un premier temps, les sans-prêtres semblent avoir choisi le camp de la Révolution là où les prêtrisants, plus proches du régime impérial, ont souvent choisi de se battre aux côtés des Blancs (des <em>Krestonoscy </em>ou croisés vieux-croyants <em>popovcy</em> servirent en Sibérie l’armée blanche sous les ordres de l’amiral Kolčak lors de la guerre civile de 1919-1921). Mais après ces débuts difficiles, l’Église des prêtrisants appelle, en 1922, ses fidèles à se réconcilier avec le régime bolchévique (Poliakov, 1991, pp. 167-168). De son côté, le jeune pouvoir soviétique appelle à mener une propagande religieuse nuancée suivant les groupes religieux (Plénum du Comité Central du 9 août 1921, Conférence anti-religieuse auprès de l’<em>Agitprop</em> du Comité du PCUS des 27-30 avril 1926) à la fois parce que certaines sectes et parce que l’idéal sectaire, aux yeux des autorités, pouvaient constituer un pont vers le communisme et son homme nouveau, « débarrassé des tares de l’ancien monde ». Lénine était « le messie du XXe siècle » 16, et l’Étoile rouge, celle de Bethléem. Un certain nombre de poètes vieux-croyants ont eux-mêmes symbolisé ce lien possible entre la Vieille Foi et la Jeune Révolution bolchévique grâce à une littérature messianique où Jésus était à la tête des gardes rouges (Blok, <a href=\"https://www.editeurs-reunis.fr/product-page/les-douze-alexandre-blok\"><em><span style=\"text-decoration: underline\">Les douze</span></em></a>) :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_6c7f8f40dfb34866b32d04ad491df3bc~mv2.jpg\" alt=\"\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>« Devant eux, sous le drapeau en sang,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Au-delà du vent, invisible,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Par les balles, intouchable,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le sol à peine effleurant,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>De perles de neige constellé,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>De roses blanches couronné,</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Devant eux : Jésus-Christ. »</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Ainsi Nicolas Kliouev (1887-1937), issu d’une communauté paysanne sans prêtres, et qui avait aspiré dans son poème « Ja byl prekrasen i krylat » à voir son éden céleste connaître un double sur terre, n’hésite-t-il pas à comparer l’esprit révolutionnaire à celui de ses ancêtres vieux-croyants et célèbre la chute de la Troisième Rome ainsi que la malédiction de Saint-Pétersbourg qualifiée de « cité de fer » par un Christ vengeur. De même Serge Essenine (1895-1925), originaire d’une famille aisée de prêtrisants voyait en la révolution bolchévique un Christ collectif qui, en touchant de sa grâce la terre russe, soulevait un Paradis.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Pourtant les choses tourneront court : Kliouev sera jeté en prison lors des grandes purges de la fin des années 1930 et Essenine, porté par le régime, s’y brûlera les ailes — il se suicide en 1925. D’autres, anonymes, retrouvent le réflexe du XVIIe siècle : entre 1932 et 1933, plus de mille moines et nonnes vieux-croyants préfèrent le rituel de la mort volontaire, s’immolant ou se noyant.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le raidissement du pouvoir, nettement perceptible dès la fin des années 1920, est une source de désillusion d’autant plus dure que la NEP adoptée lors du Xe Congrès du Parti (8-16 mars 1921) avait permis au pays de se redynamiser, au monde paysan notamment : saigné par la guerre civile et ses réquisitions, par la brutalité du jeune pouvoir inexpérimenté soucieux de marquer son territoire dans les terres comme dans les esprits, la paysannerie russe joue pleinement le jeu du commerce libre. La population agricole retrouve dès 1926 son niveau de 1913 (Poliakov, 1991, p. 168). Les vieux-croyants qui, de gré ou de force, sont majoritairement ancrés dans la nature russe, attachés au monde traditionnel russe, s’enrichissent avec le succès habituel d’une communauté fondée sur le salut par le travail. De sorte que selon l’historien soviétique Milovidov, « dans les communautés villageoises, le <em>kulak-staroobrjadec</em> était une figure très répandue » (Milovidov, 1979, p. 39). Mais aussitôt sonne le glas de cette figure des campagnes : d’abord le recensement de 1926 jette de nouveau sur les routes russes de l’exil la Vieille Foi, comme le rapporte la revue <em>Antireligioznik </em>à propos des vieux-croyants de Viatka qui allaient de village en village pour échapper au recensement [17] ; puis en 1927 (2-19 décembre), la décision du XVe Congrès du Parti d’abolir la propriété privée et de collectiviser l’agriculture. Si de 1922 à 1923 les orthodoxes officiels avaient été seuls l’objet de l’arbitraire le plus total en vertu du concept de « délit d’opinion » et de la législation d’<em>indésirabilité</em> », ce sont désormais le riche paysan, la classe paysanne et industrieuse, qui ne doivent plus se dresser entre le pouvoir et le peuple ; les prêtres sont d’ailleurs assimilés à ces éléments et rentrer dans le rang et un impôt spécial : leurs épouses sont invitées à divorcer et leurs enfants à les désavouer publiquement. De 1928 à 1930, les églises sont jetées à terre, les populations déportées massivement entre 1934 et 1935, les villages paysans transformés en vastes cimetières [18]. Comme il fallait liquider l’Église (en 1929, le Congrès des athées décidait d’un plan quinquennal de liquidation de la religion) [19], il convenait de « liquider en tant que classe » les paysans indépendants. Faire oublier l’ombre tutélaire de la Croix qui, en Russie, a baptisé le paysan (<em>krest’janin</em>) d’un nom chrétien (<em>xristianin</em>).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le jardin des Lykov découvert en 1978 dans la Russie soviétique a été présenté au public du strict point de vue religieux. Pudiquement, il était dit que les Lykov avaient quitté le village vieux-croyant de Tichi en 1928 (1929 ?), « ils n’étaient pas pauvres ». De même que le schisme du <em>Raskol</em> a coïncidé avec une épidémie de peste, Soljenitsyne parle de « Grande Peste » à propos de la collectivisation : 15 millions d’âmes fauchées dans les plaines rougies de la Russie. Par sa nature même, le jardin des Lykov est aussi la marque en terre russe de la dissidence tant morale qu’économique d’une classe paysanne qui refusa d’entrer dans les kolkhozes.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Identitaire</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Une Russie ni grecque, ni latine, ni asiatique. Dans les critiques adressées à Nikon et à l’empereur Alexis par la Vieille Foi, il transparaît clairement une condamnation des influences occidentales, ou plus encore de la perte d’un héritage. La Foi orthodoxe héritée de Byzance qui a unifié les terres russes et les consciences ne peut être bradée par la germanophilie de Pierre Ier ou la gallomanie de l’impératrice Élisabeth. Les Russes ne veulent pas perdre leur âme. Ainsi les icônes sacrées sont-elles abâtardies par l’esthétique italienne [20] comme le regrette amèrement l’archiprêtre Avvakoum lui-même :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« Voici comment on peint l’image du Sauveur : peau bouffie, lèvres vermeilles, cheveux frisés, bras et muscles épais, doigts gonflés, cuisses semblablement épaisses ; le voilà fait tout comme un Allemand ventru et gras : il ne manque plus que le sabre au côté. Tout cela, c’est peinture d’inspiration charnelle : aussi bien les hérétiques eux-mêmes sont épris d’embonpoint charnel et ont confondu le ciel et la terre. Et la Mère de Dieu, ils la font engrossée dans l’Annonciation, comme les Francs Impies. Et le Christ en croix, tout enflé : il se tient là, grassouillet, le pauvre, les jambes tels des bâtons. Ah malheureux ! Russie, Russie, quelle envie de mœurs et de coutumes étrangères t’as prise. »</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>De même le chant monodique traditionnel ou <em>edinoglasie</em> se heurte bientôt à une nouveauté l’esthétique religieuse occidentale : la polyphonie. Laquelle s’accompagne d’une nouvelle forme de toit pour les églises de la sainte Russie. Paradoxalement, Avvakoum, le « dissident » du XVIIe siècle, est considéré aujourd’hui comme le premier grand prosateur russe grâce à son autobiographie, le défenseur d’une langue populaire dans la liturgie face au slavon qui s’éloigne de plus en plus des fidèles au fil des siècles. En ce sens, il est aussi un « marqueur identitaire ». Lui qui mourra un vendredi saint, en 1682, la même année que celle du couronnement du fils du tsar Alexis, Pierre Ier , chantre de l’ouverture de la Russie aux sirènes de l’Europe occidentale avec la création de sa ville de pierre et son port. Alexandre Soljenitsyne dissident lui-même s’il en fût et apôtre ardent de l’identité russe, regarde l’histoire de son pays avec désolation, dépeint le <em>raskol</em> comme « la plus grande tragédie de l’histoire russe ». Si dénigrée par le pouvoir en Russie, la culture matérielle et spirituelle est une référence pour l’écrivain, comme on le perçoit à la lecture d’<em>Octobre 16</em>. Le personnage de Tcheverdine, avec sa barbe d’un roux foncé, son indépendance infranchissable dans le regard, « qui était, parmi les paysans, de ceux qui en savent long » et l’église de Rogojskoïe [21], « un océan de blancheur, comme emplie d’anges », symbolisent la Russie éternelle, qui sont destinés à demeurer, là où nous passons tous » (Soljenitsyne, 1985, pp. 51-52). Face à « un esprit national trahi, des souverains non-russes, une <em>intelligentsia</em> déracinée, une Église inféodée au séculier » (Nivat, 1997, p. 151), le salut de la Russie pour Soljenitsyne est dans le Nord du pays, « asile immémorial de l’esprit russe », et singulièrement en Sibérie, là où la Vieille Foi n’a pas cédé le terrain, fidèle à la culture russe ancienne et étrangère aux notions calquées sur l’Occident, tel le « progrès ». Ainsi l’empereur Pierre Ier vanté par Voltaire comme « un grand homme en tout genre » (Voltaire, 1731), par Montesquieu comme « le prince qui a voulu tout changer [...] et ne néglige rien pour porter dans l’Europe et l’Asie la gloire de sa nation » (Montesquieu, 1873, p. 129) ou encore par Saint-Simon qui notait que « tout montrait en lui la vaste étendue de ses lumières » (Saint Simon, 1840, p. 138), symbolise-t-il aux yeux de Soljenitsyne « un esprit ordinaire, pour ne pas dire un sauvage » qui piétina « tout à fait à la bolchevique, et en multipliant les excès » l’essence du peuple russe. Un Révolutionnaire avant la lettre dans son souci de détruire, dans sa brutalité à désacraliser l’espace, comme V. Zaroubine lors du 1er congrès des écrivains sibériens en 1926 :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><!-- wp:paragraph -->\n<p>« Que la molle poitrine de la Sibérie soit revêtue de la cuirasse de ciment des villes, armée de la gueule de pierre des cheminées d’usines, corsetée par les lignes de chemin de fer ! Que soit brûlée et abattue la taïga, que soient piétinées les steppes ! Qu’il en soit ainsi et ainsi il en sera ! Inévitablement. Ce n’est que sur le ciment et sur le fer que sera édifiée l’union fraternelle des hommes, la fraternité de fer de toute l’humanité » [22]. »</p>\n<!-- /wp:paragraph --></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>Le jardin des Lykov qui s’écartent, en 1929, pour laisser le monde passer, courir à sa perte, répond au discours enflammé de V. Zaroubine par une simple affirmation de soi. Un jardin, miroir de l’âme où se reflètent selon Soljenitsyne « les réformes stérilisantes de Nikon et de Pierre le Grand », le début de la persécution et de l’écrasement de l’esprit national russe (Nivat, 1997, p. 151).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Conclusion</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Que reste-t-il aujourd’hui des Lykov ? Tous sont partis les uns après les autres comme pour échapper une dernière fois au monde. Découvert, leur jardin n’avait plus de sens. Les cadeaux envoyés depuis tout le pays, y compris l’argent que Karp Ossipovitch a aussitôt rejeté, les visites régulières ont fragilisé l’univers des Lykov : ainsi les médicaments du siècle donnés à Leur sanctuaire découvert, profané, il ne restait que la mort aux Lykov. Un ultime refus courtois face à la dernière tentation. Le plus sûr moyen d’approcher Dieu en somme. Agafia Karpovna, la dernière des Lykov, a déménagé sur l’Erinat, mais sa route croise désormais celle de <em>tour operators</em>, telle cette agence d’Irkoutsk dont le programme de 14 jours pour 865 dollars vante la rencontre avec la femme, objet d’un nouvel engouement.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Si la taïga efface peu à peu l’empreinte du jardin des Lykov, la revue <em>Cerkov’</em> parue de 1908 à 1914 a réapparu à Moscou « sous l’immense pierre brûlante de notre sang, de notre sueur et de nos larmes » [23] imposée par l’histoire russe. On estime à présent le nombre des vieux-croyants à deux ou trois millions en Russie. Mais il existe des communautés de vieux-croyants sans prêtres aux États-Unis, en Argentine, au Brésil, en Uruguay, au Paraguay, en Pologne, en Roumanie, dans les pays baltes et en Australie.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_c09b3afb4e8046dfadaf5c843ab1339b~mv2.jpg\" alt=\"\"/><figcaption class=\"wp-element-caption\">Journal Tajožnyj tupik, Source de l’image : Russia Beyond</figcaption></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>Le jardin des Lykov est une dissidence ; tour à tour la terre pré-Nikonienne, le plus âpre des combats, la meilleure part du peuple russe. Un espace de contre-culture, voire de contre-pouvoir, comme l’ont été les foyers culturels vieux-croyants de Moscou, de Poustozersk et de Solovki[24].</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Il est le symbole de la victoire du réel sur l’utopie. Il n’est ni un refuge, ni une impasse comme le supposait l’édition russe consacrée à la découverte des Lykov (<em>Tajožnyj tupik </em>[25] « L’impasse de la taïga »), mais la vigne du Seigneur[26] qu’il appartient de faire fructifier en soi. En écho, le compositeur Martynov parle, lui, dès la fin des années 1970, d’impasse culturelle de l’Europe de l’Ouest et de son retour évident aux sources du chant russe d’avant le <em>Raskol</em>. [27]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Le jardin des Lykov, symbole de l’errance de l’âme russe en quête de son Créateur, miroir du « saint » passé dans la Russie urbanisée, parasitée et profanée, est devenu le triomphe de la Vieille Foi sur les ténèbres qui s’étaient abattus sur elle. Le Christ ressuscité n’est-il pas devenu jardinier aux yeux de Marie-Madeleine un matin de Pâques (Jean, 20, 15) ? Et la pomme de terre des Lykov, confiée à l’institut de culture de la pomme de terre, a ressuscité aussi à sa façon : « productive, belle, résistante aux maladies » (Peskov, 1992, p. 159), elle s’arrache désormais dans tout le pays. Comme pour conforter le vieux Karp Ossipovitch qui, face au dessin d’un immeuble moscovite de plusieurs étages, s’était écrié : « Seigneur, en voilà une vie, comme abeilles en ruche. Et où sont les jardins ? Comment mange-ton ? » (<em>ibid.</em>, p. 102). En excluant la Création, l’humain a exclu le Créateur et s’est improvisé démiurge. Fruit terrestre et spirituel, le jardin secret des Lykov, vieux-croyants de Sibérie, exhale le parfum de l’âme russe et invite au salut du monde dans une Russie blessée qui redécouvre sa Foi et ses chrétiens « étincelants comme des chandelles[28]. »</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:separator -->\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n<!-- /wp:separator -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_b040c76232fc48d7993a0c54f48e6adf~mv2.png\" alt=\"\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p><strong><em>Dominique Samson Normand de Chambourg</em></strong><em> est maître de conférences à l’INALCO et spécialiste des cultures autochtones de Sibérie occidentale. Depuis 2011, il mène principalement des recherches sur les interactions politiques et religieuses entre le monde russe et les communautés autochtones de Sibérie (sub)arctique - Nénètses, Khanty et Mansis. Outre ses travaux de terrain, il étudie également l’image de la Sibérie, les mouvements locaux indépendantistes, autonomistes et régionalistes ainsi que le récit de voyage Sibérie-Europe.</em></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:separator -->\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n<!-- /wp:separator -->\n\n<!-- wp:heading {\"level\":4} -->\n<h4 class=\"wp-block-heading\">Notes :</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>[1] Voir Ronald Vroon, « The garden in Russian modernism », <em>Revue d’études slaves : Vieux-croyants et sectes du XVIIe siècle à nos jours</em>, Paris, LXIX/1-2, 1997, p. 147.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[2] Dominique Samson Normand de Chambourg, « La guerre perdue des Khantes et des Nénètses des forêts (la soviétisation dans le district Ost’jako-Vogul’sk, 1930-1938) », <em>Études mongoles et sibériennes. Une Russie plurielle. Confins et profondeurs</em>, Paris, Centre d’Études Mongoles &amp; Sibériennes/École Pratique des Hautes Études.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[3] « Dans la langue des Mansi, le mot « jardin » n’existe pas ; les peuples du Nord n’ont jamais planté d’arbres près de leurs maisons. Je me souviens du premier arbre que j’ai planté. Il y a longtemps de cela, et le tout petit plan, qu’avec une amie, j’avais mis en terre est devenu arbre » : <em>Matra Vahruševa, Na beregax Maloj Jukondy</em> [Sur les rives de la petite Jukonda], <em>Proza narodov Krajnego Severa i Dal’nego Vostoka Rossii</em>, M., Severnye Prostory, 2002, p. 60.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[4] Sous le règne du tsar Alexis, la conquête de la Sibérie est presque achevée.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[5] Marie Bashkirtseff, Journal, 26 septembre 1877-21 décembre 1879, L’Age d’Homme, Clamecy, 1999.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[6] L’hôtel de Theodora Morozova accueillit Avvakoum lors de son séjour à Moscou, et de manière générale, servit de « quartier général » aux fidèles de la Vieille Foi. La boïarde Morozova sera finalement emprisonnée après son arrestation immortalisée par le peintre Vassili Sourikov (1848-1926) ; elle mourra de faim en 1675.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[7] Celui-ci sera aboli en 1971.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[8] Apocalypse 13,18.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[9] L’espèce <em>Pinus Sembra</em> est improprement appelée en russe <em>kedr</em>.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[10] Ainsi l’honorable Charles Hamilton de Pain’s Hall, dans le Surrey, alloua-t-il sept cents livres ainsi que « une bible, des lunettes, un paillasson, un agenouilloir, un sablier, de l’eau et de la nourriture du domaine » à l’ermite qui, sept années durant, devrait porter une robe en camelot, ne jamais, sous aucun prétexte, couper ses cheveux, sa barbe ou ses ongles, sortir de la propriété de M. Hamilton, ni échanger un mot avec les serviteurs » ; l’ermite recruté déserta son poste au bout de trois semaines. De même, un gentilhomme du Lancashire offrit cinquante livres à vie pour tout ermite prêt à vivre sept années sous terre, coupé des hommes ; l’ermite ornemental résista quatre ans à l’ascèse. Sans parler de lord Rokeby, qui partageait à son insu avec les vieux-croyants, le culte de la barbe et « une particulière aversion pour l’Église ». Cf Edith Sitwell, Les excentriques anglais, Paris, Le Promeneur, pp. 34-44.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[11] Un ordre synodal de 1732 spécifiait que tout vieux-croyant trouvé à Saint-Pétersbourg serait exilé pour être mis aux fers et au travail.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[12] Dominique Samson Normand de Chambourg, « Quand la Foi déplaçait des montagnes : l’épopée des missions orthodoxes en Eurasie septentrionale », Colloque international Convertir/Se convertir (9-10 janvier 2004), Université de Versailles-Saint-Quentin-en-Yvelines.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[13] Ces extraits sont issues de lettres signées Staroobrjadec et parues dans la revue Veče du 15 juillet 1862 au 15 juillet 1864. Cf. Michel Mervaud, « Herzen, Ogarev et les vieuxcroyants »,<em> Revue des Études slaves. Vieux-croyants et sectes russes du XVIIe siècle à nos jours</em>, tome LXIX, fascicule 1-2, 1997, pp. 129-130.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[14] Voir <em>Sobranie postanovleniï po časti raskola</em>, St Petersbourg, 1875.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[15] Les Chrétiens Léninistes ont tenté de se faire enregistrer à Volgograd et veulent jouer un rôle politique. Présente dans plusieurs villes russes, la secte professe que Lénine constituerait « la seconde moitié du Christ » : voir Zinovieff, 2000.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[16] Il y a peu,<em> La pensée russe</em> évoquait la tentative d’enregistrements de Chrétiens léninistes (Lénine formant la seconde moitié du Christ) auprès des autorités dans quelques villes du pays et leur aspiration à jouer un rôle politique : voir Zinovieff, 2000, p. 5.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[17] Une attitude moins radicale que celle de certains vieux-croyants qui, en 1897, s’étaient emmurés vivants pour se soustraire aux questions « dictées par l’Antéchrist »</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[18] Evgenij Evtušenko, <em>Les baies sauvages de Sibérie (Jagodnye mesta)</em>, Paris, 1981, pp. 95- 96.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[19] À quelques modifications près en 1975, cette législation demeurerait en vigueur jusqu’en 1989.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[20] Simeon Ušakov est le modèle de cette peinture occidentale.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[21] Centre moscovite de la Vieille Foi acquis en 1771 après l’épidémie de peste, célèbre pour son cimetière et sa cathédrale de l’Intercession (1790-1792), rendue aux vieux-croyants après la perestroïka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[22] Laurent Migairou, « Campagnes perdues, villes impossibles », <em>Quelle Russie ? Les racines et les rêves d’une société dépaysée</em>, Paris, Éditions Autrement, série Monde, n° 67- 68, 1993, p. 114.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[23] Nikolaj Engver, « Ce qu’il y a sous la pierre » (à paraître).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[24] Fondé sur une île de la Mer Blanche au XVe siècle, le monastère des Solovki devient un bastion de la Vieille Foi avant de tomber sous l’assaut des autorités. À l’époque soviétique, l’île es transformée en camp du Goulag. Aujourd’hui, l’Église officielle se réapproprie les lieux et leur histoire : en juillet 2004 était présenté à Moscou par son auteur, l’archevêque Jean, <em>Les Solovki, un second Golgotha</em>, où « à la sous-culture reposant sur l’avilissement, la peur et la violence » répond « un authentique martyr du christianisme, emprunt de spiritualité, de don de soi, d’une dignité et d’un amour intacts » : « Solovki, istorija khristianskogo mučeničestva »,<em> Pravda</em>, 06. 08. 2004.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[25] Василий Песков, « Таежный тупик », Москва, Молодая Гвардия, 1990.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[26] Allusion de ma part à Simeon Denisov, auteur des célèbres <em>Histoire des pères et martyrs des Solovki</em> (1720) et de <em>Vigne de Russie</em> (1730-1733).</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[27] <em>Glaübiges Mütterchen Russland</em>, Reiner Moritz Associates Limited, 2001. 28 Référence à une vieille chanson russe opposant le christianisme des plaines de Russie aux « Tatars, noirs comme du charbon ».</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>[28] Référence à une vieille chanson russe opposant le christianisme des plaines de Russie aux « Tatars, noirs comme du charbon ».</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:separator -->\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n<!-- /wp:separator -->\n\n<!-- wp:paragraph -->\n<p><strong><em>Dominique Samson Normand de Chambourg</em></strong><em> est maître de conférences à l’INALCO et spécialiste des cultures autochtones de Sibérie occidentale. Depuis 2011, il</em> <em>mène principalement des recherches sur les interactions politiques et religieuses entre le monde russe et les communautés autochtones de Sibérie (sub)arctique - Nénètses, Khanty et Mansis. Outre ses travaux de terrain, il étudie également l’image de la Sibérie, les mouvements locaux indépendantistes, autonomistes et régionalistes ainsi que le récit de voyage Sibérie-Europe.</em></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:separator -->\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n<!-- /wp:separator -->\n\n<!-- wp:paragraph -->\n<p><em>Dominique Samson Normand de Chambourg. ”Du jardin secret des Lykov, vieux-croyants de Sibérie”. Le Jardin : figures et métamorphoses, 2004, Versailles - Saint-Quentin-en-Yvelines, France. ffhalshs03087454</em></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Publié dans :</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Le jardin: figures et métamorphoses</em></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Textes réunis par A.-M. Brenot et B. Cottret, Editions universitaires de Dijon, 2005,p.191-204</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"sizeSlug\":\"large\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://static.wixstatic.com/media/26fb71_5364313f25ab434aa0c3d9b4267ff862~mv2.jpg\" alt=\"\"/></figure>\n<!-- /wp:image -->",
   "images": [
@@ -416,7 +436,9 @@
    "старообрядчество",
    "Paysages russes au temps de Tolstoï"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "essai",
+  "langues": "fr"
  },
  {
   "wix_slug": "à-la-recherche-de-notre-patrimoine-historique",
@@ -464,7 +486,9 @@
    "patrimoine",
    "projet archives"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "essai",
+  "langues": "fr"
  },
  {
   "wix_slug": "publier-le-faire-le-dire",
@@ -504,7 +528,9 @@
    "féminisme",
    "manuscrits"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "essai",
+  "langues": "fr"
  },
  {
   "wix_slug": "la-traductrice-laure-troubetzkoy-parle-du-recueil-la-fuite-pièces-et-nouvelles-de-mikhaïl-boulgakov",
@@ -540,7 +566,9 @@
    "traductrice",
    "YMCA-Press"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "entretien",
+  "langues": "fr"
  },
  {
   "wix_slug": "a-propos-de-l-attribution-du-prix-nobel-2022-à-ales-bialiatski-à-memorial-et-au-clc",
@@ -573,12 +601,14 @@
    "Biélorussie",
    "droits de l’homme"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr ru"
  },
  {
   "wix_slug": "35-années-plus-tard",
   "slug": "35-années-plus-tard",
-  "titre": "« 35 années plus tard » par Nikita Struve",
+  "titre": "« 35 années plus tard »",
   "date": "2022-06-28 16:54:56",
   "signature": "Nikita Struve",
   "extrait": "Article écrit à l’occasion des soixante-dix ans de la maison d’édition YMCA-Press en 1990. Lorsque, en 1955, A.B. Kartachev publiait un article dans « Le Messager de l’ACER »",
@@ -615,7 +645,9 @@
    "Vestnik",
    "Kartachev"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "archive",
+  "langues": "fr"
  },
  {
   "wix_slug": "pavel-florensky-par-le-père-alexandre-men",
@@ -651,7 +683,9 @@
    "Solovki",
    "Goulag"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "archive",
+  "langues": "fr"
  },
  {
   "wix_slug": "dostoïevski-et-la-logique-est-ce-compatible",
@@ -683,7 +717,9 @@
    "logique",
    "critique"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "lénine-a-marché-sur-la-lune-la-folle-histoire-des-cosmistes-russes-de-michel-eltchaninoff",
@@ -719,7 +755,9 @@
    "immortalité",
    "Troisième Rome"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "à-propos-de-l-invasion-de-l-ukraine-par-la-fédération-de-russie",
@@ -748,7 +786,9 @@
    "communiqué",
    "2022"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr"
  },
  {
   "wix_slug": "boulgakov-et-monsieur-de-molière",
@@ -782,7 +822,9 @@
    "biographie",
    "quatre-centième anniversaire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "à-propos-de-la-dissolution-de-l-association-memorial-en-russie",
@@ -809,7 +851,9 @@
    "mémoire",
    "droits de l’homme"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr ru"
  },
  {
   "wix_slug": "hommage-aux-derniers-regards-de-madeleine-melot",
@@ -845,7 +889,9 @@
    "communisme",
    "mémoire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "billet-n-16-holderlin",
@@ -881,7 +927,9 @@
    "Kolyma",
    "romantisme allemand"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "souvenirs-presentation-colloque-soljenitsyne-france",
@@ -920,7 +968,9 @@
    "Fayard",
    "soirée"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "prose-et-poésie-ivan-bounine",
@@ -955,12 +1005,14 @@
    "YMCA-Press",
    "prix Nobel"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "critique",
+  "langues": "fr"
  },
  {
   "wix_slug": "billet-n-15-à-propos-d-heidegger-de-georges-nivat",
   "slug": "billet-n-15-à-propos-d-heidegger-de-georges-nivat",
-  "titre": "Billet n°15, à propos de Heidegger, de Georges Nivat",
+  "titre": "Billet n°15, à propos de Heidegger",
   "date": "2021-06-30 10:46:38",
   "signature": "Georges Nivat",
   "extrait": "En France viennent de paraître les Cahiers noirs du philosophe allemand Martin Heidegger (1889- 1970), ils sont écrits à une période critique de l’Europe et de l’Allemagne, où Molotov et Ribbentrop signent le traité d’amitié entre l’Allemagne nationale-socialiste et l’Union soviétique socialiste. On découvre quelques pensées étonnantes sur ce que pourrait être une réunion « historiale » des deux races…",
@@ -990,7 +1042,9 @@
    "pacte germano-soviétique",
    "philosophie allemande"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "rives-volga-rivages-mer-jaune",
@@ -1028,7 +1082,9 @@
    "souvenirs",
    "mémoires familiaux"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "recit",
+  "langues": "fr"
  },
  {
   "wix_slug": "les-secrets-de-la-maison-igoumnov-episode-4-l-installation",
@@ -1059,7 +1115,9 @@
    "résidence de l’ambassadeur",
    "Robert Coulondre"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "sacrement-foi-vie",
@@ -1092,7 +1150,9 @@
    "Covid",
    "hôpital"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "recit",
+  "langues": "fr"
  },
  {
   "wix_slug": "rencontres-avec-akhmatova",
@@ -1130,7 +1190,9 @@
    "étudiants",
    "rencontre"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "recit",
+  "langues": "fr"
  },
  {
   "wix_slug": "nicolas-kichilov",
@@ -1166,12 +1228,14 @@
    "Sorbonne",
    "in memoriam"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "recit",
+  "langues": "fr"
  },
  {
   "wix_slug": "vers-angeliques-nabokov",
   "slug": "vers-angeliques-nabokov",
-  "titre": "« Vers angéliques » de Vladimir Nabokov, par Georges Nivat",
+  "titre": "« Vers angéliques » de Vladimir Nabokov",
   "date": "2020-12-25 17:53:02",
   "signature": "Georges Nivat",
   "extrait": "Dans toutes les religions du Livre, on trouve les anges, ces messagers entre Dieu et les hommes, en particulier les Anges-Gardiens.",
@@ -1198,7 +1262,9 @@
    "anges gardiens",
    "Fra Angelico"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "ambiguites-fr-face-dissidence-2-2",
@@ -1235,12 +1301,14 @@
    "Le Monde",
    "intellectuels français"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "ambiguites-face-dissidence-soviétique-1",
   "slug": "ambiguites-face-dissidence-soviétique-1",
-  "titre": "Les ambiguïtés françaises face à la dissidence soviétique, par Cécile Vaissié (1/2)",
+  "titre": "Les ambiguïtés françaises face à la dissidence soviétique (1/2)",
   "date": "2020-12-14 18:12:07",
   "signature": "Cécile Vaissié",
   "extrait": "Les ambiguïtés françaises face à la dissidence soviétique : les chèvres, les choux et les canards sauvages.",
@@ -1274,7 +1342,9 @@
    "Le Monde",
    "intellectuels français"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "maison-igoumnov-collectivisme-sang",
@@ -1307,12 +1377,14 @@
    "transfusion",
    "1926"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "la-nuit-alexandre-blok",
   "slug": "la-nuit-alexandre-blok",
-  "titre": "La nuit d’Alexandre Blok, par Georges Nivat",
+  "titre": "La nuit d’Alexandre Blok",
   "date": "2020-11-27 10:30:10",
   "signature": "Georges Nivat",
   "extrait": "Georges Nivat lit un poème de « Danse macabre » (1912), exemple du lyrisme presque absolu d’Alexandre Blok.",
@@ -1343,7 +1415,9 @@
    "réverbère",
    "pharmacie"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "goulag-ludmila-2",
@@ -1376,7 +1450,9 @@
    "mère de famille",
    "dix ans de goulag"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "dix-ans-goulag-ludmila-1",
@@ -1409,12 +1485,14 @@
    "mère de famille",
    "dix ans de goulag"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "le-journal-de-la-roue-rouge-par-françoise-lesourd",
   "slug": "le-journal-de-la-roue-rouge-par-françoise-lesourd",
-  "titre": "Le Journal de la Roue Rouge, par Françoise Lesourd",
+  "titre": "Le Journal de la Roue Rouge",
   "date": "2020-11-09 19:29:14",
   "signature": "Françoise Lesourd",
   "extrait": "Françoise Lesourd, traductrice du Journal de La Roue rouge d’Alexandre Soljénitsyne (Fayard, 2018), revient sur cette chronique de l’écriture d’une œuvre colossale.",
@@ -1446,12 +1524,14 @@
    "écriture",
    "révolution de 1917"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "essai",
+  "langues": "fr"
  },
  {
   "wix_slug": "mandelstam-voronej",
   "slug": "mandelstam-voronej",
-  "titre": "Mandelstam à Voronej : « Je mange de l’air mort », par Georges Nivat",
+  "titre": "Mandelstam à Voronej : « Je mange de l’air mort »",
   "date": "2020-11-03 10:00:21",
   "signature": "Georges Nivat",
   "extrait": "Billet de Georges Nivat. Ce poème d’Ossip Mandelstam écrit à Voronej fin janvier 1937, pendant son second exil, dit, avec une force fulgurante, la déréliction du monde. L’année suivante, ce sera pour le poète l’arrestation, le transfert à l’autre bout du pays, la mort dans un camp de transit.",
@@ -1482,7 +1562,9 @@
    "Cahiers de Voronej",
    "1937"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "secrets-maison-igoumnov-2-cerveau-lénine",
@@ -1517,7 +1599,9 @@
    "cerveau de Lénine",
    "institut du cerveau"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "secrets-maison-igoumnov-1-femme-emmurée",
@@ -1548,12 +1632,14 @@
    "femme emmurée",
    "légende"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "justes-de-camus",
   "slug": "justes-de-camus",
-  "titre": "« Un épilogue des « Justes » de Camus ? » par Yves Hamant",
+  "titre": "« Un épilogue des « Justes » de Camus ? »",
   "date": "2020-09-29 16:42:42",
   "signature": "Yves Hamant",
   "extrait": "En marge de la commémoration du 40e anniversaire de la mort d’Albert Camus, Yves Hamant revient sur sa pièce « Les justes » et ses sources.",
@@ -1586,12 +1672,14 @@
    "Organisation de combat",
    "Natalia Klimova"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "quasi-una-fantasia",
   "slug": "quasi-una-fantasia",
-  "titre": "« Quasi una fantasia » par Georges Nivat",
+  "titre": "« Quasi una fantasia »",
   "date": "2020-09-25 09:00:28",
   "signature": "Georges Nivat",
   "extrait": "Quasi una fantasia, ce titre de la sonate N°14 de Beethoven, dite aussi « sonate au clair de lune » a beaucoup fait rêver.",
@@ -1621,12 +1709,14 @@
    "Quasi una fantasia",
    "gentilhommières"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "30-anniversaire-assassinat-père-men",
   "slug": "30-anniversaire-assassinat-père-men",
-  "titre": "« Pour le 30e anniversaire de l’assassinat du père Alexandre Men » par Yves Hamant",
+  "titre": "« Pour le 30e anniversaire de l’assassinat du père Alexandre Men »",
   "date": "2020-09-09 13:00:23",
   "signature": "Yves Hamant",
   "extrait": "On commémore en ce moment en Russie le 30e anniversaire de l’assassinat du père Alexandre Men, prêtre atypique de l’Eglise orthodoxe russe dont la plus grande partie du ministère s’est exercée dans une semi-clandestinité. Sa personnalité a émergé publiquement quelques années avant sa mort à la faveur de la perestroïka en suscitant des controverses qui commencent à s’apaiser et révèlent les intuitions d’un pasteur pour les temps de sécularisation.",
@@ -1655,12 +1745,14 @@
    "prêtre",
    "semi-clandestinité"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "brodski-moscou",
   "slug": "brodski-moscou",
-  "titre": "Quand un poème de Brodski entre au prétoire à Moscou, par Georges Nivat",
+  "titre": "Quand un poème de Brodski entre au prétoire à Moscou",
   "date": "2020-06-26 09:00:06",
   "signature": "Georges Nivat",
   "extrait": "En décembre 1969, Joseph Brodski écrit « La fin d’une belle époque », un poème sibyllin publié à Paris dans la revue Kontinent en 1974. Georges Nivat raconte comment il est entré au prétoire, à Moscou.",
@@ -1689,12 +1781,14 @@
    "procès",
    "Kontinent"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "poesie-de-brodski",
   "slug": "poesie-de-brodski",
-  "titre": "Dans les plis du marbre : la poésie de Brodski, par Georges Nivat",
+  "titre": "Dans les plis du marbre : la poésie de Brodski",
   "date": "2020-06-19 09:00:07",
   "signature": "Georges Nivat",
   "extrait": "Iosif Brodski (1940-1986) est né dans une île, mort dans une autre, enterré dans une troisième (respectivement à Leningrad, Manhattan et San Michele, le cimetière marin de Venise). Le poète est unnomade, aimait-il à dire, non qu’il soit un apatride, mais il a une patrie qu’il peut emporter comme un dieu lare : la langue, sa langue. La poésie de Brodski, ciselée avec virtuosité, et froissée comme un péplos de marbre, allie une familiarité parfois scabreuse avec la grandeur de Caton ou de Sénèque. Cependant qu’on entend un pick-up abandonné sur la plage, jouer du Ray Charles…",
@@ -1726,12 +1820,14 @@
    "exil",
    "prix Nobel"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "paques-en-urss",
   "slug": "paques-en-urss",
-  "titre": "Pâques en URSS, par Yves Hamant",
+  "titre": "Pâques en URSS",
   "date": "2020-06-16 08:14:27",
   "signature": "Yves Hamant",
   "extrait": "Dans un billet précédent, j’ai raconté ma première Pâque russe en 1968. Puis je suis revenu en URSS avec ma famille en 1974, cette fois à l’ambassade de France, pour quelques années. Ma femme, Suissesse, également russisante, avait elle-même déjà séjourné auparavant pendant trois ans à Moscou.",
@@ -1758,7 +1854,9 @@
    "ambassade de France",
    "églises"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "joie-dostoïevski",
@@ -1794,7 +1892,9 @@
    "Hymne à la joie",
    "anéantissement"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "anniversaire-brodsky",
@@ -1825,12 +1925,14 @@
    "souvenirs",
    "80e anniversaire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "jivago-talisman-vie",
   "slug": "jivago-talisman-vie",
-  "titre": "« Jivago ou le talisman de la Vie » par Georges Nivat",
+  "titre": "« Jivago ou le talisman de la Vie »",
   "date": "2020-06-05 09:00:04",
   "signature": "Georges Nivat",
   "extrait": "Billet de Georges Nivat. Le même psaume-talisman trouvé au cou d’un partisan rouge de la milice des bois, où le docteur Jivago, prisonnier, soigne et opère malades et blessés, et sur un très jeune garde blanc que le docteur croit avoir lui-même tué, implore le Très-Haut de préserver le Vivant des pièges.",
@@ -1860,7 +1962,9 @@
    "psaume",
    "talisman"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "soixante-ans-pasternak",
@@ -1899,7 +2003,9 @@
    "mort de Pasternak",
    "anniversaire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "cromwell-lenine",
@@ -1936,12 +2042,14 @@
    "homme nouveau",
    "révolution"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "poetes-puritains-apocalypse-et-pouchkine",
   "slug": "poetes-puritains-apocalypse-et-pouchkine",
-  "titre": "« Les grands poètes puritains anglais, l’Apocalypse, et Pouchkine », par Georges Nivat",
+  "titre": "« Les grands poètes puritains anglais, l’Apocalypse, et Pouchkine »",
   "date": "2020-05-22 01:51:27",
   "signature": "Georges Nivat",
   "extrait": "Par Georges Nivat : Milton et Bunyan, deux grands poètes puritains anglais du 17ème siècle, de l’époque où l’Angleterre décapita son roi, et se donna Cromwell pour Lord Protecteur de sa nouvelle République ont fortement intéressé Pouchkine. Un an avant sa mort, il traduit The Pilgrim’s Progress de Bunyan.",
@@ -1972,7 +2080,9 @@
    "The Pilgrim’s Progress",
    "Cromwell"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "fellowship",
@@ -2008,12 +2118,14 @@
    "ACER",
    "souvenirs"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "ideologiser-soljenitsyne",
   "slug": "ideologiser-soljenitsyne",
-  "titre": "« Gardons-nous d’“idéologiser” Soljenitsyne » par Yves Hamant",
+  "titre": "« Gardons-nous d’“idéologiser” Soljenitsyne »",
   "date": "2020-05-18 20:54:53",
   "signature": "Yves Hamant",
   "extrait": "Dans une tribune au « Monde » Yves Hamant, le premier traducteur de « L’Archipel du goulag », met en garde contre la tentation de réduire l’écrivain russe à son discours d’Harvard de 1978.",
@@ -2043,12 +2155,14 @@
    "L’Archipel du Goulag",
    "tribune"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "ton-nom-rouss",
   "slug": "ton-nom-rouss",
-  "titre": "Mais enfin, d’où vient ton nom, « Rouss » ? par Georges Nivat",
+  "titre": "Mais enfin, d’où vient ton nom, « Rouss » ?",
   "date": "2020-05-15 09:00:04",
   "signature": "Georges Nivat",
   "extrait": "Par Georges Nivat : Le mot Russie, en russe médiéval Rouss, ou Rhôs n’est pas slave - il fut apporté par les guerriers vikings (Varègues) invités à Novgorod en 862 ; rapidement ils se slavisent, effectuent des raids contre Byzance, puis signent avec elle des traités, et fondent le royaume de Kiev.",
@@ -2076,7 +2190,9 @@
    "Byzance",
    "étymologie"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "dialogue-avec-georges-nivat-à-l-occasion-de-son-85ème-anniversaire",
@@ -2105,12 +2221,14 @@
    "Université de Genève",
    "rencontre"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "entretien",
+  "langues": "fr"
  },
  {
   "wix_slug": "musique-nuit-gueorgui-ivanov",
   "slug": "musique-nuit-gueorgui-ivanov",
-  "titre": "« Musique et nuit chez le poète Gueorgui Ivanov », par Georges Nivat",
+  "titre": "« Musique et nuit chez le poète Gueorgui Ivanov »",
   "date": "2020-05-08 08:00:05",
   "signature": "Georges Nivat",
   "extrait": "Gueorgui Ivanov, poète prodige, esprit caustique, chantre du noir et blanc, reprend ici l’interminable procès de la Russie entamé par le philosophe-hussard Tchaadaïev, auteur des Lettres philosophiques. Dans Embarquement pour Cythère, deuxième recueil à porter ce titre, Ivanov, applique à la Russie la poétique noire et sacrilège de Baudelaire.",
@@ -2139,12 +2257,14 @@
    "Lettres philosophiques",
    "Baudelaire"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "visite-a-nikita-struve",
   "slug": "visite-a-nikita-struve",
-  "titre": "« Une visite à N.A. Struve » de Svetlana Nosova",
+  "titre": "« Une visite à N.A. Struve »",
   "date": "2020-05-07 16:55:30",
   "signature": "Svetlana Nosova",
   "extrait": "À l’occasion du quatrième anniversaire du rappel à Dieu de Nikita Struve, nous publions le très beau récit qu’a fait Svetlana Nossova, poétesse russe, de sa visite à Villebon sur Yvette, lieu de vie de l’ancien directeur des éditions YMCA-Press et professeur agrégé de littérature russe à Paris-Nanterre.",
@@ -2174,7 +2294,9 @@
    "souvenirs",
    "visite"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "recit",
+  "langues": "fr"
  },
  {
   "wix_slug": "ma-première-pâque-russe",
@@ -2208,12 +2330,14 @@
    "étudiants",
    "URSS"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "langue-maternelle",
   "slug": "langue-maternelle",
-  "titre": "« Langue maternelle » par Georges Nivat",
+  "titre": "« Langue maternelle »",
   "date": "2020-05-01 10:01:24",
   "signature": "Georges Nivat",
   "extrait": "La langue maternelle que l’émigré emporte avec soi est un festin dont on est chassé. Et d’où l’on emporte les « restes », en se cachant. La poésie d’Olga Ansteï est plus qu’un reste, mais économise la langue, et nous offre des gemmes taillées avec art, oubliées.",
@@ -2239,7 +2363,9 @@
    "langue maternelle",
    "exil"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "yeschoua-boulgakov",
@@ -2278,7 +2404,9 @@
    "Pâques",
    "Cœur de chien"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "la-guerre-silencieuse-contre-le-virus-me-rappelle-une-romance-de-boulat-okoudjava",
@@ -2313,7 +2441,9 @@
    "Covid",
    "confinement"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "chronique",
+  "langues": "fr"
  },
  {
   "wix_slug": "nouveauté-anthologie-de-la-poésie-russe-du-début-du-xxie-siècle",
@@ -2344,7 +2474,9 @@
    "YMCA-Press",
    "nouveauté"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr"
  },
  {
   "wix_slug": "mai-2019-chroniques-cannoises",
@@ -2378,6 +2510,8 @@
    "entretiens",
    "YMCA-Press"
   ],
-  "relu": true
+  "relu": true,
+  "genre": "document",
+  "langues": "fr"
  }
 ]
