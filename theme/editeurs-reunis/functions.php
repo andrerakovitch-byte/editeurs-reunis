@@ -28,7 +28,9 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 		$version = wp_get_theme()->get( 'Version' );
-		wp_enqueue_style( 'editeurs-reunis', get_stylesheet_uri(), array(), $version );
+		// La date de la feuille de style dans son adresse : un navigateur ne garde jamais l'ancienne après un déploiement,
+		// même quand on oublie de changer le numéro de version.
+		wp_enqueue_style( 'editeurs-reunis', get_stylesheet_uri(), array(), $version . '.' . filemtime( get_stylesheet_directory() . '/style.css' ) );
 		wp_enqueue_script(
 			'editeurs-reunis-menu-librairie',
 			get_theme_file_uri( 'assets/js/menu-librairie.js' ),
