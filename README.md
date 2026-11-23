@@ -175,6 +175,20 @@ en français.
 Après un changement de texte dans le thème ou l'extension : refaire les deux `.pot` (la commande est en tête de
 `outils/traductions.py`), ajouter les traductions au script, le relancer.
 
+## Le catalogue de la boutique Wix
+
+`outils/catalogue/convertir.py` convertit l'export des produits de Wix (Catalogue → Produits → Exporter,
+`catalog_products.csv`) en un fichier pour l'importateur de WooCommerce (Produits → Importer) : le titre et les
+auteurs tirés du nom (« Titre - Auteur »), le traducteur, l'éditeur, la collection et l'année tirés des premières
+lignes de la description quand elles sont nettes, les rayons, la langue et les mentions tirés des catégories et des
+rubans, les couvertures par leur adresse chez Wix, le poids en grammes ; jamais le prix d'achat. Chaque livre a pour
+référence `WIX-` et le début de son identifiant Wix : réimporter avec « Mettre à jour les produits existants » met à
+jour le prix et le stock sans doublon. Les colonnes Auteurs, Langues, Rayons, Mentions et Slug sont lues par
+l'extension (`inc/import.php`) ; un livre d'exemple de `semer.php` est remplacé par son équivalent Wix. La conversion
+écrit aussi `a-revoir.md` (titres douteux, livres sans rayon, graphies réunies) et `echantillon.md`.
+
+Le fichier de Wix et le fichier converti ne vont jamais dans ce dépôt, qui est public.
+
 ## Déployer chez Kinsta
 
 Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui

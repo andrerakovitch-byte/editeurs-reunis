@@ -1,0 +1,5 @@
+# Les fichiers du catalogue Wix ne vont jamais dans ce dépôt public.
+catalog_products*.csv
+import-woocommerce*.csv
+a-revoir.md
+echantillon.md

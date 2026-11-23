@@ -19,6 +19,7 @@ add_action(
 );
 
 require __DIR__ . '/inc/recherche.php';
+require __DIR__ . '/inc/import.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *
