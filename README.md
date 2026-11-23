@@ -331,6 +331,40 @@ Tant que les variables ne sont pas posées, le déploiement ne fait rien. La bê
 (`blog_public` à 0) : le jour de la mise en ligne, Réglages → Lecture, décocher « Demander aux moteurs de recherche
 de ne pas indexer ce site ».
 
+## Travailler à deux
+
+Depuis le 23 nov. 2026, deux conversations de Claude développent le site en même temps, chacune dans son propre
+espace de travail : elles ne se voient pas et se retrouvent sur `main`.
+
+- **Le centre culturel** : les rencontres et leur billetterie, le journal, les vidéos et les podcasts, les fiches
+  d'auteurs, les sujets et les étiquettes (`inc/evenements.php`, `medias.php`, `sujets.php`, `auteurs.php`,
+  `journal.php`, leurs gabarits, `outils/wix/`, la branche `wix-pages`).
+- **La boutique** : le catalogue et son import (`outils/catalogue/`, `inc/import.php`, `fiche.php`,
+  `couvertures.php`), le paiement (Stripe, Apple Pay, Google Pay), la livraison, Polylang, puis Algolia
+  (`inc/recherche.php` passe alors de son côté : le centre lui signale ce qu'il ajoute à l'index).
+
+Les fichiers communs, que presque chaque changement touche :
+
+- **Toujours** `git pull --rebase` avant de pousser ; des commits petits et fréquents ; jamais de force-push sur
+  `main`.
+- **Les archives** `apercu/*.zip` ne se fusionnent pas : en cas de conflit, `sh outils/construire.sh` après le
+  rebase, puis `git add apercu && git rebase --continue`. Les refaire à chaque changement du thème ou de
+  l'extension.
+- **Les traductions** : chacun ajoute ses textes dans `outils/traductions.py` (un conflit s'y règle ligne à ligne) ;
+  les `.pot`, `.po` et `.l10n.php` ne se fusionnent pas non plus, on relance le script.
+- **`style.css`** : chacun écrit dans ses propres sections ; pour le numéro de version, en cas de conflit, le plus
+  grand des deux plus un. De même pour la version de l'extension (`er-librairie.php`), où chacun ajoute ses
+  `require` sans retirer ceux de l'autre.
+- **`functions.php`** et **ce README** : une section par sujet, sans réécrire celles de l'autre.
+- **Kinsta** : les passages du workflow « Déployer chez Kinsta » se mettent en file (`concurrency: kinsta`), deux
+  poussées rapprochées ne se gênent pas. Un passage à la main se lance par l'API REST de GitHub
+  (`gh api -X POST repos/andrerakovitch-byte/editeurs-reunis/actions/workflows/kinsta.yml/dispatches -f ref=main
+  -f "inputs[er]=…"`) : `gh workflow run` passe par GraphQL, qui n'est pas ouvert à ces conversations.
+
+La copie locale de WordPress (avec SQLite) n'est pas dans le dépôt : chacune monte la sienne. La bêta, Kinsta et Wix
+ne sont pas joignables depuis l'espace de travail de Claude : on y agit par le workflow, et on voit ce que sert le
+site dans le rapport qu'il dépose.
+
 ## Installer sur l'hébergement définitif
 
 1. Installer WordPress en français, puis WooCommerce ; ajouter le russe et l'anglais (Royaume-Uni) dans Réglages →
