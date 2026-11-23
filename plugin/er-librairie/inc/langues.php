@@ -78,7 +78,18 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					return isset( $modele->languages ) && method_exists( $modele->languages, 'get' ) ? $modele->languages->get( $slug ) : $modele->get_language( $slug );
 				};
 				foreach ( er_langues_polylang() as $langue ) {
-					if ( $existe( $langue['slug'] ) ) {
+					$deja = $existe( $langue['slug'] );
+					if ( $deja ) {
+						// Une langue créée à la main (l'assistant de Polylang) : on lui rend sa place dans le sélecteur.
+						if ( (int) $deja->term_group !== $langue['term_group'] && isset( $modele->languages ) && method_exists( $modele->languages, 'update' ) ) {
+							$modele->languages->update(
+								array(
+									'lang_id'    => $deja->term_id,
+									'term_group' => $langue['term_group'],
+								)
+							);
+							WP_CLI::log( 'Ordre rétabli : ' . $deja->name );
+						}
 						continue;
 					}
 					$ajouter  = function ( $l ) use ( $modele ) {
