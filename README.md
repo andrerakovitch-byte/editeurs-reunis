@@ -287,6 +287,24 @@ en français.
   français (`er_lien( 'ymca-press/histoire/' )`, `er_livre(…)`, `er_rayon(…)`, `er_mention(…)`) : avec Polylang,
   ces fonctions rendent l'adresse de la traduction dans la langue de la page.
 
+**Mettre Polylang en place** (la bêta, puis l'hébergement définitif) :
+
+1. Extensions → Ajouter → Téléverser : Polylang Pro, puis Polylang for WooCommerce (les archives achetées chez WP
+   Syntex ; payantes, elles ne vont jamais dans ce dépôt public). Ignorer l'assistant de Polylang. Le workflow
+   « Déployer chez Kinsta » les active à chaque passage s'ils sont installés.
+2. Le workflow, champ « boutique » : `langues installer` (`wp er langues installer`, `inc/langues.php`). Il crée le
+   français (fr_FR, par défaut), le russe (ru_RU) et l'anglais (en_GB) ; met la langue dans le chemin, le français
+   sans préfixe, l'accueil de chaque langue à `/ru/` et `/en/`, sans redirection d'après le navigateur ; recopie d'une
+   traduction à l'autre les classements, les champs, l'image mise en avant, la date, l'ordre, la page parente et le
+   gabarit ; passe en français tout le contenu qui n'a pas de langue. Il se relance sans dommage ; `langues` seul dit
+   où on en est.
+3. Langues → Réglages : la licence, et la clé DeepL (Traduction automatique). Tout le reste s'y modifie aussi.
+
+Ce qui se traduit : les pages, les articles, les livres, les rayons et les mentions (Polylang pour WooCommerce), et ce
+que dit `wpml-config.xml` (les rencontres, les auteurs, les langues des livres, les cycles, les intervenants, les
+sujets). Les vidéos et les podcasts n'y sont pas : ils paraissent dans les trois langues. Les images non plus : une
+couverture sert aux trois.
+
 Après un changement de texte dans le thème ou l'extension : refaire les deux `.pot` (la commande est en tête de
 `outils/traductions.py`), ajouter les traductions au script, le relancer.
 
@@ -328,14 +346,26 @@ un fichier exporté, corrigé puis réimporté en « mettant à jour » ne perd 
 **Le point sur le catalogue** : `wp er catalogue` (le workflow « Déployer chez Kinsta », champ « boutique » :
 `catalogue`) compte les livres (hors billets des rencontres), ceux qui ont un prix, du stock, un poids, un ISBN, un
 rayon, et leurs couvertures ; des comptes seulement, jamais une liste ni une quantité en stock, jamais les ventes. Le
-rapport va sur la branche `boutique` (`catalogue.md`).
+rapport va sur la branche `boutique` (`catalogue.md`). `wp er extensions` (champ « boutique » : `extensions`) fait le
+relevé des extensions installées et des réglages du paiement, de la livraison et des langues, sans jamais montrer une
+clé ni un secret (« posée » ou « vide »).
+
+## Le paiement
+
+Par l'extension WooCommerce Stripe Payment Gateway, reliée au compte Stripe de la maison par son bouton de connexion
+(WooCommerce → Réglages → Paiements → Stripe) : aucune clé ne se copie à la main, aucune ne passe par ce dépôt ni par
+Claude. Mode test sur la bêta. La carte, Apple Pay et Google Pay (qui s'activent ensemble) ; les boutons express sur
+la fiche du livre, le panier et la page Commande. WooPayments, qui ferait doublon (Apple Pay et Google Pay deux fois),
+est retiré par le workflow. Les billets des rencontres se paient comme les livres ; virtuels, ils n'ont jamais de
+livraison.
 
 ## Déployer chez Kinsta
 
 Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui
 touche `theme/` ou `plugin/` met le thème et l'extension en ligne par SSH (`.github/workflows/kinsta.yml`), puis vide
 le cache. Chaque passage installe et active aussi les extensions dont le site a besoin : WooCommerce, Stripe
-(WooCommerce Stripe Payment Gateway) et la nôtre ; une extension à ajouter au site s'ajoute dans le workflow. Le
+(WooCommerce Stripe Payment Gateway) et la nôtre ; une extension à ajouter au site s'ajoute dans le workflow. Polylang
+Pro et Polylang for WooCommerce, payants, se téléversent à la main ; le workflow les active s'ils sont là. Le
 contenu (pages, livres, réglages) se modifie dans l'administration de WordPress, jamais par ce dépôt.
 
 Pour brancher le dépôt sur Kinsta, une fois :
@@ -397,6 +427,5 @@ site dans le rapport qu'il dépose.
 3. Extensions → Ajouter → Téléverser `apercu/er-librairie.zip`, puis l'activer.
 4. Pour partir du contenu de l'ébauche : `wp eval-file wp-content/plugins/er-librairie/donnees/semer.php`.
 5. Réglages → Permaliens : « Titre de la publication ».
-6. Installer Polylang Pro et Polylang for WooCommerce ; créer les langues français (par défaut), русский et English
-   (en_GB), l'adresse de la langue dans le chemin (`/ru/`, `/en/`), le français sans préfixe ; brancher la clé
-   DeepL dans Langues → Réglages → Traduction automatique.
+6. Polylang Pro et Polylang for WooCommerce : comme sur la bêta (« Trois langues », « Mettre Polylang en place »),
+   puis `wp er langues installer`.

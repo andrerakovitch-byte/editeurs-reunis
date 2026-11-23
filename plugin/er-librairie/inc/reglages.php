@@ -106,7 +106,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				$pll = get_option( 'polylang', array() );
 				foreach ( array( 'force_lang', 'hide_default', 'rewrite', 'browser', 'redirect_lang', 'media_support' ) as $nom ) {
 					if ( isset( $pll[ $nom ] ) ) {
-						$ligne( $nom, is_scalar( $pll[ $nom ] ) ? (string) $pll[ $nom ] : '…' );
+						$ligne( $nom, is_bool( $pll[ $nom ] ) ? ( $pll[ $nom ] ? 'oui' : 'non' ) : ( is_scalar( $pll[ $nom ] ) ? (string) $pll[ $nom ] : '…' ) );
 					}
 				}
 				foreach ( array( 'post_types', 'taxonomies', 'sync' ) as $nom ) {
