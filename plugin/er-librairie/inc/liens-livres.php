@@ -129,7 +129,12 @@ function er_liens_sommier() {
 				} elseif ( preg_match( '/^[ldLD][’\'](.+)$/u', $mots[0], $e ) ) {
 					$variantes[] = array_merge( array( $e[1] ), array_slice( $mots, 1 ) );
 				}
-				foreach ( $variantes as $v ) {
+				foreach ( $variantes as $rang => $v ) {
+					// Une forme raccourcie (sans l'article, sans la queue de titre) d'un seul mot est trop vague : « Journal »
+					// pour « Journal (1867) », « Douze » pour « Les Douze ».
+					if ( count( $v ) < 2 && ( $rang > 0 || $forme !== $titre ) ) {
+						continue;
+					}
 					$cle    = er_liens_cle( $v );
 					$pleins = isset( $personnes[ $cle ] ) ? 1 : count( array_filter( $v, fn( $m ) => ! er_liens_article( $m ) ) );
 					// Deux livres au même titre : celui qui est en stock, sinon le plus récent.
