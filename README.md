@@ -306,6 +306,30 @@ l'extension (`inc/import.php`) ; un livre d'exemple de `semer.php` est remplacé
 
 Le fichier de Wix et le fichier converti ne vont jamais dans ce dépôt, qui est public.
 
+L'export de la boutique (Produits → Exporter) a les mêmes colonnes Auteurs, Langues, Rayons et Mentions que l'import :
+un fichier exporté, corrigé puis réimporté en « mettant à jour » ne perd rien. Les billets des rencontres n'y sont pas.
+
+**Les ISBN** manquent dans l'export de Wix. `outils/catalogue/isbn.py` les fait entrer par la référence `WIX-…` :
+
+1. `python3 outils/catalogue/isbn.py modele import-woocommerce.csv` (ou un export de la boutique, avec au moins les
+   colonnes UGS et Nom) écrit `isbn-a-remplir.xlsx` : Référence, Titre, Auteurs, Éditeur, Année, En stock, et la
+   colonne ISBN à remplir, en texte (le tableur ne change pas 9782070368228 en 9,78207E+12). Les livres en stock
+   d'abord.
+2. Une fois rempli : `python3 outils/catalogue/isbn.py preparer isbn-a-remplir.xlsx --catalogue
+   import-woocommerce.csv` écrit `complement-isbn.csv` et `isbn-a-revoir.md`. Chaque ISBN est contrôlé (la clé),
+   écrit sans tirets ; un ISBN à 10 chiffres devient un ISBN-13. Un tableau sans référence se rapproche du catalogue
+   par le titre et l'auteur (à vérifier dans le rapport).
+3. Produits → Importer, `complement-isbn.csv`, « Mettre à jour les produits existants » coché : l'ISBN va dans le
+   champ « GTIN, UPC, EAN ou ISBN » de WooCommerce, que la fiche et la recherche lisent. WooCommerce refuse qu'un même
+   numéro serve à deux produits : quand la librairie a deux fiches pour un même livre (neuf et d'occasion), la seconde
+   le garde dans la méta `er_isbn`, que la fiche lit aussi (`er_isbn()`, `inc/fiche.php`). Une ligne refusée à
+   l'import (« GTIN en double ») a un numéro déjà pris par une autre fiche.
+
+**Le point sur le catalogue** : `wp er catalogue` (le workflow « Déployer chez Kinsta », champ « boutique » :
+`catalogue`) compte les livres (hors billets des rencontres), ceux qui ont un prix, du stock, un poids, un ISBN, un
+rayon, et leurs couvertures ; des comptes seulement, jamais une liste ni une quantité en stock, jamais les ventes. Le
+rapport va sur la branche `boutique` (`catalogue.md`).
+
 ## Déployer chez Kinsta
 
 Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui
@@ -340,7 +364,7 @@ espace de travail : elles ne se voient pas et se retrouvent sur `main`.
   d'auteurs, les sujets et les étiquettes (`inc/evenements.php`, `medias.php`, `sujets.php`, `auteurs.php`,
   `journal.php`, leurs gabarits, `outils/wix/`, la branche `wix-pages`).
 - **La boutique** : le catalogue et son import (`outils/catalogue/`, `inc/import.php`, `fiche.php`,
-  `couvertures.php`), le paiement (Stripe, Apple Pay, Google Pay), la livraison, Polylang, puis Algolia
+  `couvertures.php`, `catalogue.php`, la branche `boutique`), le paiement (Stripe, Apple Pay, Google Pay), la livraison, Polylang, puis Algolia
   (`inc/recherche.php` passe alors de son côté : le centre lui signale ce qu'il ajoute à l'index).
 
 Les fichiers communs, que presque chaque changement touche :
