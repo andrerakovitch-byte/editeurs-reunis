@@ -175,6 +175,29 @@ en français.
 Après un changement de texte dans le thème ou l'extension : refaire les deux `.pot` (la commande est en tête de
 `outils/traductions.py`), ajouter les traductions au script, le relancer.
 
+## Déployer chez Kinsta
+
+Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui
+touche `theme/` ou `plugin/` met le thème et l'extension en ligne par SSH (`.github/workflows/kinsta.yml`), puis vide
+le cache. Le contenu (pages, livres, réglages) se modifie dans l'administration de WordPress, jamais par ce dépôt.
+
+Pour brancher le dépôt sur Kinsta, une fois :
+
+1. Sur le Mac, créer une clé réservée au déploiement, sans phrase de passe :
+   `ssh-keygen -t ed25519 -N "" -C "github-editeurs-reunis" -f ~/.ssh/kinsta-editeurs`
+2. MyKinsta → Paramètres de l'utilisateur → Clés SSH : ajouter la clé publique (`pbcopy < ~/.ssh/kinsta-editeurs.pub`).
+3. GitHub → le dépôt → Settings → Secrets and variables → Actions :
+   - le secret `KINSTA_CLE` : la clé privée (`pbcopy < ~/.ssh/kinsta-editeurs`) ;
+   - les variables `KINSTA_HOTE`, `KINSTA_PORT` et `KINSTA_UTILISATEUR` : dans MyKinsta → le site → Infos → Accès
+     SFTP/SSH.
+4. Actions → « Déployer chez Kinsta » → Run workflow, « installer » coché : active WooCommerce, l'extension et le
+   thème, télécharge le français, le russe et l'anglais, ferme le site aux moteurs de recherche et sème le contenu
+   de l'ébauche. Relancé, `semer.php` ne crée rien en double.
+
+Tant que les variables ne sont pas posées, le déploiement ne fait rien. La bêta est fermée aux moteurs de recherche
+(`blog_public` à 0) : le jour de la mise en ligne, Réglages → Lecture, décocher « Demander aux moteurs de recherche
+de ne pas indexer ce site ».
+
 ## Installer sur l'hébergement définitif
 
 1. Installer WordPress en français, puis WooCommerce ; ajouter le russe et l'anglais (Royaume-Uni) dans Réglages →

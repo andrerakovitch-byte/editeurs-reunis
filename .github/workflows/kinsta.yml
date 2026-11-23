@@ -1,0 +1,66 @@
+# Met le thème et l'extension en ligne chez Kinsta, à chaque poussée sur main qui les touche.
+# À la main (Actions → « Déployer chez Kinsta » → Run workflow), avec « installer » coché : le premier passage, qui
+# active le thème et les extensions, télécharge les langues et sème le contenu de l'ébauche (semer.php).
+#
+# Ne fait rien tant que les réglages ne sont pas posés (Settings → Secrets and variables → Actions) :
+#   variables  KINSTA_HOTE, KINSTA_PORT, KINSTA_UTILISATEUR (MyKinsta → le site → Infos → Accès SFTP/SSH)
+#   secret     KINSTA_CLE, la clé SSH privée dont la clé publique est enregistrée dans MyKinsta
+# Le mode d'emploi est dans le README, « Déployer chez Kinsta ».
+name: Déployer chez Kinsta
+
+on:
+  push:
+    branches: [main]
+    paths: ['theme/**', 'plugin/**']
+  workflow_dispatch:
+    inputs:
+      installer:
+        description: "Premier passage : activer, ajouter les langues, semer le contenu de l'ébauche"
+        type: boolean
+        default: false
+
+concurrency: kinsta
+
+jobs:
+  deployer:
+    if: vars.KINSTA_HOTE != ''
+    runs-on: ubuntu-latest
+    env:
+      HOTE: ${{ vars.KINSTA_HOTE }}
+      PORT: ${{ vars.KINSTA_PORT }}
+      QUI: ${{ vars.KINSTA_UTILISATEUR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: La clé SSH
+        env:
+          CLE: ${{ secrets.KINSTA_CLE }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$CLE" > ~/.ssh/kinsta
+          chmod 600 ~/.ssh/kinsta
+          ssh-keyscan -p "$PORT" "$HOTE" >> ~/.ssh/known_hosts 2>/dev/null
+          echo "SSH=ssh -i $HOME/.ssh/kinsta -p $PORT" >> "$GITHUB_ENV"
+
+      - name: Le thème et l'extension
+        run: |
+          rsync -rlz --delete -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
+          rsync -rlz --delete -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
+
+      - name: Le premier passage
+        if: inputs.installer
+        run: |
+          $SSH "$QUI@$HOTE" 'cd public && set -e
+            wp plugin is-installed woocommerce || wp plugin install woocommerce
+            wp plugin activate woocommerce er-librairie
+            wp theme activate editeurs-reunis
+            wp language core install fr_FR ru_RU en_GB
+            wp site switch-language fr_FR
+            wp language plugin install woocommerce fr_FR ru_RU en_GB
+            wp option update blog_public 0
+            wp eval-file wp-content/plugins/er-librairie/donnees/semer.php
+            wp rewrite structure "/%postname%/"
+            wp rewrite flush'
+
+      - name: Vider le cache
+        run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'
