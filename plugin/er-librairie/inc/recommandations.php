@@ -222,6 +222,13 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				return implode( ', ', array_map( fn( $t ) => get_term( $t, 'product_cat' )->name, $ids ) );
 			};
 			WP_CLI::log( 'Genre : ' . $noms( $r['genres'] ) . ' ; époque : ' . $noms( $r['epoques'] ) );
+			// Le rendu des trois blocs, tel que la fiche le montrera : de quoi voir qu'il ne casse pas.
+			$rendus = array();
+			foreach ( array( 'auteur' => 'er_reco_bloc_auteur', 'autour' => 'er_reco_bloc_autour', 'rayon' => 'er_reco_bloc_rayon' ) as $cle => $f ) {
+				$html            = $f( $livre->ID );
+				$rendus[]        = $cle . ' ' . ( $html ? substr_count( $html, '<li' ) . ' cartes' : 'rien' );
+			}
+			WP_CLI::log( 'Rendu sur la fiche : ' . implode( ' ; ', $rendus ) );
 		}
 	);
 }
