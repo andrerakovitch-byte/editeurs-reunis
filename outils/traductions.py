@@ -1439,6 +1439,7 @@ T = {
     (None, 'Le finissage'): ('The closing', 'Финисаж'),
     (None, 'Finissage'): ('Closing', 'Финисаж'),
     ('l’accès à une exposition', 'Entrée'): ('Admission', 'Вход'),
+    (None, '%1$s et %2$s'): ('%1$s and %2$s', '%1$s и %2$s'),
     # L'administration des expositions
     (None, 'Du'): ('From', 'С'),
     (None, 'Au'): ('To', 'По'),

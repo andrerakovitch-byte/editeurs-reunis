@@ -542,13 +542,30 @@ function er_expo_bloc_entete( $id ) {
 		$sur[] = $s;
 	}
 	$faits  = array();
-	$quand  = er_expo_quand( $id );
-	if ( $quand ) {
+	// Les rencontres de l'exposition, une ligne par sorte : « Inauguration : samedi 3 octobre 2020, 13 h, 15 h et
+	// 17 h » quand il y en a eu plusieurs le même jour (des créneaux, en 2020).
+	$sortes = array();
+	foreach ( er_expo_ranges( $id )['er_evenement'] as $r ) {
+		$sortes[ er_expo_nom_rencontre( $r, true ) ][] = $r;
+	}
+	// Quand : les dates ; sans date de fin, le vernissage ou l'inauguration le disent déjà (« Inaugurée le… »).
+	$quand = er_expo_quand( $id );
+	if ( $quand && ( get_post_meta( $id, 'er_fin', true ) || ! $sortes || 'passee' !== $etat ) ) {
 		$faits[] = array( __( 'Quand', 'er-librairie' ), $quand );
 	}
-	foreach ( er_expo_ranges( $id )['er_evenement'] as $r ) {
-		if ( function_exists( 'er_evt_quand' ) ) {
-			$faits[] = array( er_expo_nom_rencontre( $r, true ), er_evt_quand( $r ) );
+	foreach ( $sortes as $nom => $rs ) {
+		if ( ! function_exists( 'er_evt_quand' ) ) {
+			break;
+		}
+		$dates = array_filter( array_map( 'er_evt_date', $rs ) );
+		$jours = array_unique( array_map( fn( $d ) => $d->format( 'Y-m-d' ), $dates ) );
+		if ( count( $rs ) > 1 && 1 === count( $jours ) && count( $dates ) === count( $rs ) ) {
+			$heures  = array_map( 'er_evt_heure', $dates );
+			$dernier = array_pop( $heures );
+			/* translators: 1: des heures, séparées par des virgules, 2: la dernière heure */
+			$faits[] = array( $nom, wp_date( __( 'l j F Y', 'er-librairie' ), reset( $dates )->getTimestamp(), er_evt_fuseau() ) . ', ' . sprintf( __( '%1$s et %2$s', 'er-librairie' ), implode( ', ', $heures ), $dernier ) );
+		} else {
+			$faits[] = array( $nom, implode( ' ; ', array_map( 'er_evt_quand', $rs ) ) );
 		}
 	}
 	$lieu    = trim( (string) get_post_meta( $id, 'er_lieu', true ) );
@@ -877,6 +894,7 @@ function er_expo_cartel( $id ) {
 	$lien   = get_permalink( $id );
 	$texte  = has_excerpt( $id ) ? get_the_excerpt( $id ) : wp_trim_words( wp_strip_all_tags( get_post_field( 'post_content', $id ) ), 32, '…' );
 	$pastilles = '';
+	$vues      = array();
 	$ranges    = er_expo_ranges( $id );
 	foreach ( array_merge( $ranges['er_evenement'], $ranges['post'], $ranges['product'], $ranges['er_media'] ) as $r ) {
 		$type   = get_post_type( $r );
@@ -887,6 +905,10 @@ function er_expo_cartel( $id ) {
 			'er_media'     => '',
 		);
 		$titre      = 'er_evenement' === $type ? er_expo_nom_rencontre( $r ) : wp_trim_words( html_entity_decode( get_the_title( $r ), ENT_QUOTES, 'UTF-8' ), 7, '…' );
+		if ( isset( $vues[ $prefix[ $type ] . $titre ] ) ) {
+			continue; // Trois créneaux d'inauguration : une seule pastille.
+		}
+		$vues[ $prefix[ $type ] . $titre ] = true;
 		$pastilles .= '<a class="er-x-pastille" href="' . esc_url( get_permalink( $r ) ) . '">' . esc_html( $prefix[ $type ] . $titre ) . '</a>';
 	}
 	return '<article class="er-x-cartel-ligne er-j-plein">'
