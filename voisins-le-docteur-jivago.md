@@ -1,6 +1,6 @@
 # wp er voisins le-docteur-jivago
 
-Le 23/11/2026 à 23 h 34, sur https://editeursreunis.kinsta.cloud.
+Le 23/11/2026 à 23 h 36, sur https://editeursreunis.kinsta.cloud.
 
 ```
 Le livre
@@ -19,9 +19,9 @@ Du même rayon, de la même époque (8)
   Le Maître et Marguerite | Mikhaïl Boulgakov | 11,90 € | en stock | couverture passable | Romans, La période soviétique | le-maitre-et-marguerite-3
   Les 12 chaises | Ilf et Pétrov | 23,00 € | en stock | couverture petite | Nouvelle édition | Romans, La période soviétique | les-12-chaises
 Au centre et au journal (4)
-  er_evenement | Nuit diaphane, exposition de gravures de Paul Kichilov (inauguration samedi 3 octobre, de 13h à 15h) | 23 novembre 2026
-  post | 50 ans de l’Archipel du Goulag : « Aux millions de tués pour rien, Soljenitsyne donne un contour, une vie, un visage » | 28 décembre 2023
   er_evenement | Présentation de la nouvelle traduction du Docteur Jivago de Boris Pasternak, par Hélène Henry | 23 novembre 2026
+  post | 50 ans de l’Archipel du Goulag : « Aux millions de tués pour rien, Soljenitsyne donne un contour, une vie, un visage » | 28 décembre 2023
+  er_evenement | Nuit diaphane, exposition de gravures de Paul Kichilov (inauguration samedi 3 octobre, de 13h à 15h) | 23 novembre 2026
   post | « Jivago ou le talisman de la Vie » | 5 juin 2020
 Genre : Romans ; époque : La période soviétique
 Rendu sur la fiche : auteur 2 cartes ; autour 2 cartes ; rayon 6 cartes
