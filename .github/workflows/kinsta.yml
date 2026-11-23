@@ -72,6 +72,10 @@ jobs:
           rsync -rlz --delete -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
           rsync -rlz --delete -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
 
+      # Polylang Pro et Polylang pour WooCommerce sont payants : téléversés à la main dans l'administration, jamais
+      # par ce dépôt ; activés ici dès qu'ils sont là (wp er langues installer règle ensuite les trois langues).
+      # WooPayments ferait doublon avec Stripe (Apple Pay et Google Pay deux fois) : retiré.
+      # Pas d'apostrophe droite dans la commande ci-dessous : elle est entre guillemets simples.
       - name: Les extensions
         run: |
           $SSH "$QUI@$HOTE" 'cd public && set -e
@@ -79,13 +83,9 @@ jobs:
               wp plugin is-installed "$e" || wp plugin install "$e"
               wp plugin is-active "$e" || wp plugin activate "$e"
             done
-            # Polylang Pro et Polylang pour WooCommerce sont payants : téléversés à la main dans
-            # l'administration, jamais par ce dépôt ; activés ici dès qu'ils sont là (wp er langues installer règle
-            # ensuite les trois langues).
             for e in polylang-pro polylang-wc; do
               if wp plugin is-installed "$e"; then wp plugin is-active "$e" || wp plugin activate "$e"; fi
             done
-            # WooPayments ferait doublon avec Stripe (Apple Pay et Google Pay deux fois) : retiré.
             if wp plugin is-installed woocommerce-payments; then
               wp plugin deactivate woocommerce-payments || true
               wp plugin delete woocommerce-payments
