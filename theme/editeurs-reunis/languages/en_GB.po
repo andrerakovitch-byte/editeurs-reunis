@@ -85,120 +85,120 @@ msgstr "Veiled card"
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Paper ambience (heritage content)"
 
-#: functions.php:307
+#: functions.php:310
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "The publishing house"
 
-#: functions.php:308
+#: functions.php:311
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "A century of history"
 
-#: functions.php:309
+#: functions.php:312
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Catalogue"
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Friends of YMCA-Press"
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "About the centre"
 
-#: functions.php:314
+#: functions.php:317
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Events"
 
-#: functions.php:315
+#: functions.php:318
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Exhibitions"
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Podcasts"
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Videos"
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "The Centre’s journal"
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: functions.php:339 patterns/en-tete.php:62
+#: functions.php:345 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "YMCA-Press publishers"
 
-#: functions.php:340 patterns/en-tete.php:63
+#: functions.php:346 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Cultural centre"
 
-#: functions.php:446 inc/recherche.php:358
+#: functions.php:452 inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: functions.php:475
+#: functions.php:481
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:476
+#: functions.php:482
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:477
+#: functions.php:483
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:478
+#: functions.php:484
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:479
+#: functions.php:485
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:480
+#: functions.php:486
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:481
+#: functions.php:487
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:482
+#: functions.php:488
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:483
+#: functions.php:489
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:484
+#: functions.php:490
 msgid "Arts"
 msgstr "Arts"
 
-#: functions.php:506
+#: functions.php:512
 msgid "Compte"
 msgstr "Account"
 
-#: functions.php:517 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:523 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Language"
 

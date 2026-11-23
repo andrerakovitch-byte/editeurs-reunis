@@ -284,6 +284,9 @@ function er_maison() {
 	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
 		return 'centre'; // Le journal du centre.
 	}
+	if ( is_singular( 'er_evenement' ) ) {
+		return 'centre'; // Une rencontre du centre.
+	}
 	$racine = strtok( er_chemin_reference(), '/' );
 	if ( 'librairie' === $racine ) {
 		return 'librairie'; // L'encyclopédie, sous la librairie.
@@ -334,6 +337,9 @@ function er_sous_menu() {
 	$ici = er_chemin_reference();
 	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
 		$ici = 'journal';
+	}
+	if ( is_singular( 'er_evenement' ) ) {
+		$ici = 'centre-culturel/evenements';
 	}
 	$noms  = array(
 		'ymca'   => _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ),

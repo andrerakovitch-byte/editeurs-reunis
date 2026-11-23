@@ -164,6 +164,46 @@ Un livre est un produit WooCommerce (Produits → Ajouter) :
 Les couvertures de l'ébauche sont reprises de la maquette (en petite définition) ou dessinées « couverture à
 venir » ; les présentations sont des brouillons d'une phrase.
 
+## Les rencontres du centre
+
+Une rencontre (conférence, présentation, lecture, exposition…) est un contenu à part, « Événements » dans
+l'administration (`plugin/…/inc/evenements.php`), à l'adresse `/centre-culturel/evenements/<slug>/`. On y saisit, dans
+la boîte « La rencontre » : le début (et la fin, pour ce qui dure plusieurs jours), le lieu (vide : au centre), la
+forme, la langue, l'entrée (libre, gratuite sur inscription, payante), le prix et le nombre de places, l'état (prévue,
+complète, annulée), les **vidéos et enregistrements** (un lien par ligne : YouTube, Vimeo, SoundCloud, Dailymotion,
+Spotify, Facebook ou un fichier de la médiathèque ; « Titre | lien » pour leur donner un titre) et les livres liés
+(leurs références). Le cycle (Les Mercredis des Éditeurs, Поэт и время…) et les intervenants sont deux classements ;
+un intervenant qui est aussi un auteur de la librairie renvoie à sa page, et ses livres en stock s'ajoutent à « À la
+librairie ». L'affiche est l'image mise en avant ; le chapô, l'extrait.
+
+- **La page d'une rencontre** (le gabarit `single-er_evenement` du thème) : l'affiche à gauche ; à droite la forme et
+  le cycle, le titre, le chapô, les lignes Quand, Où, Entrée, Avec, Langue, puis « Réserver » (ou « S'inscrire »,
+  « Complet », « Annulée », « Cette rencontre a eu lieu le… ») ; le texte ; « Revoir, réécouter », les vidéos en
+  lecteur (YouTube sans témoins tant qu'on ne lance pas la vidéo ; un lien quand le site ne se lit pas, Facebook par
+  exemple) ; les livres.
+- **La liste**, sur la page « Nos événements » (le bloc `er/evenements`, dans le gabarit « Page large ») : à venir,
+  en lignes (cette semaine, la semaine prochaine, plus tard), puis les rencontres passées en affiches, par année, avec
+  « Avec une vidéo » et les cycles en pilules ; une vidéo, une annulation sont marquées sur l'affiche. Au téléphone,
+  les pilules glissent de côté.
+- **La billetterie** est dans WooCommerce : une rencontre payante (avec un prix) ou sur inscription a son billet, un
+  produit virtuel caché de la librairie, tenu à jour à chaque enregistrement (le nom, le prix, les places : changer
+  le nombre de places décale le stock d'autant). On le prend depuis la page de la rencontre ; sa page à lui y
+  renvoie. Une rencontre passée, annulée ou complète ne se réserve plus. Les commandes sont dans WooCommerce →
+  Commandes, comme les livres.
+- **La recherche** trouve les rencontres (le groupe du centre), par leur titre, leur chapô, leurs intervenants et leur
+  cycle.
+- **Les anciennes adresses** de Wix (`/events-1/<slug>`) mènent à la rencontre, une fois la bascule faite.
+
+Les rencontres de l'ancien site s'importent par le workflow « Déployer chez Kinsta », case « evenements » : il lit
+les pages des événements de Wix et la chaîne YouTube du centre (`outils/wix/pages.py`), les convertit
+(`outils/wix/evenements.py` : le texte riche de Wix en HTML, la typographie française, les doublons de Wix réunis,
+les fins fausses ôtées) et les importe (`wp er evenements importer`). Les vidéos sont rattachées à leur rencontre
+d'après leur titre (les noms, les œuvres, les dates en commun, et le programme d'un cycle pour ses séances) : seules
+les correspondances sûres le sont, les autres vont au rapport (`rapport.md`, sur la branche `wix-pages`) pour être
+rattachées à la main. Relancé, l'import met à jour sans doublon, sans toucher à une rencontre modifiée à la main
+depuis, et ajoute les vidéos sans en retirer : on le relance avant la bascule pour les dernières rencontres. Les
+chiffres de vente de Wix ne sont jamais lus.
+
 ## Trois langues
 
 Le site est en français, en russe et en anglais. Le français est la langue de référence : tout le texte du code est

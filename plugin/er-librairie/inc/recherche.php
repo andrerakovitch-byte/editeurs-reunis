@@ -184,9 +184,10 @@ function er_index_contenu( $id ) {
 		return;
 	}
 	$genres = array(
-		'product' => 'livre',
-		'page'    => 'page',
-		'post'    => 'article',
+		'product'      => 'livre',
+		'page'         => 'page',
+		'post'         => 'article',
+		'er_evenement' => 'evenement',
 	);
 	if ( ! isset( $genres[ $post->post_type ] ) ) {
 		return;
@@ -199,6 +200,10 @@ function er_index_contenu( $id ) {
 	$cle    = $post->post_title;
 	$maison = '';
 	$poids  = 0;
+	if ( 'livre' === $genre && get_post_meta( $id, 'er_evenement', true ) ) {
+		er_index_oter( $genre, $id ); // Le billet d'une rencontre n'est pas un livre.
+		return;
+	}
 	if ( 'livre' === $genre ) {
 		$maison  = 'librairie';
 		$auteurs = wp_get_post_terms( $id, 'auteur' );
@@ -217,6 +222,15 @@ function er_index_contenu( $id ) {
 		}
 		$maison = er_index_maison_page( $id );
 		$cle   .= ' ' . wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 60, '' );
+	} elseif ( 'evenement' === $genre ) {
+		// Une rencontre : son titre, son chapô, ses intervenants, son cycle, le début de son texte ; à venir d'abord.
+		$maison = 'centre';
+		foreach ( array( 'er_intervenant', 'er_cycle' ) as $taxonomie ) {
+			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
+			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
+		}
+		$cle  .= ' ' . $post->post_excerpt . ' ' . wp_trim_words( wp_strip_all_tags( $post->post_content ), 40, '' );
+		$poids = function_exists( 'er_evt_passee' ) && ! er_evt_passee( $id ) ? 2 : 0;
 	} else {
 		$maison = 'centre';
 		$cle   .= ' ' . wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 60, '' );
@@ -268,7 +282,7 @@ function er_index_reconstruire() {
 	$wpdb->query( 'DELETE FROM ' . er_index_table() ); // phpcs:ignore WordPress.DB
 	$ids = get_posts(
 		array(
-			'post_type'        => array( 'product', 'page', 'post' ),
+			'post_type'        => array( 'product', 'page', 'post', 'er_evenement' ),
 			'post_status'      => 'publish',
 			'numberposts'      => -1,
 			'fields'           => 'ids',
@@ -298,7 +312,7 @@ function er_index_reconstruire() {
 add_action(
 	'save_post',
 	function ( $id, $post ) {
-		if ( wp_is_post_revision( $id ) || wp_is_post_autosave( $id ) || ! in_array( $post->post_type, array( 'product', 'page', 'post' ), true ) ) {
+		if ( wp_is_post_revision( $id ) || wp_is_post_autosave( $id ) || ! in_array( $post->post_type, array( 'product', 'page', 'post', 'er_evenement' ), true ) ) {
 			return;
 		}
 		er_index_contenu( $id );
@@ -315,7 +329,7 @@ add_action(
 add_action(
 	'deleted_post',
 	function ( $id ) {
-		foreach ( array( 'livre', 'page', 'article' ) as $genre ) {
+		foreach ( array( 'livre', 'page', 'article', 'evenement' ) as $genre ) {
 			er_index_oter( $genre, $id );
 		}
 	}
@@ -491,7 +505,7 @@ function er_api_chercher( $requete ) {
 	if ( '' === $cle ) {
 		return rest_ensure_response( $vide );
 	}
-	$lignes = er_index_chercher( $cle, array( 'auteur', 'livre', 'rayon', 'page', 'article' ), 200 );
+	$lignes = er_index_chercher( $cle, array( 'auteur', 'livre', 'rayon', 'page', 'article', 'evenement' ), 200 );
 
 	$groupes = array(
 		'auteurs'      => array(),
@@ -528,6 +542,9 @@ function er_api_chercher( $requete ) {
 			case 'article':
 				$groupe = 'journal';
 				break;
+			case 'evenement':
+				$groupe = 'centre';
+				break;
 			default:
 				$groupe = in_array( $l->maison, array( 'ymca', 'centre', 'encyclopedie' ), true ) ? $l->maison : 'pages';
 		}
@@ -562,7 +579,7 @@ function er_api_chercher( $requete ) {
 			$groupes[ $groupe ][] = array(
 				'titre'  => get_the_title( $post ),
 				'url'    => get_permalink( $post ),
-				'extrait' => 'journal' === $groupe ? date_i18n( 'j F Y', get_post_timestamp( $post ) ) : wp_trim_words( html_entity_decode( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), ENT_QUOTES, 'UTF-8' ), 14, '…' ),
+				'extrait' => 'evenement' === $l->genre && function_exists( 'er_evt_quand' ) ? er_evt_quand( $post->ID, false ) : ( 'journal' === $groupe ? date_i18n( 'j F Y', get_post_timestamp( $post ) ) : wp_trim_words( html_entity_decode( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), ENT_QUOTES, 'UTF-8' ), 14, '…' ) ),
 			);
 		}
 	}

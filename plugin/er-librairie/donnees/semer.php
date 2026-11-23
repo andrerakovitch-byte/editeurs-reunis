@@ -181,7 +181,14 @@ $centre = er_semer_page(
 	'centre-culturel',
 	er_p( 'Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts et des vidéos autour de la littérature et de l’histoire russes.' ) . $a_venir
 );
-er_semer_page( 'Nos événements', 'evenements', $a_venir, $centre, 1 );
+$evenements = er_semer_page(
+	'Nos événements',
+	'evenements',
+	er_p( 'Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-Geneviève.' ) . "<!-- wp:er/evenements /-->\n",
+	$centre,
+	1
+);
+update_post_meta( $evenements, '_wp_page_template', 'page-large' );
 er_semer_page( 'Nos expositions', 'expositions', $a_venir, $centre, 2 );
 er_semer_page(
 	'Nos podcasts',

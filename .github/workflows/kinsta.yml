@@ -7,6 +7,8 @@
 #   variables  KINSTA_HOTE, KINSTA_PORT, KINSTA_UTILISATEUR (MyKinsta → le site → Infos → Accès SFTP/SSH)
 #   secret     KINSTA_CLE, la clé SSH privée dont la clé publique est enregistrée dans MyKinsta
 # Le mode d'emploi est dans le README, « Déployer chez Kinsta ».
+# Avec « evenements » coché : les rencontres de l'ancien site Wix (pages, vidéos de la chaîne YouTube), lues ici,
+# converties (outils/wix/evenements.py) et importées ; le rapport des vidéos va sur la branche « wix-pages ».
 name: Déployer chez Kinsta
 
 on:
@@ -23,8 +25,15 @@ on:
         description: "Relevé des couvertures : le nombre de livres par qualité"
         type: boolean
         default: false
+      evenements:
+        description: "Les rencontres de l'ancien site : lire les pages et les vidéos, puis les importer (à relancer avant la bascule)"
+        type: boolean
+        default: false
 
 concurrency: kinsta
+
+permissions:
+  contents: write
 
 jobs:
   deployer:
@@ -58,7 +67,8 @@ jobs:
             for e in woocommerce woocommerce-gateway-stripe er-librairie; do
               wp plugin is-installed "$e" || wp plugin install "$e"
               wp plugin is-active "$e" || wp plugin activate "$e"
-            done'
+            done
+            wp rewrite flush'
 
       - name: Le premier passage
         if: inputs.installer
@@ -76,6 +86,37 @@ jobs:
       - name: Le relevé des couvertures
         if: inputs.couvertures
         run: $SSH "$QUI@$HOTE" 'cd public && wp er couvertures'
+
+      - name: Les rencontres de l'ancien site (lire)
+        if: inputs.evenements
+        run: |
+          pip install --quiet yt-dlp
+          python3 outils/wix/pages.py evenements
+          python3 outils/wix/pages.py medias
+          python3 outils/wix/evenements.py sortie/evenements.json sortie/evenements-import.json --medias sortie/medias.json --rapport sortie/rapport.md
+          cat sortie/rapport.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Les rencontres de l'ancien site (importer)
+        if: inputs.evenements
+        run: |
+          $SSH "$QUI@$HOTE" 'mkdir -p private'
+          rsync -z -e "$SSH" sortie/evenements-import.json "$QUI@$HOTE:private/evenements-import.json"
+          $SSH "$QUI@$HOTE" 'cd public && wp er evenements importer ../private/evenements-import.json && wp rewrite flush && (wp kinsta cache purge --all || wp cache flush)' | tee sortie/import.txt
+          # De quoi vérifier : la page de la liste et une rencontre avec sa vidéo, telles que le site les sert.
+          URL=$($SSH "$QUI@$HOTE" 'cd public && wp option get home')
+          curl -sL "$URL/centre-culturel/evenements/" -o sortie/page-liste.html || true
+          curl -sL "$URL/centre-culturel/evenements/rencontre-avec-georges-nivat-ma-russie-de-17-a-90-ans/" -o sortie/page-nivat.html || true
+
+      - name: Le rapport des rencontres, sur la branche wix-pages
+        if: inputs.evenements
+        run: |
+          cd sortie && rm -rf brut
+          git init -q -b wix-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Les rencontres de l'ancien site : import et rapport"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wix-pages
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

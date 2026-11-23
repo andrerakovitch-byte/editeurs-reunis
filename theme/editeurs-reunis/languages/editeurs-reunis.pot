@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis 0.6.3\n"
+"Project-Id-Version: Les Éditeurs réunis 0.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/editeurs-reunis\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T16:09:39+00:00\n"
+"POT-Creation-Date: 2026-11-23T17:08:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -86,123 +86,123 @@ msgstr ""
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr ""
 
-#: functions.php:307
+#: functions.php:310
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr ""
 
-#: functions.php:308
+#: functions.php:311
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr ""
 
-#: functions.php:309
+#: functions.php:312
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr ""
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr ""
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr ""
 
-#: functions.php:314
+#: functions.php:317
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr ""
 
-#: functions.php:315
+#: functions.php:318
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr ""
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr ""
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr ""
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr ""
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr ""
 
-#: functions.php:339
+#: functions.php:345
 #: patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr ""
 
-#: functions.php:340
+#: functions.php:346
 #: patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr ""
 
-#: functions.php:446
+#: functions.php:452
 #: inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr ""
 
-#: functions.php:475
+#: functions.php:481
 msgid "Par genre"
 msgstr ""
 
-#: functions.php:476
+#: functions.php:482
 msgid "Par époque"
 msgstr ""
 
-#: functions.php:477
+#: functions.php:483
 msgid "Par période"
 msgstr ""
 
-#: functions.php:478
+#: functions.php:484
 msgid "Par thème"
 msgstr ""
 
-#: functions.php:479
+#: functions.php:485
 msgid "Par âge"
 msgstr ""
 
-#: functions.php:480
+#: functions.php:486
 msgid "Méthodes"
 msgstr ""
 
-#: functions.php:481
+#: functions.php:487
 msgid "Outils"
 msgstr ""
 
-#: functions.php:482
+#: functions.php:488
 msgid "Pensée"
 msgstr ""
 
-#: functions.php:483
+#: functions.php:489
 msgid "Religion"
 msgstr ""
 
-#: functions.php:484
+#: functions.php:490
 msgid "Arts"
 msgstr ""
 
-#: functions.php:506
+#: functions.php:512
 msgid "Compte"
 msgstr ""
 
-#: functions.php:517
+#: functions.php:523
 #: inc/recherche.php:182
 #: inc/recherche.php:264
 msgid "Langue"

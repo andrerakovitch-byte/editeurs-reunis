@@ -85,120 +85,120 @@ msgstr "Полупрозрачная карточка"
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Бумажная гамма (архивные материалы)"
 
-#: functions.php:307
+#: functions.php:310
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "Об издательстве"
 
-#: functions.php:308
+#: functions.php:311
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "Век истории"
 
-#: functions.php:309
+#: functions.php:312
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Каталог"
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Друзья YMCA-Press"
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "О центре"
 
-#: functions.php:314
+#: functions.php:317
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Мероприятия"
 
-#: functions.php:315
+#: functions.php:318
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Выставки"
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Подкасты"
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Видео"
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Как нас найти"
 
-#: functions.php:339 patterns/en-tete.php:62
+#: functions.php:345 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "Издательство YMCA-Press"
 
-#: functions.php:340 patterns/en-tete.php:63
+#: functions.php:346 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Культурный центр"
 
-#: functions.php:446 inc/recherche.php:358
+#: functions.php:452 inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "пока нет в наличии"
 
-#: functions.php:475
+#: functions.php:481
 msgid "Par genre"
 msgstr "По жанрам"
 
-#: functions.php:476
+#: functions.php:482
 msgid "Par époque"
 msgstr "По эпохам"
 
-#: functions.php:477
+#: functions.php:483
 msgid "Par période"
 msgstr "По периодам"
 
-#: functions.php:478
+#: functions.php:484
 msgid "Par thème"
 msgstr "По темам"
 
-#: functions.php:479
+#: functions.php:485
 msgid "Par âge"
 msgstr "По возрасту"
 
-#: functions.php:480
+#: functions.php:486
 msgid "Méthodes"
 msgstr "Учебники"
 
-#: functions.php:481
+#: functions.php:487
 msgid "Outils"
 msgstr "Пособия"
 
-#: functions.php:482
+#: functions.php:488
 msgid "Pensée"
 msgstr "Философская мысль"
 
-#: functions.php:483
+#: functions.php:489
 msgid "Religion"
 msgstr "Религия"
 
-#: functions.php:484
+#: functions.php:490
 msgid "Arts"
 msgstr "Искусство"
 
-#: functions.php:506
+#: functions.php:512
 msgid "Compte"
 msgstr "Кабинет"
 
-#: functions.php:517 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:523 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Язык"
 

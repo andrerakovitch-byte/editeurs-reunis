@@ -71,6 +71,7 @@ function er_couvertures_releve() {
 			'post_type'      => 'product',
 			'post_status'    => array( 'publish', 'draft', 'private' ),
 			'posts_per_page' => -1,
+			'meta_query'     => array( array( 'key' => 'er_evenement', 'compare' => 'NOT EXISTS' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery -- les billets des rencontres n'ont pas de couverture.
 			'fields'         => 'ids',
 			'orderby'        => 'title',
 			'order'          => 'ASC',
