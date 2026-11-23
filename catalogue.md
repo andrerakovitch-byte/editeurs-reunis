@@ -1,6 +1,6 @@
 # wp er catalogue
 
-Le 23/11/2026 à 22 h 19, sur https://editeursreunis.kinsta.cloud.
+Le 23/11/2026 à 22 h 24, sur https://editeursreunis.kinsta.cloud.
 
 ```
 Le catalogue, hors billets des rencontres
@@ -11,7 +11,8 @@ Le catalogue, hors billets des rencontres
 Le prix
   Avec un prix                           859
   Sans prix (ne se commandent pas)         0
-  En promotion                           162
+  En promotion                           162   (dont 1 d’occasion)
+  Hors occasion, remise de plus de 5 %   161
 Le stock
   En stock                               722
   Épuisés                                137
@@ -37,6 +38,11 @@ Les fiches
   Sans rayon                              79
   Sans auteur                            198
   Sans langue                              0
+  Mention « Nouveauté »                  120
+  Mention « Occasion »                    19
+  Mention « Nouvelle édition »            15
+  Mention « Très rare »                   10
+  Mention « Nouvelle traduction »          5
 Les couvertures
   Trop petites                           274   (dont 229 commandables)
   Absentes                                 0   (dont 0 commandables)
