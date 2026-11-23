@@ -473,7 +473,11 @@ function er_journal_contexte( $vue, $quoi, $objet ) {
 				break;
 			}
 		}
-		$podcast = get_posts( array( 'post_type' => 'er_media', 'post_status' => 'publish', 'numberposts' => 1, 'meta_key' => 'er_genre', 'meta_value' => 'podcast' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		// Le dernier épisode dont on connaît la date (sinon le dernier publié).
+		$podcast = get_posts( array( 'post_type' => 'er_media', 'post_status' => 'publish', 'numberposts' => 1, 'meta_query' => array( array( 'key' => 'er_genre', 'value' => 'podcast' ), array( 'key' => 'er_date_connue', 'value' => '1' ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		if ( ! $podcast ) {
+			$podcast = get_posts( array( 'post_type' => 'er_media', 'post_status' => 'publish', 'numberposts' => 1, 'meta_key' => 'er_genre', 'meta_value' => 'podcast' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		}
 		if ( $podcast ) {
 			$serie     = wp_get_post_terms( $podcast[0]->ID, 'er_serie', array( 'fields' => 'names' ) );
 			$titre     = html_entity_decode( get_the_title( $podcast[0] ), ENT_QUOTES, 'UTF-8' );
@@ -508,9 +512,10 @@ function er_journal_contexte( $vue, $quoi, $objet ) {
 			foreach ( $ids as $id ) {
 				foreach ( array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, 'er_livres', true ) ) ) ) as $ref ) {
 					$livre = ctype_digit( $ref ) ? (int) $ref : wc_get_product_id_by_sku( $ref );
-					if ( $livre && ! isset( $vus[ $livre ] ) && 'publish' === get_post_status( $livre ) ) {
-						$vus[ $livre ] = true;
-						$titre         = html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' );
+					$titre = $livre ? html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' ) : '';
+					$cle   = mb_strtolower( $titre ); // Deux éditions du même livre : une fois.
+					if ( $livre && ! isset( $vus[ $cle ] ) && 'publish' === get_post_status( $livre ) ) {
+						$vus[ $cle ] = true;
 						$liens[]       = er_journal_repere( $titre, get_permalink( $livre ), '', 'er-j-oeuvre', preg_match( '/\p{Cyrillic}/u', $titre ) ? 'ru' : '' );
 					}
 				}

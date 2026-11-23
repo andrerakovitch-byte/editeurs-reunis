@@ -306,6 +306,8 @@ function er_media_importer_un( $m, $auteurs, $images = true ) {
 	if ( ! empty( $m['serie'] ) ) {
 		wp_set_object_terms( $id, $m['serie'], 'er_serie', true );
 	}
+	// Sans date (les pistes de SoundCloud), la date de publication est celle de l'import : elle ne dit rien.
+	update_post_meta( $id, 'er_date_connue', $m['date'] ? '1' : '0' );
 	er_etiqueter( $id, $m['titre'] . ' ' . $m['description'], $auteurs );
 	foreach ( isset( $m['auteurs'] ) ? $m['auteurs'] : array() as $nom ) {
 		$cle = er_cle_recherche( $nom );
