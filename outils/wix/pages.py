@@ -1,8 +1,8 @@
 """Lit des pages publiques de l'ancien site Wix (editeurs-reunis.fr) : son plan (sitemap), puis les pages d'un genre.
 
 Tourne dans un workflow GitHub (`.github/workflows/wix-pages.yml`), le seul endroit d'où le site est joignable :
-l'espace de travail de Claude ne l'est pas. Rien n'est écrit dans le dépôt ; le résultat part en artefact du
-workflow, que Claude télécharge (`gh run download`).
+l'espace de travail de Claude ne l'est pas. Le résultat est déposé sur la branche à part « wix-pages », jamais sur
+main.
 
     python3 outils/wix/pages.py plan                     → plan.json : toutes les adresses du plan, par sous-plan
     python3 outils/wix/pages.py evenements [--brut N]    → evenements.json : chaque page d'événement, ses données

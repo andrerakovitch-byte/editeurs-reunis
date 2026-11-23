@@ -1,5 +1,7 @@
 # Lit des pages publiques de l'ancien site Wix (editeurs-reunis.fr), injoignable depuis l'espace de travail de Claude :
-# outils/wix/pages.py. Le résultat part en artefact (« wix-pages »), jamais dans le dépôt.
+# outils/wix/pages.py. Le résultat est déposé sur la branche à part « wix-pages » (écrasée à chaque fois), jamais sur
+# main ; Claude la lit par git (les artefacts des workflows ne lui sont pas joignables). Ce ne sont que des pages
+# publiques du site.
 name: Lire l'ancien site Wix
 
 on:
@@ -12,6 +14,9 @@ on:
         description: "Garder le HTML des N premières pages (pour lire leur forme)"
         default: "0"
 
+permissions:
+  contents: write
+
 jobs:
   lire:
     runs-on: ubuntu-latest
@@ -19,8 +24,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Lire
         run: python3 outils/wix/pages.py "${{ inputs.quoi }}" --brut "${{ inputs.brut }}"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: wix-pages
-          path: sortie/
-          retention-days: 7
+      - name: Déposer sur la branche wix-pages
+        run: |
+          cd sortie
+          git init -q -b wix-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Pages lues de l'ancien site : ${{ inputs.quoi }}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wix-pages
