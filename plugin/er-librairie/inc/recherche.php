@@ -128,6 +128,7 @@ function er_index_ecrire( $genre, $objet, $ligne ) {
 			'poids'     => (int) ( $ligne['poids'] ?? 0 ),
 		)
 	);
+	do_action( 'er_index_ecrit', $genre, (int) $objet ); // Algolia recopie la ligne (inc/algolia.php).
 }
 
 /**
@@ -139,6 +140,7 @@ function er_index_ecrire( $genre, $objet, $ligne ) {
 function er_index_oter( $genre, $objet ) {
 	global $wpdb;
 	$wpdb->delete( er_index_table(), array( 'genre' => $genre, 'objet' => (int) $objet ) ); // phpcs:ignore WordPress.DB
+	do_action( 'er_index_ote', $genre, (int) $objet );
 }
 
 /**
@@ -290,6 +292,7 @@ function er_index_terme( $terme, $taxonomie ) {
 function er_index_reconstruire() {
 	global $wpdb;
 	$wpdb->query( 'DELETE FROM ' . er_index_table() ); // phpcs:ignore WordPress.DB
+	do_action( 'er_index_vide' );
 	$ids = get_posts(
 		array(
 			'post_type'        => array( 'product', 'page', 'post', 'er_evenement' ),
@@ -399,6 +402,11 @@ add_action(
  */
 function er_index_chercher( $cle, $genres, $limite = 60 ) {
 	global $wpdb;
+	// Algolia d'abord, s'il est branché et répond (inc/algolia.php) ; la table sinon.
+	$trouve = apply_filters( 'er_index_chercher_pre', null, $cle, $genres, $limite );
+	if ( null !== $trouve ) {
+		return $trouve;
+	}
 	$mots = array_filter( explode( ' ', $cle ) );
 	if ( ! $mots ) {
 		return array();

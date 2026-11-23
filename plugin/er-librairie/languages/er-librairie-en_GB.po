@@ -25,54 +25,172 @@ msgid ""
 "livres."
 msgstr ""
 
-#: er-librairie.php:175
+#: er-librairie.php:176
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:189 er-librairie.php:195 inc/import.php:26
+#: er-librairie.php:190 er-librairie.php:196 inc/import.php:26
 #: inc/sujets.php:384
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:190
+#: er-librairie.php:191
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:191
+#: er-librairie.php:192
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:192
+#: er-librairie.php:193
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:193
+#: er-librairie.php:194
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:194
+#: er-librairie.php:195
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:211 er-librairie.php:216 inc/import.php:27
+#: er-librairie.php:212 er-librairie.php:217 inc/import.php:27
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:212 inc/evenements.php:122 inc/evenements.php:727
+#: er-librairie.php:213 inc/evenements.php:122 inc/evenements.php:727
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:213
+#: er-librairie.php:214
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:214
+#: er-librairie.php:215
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:215
+#: er-librairie.php:216
 msgid "Ajouter une langue"
 msgstr "Add language"
+
+#: inc/algolia.php:61
+msgid "Algolia n’est pas réglé."
+msgstr "Algolia is not set up."
+
+#: inc/algolia.php:360 inc/algolia.php:416
+msgid "La recherche"
+msgstr "Search"
+
+#: inc/algolia.php:361
+msgid "Recherche"
+msgstr "Search"
+
+#. translators: %s: le message d'erreur d'Algolia
+#: inc/algolia.php:410
+msgid "L’envoi a échoué : %s"
+msgstr "Sending failed: %s"
+
+#. translators: %d: le nombre de fiches
+#: inc/algolia.php:412
+msgid "%d fiche envoyée à Algolia."
+msgid_plural "%d fiches envoyées à Algolia."
+msgstr[0] "%d record sent to Algolia."
+msgstr[1] "%d records sent to Algolia."
+
+#: inc/algolia.php:420
+msgid ""
+"La loupe cherche dans l’index du site, qui réunit les trois écritures des "
+"noms. Avec Algolia, la même recherche tolère les fautes de frappe, et le "
+"tableau de bord d’Algolia montre ce que les visiteurs cherchent. Si Algolia "
+"ne répond pas, la recherche repasse sur l’index du site."
+msgstr ""
+"The search looks in the site’s index, which brings together the three "
+"spellings of names. With Algolia, the same search tolerates typos, and the "
+"Algolia dashboard shows what visitors look for. If Algolia does not answer, "
+"the search falls back on the site’s index."
+
+#: inc/algolia.php:425
+msgid "Algolia :"
+msgstr "Algolia:"
+
+#. translators: %s: le message d'erreur d'Algolia
+#: inc/algolia.php:428
+msgid "pas de réponse (%s)."
+msgstr "no answer (%s)."
+
+#. translators: %d: le nombre de fiches
+#: inc/algolia.php:431
+msgid "%d fiche dans l’index."
+msgid_plural "%d fiches dans l’index."
+msgstr[0] "%d record in the index."
+msgstr[1] "%d records in the index."
+
+#: inc/algolia.php:433
+msgid "La loupe cherche chez Algolia."
+msgstr "The search uses Algolia."
+
+#: inc/algolia.php:433
+msgid "La loupe cherche encore dans l’index du site."
+msgstr "The search still uses the site’s index."
+
+#: inc/algolia.php:440
+msgid "Application ID"
+msgstr "Application ID"
+
+#: inc/algolia.php:441
+msgid "Search API Key (la clé de recherche, publique)"
+msgstr "Search API Key (public)"
+
+#: inc/algolia.php:442
+msgid "La clé du site (limitée aux index er_*)"
+msgstr "The site key (limited to the er_* indices)"
+
+#: inc/algolia.php:443
+msgid "L’index"
+msgstr "Index"
+
+#: inc/algolia.php:446
+msgid "Posée. Laisser vide pour la garder."
+msgstr "Set. Leave empty to keep it."
+
+#: inc/algolia.php:446
+msgid "Pas encore posée."
+msgstr "Not set yet."
+
+#: inc/algolia.php:452
+msgid "Chercher chez Algolia"
+msgstr "Search with Algolia"
+
+#: inc/algolia.php:452
+msgid ""
+"La loupe et la recherche des livres interrogent Algolia (à cocher une fois "
+"l’index envoyé)."
+msgstr ""
+"The search panel and the book search use Algolia (tick once the index has "
+"been sent)."
+
+#: inc/algolia.php:454
+msgid "Enregistrer"
+msgstr "Save"
+
+#: inc/algolia.php:458
+msgid "Envoyer tout l’index"
+msgstr "Send the whole index"
+
+#: inc/algolia.php:459
+msgid ""
+"Refait l’index du site, règle celui d’Algolia, le vide, puis y envoie tout "
+"ce qu’on peut chercher sur le site. Ensuite, chaque contenu enregistré s’y "
+"recopie de lui-même."
+msgstr ""
+"Rebuilds the site’s index, sets up Algolia’s, empties it, then sends "
+"everything that can be searched on the site. After that, every saved item is"
+" copied there automatically."
+
+#: inc/algolia.php:462
+msgid "Envoyer tout l’index à Algolia"
+msgstr "Send the whole index to Algolia"
 
 #: inc/auteurs.php:21
 msgid "Portrait"
@@ -1016,17 +1134,17 @@ msgid "Et aussi"
 msgstr "And also"
 
 #. translators: %d: le nombre de rencontres et d'articles
-#: inc/recherche.php:600
+#: inc/recherche.php:608
 msgid "Sujet · %d rencontre ou article"
 msgid_plural "Sujet · %d rencontres et articles"
 msgstr[0] "Subject · %d item"
 msgstr[1] "Subject · %d items"
 
-#: inc/recherche.php:987 inc/recherche.php:995
+#: inc/recherche.php:995 inc/recherche.php:1003
 msgid "Autres graphies"
 msgstr "Other spellings"
 
-#: inc/recherche.php:989 inc/recherche.php:997
+#: inc/recherche.php:997 inc/recherche.php:1005
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -1034,27 +1152,27 @@ msgstr ""
 "One per line: the name in Russian, in English, an older transliteration. The"
 " search finds them all."
 
-#: inc/recherche.php:1017
+#: inc/recherche.php:1025
 msgid "Traducteur, préfacier"
 msgstr "Translator, preface writer"
 
-#: inc/recherche.php:1018
+#: inc/recherche.php:1026
 msgid "Éditeur"
 msgstr "Publisher"
 
-#: inc/recherche.php:1019
+#: inc/recherche.php:1027
 msgid "Collection"
 msgstr "Series"
 
-#: inc/recherche.php:1020
+#: inc/recherche.php:1028
 msgid "Année d’édition"
 msgstr "Year of publication"
 
-#: inc/recherche.php:1021
+#: inc/recherche.php:1029
 msgid "Nombre de pages"
 msgstr "Number of pages"
 
-#: inc/recherche.php:1022
+#: inc/recherche.php:1030
 msgid "Format (poche, broché, relié…)"
 msgstr "Format (paperback, hardback…)"
 

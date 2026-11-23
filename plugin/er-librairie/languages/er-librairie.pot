@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Les Éditeurs réunis — librairie plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis — librairie 0.4.3\n"
+"Project-Id-Version: Les Éditeurs réunis — librairie 0.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/er-librairie\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T21:51:14+00:00\n"
+"POT-Creation-Date: 2026-11-23T22:00:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -24,59 +24,164 @@ msgstr ""
 msgid "Les données de la librairie : auteurs et langues des livres, les rencontres du centre et leur billetterie, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:175
+#: er-librairie.php:176
 msgid "Langue du site"
 msgstr ""
 
-#: er-librairie.php:189
-#: er-librairie.php:195
+#: er-librairie.php:190
+#: er-librairie.php:196
 #: inc/import.php:26
 #: inc/sujets.php:384
 msgid "Auteurs"
 msgstr ""
 
-#: er-librairie.php:190
+#: er-librairie.php:191
 msgid "Auteur"
 msgstr ""
 
-#: er-librairie.php:191
+#: er-librairie.php:192
 msgid "Chercher un auteur"
 msgstr ""
 
-#: er-librairie.php:192
+#: er-librairie.php:193
 msgid "Tous les auteurs"
 msgstr ""
 
-#: er-librairie.php:193
+#: er-librairie.php:194
 msgid "Modifier l’auteur"
 msgstr ""
 
-#: er-librairie.php:194
+#: er-librairie.php:195
 msgid "Ajouter un auteur"
 msgstr ""
 
-#: er-librairie.php:211
-#: er-librairie.php:216
+#: er-librairie.php:212
+#: er-librairie.php:217
 #: inc/import.php:27
 msgid "Langues"
 msgstr ""
 
-#: er-librairie.php:212
+#: er-librairie.php:213
 #: inc/evenements.php:122
 #: inc/evenements.php:727
 msgid "Langue"
 msgstr ""
 
-#: er-librairie.php:213
+#: er-librairie.php:214
 msgid "Toutes les langues"
 msgstr ""
 
-#: er-librairie.php:214
+#: er-librairie.php:215
 msgid "Modifier la langue"
 msgstr ""
 
-#: er-librairie.php:215
+#: er-librairie.php:216
 msgid "Ajouter une langue"
+msgstr ""
+
+#: inc/algolia.php:61
+msgid "Algolia n’est pas réglé."
+msgstr ""
+
+#: inc/algolia.php:360
+#: inc/algolia.php:416
+msgid "La recherche"
+msgstr ""
+
+#: inc/algolia.php:361
+msgid "Recherche"
+msgstr ""
+
+#. translators: %s: le message d'erreur d'Algolia
+#: inc/algolia.php:410
+#, php-format
+msgid "L’envoi a échoué : %s"
+msgstr ""
+
+#. translators: %d: le nombre de fiches
+#: inc/algolia.php:412
+#, php-format
+msgid "%d fiche envoyée à Algolia."
+msgid_plural "%d fiches envoyées à Algolia."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/algolia.php:420
+msgid "La loupe cherche dans l’index du site, qui réunit les trois écritures des noms. Avec Algolia, la même recherche tolère les fautes de frappe, et le tableau de bord d’Algolia montre ce que les visiteurs cherchent. Si Algolia ne répond pas, la recherche repasse sur l’index du site."
+msgstr ""
+
+#: inc/algolia.php:425
+msgid "Algolia :"
+msgstr ""
+
+#. translators: %s: le message d'erreur d'Algolia
+#: inc/algolia.php:428
+#, php-format
+msgid "pas de réponse (%s)."
+msgstr ""
+
+#. translators: %d: le nombre de fiches
+#: inc/algolia.php:431
+#, php-format
+msgid "%d fiche dans l’index."
+msgid_plural "%d fiches dans l’index."
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/algolia.php:433
+msgid "La loupe cherche chez Algolia."
+msgstr ""
+
+#: inc/algolia.php:433
+msgid "La loupe cherche encore dans l’index du site."
+msgstr ""
+
+#: inc/algolia.php:440
+msgid "Application ID"
+msgstr ""
+
+#: inc/algolia.php:441
+msgid "Search API Key (la clé de recherche, publique)"
+msgstr ""
+
+#: inc/algolia.php:442
+msgid "La clé du site (limitée aux index er_*)"
+msgstr ""
+
+#: inc/algolia.php:443
+msgid "L’index"
+msgstr ""
+
+#: inc/algolia.php:446
+msgid "Posée. Laisser vide pour la garder."
+msgstr ""
+
+#: inc/algolia.php:446
+msgid "Pas encore posée."
+msgstr ""
+
+#: inc/algolia.php:452
+msgid "Chercher chez Algolia"
+msgstr ""
+
+#: inc/algolia.php:452
+msgid "La loupe et la recherche des livres interrogent Algolia (à cocher une fois l’index envoyé)."
+msgstr ""
+
+#: inc/algolia.php:454
+msgid "Enregistrer"
+msgstr ""
+
+#: inc/algolia.php:458
+msgid "Envoyer tout l’index"
+msgstr ""
+
+#: inc/algolia.php:459
+msgid "Refait l’index du site, règle celui d’Algolia, le vide, puis y envoie tout ce qu’on peut chercher sur le site. Ensuite, chaque contenu enregistré s’y recopie de lui-même."
+msgstr ""
+
+#: inc/algolia.php:462
+msgid "Envoyer tout l’index à Algolia"
 msgstr ""
 
 #: inc/auteurs.php:21
@@ -1049,44 +1154,44 @@ msgid "Et aussi"
 msgstr ""
 
 #. translators: %d: le nombre de rencontres et d'articles
-#: inc/recherche.php:600
+#: inc/recherche.php:608
 #, php-format
 msgid "Sujet · %d rencontre ou article"
 msgid_plural "Sujet · %d rencontres et articles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/recherche.php:987
 #: inc/recherche.php:995
+#: inc/recherche.php:1003
 msgid "Autres graphies"
 msgstr ""
 
-#: inc/recherche.php:989
 #: inc/recherche.php:997
+#: inc/recherche.php:1005
 msgid "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La recherche les trouve toutes."
 msgstr ""
 
-#: inc/recherche.php:1017
+#: inc/recherche.php:1025
 msgid "Traducteur, préfacier"
 msgstr ""
 
-#: inc/recherche.php:1018
+#: inc/recherche.php:1026
 msgid "Éditeur"
 msgstr ""
 
-#: inc/recherche.php:1019
+#: inc/recherche.php:1027
 msgid "Collection"
 msgstr ""
 
-#: inc/recherche.php:1020
+#: inc/recherche.php:1028
 msgid "Année d’édition"
 msgstr ""
 
-#: inc/recherche.php:1021
+#: inc/recherche.php:1029
 msgid "Nombre de pages"
 msgstr ""
 
-#: inc/recherche.php:1022
+#: inc/recherche.php:1030
 msgid "Format (poche, broché, relié…)"
 msgstr ""
 
