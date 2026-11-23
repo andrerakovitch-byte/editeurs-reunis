@@ -214,8 +214,11 @@ def convertir(pages):
             continue
         ld = next((b for b in p.get('json_ld', []) if isinstance(b, dict) and b.get('@type') == 'BlogPosting'), {})
         meta = p.get('meta', {})
-        titre = html.unescape(ld.get('headline') or meta.get('og:title') or '').strip()
-        titre = typo(re.sub(r'^"(.*)"', r'« \1 »', titre)).strip()
+        # Wix coupe le titre des données structurées à 110 signes : le titre de la page (og:title) est entier.
+        titre = max((html.unescape(t or '').strip() for t in (ld.get('headline'), meta.get('og:title'))), key=len)
+        titre = re.sub(r'\s+-\s+', ' – ', titre)  # « Anne-Marie Pelletier - Résister… » : le tiret demi-cadratin
+        titre = re.sub(r'(?<=[^\s\d:]):(?=\s)', ' :', titre)  # « Boris Akounine: » : l'espace avant le deux-points
+        titre = typo(re.sub(r'^"(.*)"', r'« \1 »', titre)).strip().rstrip('.').strip()
         quand = ld.get('datePublished') or meta.get('article:published_time') or ''
         date = datetime.fromisoformat(quand.replace('Z', '+00:00')).astimezone(PARIS).strftime('%Y-%m-%d %H:%M:%S') if quand else ''
         signature = ((ld.get('author') or {}).get('name') or '').strip()
@@ -224,6 +227,7 @@ def convertir(pages):
         etiquettes = [html.unescape(e[1]).strip() for e in p.get('etiquettes', [])]
         relues = ETIQUETTES.get(wix_slug)
         if relues:
+            titre = relues.get('titre') or titre  # un titre mal formé chez Wix, refait à la main
             signature = relues['signature']
             personnes, sujets = list(relues['personnes']), list(relues['sujets'])
         else:
