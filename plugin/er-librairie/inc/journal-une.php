@@ -108,7 +108,7 @@ function er_genres_installer() {
 add_filter(
 	'query_vars',
 	function ( $vars ) {
-		return array_merge( $vars, array( 'sujet', 'en', 'fil' ) );
+		return array_merge( $vars, array( 'sujet', 'en', 'fil', 'annee' ) );
 	}
 );
 add_action(
@@ -121,6 +121,10 @@ add_action(
 			$sujet = sanitize_title( (string) $q->get( 'sujet' ) );
 			if ( $sujet ) {
 				$q->set( 'tax_query', array( array( 'taxonomy' => 'er_sujet', 'field' => 'slug', 'terms' => $sujet ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+			}
+			$annee = (int) $q->get( 'annee' );
+			if ( $annee > 1900 ) {
+				$q->set( 'date_query', array( array( 'year' => $annee ) ) );
 			}
 			if ( 'russe' === $q->get( 'en' ) ) {
 				$q->set( 'meta_query', array( array( 'key' => 'er_langues', 'value' => 'ru', 'compare' => 'LIKE' ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
@@ -146,6 +150,10 @@ function er_journal_vue() {
 	}
 	if ( 'russe' === get_query_var( 'en' ) ) {
 		return array( 'liste', 'russe', null );
+	}
+	$annee = (int) get_query_var( 'annee' );
+	if ( $annee > 1900 ) {
+		return array( 'liste', 'annee', $annee );
 	}
 	if ( isset( $_GET['fil'] ) || is_paged() ) { // phpcs:ignore WordPress.Security.NonceVerification
 		return array( 'liste', 'fil', null );
@@ -392,7 +400,218 @@ function er_journal_tete() {
 		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
 		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
 		. '<nav class="er-j-genres" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '">' . $onglets . '</nav>'
-		. '</div></section>';
+		. '</div></section>'
+		. er_journal_contexte( $vue, $quoi, $objet );
+}
+
+/**
+ * Les articles publiés d'un genre (leurs identifiants).
+ *
+ * @param string $genre Le slug du genre.
+ */
+function er_journal_ids_du_genre( $genre ) {
+	return get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'tax_query' => array( array( 'taxonomy' => 'er_genre', 'field' => 'slug', 'terms' => $genre ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+}
+
+/**
+ * Compte des noms : [ nom => nombre ], du plus fréquent au moins fréquent.
+ *
+ * @param array $noms Les noms, avec leurs répétitions.
+ */
+function er_journal_compter( $noms ) {
+	$comptes = array_count_values( array_filter( $noms ) );
+	arsort( $comptes );
+	return $comptes;
+}
+
+/**
+ * Un lien de la ligne de repères.
+ *
+ * @param string $texte  Le texte.
+ * @param string $lien   L'adresse (vide : pas de lien).
+ * @param string $n      Un nombre, en discret.
+ * @param string $classe Une classe (er-j-oeuvre pour un titre de livre).
+ * @param string $lang   La langue, si ce n'est pas celle de la page.
+ */
+function er_journal_repere( $texte, $lien = '', $n = '', $classe = '', $lang = '' ) {
+	$attributs = ( $classe ? ' class="' . esc_attr( $classe ) . '"' : '' ) . ( $lang ? ' lang="' . esc_attr( $lang ) . '"' : '' );
+	$contenu   = esc_html( $texte ) . ( '' !== (string) $n ? '<span class="er-j-n">' . esc_html( (string) $n ) . '</span>' : '' );
+	return $lien ? '<a href="' . esc_url( $lien ) . '"' . $attributs . '>' . $contenu . '</a>' : '<span' . $attributs . '>' . $contenu . '</span>';
+}
+
+/**
+ * La ligne sous le bandeau, qui dépend de l'onglet : le prochain rendez-vous à la une, les plumes des chroniques, les
+ * livres des critiques, les années du fil… Une seule ligne : ce qui dépasse défile de côté.
+ *
+ * @param string $vue   une ou liste.
+ * @param string $quoi  genre, sujet, russe, annee, fil.
+ * @param mixed  $objet Le genre, le sujet ou l'année.
+ */
+function er_journal_contexte( $vue, $quoi, $objet ) {
+	$groupes = array(); // [ titre, [ liens ] ]
+	$auteur  = function ( $nom ) {
+		$t    = get_term_by( 'name', $nom, 'auteur' );
+		$lien = $t ? get_term_link( $t ) : '';
+		return is_wp_error( $lien ) ? '' : $lien;
+	};
+
+	if ( 'une' === $vue ) {
+		// Le prochain rendez-vous au centre, et le dernier épisode du podcast.
+		if ( function_exists( 'er_evt_requete' ) ) {
+			foreach ( er_evt_requete( true ) as $evt ) {
+				if ( 'annule' === get_post_meta( $evt->ID, 'er_etat', true ) || er_evt_dure( $evt->ID ) ) {
+					continue;
+				}
+				$debut = er_evt_date( $evt->ID );
+				$quand = $debut ? wp_date( __( 'l j F', 'er-librairie' ), $debut->getTimestamp(), er_evt_fuseau() ) . ( '00:00' !== $debut->format( 'H:i' ) ? ', ' . er_evt_heure( $debut ) : '' ) : '';
+				$titre = html_entity_decode( get_the_title( $evt ), ENT_QUOTES, 'UTF-8' );
+				$liens = array( er_journal_repere( ( $quand ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) . ' : ' : '' ) . $titre, get_permalink( $evt ) ) );
+				if ( function_exists( 'er_lien' ) ) {
+					$liens[] = er_journal_repere( __( 'Tous nos événements', 'er-librairie' ), html_entity_decode( er_lien( 'centre-culturel/evenements/' ) ), '', 'er-j-souligne' );
+				}
+				$groupes[] = array( __( 'Au centre', 'er-librairie' ), $liens );
+				break;
+			}
+		}
+		$podcast = get_posts( array( 'post_type' => 'er_media', 'post_status' => 'publish', 'numberposts' => 1, 'meta_key' => 'er_genre', 'meta_value' => 'podcast' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		if ( $podcast ) {
+			$serie     = wp_get_post_terms( $podcast[0]->ID, 'er_serie', array( 'fields' => 'names' ) );
+			$titre     = html_entity_decode( get_the_title( $podcast[0] ), ENT_QUOTES, 'UTF-8' );
+			$serie     = $serie && ! is_wp_error( $serie ) ? $serie[0] : '';
+			// « Les Secrets de l'Archipel du Goulag, épisode 3 » : court, pour tenir sur la ligne.
+			if ( $serie && preg_match( '/^[ÉE]pisode\s*(\d+)/u', $titre, $m ) ) {
+				/* translators: 1: la série, 2: le numéro de l'épisode */
+				$texte = sprintf( __( '%1$s, épisode %2$s', 'er-librairie' ), $serie, $m[1] );
+			} else {
+				$texte = ( $serie ? $serie . ' · ' : '' ) . wp_trim_words( $titre, 8, '…' );
+			}
+			$groupes[] = array( __( 'Le podcast', 'er-librairie' ), array( er_journal_repere( $texte, get_permalink( $podcast[0] ) ) ) );
+		}
+	} elseif ( 'genre' === $quoi && $objet ) {
+		$ids = er_journal_ids_du_genre( $objet->slug );
+		if ( in_array( $objet->slug, array( 'chronique', 'recit', 'archive' ), true ) ) {
+			// Ceux qui signent, et combien.
+			$titres = array(
+				'chronique' => __( 'Les plumes', 'er-librairie' ),
+				'recit'     => __( 'Les témoins', 'er-librairie' ),
+				'archive'   => __( 'Les auteurs', 'er-librairie' ),
+			);
+			$liens  = array();
+			foreach ( er_journal_compter( array_map( fn( $id ) => trim( (string) get_post_meta( $id, 'er_signature', true ) ), $ids ) ) as $nom => $n ) {
+				$liens[] = er_journal_repere( $nom, $auteur( $nom ), $n > 1 ? $n : '' );
+			}
+			$groupes[] = array( $titres[ $objet->slug ], $liens );
+		} elseif ( 'critique' === $objet->slug && function_exists( 'wc_get_product_id_by_sku' ) ) {
+			// Les livres dont parlent les critiques, à la librairie.
+			$liens = array();
+			$vus   = array();
+			foreach ( $ids as $id ) {
+				foreach ( array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, 'er_livres', true ) ) ) ) as $ref ) {
+					$livre = ctype_digit( $ref ) ? (int) $ref : wc_get_product_id_by_sku( $ref );
+					if ( $livre && ! isset( $vus[ $livre ] ) && 'publish' === get_post_status( $livre ) ) {
+						$vus[ $livre ] = true;
+						$titre         = html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' );
+						$liens[]       = er_journal_repere( $titre, get_permalink( $livre ), '', 'er-j-oeuvre', preg_match( '/\p{Cyrillic}/u', $titre ) ? 'ru' : '' );
+					}
+				}
+			}
+			if ( $liens ) {
+				$groupes[] = array( __( 'Les livres', 'er-librairie' ), array_slice( $liens, 0, 10 ) );
+			}
+		} elseif ( in_array( $objet->slug, array( 'essai', 'entretien', 'hommage' ), true ) ) {
+			// Les personnes dont parlent les textes (pas ceux qui les signent).
+			$noms = array();
+			foreach ( $ids as $id ) {
+				$signature = trim( (string) get_post_meta( $id, 'er_signature', true ) );
+				foreach ( wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) ) as $nom ) {
+					if ( $nom !== $signature ) {
+						$noms[] = $nom;
+					}
+				}
+			}
+			$liens = array();
+			foreach ( array_slice( er_journal_compter( $noms ), 0, 8, true ) as $nom => $n ) {
+				$liens[] = er_journal_repere( $nom, $auteur( $nom ) );
+			}
+			if ( $liens ) {
+				$groupes[] = array( __( 'Il y est question de', 'er-librairie' ), $liens );
+			}
+		}
+		if ( ! $groupes ) {
+			// Sinon, ses sujets.
+			$noms = array();
+			foreach ( $ids as $id ) {
+				foreach ( wp_get_post_terms( $id, 'er_sujet' ) as $t ) {
+					$noms[] = $t->slug;
+				}
+			}
+			$liens = array();
+			foreach ( array_slice( er_journal_compter( $noms ), 0, 8, true ) as $slug => $n ) {
+				$t       = get_term_by( 'slug', $slug, 'er_sujet' );
+				$liens[] = $t ? er_journal_repere( $t->name, er_journal_lien( array( 'sujet' => $slug ) ), $n ) : '';
+			}
+			$groupes[] = array( __( 'Sujets', 'er-librairie' ), array_filter( $liens ) );
+		}
+	} elseif ( 'sujet' === $quoi && $objet ) {
+		// Le sujet ailleurs sur le site, et ses voisins (les sujets qui vont le plus souvent avec lui).
+		$lien = get_term_link( $objet );
+		if ( ! is_wp_error( $lien ) ) {
+			/* translators: %s: un sujet */
+			$groupes[] = array( sprintf( __( '%s, ailleurs', 'er-librairie' ), $objet->name ), array( er_journal_repere( __( 'Les rencontres, les livres, les vidéos', 'er-librairie' ), $lien, '', 'er-j-souligne' ) ) );
+		}
+		$ids  = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'tax_query' => array( array( 'taxonomy' => 'er_sujet', 'terms' => $objet->term_id ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		$noms = array();
+		foreach ( $ids as $id ) {
+			foreach ( wp_get_post_terms( $id, 'er_sujet' ) as $t ) {
+				if ( $t->term_id !== $objet->term_id ) {
+					$noms[] = $t->slug;
+				}
+			}
+		}
+		$liens = array();
+		foreach ( array_slice( er_journal_compter( $noms ), 0, 5, true ) as $slug => $n ) {
+			$t       = get_term_by( 'slug', $slug, 'er_sujet' );
+			$liens[] = $t ? er_journal_repere( $t->name, er_journal_lien( array( 'sujet' => $slug ) ) ) : '';
+		}
+		if ( array_filter( $liens ) ) {
+			$groupes[] = array( __( 'Sujets voisins', 'er-librairie' ), array_filter( $liens ) );
+		}
+	} elseif ( 'russe' === $quoi ) {
+		global $wp_query;
+		$n     = (int) $wp_query->found_posts;
+		/* translators: %d: un nombre de textes */
+		$liens = array( er_journal_repere( sprintf( _n( '%d texte en russe ou bilingue', '%d textes en russe ou bilingues', $n, 'er-librairie' ), $n ) ) );
+		$page  = (int) get_option( 'page_for_posts' );
+		$ru    = $page && function_exists( 'pll_get_post' ) ? (int) pll_get_post( $page, 'ru' ) : 0;
+		if ( $ru && $ru !== $page ) {
+			$liens[] = er_journal_repere( 'Журнал по-русски', get_permalink( $ru ), '', 'er-j-souligne', 'ru' );
+		}
+		$groupes[] = array( __( 'En russe', 'er-librairie' ), $liens );
+	} elseif ( in_array( $quoi, array( 'fil', 'annee' ), true ) ) {
+		// Les années, et combien de textes chacune.
+		$annees = array();
+		foreach ( get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids' ) ) as $id ) {
+			$annees[] = get_the_date( 'Y', $id );
+		}
+		$comptes = array_count_values( $annees );
+		krsort( $comptes );
+		$liens = array();
+		foreach ( $comptes as $an => $n ) {
+			$actif   = 'annee' === $quoi && (int) $objet === (int) $an;
+			$liens[] = $actif ? '<a href="' . esc_url( er_journal_lien( array( 'annee' => $an ) ) ) . '" class="est-actif" aria-current="page">' . esc_html( (string) $an ) . '<span class="er-j-n">' . (int) $n . '</span></a>' : er_journal_repere( (string) $an, er_journal_lien( array( 'annee' => $an ) ), $n );
+		}
+		$groupes[] = array( __( 'Les années', 'er-librairie' ), $liens );
+	}
+
+	$groupes = array_filter( $groupes, fn( $g ) => ! empty( $g[1] ) );
+	if ( ! $groupes ) {
+		return '';
+	}
+	$html = '';
+	foreach ( array_values( $groupes ) as $i => list( $titre, $liens ) ) {
+		$html .= ( $i ? '<span class="er-j-sep" aria-hidden="true"></span>' : '' ) . '<span class="er-j-contexte-titre">' . esc_html( $titre ) . '</span>' . implode( '', $liens );
+	}
+	return '<section class="er-j-contexte-bande alignfull"><div class="er-j-g"><nav class="er-j-contexte" aria-label="' . esc_attr__( 'Repères', 'er-librairie' ) . '">' . $html . '</nav></div></section>';
 }
 
 /**
@@ -619,6 +838,8 @@ function er_journal_liste() {
 		$titre = $objet->name;
 	} elseif ( 'russe' === $quoi ) {
 		$titre = __( 'En russe', 'er-librairie' );
+	} elseif ( 'annee' === $quoi ) {
+		$titre = (string) $objet;
 	} else {
 		$titre = __( 'Tous les textes', 'er-librairie' );
 	}

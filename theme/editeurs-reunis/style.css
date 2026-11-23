@@ -2656,6 +2656,18 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-autres summary::-webkit-details-marker { display: none; }
 .er-j-autres[open] { flex-basis: 100%; }
 .er-j-autres > div { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+/* La ligne de repères, sous le bandeau : ce qui dépend de l'onglet, sur une seule ligne (le reste défile de côté) */
+.er-j-contexte { grid-column: 1 / -1; display: flex; flex-wrap: nowrap; align-items: baseline; gap: 24px; padding-block: 14px; border-bottom: 1px solid var(--wp--preset--color--filet); overflow-x: auto; scrollbar-width: none; }
+.er-j-contexte::-webkit-scrollbar { display: none; }
+.er-j-contexte > * { flex: none; white-space: nowrap; }
+.er-j-contexte a, .er-j-contexte > span:not(.er-j-contexte-titre):not(.er-j-sep) { font-size: 0.875rem; font-weight: 600; }
+.er-j-contexte a:hover, .er-j-contexte a.est-actif { color: var(--wp--preset--color--accent-texte); }
+.er-j-contexte a.est-actif { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+.er-j-contexte-titre { font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-j-contexte .er-j-n { margin-left: 6px; font-weight: 400; color: var(--wp--preset--color--discret); }
+.er-j-contexte .er-j-oeuvre { font-style: italic; }
+.er-j-contexte .er-j-souligne { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+.er-j-sep { align-self: center; width: 1px; height: 14px; background: var(--wp--preset--color--filet); }
 .er-j-une { padding-top: 40px; }
 
 /* Les morceaux d'un texte : surtitre, titres, chapô, ligne d'auteur, image */

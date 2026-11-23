@@ -78,28 +78,28 @@ msgstr "Добавить язык"
 msgid "Algolia n’est pas réglé."
 msgstr "Algolia не настроена."
 
-#: inc/algolia.php:361 inc/algolia.php:417
+#: inc/algolia.php:362 inc/algolia.php:418
 msgid "La recherche"
 msgstr "Поиск"
 
-#: inc/algolia.php:362
+#: inc/algolia.php:363
 msgid "Recherche"
 msgstr "Поиск"
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:411
+#: inc/algolia.php:412
 msgid "L’envoi a échoué : %s"
 msgstr "Отправка не удалась: %s"
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:413
+#: inc/algolia.php:414
 msgid "%d fiche envoyée à Algolia."
 msgid_plural "%d fiches envoyées à Algolia."
 msgstr[0] "%d запись отправлена в Algolia."
 msgstr[1] "%d записи отправлены в Algolia."
 msgstr[2] "%d записей отправлено в Algolia."
 
-#: inc/algolia.php:421
+#: inc/algolia.php:422
 msgid ""
 "La loupe cherche dans l’index du site, qui réunit les trois écritures des "
 "noms. Avec Algolia, la même recherche tolère les fautes de frappe, et le "
@@ -110,60 +110,60 @@ msgstr ""
 "Algolia тот же поиск прощает опечатки, а панель Algolia показывает, что ищут"
 " посетители. Если Algolia не отвечает, поиск возвращается к указателю сайта."
 
-#: inc/algolia.php:426
+#: inc/algolia.php:427
 msgid "Algolia :"
 msgstr "Algolia:"
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:429
+#: inc/algolia.php:430
 msgid "pas de réponse (%s)."
 msgstr "нет ответа (%s)."
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:432
+#: inc/algolia.php:433
 msgid "%d fiche dans l’index."
 msgid_plural "%d fiches dans l’index."
 msgstr[0] "%d запись в индексе."
 msgstr[1] "%d записи в индексе."
 msgstr[2] "%d записей в индексе."
 
-#: inc/algolia.php:434
+#: inc/algolia.php:435
 msgid "La loupe cherche chez Algolia."
 msgstr "Поиск идёт через Algolia."
 
-#: inc/algolia.php:434
+#: inc/algolia.php:435
 msgid "La loupe cherche encore dans l’index du site."
 msgstr "Поиск пока идёт по указателю сайта."
 
-#: inc/algolia.php:441
+#: inc/algolia.php:442
 msgid "Application ID"
 msgstr "Application ID"
 
-#: inc/algolia.php:442
+#: inc/algolia.php:443
 msgid "Search API Key (la clé de recherche, publique)"
 msgstr "Search API Key (публичный ключ поиска)"
 
-#: inc/algolia.php:443
+#: inc/algolia.php:444
 msgid "La clé d’écriture (Write API Key, côté serveur)"
 msgstr "Ключ записи (Write API Key, на сервере)"
 
-#: inc/algolia.php:444
+#: inc/algolia.php:445
 msgid "L’index"
 msgstr "Индекс"
 
-#: inc/algolia.php:447
+#: inc/algolia.php:448
 msgid "Posée. Laisser vide pour la garder."
 msgstr "Задан. Оставьте пустым, чтобы сохранить."
 
-#: inc/algolia.php:447
+#: inc/algolia.php:448
 msgid "Pas encore posée."
 msgstr "Пока не задан."
 
-#: inc/algolia.php:453
+#: inc/algolia.php:454
 msgid "Chercher chez Algolia"
 msgstr "Искать через Algolia"
 
-#: inc/algolia.php:453
+#: inc/algolia.php:454
 msgid ""
 "La loupe et la recherche des livres interrogent Algolia (à cocher une fois "
 "l’index envoyé)."
@@ -171,15 +171,15 @@ msgstr ""
 "Панель поиска и поиск книг обращаются к Algolia (отметьте, когда индекс "
 "отправлен)."
 
-#: inc/algolia.php:455
+#: inc/algolia.php:456
 msgid "Enregistrer"
 msgstr "Сохранить"
 
-#: inc/algolia.php:459
+#: inc/algolia.php:460
 msgid "Envoyer tout l’index"
 msgstr "Отправить весь индекс"
 
-#: inc/algolia.php:460
+#: inc/algolia.php:461
 msgid ""
 "Refait l’index du site, règle celui d’Algolia, le vide, puis y envoie tout "
 "ce qu’on peut chercher sur le site. Ensuite, chaque contenu enregistré s’y "
@@ -189,7 +189,7 @@ msgstr ""
 "отправляет туда всё, что можно искать на сайте. Затем каждый сохранённый "
 "материал копируется туда сам."
 
-#: inc/algolia.php:463
+#: inc/algolia.php:464
 msgid "Envoyer tout l’index à Algolia"
 msgstr "Отправить весь индекс в Algolia"
 
@@ -524,7 +524,7 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
-#: inc/journal-une.php:276 inc/journal-une.php:548 inc/journal-une.php:630
+#: inc/journal-une.php:284 inc/journal-une.php:767 inc/journal-une.php:851
 #: inc/journal.php:72 inc/medias.php:202 inc/sujets.php:414 inc/sujets.php:417
 msgid "j F Y"
 msgstr "j F Y"
@@ -537,8 +537,8 @@ msgstr "l, j F Y"
 msgid "En français"
 msgstr "На французском"
 
-#: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:256
-#: inc/journal-une.php:374 inc/journal-une.php:621
+#: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:264
+#: inc/journal-une.php:382 inc/journal-une.php:589 inc/journal-une.php:840
 msgid "En russe"
 msgstr "На русском"
 
@@ -937,12 +937,12 @@ msgstr "Жанров нет"
 
 #. translators: %s: le nom de celui qui signe
 #. translators: %s: le nom de celui qui signe l'article
-#: inc/journal-une.php:273 inc/journal.php:80
+#: inc/journal-une.php:281 inc/journal.php:80
 msgid "Par %s"
 msgstr "Автор: %s"
 
 #. translators: %d: des minutes
-#: inc/journal-une.php:280
+#: inc/journal-une.php:288
 msgid "%d min de lecture"
 msgid_plural "%d min de lecture"
 msgstr[0] "%d мин чтения"
@@ -951,36 +951,36 @@ msgstr[2] "%d мин чтения"
 
 #. translators: %d: des minutes
 #. translators: %d: la durée en minutes
-#: inc/journal-une.php:280 inc/medias.php:206
+#: inc/journal-une.php:288 inc/medias.php:206
 msgid "%d min"
 msgstr "%d мин"
 
-#: inc/journal-une.php:348 inc/journal-une.php:660
+#: inc/journal-une.php:356 inc/journal-une.php:881
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: inc/journal-une.php:354
+#: inc/journal-une.php:362
 msgid "À la une"
 msgstr "Главное"
 
-#: inc/journal-une.php:380
+#: inc/journal-une.php:388
 msgid "Le centre culturel"
 msgstr "Культурный центр"
 
 #. translators: %s: une année
-#: inc/journal-une.php:383
+#: inc/journal-une.php:391
 msgid "Depuis %s"
 msgstr "С %s года"
 
 #. translators: %d: un nombre de textes
-#: inc/journal-une.php:386 inc/journal-une.php:599 inc/journal-une.php:627
+#: inc/journal-une.php:394 inc/journal-une.php:818 inc/journal-une.php:848
 msgid "%d texte"
 msgid_plural "%d textes"
 msgstr[0] "%d текст"
 msgstr[1] "%d текста"
 msgstr[2] "%d текстов"
 
-#: inc/journal-une.php:393
+#: inc/journal-une.php:401
 msgid ""
 "Chroniques, critiques, essais et archives : la littérature russe et son "
 "histoire, par ceux qui la lisent et la traduisent."
@@ -988,79 +988,155 @@ msgstr ""
 "Колонки, рецензии, эссе и архивы: русская литература и её история глазами "
 "тех, кто её читает и переводит."
 
-#: inc/journal-une.php:394
+#: inc/journal-une.php:402
 msgid "Les genres du journal"
 msgstr "Рубрики журнала"
 
+#: inc/journal-une.php:466
+msgid "l j F"
+msgstr "l, j F"
+
+#: inc/journal-une.php:470
+msgid "Tous nos événements"
+msgstr "Все наши события"
+
+#: inc/journal-une.php:472 inc/sujets.php:571
+msgid "Au centre"
+msgstr "В центре"
+
+#. translators: 1: la série, 2: le numéro de l'épisode
+#: inc/journal-une.php:484
+msgid "%1$s, épisode %2$s"
+msgstr "%1$s, выпуск %2$s"
+
+#: inc/journal-une.php:488
+msgid "Le podcast"
+msgstr "Подкаст"
+
+#: inc/journal-une.php:495
+msgid "Les plumes"
+msgstr "Авторы"
+
+#: inc/journal-une.php:496
+msgid "Les témoins"
+msgstr "Свидетели"
+
+#: inc/journal-une.php:497
+msgid "Les auteurs"
+msgstr "Авторы"
+
+#: inc/journal-une.php:519
+msgid "Les livres"
+msgstr "Книги"
+
+#: inc/journal-une.php:537
+msgid "Il y est question de"
+msgstr "О ком"
+
+#: inc/journal-une.php:553 inc/sujets.php:33 inc/sujets.php:42
+#: inc/sujets.php:385
+msgid "Sujets"
+msgstr "Темы"
+
+#. translators: %s: un sujet
+#: inc/journal-une.php:560
+msgid "%s, ailleurs"
+msgstr "%s: другие материалы"
+
+#. translators: %s: un sujet
+#: inc/journal-une.php:560
+msgid "Les rencontres, les livres, les vidéos"
+msgstr "Встречи, книги, видео"
+
+#: inc/journal-une.php:577
+msgid "Sujets voisins"
+msgstr "Близкие темы"
+
+#. translators: %d: un nombre de textes
+#: inc/journal-une.php:583
+msgid "%d texte en russe ou bilingue"
+msgid_plural "%d textes en russe ou bilingues"
+msgstr[0] "%d текст на русском или на двух языках"
+msgstr[1] "%d текста на русском или на двух языках"
+msgstr[2] "%d текстов на русском или на двух языках"
+
+#: inc/journal-une.php:603
+msgid "Les années"
+msgstr "Годы"
+
+#: inc/journal-une.php:614
+msgid "Repères"
+msgstr "Ориентиры"
+
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:407
+#: inc/journal-une.php:626
 msgid "Les sujets"
 msgstr "Темы"
 
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:407
+#: inc/journal-une.php:626
 msgid "%d sujet"
 msgid_plural "%d sujets"
 msgstr[0] "%d тема"
 msgstr[1] "%d темы"
 msgstr[2] "%d тем"
 
-#: inc/journal-une.php:463 inc/journal-une.php:636 inc/medias.php:231
+#: inc/journal-une.php:682 inc/journal-une.php:857 inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr "Пока ничего нет."
 
-#: inc/journal-une.php:481
+#: inc/journal-une.php:700
 msgid "Le fil"
 msgstr "Лента"
 
-#: inc/journal-une.php:481
+#: inc/journal-une.php:700
 msgid "Du plus récent au plus ancien"
 msgstr "Сначала новые"
 
-#: inc/journal-une.php:484
+#: inc/journal-une.php:703
 msgctxt "date courte du fil"
 msgid "j M Y"
 msgstr "j M Y"
 
-#: inc/journal-une.php:488
+#: inc/journal-une.php:707
 msgid "Tout le fil"
 msgstr "Вся лента"
 
 #. translators: 1: le nombre de chroniques, 2: l'année de la première
-#: inc/journal-une.php:545
+#: inc/journal-une.php:764
 msgid "%1$d chronique depuis %2$s"
 msgid_plural "%1$d chroniques depuis %2$s"
 msgstr[0] "%1$d колонка с %2$s года"
 msgstr[1] "%1$d колонки с %2$s года"
 msgstr[2] "%1$d колонок с %2$s года"
 
-#: inc/journal-une.php:566
+#: inc/journal-une.php:785
 msgid "Les chroniques"
 msgstr "Колонки"
 
-#: inc/journal-une.php:569
+#: inc/journal-une.php:788
 msgid "Toutes les chroniques"
 msgstr "Все колонки"
 
-#: inc/journal-une.php:576
+#: inc/journal-une.php:795
 msgid "Grand format"
 msgstr "Большой материал"
 
-#: inc/journal-une.php:623
+#: inc/journal-une.php:844
 msgid "Tous les textes"
 msgstr "Все тексты"
 
-#: inc/journal-une.php:643
+#: inc/journal-une.php:864
 msgctxt "pagination du journal"
 msgid "Plus récents"
 msgstr "Более новые"
 
-#: inc/journal-une.php:644
+#: inc/journal-une.php:865
 msgctxt "pagination du journal"
 msgid "Plus anciens"
 msgstr "Более ранние"
 
-#: inc/journal-une.php:647
+#: inc/journal-une.php:868
 msgid "Les pages du journal"
 msgstr "Страницы журнала"
 
@@ -1184,10 +1260,6 @@ msgstr "Число страниц"
 msgid "Format (poche, broché, relié…)"
 msgstr "Формат (карманный, в обложке, в переплёте…)"
 
-#: inc/sujets.php:33 inc/sujets.php:42 inc/sujets.php:385
-msgid "Sujets"
-msgstr "Темы"
-
 #: inc/sujets.php:34
 msgid "Sujet"
 msgstr "Тема"
@@ -1262,10 +1334,6 @@ msgstr "О нём: %s"
 #: inc/sujets.php:571
 msgid "Les rencontres"
 msgstr "Встречи"
-
-#: inc/sujets.php:571
-msgid "Au centre"
-msgstr "В центре"
 
 #: inc/sujets.php:574
 msgid "Écouter, regarder"

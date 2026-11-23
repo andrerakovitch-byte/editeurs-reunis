@@ -290,6 +290,12 @@ et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag
 - **L'en-tête du journal** (`er/journal-tete`, « le bandeau », choisi le 23 nov. parmi quatre) : sur l'aplat du
   centre, sous son menu, le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque effacé, puis les
   genres en onglets (et « En russe », les textes en russe ou bilingues, d'après `er_langues`).
+- **La ligne de repères**, sous le bandeau, sur une seule ligne (ce qui dépasse défile de côté), selon l'onglet : à
+  la une, le prochain rendez-vous au centre et le dernier épisode du podcast ; les plumes des chroniques, les
+  témoins des récits, les auteurs des archives (avec leur nombre de textes) ; les livres des critiques, à la
+  librairie ; les personnes dont parlent les essais, les entretiens et les hommages ; les sujets des documents ;
+  pour un sujet, le sujet ailleurs sur le site et ses voisins ; en russe, le nombre de textes et le journal russe
+  (avec Polylang) ; dans le fil, les années (`/journal/?annee=2023`).
 - **La une** (`er/journal-corps`, à la première page) : le texte à la une, le dernier **épinglé** (« Mettre en
   avant » dans l'éditeur), sinon le plus récent qui a une image ; deux autres dessous ; à droite, le fil des six
   derniers, et sous le fil tous les sujets, avec leur nombre de textes. Puis, sur le fond doux, les chroniques (ceux qui signent au moins deux chroniques, leur portrait de

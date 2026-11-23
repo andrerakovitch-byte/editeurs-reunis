@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Les Éditeurs réunis — librairie plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis — librairie 0.5.0\n"
+"Project-Id-Version: Les Éditeurs réunis — librairie 0.5.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/er-librairie\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T22:06:53+00:00\n"
+"POT-Creation-Date: 2026-11-23T22:13:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -83,104 +83,104 @@ msgstr ""
 msgid "Algolia n’est pas réglé."
 msgstr ""
 
-#: inc/algolia.php:361
-#: inc/algolia.php:417
+#: inc/algolia.php:362
+#: inc/algolia.php:418
 msgid "La recherche"
 msgstr ""
 
-#: inc/algolia.php:362
+#: inc/algolia.php:363
 msgid "Recherche"
 msgstr ""
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:411
+#: inc/algolia.php:412
 #, php-format
 msgid "L’envoi a échoué : %s"
 msgstr ""
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:413
+#: inc/algolia.php:414
 #, php-format
 msgid "%d fiche envoyée à Algolia."
 msgid_plural "%d fiches envoyées à Algolia."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/algolia.php:421
+#: inc/algolia.php:422
 msgid "La loupe cherche dans l’index du site, qui réunit les trois écritures des noms. Avec Algolia, la même recherche tolère les fautes de frappe, et le tableau de bord d’Algolia montre ce que les visiteurs cherchent. Si Algolia ne répond pas, la recherche repasse sur l’index du site."
 msgstr ""
 
-#: inc/algolia.php:426
+#: inc/algolia.php:427
 msgid "Algolia :"
 msgstr ""
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:429
+#: inc/algolia.php:430
 #, php-format
 msgid "pas de réponse (%s)."
 msgstr ""
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:432
+#: inc/algolia.php:433
 #, php-format
 msgid "%d fiche dans l’index."
 msgid_plural "%d fiches dans l’index."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/algolia.php:434
+#: inc/algolia.php:435
 msgid "La loupe cherche chez Algolia."
 msgstr ""
 
-#: inc/algolia.php:434
+#: inc/algolia.php:435
 msgid "La loupe cherche encore dans l’index du site."
 msgstr ""
 
-#: inc/algolia.php:441
+#: inc/algolia.php:442
 msgid "Application ID"
 msgstr ""
 
-#: inc/algolia.php:442
+#: inc/algolia.php:443
 msgid "Search API Key (la clé de recherche, publique)"
 msgstr ""
 
-#: inc/algolia.php:443
+#: inc/algolia.php:444
 msgid "La clé d’écriture (Write API Key, côté serveur)"
 msgstr ""
 
-#: inc/algolia.php:444
+#: inc/algolia.php:445
 msgid "L’index"
 msgstr ""
 
-#: inc/algolia.php:447
+#: inc/algolia.php:448
 msgid "Posée. Laisser vide pour la garder."
 msgstr ""
 
-#: inc/algolia.php:447
+#: inc/algolia.php:448
 msgid "Pas encore posée."
 msgstr ""
 
-#: inc/algolia.php:453
+#: inc/algolia.php:454
 msgid "Chercher chez Algolia"
 msgstr ""
 
-#: inc/algolia.php:453
+#: inc/algolia.php:454
 msgid "La loupe et la recherche des livres interrogent Algolia (à cocher une fois l’index envoyé)."
 msgstr ""
 
-#: inc/algolia.php:455
+#: inc/algolia.php:456
 msgid "Enregistrer"
 msgstr ""
 
-#: inc/algolia.php:459
+#: inc/algolia.php:460
 msgid "Envoyer tout l’index"
 msgstr ""
 
-#: inc/algolia.php:460
+#: inc/algolia.php:461
 msgid "Refait l’index du site, règle celui d’Algolia, le vide, puis y envoie tout ce qu’on peut chercher sur le site. Ensuite, chaque contenu enregistré s’y recopie de lui-même."
 msgstr ""
 
-#: inc/algolia.php:463
+#: inc/algolia.php:464
 msgid "Envoyer tout l’index à Algolia"
 msgstr ""
 
@@ -505,9 +505,9 @@ msgstr ""
 #: inc/evenements.php:187
 #: inc/evenements.php:188
 #: inc/evenements.php:191
-#: inc/journal-une.php:276
-#: inc/journal-une.php:548
-#: inc/journal-une.php:630
+#: inc/journal-une.php:284
+#: inc/journal-une.php:767
+#: inc/journal-une.php:851
 #: inc/journal.php:72
 #: inc/medias.php:202
 #: inc/sujets.php:414
@@ -526,9 +526,10 @@ msgstr ""
 
 #: inc/evenements.php:267
 #: inc/evenements.php:468
-#: inc/journal-une.php:256
-#: inc/journal-une.php:374
-#: inc/journal-une.php:621
+#: inc/journal-une.php:264
+#: inc/journal-une.php:382
+#: inc/journal-une.php:589
+#: inc/journal-une.php:840
 msgid "En russe"
 msgstr ""
 
@@ -940,14 +941,14 @@ msgstr ""
 
 #. translators: %s: le nom de celui qui signe
 #. translators: %s: le nom de celui qui signe l'article
-#: inc/journal-une.php:273
+#: inc/journal-une.php:281
 #: inc/journal.php:80
 #, php-format
 msgid "Par %s"
 msgstr ""
 
 #. translators: %d: des minutes
-#: inc/journal-une.php:280
+#: inc/journal-une.php:288
 #, php-format
 msgid "%d min de lecture"
 msgid_plural "%d min de lecture"
@@ -956,120 +957,201 @@ msgstr[1] ""
 
 #. translators: %d: des minutes
 #. translators: %d: la durée en minutes
-#: inc/journal-une.php:280
+#: inc/journal-une.php:288
 #: inc/medias.php:206
 #, php-format
 msgid "%d min"
 msgstr ""
 
-#: inc/journal-une.php:348
-#: inc/journal-une.php:660
+#: inc/journal-une.php:356
+#: inc/journal-une.php:881
 msgid "Le journal du centre"
 msgstr ""
 
-#: inc/journal-une.php:354
+#: inc/journal-une.php:362
 msgid "À la une"
 msgstr ""
 
-#: inc/journal-une.php:380
+#: inc/journal-une.php:388
 msgid "Le centre culturel"
 msgstr ""
 
 #. translators: %s: une année
-#: inc/journal-une.php:383
+#: inc/journal-une.php:391
 #, php-format
 msgid "Depuis %s"
 msgstr ""
 
 #. translators: %d: un nombre de textes
-#: inc/journal-une.php:386
-#: inc/journal-une.php:599
-#: inc/journal-une.php:627
+#: inc/journal-une.php:394
+#: inc/journal-une.php:818
+#: inc/journal-une.php:848
 #, php-format
 msgid "%d texte"
 msgid_plural "%d textes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/journal-une.php:393
+#: inc/journal-une.php:401
 msgid "Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent."
 msgstr ""
 
-#: inc/journal-une.php:394
+#: inc/journal-une.php:402
 msgid "Les genres du journal"
 msgstr ""
 
+#: inc/journal-une.php:466
+msgid "l j F"
+msgstr ""
+
+#: inc/journal-une.php:470
+msgid "Tous nos événements"
+msgstr ""
+
+#: inc/journal-une.php:472
+#: inc/sujets.php:571
+msgid "Au centre"
+msgstr ""
+
+#. translators: 1: la série, 2: le numéro de l'épisode
+#: inc/journal-une.php:484
+#, php-format
+msgid "%1$s, épisode %2$s"
+msgstr ""
+
+#: inc/journal-une.php:488
+msgid "Le podcast"
+msgstr ""
+
+#: inc/journal-une.php:495
+msgid "Les plumes"
+msgstr ""
+
+#: inc/journal-une.php:496
+msgid "Les témoins"
+msgstr ""
+
+#: inc/journal-une.php:497
+msgid "Les auteurs"
+msgstr ""
+
+#: inc/journal-une.php:519
+msgid "Les livres"
+msgstr ""
+
+#: inc/journal-une.php:537
+msgid "Il y est question de"
+msgstr ""
+
+#: inc/journal-une.php:553
+#: inc/sujets.php:33
+#: inc/sujets.php:42
+#: inc/sujets.php:385
+msgid "Sujets"
+msgstr ""
+
+#. translators: %s: un sujet
+#: inc/journal-une.php:560
+#, php-format
+msgid "%s, ailleurs"
+msgstr ""
+
+#. translators: %s: un sujet
+#: inc/journal-une.php:560
+msgid "Les rencontres, les livres, les vidéos"
+msgstr ""
+
+#: inc/journal-une.php:577
+msgid "Sujets voisins"
+msgstr ""
+
+#. translators: %d: un nombre de textes
+#: inc/journal-une.php:583
+#, php-format
+msgid "%d texte en russe ou bilingue"
+msgid_plural "%d textes en russe ou bilingues"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/journal-une.php:603
+msgid "Les années"
+msgstr ""
+
+#: inc/journal-une.php:614
+msgid "Repères"
+msgstr ""
+
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:407
+#: inc/journal-une.php:626
 msgid "Les sujets"
 msgstr ""
 
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:407
+#: inc/journal-une.php:626
 #, php-format
 msgid "%d sujet"
 msgid_plural "%d sujets"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/journal-une.php:463
-#: inc/journal-une.php:636
+#: inc/journal-une.php:682
+#: inc/journal-une.php:857
 #: inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr ""
 
-#: inc/journal-une.php:481
+#: inc/journal-une.php:700
 msgid "Le fil"
 msgstr ""
 
-#: inc/journal-une.php:481
+#: inc/journal-une.php:700
 msgid "Du plus récent au plus ancien"
 msgstr ""
 
-#: inc/journal-une.php:484
+#: inc/journal-une.php:703
 msgctxt "date courte du fil"
 msgid "j M Y"
 msgstr ""
 
-#: inc/journal-une.php:488
+#: inc/journal-une.php:707
 msgid "Tout le fil"
 msgstr ""
 
 #. translators: 1: le nombre de chroniques, 2: l'année de la première
-#: inc/journal-une.php:545
+#: inc/journal-une.php:764
 #, php-format
 msgid "%1$d chronique depuis %2$s"
 msgid_plural "%1$d chroniques depuis %2$s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/journal-une.php:566
+#: inc/journal-une.php:785
 msgid "Les chroniques"
 msgstr ""
 
-#: inc/journal-une.php:569
+#: inc/journal-une.php:788
 msgid "Toutes les chroniques"
 msgstr ""
 
-#: inc/journal-une.php:576
+#: inc/journal-une.php:795
 msgid "Grand format"
 msgstr ""
 
-#: inc/journal-une.php:623
+#: inc/journal-une.php:844
 msgid "Tous les textes"
 msgstr ""
 
-#: inc/journal-une.php:643
+#: inc/journal-une.php:864
 msgctxt "pagination du journal"
 msgid "Plus récents"
 msgstr ""
 
-#: inc/journal-une.php:644
+#: inc/journal-une.php:865
 msgctxt "pagination du journal"
 msgid "Plus anciens"
 msgstr ""
 
-#: inc/journal-une.php:647
+#: inc/journal-une.php:868
 msgid "Les pages du journal"
 msgstr ""
 
@@ -1192,12 +1274,6 @@ msgstr ""
 msgid "Format (poche, broché, relié…)"
 msgstr ""
 
-#: inc/sujets.php:33
-#: inc/sujets.php:42
-#: inc/sujets.php:385
-msgid "Sujets"
-msgstr ""
-
 #: inc/sujets.php:34
 msgid "Sujet"
 msgstr ""
@@ -1270,10 +1346,6 @@ msgstr ""
 
 #: inc/sujets.php:571
 msgid "Les rencontres"
-msgstr ""
-
-#: inc/sujets.php:571
-msgid "Au centre"
 msgstr ""
 
 #: inc/sujets.php:574
