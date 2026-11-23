@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T22:00:39+00:00\n"
+"POT-Creation-Date: 2026-11-23T22:06:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -79,108 +79,108 @@ msgstr ""
 msgid "Ajouter une langue"
 msgstr ""
 
-#: inc/algolia.php:61
+#: inc/algolia.php:62
 msgid "Algolia n’est pas réglé."
 msgstr ""
 
-#: inc/algolia.php:360
-#: inc/algolia.php:416
+#: inc/algolia.php:361
+#: inc/algolia.php:417
 msgid "La recherche"
 msgstr ""
 
-#: inc/algolia.php:361
+#: inc/algolia.php:362
 msgid "Recherche"
 msgstr ""
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:410
+#: inc/algolia.php:411
 #, php-format
 msgid "L’envoi a échoué : %s"
 msgstr ""
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:412
+#: inc/algolia.php:413
 #, php-format
 msgid "%d fiche envoyée à Algolia."
 msgid_plural "%d fiches envoyées à Algolia."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/algolia.php:420
+#: inc/algolia.php:421
 msgid "La loupe cherche dans l’index du site, qui réunit les trois écritures des noms. Avec Algolia, la même recherche tolère les fautes de frappe, et le tableau de bord d’Algolia montre ce que les visiteurs cherchent. Si Algolia ne répond pas, la recherche repasse sur l’index du site."
 msgstr ""
 
-#: inc/algolia.php:425
+#: inc/algolia.php:426
 msgid "Algolia :"
 msgstr ""
 
 #. translators: %s: le message d'erreur d'Algolia
-#: inc/algolia.php:428
+#: inc/algolia.php:429
 #, php-format
 msgid "pas de réponse (%s)."
 msgstr ""
 
 #. translators: %d: le nombre de fiches
-#: inc/algolia.php:431
+#: inc/algolia.php:432
 #, php-format
 msgid "%d fiche dans l’index."
 msgid_plural "%d fiches dans l’index."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/algolia.php:433
+#: inc/algolia.php:434
 msgid "La loupe cherche chez Algolia."
 msgstr ""
 
-#: inc/algolia.php:433
+#: inc/algolia.php:434
 msgid "La loupe cherche encore dans l’index du site."
 msgstr ""
 
-#: inc/algolia.php:440
+#: inc/algolia.php:441
 msgid "Application ID"
 msgstr ""
 
-#: inc/algolia.php:441
+#: inc/algolia.php:442
 msgid "Search API Key (la clé de recherche, publique)"
 msgstr ""
 
-#: inc/algolia.php:442
-msgid "La clé du site (limitée aux index er_*)"
+#: inc/algolia.php:443
+msgid "La clé d’écriture (Write API Key, côté serveur)"
 msgstr ""
 
-#: inc/algolia.php:443
+#: inc/algolia.php:444
 msgid "L’index"
 msgstr ""
 
-#: inc/algolia.php:446
+#: inc/algolia.php:447
 msgid "Posée. Laisser vide pour la garder."
 msgstr ""
 
-#: inc/algolia.php:446
+#: inc/algolia.php:447
 msgid "Pas encore posée."
 msgstr ""
 
-#: inc/algolia.php:452
+#: inc/algolia.php:453
 msgid "Chercher chez Algolia"
 msgstr ""
 
-#: inc/algolia.php:452
+#: inc/algolia.php:453
 msgid "La loupe et la recherche des livres interrogent Algolia (à cocher une fois l’index envoyé)."
 msgstr ""
 
-#: inc/algolia.php:454
+#: inc/algolia.php:455
 msgid "Enregistrer"
 msgstr ""
 
-#: inc/algolia.php:458
+#: inc/algolia.php:459
 msgid "Envoyer tout l’index"
 msgstr ""
 
-#: inc/algolia.php:459
+#: inc/algolia.php:460
 msgid "Refait l’index du site, règle celui d’Algolia, le vide, puis y envoie tout ce qu’on peut chercher sur le site. Ensuite, chaque contenu enregistré s’y recopie de lui-même."
 msgstr ""
 
-#: inc/algolia.php:462
+#: inc/algolia.php:463
 msgid "Envoyer tout l’index à Algolia"
 msgstr ""
 

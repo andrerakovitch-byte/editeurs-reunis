@@ -8,9 +8,10 @@
  * tolérance aux fautes de frappe. Si Algolia ne répond pas, ou refuse (le quota gratuit épuisé), la recherche repasse
  * sur la table, sans rien dire au visiteur.
  *
- * Les réglages (Réglages → Recherche) : l'identifiant de l'application, la clé de recherche (publique) et la clé du
- * site, limitée aux index `er_*` (search, browse, addObject, deleteObject, settings, editSettings). Ils se saisissent
- * dans l'administration, jamais dans ce dépôt ; la clé du site ne se réaffiche pas.
+ * Les réglages (Réglages → Recherche) : l'identifiant de l'application, la clé de recherche (publique) et la clé
+ * d'écriture (la « Write API Key » de l'application, qui ne sert qu'au site ; une clé limitée doit avoir addObject,
+ * deleteObject, deleteIndex, settings et editSettings). Ils se saisissent dans l'administration, jamais dans ce
+ * dépôt ; la clé d'écriture ne se réaffiche pas.
  *
  * `wp er algolia` dit où en est l'index chez Algolia ; `wp er algolia indexer` refait l'index du site et y envoie tout.
  *
@@ -439,7 +440,7 @@ function er_algolia_page() {
 	$champs = array(
 		'er_algolia_app'           => array( __( 'Application ID', 'er-librairie' ), $r['app'], 'text' ),
 		'er_algolia_cle_recherche' => array( __( 'Search API Key (la clé de recherche, publique)', 'er-librairie' ), $r['recherche'], 'text' ),
-		'er_algolia_cle_site'      => array( __( 'La clé du site (limitée aux index er_*)', 'er-librairie' ), '', 'password' ),
+		'er_algolia_cle_site'      => array( __( 'La clé d’écriture (Write API Key, côté serveur)', 'er-librairie' ), '', 'password' ),
 		'er_algolia_index'         => array( __( 'L’index', 'er-librairie' ), $r['index'], 'text' ),
 	);
 	foreach ( $champs as $nom => list( $libelle, $valeur, $type ) ) {

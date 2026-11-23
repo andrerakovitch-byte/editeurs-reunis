@@ -78,9 +78,10 @@ aussi chez Algolia, en un envoi à la fin de la requête ; la recherche interrog
 (les trois écritures réunies), et Algolia y ajoute la tolérance aux fautes de frappe et ses statistiques (ce que les
 visiteurs cherchent, ce qui ne donne rien). Si Algolia ne répond pas ou refuse (le quota gratuit de 10 000 recherches
 par mois épuisé), la recherche repasse sur la table, et laisse Algolia en paix cinq minutes. Les réglages sont dans
-Réglages → Recherche : l'identifiant de l'application, la clé de recherche (publique), la clé du site (créée dans
-Algolia, limitée aux index `er_*` : `search`, `browse`, `addObject`, `deleteObject`, `settings`, `editSettings` ;
-jamais la clé d'administration), l'index (`er_site`), et la case « Chercher chez Algolia », à cocher une fois l'index
+Réglages → Recherche : l'identifiant de l'application, la clé de recherche (publique), la clé d'écriture (la « Write
+API Key » de l'application Algolia, qui ne sert qu'au site ; une clé limitée devrait avoir `addObject`, `deleteObject`,
+`deleteIndex` pour vider l'index, `settings` et `editSettings` ; jamais la clé d'administration), l'index (`er_site`),
+et la case « Chercher chez Algolia », à cocher une fois l'index
 envoyé (le bouton de la même page, ou le workflow, champ « boutique » : `algolia indexer`, qui refait d'abord l'index du
 site). `algolia` seul dit où on en est. Le panneau et l'API ne changent pas : les contenus ajoutés par le centre à
 l'index (les fonctions `er_index_*`) vont chez Algolia d'eux-mêmes.

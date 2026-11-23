@@ -456,7 +456,7 @@ T = {
     (None, 'La loupe cherche encore dans l’index du site.'): ('The search still uses the site’s index.', 'Поиск пока идёт по указателю сайта.'),
     (None, 'Application ID'): ('Application ID', 'Application ID'),
     (None, 'Search API Key (la clé de recherche, publique)'): ('Search API Key (public)', 'Search API Key (публичный ключ поиска)'),
-    (None, 'La clé du site (limitée aux index er_*)'): ('The site key (limited to the er_* indices)', 'Ключ сайта (только для индексов er_*)'),
+    (None, 'La clé d’écriture (Write API Key, côté serveur)'): ('Write API Key (server side)', 'Ключ записи (Write API Key, на сервере)'),
     (None, 'L’index'): ('Index', 'Индекс'),
     (None, 'Posée. Laisser vide pour la garder.'): ('Set. Leave empty to keep it.', 'Задан. Оставьте пустым, чтобы сохранить.'),
     (None, 'Pas encore posée.'): ('Not set yet.', 'Пока не задан.'),
