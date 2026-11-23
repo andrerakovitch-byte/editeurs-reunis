@@ -23,6 +23,7 @@ require __DIR__ . '/inc/import.php';
 require __DIR__ . '/inc/fiche.php';
 require __DIR__ . '/inc/couvertures.php';
 require __DIR__ . '/inc/evenements.php';
+require __DIR__ . '/inc/sujets.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *
@@ -191,6 +192,8 @@ add_action(
 				'show_admin_column' => true,
 				'hierarchical'      => false,
 				'rewrite'           => array( 'slug' => 'auteur' ),
+				// Le compte d'un auteur, ce sont ses livres : pas les articles ni les rencontres liés (sujets.php).
+				'update_count_callback' => 'er_compter_livres',
 			)
 		);
 		register_taxonomy(

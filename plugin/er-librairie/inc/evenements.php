@@ -1204,16 +1204,11 @@ function er_evt_importer_un( $e, $auteurs, $images = true ) {
 		wp_set_object_terms( $id, $e['cycle'], 'er_cycle', true );
 	}
 	// Les intervenants : les auteurs de la librairie que le titre ou le chapô présentent comme tels (« avec Georges
-	// Nivat », « par Hélène Henry »). Un auteur dont on parle (« le Docteur Jivago de Boris Pasternak ») n'en est pas un.
-	$cle = ' ' . er_cle_recherche( $e['titre'] . ' ' . $e['chapo'] ) . ' ';
+	// Nivat », « par Hélène Henry »). Un auteur dont on parle (« le Docteur Jivago de Boris Pasternak ») est un auteur
+	// lié (le classement des auteurs) ; les sujets se devinent aussi (sujets.php).
 	$cyrillique = (bool) preg_match( '/\p{Cyrillic}/u', $e['titre'] );
-	foreach ( $auteurs as $nom => list( $t, $noms ) ) {
-		$position = strpos( $cle, ' ' . $nom . ' ' );
-		if ( false === $position ) {
-			continue;
-		}
-		$avant = array_slice( explode( ' ', trim( substr( $cle, 0, $position ) ) ), -3 );
-		if ( ! array_intersect( $avant, array( 'avec', 'par', 'presenc', 'recevons', 'invit', 'invite' ) ) ) {
+	foreach ( er_auteurs_cites( $e['titre'] . ' ' . $e['chapo'], $auteurs ) as list( $t, $noms, $intervient ) ) {
+		if ( ! $intervient ) {
 			continue;
 		}
 		if ( ! term_exists( $t->slug, 'er_intervenant' ) ) {
@@ -1229,6 +1224,7 @@ function er_evt_importer_un( $e, $auteurs, $images = true ) {
 		}
 		wp_set_object_terms( $id, $t->slug, 'er_intervenant', true );
 	}
+	er_etiqueter( $id, $e['titre'] . ' ' . $e['chapo'], $auteurs );
 	if ( $images && ! empty( $e['image'] ) && ! has_post_thumbnail( $id ) ) {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';

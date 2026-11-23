@@ -225,7 +225,7 @@ function er_index_contenu( $id ) {
 	} elseif ( 'evenement' === $genre ) {
 		// Une rencontre : son titre, son chapô, ses intervenants, son cycle, le début de son texte ; à venir d'abord.
 		$maison = 'centre';
-		foreach ( array( 'er_intervenant', 'er_cycle' ) as $taxonomie ) {
+		foreach ( array( 'er_intervenant', 'er_cycle', 'auteur', 'er_sujet' ) as $taxonomie ) {
 			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
 			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
 		}
@@ -233,7 +233,11 @@ function er_index_contenu( $id ) {
 		$poids = function_exists( 'er_evt_passee' ) && ! er_evt_passee( $id ) ? 2 : 0;
 	} else {
 		$maison = 'centre';
-		$cle   .= ' ' . wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 60, '' );
+		foreach ( array( 'auteur', 'er_sujet' ) as $taxonomie ) {
+			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
+			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
+		}
+		$cle .= ' ' . wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 60, '' );
 	}
 	er_index_ecrire(
 		$genre,
@@ -259,15 +263,19 @@ function er_index_terme( $terme, $taxonomie ) {
 	if ( ! $t || is_wp_error( $t ) || in_array( $t->slug, array( 'uncategorized', 'sans-rayon' ), true ) ) {
 		return;
 	}
-	$genre = 'auteur' === $taxonomie ? 'auteur' : 'rayon';
-	$cle   = $t->name . ( 'auteur' === $genre ? ' ' . implode( ' ', er_autres_graphies( $t->term_id ) ) : '' );
+	$genres = array(
+		'auteur'   => 'auteur',
+		'er_sujet' => 'sujet',
+	);
+	$genre  = isset( $genres[ $taxonomie ] ) ? $genres[ $taxonomie ] : 'rayon';
+	$cle    = $t->name . ( 'auteur' === $genre ? ' ' . implode( ' ', er_autres_graphies( $t->term_id ) ) : '' );
 	er_index_ecrire(
 		$genre,
 		$t->term_id,
 		array(
 			'titre'  => $t->name,
 			'cle'    => $cle,
-			'maison' => 'librairie',
+			'maison' => 'sujet' === $genre ? 'centre' : 'librairie',
 			'langue' => er_index_langue( 'term', $t->term_id ),
 			'poids'  => (int) $t->count,
 		)
@@ -293,7 +301,7 @@ function er_index_reconstruire() {
 	foreach ( $ids as $id ) {
 		er_index_contenu( $id );
 	}
-	foreach ( array( 'auteur', 'product_cat' ) as $taxonomie ) {
+	foreach ( array( 'auteur', 'product_cat', 'er_sujet' ) as $taxonomie ) {
 		$termes = get_terms(
 			array(
 				'taxonomy'   => $taxonomie,
@@ -337,7 +345,7 @@ add_action(
 add_action(
 	'set_object_terms',
 	function ( $id, $termes, $tt_ids, $taxonomie ) {
-		if ( 'auteur' === $taxonomie ) {
+		if ( in_array( $taxonomie, array( 'auteur', 'er_sujet', 'er_intervenant', 'er_cycle' ), true ) ) {
 			er_index_contenu( $id );
 		}
 	},
@@ -348,7 +356,7 @@ foreach ( array( 'created_term', 'edited_term' ) as $er_crochet ) {
 	add_action(
 		$er_crochet,
 		function ( $terme, $tt_id, $taxonomie ) {
-			if ( ! in_array( $taxonomie, array( 'auteur', 'product_cat' ), true ) ) {
+			if ( ! in_array( $taxonomie, array( 'auteur', 'product_cat', 'er_sujet' ), true ) ) {
 				return;
 			}
 			er_index_terme( $terme, $taxonomie );
@@ -370,6 +378,8 @@ add_action(
 			er_index_oter( 'auteur', $terme );
 		} elseif ( 'product_cat' === $taxonomie ) {
 			er_index_oter( 'rayon', $terme );
+		} elseif ( 'er_sujet' === $taxonomie ) {
+			er_index_oter( 'sujet', $terme );
 		}
 	},
 	10,
@@ -505,7 +515,7 @@ function er_api_chercher( $requete ) {
 	if ( '' === $cle ) {
 		return rest_ensure_response( $vide );
 	}
-	$lignes = er_index_chercher( $cle, array( 'auteur', 'livre', 'rayon', 'page', 'article', 'evenement' ), 200 );
+	$lignes = er_index_chercher( $cle, array( 'auteur', 'livre', 'rayon', 'page', 'article', 'evenement', 'sujet' ), 200 );
 
 	$groupes = array(
 		'auteurs'      => array(),
@@ -543,6 +553,7 @@ function er_api_chercher( $requete ) {
 				$groupe = 'journal';
 				break;
 			case 'evenement':
+			case 'sujet':
 				$groupe = 'centre';
 				break;
 			default:
@@ -573,6 +584,18 @@ function er_api_chercher( $requete ) {
 				'graphies' => $graphies,
 				// L'initiale du nom de famille, en cyrillique quand l'auteur a un nom russe : Д pour Dostoïevski.
 				'lettre'   => mb_substr( (string) preg_replace( '/^.*\s/u', '', trim( $cyrillique ? $cyrillique[0] : $terme->name ) ), 0, 1 ),
+			);
+		} elseif ( 'sujet' === $l->genre ) {
+			$terme = get_term( (int) $l->objet, 'er_sujet' );
+			if ( ! $terme || is_wp_error( $terme ) ) {
+				continue;
+			}
+			$lien                 = get_term_link( $terme );
+			$groupes[ $groupe ][] = array(
+				'titre'   => $terme->name,
+				'url'     => is_wp_error( $lien ) ? '' : $lien,
+				/* translators: %d: le nombre de rencontres et d'articles */
+				'extrait' => sprintf( _n( 'Sujet · %d rencontre ou article', 'Sujet · %d rencontres et articles', (int) $terme->count, 'er-librairie' ), (int) $terme->count ),
 			);
 		} else {
 			$post                 = get_post( (int) $l->objet );

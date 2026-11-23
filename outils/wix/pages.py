@@ -26,6 +26,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -39,7 +40,8 @@ def lire(url, essais=6):
     erreur passagère), on attend ce qu'il dit, sinon de plus en plus longtemps, et on réessaie."""
     for essai in range(essais):
         time.sleep(2)
-        req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr-FR,fr;q=0.9'})
+        adresse = urllib.parse.quote(url, safe=':/?&=%#~+@!$,;')  # les adresses accentuées (« à-propos »)
+        req = urllib.request.Request(adresse, headers={'User-Agent': AGENT, 'Accept-Language': 'fr-FR,fr;q=0.9'})
         try:
             with urllib.request.urlopen(req, timeout=40) as r:
                 return r.read().decode('utf-8', 'replace')
@@ -131,12 +133,47 @@ def chercher_article(objet):
     return None
 
 
+def section(html, marque):
+    """Le contenu de la balise <section> qui porte cette marque (data-hook=…), balises imbriquées comprises."""
+    debut = html.find(marque)
+    if debut < 0:
+        return ''
+    debut = html.rfind('<section', 0, debut)
+    profondeur, i = 0, debut
+    for m in re.finditer(r'<(/?)section\b[^>]*>', html[debut:]):
+        profondeur += -1 if m.group(1) else 1
+        if profondeur == 0:
+            return html[debut:debut + m.end()]
+    return html[debut:]
+
+
+def liens_de(html, marque, chemin):
+    """Les liens d'un bloc du pied de l'article (les mots-clés, les catégories) : [adresse, texte]."""
+    debut = html.find(marque)
+    if debut < 0:
+        return []
+    bloc = html[debut:html.find('</ul>', debut) + 5]
+    vus, liens = set(), []
+    for url, texte in re.findall(r'href="([^"]*' + chemin + r'[^"]+)"[^>]*>(.*?)</a>', bloc, re.S):
+        texte = re.sub(r'<[^>]+>', '', texte).strip()
+        if url not in vus and texte:
+            vus.add(url)
+            liens.append([url, texte])
+    return liens
+
+
 def journal(brut=0):
+    """Le blog de Wix (le journal, /post/…) : l'article est écrit dans la page (pas dans les données) ; on garde sa
+    section, ses catégories, ses mots-clés, ses données structurées. Et le flux RSS du blog, qui a parfois le texte entier."""
     le_plan = plan()
     adresses = list(dict.fromkeys(u for sous, liste in le_plan.items()
                                   if isinstance(liste, list) and 'blog-posts' in sous for u in liste))
     print(len(adresses), 'articles dans le plan')
     os.makedirs(os.path.join(SORTIE, 'brut'), exist_ok=True)
+    try:
+        open(os.path.join(SORTIE, 'blog-feed.xml'), 'w').write(lire(SITE + '/blog-feed.xml'))
+    except Exception as erreur:
+        print('flux RSS :', erreur)
     resultat = []
     for i, url in enumerate(adresses):
         try:
@@ -144,13 +181,12 @@ def journal(brut=0):
         except Exception as erreur:
             resultat.append({'url': url, 'erreur': str(erreur)})
             continue
-        wix = donnees_wix(html)
         if i < brut:
             open(os.path.join(SORTIE, 'brut', f'article-{i:03d}.html'), 'w').write(html)
-            if wix:
-                json.dump(wix, open(os.path.join(SORTIE, 'brut', f'article-{i:03d}-wix.json'), 'w'), ensure_ascii=False)
         resultat.append({'url': url, 'meta': meta(html), 'json_ld': json_ld(html),
-                         'wix': chercher_article(wix) if wix else None, 'taille': len(html)})
+                         'contenu': section(html, 'data-hook="post-description"'),
+                         'categories': liens_de(html, 'aria-label="Post categories"', '/categories/'),
+                         'etiquettes': liens_de(html, 'data-hook="tag-cloud-root"', '/tags/'), 'taille': len(html)})
     return resultat
 
 
@@ -279,7 +315,7 @@ if __name__ == '__main__':
         brut = int(sys.argv[sys.argv.index('--brut') + 1]) if '--brut' in sys.argv else 0
         r = journal(brut)
         json.dump(r, open(os.path.join(SORTIE, 'journal.json'), 'w'), ensure_ascii=False, indent=1)
-        print(len(r), 'articles lus ;', sum(1 for x in r if x.get('wix')), 'avec les données de Wix ;',
+        print(len(r), 'articles lus ;', sum(1 for x in r if x.get('contenu')), 'avec leur texte ;',
               sum(1 for x in r if x.get('erreur')), 'en erreur')
     elif quoi == 'medias':
         pages = sys.argv[sys.argv.index('--pages') + 1].split(',') if '--pages' in sys.argv else []
