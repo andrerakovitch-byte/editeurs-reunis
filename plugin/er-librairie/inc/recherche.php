@@ -618,14 +618,22 @@ function er_api_chercher( $requete ) {
 	}
 	$comptes['tout'] = array_sum( $comptes );
 
-	// Le nom reconnu : l'auteur trouvé le premier, si ce qu'on a tapé est l'un de ses noms.
+	// Le nom reconnu : l'auteur trouvé le premier, si ce qu'on a tapé est l'un de ses noms, nom de famille compris
+	// (« boris » seul ne désigne pas Boris Akounine plutôt que Boris Pasternak ; « akounine » ou « pasternak » oui).
 	$pour  = '';
 	$aussi = array();
 	if ( $groupes['auteurs'] ) {
 		$auteur = $groupes['auteurs'][0];
 		$noms   = array_merge( array( $auteur['titre'] ), $auteur['graphies'] );
+		$tapes  = array_filter( explode( ' ', $cle ) );
 		foreach ( $noms as $nom ) {
-			if ( false !== strpos( ' ' . er_cle_recherche( $nom ) . ' ', ' ' . explode( ' ', $cle )[0] ) ) {
+			$mots    = array_values( array_filter( explode( ' ', er_cle_recherche( $nom ) ) ) );
+			$famille = $mots ? end( $mots ) : '';
+			$couvre  = $tapes && $famille;
+			foreach ( $tapes as $t ) {
+				$couvre = $couvre && (bool) array_filter( $mots, fn( $m ) => 0 === strpos( $m, $t ) );
+			}
+			if ( $couvre && array_filter( $tapes, fn( $t ) => strlen( $t ) >= 3 && 0 === strpos( $famille, $t ) ) ) {
 				$pour  = $auteur['titre'];
 				$aussi = array_values( array_diff( $auteur['graphies'], array( $texte ) ) );
 				break;
