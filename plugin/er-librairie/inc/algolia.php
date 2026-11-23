@@ -348,7 +348,8 @@ function er_algolia_chercher( $deja, $cle, $genres, $limite ) {
 		}
 		return null;
 	}
-	return $lignes;
+	// Rien chez Algolia (qui ne cherche que des débuts de mots) : la table, qui cherche aussi au milieu, a sa chance.
+	return $lignes ? $lignes : null;
 }
 add_filter( 'er_index_chercher_pre', 'er_algolia_chercher', 10, 4 );
 
