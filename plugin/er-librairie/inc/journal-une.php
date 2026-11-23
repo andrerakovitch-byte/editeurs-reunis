@@ -289,7 +289,13 @@ function er_journal_auteur( $id, $date = true, $long = false ) {
  */
 function er_journal_vignette( $id, $taille = 'large' ) {
 	$image = get_the_post_thumbnail( $id, $taille, array( 'alt' => '', 'loading' => 'lazy' ) );
-	return '<span class="er-j-image">' . ( $image ? $image : '<span class="er-j-attente"></span>' ) . '</span>';
+	if ( ! $image ) {
+		return '<span class="er-j-image"><span class="er-j-attente"></span></span>';
+	}
+	// Une image en hauteur est presque toujours une couverture : entière, jamais rognée, avec son ombre.
+	$meta       = wp_get_attachment_metadata( (int) get_post_thumbnail_id( $id ) );
+	$couverture = is_array( $meta ) && ! empty( $meta['width'] ) && ! empty( $meta['height'] ) && $meta['height'] > $meta['width'] * 1.05;
+	return '<span class="er-j-image' . ( $couverture ? ' er-j-couverture' : '' ) . '">' . $image . '</span>';
 }
 
 /**

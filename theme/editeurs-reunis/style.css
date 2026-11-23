@@ -2663,6 +2663,9 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-j-image { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--wp--preset--color--pierre); }
 .er-j-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .er-j-attente { display: block; width: 100%; height: 100%; }
+.er-j-couverture { display: flex; align-items: center; padding: 24px; box-sizing: border-box; background: var(--wp--preset--color--doux); }
+.er-j-doux .er-j-couverture { background: var(--wp--preset--color--base); }
+.er-j-g .er-j-couverture img { width: auto; max-width: 100%; height: 100%; object-fit: contain; box-shadow: var(--er-ombre-livre); }
 .er-j-histoire { display: flex; flex-direction: column; gap: 12px; }
 .er-j-histoire:hover .er-j-t-module, .er-j-histoire:hover .er-j-t-bloc, .er-j-histoire:hover .er-j-t-fil,
 .er-j-fil a:hover .er-j-t-fil, .er-j-sujet li a:hover .er-j-t-fil, .er-j-ligne:hover .er-j-t-bloc { color: var(--wp--preset--color--accent-texte); }
