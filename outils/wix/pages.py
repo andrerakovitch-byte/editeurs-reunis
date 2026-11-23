@@ -141,6 +141,8 @@ def chaine_youtube(url):
     cibles = [url]
     if re.search(r'youtube\.com/(?:@|c/|channel/|user/)', url) and '/videos' not in url:
         cibles = [url.rstrip('/') + '/videos', url.rstrip('/') + '/streams']
+    elif re.fullmatch(r'https://soundcloud\.com/[^/?#]+/?', url):
+        cibles = [url.rstrip('/') + '/tracks', url.rstrip('/') + '/sets']
     videos = []
     for cible in cibles:
         r = subprocess.run(['yt-dlp', '--flat-playlist', '-J', '--extractor-args', 'youtubetab:approximate_date', cible],
@@ -171,7 +173,15 @@ def medias(pages=()):
         resultat['liens'][nom or 'accueil'] = liens_medias(html)
     tous = sorted({l for ls in resultat['liens'].values() for l in ls})
     for url in tous:
-        if re.search(r'youtube\.com/(?:@|c/|channel/|user/|playlist)', url) and url not in resultat['chaines']:
+        apple = re.search(r'podcasts\.apple\.com/.*/id(\d+)', url)
+        if apple:
+            try:  # le flux du podcast, que donne l'annuaire d'Apple
+                flux = json.loads(lire('https://itunes.apple.com/lookup?id=' + apple.group(1)))['results'][0]['feedUrl']
+                resultat['flux'][flux] = lire(flux)
+            except Exception as erreur:
+                resultat['flux'][url] = str(erreur)
+        elif (re.search(r'youtube\.com/(?:@|c/|channel/|user/|playlist)', url)
+                or re.fullmatch(r'https://soundcloud\.com/[^/?#]+/?', url)) and url not in resultat['chaines']:
             try:
                 resultat['chaines'][url] = chaine_youtube(url)
             except Exception as erreur:
