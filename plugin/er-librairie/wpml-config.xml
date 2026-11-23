@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Ce que Polylang doit traduire (il lit ce fichier, au format de WPML).
-	Les rencontres du centre se traduisent comme les pages ; leurs cycles et leurs intervenants aussi.
+	Les rencontres et les expositions du centre se traduisent comme les pages ; leurs cycles, leurs intervenants et
+	les techniques des expositions aussi.
 	Les auteurs ont un nom par langue (Солженицын, Soljenitsyne, Solzhenitsyn) ; les langues des livres aussi
 	(russe, русский, Russian). Les livres, les rayons et les mentions sont réglés par Polylang pour WooCommerce.
 -->
 <wpml-config>
 	<custom-types>
 		<custom-type translate="1">er_evenement</custom-type>
+		<custom-type translate="1">er_exposition</custom-type>
 	</custom-types>
 	<taxonomies>
 		<taxonomy translate="1">er_cycle</taxonomy>
 		<taxonomy translate="1">er_intervenant</taxonomy>
 		<taxonomy translate="1">er_sujet</taxonomy>
 		<taxonomy translate="1">er_genre</taxonomy>
+		<taxonomy translate="1">er_technique</taxonomy>
 		<taxonomy translate="1">auteur</taxonomy>
 		<taxonomy translate="1">langue</taxonomy>
 	</taxonomies>

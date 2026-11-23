@@ -289,8 +289,8 @@ function er_maison() {
 	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) ) {
 		return 'centre'; // Le journal du centre.
 	}
-	if ( is_singular( array( 'er_evenement', 'er_media' ) ) ) {
-		return 'centre'; // Une rencontre, une vidéo ou un podcast du centre.
+	if ( is_singular( array( 'er_evenement', 'er_media', 'er_exposition' ) ) ) {
+		return 'centre'; // Une rencontre, une exposition, une vidéo ou un podcast du centre.
 	}
 	$racine = strtok( er_chemin_reference(), '/' );
 	if ( 'librairie' === $racine ) {
@@ -345,6 +345,8 @@ function er_sous_menu() {
 	}
 	if ( is_singular( 'er_evenement' ) ) {
 		$ici = 'centre-culturel/evenements';
+	} elseif ( is_singular( 'er_exposition' ) ) {
+		$ici = 'centre-culturel/expositions';
 	} elseif ( is_singular( 'er_media' ) ) {
 		$ici = 'podcast' === get_post_meta( get_queried_object_id(), 'er_genre', true ) ? 'centre-culturel/podcasts' : 'centre-culturel/videos';
 	}

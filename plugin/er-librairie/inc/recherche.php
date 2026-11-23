@@ -237,6 +237,7 @@ function er_index_contenu( $id ) {
 		'page'         => 'page',
 		'post'         => 'article',
 		'er_evenement' => 'evenement',
+		'er_exposition' => 'evenement',
 	);
 	if ( ! isset( $genres[ $post->post_type ] ) ) {
 		return;
@@ -272,14 +273,20 @@ function er_index_contenu( $id ) {
 		$maison = er_index_maison_page( $id );
 		$cle   .= ' ' . wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 60, '' );
 	} elseif ( 'evenement' === $genre ) {
-		// Une rencontre : son titre, son chapô, ses intervenants, son cycle, le début de son texte ; à venir d'abord.
+		// Une rencontre ou une exposition : son titre, son chapô, ses intervenants ou ses artistes, son cycle ou ses
+		// techniques, le début de son texte ; à venir (ou accrochée) d'abord.
 		$maison = 'centre';
-		foreach ( array( 'er_intervenant', 'er_cycle', 'auteur', 'er_sujet' ) as $taxonomie ) {
-			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
+		foreach ( array( 'er_intervenant', 'er_cycle', 'auteur', 'er_sujet', 'er_technique' ) as $taxonomie ) {
+			$noms = taxonomy_exists( $taxonomie ) ? wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) ) : array();
 			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
 		}
-		$cle  .= ' ' . $post->post_excerpt . ' ' . wp_trim_words( wp_strip_all_tags( $post->post_content ), 40, '' );
-		$poids = function_exists( 'er_evt_passee' ) && ! er_evt_passee( $id ) ? 2 : 0;
+		$cle .= ' ' . $post->post_excerpt . ' ' . wp_trim_words( wp_strip_all_tags( $post->post_content ), 40, '' );
+		if ( 'er_exposition' === $post->post_type ) {
+			$cle  .= ' ' . __( 'exposition', 'er-librairie' ) . ' ' . get_post_meta( $id, 'er_artistes', true );
+			$poids = function_exists( 'er_expo_etat' ) && 'passee' !== er_expo_etat( $id ) ? 2 : 0;
+		} else {
+			$poids = function_exists( 'er_evt_passee' ) && ! er_evt_passee( $id ) ? 2 : 0;
+		}
 	} else {
 		$maison = 'centre';
 		// Un article : ses mots-clés et sa signature comptent aussi.
@@ -342,7 +349,7 @@ function er_index_reconstruire() {
 	do_action( 'er_index_vide' );
 	$ids = get_posts(
 		array(
-			'post_type'        => array( 'product', 'page', 'post', 'er_evenement' ),
+			'post_type'        => array( 'product', 'page', 'post', 'er_evenement', 'er_exposition' ),
 			'post_status'      => 'publish',
 			'numberposts'      => -1,
 			'fields'           => 'ids',
@@ -372,7 +379,7 @@ function er_index_reconstruire() {
 add_action(
 	'save_post',
 	function ( $id, $post ) {
-		if ( wp_is_post_revision( $id ) || wp_is_post_autosave( $id ) || ! in_array( $post->post_type, array( 'product', 'page', 'post', 'er_evenement' ), true ) ) {
+		if ( wp_is_post_revision( $id ) || wp_is_post_autosave( $id ) || ! in_array( $post->post_type, array( 'product', 'page', 'post', 'er_evenement', 'er_exposition' ), true ) ) {
 			return;
 		}
 		er_index_contenu( $id );
@@ -397,7 +404,7 @@ add_action(
 add_action(
 	'set_object_terms',
 	function ( $id, $termes, $tt_ids, $taxonomie ) {
-		if ( in_array( $taxonomie, array( 'auteur', 'er_sujet', 'er_intervenant', 'er_cycle', 'er_genre' ), true ) ) {
+		if ( in_array( $taxonomie, array( 'auteur', 'er_sujet', 'er_intervenant', 'er_cycle', 'er_genre', 'er_technique' ), true ) ) {
 			er_index_contenu( $id );
 		}
 	},
@@ -658,7 +665,7 @@ function er_api_chercher( $requete ) {
 			$groupes[ $groupe ][] = array(
 				'titre'  => html_entity_decode( get_the_title( $post ), ENT_QUOTES, 'UTF-8' ), // Le tiret et les guillemets typographiques, pas leurs entités.
 				'url'    => get_permalink( $post ),
-				'extrait' => 'evenement' === $l->genre && function_exists( 'er_evt_quand' ) ? er_evt_quand( $post->ID, false ) : ( 'journal' === $groupe ? date_i18n( 'j F Y', get_post_timestamp( $post ) ) : wp_trim_words( html_entity_decode( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), ENT_QUOTES, 'UTF-8' ), 14, '…' ) ),
+				'extrait' => 'er_exposition' === $post->post_type && function_exists( 'er_expo_quand' ) ? __( 'Exposition', 'er-librairie' ) . ' · ' . er_expo_quand( $post->ID ) : ( 'evenement' === $l->genre && function_exists( 'er_evt_quand' ) ? er_evt_quand( $post->ID, false ) : ( 'journal' === $groupe ? date_i18n( 'j F Y', get_post_timestamp( $post ) ) : wp_trim_words( html_entity_decode( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), ENT_QUOTES, 'UTF-8' ), 14, '…' ) ) ),
 			);
 		}
 	}

@@ -75,10 +75,10 @@ add_action(
 
 /**
  * Les contenus qui portent des étiquettes : les livres, les articles, les rencontres, les vidéos et les podcasts, les
- * pages.
+ * pages, les expositions.
  */
 function er_types_etiquetes() {
-	return array( 'product', 'post', ER_EVT, 'er_media', 'page' );
+	return array( 'product', 'post', ER_EVT, 'er_media', 'page', 'er_exposition' );
 }
 
 // Un sujet n'est jamais une personne : celui qui porte le nom d'un auteur est refusé.
@@ -412,6 +412,9 @@ function er_carte_contenu( $p ) {
 	} elseif ( 'er_media' === $p->post_type ) {
 		$genre = 'podcast' === get_post_meta( $p->ID, 'er_genre', true ) ? __( 'Podcast', 'er-librairie' ) : __( 'Vidéo', 'er-librairie' );
 		$date  = get_the_date( __( 'j F Y', 'er-librairie' ), $p );
+	} elseif ( 'er_exposition' === $p->post_type ) {
+		$genre = __( 'Exposition', 'er-librairie' );
+		$date  = function_exists( 'er_expo_quand' ) ? er_expo_quand( $p->ID ) : '';
 	} else {
 		$genre = __( 'Journal', 'er-librairie' );
 		$date  = get_the_date( __( 'j F Y', 'er-librairie' ), $p );
@@ -420,7 +423,7 @@ function er_carte_contenu( $p ) {
 	if ( ! $image && 'er_media' === $p->post_type && function_exists( 'er_media_vignette' ) ) {
 		$image = er_media_vignette( $p->ID ); // L'image de la vidéo, chez YouTube.
 	}
-	$classes = array( ER_EVT => 'rencontre', 'er_media' => 'media', 'post' => 'article' );
+	$classes = array( ER_EVT => 'rencontre', 'er_media' => 'media', 'post' => 'article', 'er_exposition' => 'exposition' );
 	return '<li class="er-carte-contenu er-carte-' . ( isset( $classes[ $p->post_type ] ) ? $classes[ $p->post_type ] : 'page' ) . '"><a href="' . esc_url( get_permalink( $p ) ) . '">'
 		. '<span class="er-carte-image">' . $image . '</span>'
 		. '<span class="er-carte-genre">' . esc_html( $genre ) . ' · ' . esc_html( $date ) . '</span>'
@@ -556,7 +559,8 @@ function er_bloc_autour() {
 	$medias     = post_type_exists( 'er_media' ) ? er_contenus_etiquetes( 'er_media', $sienne, $sujet ? 48 : 24 ) : array();
 	$articles   = er_contenus_etiquetes( 'post', $sienne, $nombre );
 	$pages      = er_contenus_etiquetes( 'page', $sienne, 12, array( 'orderby' => 'title', 'order' => 'ASC' ) );
-	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => array_merge( array( 0 ), wp_list_pluck( array_merge( $rencontres, $medias, $articles ), 'ID' ) ), 'post_type' => 'any', 'posts_per_page' => -1 ) ) );
+	$expos      = post_type_exists( 'er_exposition' ) ? er_contenus_etiquetes( 'er_exposition', $sienne, 12, array( 'meta_key' => 'er_debut', 'orderby' => 'meta_value', 'order' => 'DESC' ) ) : array(); // phpcs:ignore WordPress.DB.SlowDBQuery
+	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => array_merge( array( 0 ), wp_list_pluck( array_merge( $rencontres, $medias, $articles, $expos ), 'ID' ) ), 'post_type' => 'any', 'posts_per_page' => -1 ) ) );
 
 	$sections = array();
 	if ( $a_venir ) {
@@ -569,6 +573,9 @@ function er_bloc_autour() {
 	}
 	if ( $passees ) {
 		$sections[] = array( $sujet ? __( 'Les rencontres', 'er-librairie' ) : __( 'Au centre', 'er-librairie' ), '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul>' );
+	}
+	if ( $expos ) {
+		$sections[] = array( _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $expos ) ) . '</ul>' );
 	}
 	if ( $medias ) {
 		$sections[] = array( __( 'Écouter, regarder', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $medias ) ) . '</ul>' );

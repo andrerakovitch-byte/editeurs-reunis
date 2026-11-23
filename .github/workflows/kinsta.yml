@@ -153,6 +153,8 @@ jobs:
           curl -sL "$URL/wp-json/er/v1/chercher?q=raskol" -o sortie/recherche-raskol.json || true
           curl -sL "$URL/journal/" -o sortie/page-journal.html || true
           curl -sL "$URL/journal/genre/critique/" -o sortie/page-critiques.html || true
+          curl -sL "$URL/centre-culturel/expositions/" -o sortie/page-expositions.html || true
+          curl -sL "$URL/centre-culturel/expositions/derniers-regards/" -o sortie/page-exposition.html || true
 
       - name: Une commande de l'extension
         if: inputs.er != ''

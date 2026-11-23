@@ -2793,6 +2793,160 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 
 /* --------------------------------------------------------------------------
+   Les expositions du centre (le canevas « Nos expositions », 24 nov. 2026) : la page (la tête 7 | 5, la ligne de
+   repères, ce qui est accroché sur l'aplat du centre avec « Выставка » en décor, les expositions passées en cartels
+   5 | 6, trois entrées sur le fond doux) et la fiche (l'image et le cartel 5 | 6, le texte et sa marge 7 | 4,
+   l'accrochage, les autres en tiers). Les titres des expositions sont des titres d'œuvres : en italique.
+   Les blocs er/expositions et er/expo-* de l'extension (inc/expositions.php), sur la grille du journal (.er-j-g).
+   -------------------------------------------------------------------------- */
+
+.er-x-image { display: block; overflow: hidden; background: var(--wp--preset--color--pierre); }
+.er-x-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.er-x-titre, .er-x-affiche-titre, .er-x-cartel-titre, .er-x-carte-titre, .er-x-liee .er-x-carte-titre { font-style: italic; }
+.er-x-artistes { margin: 0; font-size: 1.125rem; line-height: 1.35; font-weight: 600; }
+.er-x-chapo { margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-x-faits { margin: 8px 0 0; border-bottom: 1px solid var(--wp--preset--color--filet); }
+.er-x-fait { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding-block: 12px; border-top: 1px solid var(--wp--preset--color--filet); font-size: 0.875rem; line-height: 1.5; }
+.er-x-fait dt { color: var(--wp--preset--color--discret); }
+.er-x-fait dd { margin: 0; }
+
+/* La page : la tête, la ligne de repères */
+.er-x-tete { padding: 96px 0 32px; }
+.er-x-tete .er-j-g { row-gap: 24px; align-items: end; }
+.er-x-page-titre { grid-column: 1 / span 7; margin: 0; font-size: 3.5rem; line-height: 1.04; font-weight: 600; letter-spacing: -0.025em; }
+.er-x-page-phrase { grid-column: 8 / span 5; margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-j-contexte.er-x-reperes { border-top: 1px solid var(--wp--preset--color--filet); }
+.er-j-contexte > span.er-x-rien, .er-x-rien { font-size: 0.875rem; font-weight: 400; color: var(--wp--preset--color--encre-2); }
+
+/* Ce qui est accroché : l'aplat du centre, 5 | 6 */
+.er-x-affiche { position: relative; overflow: hidden; margin-top: 48px; padding-block: 72px; background: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); }
+.er-x-affiche + .er-x-affiche { margin-top: 0; border-top: 1px solid rgba(255, 255, 255, 0.24); }
+.er-x-affiche .er-j-g { position: relative; row-gap: 32px; align-items: start; }
+.er-x-lettre { position: absolute; right: -36px; bottom: -64px; font-size: 230px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; opacity: 0.07; pointer-events: none; white-space: nowrap; }
+.er-x-affiche-texte { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 16px; }
+.er-x-affiche .er-x-image { grid-column: 7 / span 6; aspect-ratio: 4 / 3; background: rgba(255, 255, 255, 0.08); }
+.er-x-affiche-titre { margin: 0; font-size: 2.5rem; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }
+.er-x-affiche-titre, .er-x-affiche-titre a { color: var(--wp--preset--color--base); }
+.er-x-affiche-titre a:hover { text-decoration: underline; text-underline-offset: 0.12em; text-decoration-thickness: 2px; }
+.er-x-affiche .er-x-artistes { font-size: 1.1875rem; }
+.er-x-affiche .er-x-chapo { font-size: 1.0625rem; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
+.er-x-affiche .er-x-faits { border-bottom-color: rgba(255, 255, 255, 0.24); }
+.er-x-affiche .er-x-fait { grid-template-columns: 96px minmax(0, 1fr); padding-block: 10px; border-top-color: rgba(255, 255, 255, 0.24); }
+.er-x-affiche .er-x-fait dt { color: rgba(255, 255, 255, 0.64); }
+.er-x-boutons { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+.er-j-g .er-x-bouton { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--wp--preset--color--base); font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
+.er-j-g .er-x-bouton-plein { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+
+/* Les expositions passées, en cartels : l'image sur cinq colonnes, le texte sur six */
+.er-x-passees { padding: 72px 0 96px; }
+.er-x-passees .er-j-titre-sec { margin-bottom: 48px; }
+.er-x-cartel-ligne { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; row-gap: 24px; padding-bottom: 48px; margin-bottom: 48px; border-bottom: 1px solid var(--wp--preset--color--filet); }
+.er-x-cartel-ligne:last-child { margin-bottom: 0; }
+.er-x-cartel-image { grid-column: 1 / span 5; align-self: start; }
+.er-x-cartel-image .er-x-image { aspect-ratio: 4 / 3; }
+.er-x-cartel-texte { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 12px; }
+.er-x-annee { display: flex; align-items: baseline; gap: 16px; margin: 0; }
+.er-x-annee > span:first-child { font-size: 2.75rem; line-height: 1; font-weight: 600; letter-spacing: -0.02em; }
+.er-x-cartel-titre { margin: 8px 0 0; font-size: 2.5rem; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }
+.er-x-cartel-titre a:hover, .er-x-carte:hover .er-x-carte-titre, .er-x-rattache:hover .er-x-rattache-titre, .er-x-entree:hover .er-x-entree-titre, .er-x-liee a:hover .er-x-carte-titre { color: var(--wp--preset--color--accent-texte); }
+.er-x-dates { margin: 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+.er-x-cartel-chapo { max-width: 560px; margin: 4px 0 0; font-size: 0.9375rem; line-height: 1.6; color: var(--wp--preset--color--encre-2); }
+.er-x-pastilles { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+.er-j-g .er-x-pastille { display: inline-flex; align-items: center; min-height: 32px; padding: 4px 14px; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--wp--preset--color--contrast); font-size: 0.8125rem; line-height: 1.3; font-weight: 600; }
+.er-j-g .er-x-pastille:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+/* Trois entrées, pour finir la page */
+.er-x-entrees { padding-block: 72px; }
+.er-x-entrees .er-j-g { row-gap: 32px; }
+.er-x-entree { grid-column: span 4; display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-x-entree-titre { font-size: 1.25rem; line-height: 1.25; font-weight: 600; }
+.er-x-entree-texte { font-size: 0.875rem; line-height: 1.55; color: var(--wp--preset--color--encre-2); }
+
+/* La fiche : l'image et le cartel */
+.er-x-entete { padding: 72px 0 48px; }
+.er-x-entete .er-j-g { row-gap: 32px; align-items: start; }
+.er-x-entete .er-x-image { grid-column: 1 / span 5; background: none; }
+.er-x-entete .er-x-image img { height: auto; max-height: 720px; object-position: left top; }
+.er-x-entete .er-x-image .er-j-attente { aspect-ratio: 4 / 5; background: var(--wp--preset--color--pierre); }
+.er-x-cartel { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 16px; }
+.er-x-cartel .er-j-sur a:hover { text-decoration: underline; }
+.er-x-titre { margin: 0; font-size: 3.5rem; line-height: 1.04; font-weight: 600; letter-spacing: -0.025em; }
+.er-x-cartel .er-x-artistes { font-size: 1.25rem; line-height: 1.3; }
+
+/* Le texte et sa marge */
+.er-x-corps { padding: 24px 0 72px; }
+.er-x-corps .er-j-g { row-gap: 32px; }
+.er-x-texte { grid-column: 1 / span 7; font-size: 1rem; line-height: 1.65; color: var(--wp--preset--color--encre-2); }
+.er-x-texte > *:first-child { margin-top: 0; }
+.er-x-texte a { text-decoration: underline; text-underline-offset: 0.2em; }
+.er-x-texte .er-etiquettes { margin-top: 32px; }
+.er-x-marge { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 24px; }
+.er-x-rattache { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-x-rattache-titre { font-size: 1.125rem; line-height: 1.3; font-weight: 600; }
+.er-x-rattache-ligne { font-size: 0.9375rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
+.er-x-rattache-faits { font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+.er-x-rattache-faits .er-j-nom { color: var(--wp--preset--color--contrast); font-weight: 600; }
+
+/* L'accrochage : six œuvres par rangée, chacune avec son cartel */
+.er-x-oeuvres { padding-block: 72px; border-top: 1px solid var(--wp--preset--color--filet); }
+.er-x-oeuvres .er-j-g { row-gap: 32px; }
+.er-x-oeuvres ul, .er-x-autres ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 32px; }
+.er-x-oeuvres ul { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.er-x-oeuvres li a { display: flex; flex-direction: column; gap: 8px; }
+.er-x-oeuvres .er-x-image { aspect-ratio: 4 / 5; }
+.er-x-cartel-oeuvre { font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--encre-2); }
+
+/* Les autres expositions, en tiers */
+.er-x-autres { padding: 72px 0 96px; }
+.er-x-autres .er-j-g { row-gap: 32px; }
+.er-x-autres ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.er-x-carte { display: flex; flex-direction: column; gap: 10px; }
+.er-x-carte .er-x-image { aspect-ratio: 3 / 2; }
+.er-j-doux .er-x-image { background: var(--wp--preset--color--base); }
+.er-x-carte-titre { font-size: 1.25rem; line-height: 1.25; font-weight: 600; }
+.er-x-carte-artistes { font-size: 0.875rem; line-height: 1.45; color: var(--wp--preset--color--encre-2); }
+
+/* Sur la fiche d'un livre, dans la bande « Autour de ce livre » : l'exposition, son titre en italique */
+.er-reco-exposition .er-reco-contenu-titre { font-style: italic; }
+
+/* Sur un article, une rencontre, une vidéo : l'exposition */
+.er-x-liee ul { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.er-x-liee li a { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 16px; align-items: center; color: inherit; text-decoration: none; }
+.er-x-liee .er-x-image { aspect-ratio: 1; }
+.er-x-liee li a > span:last-child { display: flex; flex-direction: column; gap: 4px; }
+.er-x-liee .er-j-sur { font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-x-liee .er-x-carte-titre { font-size: 1.125rem; }
+
+@media (max-width: 1099px) {
+	/* Une seule colonne : les règles des colonnes ci-dessus viennent après celles du journal, on les reprend ici */
+	.er-x-page-titre, .er-x-page-phrase, .er-x-affiche-texte, .er-x-affiche .er-x-image, .er-x-entete .er-x-image, .er-x-cartel, .er-x-texte, .er-x-marge, .er-x-entree { grid-column: 1 / -1; }
+	.er-x-entete .er-x-image { max-width: 480px; }
+	.er-x-tete { padding: 64px 0 24px; }
+	.er-x-page-titre, .er-x-titre { font-size: 2.875rem; }
+	.er-x-page-phrase, .er-x-chapo { font-size: 1.125rem; }
+	.er-x-affiche-titre, .er-x-cartel-titre { font-size: 2.125rem; }
+	.er-x-lettre { font-size: 180px; bottom: -48px; }
+	.er-x-cartel-ligne { grid-template-columns: minmax(0, 1fr); }
+	.er-x-cartel-image, .er-x-cartel-texte { grid-column: 1 / -1; }
+	.er-x-oeuvres ul { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+	.er-x-autres ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+	.er-x-entete .er-x-image img { max-height: 560px; }
+}
+@media (max-width: 719px) {
+	.er-x-tete { padding: 48px 0 24px; }
+	.er-x-page-titre, .er-x-titre { font-size: 2.25rem; }
+	.er-x-page-phrase, .er-x-chapo { font-size: 1.0625rem; }
+	.er-x-affiche { padding-block: 48px; }
+	.er-x-affiche-titre, .er-x-cartel-titre { font-size: 1.75rem; }
+	.er-x-annee > span:first-child { font-size: 2.25rem; }
+	.er-x-lettre { font-size: 120px; bottom: -32px; right: -24px; }
+	.er-x-fait { grid-template-columns: 96px minmax(0, 1fr); }
+	.er-x-oeuvres ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+	.er-x-autres ul { grid-template-columns: minmax(0, 1fr); }
+	.er-x-passees, .er-x-autres, .er-x-oeuvres, .er-x-entrees { padding-block: 56px; }
+}
+
+/* --------------------------------------------------------------------------
    La fiche d'un livre : les trois rangées (la piste B, retenue le 23 nov. 2026)
    « Du même auteur » dans la colonne de la fiche ; « Autour de ce livre » sur une bande pervenche pâle, pleine
    largeur ; « Du même rayon, de la même époque » en étagère, les livres debout sur un filet noir. Les blocs

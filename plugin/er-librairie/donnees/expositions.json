@@ -1,0 +1,84 @@
+[
+ {
+  "cle": "trois-generations",
+  "titre": "Trois générations",
+  "artistes": ["Leonid Rakov", "Olga Rakova", "Irina Rakova", "Anna Rakova", "Anna Rkv.", "Roman Saoulski", "Vassilissa Tatokhina"],
+  "techniques": ["Peinture"],
+  "debut": "2023-12-22",
+  "fin": "2024-01-11",
+  "evenements": ["795acb23-86bf-4ea9-9ddc-884553886f43"]
+ },
+ {
+  "cle": "enfance",
+  "titre": "Enfance",
+  "artistes": ["Irina Rakova"],
+  "techniques": ["Peinture", "Céramique"],
+  "debut": "2023-11-09",
+  "fin": "",
+  "evenements": ["6957db36-8724-4b9d-9c7c-5f0c89b2928d"]
+ },
+ {
+  "cle": "huiles-sur-toiles",
+  "titre": "Huiles sur toiles",
+  "artistes": ["Andrey Grin"],
+  "techniques": ["Peinture"],
+  "debut": "2023-09-28",
+  "fin": "",
+  "evenements": ["2cf82827-2c5b-4672-87ea-598ba79118cf"]
+ },
+ {
+  "cle": "imagine-unimaginable",
+  "titre": "Imagine / Unimaginable",
+  "artistes": ["Eva Rapoport"],
+  "techniques": ["Images"],
+  "debut": "2023-05-30",
+  "fin": "",
+  "evenements": ["e1fae069-f708-4d10-8ee5-36f9437e50c6"]
+ },
+ {
+  "cle": "pierre-struve-et-ivan-bounine",
+  "titre": "Pierre Struve et Ivan Bounine : l’histoire d’une amitié",
+  "artistes": [],
+  "ligne": "D’après leur correspondance",
+  "personnes": ["Pierre Struve", "Ivan Bounine"],
+  "techniques": ["Archives"],
+  "sujets": ["Émigration", "Histoire de la maison"],
+  "debut": "2022-05-23",
+  "fin": "",
+  "evenements": ["cd056d66-fc47-4ced-942b-6ade089b2de5"]
+ },
+ {
+  "cle": "illustrations-ivan-sollogoub",
+  "titre": "Illustrations",
+  "artistes": ["Ivan Sollogoub"],
+  "techniques": ["Illustration"],
+  "debut": "2022-03-18",
+  "fin": "",
+  "evenements": ["27c7a0b9-0fbe-4c52-bf4c-54b90ea24e38"]
+ },
+ {
+  "cle": "derniers-regards",
+  "titre": "Derniers regards, le communisme par balles",
+  "artistes": ["Madeleine Melot"],
+  "techniques": ["Peinture"],
+  "sujets": ["Goulag et dissidence", "Période soviétique"],
+  "debut": "2021-06-02",
+  "fin": "2021-09-28",
+  "chapo": "Vingt-cinq portraits de condamnés à mort.",
+  "evenements": ["484157ac-9dc8-425b-b0b3-b028ff768e0d", "60d67d95-be34-482d-9b1e-877f7141817b"],
+  "articles": ["hommage-aux-derniers-regards-de-madeleine-melot"]
+ },
+ {
+  "cle": "nuit-diaphane",
+  "titre": "Nuit diaphane",
+  "artistes": ["Paul Kichilov"],
+  "personnes": ["Boris Pasternak"],
+  "techniques": ["Gravure"],
+  "sujets": ["Poésie", "Période soviétique"],
+  "debut": "2020-10-03",
+  "fin": "",
+  "chapo": "Vingt gravures inspirées du cycle poétique du Docteur Jivago : dix en noir et blanc pour le recueil bilingue d’YMCA-Press, dix en couleurs qui leur font écho.",
+  "evenements": ["cbb15833-2c96-4d25-ad76-b63a9c1d569c", "eb5cf41a-919b-4ff6-a828-5c69a5208a0e", "7a8e1f2b-7ae0-4fa5-929a-ef6484bee91f"],
+  "livres": ["WIX-BEED46E3"]
+ }
+]

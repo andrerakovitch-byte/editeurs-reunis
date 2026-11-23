@@ -323,6 +323,41 @@ et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag
 - **Le titre** d'un article ne redit pas sa signature (« « Langue maternelle » par Georges Nivat » devient
   « « Langue maternelle » ») : elle est dessous, « Par Georges Nivat · 1er mai 2020 · 4 min ».
 
+## Les expositions du centre
+
+Un contenu à part, « Expositions » dans l'administration (`inc/expositions.php`), à l'adresse
+`/centre-culturel/expositions/<slug>/`, d'après le canevas « Nos expositions » (24 nov. 2026). Une exposition a ses
+dates (les mêmes champs que les rencontres, `er_debut` et `er_fin`), la ligne de ses artistes (« Madeleine Melot »,
+« D’après leur correspondance » ; vide, ce sont ses auteurs), ses techniques (`er_technique` : peinture, gravure,
+archives…), son lieu et son entrée, son image, son chapô, son texte, ses étiquettes (auteurs et sujets, comme le
+reste), et ses **œuvres** : des images de la médiathèque, dont la légende fait le cartel (« Portrait n° 1, huile sur
+toile, 2019 »).
+
+**Les rattachements.** On y rattache des livres, des articles du journal, des vidéos et des podcasts, des rencontres
+(le vernissage, la soirée de clôture) et des pages : depuis l'exposition (la boîte « Ce qui s'y rattache », qui
+cherche dans tout le site), ou depuis le livre, l'article, la rencontre ou la vidéo (la boîte « Expositions », à
+cocher). Les deux disent la même chose : une ligne `er_rattache` de l'exposition par contenu. Le lien se voit des
+deux côtés : la fiche de l'exposition montre ce qui s'y rattache, chaque contenu montre l'exposition (sous l'article,
+dans la page de la rencontre ou de la vidéo, dans la bande « Autour de ce livre » de la fiche d'un livre). Une
+exposition paraît aussi sur la page de ses auteurs et de ses sujets, et dans la recherche (avec le centre).
+
+- **La page « Nos expositions »** (`er/expositions`, posé sur la page par l'import, gabarit en modules) : le titre et
+  sa phrase ; la ligne de repères (ce qui est accroché, les années, les techniques : `?annee=2023`,
+  `?technique=peinture`) ; ce qui est accroché, ou annoncé, sur l'aplat du centre, *Выставка* en décor ; les
+  expositions passées, une par une, comme des cartels (l'année, la technique, le titre, les artistes, les dates, ce
+  qui s'y rattache en pastilles) ; trois entrées pour finir (la prochaine rencontre, le journal, venir).
+- **La fiche** (`single-er_exposition.html`) : l'image et le cartel (les dates, le vernissage et la clôture, le lieu,
+  l'entrée, le nombre d'œuvres), le texte et sa marge (le journal d'abord, puis le centre, la librairie, écouter et
+  regarder), l'accrochage (six œuvres par rangée), les autres expositions.
+- **Les titres** des expositions sont des titres d'œuvres : en italique.
+
+L'ancien site n'avait que des événements : les huit expositions sont relues dans `donnees/expositions.json` (le
+titre, les artistes et les personnes dont il est question, les techniques, les dates, les rencontres de l'ancien site
+par leur identifiant de Wix, les articles par leur slug, les livres par leur référence). `wp er expositions importer`
+les crée ou les complète (ce qu'on a saisi à la main l'emporte ; les rattachements s'ajoutent) : le texte, le chapô
+et l'image viennent de la première rencontre. Une rencontre de l'ancien site qui dure des semaines, c'est l'exposition
+telle qu'il l'annonçait : elle reste rattachée, mais la fiche ne la redit pas.
+
 ## Trois langues
 
 Le site est en français, en russe et en anglais. Le français est la langue de référence : tout le texte du code est

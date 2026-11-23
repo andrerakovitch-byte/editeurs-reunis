@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Les Éditeurs réunis — librairie plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Les Éditeurs réunis — librairie 0.5.3\n"
+"Project-Id-Version: Les Éditeurs réunis — librairie 0.6.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/er-librairie\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T22:31:27+00:00\n"
+"POT-Creation-Date: 2026-11-23T23:14:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: er-librairie\n"
@@ -24,58 +24,58 @@ msgstr ""
 msgid "Les données de la librairie : auteurs et langues des livres, les rencontres du centre et leur billetterie, et des traductions de secours pour WooCommerce tant que son paquet de langue français n'est pas installé. Séparée du thème : la direction artistique peut changer sans toucher aux livres."
 msgstr ""
 
-#: er-librairie.php:177
+#: er-librairie.php:178
 msgid "Langue du site"
 msgstr ""
 
-#: er-librairie.php:191
-#: er-librairie.php:197
+#: er-librairie.php:192
+#: er-librairie.php:198
 #: inc/import.php:26
 #: inc/sujets.php:384
 msgid "Auteurs"
 msgstr ""
 
-#: er-librairie.php:192
+#: er-librairie.php:193
 msgid "Auteur"
 msgstr ""
 
-#: er-librairie.php:193
+#: er-librairie.php:194
 msgid "Chercher un auteur"
 msgstr ""
 
-#: er-librairie.php:194
+#: er-librairie.php:195
 msgid "Tous les auteurs"
 msgstr ""
 
-#: er-librairie.php:195
+#: er-librairie.php:196
 msgid "Modifier l’auteur"
 msgstr ""
 
-#: er-librairie.php:196
+#: er-librairie.php:197
 msgid "Ajouter un auteur"
 msgstr ""
 
-#: er-librairie.php:213
-#: er-librairie.php:218
+#: er-librairie.php:214
+#: er-librairie.php:219
 #: inc/import.php:27
 msgid "Langues"
 msgstr ""
 
-#: er-librairie.php:214
+#: er-librairie.php:215
 #: inc/evenements.php:122
 #: inc/evenements.php:727
 msgid "Langue"
 msgstr ""
 
-#: er-librairie.php:215
+#: er-librairie.php:216
 msgid "Toutes les langues"
 msgstr ""
 
-#: er-librairie.php:216
+#: er-librairie.php:217
 msgid "Modifier la langue"
 msgstr ""
 
-#: er-librairie.php:217
+#: er-librairie.php:218
 msgid "Ajouter une langue"
 msgstr ""
 
@@ -248,6 +248,9 @@ msgid "Choisir le portrait"
 msgstr ""
 
 #: inc/auteurs.php:51
+#: inc/expositions.php:258
+#: inc/expositions.php:275
+#: inc/expositions.php:371
 msgid "Ôter"
 msgstr ""
 
@@ -295,6 +298,7 @@ msgid "Une couverture est bonne à partir de 800 pixels de haut : nette même en
 msgstr ""
 
 #: inc/couvertures.php:134
+#: inc/expositions.php:26
 msgid "Livre"
 msgstr ""
 
@@ -332,6 +336,7 @@ msgid "Événement"
 msgstr ""
 
 #: inc/evenements.php:32
+#: inc/expositions.php:43
 #: inc/medias.php:24
 msgid "Ajouter"
 msgstr ""
@@ -423,6 +428,7 @@ msgid "Facultatif."
 msgstr ""
 
 #: inc/evenements.php:120
+#: inc/expositions.php:250
 msgid "Lieu"
 msgstr ""
 
@@ -498,20 +504,29 @@ msgstr ""
 msgid "du %1$s au %2$s"
 msgstr ""
 
+#. translators: 1: le premier jour, 2: le dernier
+#. translators: %s: le dernier jour
+#. translators: %s: le premier jour
 #: inc/evenements.php:187
+#: inc/expositions.php:195
+#: inc/expositions.php:916
+#: inc/expositions.php:919
 msgid "j F"
 msgstr ""
 
+#. translators: 1: le premier jour, 2: le dernier
 #: inc/evenements.php:187
 #: inc/evenements.php:188
 #: inc/evenements.php:191
+#: inc/expositions.php:195
+#: inc/expositions.php:197
 #: inc/journal-une.php:284
 #: inc/journal-une.php:772
 #: inc/journal-une.php:856
 #: inc/journal.php:72
 #: inc/medias.php:202
 #: inc/sujets.php:414
-#: inc/sujets.php:417
+#: inc/sujets.php:420
 msgid "j F Y"
 msgstr ""
 
@@ -550,7 +565,7 @@ msgid "Entrée — %s"
 msgstr ""
 
 #: inc/evenements.php:453
-#: inc/recommandations.php:361
+#: inc/recommandations.php:399
 msgid "La rencontre"
 msgstr ""
 
@@ -601,10 +616,14 @@ msgid "vidéo"
 msgstr ""
 
 #: inc/evenements.php:695
+#: inc/expositions.php:547
+#: inc/expositions.php:929
 msgid "Quand"
 msgstr ""
 
 #: inc/evenements.php:698
+#: inc/expositions.php:555
+#: inc/expositions.php:930
 msgid "Où"
 msgstr ""
 
@@ -613,6 +632,7 @@ msgid "Au centre, 11, rue de la Montagne-Sainte-Geneviève, Paris 5e"
 msgstr ""
 
 #: inc/evenements.php:700
+#: inc/expositions.php:823
 msgid "Nous trouver"
 msgstr ""
 
@@ -657,7 +677,7 @@ msgid "Cette rencontre a eu lieu le %s."
 msgstr ""
 
 #: inc/evenements.php:745
-#: inc/recommandations.php:361
+#: inc/recommandations.php:399
 msgid "Revoir la rencontre"
 msgstr ""
 
@@ -698,15 +718,16 @@ msgid "À voir, à écouter"
 msgstr ""
 
 #: inc/evenements.php:863
-#: inc/recommandations.php:276
-#: inc/sujets.php:496
+#: inc/recommandations.php:317
+#: inc/sujets.php:499
 msgid "épuisé pour l’instant"
 msgstr ""
 
 #. translators: %s: le nom de la personne
 #: inc/evenements.php:865
+#: inc/expositions.php:498
 #: inc/journal.php:122
-#: inc/sujets.php:567
+#: inc/sujets.php:571
 msgid "À la librairie"
 msgstr ""
 
@@ -729,9 +750,9 @@ msgstr ""
 #: inc/evenements.php:994
 #: inc/medias.php:127
 #: inc/medias.php:198
-#: inc/recommandations.php:366
+#: inc/recommandations.php:404
 #: inc/sujets.php:413
-#: inc/sujets.php:428
+#: inc/sujets.php:431
 msgid "Vidéo"
 msgstr ""
 
@@ -778,6 +799,458 @@ msgstr[1] ""
 
 #: inc/evenements.php:1257
 msgid "Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-Geneviève."
+msgstr ""
+
+#: inc/expositions.php:27
+msgid "Article"
+msgstr ""
+
+#: inc/expositions.php:28
+#: inc/medias.php:23
+msgid "Vidéo ou podcast"
+msgstr ""
+
+#: inc/expositions.php:29
+#: inc/expositions.php:866
+#: inc/sujets.php:410
+msgid "Rencontre"
+msgstr ""
+
+#: inc/expositions.php:30
+msgid "Page"
+msgstr ""
+
+#: inc/expositions.php:41
+#: inc/expositions.php:51
+#: inc/expositions.php:224
+msgid "Expositions"
+msgstr ""
+
+#: inc/expositions.php:42
+#: inc/expositions.php:668
+#: inc/recherche.php:668
+#: inc/sujets.php:416
+msgid "Exposition"
+msgstr ""
+
+#: inc/expositions.php:44
+msgid "Ajouter une exposition"
+msgstr ""
+
+#: inc/expositions.php:45
+msgid "Modifier l’exposition"
+msgstr ""
+
+#: inc/expositions.php:46
+#: inc/expositions.php:685
+#: inc/expositions.php:932
+msgid "Voir l’exposition"
+msgstr ""
+
+#: inc/expositions.php:47
+msgid "Toutes les expositions"
+msgstr ""
+
+#: inc/expositions.php:48
+msgid "Chercher une exposition"
+msgstr ""
+
+#: inc/expositions.php:49
+msgid "Aucune exposition"
+msgstr ""
+
+#: inc/expositions.php:50
+msgid "Aucune exposition dans la corbeille"
+msgstr ""
+
+#: inc/expositions.php:70
+msgid "Techniques"
+msgstr ""
+
+#: inc/expositions.php:71
+msgid "Technique"
+msgstr ""
+
+#: inc/expositions.php:72
+msgid "Toutes les techniques"
+msgstr ""
+
+#: inc/expositions.php:73
+msgid "Modifier la technique"
+msgstr ""
+
+#: inc/expositions.php:74
+msgid "Ajouter une technique"
+msgstr ""
+
+#: inc/expositions.php:75
+msgid "Aucune technique"
+msgstr ""
+
+#. translators: 1: le premier jour, 2: le dernier
+#: inc/expositions.php:195
+#, php-format
+msgid "Du %1$s au %2$s"
+msgstr ""
+
+#. translators: %s: le premier jour
+#: inc/expositions.php:199
+#, php-format
+msgid "Inaugurée le %s"
+msgstr ""
+
+#. translators: %s: le premier jour
+#: inc/expositions.php:199
+#, php-format
+msgid "À partir du %s"
+msgstr ""
+
+#: inc/expositions.php:221
+#: inc/expositions.php:670
+#: inc/expositions.php:699
+#: inc/sujets.php:578
+msgid "L’exposition"
+msgid_plural "Les expositions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/expositions.php:222
+msgid "Ce qui s’y rattache"
+msgstr ""
+
+#: inc/expositions.php:246
+msgid "Du"
+msgstr ""
+
+#: inc/expositions.php:247
+msgid "Au"
+msgstr ""
+
+#: inc/expositions.php:247
+msgid "Vide si on ne le sait pas."
+msgstr ""
+
+#: inc/expositions.php:249
+msgid "La ligne des artistes"
+msgstr ""
+
+#: inc/expositions.php:249
+msgid "Vide : les auteurs de l’exposition (boîte « Auteurs »). Sinon, par exemple « D’après leur correspondance »."
+msgstr ""
+
+#: inc/expositions.php:250
+msgid "Vide : le centre, 11, rue de la Montagne-Sainte-Geneviève."
+msgstr ""
+
+#: inc/expositions.php:251
+#: inc/expositions.php:558
+#: inc/expositions.php:931
+msgctxt "l’accès à une exposition"
+msgid "Entrée"
+msgstr ""
+
+#: inc/expositions.php:251
+msgid "Par exemple « Libre, aux heures de la librairie »."
+msgstr ""
+
+#. translators: %d: un nombre d'œuvres
+#: inc/expositions.php:253
+#: inc/expositions.php:563
+msgid "Les œuvres"
+msgstr ""
+
+#: inc/expositions.php:253
+msgid "Leur cartel est leur légende dans la médiathèque (le titre, l’artiste, la date, la technique)."
+msgstr ""
+
+#: inc/expositions.php:258
+msgid "Choisir les œuvres"
+msgstr ""
+
+#: inc/expositions.php:277
+msgid "Chercher un livre, un article, une vidéo, une rencontre…"
+msgstr ""
+
+#: inc/expositions.php:288
+msgid "Aucune exposition pour l’instant."
+msgstr ""
+
+#: inc/expositions.php:489
+#: inc/sujets.php:584
+msgid "Dans le journal"
+msgstr ""
+
+#: inc/expositions.php:494
+#: inc/expositions.php:821
+#: inc/journal-une.php:472
+#: inc/sujets.php:575
+msgid "Au centre"
+msgstr ""
+
+#: inc/expositions.php:504
+msgid "Épuisé pour l’instant"
+msgstr ""
+
+#: inc/expositions.php:509
+msgid "Écouter"
+msgstr ""
+
+#: inc/expositions.php:509
+msgid "Regarder"
+msgstr ""
+
+#: inc/expositions.php:514
+#: inc/sujets.php:591
+msgid "À lire sur le site"
+msgstr ""
+
+#. translators: %s: le dernier jour
+#: inc/expositions.php:534
+#: inc/expositions.php:733
+#: inc/expositions.php:916
+msgid "En ce moment"
+msgstr ""
+
+#. translators: %s: le premier jour
+#: inc/expositions.php:536
+#: inc/expositions.php:919
+msgid "Prochainement"
+msgstr ""
+
+#: inc/expositions.php:540
+#: inc/expositions.php:768
+msgid "Nos expositions"
+msgstr ""
+
+#: inc/expositions.php:555
+#: inc/expositions.php:930
+msgid "11, rue de la Montagne-Sainte-Geneviève, Paris 5e"
+msgstr ""
+
+#. translators: %d: un nombre d'œuvres
+#: inc/expositions.php:563
+#, php-format
+msgid "%d œuvre"
+msgid_plural "%d œuvres"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/expositions.php:598
+msgid "Autour de l’exposition"
+msgstr ""
+
+#. translators: %s: un nombre d'œuvres, en lettres (« huit »)
+#: inc/expositions.php:618
+msgid "L’œuvre"
+msgstr ""
+
+#. translators: %s: un nombre d'œuvres, en lettres (« huit »)
+#: inc/expositions.php:618
+#, php-format
+msgid "Les %s œuvres"
+msgstr ""
+
+#: inc/expositions.php:636
+msgid "Les autres expositions"
+msgstr ""
+
+#: inc/expositions.php:685
+msgid "Revoir l’exposition"
+msgstr ""
+
+#: inc/expositions.php:686
+msgid "Exposition au centre"
+msgstr ""
+
+#: inc/expositions.php:698
+#: inc/recommandations.php:463
+msgid "Autour de ce livre"
+msgstr ""
+
+#: inc/expositions.php:739
+msgid "Pas d’exposition ; la prochaine est annoncée plus bas"
+msgstr ""
+
+#: inc/expositions.php:739
+msgid "Pas d’exposition"
+msgstr ""
+
+#: inc/expositions.php:742
+#: inc/journal-une.php:608
+msgid "Les années"
+msgstr ""
+
+#: inc/expositions.php:748
+msgid "Les techniques"
+msgstr ""
+
+#: inc/expositions.php:754
+msgid "Toutes"
+msgstr ""
+
+#: inc/expositions.php:761
+msgid "Peintures, gravures, images et archives, accrochées au 11, rue de la Montagne-Sainte-Geneviève."
+msgstr ""
+
+#. translators: 1: le nombre d'expositions, en lettres, 2: une année
+#: inc/expositions.php:764
+#, php-format
+msgid "%1$s expositions depuis %2$d."
+msgstr ""
+
+#: inc/expositions.php:769
+#: inc/journal-une.php:619
+msgid "Repères"
+msgstr ""
+
+#: inc/expositions.php:791
+msgid "Les expositions passées"
+msgstr ""
+
+#: inc/expositions.php:791
+msgid "De la plus récente à la plus ancienne"
+msgstr ""
+
+#: inc/expositions.php:797
+#: inc/journal-une.php:687
+#: inc/journal-une.php:862
+#: inc/medias.php:231
+msgid "Rien pour l’instant."
+msgstr ""
+
+#: inc/expositions.php:809
+msgid "Les rencontres, les lectures et les vernissages du centre."
+msgstr ""
+
+#: inc/expositions.php:821
+msgid "Nos événements"
+msgstr ""
+
+#: inc/expositions.php:822
+msgid "À lire"
+msgstr ""
+
+#: inc/expositions.php:822
+#: inc/journal-une.php:356
+#: inc/journal-une.php:886
+msgid "Le journal du centre"
+msgstr ""
+
+#: inc/expositions.php:822
+msgid "Chroniques, critiques, essais et archives."
+msgstr ""
+
+#: inc/expositions.php:823
+msgid "Venir"
+msgstr ""
+
+#: inc/expositions.php:823
+msgid "11, rue de la Montagne-Sainte-Geneviève, Paris 5e."
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "une"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "deux"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "trois"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "quatre"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "cinq"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "six"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "sept"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "huit"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "neuf"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "dix"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "onze"
+msgstr ""
+
+#: inc/expositions.php:839
+msgid "douze"
+msgstr ""
+
+#: inc/expositions.php:855
+msgid "Le vernissage"
+msgstr ""
+
+#: inc/expositions.php:855
+msgid "Vernissage"
+msgstr ""
+
+#: inc/expositions.php:856
+msgid "La soirée de clôture"
+msgstr ""
+
+#: inc/expositions.php:856
+msgid "Clôture"
+msgstr ""
+
+#: inc/expositions.php:857
+msgid "La rencontre d’inauguration"
+msgstr ""
+
+#: inc/expositions.php:857
+#: inc/expositions.php:858
+msgid "Inauguration"
+msgstr ""
+
+#: inc/expositions.php:858
+msgid "L’inauguration"
+msgstr ""
+
+#: inc/expositions.php:859
+msgid "Le finissage"
+msgstr ""
+
+#: inc/expositions.php:859
+msgid "Finissage"
+msgstr ""
+
+#: inc/expositions.php:885
+msgid "Dans le journal : "
+msgstr ""
+
+#: inc/expositions.php:886
+msgid "À la librairie : "
+msgstr ""
+
+#. translators: %s: le dernier jour
+#: inc/expositions.php:916
+#, php-format
+msgid "En ce moment · jusqu’au %s"
+msgstr ""
+
+#. translators: %s: le premier jour
+#: inc/expositions.php:919
+#, php-format
+msgid "Prochainement · à partir du %s"
 msgstr ""
 
 #: inc/fiche.php:20
@@ -967,11 +1440,6 @@ msgstr[1] ""
 msgid "%d min"
 msgstr ""
 
-#: inc/journal-une.php:356
-#: inc/journal-une.php:886
-msgid "Le journal du centre"
-msgstr ""
-
 #: inc/journal-une.php:362
 msgid "À la une"
 msgstr ""
@@ -1010,11 +1478,6 @@ msgstr ""
 
 #: inc/journal-une.php:470
 msgid "Tous nos événements"
-msgstr ""
-
-#: inc/journal-une.php:472
-#: inc/sujets.php:571
-msgid "Au centre"
 msgstr ""
 
 #. translators: 1: la série, 2: le numéro de l'épisode
@@ -1077,14 +1540,6 @@ msgid_plural "%d textes en russe ou bilingues"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/journal-une.php:608
-msgid "Les années"
-msgstr ""
-
-#: inc/journal-une.php:619
-msgid "Repères"
-msgstr ""
-
 #. translators: %d: un nombre de sujets
 #: inc/journal-une.php:631
 msgid "Les sujets"
@@ -1097,12 +1552,6 @@ msgid "%d sujet"
 msgid_plural "%d sujets"
 msgstr[0] ""
 msgstr[1] ""
-
-#: inc/journal-une.php:687
-#: inc/journal-une.php:862
-#: inc/medias.php:231
-msgid "Rien pour l’instant."
-msgstr ""
 
 #: inc/journal-une.php:705
 msgid "Le fil"
@@ -1164,10 +1613,6 @@ msgstr ""
 msgid "Vidéos et podcasts"
 msgstr ""
 
-#: inc/medias.php:23
-msgid "Vidéo ou podcast"
-msgstr ""
-
 #: inc/medias.php:25
 msgid "Ajouter une vidéo ou un podcast"
 msgstr ""
@@ -1223,7 +1668,7 @@ msgstr ""
 
 #: inc/medias.php:128
 #: inc/medias.php:198
-#: inc/recommandations.php:366
+#: inc/recommandations.php:404
 #: inc/sujets.php:413
 msgid "Podcast"
 msgstr ""
@@ -1237,91 +1682,91 @@ msgstr ""
 msgid "Et aussi"
 msgstr ""
 
+#: inc/recherche.php:285
+msgid "exposition"
+msgstr ""
+
 #. translators: %d: le nombre de rencontres et d'articles
-#: inc/recherche.php:608
+#: inc/recherche.php:661
 #, php-format
 msgid "Sujet · %d rencontre ou article"
 msgid_plural "Sujet · %d rencontres et articles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/recherche.php:1003
-#: inc/recherche.php:1011
+#: inc/recherche.php:1056
+#: inc/recherche.php:1064
 msgid "Autres graphies"
 msgstr ""
 
-#: inc/recherche.php:1005
-#: inc/recherche.php:1013
+#: inc/recherche.php:1058
+#: inc/recherche.php:1066
 msgid "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La recherche les trouve toutes."
 msgstr ""
 
-#: inc/recherche.php:1033
+#: inc/recherche.php:1086
 msgid "Traducteur, préfacier"
 msgstr ""
 
-#: inc/recherche.php:1034
+#: inc/recherche.php:1087
 msgid "Éditeur"
 msgstr ""
 
-#: inc/recherche.php:1035
+#: inc/recherche.php:1088
 msgid "Collection"
 msgstr ""
 
-#: inc/recherche.php:1036
+#: inc/recherche.php:1089
 msgid "Année d’édition"
 msgstr ""
 
-#: inc/recherche.php:1037
+#: inc/recherche.php:1090
 msgid "Nombre de pages"
 msgstr ""
 
-#: inc/recherche.php:1038
+#: inc/recherche.php:1091
 msgid "Format (poche, broché, relié…)"
 msgstr ""
 
-#: inc/recommandations.php:343
+#: inc/recommandations.php:381
 msgid "Du même auteur"
 msgstr ""
 
-#: inc/recommandations.php:345
+#: inc/recommandations.php:383
 msgid "Sa page"
 msgstr ""
 
-#: inc/recommandations.php:361
+#: inc/recommandations.php:399
 msgid "Venir à la rencontre"
 msgstr ""
 
-#: inc/recommandations.php:362
+#: inc/recommandations.php:400
 msgid "Rencontre au centre"
 msgstr ""
 
-#: inc/recommandations.php:369
+#: inc/recommandations.php:407
 msgid "Le journal"
 msgstr ""
 
 #. translators: %s: le nom de famille de l'auteur
-#: inc/recommandations.php:413
+#: inc/recommandations.php:451
 #, php-format
 msgid "%s, dans l’encyclopédie"
 msgstr ""
 
-#: inc/recommandations.php:425
-msgid "Autour de ce livre"
-msgstr ""
-
-#: inc/recommandations.php:426
+#: inc/recommandations.php:464
 msgid "Les personnes et les sujets qu’il touche"
 msgstr ""
 
-#: inc/recommandations.php:475
+#: inc/recommandations.php:513
 msgid "Du même rayon, de la même époque"
 msgstr ""
 
-#: inc/recommandations.php:476
+#: inc/recommandations.php:514
 msgid "Du même rayon"
 msgstr ""
 
-#: inc/recommandations.php:477
+#: inc/recommandations.php:515
 msgid "Tout le rayon"
 msgstr ""
 
@@ -1373,44 +1818,32 @@ msgstr ""
 msgid "Les personnes dont parle le livre, séparées par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page, dans « Autour de »."
 msgstr ""
 
-#: inc/sujets.php:410
-msgid "Rencontre"
-msgstr ""
-
-#: inc/sujets.php:416
+#: inc/sujets.php:419
 msgid "Journal"
 msgstr ""
 
-#: inc/sujets.php:481
+#: inc/sujets.php:484
 msgid "À lire, à revoir"
 msgstr ""
 
-#: inc/sujets.php:563
+#: inc/sujets.php:567
 msgid "Prochainement au centre"
 msgstr ""
 
 #. translators: %s: le nom de la personne
-#: inc/sujets.php:567
+#: inc/sujets.php:571
 #, php-format
 msgid "Autour de %s"
 msgstr ""
 
-#: inc/sujets.php:571
+#: inc/sujets.php:575
 msgid "Les rencontres"
 msgstr ""
 
-#: inc/sujets.php:574
+#: inc/sujets.php:581
 msgid "Écouter, regarder"
 msgstr ""
 
-#: inc/sujets.php:577
-msgid "Dans le journal"
-msgstr ""
-
-#: inc/sujets.php:584
-msgid "À lire sur le site"
-msgstr ""
-
-#: inc/sujets.php:587
+#: inc/sujets.php:594
 msgid "Rien encore sur ce sujet."
 msgstr ""
