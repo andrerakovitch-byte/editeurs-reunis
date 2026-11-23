@@ -332,6 +332,11 @@ function er_roles_noms( $texte, $titre = '', &$ecart = array() ) {
 			$ecart[ $nom ] = 'un seul mot';
 			continue;
 		}
+		// Un bout de phrase pris pour un nom : « Si ceux… », « Dans la… ».
+		if ( in_array( mb_strtolower( strtok( $nom, ' ' ), 'UTF-8' ), array( 'si', 'ce', 'ceux', 'celui', 'dans', 'tandis', 'le', 'la', 'les', 'un', 'une', 'par', 'de', 'du', 'des', 'en', 'pour', 'avec' ), true ) ) {
+			$ecart[ $nom ] = 'pas un nom';
+			continue;
+		}
 		if ( '' !== $titre && false !== mb_stripos( $titre, $nom ) ) {
 			$ecart[ $nom ] = 'dans le titre';
 			continue;
@@ -434,6 +439,74 @@ function er_editeurs_regroupes( $comptes ) {
 	return $retenu;
 }
 
+/**
+ * Réunit les graphies d'une même personne : avec un auteur qui existe déjà (« Natalia Soljénistyne » → « Natalia
+ * Soljénitsyne »), ou entre elles (« Paul Lesquesne » et « Paul Lequesne », « G. Arout » et « Gabriel Arout »,
+ * « Boris de Schloezer » et « Boris de Schlœzer »). Chaque nom → le nom retenu : l'auteur qui existe, sinon la graphie
+ * la plus fréquente.
+ *
+ * @param array<string,int> $comptes Nom → nombre de livres.
+ * @return array<string,string>
+ */
+function er_personnes_regroupees( $comptes ) {
+	$cle = function ( $nom ) {
+		return preg_replace( '/[^a-z]+/', '', strtolower( str_replace( array( 'œ', 'Œ' ), 'oe', remove_accents( $nom ) ) ) );
+	};
+	$proche = function ( $a, $b ) use ( $cle ) {
+		$ka = $cle( $a );
+		$kb = $cle( $b );
+		if ( $ka === $kb ) {
+			return true;
+		}
+		if ( min( strlen( $ka ), strlen( $kb ) ) >= 9 && levenshtein( $ka, $kb ) <= 2 ) {
+			return true;
+		}
+		// « G. Arout » et « Gabriel Arout » : même nom de famille, même initiale.
+		foreach ( array( array( $a, $b ), array( $b, $a ) ) as list( $court, $long ) ) {
+			if ( preg_match( '/^(\p{Lu})\.\s*(.+)$/u', $court, $m ) && preg_match( '/^(\p{Lu})\p{L}*\s+(.+)$/u', $long, $n ) && $m[1] === $n[1] && $cle( $m[2] ) === $cle( $n[2] ) ) {
+				return true;
+			}
+		}
+		return false;
+	};
+	$existants = get_terms(
+		array(
+			'taxonomy'   => 'auteur',
+			'hide_empty' => false,
+			'fields'     => 'names',
+			'number'     => 5000,
+		)
+	);
+	$existants = is_wp_error( $existants ) ? array() : $existants;
+	arsort( $comptes );
+	$retenus = array();
+	$chefs   = array();
+	foreach ( array_keys( $comptes ) as $nom ) {
+		$va = null;
+		foreach ( $existants as $e ) {
+			if ( $proche( $nom, $e ) ) {
+				$va = $e;
+				break;
+			}
+		}
+		if ( null === $va ) {
+			foreach ( $chefs as $c ) {
+				if ( $proche( $nom, $c ) ) {
+					$va = $c;
+					break;
+				}
+			}
+		}
+		if ( null === $va ) {
+			// La forme complète l'emporte sur l'initiale.
+			$va      = $nom;
+			$chefs[] = $nom;
+		}
+		$retenus[ $nom ] = $va;
+	}
+	return $retenus;
+}
+
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
 	 * Relève les traducteurs, les directeurs et les éditeurs du catalogue, et les pose avec « appliquer » :
@@ -477,6 +550,17 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 			}
 			$regroupes = er_editeurs_regroupes( $editeurs );
+			$memes     = er_personnes_regroupees( $personnes );
+			foreach ( $memes as $nom => $chef ) {
+				if ( $nom !== $chef ) {
+					unset( $nouveaux[ $nom ] );
+					if ( ! er_personne_par_nom( $chef ) ) {
+						$nouveaux[ $chef ] = true;
+					}
+				} elseif ( ! er_personne_par_nom( $nom ) ) {
+					$nouveaux[ $nom ] = true;
+				}
+			}
 			if ( $appliquer ) {
 				foreach ( $releves as $id => $r ) {
 					foreach ( array(
@@ -484,7 +568,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 						'direction'  => 'er_direction',
 					) as $role => $taxonomie ) {
 						if ( $r[ $role ] ) {
-							er_poser_personnes( $id, $taxonomie, array_keys( $r[ $role ] ), true );
+							er_poser_personnes( $id, $taxonomie, array_values( array_unique( array_map( fn( $n ) => $memes[ $n ], array_keys( $r[ $role ] ) ) ) ), true );
 						}
 					}
 					if ( $r['editeurs'] ) {
@@ -494,10 +578,15 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			}
 			WP_CLI::log( ( $appliquer ? 'Posé' : 'Relevé (rien n’est posé ; « wp er roles appliquer » pour poser)' ) . ' sur ' . count( $ids ) . ' livres en vente :' );
 			WP_CLI::log( '  ' . $comptes['traduction'] . ' livres avec une traduction, ' . $comptes['direction'] . ' sous la direction de quelqu’un, ' . $comptes['editeur'] . ' avec un éditeur.' );
-			WP_CLI::log( count( $personnes ) . ' personnes, dont ' . count( $nouveaux ) . ' qui ne sont pas encore des auteurs' . ( $appliquer ? ' (créées)' : '' ) . ' :' );
-			arsort( $personnes );
-			foreach ( $personnes as $nom => $n ) {
-				WP_CLI::log( '  ' . $nom . ' (' . $n . ')' . ( isset( $nouveaux[ $nom ] ) ? ' · nouveau' : '' ) );
+			$par_chef = array();
+			foreach ( $memes as $nom => $chef ) {
+				$par_chef[ $chef ][] = $nom;
+			}
+			WP_CLI::log( count( $par_chef ) . ' personnes (' . count( $personnes ) . ' graphies), dont ' . count( $nouveaux ) . ' qui ne sont pas encore des auteurs' . ( $appliquer ? ' (créées)' : '' ) . ' :' );
+			foreach ( $par_chef as $chef => $noms ) {
+				$autres = array_diff( $noms, array( $chef ) );
+				$total  = array_sum( array_intersect_key( $personnes, array_flip( $noms ) ) );
+				WP_CLI::log( '  ' . $chef . ' (' . $total . ')' . ( isset( $nouveaux[ $chef ] ) ? ' · nouveau' : '' ) . ( $autres ? ' ← ' . implode( ', ', $autres ) : '' ) );
 			}
 			$retenus = array_count_values( $regroupes );
 			WP_CLI::log( count( $retenus ) . ' éditeurs (' . count( $editeurs ) . ' graphies) :' );
