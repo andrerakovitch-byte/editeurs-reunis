@@ -8,6 +8,10 @@ main.
     python3 outils/wix/pages.py evenements [--brut N]    → evenements.json : chaque page d'événement, ses données
                                                            structurées (JSON-LD, Open Graph) et les données de Wix ;
                                                            avec --brut, le HTML des N premières pages, pour lire leur forme
+    python3 outils/wix/pages.py journal [--brut N]       → journal.json : chaque article du blog (le journal du
+                                                           centre), ses données structurées et l'article tel que Wix
+                                                           le décrit (titre, texte riche, dates, catégories, étiquettes,
+                                                           image) ; avec --brut, le HTML et les données des N premiers
     python3 outils/wix/pages.py medias [--pages a,b]     → medias.json : les vidéos et les enregistrements que citent
                                                            les pages /videos et /podcast et l'accueil (liens YouTube,
                                                            Vimeo, SoundCloud…), les vidéos des chaînes YouTube citées
@@ -107,6 +111,47 @@ def chercher_evenement(objet, chemin=''):
             if r is not None:
                 return r
     return None
+
+
+def chercher_article(objet):
+    """Dans les données de Wix, l'article : un titre et un texte riche (ou un texte), avec une date de parution."""
+    if isinstance(objet, dict):
+        cles = set(objet)
+        if 'title' in cles and cles & {'richContent', 'content', 'contentText'} and cles & {'firstPublishedDate', 'lastPublishedDate', 'publishedDate'}:
+            return objet
+        for v in objet.values():
+            r = chercher_article(v)
+            if r is not None:
+                return r
+    elif isinstance(objet, list):
+        for v in objet:
+            r = chercher_article(v)
+            if r is not None:
+                return r
+    return None
+
+
+def journal(brut=0):
+    le_plan = plan()
+    adresses = list(dict.fromkeys(u for sous, liste in le_plan.items()
+                                  if isinstance(liste, list) and 'blog-posts' in sous for u in liste))
+    print(len(adresses), 'articles dans le plan')
+    os.makedirs(os.path.join(SORTIE, 'brut'), exist_ok=True)
+    resultat = []
+    for i, url in enumerate(adresses):
+        try:
+            html = lire(url)
+        except Exception as erreur:
+            resultat.append({'url': url, 'erreur': str(erreur)})
+            continue
+        wix = donnees_wix(html)
+        if i < brut:
+            open(os.path.join(SORTIE, 'brut', f'article-{i:03d}.html'), 'w').write(html)
+            if wix:
+                json.dump(wix, open(os.path.join(SORTIE, 'brut', f'article-{i:03d}-wix.json'), 'w'), ensure_ascii=False)
+        resultat.append({'url': url, 'meta': meta(html), 'json_ld': json_ld(html),
+                         'wix': chercher_article(wix) if wix else None, 'taille': len(html)})
+    return resultat
 
 
 def evenements(brut=0):
@@ -230,6 +275,12 @@ if __name__ == '__main__':
         r = evenements(brut)
         json.dump(r, open(os.path.join(SORTIE, 'evenements.json'), 'w'), ensure_ascii=False, indent=1)
         print(len(r), 'pages lues ;', sum(1 for x in r if x.get('json_ld')), 'avec JSON-LD ;', sum(1 for x in r if x.get('wix')), 'avec les données de Wix')
+    elif quoi == 'journal':
+        brut = int(sys.argv[sys.argv.index('--brut') + 1]) if '--brut' in sys.argv else 0
+        r = journal(brut)
+        json.dump(r, open(os.path.join(SORTIE, 'journal.json'), 'w'), ensure_ascii=False, indent=1)
+        print(len(r), 'articles lus ;', sum(1 for x in r if x.get('wix')), 'avec les données de Wix ;',
+              sum(1 for x in r if x.get('erreur')), 'en erreur')
     elif quoi == 'medias':
         pages = sys.argv[sys.argv.index('--pages') + 1].split(',') if '--pages' in sys.argv else []
         r = medias([p for p in pages if p.strip()])

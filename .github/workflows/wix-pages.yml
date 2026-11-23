@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       quoi:
-        description: "plan, evenements ou medias"
+        description: "plan, evenements, journal ou medias"
         default: plan
       brut:
         description: "Garder le HTML des N premières pages (pour lire leur forme)"
