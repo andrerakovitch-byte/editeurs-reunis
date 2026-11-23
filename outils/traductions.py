@@ -452,6 +452,36 @@ T = {
     (None, 'Du même rayon, de la même époque'): ('Same shelf, same period', 'Тот же раздел, та же эпоха'),
     (None, 'Tout le rayon'): ('The whole shelf', 'Весь раздел'),
 
+    # Les traducteurs, les directeurs d'ouvrage et les éditeurs ont leur page (inc/traducteurs-editeurs.php) : la boutique.
+    ('fiche d’un livre', 'Sous la direction de'): ('Edited by', 'Под редакцией'),
+    (None, 'Traduction'): ('Translation', 'Перевод'),
+    (None, 'Sous la direction de'): ('Edited by', 'Под редакцией'),
+    (None, 'Les traducteurs, séparés par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page, dans leurs traductions.'): (
+        'The translators, separated by commas: authors (a new name becomes an author). The book appears on their page, among their translations.',
+        'Переводчики через запятую: авторы (новое имя становится автором). Книга появляется на их странице, среди их переводов.'),
+    (None, 'Les directeurs de l’ouvrage, séparés par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page.'): (
+        'The editors of the volume, separated by commas: authors (a new name becomes an author). The book appears on their page.',
+        'Редакторы издания через запятую: авторы (новое имя становится автором). Книга появляется на их странице.'),
+    (None, 'Éditeurs'): ('Publishers', 'Издательства'),
+    (None, 'Chercher un éditeur'): ('Search publishers', 'Искать издательство'),
+    (None, 'Tous les éditeurs'): ('All publishers', 'Все издательства'),
+    (None, 'Modifier l’éditeur'): ('Edit publisher', 'Изменить издательство'),
+    (None, 'Voir l’éditeur'): ('View publisher', 'Смотреть издательство'),
+    (None, 'Ajouter un éditeur'): ('Add publisher', 'Добавить издательство'),
+    (None, 'Séparer les éditeurs par des virgules'): ('Separate publishers with commas', 'Разделяйте издательства запятыми'),
+    (None, 'Aucun éditeur'): ('No publishers found', 'Издательств нет'),
+    (None, '%s sous sa direction'): ('%s edited by them', '%s под его редакцией'),
+    (None, 'un sous sa direction'): ('one edited by them', 'одна под его редакцией'),
+    (None, '%s traductions'): ('%s translations', 'переводов: %s'),
+    (None, 'une traduction'): ('one translation', 'один перевод'),
+    (None, 'dont %s'): ('including %s', 'в том числе %s'),
+    (None, 'et'): ('and', 'и'),
+    (None, '%s livres à son sujet'): ('%s books about them', 'книг о нём: %s'),
+    (None, 'Un livre à son sujet'): ('One book about them', 'Одна книга о нём'),
+    # Les titres liés et leur vignette (inc/liens-livres.php) : la boutique.
+    (None, 'Voir à la librairie'): ('See in the bookshop', 'Смотреть в магазине'),
+    (None, 'Livre introuvable.'): ('Book not found.', 'Книга не найдена.'),
+
     # La recherche chez Algolia (Réglages → Recherche, inc/algolia.php) : la boutique.
     (None, 'Algolia n’est pas réglé.'): ('Algolia is not set up.', 'Algolia не настроена.'),
     (None, 'La recherche'): ('Search', 'Поиск'),

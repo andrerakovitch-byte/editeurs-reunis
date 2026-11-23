@@ -25,52 +25,52 @@ msgid ""
 "livres."
 msgstr ""
 
-#: er-librairie.php:178
+#: er-librairie.php:180
 msgid "Langue du site"
 msgstr "Язык сайта"
 
-#: er-librairie.php:192 er-librairie.php:198 inc/import.php:26
+#: er-librairie.php:194 er-librairie.php:200 inc/import.php:26
 #: inc/sujets.php:384
 msgid "Auteurs"
 msgstr "Авторы"
 
-#: er-librairie.php:193
+#: er-librairie.php:195
 msgid "Auteur"
 msgstr "Автор"
 
-#: er-librairie.php:194
+#: er-librairie.php:196
 msgid "Chercher un auteur"
 msgstr "Найти автора"
 
-#: er-librairie.php:195
+#: er-librairie.php:197
 msgid "Tous les auteurs"
 msgstr "Все авторы"
 
-#: er-librairie.php:196
+#: er-librairie.php:198
 msgid "Modifier l’auteur"
 msgstr "Изменить автора"
 
-#: er-librairie.php:197
+#: er-librairie.php:199
 msgid "Ajouter un auteur"
 msgstr "Добавить автора"
 
-#: er-librairie.php:214 er-librairie.php:219 inc/import.php:27
+#: er-librairie.php:216 er-librairie.php:221 inc/import.php:27
 msgid "Langues"
 msgstr "Языки"
 
-#: er-librairie.php:215 inc/evenements.php:122 inc/evenements.php:727
+#: er-librairie.php:217 inc/evenements.php:122 inc/evenements.php:727
 msgid "Langue"
 msgstr "Язык"
 
-#: er-librairie.php:216
+#: er-librairie.php:218
 msgid "Toutes les langues"
 msgstr "Все языки"
 
-#: er-librairie.php:217
+#: er-librairie.php:219
 msgid "Modifier la langue"
 msgstr "Изменить язык"
 
-#: er-librairie.php:218
+#: er-librairie.php:220
 msgid "Ajouter une langue"
 msgstr "Добавить язык"
 
@@ -523,8 +523,8 @@ msgstr "с %1$s по %2$s"
 #. translators: 1: le premier jour, 2: le dernier
 #. translators: %s: le dernier jour
 #. translators: %s: le premier jour
-#: inc/evenements.php:187 inc/expositions.php:195 inc/expositions.php:937
-#: inc/expositions.php:940
+#: inc/evenements.php:187 inc/expositions.php:195 inc/expositions.php:938
+#: inc/expositions.php:941
 msgid "j F"
 msgstr "j F"
 
@@ -537,7 +537,7 @@ msgid "j F Y"
 msgstr "j F Y"
 
 #. translators: 1: des heures, séparées par des virgules, 2: la dernière heure
-#: inc/evenements.php:191 inc/expositions.php:565
+#: inc/evenements.php:191 inc/expositions.php:566
 msgid "l j F Y"
 msgstr "l, j F Y"
 
@@ -611,11 +611,11 @@ msgstr "отменено"
 msgid "vidéo"
 msgstr "видео"
 
-#: inc/evenements.php:695 inc/expositions.php:547 inc/expositions.php:950
+#: inc/evenements.php:695 inc/expositions.php:554 inc/expositions.php:951
 msgid "Quand"
 msgstr "Когда"
 
-#: inc/evenements.php:698 inc/expositions.php:571 inc/expositions.php:951
+#: inc/evenements.php:698 inc/expositions.php:572 inc/expositions.php:952
 msgid "Où"
 msgstr "Где"
 
@@ -623,7 +623,7 @@ msgstr "Где"
 msgid "Au centre, 11, rue de la Montagne-Sainte-Geneviève, Paris 5e"
 msgstr "В центре: 11, rue de la Montagne-Sainte-Geneviève, Париж, 5-й округ"
 
-#: inc/evenements.php:700 inc/expositions.php:839
+#: inc/evenements.php:700 inc/expositions.php:840
 msgid "Nous trouver"
 msgstr "Как нас найти"
 
@@ -791,7 +791,7 @@ msgstr "Статья"
 msgid "Vidéo ou podcast"
 msgstr "Видео или подкаст"
 
-#: inc/expositions.php:29 inc/expositions.php:882 inc/sujets.php:410
+#: inc/expositions.php:29 inc/expositions.php:883 inc/sujets.php:410
 msgid "Rencontre"
 msgstr "Встреча"
 
@@ -803,7 +803,7 @@ msgstr "Страница"
 msgid "Expositions"
 msgstr "Выставки"
 
-#: inc/expositions.php:42 inc/expositions.php:684 inc/recherche.php:668
+#: inc/expositions.php:42 inc/expositions.php:685 inc/recherche.php:677
 #: inc/sujets.php:416
 msgid "Exposition"
 msgstr "Выставка"
@@ -816,7 +816,7 @@ msgstr "Добавить выставку"
 msgid "Modifier l’exposition"
 msgstr "Изменить выставку"
 
-#: inc/expositions.php:46 inc/expositions.php:701 inc/expositions.php:953
+#: inc/expositions.php:46 inc/expositions.php:702 inc/expositions.php:954
 msgid "Voir l’exposition"
 msgstr "Смотреть выставку"
 
@@ -875,7 +875,7 @@ msgstr "Открылась %s"
 msgid "À partir du %s"
 msgstr "С %s"
 
-#: inc/expositions.php:221 inc/expositions.php:686 inc/expositions.php:715
+#: inc/expositions.php:221 inc/expositions.php:687 inc/expositions.php:716
 #: inc/sujets.php:578
 msgid "L’exposition"
 msgid_plural "Les expositions"
@@ -914,7 +914,7 @@ msgstr ""
 msgid "Vide : le centre, 11, rue de la Montagne-Sainte-Geneviève."
 msgstr "Пусто: центр, ул. Монтань-Сент-Женевьев, 11."
 
-#: inc/expositions.php:251 inc/expositions.php:574 inc/expositions.php:952
+#: inc/expositions.php:251 inc/expositions.php:575 inc/expositions.php:953
 msgctxt "l’accès à une exposition"
 msgid "Entrée"
 msgstr "Вход"
@@ -924,7 +924,7 @@ msgid "Par exemple « Libre, aux heures de la librairie »."
 msgstr "Например, «Свободный, в часы работы магазина»."
 
 #. translators: %d: un nombre d'œuvres
-#: inc/expositions.php:253 inc/expositions.php:579
+#: inc/expositions.php:253 inc/expositions.php:580
 msgid "Les œuvres"
 msgstr "Работы"
 
@@ -952,7 +952,7 @@ msgstr "Выставок пока нет."
 msgid "Dans le journal"
 msgstr "В журнале"
 
-#: inc/expositions.php:494 inc/expositions.php:837 inc/journal-une.php:472
+#: inc/expositions.php:494 inc/expositions.php:838 inc/journal-une.php:472
 #: inc/sujets.php:575
 msgid "Au centre"
 msgstr "В центре"
@@ -974,87 +974,87 @@ msgid "À lire sur le site"
 msgstr "Читать на сайте"
 
 #. translators: %s: le dernier jour
-#: inc/expositions.php:534 inc/expositions.php:749 inc/expositions.php:937
+#: inc/expositions.php:534 inc/expositions.php:750 inc/expositions.php:938
 msgid "En ce moment"
 msgstr "Сейчас"
 
 #. translators: %s: le premier jour
-#: inc/expositions.php:536 inc/expositions.php:940
+#: inc/expositions.php:536 inc/expositions.php:941
 msgid "Prochainement"
 msgstr "Скоро"
 
-#: inc/expositions.php:540 inc/expositions.php:784
+#: inc/expositions.php:540 inc/expositions.php:785
 msgid "Nos expositions"
 msgstr "Выставки"
 
 #. translators: 1: des heures, séparées par des virgules, 2: la dernière heure
-#: inc/expositions.php:565
+#: inc/expositions.php:566
 msgid "%1$s et %2$s"
 msgstr "%1$s и %2$s"
 
-#: inc/expositions.php:571 inc/expositions.php:951
+#: inc/expositions.php:572 inc/expositions.php:952
 msgid "11, rue de la Montagne-Sainte-Geneviève, Paris 5e"
 msgstr "Париж, 5-й округ, ул. Монтань-Сент-Женевьев, 11"
 
 #. translators: %d: un nombre d'œuvres
-#: inc/expositions.php:579
+#: inc/expositions.php:580
 msgid "%d œuvre"
 msgid_plural "%d œuvres"
 msgstr[0] "%d работа"
 msgstr[1] "%d работы"
 msgstr[2] "%d работ"
 
-#: inc/expositions.php:614
+#: inc/expositions.php:615
 msgid "Autour de l’exposition"
 msgstr "Вокруг выставки"
 
 #. translators: %s: un nombre d'œuvres, en lettres (« huit »)
-#: inc/expositions.php:634
+#: inc/expositions.php:635
 msgid "L’œuvre"
 msgstr "Работа"
 
 #. translators: %s: un nombre d'œuvres, en lettres (« huit »)
-#: inc/expositions.php:634
+#: inc/expositions.php:635
 msgid "Les %s œuvres"
 msgstr "Работы выставки"
 
-#: inc/expositions.php:652
+#: inc/expositions.php:653
 msgid "Les autres expositions"
 msgstr "Другие выставки"
 
-#: inc/expositions.php:701
+#: inc/expositions.php:702
 msgid "Revoir l’exposition"
 msgstr "Вспомнить выставку"
 
-#: inc/expositions.php:702
+#: inc/expositions.php:703
 msgid "Exposition au centre"
 msgstr "Выставка в центре"
 
-#: inc/expositions.php:714 inc/recommandations.php:463
+#: inc/expositions.php:715 inc/recommandations.php:463
 msgid "Autour de ce livre"
 msgstr "Вокруг этой книги"
 
-#: inc/expositions.php:755
+#: inc/expositions.php:756
 msgid "Pas d’exposition ; la prochaine est annoncée plus bas"
 msgstr "Выставки сейчас нет; следующая объявлена ниже"
 
-#: inc/expositions.php:755
+#: inc/expositions.php:756
 msgid "Pas d’exposition"
 msgstr "Выставки сейчас нет"
 
-#: inc/expositions.php:758 inc/journal-une.php:608
+#: inc/expositions.php:759 inc/journal-une.php:608
 msgid "Les années"
 msgstr "Годы"
 
-#: inc/expositions.php:764
+#: inc/expositions.php:765
 msgid "Les techniques"
 msgstr "Техники"
 
-#: inc/expositions.php:770
+#: inc/expositions.php:771
 msgid "Toutes"
 msgstr "Все"
 
-#: inc/expositions.php:777
+#: inc/expositions.php:778
 msgid ""
 "Peintures, gravures, images et archives, accrochées au 11, rue de la "
 "Montagne-Sainte-Geneviève."
@@ -1063,198 +1063,203 @@ msgstr ""
 "Сент-Женевьев."
 
 #. translators: 1: le nombre d'expositions, en lettres, 2: une année
-#: inc/expositions.php:780
+#: inc/expositions.php:781
 msgid "%1$s expositions depuis %2$d."
 msgstr "Выставок с %2$d года: %1$s."
 
-#: inc/expositions.php:785 inc/journal-une.php:619
+#: inc/expositions.php:786 inc/journal-une.php:619
 msgid "Repères"
 msgstr "Ориентиры"
 
-#: inc/expositions.php:807
+#: inc/expositions.php:808
 msgid "Les expositions passées"
 msgstr "Прошедшие выставки"
 
-#: inc/expositions.php:807
+#: inc/expositions.php:808
 msgid "De la plus récente à la plus ancienne"
 msgstr "От новых к старым"
 
-#: inc/expositions.php:813 inc/journal-une.php:687 inc/journal-une.php:862
+#: inc/expositions.php:814 inc/journal-une.php:687 inc/journal-une.php:862
 #: inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr "Пока ничего нет."
 
-#: inc/expositions.php:825
+#: inc/expositions.php:826
 msgid "Les rencontres, les lectures et les vernissages du centre."
 msgstr "Встречи, чтения и вернисажи центра."
 
-#: inc/expositions.php:837
+#: inc/expositions.php:838
 msgid "Nos événements"
 msgstr "Мероприятия"
 
-#: inc/expositions.php:838
+#: inc/expositions.php:839
 msgid "À lire"
 msgstr "Читать"
 
-#: inc/expositions.php:838 inc/journal-une.php:356 inc/journal-une.php:886
+#: inc/expositions.php:839 inc/journal-une.php:356 inc/journal-une.php:886
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: inc/expositions.php:838
+#: inc/expositions.php:839
 msgid "Chroniques, critiques, essais et archives."
 msgstr "Колонки, рецензии, эссе и архивы."
 
-#: inc/expositions.php:839
+#: inc/expositions.php:840
 msgid "Venir"
 msgstr "Как добраться"
 
-#: inc/expositions.php:839
+#: inc/expositions.php:840
 msgid "11, rue de la Montagne-Sainte-Geneviève, Paris 5e."
 msgstr "Париж, 5-й округ, ул. Монтань-Сент-Женевьев, 11."
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "une"
 msgstr "одна"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "deux"
 msgstr "две"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "trois"
 msgstr "три"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "quatre"
 msgstr "четыре"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "cinq"
 msgstr "пять"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "six"
 msgstr "шесть"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "sept"
 msgstr "семь"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "huit"
 msgstr "восемь"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "neuf"
 msgstr "девять"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "dix"
 msgstr "десять"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "onze"
 msgstr "одиннадцать"
 
-#: inc/expositions.php:855
+#: inc/expositions.php:856
 msgid "douze"
 msgstr "двенадцать"
 
-#: inc/expositions.php:871
+#: inc/expositions.php:872
 msgid "Le vernissage"
 msgstr "Вернисаж"
 
-#: inc/expositions.php:871
+#: inc/expositions.php:872
 msgid "Vernissage"
 msgstr "Вернисаж"
 
-#: inc/expositions.php:872
+#: inc/expositions.php:873
 msgid "La soirée de clôture"
 msgstr "Вечер закрытия"
 
-#: inc/expositions.php:872
+#: inc/expositions.php:873
 msgid "Clôture"
 msgstr "Закрытие"
 
-#: inc/expositions.php:873
+#: inc/expositions.php:874
 msgid "La rencontre d’inauguration"
 msgstr "Встреча на открытии"
 
-#: inc/expositions.php:873 inc/expositions.php:874
+#: inc/expositions.php:874 inc/expositions.php:875
 msgid "Inauguration"
 msgstr "Открытие"
 
-#: inc/expositions.php:874
+#: inc/expositions.php:875
 msgid "L’inauguration"
 msgstr "Открытие"
 
-#: inc/expositions.php:875
+#: inc/expositions.php:876
 msgid "Le finissage"
 msgstr "Финисаж"
 
-#: inc/expositions.php:875
+#: inc/expositions.php:876
 msgid "Finissage"
 msgstr "Финисаж"
 
-#: inc/expositions.php:902
+#: inc/expositions.php:903
 msgid "Dans le journal : "
 msgstr "В журнале: "
 
-#: inc/expositions.php:903
+#: inc/expositions.php:904
 msgid "À la librairie : "
 msgstr "В магазине: "
 
 #. translators: %s: le dernier jour
-#: inc/expositions.php:937
+#: inc/expositions.php:938
 msgid "En ce moment · jusqu’au %s"
 msgstr "Сейчас · до %s"
 
 #. translators: %s: le premier jour
-#: inc/expositions.php:940
+#: inc/expositions.php:941
 msgid "Prochainement · à partir du %s"
 msgstr "Скоро · с %s"
 
-#: inc/fiche.php:20
+#: inc/fiche.php:37 inc/traducteurs-editeurs.php:30
 msgctxt "fiche d’un livre"
 msgid "Traduction"
 msgstr "Перевод"
 
-#: inc/fiche.php:21
+#: inc/fiche.php:38 inc/traducteurs-editeurs.php:36
+msgctxt "fiche d’un livre"
+msgid "Sous la direction de"
+msgstr "Под редакцией"
+
+#: inc/fiche.php:39
 msgctxt "fiche d’un livre"
 msgid "Éditeur"
 msgstr "Издательство"
 
-#: inc/fiche.php:22
+#: inc/fiche.php:40
 msgctxt "fiche d’un livre"
 msgid "Collection"
 msgstr "Серия"
 
-#: inc/fiche.php:23
+#: inc/fiche.php:41
 msgctxt "fiche d’un livre"
 msgid "Parution"
 msgstr "Год издания"
 
-#: inc/fiche.php:24
+#: inc/fiche.php:42
 msgctxt "fiche d’un livre"
 msgid "Pages"
 msgstr "Страниц"
 
-#: inc/fiche.php:25
+#: inc/fiche.php:43
 msgctxt "fiche d’un livre"
 msgid "Format"
 msgstr "Формат"
 
-#: inc/fiche.php:26
+#: inc/fiche.php:44
 msgctxt "fiche d’un livre"
 msgid "ISBN"
 msgstr "ISBN"
 
-#: inc/fiche.php:65
+#: inc/fiche.php:83
 msgctxt "fiche d’un livre"
 msgid "Autour de"
 msgstr "О ком"
 
-#: inc/fiche.php:66
+#: inc/fiche.php:84
 msgctxt "fiche d’un livre"
 msgid "Sujets"
 msgstr "Темы"
@@ -1560,6 +1565,14 @@ msgstr "Более ранние"
 msgid "Les pages du journal"
 msgstr "Страницы журнала"
 
+#: inc/liens-livres.php:409
+msgid "Voir à la librairie"
+msgstr "Смотреть в магазине"
+
+#: inc/liens-livres.php:426
+msgid "Livre introuvable."
+msgstr "Книга не найдена."
+
 #: inc/medias.php:22 inc/medias.php:30
 msgid "Vidéos et podcasts"
 msgstr "Видео и подкасты"
@@ -1638,18 +1651,18 @@ msgid "exposition"
 msgstr "выставка"
 
 #. translators: %d: le nombre de rencontres et d'articles
-#: inc/recherche.php:661
+#: inc/recherche.php:670
 msgid "Sujet · %d rencontre ou article"
 msgid_plural "Sujet · %d rencontres et articles"
 msgstr[0] "Тема · %d материал"
 msgstr[1] "Тема · %d материала"
 msgstr[2] "Тема · %d материалов"
 
-#: inc/recherche.php:1056 inc/recherche.php:1064
+#: inc/recherche.php:1065 inc/recherche.php:1073
 msgid "Autres graphies"
 msgstr "Другие написания"
 
-#: inc/recherche.php:1058 inc/recherche.php:1066
+#: inc/recherche.php:1067 inc/recherche.php:1075
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -1657,27 +1670,27 @@ msgstr ""
 "По одному в строке: имя по-русски, по-английски, старая транскрипция. Поиск "
 "найдёт любое."
 
-#: inc/recherche.php:1086
+#: inc/recherche.php:1095
 msgid "Traducteur, préfacier"
 msgstr "Переводчик, автор предисловия"
 
-#: inc/recherche.php:1087
+#: inc/recherche.php:1096 inc/traducteurs-editeurs.php:68
 msgid "Éditeur"
 msgstr "Издательство"
 
-#: inc/recherche.php:1088
+#: inc/recherche.php:1097
 msgid "Collection"
 msgstr "Серия"
 
-#: inc/recherche.php:1089
+#: inc/recherche.php:1098
 msgid "Année d’édition"
 msgstr "Год издания"
 
-#: inc/recherche.php:1090
+#: inc/recherche.php:1099
 msgid "Nombre de pages"
 msgstr "Число страниц"
 
-#: inc/recherche.php:1091
+#: inc/recherche.php:1100
 msgid "Format (poche, broché, relié…)"
 msgstr "Формат (карманный, в обложке, в переплёте…)"
 
@@ -1746,7 +1759,7 @@ msgstr "Добавить тему"
 msgid "Séparer les sujets par des virgules"
 msgstr "Разделяйте темы запятыми"
 
-#: inc/sujets.php:40
+#: inc/sujets.php:40 inc/traducteurs-editeurs.php:75
 msgid "Choisir parmi les plus utilisés"
 msgstr "Выбрать из самых частых"
 
@@ -1800,3 +1813,59 @@ msgstr "Слушать и смотреть"
 #: inc/sujets.php:594
 msgid "Rien encore sur ce sujet."
 msgstr "По этой теме пока ничего нет."
+
+#: inc/traducteurs-editeurs.php:31
+msgid "Traduction"
+msgstr "Перевод"
+
+#: inc/traducteurs-editeurs.php:32
+msgid ""
+"Les traducteurs, séparés par des virgules : des auteurs (un nom nouveau "
+"devient un auteur). Le livre paraît sur leur page, dans leurs traductions."
+msgstr ""
+"Переводчики через запятую: авторы (новое имя становится автором). Книга "
+"появляется на их странице, среди их переводов."
+
+#: inc/traducteurs-editeurs.php:37
+msgid "Sous la direction de"
+msgstr "Под редакцией"
+
+#: inc/traducteurs-editeurs.php:38
+msgid ""
+"Les directeurs de l’ouvrage, séparés par des virgules : des auteurs (un nom "
+"nouveau devient un auteur). Le livre paraît sur leur page."
+msgstr ""
+"Редакторы издания через запятую: авторы (новое имя становится автором). "
+"Книга появляется на их странице."
+
+#: inc/traducteurs-editeurs.php:67 inc/traducteurs-editeurs.php:77
+msgid "Éditeurs"
+msgstr "Издательства"
+
+#: inc/traducteurs-editeurs.php:69
+msgid "Chercher un éditeur"
+msgstr "Искать издательство"
+
+#: inc/traducteurs-editeurs.php:70
+msgid "Tous les éditeurs"
+msgstr "Все издательства"
+
+#: inc/traducteurs-editeurs.php:71
+msgid "Modifier l’éditeur"
+msgstr "Изменить издательство"
+
+#: inc/traducteurs-editeurs.php:72
+msgid "Voir l’éditeur"
+msgstr "Смотреть издательство"
+
+#: inc/traducteurs-editeurs.php:73
+msgid "Ajouter un éditeur"
+msgstr "Добавить издательство"
+
+#: inc/traducteurs-editeurs.php:74
+msgid "Séparer les éditeurs par des virgules"
+msgstr "Разделяйте издательства запятыми"
+
+#: inc/traducteurs-editeurs.php:76
+msgid "Aucun éditeur"
+msgstr "Издательств нет"

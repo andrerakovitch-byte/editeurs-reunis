@@ -182,6 +182,43 @@ connu (le nom ou ses « Autres graphies »), sinon le début du nom latin transc
 (`plugin/…/inc/recherche.php`) : toute nouvelle vignette d'initiale s'en sert (les initiales des signatures du journal,
 côté centre, aussi).
 
+**Les titres liés** (décision du 24 nov. 2026, pour tout le site) : dans chaque texte, le titre d'un livre de la
+librairie devient un lien vers sa fiche, et sa vignette paraît au survol (la couverture, la mention, le titre,
+l'auteur, le prix ; au clavier aussi ; au toucher, le lien suffit). `plugin/…/inc/liens-livres.php`,
+`assets/js/vignettes.js`, et leur section de `style.css`.
+
+- Le sommier : les titres des livres en vente (ni les billets, ni les livres cachés), plus leur champ « Titres liés »
+  (`er_titres_lies`, un par ligne : « Docteur Jivago », « Доктор Живаго ») ; `er_sans_lien` retire un livre de la
+  règle. Un titre qui commence par un article se reconnaît aussi sans lui (« l'auteur du Docteur Jivago »).
+- Un titre distinctif (trois mots pleins, ou deux mots à majuscule) se reconnaît partout ; les autres (« Tchevengour »,
+  « Les Douze », « Tout passe ») seulement cités, seuls en italique ou entre « ». Le premier mot garde sa majuscule.
+- Une fois par page, à la première mention ; jamais dans un lien, un titre h1 à h6, un bouton, du code, une légende,
+  ni sur la fiche du livre lui-même. Deux livres au même titre : celui qui est en stock, sinon le plus récent.
+- Les blocs de texte y passent d'eux-mêmes (paragraphe, élément de liste, vers, citation en exergue, tableau, extrait,
+  contenu classique), dans les pages, les articles, les modèles et les compositions. **Un texte rendu hors des blocs
+  y passe par le filtre** `apply_filters( 'er_lier_titres', $html )` : côté centre, la biographie d'une personne, une
+  présentation, un chapô. Un endroit à laisser tel quel porte la classe `er-sans-liens`.
+- `wp er liens` (le sommier, les titres qui se disputent) et `wp er liens <slug>` (les titres liés d'une page).
+
+**Les traducteurs, les directeurs d'ouvrage et les éditeurs ont leur page** (décision du 24 nov. 2026 ;
+`plugin/…/inc/traducteurs-editeurs.php`) :
+
+- Un traducteur, un directeur d'ouvrage est une personne : un auteur, avec la page d'une personne. Un livre le porte
+  dans « Traduction » ou « Sous la direction de », deux classements cachés tenus avec les noms des auteurs, comme
+  « Autour de » (`er_traduction`, `er_direction` ; deux boîtes dans la fiche du produit). La fiche du livre en fait des
+  liens.
+- Les livres d'une personne sont ceux qu'elle a écrits, traduits ou dirigés : `er_personne_livres( $terme )` les donne
+  rôle par rôle (`auteur`, `traduction`, `direction`, `autour`, et `tous`). La recherche les compte : « 3 livres en
+  rayon : 2 sous sa direction et une traduction » (Georges Nivat n'est l'auteur d'aucun livre du catalogue). **Côté
+  centre, la page d'une personne** donne ses traductions et ses ouvrages dirigés avec la même fonction (le compte d'un
+  auteur, lui, reste son nombre de livres écrits).
+- Un éditeur est un classement public, `er_editeur`, avec sa page, `/editeur/<slug>/` (sa présentation, ses livres ;
+  le gabarit `taxonomy-er_editeur`). Les métas `er_traducteur` et `er_editeur` reprises de Wix ne servent plus que de
+  secours.
+- `wp er roles` relève dans le catalogue les traducteurs (la méta, « traduit du russe par … » dans le titre ou la
+  présentation), les directeurs (« sous la direction de … » dans le titre) et les éditeurs ; `wp er roles appliquer`
+  les pose (un nom inconnu devient un auteur).
+
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
 - son **rayon** est une catégorie de produit (Littérature russe, Poésie, Histoire, Essais et biographies, Cinéma) ;
@@ -485,7 +522,7 @@ espace de travail : elles ne se voient pas et se retrouvent sur `main`.
   d'auteurs, les sujets et les étiquettes (`inc/evenements.php`, `medias.php`, `sujets.php`, `auteurs.php`,
   `journal.php`, leurs gabarits, `outils/wix/`, la branche `wix-pages`).
 - **La boutique** : le catalogue et son import (`outils/catalogue/`, `inc/import.php`, `fiche.php`,
-  `couvertures.php`, `catalogue.php`, la branche `boutique`), le paiement (Stripe, Apple Pay, Google Pay), la livraison, Polylang, puis Algolia
+  `couvertures.php`, `catalogue.php`, `liens-livres.php`, `traducteurs-editeurs.php`, la branche `boutique`), le paiement (Stripe, Apple Pay, Google Pay), la livraison, Polylang, puis Algolia
   (`inc/recherche.php` passe alors de son côté : le centre lui signale ce qu'il ajoute à l'index).
 
 Les fichiers communs, que presque chaque changement touche :

@@ -140,65 +140,65 @@ msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: functions.php:352 patterns/en-tete.php:62
+#: functions.php:354 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "YMCA-Press publishers"
 
-#: functions.php:353 patterns/en-tete.php:63
+#: functions.php:355 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Cultural centre"
 
-#: functions.php:459 inc/recherche.php:358
+#: functions.php:461 inc/recherche.php:370
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: functions.php:488
+#: functions.php:490
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:489
+#: functions.php:491
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:490
+#: functions.php:492
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:491
+#: functions.php:493
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:492
+#: functions.php:494
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:493
+#: functions.php:495
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:494
+#: functions.php:496
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:495
+#: functions.php:497
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:496
+#: functions.php:498
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:497
+#: functions.php:499
 msgid "Arts"
 msgstr "Arts"
 
-#: functions.php:519
+#: functions.php:521
 msgid "Compte"
 msgstr "Account"
 
-#: functions.php:530 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:532 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Language"
 
@@ -268,7 +268,7 @@ msgstr "from"
 msgid "à"
 msgstr "to"
 
-#: inc/recherche.php:152 inc/recherche.php:364 patterns/en-tete.php:70
+#: inc/recherche.php:152 inc/recherche.php:376 patterns/en-tete.php:70
 msgid "Rechercher"
 msgstr "Search"
 
@@ -276,11 +276,11 @@ msgstr "Search"
 msgid "Chercher un titre, un auteur, un sujet"
 msgstr "Search for a title, an author, a subject"
 
-#: inc/recherche.php:160 inc/recherche.php:369
+#: inc/recherche.php:160 inc/recherche.php:381
 msgid "Un titre, un auteur, un sujet…"
 msgstr "A title, an author, a subject…"
 
-#: inc/recherche.php:162 inc/recherche.php:365
+#: inc/recherche.php:162 inc/recherche.php:377
 msgid "Effacer"
 msgstr "Clear"
 
@@ -288,7 +288,7 @@ msgstr "Clear"
 msgid "Recherche détaillée"
 msgstr "Advanced search"
 
-#: inc/recherche.php:165 inc/recherche.php:363
+#: inc/recherche.php:165 inc/recherche.php:375
 msgid "Fermer"
 msgstr "Close"
 
@@ -532,27 +532,63 @@ msgstr "%s books on our shelves"
 msgid "Un livre en rayon"
 msgstr "One book on our shelves"
 
-#: inc/recherche.php:357
+#. translators: %s: le nombre de livres qu'une personne a dirigés
+#: inc/recherche.php:358
+msgid "%s sous sa direction"
+msgstr "%s edited by them"
+
+#: inc/recherche.php:359
+msgid "un sous sa direction"
+msgstr "one edited by them"
+
+#. translators: %s: le nombre de livres qu'une personne a traduits
+#: inc/recherche.php:361
+msgid "%s traductions"
+msgstr "%s translations"
+
+#: inc/recherche.php:362
+msgid "une traduction"
+msgstr "one translation"
+
+#. translators: %s: « 2 sous sa direction et une traduction »
+#: inc/recherche.php:364
+msgid "dont %s"
+msgstr "including %s"
+
+#: inc/recherche.php:365
+msgid "et"
+msgstr "and"
+
+#. translators: %s: le nombre de livres qui parlent d'une personne
+#: inc/recherche.php:367
+msgid "%s livres à son sujet"
+msgstr "%s books about them"
+
+#: inc/recherche.php:368
+msgid "Un livre à son sujet"
+msgstr "One book about them"
+
+#: inc/recherche.php:369
 msgid "en stock"
 msgstr "in stock"
 
-#: inc/recherche.php:359
+#: inc/recherche.php:371
 msgid ""
 "Les résultats changent à chaque lettre ; Entrée ouvre la page des livres "
 "trouvés."
 msgstr ""
 "Results update with every letter; Enter opens the page of books found."
 
-#: inc/recherche.php:360
+#: inc/recherche.php:372
 msgid "Vos critères :"
 msgstr "Your criteria:"
 
 #. translators: %s: le critère qu'on retire.
-#: inc/recherche.php:362
+#: inc/recherche.php:374
 msgid "Retirer : %s"
 msgstr "Remove: %s"
 
-#: inc/recherche.php:366
+#: inc/recherche.php:378
 msgid ""
 "Aucun livre ne répond à ces filtres. Retirez-en un, ou essayez la recherche "
 "détaillée."
@@ -560,20 +596,20 @@ msgstr ""
 "No book matches these filters. Remove one, or try the detailed search."
 
 #. translators: %s: ce qu'on a tapé.
-#: inc/recherche.php:368
+#: inc/recherche.php:380
 msgid ""
 "Rien pour « %s » avec ces filtres. Retirez-en un, ou essayez un autre mot."
 msgstr "Nothing for “%s” with these filters. Remove one, or try another word."
 
-#: inc/recherche.php:370
+#: inc/recherche.php:382
 msgid "Un titre, un auteur, un rayon…"
 msgstr "A title, an author, a section…"
 
-#: inc/recherche.php:371
+#: inc/recherche.php:383
 msgid "Dans le catalogue d’YMCA-Press…"
 msgstr "In the YMCA-Press catalogue…"
 
-#: inc/recherche.php:372
+#: inc/recherche.php:384
 msgid "Dans les événements et le journal du centre…"
 msgstr "In the centre’s events and journal…"
 

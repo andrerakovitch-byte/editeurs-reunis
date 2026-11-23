@@ -10,20 +10,38 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Les lignes de la fiche, dans l'ordre : libellé → valeur.
+ * Les lignes de la fiche, dans l'ordre : libellé → valeur, en HTML (déjà échappé). La traduction, la direction et
+ * l'éditeur sont des liens vers leur page quand le livre les porte (traducteurs-editeurs.php), sinon le texte repris
+ * de Wix.
  *
  * @param WC_Product $produit Le livre.
  */
 function er_fiche_champs( $produit ) {
 	$pages = (int) $produit->get_meta( 'er_pages' );
+	$id    = $produit->get_id();
+	$liens = function ( $termes ) {
+		$html = array();
+		foreach ( $termes as $t ) {
+			$lien   = get_term_link( $t );
+			$html[] = '<a href="' . esc_url( is_wp_error( $lien ) ? '' : $lien ) . '">' . esc_html( $t->name ) . '</a>';
+		}
+		return implode( ', ', $html );
+	};
+	$traduction = function_exists( 'er_personnes_du_livre' ) ? er_personnes_du_livre( $id, 'er_traduction' ) : array();
+	$direction  = function_exists( 'er_personnes_du_livre' ) ? er_personnes_du_livre( $id, 'er_direction' ) : array();
+	$editeur    = function_exists( 'er_editeur_du_livre' ) ? er_editeur_du_livre( $id ) : array( 'termes' => array(), 'texte' => (string) $produit->get_meta( 'er_editeur' ) );
+	$texte      = function ( $valeur ) {
+		return esc_html( (string) $valeur );
+	};
 	return array(
-		_x( 'Traduction', 'fiche d’un livre', 'er-librairie' ) => $produit->get_meta( 'er_traducteur' ),
-		_x( 'Éditeur', 'fiche d’un livre', 'er-librairie' )    => $produit->get_meta( 'er_editeur' ),
-		_x( 'Collection', 'fiche d’un livre', 'er-librairie' ) => $produit->get_meta( 'er_collection' ),
-		_x( 'Parution', 'fiche d’un livre', 'er-librairie' )   => $produit->get_meta( 'er_annee' ),
-		_x( 'Pages', 'fiche d’un livre', 'er-librairie' )      => $pages ? number_format_i18n( $pages ) : '',
-		_x( 'Format', 'fiche d’un livre', 'er-librairie' )     => $produit->get_meta( 'er_format' ),
-		_x( 'ISBN', 'fiche d’un livre', 'er-librairie' )       => er_isbn( $produit ),
+		_x( 'Traduction', 'fiche d’un livre', 'er-librairie' )           => $traduction ? $liens( $traduction ) : $texte( $produit->get_meta( 'er_traducteur' ) ),
+		_x( 'Sous la direction de', 'fiche d’un livre', 'er-librairie' ) => $liens( $direction ),
+		_x( 'Éditeur', 'fiche d’un livre', 'er-librairie' )              => $editeur['termes'] ? $liens( $editeur['termes'] ) : $texte( $editeur['texte'] ),
+		_x( 'Collection', 'fiche d’un livre', 'er-librairie' )           => $texte( $produit->get_meta( 'er_collection' ) ),
+		_x( 'Parution', 'fiche d’un livre', 'er-librairie' )             => $texte( $produit->get_meta( 'er_annee' ) ),
+		_x( 'Pages', 'fiche d’un livre', 'er-librairie' )                => $pages ? $texte( number_format_i18n( $pages ) ) : '',
+		_x( 'Format', 'fiche d’un livre', 'er-librairie' )               => $texte( $produit->get_meta( 'er_format' ) ),
+		_x( 'ISBN', 'fiche d’un livre', 'er-librairie' )                 => $texte( er_isbn( $produit ) ),
 	);
 }
 
@@ -58,7 +76,7 @@ add_action(
 						if ( '' === trim( (string) $valeur ) ) {
 							continue;
 						}
-						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . esc_html( $valeur ) . '</p>';
+						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . wp_kses_post( $valeur ) . '</p>';
 					}
 					// Les personnes dont parle le livre, et ses sujets : des liens vers leur page.
 					$liees = array(

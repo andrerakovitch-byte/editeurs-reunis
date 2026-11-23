@@ -638,12 +638,21 @@ function er_api_chercher( $requete ) {
 			if ( ! $terme || is_wp_error( $terme ) ) {
 				continue;
 			}
-			$graphies             = 'auteurs' === $groupe ? er_autres_graphies( $terme->term_id ) : array();
-			$lien                 = get_term_link( $terme );
+			$graphies = 'auteurs' === $groupe ? er_autres_graphies( $terme->term_id ) : array();
+			$lien     = get_term_link( $terme );
+			// Les livres d'une personne : ceux qu'elle a écrits, traduits ou dirigés (Georges Nivat n'en a écrit aucun
+			// ici, mais en a traduit et dirigé) ; ceux qui parlent d'elle à part.
+			$roles                = 'auteurs' === $groupe && function_exists( 'er_personne_livres' ) ? er_personne_livres( $terme ) : null;
 			$groupes[ $groupe ][] = array(
 				'titre'    => $terme->name,
 				'url'      => is_wp_error( $lien ) ? '' : $lien,
-				'livres'   => (int) $terme->count,
+				'livres'   => $roles ? count( $roles['tous'] ) : (int) $terme->count,
+				'roles'    => $roles ? array(
+					'auteur'     => count( $roles['auteur'] ),
+					'traduction' => count( $roles['traduction'] ),
+					'direction'  => count( $roles['direction'] ),
+					'autour'     => count( $roles['autour'] ),
+				) : null,
 				'graphies' => $graphies,
 				// L'initiale du nom de famille, toujours en cyrillique : Д pour Dostoïevski, Б pour Brodsky.
 				'lettre'   => er_initiale_cyrillique( $terme->name, $graphies ),

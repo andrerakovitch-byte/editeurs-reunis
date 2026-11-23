@@ -219,6 +219,20 @@
 	}
 	function auteur( a, premier ) {
 		var nombre = a.livres === 1 ? M.un_livre : format( M.n_livres, a.livres );
+		// Ses livres, ce sont aussi ceux qu'il a traduits ou dirigés : « 3 livres en rayon : 2 sous sa direction et une traduction ».
+		var r = a.roles || {}, dont = [];
+		if ( r.direction ) {
+			dont.push( r.direction === 1 ? M.une_direction : format( M.n_direction, r.direction ) );
+		}
+		if ( r.traduction ) {
+			dont.push( r.traduction === 1 ? M.une_traduction : format( M.n_traductions, r.traduction ) );
+		}
+		if ( dont.length ) {
+			nombre += r.auteur ? ', ' + format( M.dont, dont.join( ' ' + M.et + ' ' ) ) : ' : ' + dont.join( ' ' + M.et + ' ' );
+		}
+		if ( ! a.livres && r.autour ) {
+			nombre = r.autour === 1 ? M.un_sujet : format( M.n_sujet, r.autour );
+		}
 		if ( ! premier ) {
 			return ligne( a, nombre );
 		}

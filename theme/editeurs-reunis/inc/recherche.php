@@ -354,6 +354,18 @@ add_action(
 						/* translators: %s: un nombre de livres. */
 						'n_livres'      => __( '%s livres en rayon', 'editeurs-reunis' ),
 						'un_livre'      => __( 'Un livre en rayon', 'editeurs-reunis' ),
+						/* translators: %s: le nombre de livres qu'une personne a dirigés */
+						'n_direction'    => __( '%s sous sa direction', 'editeurs-reunis' ),
+						'une_direction'  => __( 'un sous sa direction', 'editeurs-reunis' ),
+						/* translators: %s: le nombre de livres qu'une personne a traduits */
+						'n_traductions'  => __( '%s traductions', 'editeurs-reunis' ),
+						'une_traduction' => __( 'une traduction', 'editeurs-reunis' ),
+						/* translators: %s: « 2 sous sa direction et une traduction » */
+						'dont'           => __( 'dont %s', 'editeurs-reunis' ),
+						'et'             => __( 'et', 'editeurs-reunis' ),
+						/* translators: %s: le nombre de livres qui parlent d'une personne */
+						'n_sujet'        => __( '%s livres à son sujet', 'editeurs-reunis' ),
+						'un_sujet'       => __( 'Un livre à son sujet', 'editeurs-reunis' ),
 						'en_stock'      => __( 'en stock', 'editeurs-reunis' ),
 						'rupture'       => __( 'épuisé pour l’instant', 'editeurs-reunis' ),
 						'entree'        => __( 'Les résultats changent à chaque lettre ; Entrée ouvre la page des livres trouvés.', 'editeurs-reunis' ),
