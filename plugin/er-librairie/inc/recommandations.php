@@ -170,7 +170,9 @@ function er_recommandations( $id, $n = 8 ) {
 	foreach ( $rayons as $r ) {
 		$t = get_term( $r, 'product_cat' );
 		if ( $t && ! is_wp_error( $t ) ) {
-			if ( in_array( $t->slug, er_reco_epoques(), true ) ) {
+			// Une époque : l'un des rayons « Par époque » de la littérature, ou tout rayon rangé sous « Par époque » ou
+			// « Par période » dans le tiroir du menu (la méta er_groupe) : un rayon ajouté là suit de lui-même.
+			if ( in_array( $t->slug, er_reco_epoques(), true ) || preg_match( '/époque|période/iu', (string) get_term_meta( $r, 'er_groupe', true ) ) ) {
 				$epoques[] = $r;
 			} elseif ( 'sans-rayon' !== $t->slug ) {
 				$genres[] = $r;
