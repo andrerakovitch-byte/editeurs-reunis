@@ -169,12 +169,13 @@ foreach ( array( 'save_post_product', 'deleted_post', 'trashed_post', 'woocommer
 /**
  * Les livres déjà liés dans la page, et ceux qu'on n'y lie pas (le livre de la fiche).
  *
- * @param int|null $ajout Un livre à marquer comme lié.
+ * @param int|null $ajout    Un livre à marquer comme lié.
+ * @param bool     $remettre Repartir de zéro (une autre page, en ligne de commande).
  * @return array<int,bool>
  */
-function er_liens_deja( $ajout = null ) {
+function er_liens_deja( $ajout = null, $remettre = false ) {
 	static $deja = null;
-	if ( null === $deja ) {
+	if ( null === $deja || $remettre ) {
 		$deja = array();
 		if ( is_singular( 'product' ) ) {
 			$deja[ (int) get_queried_object_id() ] = true;
@@ -500,23 +501,44 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 				return;
 			}
-			$objet = null;
-			foreach ( array( 'page', 'post', 'product', 'er_evenement', 'er_exposition', 'er_media' ) as $type ) {
-				$objet = get_page_by_path( sanitize_title( $args[0] ), OBJECT, $type );
-				if ( $objet ) {
-					break;
+			// « articles » : les douze derniers articles du journal ; sinon une adresse, ou à défaut les mots de l'adresse.
+			$types = array( 'page', 'post', 'product', 'er_evenement', 'er_exposition', 'er_media' );
+			if ( 'articles' === $args[0] ) {
+				$objets = get_posts(
+					array(
+						'post_type'   => 'post',
+						'numberposts' => 12,
+					)
+				);
+			} else {
+				$objet = null;
+				foreach ( $types as $type ) {
+					$objet = get_page_by_path( sanitize_title( $args[0] ), OBJECT, $type );
+					if ( $objet ) {
+						break;
+					}
 				}
+				$objets = $objet ? array( $objet ) : get_posts(
+					array(
+						'post_type'   => $types,
+						's'           => str_replace( '-', ' ', $args[0] ),
+						'numberposts' => 3,
+					)
+				);
 			}
-			if ( ! $objet ) {
+			if ( ! $objets ) {
 				WP_CLI::error( 'Rien à cette adresse : ' . $args[0] );
 			}
-			$GLOBALS['post'] = $objet; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-			setup_postdata( $objet );
-			$html = apply_filters( 'the_content', $objet->post_content ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
-			preg_match_all( '#<a class="er-lien-livre" href="([^"]*)" data-livre="(\d+)">(.*?)</a>#s', $html, $m, PREG_SET_ORDER );
-			WP_CLI::log( count( $m ) . ' titres liés dans « ' . html_entity_decode( get_the_title( $objet ), ENT_QUOTES, 'UTF-8' ) . ' » :' );
-			foreach ( $m as $lien ) {
-				WP_CLI::log( '  ' . wp_strip_all_tags( $lien[3] ) . ' → ' . html_entity_decode( get_the_title( (int) $lien[2] ), ENT_QUOTES, 'UTF-8' ) );
+			foreach ( $objets as $objet ) {
+				er_liens_deja( null, true );
+				$GLOBALS['post'] = $objet; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+				setup_postdata( $objet );
+				$html = apply_filters( 'the_content', $objet->post_content ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+				preg_match_all( '#<a class="er-lien-livre" href="([^"]*)" data-livre="(\d+)">(.*?)</a>#s', $html, $m, PREG_SET_ORDER );
+				WP_CLI::log( count( $m ) . ' titres liés dans « ' . html_entity_decode( get_the_title( $objet ), ENT_QUOTES, 'UTF-8' ) . ' » (' . $objet->post_name . ') :' );
+				foreach ( $m as $lien ) {
+					WP_CLI::log( '  ' . html_entity_decode( wp_strip_all_tags( $lien[3] ), ENT_QUOTES, 'UTF-8' ) . ' → ' . html_entity_decode( get_the_title( (int) $lien[2] ), ENT_QUOTES, 'UTF-8' ) );
+				}
 			}
 		}
 	);
