@@ -1,16 +1,16 @@
-# wp er roles
+# wp er roles appliquer
 
-Le 24/11/2026 à 00 h 52, sur https://editeursreunis.kinsta.cloud.
+Le 24/11/2026 à 00 h 54, sur https://editeursreunis.kinsta.cloud.
 
 ```
-Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
+Posé sur 840 livres en vente :
   161 livres avec une traduction, 3 sous la direction de quelqu’un, 313 avec un éditeur.
-130 personnes, dont 120 qui ne sont pas encore des auteurs :
+125 personnes (129 graphies), dont 114 qui ne sont pas encore des auteurs (créées) :
   Sophie Benech (9) · nouveau
   Christian Mouze (7) · nouveau
   Georges Nivat (5)
   André Markowicz (5)
-  Paul Lequesne (4) · nouveau
+  Paul Lequesne (5) · nouveau ← Paul Lesquesne
   Anne Davidenkoff (4) · nouveau
   Henri Mongault (4) · nouveau
   Luba Jurgenson (3)
@@ -18,10 +18,10 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Henri de Lubac (2) · nouveau
   Françoise Lhoest (2) · nouveau
   Raphaëlle Pache (2) · nouveau
-  Gabriel Arout (2) · nouveau
+  Gabriel Arout (3) · nouveau ← G. Arout
   Maïa Varsimashvili-Raphael (2) · nouveau
   Anne Kichilov (2) · nouveau
-  Boris de Schlœzer (2) · nouveau
+  Boris de Schlœzer (3) · nouveau ← Boris de Schloezer
   Christine Zeytounian-Beloüs (2) · nouveau
   Alain Préchac (2) · nouveau
   Anne-Marie Tatsis-Botton (2) · nouveau
@@ -47,7 +47,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Manuela Boublil-Friedrich (1) · nouveau
   Franck Manara (1) · nouveau
   Yves Gauthier (1)
-  Jérôme Cler (1) · nouveau
+  Jérôme Cler (2) · nouveau ← Jérôme Clerc
   Alain Cappon (1) · nouveau
   Hélène Vivier-Kousnetzoff (1) · nouveau
   Michel Cadot (1) · nouveau
@@ -81,14 +81,12 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Odile Belkeddar (1) · nouveau
   Renata Lesnik (1) · nouveau
   Éveline Amoursky (1) · nouveau
-  Paul Lesquesne (1) · nouveau
   Claude Levenson (1) · nouveau
   Jean-Christophe Peuch (1) · nouveau
-  Si Ceux (1) · nouveau
   Gérard Abensour (1)
   Nilima Changkakoti (1) · nouveau
   Françoise Morvan (1) · nouveau
-  Anna Davidenkoff (1) · nouveau
+  Anita Davidenkoff (1) ← Anna Davidenkoff
   Hélène Péras (1) · nouveau
   Ludmila Savitzky (1) · nouveau
   Joëlle Dublanchet (1) · nouveau
@@ -114,14 +112,12 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Lydia Ouspensky (1) · nouveau
   Denis Roche (1) · nouveau
   Louis Viardot (1) · nouveau
-  Jérôme Clerc (1) · nouveau
   Natalia Soljénistyne (1) · nouveau
   J. Cathala (1) · nouveau
   Henri Léonard-Bordier (1) · nouveau
   Céline Marangé (1) · nouveau
   Irène Rovere-Sova (1) · nouveau
   Mireille Rovere-Tsivikis (1) · nouveau
-  G. Arout (1) · nouveau
   C. Andronikof (1) · nouveau
   A. de Couriss (1) · nouveau
   Pierre Pascal (1) · nouveau
@@ -132,7 +128,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Jacques Schiffrin (1) · nouveau
   Edouard Parayre (1) · nouveau
   Lily Denis (1) · nouveau
-  Boris de Schloezer (1) · nouveau
   Cécile Odartchenko (1) · nouveau
   Bertrand Jeuffrain (1) · nouveau
   Henri Bloch (1) · nouveau
@@ -196,7 +191,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Éditions de la Présentation (1)
   Perrin (1)
   Bleu nuit éditeur (1)
-19 mentions mises de côté, à revoir dans la fiche du livre :
+20 mentions mises de côté, à revoir dans la fiche du livre :
   Rilke · un seul mot · Palimpsestes (palimpsestes)
   Goethe · un seul mot · Palimpsestes (palimpsestes)
   Martin de Tours · dans le titre · La Vie de St Martin de Tours (la-vie-de-st-martin-de-tours)
@@ -210,6 +205,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   s · éditeur douteux · Naissance des Dieux (naissance-des-dieux)
   Tandis · un seul mot · La rose des vents (la-rose-des-vents)
   Ce · un seul mot · Sofia Pétrovna (sofia-petrovna)
+  Si Ceux · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
   @Acer-mjo · éditeur douteux · La liturgie expliquée aux jeunes (la-liturgie-expliquee-aux-jeunes)
   Dans · un seul mot · Les quatre vies d’Arseni (les-quatre-vies-darseni)
   Archim · un seul mot · Le Messager orthodoxe, n° 100 (le-messager-orthodoxe-n-100)
