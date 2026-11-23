@@ -96,9 +96,11 @@ def chercher_evenement(objet, chemin=''):
 
 def evenements(brut=0):
     adresses = []
-    for sous, liste in plan().items():
-        if isinstance(liste, list):
-            adresses += [u for u in liste if re.search(r'/event-details/|/events?/|/evenements?/', u)]
+    le_plan = plan()
+    json.dump(le_plan, open(os.path.join(SORTIE, 'plan.json'), 'w'), ensure_ascii=False, indent=1)
+    for sous, liste in le_plan.items():
+        if isinstance(liste, list) and 'event' in sous:  # le sous-plan des événements (event-pages-sitemap.xml)
+            adresses += liste
     adresses = list(dict.fromkeys(adresses))
     print(len(adresses), 'pages d’événement dans le plan')
     os.makedirs(os.path.join(SORTIE, 'brut'), exist_ok=True)
