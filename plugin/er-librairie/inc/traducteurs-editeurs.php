@@ -300,44 +300,67 @@ add_action(
 );
 
 /**
- * Coupe une mention en noms : « Hélène Henry et Michel Aucouturier », « A, B & C ». Ce qui n'a pas l'air d'un nom
- * (des chiffres, un seul mot en minuscules) est écarté.
+ * Coupe une mention en noms : « Hélène Henry et Michel Aucouturier », « A, B & C ». Le texte repris de Wix a perdu ses
+ * retours à la ligne (« Françoise LhoestEnfant… ») : une minuscule collée à une majuscule coupe aussi. Ce qui n'a pas
+ * l'air d'un traducteur est mis de côté, avec sa raison : un seul mot (« Rilke », « Goethe »), un autre rôle
+ * (« Illustrations de… », « Préface de… »), un nom qui est dans le titre du livre (« Djann », « Martin de Tours »).
  *
  * @param string $texte La mention.
+ * @param string $titre Le titre du livre.
+ * @param array  $ecart Reçoit les noms mis de côté : nom → raison.
  * @return string[]
  */
-function er_roles_noms( $texte ) {
-	$texte = trim( wp_strip_all_tags( html_entity_decode( (string) $texte, ENT_QUOTES, 'UTF-8' ) ) );
-	$texte = preg_replace( '/^(?:trad(?:uit|uction|\.)?)\s*(?:du|de l[’\']|de|depuis le)?\s*(?:\p{Ll}+\s+)?(?:par|:)?\s*/iu', '', $texte );
+function er_roles_noms( $texte, $titre = '', &$ecart = array() ) {
+	$texte = trim( wp_strip_all_tags( html_entity_decode( (string) $texte, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+	$texte = preg_replace( '/(?<=\p{Ll})(?=\p{Lu})/u', "\n", $texte );
 	$noms  = array();
-	foreach ( preg_split( '/\s*(?:,|;|&|\bet\b|\band\b|\bи\b)\s*/u', $texte ) as $nom ) {
-		$nom = trim( $nom, " \t\n\r\0\x0B.()[]" );
-		if ( '' === $nom || preg_match( '/\d/', $nom ) || ! preg_match( '/^\p{Lu}/u', $nom ) || mb_strlen( $nom ) > 60 ) {
+	foreach ( preg_split( '/\s*(?:\R|,|;|&|\/|\bet\b|\band\b|\bи\b)\s*/u', $texte ) as $nom ) {
+		$nom = preg_replace( '/^(?:trad(?:uit|uite|uction|\.)?)\s*(?:(?:du|de l[’\']|de|depuis le)\s+\p{Ll}+\s*)?(?:par|:)?\s*/iu', '', trim( $nom ) );
+		$nom = trim( $nom, " \t\n\r\0\x0B.()[]:" );
+		if ( '' === $nom ) {
+			continue;
+		}
+		if ( preg_match( '/^(?:pr[ée]face|postface|illustr|dessin|photo|pr[ée]sent|introduction|notes?\b|avant-propos|[ée]dition|choix|r[ée]vis|relu|enfant|\p{Ll})/iu', $nom ) ) {
+			$ecart[ $nom ] = 'autre rôle';
+			continue;
+		}
+		if ( preg_match( '/\d/', $nom ) || mb_strlen( $nom ) > 50 ) {
+			$ecart[ $nom ] = 'pas un nom';
+			continue;
+		}
+		if ( ! preg_match( '/\s/u', $nom ) ) {
+			$ecart[ $nom ] = 'un seul mot';
+			continue;
+		}
+		if ( '' !== $titre && false !== mb_stripos( $titre, $nom ) ) {
+			$ecart[ $nom ] = 'dans le titre';
 			continue;
 		}
 		$noms[] = $nom;
 	}
-	return $noms;
+	return array_values( array_unique( $noms ) );
 }
 
 /**
- * Ce que le catalogue dit des rôles d'un livre : traducteurs, directeurs, éditeur, et où il le dit.
+ * Ce que le catalogue dit des rôles d'un livre : traducteurs, directeurs, éditeurs, ce qui est mis de côté.
  *
  * @param int $id Le livre.
- * @return array{traduction: array, direction: array, editeur: string}
+ * @return array{traduction: array, direction: array, editeurs: string[], ecart: array}
  */
 function er_roles_releves( $id ) {
+	$titre  = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
 	$releve = array(
 		'traduction' => array(),
 		'direction'  => array(),
-		'editeur'    => trim( (string) get_post_meta( $id, 'er_editeur', true ) ),
+		'editeurs'   => array(),
+		'ecart'      => array(),
 	);
-	foreach ( er_roles_noms( (string) get_post_meta( $id, 'er_traducteur', true ) ) as $nom ) {
+	$titre_seul = preg_replace( '/\s*[-–—]?\s*sous la direction d.*$/iu', '', $titre );
+	foreach ( er_roles_noms( (string) get_post_meta( $id, 'er_traducteur', true ), $titre_seul, $releve['ecart'] ) as $nom ) {
 		$releve['traduction'][ $nom ] = 'méta';
 	}
-	$titre = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
 	if ( preg_match( '/sous la direction d(?:e\s+|[’\'])(.+?)\)?\s*$/iu', $titre, $m ) ) {
-		foreach ( er_roles_noms( $m[1] ) as $nom ) {
+		foreach ( er_roles_noms( $m[1], '', $releve['ecart'] ) as $nom ) {
 			$releve['direction'][ $nom ] = 'titre';
 		}
 	}
@@ -346,20 +369,75 @@ function er_roles_releves( $id ) {
 	$nom   = '\p{Lu}[\p{L}’\'\-]+(?:\s+(?:de\s+|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3}';
 	if ( preg_match_all( '/tradu(?:it|ite|its|ction)\s+(?:(?:du|de l[’\']|de)\s+\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
 		foreach ( $mm[1] as $trouve ) {
-			foreach ( er_roles_noms( $trouve ) as $n ) {
+			foreach ( er_roles_noms( $trouve, $titre_seul, $releve['ecart'] ) as $n ) {
 				if ( ! isset( $releve['traduction'][ $n ] ) ) {
 					$releve['traduction'][ $n ] = 'texte';
 				}
 			}
 		}
 	}
+	// L'éditeur : une co-édition (« Русский путь / YMCA-Press ») en donne deux ; ce qui n'est pas un nom est écarté.
+	$editeur = trim( wp_strip_all_tags( html_entity_decode( (string) get_post_meta( $id, 'er_editeur', true ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+	foreach ( preg_split( '/\s+\/\s+/u', $editeur ) as $e ) {
+		$e = trim( $e, " \t\n\r\0\x0B&,;" );
+		if ( '' === $e ) {
+			continue;
+		}
+		if ( mb_strlen( $e ) < 3 || ! preg_match( '/^\p{L}/u', $e ) || false !== strpos( $e, '@' ) ) {
+			$releve['ecart'][ $e ] = 'éditeur douteux';
+			continue;
+		}
+		$releve['editeurs'][] = $e;
+	}
 	return $releve;
+}
+
+/**
+ * La clé d'un nom d'éditeur, pour reconnaître ses variantes : « Éditions Fayard » et « Fayard », « Éditions de
+ * l’EHESS » et « Éditions EHESS », « Institut d’études slaves » et « Institut dEtudes Slaves ».
+ *
+ * @param string $nom Le nom.
+ */
+function er_editeur_cle( $nom ) {
+	$cle = mb_strtolower( remove_accents( $nom ), 'UTF-8' );
+	$cle = preg_replace( '/\b(?:editions?|editeurs?|publishing|publications?|publisher)\b/u', ' ', $cle );
+	$cle = preg_replace( '/^\s*(?:de la|de l|du|des|de|d|l)[\s’\']+/u', '', trim( $cle ) );
+	return trim( preg_replace( '/[^\p{L}\p{N}]+/u', '', $cle ) );
+}
+
+/**
+ * Regroupe les éditeurs relevés par variantes : chaque nom → le nom retenu (la variante la plus fréquente). Deux clés
+ * à une lettre près (« Barthillat », « Bartillat » ; « Ginkgo », « Gingko ») vont ensemble.
+ *
+ * @param array<string,int> $comptes Nom → nombre de livres.
+ * @return array<string,string>
+ */
+function er_editeurs_regroupes( $comptes ) {
+	arsort( $comptes );
+	$groupes = array(); // clé → nom retenu.
+	$retenu  = array();
+	foreach ( $comptes as $nom => $n ) {
+		$cle = er_editeur_cle( $nom );
+		$va  = null;
+		foreach ( $groupes as $autre => $chef ) {
+			if ( $autre === $cle || ( mb_strlen( $cle ) >= 5 && levenshtein( $autre, $cle ) <= 1 ) || ( mb_strlen( $cle ) >= 6 && levenshtein( $autre, $cle ) <= 2 && similar_text( $autre, $cle ) >= mb_strlen( $cle ) - 2 ) ) {
+				$va = $chef;
+				break;
+			}
+		}
+		if ( null === $va ) {
+			$groupes[ $cle ] = $nom;
+			$va              = $nom;
+		}
+		$retenu[ $nom ] = $va;
+	}
+	return $retenu;
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
 	 * Relève les traducteurs, les directeurs et les éditeurs du catalogue, et les pose avec « appliquer » :
-	 * wp er roles [appliquer].
+	 * wp er roles [appliquer]. Ce qui est mis de côté est listé, à corriger à la main dans la fiche du livre.
 	 *
 	 * @param array $args « appliquer », ou rien pour seulement montrer.
 	 */
@@ -368,43 +446,49 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		function ( $args ) {
 			$appliquer = isset( $args[0] ) && 'appliquer' === $args[0];
 			$ids       = ( new WP_Query( er_requete_livres_en_vente() ) )->posts;
+			$releves   = array();
+			$personnes = array();
+			$nouveaux  = array();
+			$editeurs  = array();
+			$ecarts    = array();
 			$comptes   = array(
 				'traduction' => 0,
 				'direction'  => 0,
 				'editeur'    => 0,
 			);
-			$personnes = array();
-			$editeurs  = array();
-			$nouveaux  = array();
-			$exemples  = array();
 			foreach ( $ids as $id ) {
-				$r = er_roles_releves( $id );
-				foreach ( array(
-					'traduction' => 'er_traduction',
-					'direction'  => 'er_direction',
-				) as $role => $taxonomie ) {
-					if ( ! $r[ $role ] ) {
-						continue;
-					}
-					++$comptes[ $role ];
-					foreach ( $r[ $role ] as $nom => $source ) {
+				$r              = er_roles_releves( $id );
+				$releves[ $id ] = $r;
+				foreach ( array( 'traduction', 'direction' ) as $role ) {
+					$comptes[ $role ] += $r[ $role ] ? 1 : 0;
+					foreach ( array_keys( $r[ $role ] ) as $nom ) {
 						$personnes[ $nom ] = ( isset( $personnes[ $nom ] ) ? $personnes[ $nom ] : 0 ) + 1;
 						if ( ! er_personne_par_nom( $nom ) ) {
 							$nouveaux[ $nom ] = true;
 						}
-						if ( count( $exemples ) < 40 ) {
-							$exemples[] = '  ' . $role . ' | ' . $nom . ' | ' . $source . ' | ' . html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
-						}
-					}
-					if ( $appliquer ) {
-						er_poser_personnes( $id, $taxonomie, array_keys( $r[ $role ] ), true );
 					}
 				}
-				if ( '' !== $r['editeur'] ) {
-					++$comptes['editeur'];
-					$editeurs[ $r['editeur'] ] = ( isset( $editeurs[ $r['editeur'] ] ) ? $editeurs[ $r['editeur'] ] : 0 ) + 1;
-					if ( $appliquer ) {
-						wp_set_object_terms( $id, array( $r['editeur'] ), 'er_editeur', false );
+				$comptes['editeur'] += $r['editeurs'] ? 1 : 0;
+				foreach ( $r['editeurs'] as $e ) {
+					$editeurs[ $e ] = ( isset( $editeurs[ $e ] ) ? $editeurs[ $e ] : 0 ) + 1;
+				}
+				foreach ( $r['ecart'] as $nom => $raison ) {
+					$ecarts[] = '  ' . $nom . ' · ' . $raison . ' · ' . html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) . ' (' . get_post_field( 'post_name', $id ) . ')';
+				}
+			}
+			$regroupes = er_editeurs_regroupes( $editeurs );
+			if ( $appliquer ) {
+				foreach ( $releves as $id => $r ) {
+					foreach ( array(
+						'traduction' => 'er_traduction',
+						'direction'  => 'er_direction',
+					) as $role => $taxonomie ) {
+						if ( $r[ $role ] ) {
+							er_poser_personnes( $id, $taxonomie, array_keys( $r[ $role ] ), true );
+						}
+					}
+					if ( $r['editeurs'] ) {
+						wp_set_object_terms( $id, array_values( array_unique( array_map( fn( $e ) => $regroupes[ $e ], $r['editeurs'] ) ) ), 'er_editeur', false );
 					}
 				}
 			}
@@ -412,16 +496,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			WP_CLI::log( '  ' . $comptes['traduction'] . ' livres avec une traduction, ' . $comptes['direction'] . ' sous la direction de quelqu’un, ' . $comptes['editeur'] . ' avec un éditeur.' );
 			WP_CLI::log( count( $personnes ) . ' personnes, dont ' . count( $nouveaux ) . ' qui ne sont pas encore des auteurs' . ( $appliquer ? ' (créées)' : '' ) . ' :' );
 			arsort( $personnes );
-			foreach ( array_slice( $personnes, 0, 60, true ) as $nom => $n ) {
+			foreach ( $personnes as $nom => $n ) {
 				WP_CLI::log( '  ' . $nom . ' (' . $n . ')' . ( isset( $nouveaux[ $nom ] ) ? ' · nouveau' : '' ) );
 			}
-			WP_CLI::log( count( $editeurs ) . ' éditeurs :' );
+			$retenus = array_count_values( $regroupes );
+			WP_CLI::log( count( $retenus ) . ' éditeurs (' . count( $editeurs ) . ' graphies) :' );
 			arsort( $editeurs );
-			foreach ( array_slice( $editeurs, 0, 60, true ) as $nom => $n ) {
-				WP_CLI::log( '  ' . $nom . ' (' . $n . ')' );
+			foreach ( array_unique( $regroupes ) as $chef ) {
+				$variantes = array_keys( array_filter( $regroupes, fn( $c, $nom ) => $c === $chef && $nom !== $chef, ARRAY_FILTER_USE_BOTH ) );
+				$total     = array_sum( array_intersect_key( $editeurs, array_flip( array_merge( array( $chef ), $variantes ) ) ) );
+				WP_CLI::log( '  ' . $chef . ' (' . $total . ')' . ( $variantes ? ' ← ' . implode( ', ', $variantes ) : '' ) );
 			}
-			WP_CLI::log( 'Exemples :' );
-			foreach ( $exemples as $e ) {
+			WP_CLI::log( count( $ecarts ) . ' mentions mises de côté, à revoir dans la fiche du livre :' );
+			foreach ( $ecarts as $e ) {
 				WP_CLI::log( $e );
 			}
 			wp_cache_delete( 'er_personnes_livres', 'er' );
