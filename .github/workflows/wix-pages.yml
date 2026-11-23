@@ -1,0 +1,26 @@
+# Lit des pages publiques de l'ancien site Wix (editeurs-reunis.fr), injoignable depuis l'espace de travail de Claude :
+# outils/wix/pages.py. Le résultat part en artefact (« wix-pages »), jamais dans le dépôt.
+name: Lire l'ancien site Wix
+
+on:
+  workflow_dispatch:
+    inputs:
+      quoi:
+        description: "plan, ou evenements"
+        default: plan
+      brut:
+        description: "Garder le HTML des N premières pages (pour lire leur forme)"
+        default: "0"
+
+jobs:
+  lire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire
+        run: python3 outils/wix/pages.py "${{ inputs.quoi }}" --brut "${{ inputs.brut }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wix-pages
+          path: sortie/
+          retention-days: 7
