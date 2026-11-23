@@ -120,16 +120,43 @@ function er_recommandations( $id, $n = 8 ) {
 	if ( $sujets ) {
 		$tax[] = array( 'taxonomy' => 'er_sujet', 'terms' => $sujets );
 	}
-	$contenus = count( $tax ) > 1 ? get_posts(
+	$candidats = count( $tax ) > 1 ? get_posts(
 		array(
 			'post_type'      => array_values( array_filter( array( 'post', 'er_evenement', 'er_media' ), 'post_type_exists' ) ),
 			'post_status'    => 'publish',
-			'posts_per_page' => 4,
+			'posts_per_page' => 24,
 			'fields'         => 'ids',
 			'tax_query'      => $tax, // phpcs:ignore WordPress.DB.SlowDBQuery
 			'lang'           => function_exists( 'pll_current_language' ) && pll_current_language() ? pll_current_language() : '',
 		)
 	) : array();
+	// Les plus proches d'abord : un auteur du livre compte 3, une personne dont il parle 2, un sujet 2 ; puis les plus
+	// récents. Une rencontre et un article (ou une vidéo) plutôt que deux du même genre.
+	$scores = array();
+	foreach ( $candidats as $c ) {
+		$score = 3 * count( array_intersect( $auteurs, er_reco_termes( $c, 'auteur' ) ) )
+			+ 2 * count( array_intersect( $autour, er_reco_termes( $c, 'auteur' ) ) )
+			+ 2 * count( array_intersect( $sujets, er_reco_termes( $c, 'er_sujet' ) ) );
+		$scores[ $c ] = $score * 10000000000 + (int) get_post_timestamp( $c );
+	}
+	arsort( $scores );
+	$contenus = array();
+	foreach ( array( true, false ) as $rencontre ) {
+		foreach ( array_keys( $scores ) as $c ) {
+			if ( ( 'er_evenement' === get_post_type( $c ) ) === $rencontre ) {
+				$contenus[] = $c;
+				break;
+			}
+		}
+	}
+	foreach ( array_keys( $scores ) as $c ) {
+		if ( count( $contenus ) >= 4 ) {
+			break;
+		}
+		if ( ! in_array( $c, $contenus, true ) ) {
+			$contenus[] = $c;
+		}
+	}
 
 	// Du même rayon, de la même époque : le genre et l'époque ensemble, à défaut l'époque, à défaut le rayon.
 	$rayons   = er_reco_termes( $id, 'product_cat' );
