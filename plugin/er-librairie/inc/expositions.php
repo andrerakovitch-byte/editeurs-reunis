@@ -1015,6 +1015,12 @@ function er_expo_importer_un( $x ) {
 			update_post_meta( $id, $cle, $x[ $champ ] );
 		}
 	}
+	// Le chapô relu remplace celui qu'on avait pris à la rencontre (souvent une invitation), jamais un chapô écrit à la
+	// main.
+	$chapo = (string) get_post_field( 'post_excerpt', $id );
+	if ( ! empty( $x['chapo'] ) && $x['chapo'] !== $chapo && ( '' === trim( $chapo ) || ( $premiere && $chapo === $premiere->post_excerpt ) ) ) {
+		wp_update_post( wp_slash( array( 'ID' => $id, 'post_excerpt' => $x['chapo'] ) ) );
+	}
 	if ( $premiere && ! has_post_thumbnail( $id ) && has_post_thumbnail( $premiere ) ) {
 		set_post_thumbnail( $id, get_post_thumbnail_id( $premiere ) );
 	}

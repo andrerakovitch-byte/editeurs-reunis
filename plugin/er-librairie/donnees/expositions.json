@@ -6,7 +6,8 @@
   "techniques": ["Peinture"],
   "debut": "2023-12-22",
   "fin": "2024-01-11",
-  "evenements": ["795acb23-86bf-4ea9-9ddc-884553886f43"]
+  "evenements": ["795acb23-86bf-4ea9-9ddc-884553886f43"],
+  "chapo": "L’exposition d’Irina Rakova se prolonge avec trois générations d’artistes, à commencer par Leonid Rakov (1930-2022), rescapé du ghetto de Minsk."
  },
  {
   "cle": "enfance",
@@ -15,7 +16,8 @@
   "techniques": ["Peinture", "Céramique"],
   "debut": "2023-11-09",
   "fin": "",
-  "evenements": ["6957db36-8724-4b9d-9c7c-5f0c89b2928d"]
+  "evenements": ["6957db36-8724-4b9d-9c7c-5f0c89b2928d"],
+  "chapo": "Peintures, céramiques, techniques mixtes."
  },
  {
   "cle": "huiles-sur-toiles",
@@ -24,7 +26,8 @@
   "techniques": ["Peinture"],
   "debut": "2023-09-28",
   "fin": "",
-  "evenements": ["2cf82827-2c5b-4672-87ea-598ba79118cf"]
+  "evenements": ["2cf82827-2c5b-4672-87ea-598ba79118cf"],
+  "chapo": "Né en Russie, Andrey Grin vit à Paris : sa peinture réaliste raconte les lieux qu’il a parcourus, avec une prédilection pour les paysages parisiens."
  },
  {
   "cle": "imagine-unimaginable",
@@ -33,7 +36,8 @@
   "techniques": ["Images"],
   "debut": "2023-05-30",
   "fin": "",
-  "evenements": ["e1fae069-f708-4d10-8ee5-36f9437e50c6"]
+  "evenements": ["e1fae069-f708-4d10-8ee5-36f9437e50c6"],
+  "chapo": "Récits métaphoriques des émigrés russes contre la guerre en Ukraine, dans l’imagerie de l’intelligence artificielle."
  },
  {
   "cle": "pierre-struve-et-ivan-bounine",
@@ -45,7 +49,8 @@
   "sujets": ["Émigration", "Histoire de la maison"],
   "debut": "2022-05-23",
   "fin": "",
-  "evenements": ["cd056d66-fc47-4ced-942b-6ade089b2de5"]
+  "evenements": ["cd056d66-fc47-4ced-942b-6ade089b2de5"],
+  "chapo": "La correspondance de deux figures de l’émigration russe, l’écrivain Ivan Bounine, prix Nobel de littérature 1933, et l’économiste et homme politique Pierre Struve, pour les cent cinquante ans de leur naissance."
  },
  {
   "cle": "illustrations-ivan-sollogoub",
