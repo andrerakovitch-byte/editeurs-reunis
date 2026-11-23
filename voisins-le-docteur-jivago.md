@@ -1,6 +1,6 @@
 # wp er voisins le-docteur-jivago
 
-Le 23/11/2026 à 23 h 16, sur https://editeursreunis.kinsta.cloud.
+Le 23/11/2026 à 23 h 33, sur https://editeursreunis.kinsta.cloud.
 
 ```
 Le livre
@@ -24,4 +24,5 @@ Au centre et au journal (4)
   post | 50 ans de l’Archipel du Goulag : « Aux millions de tués pour rien, Soljenitsyne donne un contour, une vie, un visage » | 28 décembre 2023
   post | « Jivago ou le talisman de la Vie » | 5 juin 2020
 Genre : Romans ; époque : La période soviétique
+Rendu sur la fiche : auteur 2 cartes ; autour 2 cartes ; rayon 6 cartes
 ```
