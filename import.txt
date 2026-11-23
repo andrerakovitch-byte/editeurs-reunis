@@ -2,7 +2,8 @@
 Success: 169 rencontres lues.
   19 inchangée
 Success: 19 vidéos et podcasts lus.
-  67 créé
+  45 inchangé
+  22 mis à jour
 Success: 67 articles lus.
 Success: Rewrite rules flushed.
 Success: All caches were cleared. Changes usually appear globally within a few minutes.
