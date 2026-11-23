@@ -132,12 +132,19 @@ function er_recommandations( $id, $n = 8 ) {
 	) : array();
 	// Les plus proches d'abord : un auteur du livre compte 3, une personne dont il parle 2, un sujet 2 ; puis les plus
 	// récents. Une rencontre et un article (ou une vidéo) plutôt que deux du même genre.
+	// Le titre qui nomme le livre (son mot le plus long : « jivago ») compte 4 de plus. Une rencontre se date par son
+	// début, pas par le jour de son import.
+	$mots_titre = function_exists( 'er_cle_recherche' ) ? explode( ' ', er_cle_recherche( get_the_title( $id ) ) ) : array();
+	usort( $mots_titre, fn( $a, $b ) => strlen( $b ) <=> strlen( $a ) );
+	$mot    = $mots_titre && strlen( $mots_titre[0] ) >= 5 ? $mots_titre[0] : '';
 	$scores = array();
 	foreach ( $candidats as $c ) {
 		$score = 3 * count( array_intersect( $auteurs, er_reco_termes( $c, 'auteur' ) ) )
 			+ 2 * count( array_intersect( $autour, er_reco_termes( $c, 'auteur' ) ) )
-			+ 2 * count( array_intersect( $sujets, er_reco_termes( $c, 'er_sujet' ) ) );
-		$scores[ $c ] = $score * 10000000000 + (int) get_post_timestamp( $c );
+			+ 2 * count( array_intersect( $sujets, er_reco_termes( $c, 'er_sujet' ) ) )
+			+ ( $mot && false !== strpos( ' ' . er_cle_recherche( get_the_title( $c ) ) . ' ', $mot ) ? 4 : 0 );
+		$debut        = 'er_evenement' === get_post_type( $c ) ? strtotime( (string) get_post_meta( $c, 'er_debut', true ) ) : false;
+		$scores[ $c ] = $score * 10000000000 + ( $debut ? $debut : (int) get_post_timestamp( $c ) );
 	}
 	arsort( $scores );
 	$contenus = array();
