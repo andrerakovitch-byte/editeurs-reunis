@@ -11,6 +11,8 @@
 # pages, la chaîne YouTube, SoundCloud, le flux du podcast), convertis (outils/wix/*.py) et importés ; les rapports
 # vont sur la branche « wix-pages ». Si Wix refuse trop de demandes (429), « importer les fichiers de la branche
 # wix-pages » importe des fichiers déjà convertis. Avec « er » : une commande de l'extension (« sujets deviner »).
+# Avec « boutique » : une commande de la boutique (« catalogue », « couvertures »), dont le rapport va sur la branche
+# « boutique ».
 name: Déployer chez Kinsta
 
 on:
@@ -34,6 +36,9 @@ on:
         default: 'non'
       er:
         description: "Une commande de l'extension, sans « wp er » (par exemple : sujets deviner)"
+        default: ''
+      boutique:
+        description: "Une commande de la boutique, sans « wp er » (catalogue, couvertures…) : son rapport va sur la branche « boutique »"
         default: ''
 
 concurrency: kinsta
@@ -160,6 +165,43 @@ jobs:
           git add --ignore-removal .
           git commit -q -m "L'ancien site : import et rapport" || exit 0
           git push -q origin HEAD:wix-pages
+
+      # La boutique a sa branche de rapports, « boutique » : des comptes seulement (le dépôt est public), jamais de
+      # chiffres de ventes. Chaque commande y laisse son fichier, remplacé au passage suivant.
+      - name: Une commande de la boutique
+        if: inputs.boutique != ''
+        env:
+          COMMANDE: ${{ inputs.boutique }}
+        run: |
+          set -o pipefail
+          echo "$COMMANDE" | grep -Eq '^[a-z0-9 =_-]+$' || { echo "Commande refusée : $COMMANDE"; exit 1; }
+          mkdir -p rapport-boutique
+          FICHIER="rapport-boutique/$(echo "$COMMANDE" | tr ' =' '--' | tr -s '-').md"
+          {
+            echo "# wp er $COMMANDE"
+            echo
+            echo "Le $(TZ=Europe/Paris date '+%d/%m/%Y à %H h %M'), sur $($SSH "$QUI@$HOTE" 'cd public && wp option get home')."
+            echo
+            echo '```'
+            $SSH "$QUI@$HOTE" "cd public && wp er $COMMANDE"
+            echo '```'
+          } | tee "$FICHIER"
+          cat "$FICHIER" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Le rapport de la boutique, sur la branche boutique
+        if: inputs.boutique != ''
+        env:
+          COMMANDE: ${{ inputs.boutique }}
+        run: |
+          cd rapport-boutique
+          git init -q -b boutique
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch -q --depth 1 origin boutique; then git reset -q --soft FETCH_HEAD; fi
+          git add --ignore-removal .
+          git commit -q -m "La boutique : wp er $COMMANDE" || exit 0
+          git push -q origin HEAD:boutique
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

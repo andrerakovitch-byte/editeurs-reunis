@@ -23,8 +23,20 @@ function er_fiche_champs( $produit ) {
 		_x( 'Parution', 'fiche d’un livre', 'er-librairie' )   => $produit->get_meta( 'er_annee' ),
 		_x( 'Pages', 'fiche d’un livre', 'er-librairie' )      => $pages ? number_format_i18n( $pages ) : '',
 		_x( 'Format', 'fiche d’un livre', 'er-librairie' )     => $produit->get_meta( 'er_format' ),
-		_x( 'ISBN', 'fiche d’un livre', 'er-librairie' )       => method_exists( $produit, 'get_global_unique_id' ) ? $produit->get_global_unique_id() : '',
+		_x( 'ISBN', 'fiche d’un livre', 'er-librairie' )       => er_isbn( $produit ),
 	);
+}
+
+/**
+ * L'ISBN d'un livre : le champ « GTIN, UPC, EAN ou ISBN » de WooCommerce, sinon la méta `er_isbn`. WooCommerce
+ * refuse qu'un même GTIN serve à deux produits ; quand la librairie a deux fiches pour un même livre (neuf et
+ * d'occasion), la seconde le garde dans `er_isbn` (outils/catalogue/isbn.py).
+ *
+ * @param WC_Product $produit Le livre.
+ */
+function er_isbn( $produit ) {
+	$isbn = method_exists( $produit, 'get_global_unique_id' ) ? (string) $produit->get_global_unique_id() : '';
+	return '' !== $isbn ? $isbn : (string) $produit->get_meta( 'er_isbn' );
 }
 
 add_action(

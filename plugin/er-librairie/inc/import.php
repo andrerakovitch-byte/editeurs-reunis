@@ -61,8 +61,66 @@ add_filter(
 			$colonnes[ $libelle ]         = $cle;
 			$colonnes[ $sources[ $cle ] ] = $cle;
 		}
+		// L'ISBN va dans le champ GTIN de WooCommerce, que l'en-tête soit en anglais (celui de l'exportateur et de
+		// outils/catalogue/isbn.py) ou en français : l'importateur ne reconnaît de lui-même que l'en-tête traduit.
+		foreach ( array( 'GTIN, UPC, EAN, or ISBN', 'GTIN, UPC, EAN ou ISBN', 'ISBN' ) as $entete ) {
+			$colonnes[ $entete ] = 'global_unique_id';
+		}
 		return $colonnes;
+	},
+	200
+);
+
+/* L'export (Produits → Exporter) ----------------------------------------------------------------------------------
+ *
+ * Les mêmes colonnes que l'import, pour qu'un fichier exporté, corrigé puis réimporté en « mettant à jour » ne perde
+ * ni les auteurs ni les langues. Les billets des rencontres ne s'exportent pas avec les livres.
+ */
+
+add_filter(
+	'woocommerce_product_export_product_default_columns',
+	function ( $colonnes ) {
+		return $colonnes + array_diff_key( er_import_colonnes(), array( 'er_slug' => true ) );
 	}
+);
+foreach ( array(
+	'er_auteurs'  => array( 'auteur', 'name' ),
+	'er_langues'  => array( 'langue', 'slug' ),
+	'er_rayons'   => array( 'product_cat', 'slug' ),
+	'er_mentions' => array( 'product_tag', 'slug' ),
+) as $er_colonne => $er_source ) {
+	add_filter(
+		'woocommerce_product_export_product_column_' . $er_colonne,
+		function ( $valeur, $produit ) use ( $er_source ) {
+			$termes = wp_get_post_terms( $produit->get_id(), $er_source[0], array( 'fields' => 'id=>' . $er_source[1] ) );
+			return is_wp_error( $termes ) ? '' : implode( ' | ', $termes );
+		},
+		10,
+		2
+	);
+}
+// wc_get_products() ne prend pas de meta_query : on lui passe une demande à nous, traduite pour WP_Query.
+add_filter(
+	'woocommerce_product_export_product_query_args',
+	function ( $args ) {
+		$args['er_sans_billets'] = true;
+		return $args;
+	}
+);
+add_filter(
+	'woocommerce_product_data_store_cpt_get_products_query',
+	function ( $requete, $demande ) {
+		if ( ! empty( $demande['er_sans_billets'] ) ) {
+			$requete['meta_query']   = isset( $requete['meta_query'] ) ? (array) $requete['meta_query'] : array(); // phpcs:ignore WordPress.DB.SlowDBQuery
+			$requete['meta_query'][] = array(
+				'key'     => 'er_evenement',
+				'compare' => 'NOT EXISTS',
+			);
+		}
+		return $requete;
+	},
+	10,
+	2
 );
 
 // Un livre sans référence qui a déjà l'adresse demandée : on le met à jour (les livres d'exemple).
