@@ -1,6 +1,6 @@
 # wp er extensions
 
-Le 23/11/2026 à 22 h 30, sur https://editeursreunis.kinsta.cloud.
+Le 23/11/2026 à 22 h 40, sur https://editeursreunis.kinsta.cloud.
 
 ```
 Le site
@@ -14,7 +14,6 @@ Les extensions
   Les Éditeurs réunis — librairie         0.4.2, active
   WooCommerce                             11.3.1, active
   WooCommerce Stripe Gateway              11.2.0, active
-  WooPayments                             11.3.0, active
 Le paiement : Stripe
   enabled                                 oui
   testmode                                oui
