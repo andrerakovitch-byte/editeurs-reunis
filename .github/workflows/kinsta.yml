@@ -1,6 +1,7 @@
 # Met le thème et l'extension en ligne chez Kinsta, à chaque poussée sur main qui les touche.
+# Chaque passage installe et active les extensions dont le site a besoin (WooCommerce, Stripe, la nôtre).
 # À la main (Actions → « Déployer chez Kinsta » → Run workflow), avec « installer » coché : le premier passage, qui
-# active le thème et les extensions, télécharge les langues et sème le contenu de l'ébauche (semer.php).
+# active le thème, télécharge les langues et sème le contenu de l'ébauche (semer.php).
 #
 # Ne fait rien tant que les réglages ne sont pas posés (Settings → Secrets and variables → Actions) :
 #   variables  KINSTA_HOTE, KINSTA_PORT, KINSTA_UTILISATEUR (MyKinsta → le site → Infos → Accès SFTP/SSH)
@@ -47,12 +48,18 @@ jobs:
           rsync -rlz --delete -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
           rsync -rlz --delete -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
 
+      - name: Les extensions
+        run: |
+          $SSH "$QUI@$HOTE" 'cd public && set -e
+            for e in woocommerce woocommerce-gateway-stripe er-librairie; do
+              wp plugin is-installed "$e" || wp plugin install "$e"
+              wp plugin is-active "$e" || wp plugin activate "$e"
+            done'
+
       - name: Le premier passage
         if: inputs.installer
         run: |
           $SSH "$QUI@$HOTE" 'cd public && set -e
-            wp plugin is-installed woocommerce || wp plugin install woocommerce
-            wp plugin activate woocommerce er-librairie
             wp theme activate editeurs-reunis
             wp language core install fr_FR ru_RU en_GB
             wp site switch-language fr_FR

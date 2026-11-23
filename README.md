@@ -179,7 +179,9 @@ Après un changement de texte dans le thème ou l'extension : refaire les deux `
 
 Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui
 touche `theme/` ou `plugin/` met le thème et l'extension en ligne par SSH (`.github/workflows/kinsta.yml`), puis vide
-le cache. Le contenu (pages, livres, réglages) se modifie dans l'administration de WordPress, jamais par ce dépôt.
+le cache. Chaque passage installe et active aussi les extensions dont le site a besoin : WooCommerce, Stripe
+(WooCommerce Stripe Payment Gateway) et la nôtre ; une extension à ajouter au site s'ajoute dans le workflow. Le
+contenu (pages, livres, réglages) se modifie dans l'administration de WordPress, jamais par ce dépôt.
 
 Pour brancher le dépôt sur Kinsta, une fois :
 
