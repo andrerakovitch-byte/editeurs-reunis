@@ -236,6 +236,12 @@ def convertir(pages):
         if signature and signature not in personnes:
             personnes.append(signature)
         contenu = sans_signature(contenu, signature)
+        if signature:
+            # « Langue maternelle » par Georges Nivat : la signature est sous le titre, le titre n'a pas à la redire.
+            titre = re.sub(r',?\s+(?:par|de)\s+' + re.escape(signature) + r'(?:,[^()]*)?(?=\s*\(|$)', '', titre).strip()
+        texte = re.sub(r'<[^>]+>', ' ', contenu)
+        cyr, lat = len(re.findall('[а-яёА-ЯЁ]', texte)), len(re.findall('[a-zA-Zà-ÿÀ-Ÿ]', texte))
+        langues = ' '.join(l for l, n, m in (('fr', lat, cyr), ('ru', cyr, lat)) if n >= 400 and n >= 0.25 * m) or 'fr'
         sortie.append({
             'wix_slug': wix_slug, 'slug': wix_slug, 'titre': titre, 'date': date, 'signature': signature,
             'extrait': chapo(typo(html.unescape(ld.get('description') or meta.get('og:description') or '')), contenu,
@@ -246,6 +252,8 @@ def convertir(pages):
             'personnes': personnes, 'sujets': sujets,
             'livres': relues['livres'] if relues else [], 'mots': relues['mots'] if relues else [],
             'relu': bool(relues),
+            'genre': relues.get('genre', '') if relues else '',
+            'langues': langues,
         })
     sortie.sort(key=lambda a: a['date'], reverse=True)
     return sortie

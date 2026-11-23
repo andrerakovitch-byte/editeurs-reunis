@@ -25,52 +25,52 @@ msgid ""
 "livres."
 msgstr ""
 
-#: er-librairie.php:171
+#: er-librairie.php:175
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:185 er-librairie.php:191 inc/import.php:26
-#: inc/sujets.php:374
+#: er-librairie.php:189 er-librairie.php:195 inc/import.php:26
+#: inc/sujets.php:384
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:186
+#: er-librairie.php:190
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:187
+#: er-librairie.php:191
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:188
+#: er-librairie.php:192
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:189
+#: er-librairie.php:193
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:190
+#: er-librairie.php:194
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:207 er-librairie.php:212 inc/import.php:27
+#: er-librairie.php:211 er-librairie.php:216 inc/import.php:27
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:208 inc/evenements.php:122 inc/evenements.php:727
+#: er-librairie.php:212 inc/evenements.php:122 inc/evenements.php:727
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:209
+#: er-librairie.php:213
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:210
+#: er-librairie.php:214
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:211
+#: er-librairie.php:215
 msgid "Ajouter une langue"
 msgstr "Add language"
 
@@ -405,7 +405,8 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
-#: inc/journal.php:47 inc/medias.php:202 inc/sujets.php:404 inc/sujets.php:407
+#: inc/journal-une.php:276 inc/journal-une.php:526 inc/journal-une.php:608
+#: inc/journal.php:72 inc/medias.php:202 inc/sujets.php:414 inc/sujets.php:417
 msgid "j F Y"
 msgstr "j F Y"
 
@@ -417,7 +418,8 @@ msgstr "l j F Y"
 msgid "En français"
 msgstr "In French"
 
-#: inc/evenements.php:267 inc/evenements.php:468
+#: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:256
+#: inc/journal-une.php:367 inc/journal-une.php:599
 msgid "En russe"
 msgstr "In Russian"
 
@@ -572,12 +574,12 @@ msgstr "Watch and listen again"
 msgid "À voir, à écouter"
 msgstr "To watch, to listen to"
 
-#: inc/evenements.php:863 inc/sujets.php:486
+#: inc/evenements.php:863 inc/sujets.php:496
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
 #. translators: %s: le nom de la personne
-#: inc/evenements.php:865 inc/sujets.php:557
+#: inc/evenements.php:865 inc/journal.php:122 inc/sujets.php:567
 msgid "À la librairie"
 msgstr "At the bookshop"
 
@@ -598,7 +600,7 @@ msgid "Voir"
 msgstr "View"
 
 #: inc/evenements.php:994 inc/medias.php:127 inc/medias.php:198
-#: inc/sujets.php:403 inc/sujets.php:418
+#: inc/sujets.php:413 inc/sujets.php:428
 msgid "Vidéo"
 msgstr "Video"
 
@@ -685,12 +687,12 @@ msgctxt "fiche d’un livre"
 msgid "ISBN"
 msgstr "ISBN"
 
-#: inc/fiche.php:53
+#: inc/fiche.php:65
 msgctxt "fiche d’un livre"
 msgid "Autour de"
 msgstr "About"
 
-#: inc/fiche.php:54
+#: inc/fiche.php:66
 msgctxt "fiche d’un livre"
 msgid "Sujets"
 msgstr "Subjects"
@@ -707,10 +709,226 @@ msgstr "Labels"
 msgid "Slug"
 msgstr "Slug"
 
+#: inc/journal-une.php:23
+msgctxt "genre d’un article"
+msgid "Chronique"
+msgstr "Column"
+
+#: inc/journal-une.php:23
+msgctxt "genre d’un article"
+msgid "Chroniques"
+msgstr "Columns"
+
+#: inc/journal-une.php:24
+msgctxt "genre d’un article"
+msgid "Critique"
+msgstr "Review"
+
+#: inc/journal-une.php:24
+msgctxt "genre d’un article"
+msgid "Critiques"
+msgstr "Reviews"
+
+#: inc/journal-une.php:25
+msgctxt "genre d’un article"
+msgid "Essai"
+msgstr "Essay"
+
+#: inc/journal-une.php:25
+msgctxt "genre d’un article"
+msgid "Essais"
+msgstr "Essays"
+
+#: inc/journal-une.php:26
+msgctxt "genre d’un article"
+msgid "Récit"
+msgstr "Memoir"
+
+#: inc/journal-une.php:26
+msgctxt "genre d’un article"
+msgid "Récits"
+msgstr "Memoirs"
+
+#: inc/journal-une.php:27
+msgctxt "genre d’un article"
+msgid "Entretien"
+msgstr "Interview"
+
+#: inc/journal-une.php:27
+msgctxt "genre d’un article"
+msgid "Entretiens"
+msgstr "Interviews"
+
+#: inc/journal-une.php:28
+msgctxt "genre d’un article"
+msgid "Hommage"
+msgstr "Tribute"
+
+#: inc/journal-une.php:28
+msgctxt "genre d’un article"
+msgid "Hommages"
+msgstr "Tributes"
+
+#: inc/journal-une.php:29
+msgctxt "genre d’un article"
+msgid "Archive"
+msgstr "From the archive"
+
+#: inc/journal-une.php:29
+msgctxt "genre d’un article"
+msgid "Archives"
+msgstr "From the archive"
+
+#: inc/journal-une.php:30
+msgctxt "genre d’un article"
+msgid "Document"
+msgstr "Document"
+
+#: inc/journal-une.php:30
+msgctxt "genre d’un article"
+msgid "Documents"
+msgstr "Documents"
+
+#: inc/journal-une.php:42 inc/journal-une.php:48
+msgid "Genres"
+msgstr "Genres"
+
+#: inc/journal-une.php:43 inc/medias.php:126
+msgid "Genre"
+msgstr "Type"
+
+#: inc/journal-une.php:44
+msgid "Tous les genres"
+msgstr "All genres"
+
+#: inc/journal-une.php:45
+msgid "Modifier le genre"
+msgstr "Edit genre"
+
+#: inc/journal-une.php:46
+msgid "Ajouter un genre"
+msgstr "Add genre"
+
+#: inc/journal-une.php:47
+msgid "Aucun genre"
+msgstr "No genres"
+
+#. translators: %s: le nom de celui qui signe
 #. translators: %s: le nom de celui qui signe l'article
-#: inc/journal.php:55
+#: inc/journal-une.php:273 inc/journal.php:80
 msgid "Par %s"
 msgstr "By %s"
+
+#. translators: %d: des minutes
+#: inc/journal-une.php:280
+msgid "%d min de lecture"
+msgid_plural "%d min de lecture"
+msgstr[0] "%d min read"
+msgstr[1] "%d min read"
+
+#. translators: %d: des minutes
+#. translators: %d: la durée en minutes
+#: inc/journal-une.php:280 inc/medias.php:206
+msgid "%d min"
+msgstr "%d min"
+
+#: inc/journal-une.php:342 inc/journal-une.php:638
+msgid "Le journal du centre"
+msgstr "The Centre’s journal"
+
+#: inc/journal-une.php:348
+msgid "À la une"
+msgstr "Featured"
+
+#: inc/journal-une.php:383 inc/sujets.php:36
+msgid "Tous les sujets"
+msgstr "All subjects"
+
+#: inc/journal-une.php:388
+msgid ""
+"Chroniques, critiques, essais et archives : la littérature russe et son "
+"histoire, par ceux qui la lisent et la traduisent."
+msgstr ""
+"Columns, reviews, essays and archives: Russian literature and its history, "
+"by those who read and translate it."
+
+#: inc/journal-une.php:389
+msgid "Les genres du journal"
+msgstr "Journal sections"
+
+#: inc/journal-une.php:390
+msgid "Les sujets du journal"
+msgstr "Journal topics"
+
+#: inc/journal-une.php:390 inc/sujets.php:33 inc/sujets.php:42
+#: inc/sujets.php:385
+msgid "Sujets"
+msgstr "Subjects"
+
+#: inc/journal-une.php:443 inc/journal-une.php:614 inc/medias.php:231
+msgid "Rien pour l’instant."
+msgstr "Nothing here yet."
+
+#: inc/journal-une.php:461
+msgid "Le fil"
+msgstr "Latest"
+
+#: inc/journal-une.php:461
+msgid "Du plus récent au plus ancien"
+msgstr "Newest first"
+
+#: inc/journal-une.php:464
+msgctxt "date courte du fil"
+msgid "j M Y"
+msgstr "j M Y"
+
+#: inc/journal-une.php:468
+msgid "Tout le fil"
+msgstr "All pieces"
+
+#. translators: 1: le nombre de chroniques, 2: l'année de la première
+#: inc/journal-une.php:523
+msgid "%1$d chronique depuis %2$s"
+msgid_plural "%1$d chroniques depuis %2$s"
+msgstr[0] "%1$d column since %2$s"
+msgstr[1] "%1$d columns since %2$s"
+
+#: inc/journal-une.php:544
+msgid "Les chroniques"
+msgstr "Columns"
+
+#: inc/journal-une.php:547
+msgid "Toutes les chroniques"
+msgstr "All columns"
+
+#: inc/journal-une.php:554
+msgid "Grand format"
+msgstr "Long read"
+
+#. translators: %d: un nombre de textes
+#: inc/journal-une.php:577 inc/journal-une.php:605
+msgid "%d texte"
+msgid_plural "%d textes"
+msgstr[0] "%d piece"
+msgstr[1] "%d pieces"
+
+#: inc/journal-une.php:601
+msgid "Tous les textes"
+msgstr "All pieces"
+
+#: inc/journal-une.php:621
+msgctxt "pagination du journal"
+msgid "Plus récents"
+msgstr "Newer"
+
+#: inc/journal-une.php:622
+msgctxt "pagination du journal"
+msgid "Plus anciens"
+msgstr "Older"
+
+#: inc/journal-une.php:625
+msgid "Les pages du journal"
+msgstr "Journal pages"
 
 #: inc/medias.php:22 inc/medias.php:30
 msgid "Vidéos et podcasts"
@@ -776,11 +994,7 @@ msgstr ""
 "YouTube, Vimeo, SoundCloud, Spotify, an audio or video file; one link per "
 "line, the first is the main one. For a title: “Title | link”."
 
-#: inc/medias.php:126
-msgid "Genre"
-msgstr "Type"
-
-#: inc/medias.php:128 inc/medias.php:198 inc/sujets.php:403
+#: inc/medias.php:128 inc/medias.php:198 inc/sujets.php:413
 msgid "Podcast"
 msgstr "Podcast"
 
@@ -788,31 +1002,22 @@ msgstr "Podcast"
 msgid "Durée (minutes)"
 msgstr "Length (minutes)"
 
-#. translators: %d: la durée en minutes
-#: inc/medias.php:206
-msgid "%d min"
-msgstr "%d min"
-
-#: inc/medias.php:231
-msgid "Rien pour l’instant."
-msgstr "Nothing here yet."
-
 #: inc/medias.php:237 inc/medias.php:240
 msgid "Et aussi"
 msgstr "And also"
 
 #. translators: %d: le nombre de rencontres et d'articles
-#: inc/recherche.php:598
+#: inc/recherche.php:600
 msgid "Sujet · %d rencontre ou article"
 msgid_plural "Sujet · %d rencontres et articles"
 msgstr[0] "Subject · %d item"
 msgstr[1] "Subject · %d items"
 
-#: inc/recherche.php:985 inc/recherche.php:993
+#: inc/recherche.php:987 inc/recherche.php:995
 msgid "Autres graphies"
 msgstr "Other spellings"
 
-#: inc/recherche.php:987 inc/recherche.php:995
+#: inc/recherche.php:989 inc/recherche.php:997
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -820,33 +1025,29 @@ msgstr ""
 "One per line: the name in Russian, in English, an older transliteration. The"
 " search finds them all."
 
-#: inc/recherche.php:1015
+#: inc/recherche.php:1017
 msgid "Traducteur, préfacier"
 msgstr "Translator, preface writer"
 
-#: inc/recherche.php:1016
+#: inc/recherche.php:1018
 msgid "Éditeur"
 msgstr "Publisher"
 
-#: inc/recherche.php:1017
+#: inc/recherche.php:1019
 msgid "Collection"
 msgstr "Series"
 
-#: inc/recherche.php:1018
+#: inc/recherche.php:1020
 msgid "Année d’édition"
 msgstr "Year of publication"
 
-#: inc/recherche.php:1019
+#: inc/recherche.php:1021
 msgid "Nombre de pages"
 msgstr "Number of pages"
 
-#: inc/recherche.php:1020
+#: inc/recherche.php:1022
 msgid "Format (poche, broché, relié…)"
 msgstr "Format (paperback, hardback…)"
-
-#: inc/sujets.php:33 inc/sujets.php:42 inc/sujets.php:375
-msgid "Sujets"
-msgstr "Subjects"
 
 #: inc/sujets.php:34
 msgid "Sujet"
@@ -855,10 +1056,6 @@ msgstr "Subject"
 #: inc/sujets.php:35
 msgid "Chercher un sujet"
 msgstr "Search subjects"
-
-#: inc/sujets.php:36
-msgid "Tous les sujets"
-msgstr "All subjects"
 
 #: inc/sujets.php:37
 msgid "Modifier le sujet"
@@ -899,47 +1096,47 @@ msgstr ""
 "The people the book is about, separated by commas: authors (a new name "
 "becomes an author). The book appears on their page, under “About”."
 
-#: inc/sujets.php:400
+#: inc/sujets.php:410
 msgid "Rencontre"
 msgstr "Event"
 
-#: inc/sujets.php:406
+#: inc/sujets.php:416
 msgid "Journal"
 msgstr "Journal"
 
-#: inc/sujets.php:471
+#: inc/sujets.php:481
 msgid "À lire, à revoir"
 msgstr "Read and watch more"
 
-#: inc/sujets.php:553
+#: inc/sujets.php:563
 msgid "Prochainement au centre"
 msgstr "Coming up at the centre"
 
 #. translators: %s: le nom de la personne
-#: inc/sujets.php:557
+#: inc/sujets.php:567
 msgid "Autour de %s"
 msgstr "About %s"
 
-#: inc/sujets.php:561
+#: inc/sujets.php:571
 msgid "Les rencontres"
 msgstr "Events"
 
-#: inc/sujets.php:561
+#: inc/sujets.php:571
 msgid "Au centre"
 msgstr "At the centre"
 
-#: inc/sujets.php:564
+#: inc/sujets.php:574
 msgid "Écouter, regarder"
 msgstr "Listen and watch"
 
-#: inc/sujets.php:567
+#: inc/sujets.php:577
 msgid "Dans le journal"
 msgstr "In the journal"
 
-#: inc/sujets.php:574
+#: inc/sujets.php:584
 msgid "À lire sur le site"
 msgstr "Read on the site"
 
-#: inc/sujets.php:577
+#: inc/sujets.php:587
 msgid "Rien encore sur ce sujet."
 msgstr "Nothing on this subject yet."

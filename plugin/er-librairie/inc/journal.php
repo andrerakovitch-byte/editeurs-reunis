@@ -307,6 +307,19 @@ function er_journal_importer_un( $a, $auteurs, $images = true ) {
 		}
 		wp_set_object_terms( $id, (int) $t['term_id'], 'er_sujet', true );
 	}
+	// Le genre (chronique, critique…), le sujet principal (le premier relu) et les langues du texte : la mise en page du journal.
+	if ( ! empty( $a['genre'] ) && function_exists( 'er_genres_installer' ) ) {
+		if ( ! term_exists( $a['genre'], 'er_genre' ) ) {
+			er_genres_installer();
+		}
+		wp_set_object_terms( $id, $a['genre'], 'er_genre' );
+	}
+	if ( $a['sujets'] ) {
+		update_post_meta( $id, 'er_sujet_principal', $a['sujets'][0] );
+	}
+	if ( ! empty( $a['langues'] ) ) {
+		update_post_meta( $id, 'er_langues', $a['langues'] );
+	}
 	if ( ! empty( $a['relu'] ) ) {
 		update_post_meta( $id, 'er_etiquettes_relues', 1 ); // Les étiquettes relues à la main font foi : rien n'est deviné en plus.
 	}

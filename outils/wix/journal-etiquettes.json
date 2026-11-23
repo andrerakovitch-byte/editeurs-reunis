@@ -18,7 +18,8 @@
    "Marioupol",
    "Donbass",
    "guerre en Ukraine"
-  ]
+  ],
+  "genre": "critique"
  },
  "наталия-роскина-четыре-главы-ymca-press-1980-ирина-роскина-мимоходом-virgola-2026": {
   "titre": "Наталия Роскина, « Четыре главы » (YMCA-PRESS, 1980) ; Ирина Роскина, « Мимоходом » (Virgola, 2026)",
@@ -45,7 +46,8 @@
    "Akhmatova",
    "Zabolotski",
    "Virgola"
-  ]
+  ],
+  "genre": "critique"
  },
  "pour-le-10e-anniversaire-du-décès-de-nikita-struve-éditeur-slavisant-professeur": {
   "signature": "",
@@ -70,7 +72,8 @@
    "éditeur",
    "slaviste",
    "anniversaire"
-  ]
+  ],
+  "genre": "hommage"
  },
  "anne-marie-pelletier-résister-avec-vassily-grossman": {
   "signature": "Yves Hamant",
@@ -92,7 +95,8 @@
    "Résister avec Vassili Grossman",
    "totalitarisme",
    "Karl Jaspers"
-  ]
+  ],
+  "genre": "critique"
  },
  "ignat-soljénitsyne-discours-pour-l-inauguration-de-la-plaque-commémorant-la-publication-le-28-déc": {
   "signature": "Ignat Soljénitsyne",
@@ -116,7 +120,8 @@
    "mairie de Paris",
    "discours"
   ],
-  "chapo": "Le discours d’Ignat Soljénitsyne, au nom de la famille, lors de l’inauguration de la plaque qui rappelle la publication de L’Archipel du Goulag par YMCA-Press, le 28 décembre 1973."
+  "chapo": "Le discours d’Ignat Soljénitsyne, au nom de la famille, lors de l’inauguration de la plaque qui rappelle la publication de L’Archipel du Goulag par YMCA-Press, le 28 décembre 1973.",
+  "genre": "document"
  },
  "hommage-à-alexandre-soljénitsyne": {
   "signature": "Laurence Patrice",
@@ -138,7 +143,8 @@
    "mairie de Paris",
    "discours",
    "hommage"
-  ]
+  ],
+  "genre": "hommage"
  },
  "quand-un-chardonneret-s-échappe-dans-le-métro": {
   "signature": "Georges Nivat",
@@ -157,7 +163,8 @@
    "chardonneret",
    "métro de Londres",
    "Poems on the Underground"
-  ]
+  ],
+  "genre": "chronique"
  },
  "avec-geneviève-johannet-disparaît-un-extraordinaire-observatoire-de-la-russie": {
   "signature": "Georges Nivat",
@@ -177,7 +184,8 @@
    "La Roue rouge",
    "L’Archipel du Goulag",
    "José Johannet"
-  ]
+  ],
+  "genre": "hommage"
  },
  "archipel-du-goulag-50-ans-soljenitsyne": {
   "signature": "Nikita Struve",
@@ -201,7 +209,8 @@
    "publication",
    "1973",
    "YMCA-Press"
-  ]
+  ],
+  "genre": "archive"
  },
  "boris-akounine-archipel-du-goulag-soljenitsyne": {
   "signature": "",
@@ -224,7 +233,8 @@
    "empire",
    "censure",
    "témoignage"
-  ]
+  ],
+  "genre": "entretien"
  },
  "du-jardin-secret-des-lykov-vieux-croyants-de-sibérie": {
   "signature": "Dominique Samson Normand de Chambourg",
@@ -250,7 +260,9 @@
    "Nikon",
    "старообрядчество",
    "Paysages russes au temps de Tolstoï"
-  ]
+  ],
+  "genre": "essai",
+  "chapo": "En 1978, des géologues survolent les monts Saïan et aperçoivent un jardin au milieu de la taïga : celui d’une famille de vieux-croyants coupée du monde depuis 1929."
  },
  "à-la-recherche-de-notre-patrimoine-historique": {
   "signature": "Natalia Pashkeeva",
@@ -274,7 +286,8 @@
    "patrimoine",
    "projet archives"
   ],
-  "chapo": "Le projet « archives » du Centre Soljenitsyne se réalise : Natalia Pashkeeva présente le fonds documentaire d’YMCA-Press, ses manuscrits et sa correspondance."
+  "chapo": "Le projet « archives » du Centre Soljenitsyne se réalise : Natalia Pashkeeva présente le fonds documentaire d’YMCA-Press, ses manuscrits et sa correspondance.",
+  "genre": "essai"
  },
  "publier-le-faire-le-dire": {
   "signature": "Margarita Sokolova",
@@ -297,7 +310,8 @@
    "féminisme",
    "manuscrits"
   ],
-  "chapo": "Margarita Sokolova retrace l’histoire de la publication du texte intégral du Journal de Marie Bashkirtseff, longtemps remanié par d’autres mains que celles de son autrice."
+  "chapo": "Margarita Sokolova retrace l’histoire de la publication du texte intégral du Journal de Marie Bashkirtseff, longtemps remanié par d’autres mains que celles de son autrice.",
+  "genre": "essai"
  },
  "la-traductrice-laure-troubetzkoy-parle-du-recueil-la-fuite-pièces-et-nouvelles-de-mikhaïl-boulgakov": {
   "signature": "",
@@ -319,7 +333,8 @@
    "entretien",
    "traductrice",
    "YMCA-Press"
-  ]
+  ],
+  "genre": "entretien"
  },
  "a-propos-de-l-attribution-du-prix-nobel-2022-à-ales-bialiatski-à-memorial-et-au-clc": {
   "signature": "",
@@ -338,7 +353,8 @@
    "Centre pour les libertés civiles",
    "Biélorussie",
    "droits de l’homme"
-  ]
+  ],
+  "genre": "document"
  },
  "35-années-plus-tard": {
   "signature": "Nikita Struve",
@@ -362,7 +378,8 @@
    "ACER",
    "Vestnik",
    "Kartachev"
-  ]
+  ],
+  "genre": "archive"
  },
  "pavel-florensky-par-le-père-alexandre-men": {
   "signature": "Alexandre Men",
@@ -386,7 +403,8 @@
    "prêtre",
    "Solovki",
    "Goulag"
-  ]
+  ],
+  "genre": "archive"
  },
  "dostoïevski-et-la-logique-est-ce-compatible": {
   "signature": "Daria Kriazhova",
@@ -405,7 +423,8 @@
    "Dostoïevski et la logique",
    "logique",
    "critique"
-  ]
+  ],
+  "genre": "critique"
  },
  "lénine-a-marché-sur-la-lune-la-folle-histoire-des-cosmistes-russes-de-michel-eltchaninoff": {
   "signature": "Valentine Meyer",
@@ -428,7 +447,8 @@
    "Lénine",
    "immortalité",
    "Troisième Rome"
-  ]
+  ],
+  "genre": "critique"
  },
  "à-propos-de-l-invasion-de-l-ukraine-par-la-fédération-de-russie": {
   "signature": "",
@@ -445,7 +465,8 @@
    "guerre",
    "communiqué",
    "2022"
-  ]
+  ],
+  "genre": "document"
  },
  "boulgakov-et-monsieur-de-molière": {
   "signature": "Valentine Meyer",
@@ -466,7 +487,8 @@
    "Le Roman de monsieur de Molière",
    "biographie",
    "quatre-centième anniversaire"
-  ]
+  ],
+  "genre": "critique"
  },
  "à-propos-de-la-dissolution-de-l-association-memorial-en-russie": {
   "signature": "",
@@ -483,7 +505,8 @@
    "répressions",
    "mémoire",
    "droits de l’homme"
-  ]
+  ],
+  "genre": "document"
  },
  "hommage-aux-derniers-regards-de-madeleine-melot": {
   "signature": "Marguerite Léna",
@@ -503,7 +526,8 @@
    "peinture",
    "communisme",
    "mémoire"
-  ]
+  ],
+  "genre": "critique"
  },
  "billet-n-16-holderlin": {
   "signature": "Georges Nivat",
@@ -524,7 +548,8 @@
    "Kolyma",
    "romantisme allemand"
   ],
-  "chapo": "Georges Nivat revient sur Empédocle, la tragédie de Hölderlin que Lounatcharski fit traduire et publier dans la Russie bolchevique, et sur le sort de son traducteur."
+  "chapo": "Georges Nivat revient sur Empédocle, la tragédie de Hölderlin que Lounatcharski fit traduire et publier dans la Russie bolchevique, et sur le sort de son traducteur.",
+  "genre": "chronique"
  },
  "souvenirs-presentation-colloque-soljenitsyne-france": {
   "signature": "Anne Hogenhuis",
@@ -547,7 +572,8 @@
    "actes",
    "Fayard",
    "soirée"
-  ]
+  ],
+  "genre": "chronique"
  },
  "prose-et-poésie-ivan-bounine": {
   "signature": "François de Saint-Chéron",
@@ -566,7 +592,8 @@
    "recueil",
    "YMCA-Press",
    "prix Nobel"
-  ]
+  ],
+  "genre": "critique"
  },
  "billet-n-15-à-propos-d-heidegger-de-georges-nivat": {
   "signature": "Georges Nivat",
@@ -584,7 +611,8 @@
    "Cahiers noirs",
    "pacte germano-soviétique",
    "philosophie allemande"
-  ]
+  ],
+  "genre": "chronique"
  },
  "rives-volga-rivages-mer-jaune": {
   "signature": "Véronique Jobert",
@@ -602,7 +630,8 @@
    "Chine",
    "souvenirs",
    "mémoires familiaux"
-  ]
+  ],
+  "genre": "recit"
  },
  "les-secrets-de-la-maison-igoumnov-episode-4-l-installation": {
   "signature": "Yves Hamant",
@@ -617,7 +646,8 @@
    "Moscou",
    "résidence de l’ambassadeur",
    "Robert Coulondre"
-  ]
+  ],
+  "genre": "chronique"
  },
  "sacrement-foi-vie": {
   "signature": "Nikolaï Tikhonchuk",
@@ -634,7 +664,8 @@
    "homélie",
    "Covid",
    "hôpital"
-  ]
+  ],
+  "genre": "recit"
  },
  "rencontres-avec-akhmatova": {
   "signature": "Anne Misslin",
@@ -657,7 +688,8 @@
    "Sorbonne",
    "étudiants",
    "rencontre"
-  ]
+  ],
+  "genre": "recit"
  },
  "nicolas-kichilov": {
   "signature": "Anita Davidenkoff",
@@ -677,7 +709,8 @@
    "photographies",
    "Sorbonne",
    "in memoriam"
-  ]
+  ],
+  "genre": "recit"
  },
  "vers-angeliques-nabokov": {
   "signature": "Georges Nivat",
@@ -693,7 +726,8 @@
    "Vers angéliques",
    "anges gardiens",
    "Fra Angelico"
-  ]
+  ],
+  "genre": "chronique"
  },
  "ambiguites-fr-face-dissidence-2-2": {
   "signature": "Cécile Vaissié",
@@ -715,7 +749,8 @@
    "Le Nouvel Observateur",
    "Le Monde",
    "intellectuels français"
-  ]
+  ],
+  "genre": "chronique"
  },
  "ambiguites-face-dissidence-soviétique-1": {
   "signature": "Cécile Vaissié",
@@ -739,7 +774,8 @@
    "Le Nouvel Observateur",
    "Le Monde",
    "intellectuels français"
-  ]
+  ],
+  "genre": "chronique"
  },
  "maison-igoumnov-collectivisme-sang": {
   "signature": "Yves Hamant",
@@ -755,7 +791,8 @@
    "collectivisme du sang",
    "transfusion",
    "1926"
-  ]
+  ],
+  "genre": "chronique"
  },
  "la-nuit-alexandre-blok": {
   "signature": "Georges Nivat",
@@ -776,7 +813,8 @@
    "réverbère",
    "pharmacie"
   ],
-  "chapo": "Georges Nivat lit un poème de « Danse macabre » (1912), exemple du lyrisme presque absolu d’Alexandre Blok."
+  "chapo": "Georges Nivat lit un poème de « Danse macabre » (1912), exemple du lyrisme presque absolu d’Alexandre Blok.",
+  "genre": "chronique"
  },
  "goulag-ludmila-2": {
   "signature": "Anne Hogenhuis",
@@ -794,7 +832,8 @@
    "Kazakhstan",
    "mère de famille",
    "dix ans de goulag"
-  ]
+  ],
+  "genre": "chronique"
  },
  "dix-ans-goulag-ludmila-1": {
   "signature": "Anne Hogenhuis",
@@ -812,7 +851,8 @@
    "Kazakhstan",
    "mère de famille",
    "dix ans de goulag"
-  ]
+  ],
+  "genre": "chronique"
  },
  "le-journal-de-la-roue-rouge-par-françoise-lesourd": {
   "signature": "Françoise Lesourd",
@@ -834,7 +874,8 @@
    "écriture",
    "révolution de 1917"
   ],
-  "chapo": "Françoise Lesourd, traductrice du Journal de La Roue rouge d’Alexandre Soljénitsyne (Fayard, 2018), revient sur cette chronique de l’écriture d’une œuvre colossale."
+  "chapo": "Françoise Lesourd, traductrice du Journal de La Roue rouge d’Alexandre Soljénitsyne (Fayard, 2018), revient sur cette chronique de l’écriture d’une œuvre colossale.",
+  "genre": "essai"
  },
  "mandelstam-voronej": {
   "signature": "Georges Nivat",
@@ -854,7 +895,8 @@
    "exil",
    "Cahiers de Voronej",
    "1937"
-  ]
+  ],
+  "genre": "chronique"
  },
  "secrets-maison-igoumnov-2-cerveau-lénine": {
   "signature": "Yves Hamant",
@@ -872,7 +914,8 @@
    "Moscou",
    "cerveau de Lénine",
    "institut du cerveau"
-  ]
+  ],
+  "genre": "chronique"
  },
  "secrets-maison-igoumnov-1-femme-emmurée": {
   "signature": "Yves Hamant",
@@ -887,7 +930,8 @@
    "Moscou",
    "femme emmurée",
    "légende"
-  ]
+  ],
+  "genre": "chronique"
  },
  "justes-de-camus": {
   "signature": "Yves Hamant",
@@ -908,7 +952,8 @@
    "socialistes-révolutionnaires",
    "Organisation de combat",
    "Natalia Klimova"
-  ]
+  ],
+  "genre": "chronique"
  },
  "quasi-una-fantasia": {
   "signature": "Georges Nivat",
@@ -927,7 +972,8 @@
    "sonate au clair de lune",
    "Quasi una fantasia",
    "gentilhommières"
-  ]
+  ],
+  "genre": "chronique"
  },
  "30-anniversaire-assassinat-père-men": {
   "signature": "Yves Hamant",
@@ -943,7 +989,8 @@
    "1990",
    "prêtre",
    "semi-clandestinité"
-  ]
+  ],
+  "genre": "chronique"
  },
  "brodski-moscou": {
   "signature": "Georges Nivat",
@@ -962,7 +1009,8 @@
    "procès",
    "Kontinent"
   ],
-  "chapo": "En décembre 1969, Joseph Brodski écrit « La fin d’une belle époque », un poème sibyllin publié à Paris dans la revue Kontinent en 1974. Georges Nivat raconte comment il est entré au prétoire, à Moscou."
+  "chapo": "En décembre 1969, Joseph Brodski écrit « La fin d’une belle époque », un poème sibyllin publié à Paris dans la revue Kontinent en 1974. Georges Nivat raconte comment il est entré au prétoire, à Moscou.",
+  "genre": "chronique"
  },
  "poesie-de-brodski": {
   "signature": "Georges Nivat",
@@ -983,7 +1031,8 @@
    "San Michele",
    "exil",
    "prix Nobel"
-  ]
+  ],
+  "genre": "chronique"
  },
  "paques-en-urss": {
   "signature": "Yves Hamant",
@@ -999,7 +1048,8 @@
    "1974",
    "ambassade de France",
    "églises"
-  ]
+  ],
+  "genre": "chronique"
  },
  "joie-dostoïevski": {
   "signature": "Georges Nivat",
@@ -1019,7 +1069,8 @@
    "Le Double",
    "Hymne à la joie",
    "anéantissement"
-  ]
+  ],
+  "genre": "chronique"
  },
  "anniversaire-brodsky": {
   "signature": "Anne Hogenhuis",
@@ -1035,7 +1086,8 @@
    "Amsterdam",
    "souvenirs",
    "80e anniversaire"
-  ]
+  ],
+  "genre": "chronique"
  },
  "jivago-talisman-vie": {
   "signature": "Georges Nivat",
@@ -1054,7 +1106,8 @@
    "Docteur Jivago",
    "psaume",
    "talisman"
-  ]
+  ],
+  "genre": "chronique"
  },
  "soixante-ans-pasternak": {
   "signature": "Georges Nivat",
@@ -1076,7 +1129,8 @@
    "2 juin 1960",
    "mort de Pasternak",
    "anniversaire"
-  ]
+  ],
+  "genre": "chronique"
  },
  "cromwell-lenine": {
   "signature": "Georges Nivat",
@@ -1097,7 +1151,8 @@
    "violence",
    "homme nouveau",
    "révolution"
-  ]
+  ],
+  "genre": "chronique"
  },
  "poetes-puritains-apocalypse-et-pouchkine": {
   "signature": "Georges Nivat",
@@ -1116,7 +1171,8 @@
    "puritains anglais",
    "The Pilgrim’s Progress",
    "Cromwell"
-  ]
+  ],
+  "genre": "chronique"
  },
  "fellowship": {
   "signature": "Anne Hogenhuis",
@@ -1137,7 +1193,8 @@
    "Angleterre",
    "ACER",
    "souvenirs"
-  ]
+  ],
+  "genre": "chronique"
  },
  "ideologiser-soljenitsyne": {
   "signature": "Yves Hamant",
@@ -1156,7 +1213,8 @@
    "Le Monde",
    "L’Archipel du Goulag",
    "tribune"
-  ]
+  ],
+  "genre": "chronique"
  },
  "ton-nom-rouss": {
   "signature": "Georges Nivat",
@@ -1173,7 +1231,8 @@
    "Novgorod",
    "Byzance",
    "étymologie"
-  ]
+  ],
+  "genre": "chronique"
  },
  "dialogue-avec-georges-nivat-à-l-occasion-de-son-85ème-anniversaire": {
   "signature": "",
@@ -1190,7 +1249,8 @@
    "slaviste",
    "Université de Genève",
    "rencontre"
-  ]
+  ],
+  "genre": "entretien"
  },
  "musique-nuit-gueorgui-ivanov": {
   "signature": "Georges Nivat",
@@ -1208,7 +1268,8 @@
    "Embarquement pour Cythère",
    "Lettres philosophiques",
    "Baudelaire"
-  ]
+  ],
+  "genre": "chronique"
  },
  "visite-a-nikita-struve": {
   "signature": "Svetlana Nosova",
@@ -1226,7 +1287,8 @@
    "Vestnik",
    "souvenirs",
    "visite"
-  ]
+  ],
+  "genre": "recit"
  },
  "ma-première-pâque-russe": {
   "signature": "Yves Hamant",
@@ -1242,7 +1304,8 @@
    "Léningrad",
    "étudiants",
    "URSS"
-  ]
+  ],
+  "genre": "chronique"
  },
  "langue-maternelle": {
   "signature": "Georges Nivat",
@@ -1257,7 +1320,8 @@
   "mots": [
    "langue maternelle",
    "exil"
-  ]
+  ],
+  "genre": "chronique"
  },
  "yeschoua-boulgakov": {
   "signature": "Yves Hamant",
@@ -1279,7 +1343,8 @@
    "Passion",
    "Pâques",
    "Cœur de chien"
-  ]
+  ],
+  "genre": "chronique"
  },
  "la-guerre-silencieuse-contre-le-virus-me-rappelle-une-romance-de-boulat-okoudjava": {
   "signature": "Georges Nivat",
@@ -1298,7 +1363,8 @@
    "chanson",
    "Covid",
    "confinement"
-  ]
+  ],
+  "genre": "chronique"
  },
  "nouveauté-anthologie-de-la-poésie-russe-du-début-du-xxie-siècle": {
   "signature": "",
@@ -1317,7 +1383,8 @@
    "XXIe siècle",
    "YMCA-Press",
    "nouveauté"
-  ]
+  ],
+  "genre": "document"
  },
  "mai-2019-chroniques-cannoises": {
   "signature": "",
@@ -1339,6 +1406,7 @@
    "critiques de cinéma",
    "entretiens",
    "YMCA-Press"
-  ]
+  ],
+  "genre": "document"
  }
 }

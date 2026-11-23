@@ -13,6 +13,7 @@
 		<taxonomy translate="1">er_cycle</taxonomy>
 		<taxonomy translate="1">er_intervenant</taxonomy>
 		<taxonomy translate="1">er_sujet</taxonomy>
+		<taxonomy translate="1">er_genre</taxonomy>
 		<taxonomy translate="1">auteur</taxonomy>
 		<taxonomy translate="1">langue</taxonomy>
 	</taxonomies>

@@ -30,6 +30,7 @@ require __DIR__ . '/inc/medias.php';
 require __DIR__ . '/inc/sujets.php';
 require __DIR__ . '/inc/auteurs.php';
 require __DIR__ . '/inc/journal.php';
+require __DIR__ . '/inc/journal-une.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *

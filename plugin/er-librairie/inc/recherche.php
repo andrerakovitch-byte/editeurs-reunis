@@ -235,7 +235,7 @@ function er_index_contenu( $id ) {
 		$maison = 'centre';
 		// Un article : ses mots-clés et sa signature comptent aussi.
 		$cle .= ' ' . get_post_meta( $id, 'er_mots', true ) . ' ' . get_post_meta( $id, 'er_signature', true );
-		foreach ( array( 'auteur', 'er_sujet' ) as $taxonomie ) {
+		foreach ( array( 'auteur', 'er_sujet', 'er_genre' ) as $taxonomie ) {
 			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
 			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
 		}
@@ -347,7 +347,7 @@ add_action(
 add_action(
 	'set_object_terms',
 	function ( $id, $termes, $tt_ids, $taxonomie ) {
-		if ( in_array( $taxonomie, array( 'auteur', 'er_sujet', 'er_intervenant', 'er_cycle' ), true ) ) {
+		if ( in_array( $taxonomie, array( 'auteur', 'er_sujet', 'er_intervenant', 'er_cycle', 'er_genre' ), true ) ) {
 			er_index_contenu( $id );
 		}
 	},

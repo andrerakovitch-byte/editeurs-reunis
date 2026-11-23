@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.7.0
+Version: 0.8.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -2618,4 +2618,144 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-auteur-avec-portrait { grid-template-columns: minmax(0, 1fr); }
 	.er-auteur-portrait { max-width: 16rem; }
 	.er-auteur-photos ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --------------------------------------------------------------------------
+   Le journal du centre, comme un journal en ligne (la piste D) : l'en-tête du journal (le titre, les genres en
+   pilules, les sujets en mots), la une (8 | 4 : le texte choisi, deux autres, le fil), les chroniques et le grand
+   format sur le fond doux, trois sujets en tiers ; filtré, la liste des textes. Les mesures sont celles du système
+   (« Les Éditeurs réunis — le système ») : douze colonnes, 32 px de gouttière, l'échelle 56, 40, 28, 20.
+   -------------------------------------------------------------------------- */
+
+.er-journal > section { margin-block: 0; }
+.er-j-g { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; width: var(--er-contenu); margin-inline: auto; }
+.er-j-plein { grid-column: 1 / -1; }
+.er-j-module { padding-block: 96px; }
+.er-j-doux { background: var(--wp--preset--color--doux); }
+.er-j-g a { color: inherit; text-decoration: none; }
+
+/* L'en-tête du journal */
+.er-j-tete { padding-block: 96px 32px; }
+.er-j-tete .er-j-g { row-gap: 32px; align-items: end; }
+.er-j-titre { grid-column: 1 / span 7; margin: 0; font-size: 3.5rem; line-height: 1.04; font-weight: 600; letter-spacing: -0.025em; }
+.er-j-chapo { grid-column: 8 / span 5; margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-j-genres { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; }
+.er-j-g .er-j-pilule { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border: 1px solid currentColor; border-radius: 999px; font-size: 0.875rem; font-weight: 600; white-space: nowrap; transition: background var(--er-transition), color var(--er-transition); }
+.er-j-g .er-j-pilule:hover, .er-j-g .er-j-pilule.est-actif { background: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-j-sujets { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; padding-block: 14px; border-block: 1px solid var(--wp--preset--color--filet); }
+.er-j-sujets a, .er-j-autres summary { font-size: 0.875rem; font-weight: 600; }
+.er-j-sujets a:hover, .er-j-sujets a.est-actif { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+.er-j-sujets-titre, .er-j-sur { font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-j-autres summary { cursor: pointer; list-style: none; text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+.er-j-autres summary::-webkit-details-marker { display: none; }
+.er-j-autres[open] { flex-basis: 100%; }
+.er-j-autres > div { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+
+/* Les morceaux d'un texte : surtitre, titres, chapô, ligne d'auteur, image */
+.er-j-sur { margin: 0; }
+.er-j-sur .er-j-genre { color: var(--wp--preset--color--contrast); }
+.er-j-t-module { margin: 0; font-size: 2.5rem; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }
+.er-j-t-bloc { margin: 0; font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -0.005em; }
+.er-j-t-fil { display: block; font-size: 1rem; line-height: 1.35; font-weight: 600; }
+.er-j-chapo-texte { display: block; margin: 0; font-size: 1.1875rem; line-height: 1.42; font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-j-auteur { display: block; margin: 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+.er-j-nom { color: var(--wp--preset--color--contrast); font-weight: 600; }
+.er-j-image { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--wp--preset--color--pierre); }
+.er-j-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.er-j-attente { display: block; width: 100%; height: 100%; }
+.er-j-histoire { display: flex; flex-direction: column; gap: 12px; }
+.er-j-histoire:hover .er-j-t-module, .er-j-histoire:hover .er-j-t-bloc, .er-j-histoire:hover .er-j-t-fil,
+.er-j-fil a:hover .er-j-t-fil, .er-j-sujet li a:hover .er-j-t-fil, .er-j-ligne:hover .er-j-t-bloc { color: var(--wp--preset--color--accent-texte); }
+.er-j-trois { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.er-j-titre-sec { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-bottom: 16px; border-bottom: 1px solid var(--wp--preset--color--contrast); }
+.er-j-titre-sec h1, .er-j-titre-sec h2 { margin: 0; font-size: 1.75rem; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; }
+.er-j-titre-sec > span { font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-j-g .er-j-sortie { display: inline-block; margin-top: 16px; font-size: 0.875rem; font-weight: 600; text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
+
+/* La une : le texte choisi sur huit colonnes, deux autres dessous ; le fil sur quatre */
+.er-j-une { padding-top: 16px; }
+.er-j-une .er-j-g { row-gap: 48px; }
+.er-j-une-gauche { grid-column: 1 / span 8; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.er-j-principale { grid-column: 1 / -1; }
+.er-j-principale .er-j-image { aspect-ratio: 16 / 9; margin-bottom: 8px; }
+.er-j-seconde { padding-top: 24px; border-top: 1px solid var(--wp--preset--color--filet); }
+.er-j-fil { grid-column: 9 / span 4; display: flex; flex-direction: column; align-items: flex-start; }
+.er-j-fil .er-j-titre-sec { align-self: stretch; }
+.er-j-fil ul { list-style: none; margin: 0; padding: 0; align-self: stretch; }
+.er-j-fil li a { display: grid; grid-template-columns: 72px minmax(0, 1fr); column-gap: 16px; padding-block: 16px; border-top: 1px solid var(--wp--preset--color--filet); }
+.er-j-fil li:first-child a { border-top: 0; }
+.er-j-fil-date { padding-top: 2px; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-j-fil-texte { display: flex; flex-direction: column; gap: 6px; }
+
+/* Les chroniques et le grand format */
+.er-j-chroniques { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.er-j-chroniqueur { display: flex; flex-direction: column; gap: 12px; }
+.er-j-qui { display: flex; align-items: center; gap: 12px; }
+.er-j-portrait { flex: none; width: 64px; height: 64px; overflow: hidden; background: var(--wp--preset--color--pierre); }
+.er-j-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.er-j-initiales { display: block; padding: 8px 10px; font-size: 1.125rem; font-weight: 600; color: var(--wp--preset--color--encre-2); }
+.er-j-qui-nom { display: block; font-size: 0.875rem; font-weight: 600; }
+.er-j-qui-compte { display: block; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-j-chroniqueur .er-j-t-bloc { font-size: 1.125rem; }
+.er-j-grand { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; row-gap: 24px; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-j-grand-texte { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 16px; }
+.er-j-grand .er-j-image { grid-column: 6 / span 7; }
+
+/* Trois sujets, en tiers */
+.er-j-par-sujet .er-j-g { row-gap: 48px; }
+.er-j-sujet { grid-column: span 4; display: flex; flex-direction: column; gap: 16px; }
+.er-j-sujet > .er-j-histoire { padding-top: 8px; }
+.er-j-sujet ul { list-style: none; margin: 8px 0 0; padding: 0; }
+.er-j-sujet li a { display: flex; flex-direction: column; gap: 4px; padding-block: 16px; border-top: 1px solid var(--wp--preset--color--filet); }
+
+/* La liste : la date, le texte, l'image */
+.er-j-liste { padding-top: 48px; }
+.er-j-liste ul { list-style: none; margin: 0; padding: 0; }
+.er-j-ligne { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 32px; padding-block: 24px; border-top: 1px solid var(--wp--preset--color--filet); }
+.er-j-liste li:first-child .er-j-ligne { border-top: 0; }
+.er-j-ligne-date { grid-column: 1 / span 2; padding-top: 2px; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-j-ligne-texte { grid-column: 3 / span 7; display: flex; flex-direction: column; gap: 8px; }
+.er-j-ligne-chapo { display: block; font-size: 0.875rem; line-height: 1.55; color: var(--wp--preset--color--encre-2); }
+.er-j-ligne .er-j-image { grid-column: 10 / span 3; align-self: start; }
+.er-j-pages { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.875rem; font-weight: 600; }
+.er-j-pages .current { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+
+/* Le surtitre d'un article : « Le journal du centre · Critique » */
+.er-j-surtitre a { color: inherit; }
+.er-j-surtitre a:hover { text-decoration: underline; }
+
+@media (max-width: 1099px) {
+	.er-j-g { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 24px; }
+	.er-j-g > * { grid-column: 1 / -1; }
+	.er-j-module { padding-block: 72px; }
+	.er-j-une { padding-top: 16px; }
+	.er-j-tete { padding-top: 72px; }
+	.er-j-titre { font-size: 2.875rem; }
+	.er-j-chapo, .er-j-chapo-texte { font-size: 1.125rem; }
+	.er-j-t-module { font-size: 2.125rem; }
+	.er-j-titre-sec h1, .er-j-titre-sec h2 { font-size: 1.5rem; }
+	.er-j-t-bloc { font-size: 1.1875rem; }
+	.er-j-chroniques { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+	.er-j-grand { grid-template-columns: minmax(0, 1fr); }
+	.er-j-grand-texte, .er-j-grand .er-j-image { grid-column: 1 / -1; }
+	.er-j-grand .er-j-image { grid-row: 1; }
+	.er-j-ligne { grid-template-columns: minmax(0, 1fr) 160px; column-gap: 24px; row-gap: 8px; }
+	.er-j-ligne-date { grid-column: 1 / -1; }
+	.er-j-ligne-texte { grid-column: 1; }
+	.er-j-ligne .er-j-image { grid-column: 2; }
+}
+@media (max-width: 719px) {
+	.er-j-g { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; }
+	.er-j-module { padding-block: 56px; }
+	.er-j-une { padding-top: 16px; }
+	.er-j-tete { padding-top: 56px; }
+	.er-j-titre { font-size: 2.25rem; }
+	.er-j-chapo, .er-j-chapo-texte { font-size: 1.0625rem; }
+	.er-j-t-module { font-size: 1.75rem; }
+	.er-j-titre-sec h1, .er-j-titre-sec h2 { font-size: 1.375rem; }
+	.er-j-t-bloc { font-size: 1.125rem; }
+	.er-j-genres, .er-j-sujets { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+	.er-j-une-gauche, .er-j-chroniques { grid-template-columns: minmax(0, 1fr); }
+	.er-j-fil li a { grid-template-columns: 64px minmax(0, 1fr); }
+	.er-j-ligne { grid-template-columns: minmax(0, 1fr) 96px; column-gap: 16px; }
 }

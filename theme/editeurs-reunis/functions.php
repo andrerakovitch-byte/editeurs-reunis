@@ -284,7 +284,7 @@ function er_maison() {
 	if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || 'promos' === er_page_reference() ) {
 		return 'librairie';
 	}
-	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
+	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) ) {
 		return 'centre'; // Le journal du centre.
 	}
 	if ( is_singular( array( 'er_evenement', 'er_media' ) ) ) {
@@ -338,7 +338,7 @@ function er_sous_menu() {
 		return '';
 	}
 	$ici = er_chemin_reference();
-	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
+	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) ) {
 		$ici = 'journal';
 	}
 	if ( is_singular( 'er_evenement' ) ) {

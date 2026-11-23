@@ -267,6 +267,25 @@ le champ `er_mots` et la recherche du site les lit, avec la signature. Un articl
 ni l'import ni `wp er sujets deviner` n'y ajoutent d'étiquette devinée. Sous l'article, « À la librairie » montre les
 livres qu'il cite, puis ceux des auteurs dont il parle (en stock, six au plus, ceux de la signature mis à part).
 
+### La page du journal
+
+Le journal se lit comme un journal en ligne (la piste D du canevas « Le journal du centre », d'après le système
+« Les Éditeurs réunis — le système »). Chaque article a un **genre** (`er_genre` : chronique, critique, essai, récit,
+entretien, hommage, archive, document), relu avec ses étiquettes (`genre` dans `journal-etiquettes.json`) ; le genre
+et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag et dissidence ».
+
+- **L'en-tête du journal** (`er/journal-tete`) : le titre, les genres en pilules (et « En russe », les textes en russe
+  ou bilingues, d'après `er_langues`), puis les neuf sujets les plus fournis, les autres derrière « Tous les sujets ».
+- **La une** (`er/journal-corps`, à la première page) : le texte à la une, le dernier **épinglé** (« Mettre en
+  avant » dans l'éditeur), sinon le plus récent qui a une image ; deux autres dessous ; à droite, le fil des six
+  derniers. Puis, sur le fond doux, les chroniques (ceux qui signent au moins deux chroniques, leur portrait de
+  fiche d'auteur ou leurs initiales, leur dernier texte) et le grand format (le plus récent des textes de vingt
+  minutes ou plus) ; enfin les trois sujets les plus fournis, un texte mis en avant et trois titres chacun.
+- **Les listes** : un genre (`/journal/genre/critique/`), un sujet (`/journal/?sujet=poesie`), les textes en russe
+  (`/journal/?en=russe`), tout le fil (`/journal/?fil`), vingt par page.
+- **Le titre** d'un article ne redit pas sa signature (« « Langue maternelle » par Georges Nivat » devient
+  « « Langue maternelle » ») : elle est dessous, « Par Georges Nivat · 1er mai 2020 · 4 min ».
+
 ## Trois langues
 
 Le site est en français, en russe et en anglais. Le français est la langue de référence : tout le texte du code est
