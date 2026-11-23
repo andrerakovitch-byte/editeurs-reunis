@@ -11,6 +11,31 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'init',
 	function () {
+		foreach ( array( 'er_livres', 'er_mots' ) as $cle ) {
+			register_post_meta(
+				'post',
+				$cle,
+				array(
+					'type'          => 'string',
+					'single'        => true,
+					'show_in_rest'  => true,
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
+		}
+		register_block_type(
+			'er/livres-lies',
+			array(
+				'api_version'     => 3,
+				'uses_context'    => array( 'postId' ),
+				'render_callback' => function ( $attributs, $contenu, $bloc ) {
+					$id = isset( $bloc->context['postId'] ) ? (int) $bloc->context['postId'] : (int) get_the_ID();
+					return er_bloc_livres_article( $id );
+				},
+			)
+		);
 		register_post_meta(
 			'post',
 			'er_signature',
@@ -53,6 +78,48 @@ function er_bloc_signature( $id ) {
 	$nom    = $lien && ! is_wp_error( $lien ) ? '<a href="' . esc_url( $lien ) . '">' . esc_html( $signature ) . '</a>' : esc_html( $signature );
 	/* translators: %s: le nom de celui qui signe l'article */
 	return '<p class="er-article-date er-signature">' . sprintf( esc_html__( 'Par %s', 'er-librairie' ), $nom ) . ' · ' . esc_html( $date ) . '</p>';
+}
+
+/**
+ * « À la librairie », sous un article : les livres dont il parle (er_livres, leurs références), puis ceux des personnes
+ * qu'il concerne (en stock, pas ceux de celui qui signe), six au plus.
+ *
+ * @param int $id L'article.
+ */
+function er_bloc_livres_article( $id ) {
+	if ( ! function_exists( 'wc_get_product_id_by_sku' ) || ! function_exists( 'er_carte_livre' ) ) {
+		return '';
+	}
+	$ids = array();
+	foreach ( array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, 'er_livres', true ) ) ) ) as $ref ) {
+		$trouve = ctype_digit( $ref ) ? (int) $ref : wc_get_product_id_by_sku( $ref );
+		if ( $trouve ) {
+			$ids[] = $trouve;
+		}
+	}
+	$signature = (string) get_post_meta( $id, 'er_signature', true );
+	$personnes = array();
+	foreach ( wp_get_post_terms( $id, 'auteur' ) as $t ) {
+		if ( $t->name !== $signature ) {
+			$personnes[] = $t->term_id;
+		}
+	}
+	if ( $personnes && count( $ids ) < 6 ) {
+		$ids = array_merge(
+			$ids,
+			get_posts(
+				array(
+					'post_type'   => 'product',
+					'numberposts' => 6,
+					'fields'      => 'ids',
+					'tax_query'   => array( array( 'taxonomy' => 'auteur', 'terms' => $personnes ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+					'meta_query'  => array( array( 'key' => '_stock_status', 'value' => 'instock' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+				)
+			)
+		);
+	}
+	$cartes = implode( '', array_map( 'er_carte_livre', array_slice( array_unique( $ids ), 0, 6 ) ) );
+	return $cartes ? '<section class="er-evt-livres er-article-livres"><h2 class="er-evt-section">' . esc_html__( 'À la librairie', 'er-librairie' ) . '</h2><ul>' . $cartes . '</ul></section>' : '';
 }
 
 // Les anciennes adresses du blog de Wix (/post/<slug>) mènent à l'article, une fois la bascule faite.
@@ -196,6 +263,14 @@ function er_journal_importer_un( $a, $auteurs, $images = true ) {
 	if ( $a['signature'] && '' === (string) get_post_meta( $id, 'er_signature', true ) ) {
 		update_post_meta( $id, 'er_signature', $a['signature'] );
 	}
+	// Les livres dont parle l'article et les mots-clés de la recherche : ajoutés à ceux qui y sont déjà.
+	foreach ( array( 'er_livres' => 'livres', 'er_mots' => 'mots' ) as $cle => $champ ) {
+		$deja    = array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, $cle, true ) ) ) );
+		$nouveau = array_values( array_unique( array_merge( $deja, isset( $a[ $champ ] ) ? (array) $a[ $champ ] : array() ) ) );
+		if ( $nouveau !== $deja ) {
+			update_post_meta( $id, $cle, implode( ', ', $nouveau ) );
+		}
+	}
 	if ( $a['categories'] ) {
 		$rubriques = array();
 		foreach ( $a['categories'] as $nom ) {
@@ -231,6 +306,9 @@ function er_journal_importer_un( $a, $auteurs, $images = true ) {
 			continue;
 		}
 		wp_set_object_terms( $id, (int) $t['term_id'], 'er_sujet', true );
+	}
+	if ( ! empty( $a['relu'] ) ) {
+		update_post_meta( $id, 'er_etiquettes_relues', 1 ); // Les étiquettes relues à la main font foi : rien n'est deviné en plus.
 	}
 	er_etiqueter( $id, $a['titre'] . ' ' . $a['extrait'], $auteurs );
 	if ( $images && $a['image'] && ! has_post_thumbnail( $id ) ) {

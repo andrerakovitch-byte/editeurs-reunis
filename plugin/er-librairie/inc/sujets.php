@@ -232,6 +232,13 @@ function er_sujets_de_depart() {
 		'Philosophie'         => '/philosoph|философ|pens[ée]e russe/iu',
 		'Ukraine'             => '/ukrain|украин/iu',
 		'Théâtre'             => '/th[ée][âa]tre|lecture[- ]spectacle|театр|спектакл|пьес/iu',
+		// Les époques, comme les rayons de la librairie : d'après les écrivains nommés.
+		'Classiques russes'   => '/pouchkine|lermontov|gogol|tourgu[ée]niev|dosto[ïi]evski|tolsto[ïi]|tchekhov|gontcharov|leskov|tiouttchev|пушкин|лермонтов|гогол|тургенев|достоевск|толсто|чехов/iu',
+		'Âge d’argent'        => '/\bblok|akhmatova|mandelstam|tsv[ée]ta[ïi]eva|goumilev|bi[ée]ly|ess[ée]nine|ma[ïi]akovski|khlebnikov|volochine|kouzmine|блок|ахматов|мандельштам|цветаев|гумил[её]в|есенин|маяковск/iu',
+		'Période soviétique'  => '/boulgakov|platonov|pasternak|chalamov|grossman|zamiatine|kharms|brodsk|dovlatov|булгаков|платонов|пастернак|шаламов|гроссман|бродск|довлатов/iu',
+		'Russie d’aujourd’hui' => '/poutine|russie d.aujourd.hui|путин/iu',
+		// La maison elle-même, pas un livre qu'elle publie : son histoire, son siècle, Nikita Struve.
+		'Histoire de la maison' => '/nikita struve|никит\w* струве|(histoire|centenaire|anniversaire)\s+d(e|u|es|\W)\s*(la maison|l.ymca|ymca|[ée]diteurs r[ée]unis)|(ymca[- ]press|[ée]diteurs r[ée]unis|имка)[^.]{0,50}(un si[èe]cle|centenaire|anniversaire|histoire|столет|юбиле|истори)/iu',
 	);
 }
 
@@ -317,6 +324,9 @@ function er_nom_dans( $nom, $mots ) {
  * @return array Les sujets et les auteurs posés.
  */
 function er_etiqueter( $id, $texte, $auteurs ) {
+	if ( get_post_meta( $id, 'er_etiquettes_relues', true ) ) {
+		return array(); // Des étiquettes posées ou relues à la main : on ne devine rien de plus.
+	}
 	$sujets = er_sujets_deviner( $texte );
 	if ( $sujets ) {
 		wp_set_object_terms( $id, $sujets, 'er_sujet', true );
@@ -606,6 +616,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			$auteurs = er_evt_auteurs_connus();
 			$n       = 0;
 			foreach ( get_posts( array( 'post_type' => $types, 'post_status' => 'publish', 'numberposts' => -1, 'lang' => '' ) ) as $p ) {
+				if ( get_post_meta( $p->ID, 'er_etiquettes_relues', true ) ) {
+					continue;
+				}
 				$texte = $p->post_title . ' ' . $p->post_excerpt;
 				if ( ! empty( $assoc['simulation'] ) ) {
 					$poses = array_merge( er_sujets_deviner( $texte ), array_map( fn( $c ) => $c[0]->name . ( $c[2] ? ' (intervient)' : '' ), er_auteurs_cites( $texte, $auteurs ) ) );

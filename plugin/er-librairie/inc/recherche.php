@@ -233,6 +233,8 @@ function er_index_contenu( $id ) {
 		$poids = function_exists( 'er_evt_passee' ) && ! er_evt_passee( $id ) ? 2 : 0;
 	} else {
 		$maison = 'centre';
+		// Un article : ses mots-clés et sa signature comptent aussi.
+		$cle .= ' ' . get_post_meta( $id, 'er_mots', true ) . ' ' . get_post_meta( $id, 'er_signature', true );
 		foreach ( array( 'auteur', 'er_sujet' ) as $taxonomie ) {
 			$noms = wp_get_post_terms( $id, $taxonomie, array( 'fields' => 'names' ) );
 			$cle .= ' ' . implode( ' ', is_wp_error( $noms ) ? array() : $noms );
@@ -600,7 +602,7 @@ function er_api_chercher( $requete ) {
 		} else {
 			$post                 = get_post( (int) $l->objet );
 			$groupes[ $groupe ][] = array(
-				'titre'  => get_the_title( $post ),
+				'titre'  => html_entity_decode( get_the_title( $post ), ENT_QUOTES, 'UTF-8' ), // Le tiret et les guillemets typographiques, pas leurs entités.
 				'url'    => get_permalink( $post ),
 				'extrait' => 'evenement' === $l->genre && function_exists( 'er_evt_quand' ) ? er_evt_quand( $post->ID, false ) : ( 'journal' === $groupe ? date_i18n( 'j F Y', get_post_timestamp( $post ) ) : wp_trim_words( html_entity_decode( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), ENT_QUOTES, 'UTF-8' ), 14, '…' ) ),
 			);

@@ -255,8 +255,17 @@ Un article garde sa signature (« Par Yves Hamant », qui mène à sa page d'aut
 catégories : Les Billets d'Yves Hamant…), ses auteurs et ses sujets. Les articles du blog de Wix s'importent avec le
 reste de l'ancien site (`outils/wix/journal.py`, `wp er journal importer`) : le texte tel que la page de Wix
 l'affiche, remis en blocs de WordPress (paragraphes, intertitres, listes, citations, images et légendes, vidéos), les
-images dans la médiathèque, la date et la signature ; les mots-clés de Wix deviennent des auteurs (un nom de
-personne) ou des sujets. Les anciennes adresses `/post/<slug>` mènent à l'article.
+images dans la médiathèque, la date et la signature. Les anciennes adresses `/post/<slug>` mènent à l'article.
+
+Les mots-clés de Wix étaient trop bruyants (« Les Éditeurs Réunis » ou « Union Soviétique » pris pour des personnes,
+la signature au nom du compte) : chaque article a été relu d'après son texte, dans
+`outils/wix/journal-etiquettes.json` (une entrée par slug de Wix). On y trouve la vraie signature, les personnes dont
+il parle (des auteurs du site, créés s'il le faut), ses sujets (le vocabulaire commun aux rencontres et aux livres),
+les livres du catalogue qu'il évoque (par leur référence) et des mots-clés pour la recherche (graphies, noms propres,
+termes en russe : « raskol », « vieux-croyants », « старообрядчество »). Ces mots ne s'affichent pas : ils sont dans
+le champ `er_mots` et la recherche du site les lit, avec la signature. Un article relu porte `er_etiquettes_relues` :
+ni l'import ni `wp er sujets deviner` n'y ajoutent d'étiquette devinée. Sous l'article, « À la librairie » montre les
+livres qu'il cite, puis ceux des auteurs dont il parle (en stock, six au plus, ceux de la signature mis à part).
 
 ## Trois langues
 

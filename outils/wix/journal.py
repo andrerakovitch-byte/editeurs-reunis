@@ -9,7 +9,9 @@ La sortie, une liste d'objets : wix_slug, slug, titre, date (heure de Paris, « 
 nom de celui qui a écrit l'article), extrait, image (l'adresse de l'original), contenu (en blocs de WordPress : les
 paragraphes, les intertitres, les listes, les citations, les images avec leur légende, les vidéos, les filets ; les
 images gardent leur adresse chez Wix, que l'import remplace par celle de la médiathèque), categories, personnes et
-sujets (les mots-clés de Wix, rangés : une personne devient un auteur, le reste un sujet).
+sujets, livres (les références des livres dont il parle), mots (des mots-clés pour la recherche) : d'après les
+étiquettes relues de journal-etiquettes.json, sinon d'après les mots-clés de Wix (une personne devient un auteur, le
+reste un sujet).
 """
 import argparse
 import html
@@ -27,6 +29,38 @@ from evenements import typo, mots  # noqa: E402
 
 PARIS = ZoneInfo('Europe/Paris')
 WIX = 'https://static.wixstatic.com/media/'
+
+# Les étiquettes relues article par article, d'après leur contenu (journal-etiquettes.json, à côté) : la signature
+# (celui qui a écrit, que Wix confond souvent avec le compte qui a publié), les personnes, les sujets (une liste
+# commune à tout le site), les livres de la librairie dont parle l'article (leurs références) et des mots-clés pour
+# la recherche (les œuvres, les lieux, les notions). Elles remplacent les mots-clés de Wix, trop inégaux.
+try:
+    ETIQUETTES = json.load(open(__import__('os').path.join(__import__('os').path.dirname(__file__), 'journal-etiquettes.json')))
+except FileNotFoundError:
+    ETIQUETTES = {}
+
+
+def chapo(extrait, contenu, relu=''):
+    """Le chapô : celui qu'on a relu, sinon celui de Wix, sauf s'il commence au milieu d'une phrase ou s'arrête en
+    route ; alors les premières phrases des paragraphes du texte (ni les légendes, ni les intertitres)."""
+    if relu:
+        return relu
+    extrait = re.sub(r'\s+', ' ', extrait or '').strip()
+    if len(extrait) >= 40 and extrait[:1].isupper() and re.search(r'[.!?»)]$', extrait) and not extrait.endswith('...'):
+        return extrait
+    # Un article de Wix commence souvent par un intertitre qui le résume : on le prend, s'il est assez long.
+    tete = re.match(r'\s*<!-- wp:heading[^>]*-->\s*<h\d[^>]*>(.*?)</h\d>', contenu, re.S)
+    if tete and len(re.sub(r'<[^>]+>', '', tete.group(1))) >= 60:
+        return html.unescape(re.sub(r'<[^>]+>', '', tete.group(1))).strip()
+    paragraphes = [html.unescape(re.sub(r'<[^>]+>', '', p)).strip() for p in re.findall(r'<!-- wp:paragraph -->\s*<p>(.*?)</p>', contenu, re.S)]
+    paragraphes = [re.sub(r'^par [^.]{3,60}?(?=[A-ZÉÀ])', '', p).strip() for p in paragraphes if len(p) >= 60]
+    sortie = ''
+    for ph in re.split(r'(?<=[.!?»])\s+', ' '.join(paragraphes[:3])):
+        if len(sortie) + len(ph) > 280 and sortie:
+            break
+        sortie = (sortie + ' ' + ph).strip()
+    return sortie[:320] or extrait
+
 
 # Les mots-clés de Wix qui sont des sujets bien qu'ils aient l'air de noms propres, et l'inverse.
 SUJETS_FORCES = {'Archipel du Goulag', 'Goulag', 'YMCA-Press', 'Russie', 'Ukraine', 'France', 'Paris', 'URSS',
@@ -162,6 +196,17 @@ def original(url):
     return WIX + m.group(1) if m else (url or '')
 
 
+def sans_signature(contenu, signature):
+    """Ôte le premier paragraphe quand il ne fait que redire la signature (« par X ») : la page la donne déjà, en tête."""
+    m = re.match(r'\s*<!-- wp:paragraph -->\s*<p>(.*?)</p>\s*<!-- /wp:paragraph -->\s*', contenu, re.S)
+    if not m or not signature:
+        return contenu
+    texte = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', m.group(1)))).strip(' .').lower()
+    if texte in (signature.lower(), 'par ' + signature.lower()):
+        return contenu[m.end():]
+    return contenu
+
+
 def convertir(pages):
     sortie = []
     for p in pages:
@@ -177,16 +222,26 @@ def convertir(pages):
         contenu, images = blocs(p['contenu'])
         wix_slug = urllib.parse.unquote(p['url'].rstrip('/').rsplit('/', 1)[-1])
         etiquettes = [html.unescape(e[1]).strip() for e in p.get('etiquettes', [])]
-        personnes = [e for e in etiquettes if personne(e)]
+        relues = ETIQUETTES.get(wix_slug)
+        if relues:
+            signature = relues['signature']
+            personnes, sujets = list(relues['personnes']), list(relues['sujets'])
+        else:
+            personnes = [e for e in etiquettes if personne(e)]
+            sujets = [e for e in etiquettes if e not in personnes]
         if signature and signature not in personnes:
             personnes.append(signature)
+        contenu = sans_signature(contenu, signature)
         sortie.append({
             'wix_slug': wix_slug, 'slug': wix_slug, 'titre': titre, 'date': date, 'signature': signature,
-            'extrait': typo(html.unescape(ld.get('description') or meta.get('og:description') or '')).strip(),
+            'extrait': chapo(typo(html.unescape(ld.get('description') or meta.get('og:description') or '')), contenu,
+                             relues.get('chapo', '') if relues else ''),
             'image': original((ld.get('image') or {}).get('url') if isinstance(ld.get('image'), dict) else meta.get('og:image')),
             'contenu': contenu, 'images': images,
             'categories': [typo(html.unescape(c[1])).strip() for c in p.get('categories', [])],
-            'personnes': personnes, 'sujets': [e for e in etiquettes if e not in personnes],
+            'personnes': personnes, 'sujets': sujets,
+            'livres': relues['livres'] if relues else [], 'mots': relues['mots'] if relues else [],
+            'relu': bool(relues),
         })
     sortie.sort(key=lambda a: a['date'], reverse=True)
     return sortie
