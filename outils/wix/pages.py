@@ -152,7 +152,11 @@ def chaine_youtube(url):
             continue
         donnees = json.loads(r.stdout)
         for e in donnees.get('entries') or []:
-            videos.append({k: e.get(k) for k in ('id', 'title', 'url', 'upload_date', 'timestamp', 'duration', 'description')})
+            if '/sets/' in (e.get('url') or '') and cible.endswith('/sets'):
+                videos += chaine_youtube(e['url'])  # une liste de SoundCloud : ses pistes
+                continue
+            videos.append({k: e.get(k) for k in ('id', 'title', 'url', 'upload_date', 'timestamp', 'duration', 'description')}
+                          | {'liste': donnees.get('title')})
     return videos
 
 
