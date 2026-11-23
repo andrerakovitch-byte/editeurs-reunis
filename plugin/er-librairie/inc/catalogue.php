@@ -60,6 +60,9 @@ function er_catalogue_comptes() {
 		'autres_refs'   => 0,
 		'avec_prix'     => 0,
 		'promotion'     => 0,
+		'promotion_occ' => 0,
+		'promotion_5'   => 0,
+		'mentions'      => array(),
 		'stock'         => array( 'instock' => 0, 'outofstock' => 0, 'onbackorder' => 0 ),
 		'stock_suivi'   => 0,
 		'stock_sans_q'  => 0,
@@ -111,8 +114,19 @@ function er_catalogue_comptes() {
 		if ( '' !== $prix && null !== $prix ) {
 			++$c['avec_prix'];
 		}
+		// Les mentions (étiquettes) : « occasion » distingue les livres hors du prix unique, et la règle des frais
+		// de port (loi Darcos) ne compte que les livres neufs.
+		$mentions = wp_get_object_terms( $id, 'product_tag', array( 'fields' => 'slugs' ) );
+		$mentions = is_wp_error( $mentions ) ? array() : $mentions;
+		foreach ( $mentions as $m ) {
+			$c['mentions'][ $m ] = ( isset( $c['mentions'][ $m ] ) ? $c['mentions'][ $m ] : 0 ) + 1;
+		}
+		$occasion = in_array( 'occasion', $mentions, true );
 		if ( $p->is_on_sale() ) {
 			++$c['promotion'];
+			$c['promotion_occ'] += $occasion ? 1 : 0;
+			$reduction           = (float) $p->get_regular_price() > 0 ? 1 - (float) $p->get_sale_price() / (float) $p->get_regular_price() : 0;
+			$c['promotion_5'] += ! $occasion && $reduction > 0.0501 ? 1 : 0;
 		}
 		$etat = $p->get_stock_status();
 		if ( isset( $c['stock'][ $etat ] ) ) {
@@ -202,7 +216,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			WP_CLI::log( 'Le prix' );
 			$ligne( 'Avec un prix', $c['avec_prix'] );
 			$ligne( 'Sans prix (ne se commandent pas)', $c['livres'] - $c['avec_prix'] );
-			$ligne( 'En promotion', $c['promotion'] );
+			$ligne( 'En promotion', $c['promotion'], sprintf( '(dont %d d’occasion)', $c['promotion_occ'] ) );
+			$ligne( 'Hors occasion, remise de plus de 5 %', $c['promotion_5'] );
 
 			WP_CLI::log( 'Le stock' );
 			$ligne( 'En stock', $c['stock']['instock'] );
@@ -235,6 +250,11 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			$ligne( 'Sans rayon', $c['sans_rayon'] );
 			$ligne( 'Sans auteur', $c['sans_auteur'] );
 			$ligne( 'Sans langue', $c['sans_langue'] );
+			arsort( $c['mentions'] );
+			foreach ( $c['mentions'] as $slug => $n ) {
+				$terme = get_term_by( 'slug', $slug, 'product_tag' );
+				$ligne( 'Mention « ' . ( $terme ? $terme->name : $slug ) . ' »', $n );
+			}
 
 			WP_CLI::log( 'Les couvertures' );
 			foreach ( er_couverture_qualites() as $q => $nom ) {
