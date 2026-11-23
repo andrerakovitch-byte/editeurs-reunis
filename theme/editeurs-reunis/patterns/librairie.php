@@ -6,7 +6,8 @@
  * Inserter: no
  *
  * Toute la librairie, un rayon, un auteur, une langue ou une recherche : le titre, les rayons et les langues en
- * pilules, puis les livres en grand, sur toute la largeur.
+ * pilules, puis les livres en grand, sur toute la largeur. Pour un auteur, sa fiche (er/auteur-fiche : portrait,
+ * dates, présentation, biographie, photos) remplace le titre, et ses livres viennent dessous.
  *
  * @package editeurs-reunis
  */
@@ -18,7 +19,12 @@
 	<div class="wp-block-group alignwide er-librairie-tete">
 		<!-- wp:woocommerce/breadcrumbs {"fontSize":"x-small"} /-->
 
-<?php if ( is_search() ) : ?>
+<?php if ( is_tax( 'auteur' ) ) : ?>
+		<!-- wp:er/auteur-fiche /-->
+		<!-- wp:heading {"className":"er-auteur-livres"} -->
+		<h2 class="wp-block-heading er-auteur-livres"><?php esc_html_e( 'Ses livres', 'editeurs-reunis' ); ?></h2>
+		<!-- /wp:heading -->
+<?php elseif ( is_search() ) : ?>
 		<!-- wp:query-title {"type":"search"} /-->
 <?php else : ?>
 		<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
@@ -29,7 +35,9 @@
 		<!-- /wp:paragraph -->
 <?php endif; ?>
 
+<?php if ( ! is_tax( 'auteur' ) ) : // La présentation d'un auteur est dans sa fiche. ?>
 		<!-- wp:term-description /-->
+<?php endif; ?>
 	</div>
 	<!-- /wp:group -->
 

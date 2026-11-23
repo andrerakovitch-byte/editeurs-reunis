@@ -85,120 +85,120 @@ msgstr "Полупрозрачная карточка"
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Бумажная гамма (архивные материалы)"
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "Об издательстве"
 
-#: functions.php:311
+#: functions.php:314
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "Век истории"
 
-#: functions.php:312
+#: functions.php:315
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Каталог"
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Друзья YMCA-Press"
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "О центре"
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Мероприятия"
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Выставки"
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Подкасты"
 
-#: functions.php:320
+#: functions.php:323
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Видео"
 
-#: functions.php:321
+#: functions.php:324
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
-#: functions.php:322
+#: functions.php:325
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Как нас найти"
 
-#: functions.php:345 patterns/en-tete.php:62
+#: functions.php:350 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "Издательство YMCA-Press"
 
-#: functions.php:346 patterns/en-tete.php:63
+#: functions.php:351 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Культурный центр"
 
-#: functions.php:452 inc/recherche.php:358
+#: functions.php:457 inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "пока нет в наличии"
 
-#: functions.php:481
+#: functions.php:486
 msgid "Par genre"
 msgstr "По жанрам"
 
-#: functions.php:482
+#: functions.php:487
 msgid "Par époque"
 msgstr "По эпохам"
 
-#: functions.php:483
+#: functions.php:488
 msgid "Par période"
 msgstr "По периодам"
 
-#: functions.php:484
+#: functions.php:489
 msgid "Par thème"
 msgstr "По темам"
 
-#: functions.php:485
+#: functions.php:490
 msgid "Par âge"
 msgstr "По возрасту"
 
-#: functions.php:486
+#: functions.php:491
 msgid "Méthodes"
 msgstr "Учебники"
 
-#: functions.php:487
+#: functions.php:492
 msgid "Outils"
 msgstr "Пособия"
 
-#: functions.php:488
+#: functions.php:493
 msgid "Pensée"
 msgstr "Философская мысль"
 
-#: functions.php:489
+#: functions.php:494
 msgid "Religion"
 msgstr "Религия"
 
-#: functions.php:490
+#: functions.php:495
 msgid "Arts"
 msgstr "Искусство"
 
-#: functions.php:512
+#: functions.php:517
 msgid "Compte"
 msgstr "Кабинет"
 
-#: functions.php:523 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:528 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Язык"
 
@@ -1088,22 +1088,26 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:28
+#: patterns/librairie.php:25
+msgid "Ses livres"
+msgstr "Книги"
+
+#: patterns/librairie.php:34
 msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
 msgstr "Книжный магазин «Les Éditeurs réunis» — с 1925 года"
 
-#: patterns/librairie.php:57
+#: patterns/librairie.php:65
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr "Назад"
 
-#: patterns/librairie.php:59
+#: patterns/librairie.php:67
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr "Далее"
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:66
+#: patterns/librairie.php:74
 msgid ""
 "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou "
 "écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
@@ -1674,6 +1678,15 @@ msgstr "Пять книг"
 #: patterns/selection-table.php:321
 msgid "Toute la sélection, en librairie"
 msgstr "Вся подборка в магазине"
+
+#: patterns/sujet.php
+msgctxt "Pattern title"
+msgid "La page d'un sujet"
+msgstr ""
+
+#: patterns/sujet.php:17
+msgid "Sujet"
+msgstr "Тема"
 
 #: patterns/une-archipel.php
 msgctxt "Pattern title"

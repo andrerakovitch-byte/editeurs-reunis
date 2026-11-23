@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-23T17:08:22+00:00\n"
+"POT-Creation-Date: 2026-11-23T18:21:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: editeurs-reunis\n"
@@ -86,123 +86,123 @@ msgstr ""
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr ""
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr ""
 
-#: functions.php:311
+#: functions.php:314
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr ""
 
-#: functions.php:312
+#: functions.php:315
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr ""
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr ""
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr ""
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr ""
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr ""
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr ""
 
-#: functions.php:320
+#: functions.php:323
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr ""
 
-#: functions.php:321
+#: functions.php:324
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr ""
 
-#: functions.php:322
+#: functions.php:325
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr ""
 
-#: functions.php:345
+#: functions.php:350
 #: patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr ""
 
-#: functions.php:346
+#: functions.php:351
 #: patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr ""
 
-#: functions.php:452
+#: functions.php:457
 #: inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr ""
 
-#: functions.php:481
+#: functions.php:486
 msgid "Par genre"
 msgstr ""
 
-#: functions.php:482
+#: functions.php:487
 msgid "Par époque"
 msgstr ""
 
-#: functions.php:483
+#: functions.php:488
 msgid "Par période"
 msgstr ""
 
-#: functions.php:484
+#: functions.php:489
 msgid "Par thème"
 msgstr ""
 
-#: functions.php:485
+#: functions.php:490
 msgid "Par âge"
 msgstr ""
 
-#: functions.php:486
+#: functions.php:491
 msgid "Méthodes"
 msgstr ""
 
-#: functions.php:487
+#: functions.php:492
 msgid "Outils"
 msgstr ""
 
-#: functions.php:488
+#: functions.php:493
 msgid "Pensée"
 msgstr ""
 
-#: functions.php:489
+#: functions.php:494
 msgid "Religion"
 msgstr ""
 
-#: functions.php:490
+#: functions.php:495
 msgid "Arts"
 msgstr ""
 
-#: functions.php:512
+#: functions.php:517
 msgid "Compte"
 msgstr ""
 
-#: functions.php:523
+#: functions.php:528
 #: inc/recherche.php:182
 #: inc/recherche.php:264
 msgid "Langue"
@@ -1039,22 +1039,26 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:28
+#: patterns/librairie.php:25
+msgid "Ses livres"
+msgstr ""
+
+#: patterns/librairie.php:34
 msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
 msgstr ""
 
-#: patterns/librairie.php:57
+#: patterns/librairie.php:65
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr ""
 
-#: patterns/librairie.php:59
+#: patterns/librairie.php:67
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr ""
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:66
+#: patterns/librairie.php:74
 #, php-format
 msgid "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
 msgstr ""
@@ -1595,6 +1599,15 @@ msgstr ""
 
 #: patterns/selection-table.php:321
 msgid "Toute la sélection, en librairie"
+msgstr ""
+
+#: patterns/sujet.php
+msgctxt "Pattern title"
+msgid "La page d'un sujet"
+msgstr ""
+
+#: patterns/sujet.php:17
+msgid "Sujet"
 msgstr ""
 
 #: patterns/une-archipel.php

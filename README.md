@@ -194,7 +194,8 @@ librairie ». L'affiche est l'image mise en avant ; le chapô, l'extrait.
   cycle.
 - **Les anciennes adresses** de Wix (`/events-1/<slug>`) mènent à la rencontre, une fois la bascule faite.
 
-Les rencontres de l'ancien site s'importent par le workflow « Déployer chez Kinsta », case « evenements » : il lit
+Les rencontres de l'ancien site s'importent par le workflow « Déployer chez Kinsta », case « ancien_site » (avec le
+journal, les vidéos et les podcasts) : il lit
 les pages des événements de Wix et la chaîne YouTube du centre (`outils/wix/pages.py`), les convertit
 (`outils/wix/evenements.py` : le texte riche de Wix en HTML, la typographie française, les doublons de Wix réunis,
 les fins fausses ôtées) et les importe (`wp er evenements importer`). Les vidéos sont rattachées à leur rencontre
@@ -203,6 +204,59 @@ les correspondances sûres le sont, les autres vont au rapport (`rapport.md`, su
 rattachées à la main. Relancé, l'import met à jour sans doublon, sans toucher à une rencontre modifiée à la main
 depuis, et ajoute les vidéos sans en retirer : on le relance avant la bascule pour les dernières rencontres. Les
 chiffres de vente de Wix ne sont jamais lus.
+
+## Les étiquettes : les personnes et les sujets
+
+Tout le site s'étiquette de la même façon : les livres, les articles du journal, les rencontres, les vidéos et les
+podcasts, les pages (`plugin/…/inc/sujets.php`).
+
+- **Les personnes** n'ont qu'une étiquette, leur nom d'auteur (le classement des auteurs des livres), et une seule
+  page, `/auteur/<slug>/`. Sur un livre, c'est celui qui l'a écrit ; sur un article, une rencontre, une vidéo, une
+  page, ce sont les personnes qui y sont liées (on en parle, elles l'ont écrit ou y interviennent). Un livre qui
+  parle de quelqu'un le porte dans « Autour de » (une boîte de la fiche du livre, où l'on choisit des auteurs). Le
+  compte d'un auteur reste son nombre de livres.
+- **Les sujets** (l'émigration, la poésie, le Goulag…) ont leur page, `/sujet/<slug>/`. Un sujet n'est jamais une
+  personne : celui qui porterait le nom d'un auteur est refusé (« choisissez-le dans Auteurs »). Les étiquettes
+  WordPress des articles laissent la place aux sujets.
+- **La page d'une personne** se lit comme une page d'encyclopédie (`inc/auteurs.php`) : le portrait, le nom et ses
+  autres graphies, les dates (naissance, mort), la présentation (le champ « Description »), la biographie (un éditeur
+  de texte, avec ses intertitres et ses images ; la suite se déplie), des photos avec leur légende, « Pour aller plus
+  loin » (des liens, et la page de l'encyclopédie qui lui est liée, qui mène à son tour vers elle). Tout se saisit
+  dans Produits → Auteurs → Modifier. Dessous : ses livres, les livres autour de lui, les rencontres (à venir, puis
+  passées), les vidéos et les podcasts, les articles du journal, les pages qui le concernent. La page de Soljenitsyne
+  donne ainsi ses livres, les podcasts sur L'Archipel, les billets, les rencontres.
+- **La page d'un sujet** donne tout ce qui le porte, de la même façon.
+- **Sous un article, une rencontre, une vidéo** : ses auteurs et ses sujets en pilules, puis « À lire, à revoir »,
+  les contenus qui partagent le plus d'étiquettes (un auteur en commun compte plus qu'un sujet). La fiche d'un livre
+  a les lignes « Autour de » et « Sujets ».
+- **La recherche** trouve les sujets, et les contenus par leurs étiquettes.
+
+Les imports posent des étiquettes d'eux-mêmes, sans jamais en ôter : les auteurs de la librairie que nomme un titre
+(« avec Georges Nivat » : un intervenant ; « le Docteur Jivago de Boris Pasternak » : un auteur lié ; les noms russes
+se reconnaissent déclinés, « с Андреем Звягинцевым »), et des sujets de départ reconnus par des mots du titre et du
+chapô (Poésie, Émigration, Goulag et dissidence, Orthodoxie, Histoire, Musique, Cinéma, Arts, Traduction,
+Philosophie, Ukraine, Théâtre) : une liste à reprendre à la main (Articles → Sujets). `wp er sujets deviner` (ou le
+workflow, case « er » : `sujets deviner`) les repose sur ce qui est déjà en place ; `--simulation` dit ce qu'il
+poserait.
+
+## Les vidéos et les podcasts
+
+Un contenu à part, « Vidéos et podcasts » dans l'administration (`inc/medias.php`), à l'adresse
+`/centre-culturel/videos-et-podcasts/<slug>/` : le lien (YouTube, SoundCloud, un fichier audio… ; le premier est
+le principal), le genre (vidéo ou podcast), la durée, la série (Les podcasts à livre ouvert, Les Secrets de
+l'Archipel du Goulag…), les étiquettes. Sa page : le titre, le lecteur, le texte, les étiquettes, « À lire, à
+revoir ». Le bloc `er/medias` donne la liste, par série (les épisodes dans l'ordre) : à poser sur « Nos vidéos »
+(`{"genre":"video"}`) ou « Nos podcasts » (`{"genre":"podcast"}`), qui sont encore les maquettes. L'enregistrement
+d'une rencontre reste sur la page de la rencontre.
+
+## Le journal
+
+Un article garde sa signature (« Par Yves Hamant », qui mène à sa page d'auteur s'il en a une), ses rubriques (les
+catégories : Les Billets d'Yves Hamant…), ses auteurs et ses sujets. Les articles du blog de Wix s'importent avec le
+reste de l'ancien site (`outils/wix/journal.py`, `wp er journal importer`) : le texte tel que la page de Wix
+l'affiche, remis en blocs de WordPress (paragraphes, intertitres, listes, citations, images et légendes, vidéos), les
+images dans la médiathèque, la date et la signature ; les mots-clés de Wix deviennent des auteurs (un nom de
+personne) ou des sujets. Les anciennes adresses `/post/<slug>` mènent à l'article.
 
 ## Trois langues
 

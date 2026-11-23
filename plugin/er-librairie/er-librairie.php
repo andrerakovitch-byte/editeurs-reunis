@@ -23,7 +23,10 @@ require __DIR__ . '/inc/import.php';
 require __DIR__ . '/inc/fiche.php';
 require __DIR__ . '/inc/couvertures.php';
 require __DIR__ . '/inc/evenements.php';
+require __DIR__ . '/inc/medias.php';
 require __DIR__ . '/inc/sujets.php';
+require __DIR__ . '/inc/auteurs.php';
+require __DIR__ . '/inc/journal.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------
  *

@@ -48,6 +48,22 @@ add_action(
 						}
 						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . esc_html( $valeur ) . '</p>';
 					}
+					// Les personnes dont parle le livre, et ses sujets : des liens vers leur page.
+					$liees = array(
+						_x( 'Autour de', 'fiche d’un livre', 'er-librairie' ) => function_exists( 'er_autour_de' ) ? er_autour_de( $id ) : array(),
+						_x( 'Sujets', 'fiche d’un livre', 'er-librairie' )    => wp_get_post_terms( $id, 'er_sujet' ),
+					);
+					foreach ( $liees as $libelle => $termes ) {
+						if ( ! $termes || is_wp_error( $termes ) ) {
+							continue;
+						}
+						$liens = array();
+						foreach ( $termes as $t ) {
+							$lien    = get_term_link( $t );
+							$liens[] = '<a href="' . esc_url( is_wp_error( $lien ) ? '' : $lien ) . '">' . esc_html( $t->name ) . '</a>';
+						}
+						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . implode( ', ', $liens ) . '</p>';
+					}
 					return $lignes ? '<div class="wp-block-er-fiche-champs">' . $lignes . '</div>' : '';
 				},
 			)

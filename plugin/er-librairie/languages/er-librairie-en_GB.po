@@ -25,53 +25,137 @@ msgid ""
 "livres."
 msgstr ""
 
-#: er-librairie.php:167
+#: er-librairie.php:171
 msgid "Langue du site"
 msgstr "Site language"
 
-#: er-librairie.php:181 er-librairie.php:187 inc/import.php:26
+#: er-librairie.php:185 er-librairie.php:191 inc/import.php:26
+#: inc/sujets.php:374
 msgid "Auteurs"
 msgstr "Authors"
 
-#: er-librairie.php:182
+#: er-librairie.php:186
 msgid "Auteur"
 msgstr "Author"
 
-#: er-librairie.php:183
+#: er-librairie.php:187
 msgid "Chercher un auteur"
 msgstr "Search authors"
 
-#: er-librairie.php:184
+#: er-librairie.php:188
 msgid "Tous les auteurs"
 msgstr "All authors"
 
-#: er-librairie.php:185
+#: er-librairie.php:189
 msgid "Modifier l’auteur"
 msgstr "Edit author"
 
-#: er-librairie.php:186
+#: er-librairie.php:190
 msgid "Ajouter un auteur"
 msgstr "Add author"
 
-#: er-librairie.php:201 er-librairie.php:206 inc/import.php:27
+#: er-librairie.php:207 er-librairie.php:212 inc/import.php:27
 msgid "Langues"
 msgstr "Languages"
 
-#: er-librairie.php:202 inc/evenements.php:122 inc/evenements.php:717
+#: er-librairie.php:208 inc/evenements.php:122 inc/evenements.php:727
 msgid "Langue"
 msgstr "Language"
 
-#: er-librairie.php:203
+#: er-librairie.php:209
 msgid "Toutes les langues"
 msgstr "All languages"
 
-#: er-librairie.php:204
+#: er-librairie.php:210
 msgid "Modifier la langue"
 msgstr "Edit language"
 
-#: er-librairie.php:205
+#: er-librairie.php:211
 msgid "Ajouter une langue"
 msgstr "Add language"
+
+#: inc/auteurs.php:21
+msgid "Portrait"
+msgstr "Portrait"
+
+#: inc/auteurs.php:22
+msgid "Naissance"
+msgstr "Born"
+
+#: inc/auteurs.php:22
+msgid "Le lieu et la date : « Kislovodsk, 11 décembre 1918 »."
+msgstr "Place and date: “Kislovodsk, 11 December 1918”."
+
+#: inc/auteurs.php:23
+msgid "Mort"
+msgstr "Died"
+
+#: inc/auteurs.php:23
+msgid "« Moscou, 3 août 2008 » ; vide s’il est vivant."
+msgstr "“Moscow, 3 August 2008”; empty if still living."
+
+#: inc/auteurs.php:24 inc/auteurs.php:210
+msgid "Biographie"
+msgstr "Biography"
+
+#: inc/auteurs.php:24
+msgid ""
+"Le texte de la page, avec ses intertitres et ses images. La présentation "
+"courte est le champ « Description »."
+msgstr ""
+"The text of the page, with its subheadings and images. The short "
+"introduction is the “Description” field."
+
+#: inc/auteurs.php:25 inc/auteurs.php:222
+msgid "Photos"
+msgstr "Photographs"
+
+#: inc/auteurs.php:25
+msgid "Leur légende est celle de la médiathèque."
+msgstr "Their caption is the one in the media library."
+
+#: inc/auteurs.php:26 inc/auteurs.php:246
+msgid "Pour aller plus loin"
+msgstr "Further reading"
+
+#: inc/auteurs.php:26
+msgid "Un lien par ligne : « Titre | lien »."
+msgstr "One link per line: “Title | link”."
+
+#: inc/auteurs.php:27
+msgid "Page de l’encyclopédie"
+msgstr "Encyclopedia page"
+
+#: inc/auteurs.php:27
+msgid ""
+"La page qui lui est consacrée, s’il y en a une : elle mène à celle-ci, et "
+"celle-ci à elle."
+msgstr "The page devoted to them, if any: each links to the other."
+
+#: inc/auteurs.php:50
+msgid "Choisir les photos"
+msgstr "Choose photographs"
+
+#: inc/auteurs.php:50
+msgid "Choisir le portrait"
+msgstr "Choose portrait"
+
+#: inc/auteurs.php:51
+msgid "Ôter"
+msgstr "Remove"
+
+#: inc/auteurs.php:213
+msgid "Lire toute la biographie"
+msgstr "Read the full biography"
+
+#: inc/auteurs.php:234
+msgid "L’article de l’encyclopédie"
+msgstr "The encyclopedia article"
+
+#. translators: %s: le nom de l'auteur
+#: inc/auteurs.php:285
+msgid "Tout %s : ses livres, les rencontres, les vidéos, les articles"
+msgstr "All about %s: books, events, videos, articles"
 
 #: inc/couvertures.php:58
 msgid "Trop petites"
@@ -147,7 +231,7 @@ msgstr "Events"
 msgid "Événement"
 msgstr "Event"
 
-#: inc/evenements.php:32
+#: inc/evenements.php:32 inc/medias.php:24
 msgid "Ajouter"
 msgstr "Add"
 
@@ -251,7 +335,7 @@ msgstr "Format"
 msgid "Rencontre, conférence, présentation, soirée, exposition…"
 msgstr "Talk, lecture, book launch, evening, exhibition…"
 
-#: inc/evenements.php:123 inc/evenements.php:708
+#: inc/evenements.php:123 inc/evenements.php:718
 msgid "Entrée"
 msgstr "Enter"
 
@@ -263,7 +347,7 @@ msgstr "Admission price (€)"
 msgid "Pour la billetterie."
 msgstr "For ticketing."
 
-#: inc/evenements.php:125 inc/evenements.php:746
+#: inc/evenements.php:125 inc/evenements.php:756
 msgid "Places"
 msgstr "Seats"
 
@@ -321,6 +405,7 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
+#: inc/journal.php:47 inc/medias.php:202 inc/sujets.php:404 inc/sujets.php:407
 msgid "j F Y"
 msgstr "j F Y"
 
@@ -328,234 +413,236 @@ msgstr "j F Y"
 msgid "l j F Y"
 msgstr "l j F Y"
 
-#: inc/evenements.php:266 inc/evenements.php:457
+#: inc/evenements.php:266 inc/evenements.php:467
 msgid "En français"
 msgstr "In French"
 
-#: inc/evenements.php:267 inc/evenements.php:458
+#: inc/evenements.php:267 inc/evenements.php:468
 msgid "En russe"
 msgstr "In Russian"
 
-#: inc/evenements.php:268 inc/evenements.php:459
+#: inc/evenements.php:268 inc/evenements.php:469
 msgid "En français et en russe"
 msgstr "In French and Russian"
 
-#: inc/evenements.php:269 inc/evenements.php:460
+#: inc/evenements.php:269 inc/evenements.php:470
 msgid "En anglais"
 msgstr "In English"
 
 #. translators: %s: le titre de la rencontre
-#: inc/evenements.php:331
+#: inc/evenements.php:341
 msgid "Entrée — %s"
 msgstr "Admission — %s"
 
-#: inc/evenements.php:443
+#: inc/evenements.php:453
 msgid "La rencontre"
 msgstr "The event"
 
-#: inc/evenements.php:463
+#: inc/evenements.php:473
 msgid "Entrée libre, sans inscription"
 msgstr "Free, no registration"
 
-#: inc/evenements.php:464
+#: inc/evenements.php:474
 msgid "Gratuite, sur inscription"
 msgstr "Free, registration required"
 
-#: inc/evenements.php:465
+#: inc/evenements.php:475
 msgid "Payante : billetterie"
 msgstr "Paid: ticketing"
 
-#: inc/evenements.php:468
+#: inc/evenements.php:478
 msgid "Prévue"
 msgstr "Scheduled"
 
-#: inc/evenements.php:469
+#: inc/evenements.php:479
 msgid "Complète"
 msgstr "Full"
 
-#: inc/evenements.php:470 inc/evenements.php:953 inc/evenements.php:985
+#: inc/evenements.php:480 inc/evenements.php:963 inc/evenements.php:995
 msgid "Annulée"
 msgstr "Cancelled"
 
 #. translators: %d: le nombre de billets pris
-#: inc/evenements.php:482
+#: inc/evenements.php:492
 msgid "%d place prise"
 msgid_plural "%d places prises"
 msgstr[0] "%d seat taken"
 msgstr[1] "%d seats taken"
 
-#: inc/evenements.php:554
+#: inc/evenements.php:564
 msgid "Le"
 msgstr "Date"
 
-#: inc/evenements.php:564
+#: inc/evenements.php:574
 msgid "annulée"
 msgstr "cancelled"
 
-#: inc/evenements.php:567
+#: inc/evenements.php:577
 msgid "vidéo"
 msgstr "video"
 
-#: inc/evenements.php:685
+#: inc/evenements.php:695
 msgid "Quand"
 msgstr "When"
 
-#: inc/evenements.php:688
+#: inc/evenements.php:698
 msgid "Où"
 msgstr "Where"
 
-#: inc/evenements.php:690
+#: inc/evenements.php:700
 msgid "Au centre, 11, rue de la Montagne-Sainte-Geneviève, Paris 5e"
 msgstr "At the centre, 11 rue de la Montagne-Sainte-Geneviève, Paris 5th"
 
-#: inc/evenements.php:690
+#: inc/evenements.php:700
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: inc/evenements.php:697
+#: inc/evenements.php:707
 msgid "Payante"
 msgstr "Paid"
 
-#: inc/evenements.php:699
+#: inc/evenements.php:709
 msgid "Libre, sur inscription"
 msgstr "Free, registration required"
 
-#: inc/evenements.php:701
+#: inc/evenements.php:711
 msgid "Libre, sans inscription"
 msgstr "Free, no registration"
 
 #. translators: %d: le nombre de places qui restent
-#: inc/evenements.php:705
+#: inc/evenements.php:715
 msgid "il reste %d place"
 msgid_plural "il reste %d places"
 msgstr[0] "%d seat left"
 msgstr[1] "%d seats left"
 
-#: inc/evenements.php:713
+#: inc/evenements.php:723
 msgid "Avec"
 msgstr "With"
 
-#: inc/evenements.php:727
+#: inc/evenements.php:737
 msgid "Cette rencontre est annulée."
 msgstr "This event has been cancelled."
 
 #. translators: %s: « du 2 juin au 28 septembre 2021 »
-#: inc/evenements.php:731
+#: inc/evenements.php:741
 msgid "C’était %s."
 msgstr "It ran %s."
 
 #. translators: %s: la date
-#: inc/evenements.php:732
+#: inc/evenements.php:742
 msgid "Cette rencontre a eu lieu le %s."
 msgstr "This event took place on %s."
 
-#: inc/evenements.php:735
+#: inc/evenements.php:745
 msgid "Revoir la rencontre"
 msgstr "Watch the event"
 
-#: inc/evenements.php:741
+#: inc/evenements.php:751
 msgid "Complet."
 msgstr "Sold out."
 
-#: inc/evenements.php:744
+#: inc/evenements.php:754
 msgid "S’inscrire"
 msgstr "Register"
 
-#: inc/evenements.php:744 inc/evenements.php:964
+#: inc/evenements.php:754 inc/evenements.php:974
 msgid "Réserver"
 msgstr "Book"
 
-#: inc/evenements.php:751
+#: inc/evenements.php:761
 msgid "Les réservations ouvrent bientôt."
 msgstr "Booking opens soon."
 
 #. translators: %s: le site (Facebook, YouTube…)
-#: inc/evenements.php:783
+#: inc/evenements.php:793
 msgid "Voir sur %s"
 msgstr "Watch on %s"
 
 #. translators: %s: le site (Facebook, YouTube…)
-#: inc/evenements.php:783
+#: inc/evenements.php:793
 msgid "Voir la vidéo"
 msgstr "Watch the video"
 
-#: inc/evenements.php:797
+#: inc/evenements.php:807
 msgid "Revoir, réécouter"
 msgstr "Watch and listen again"
 
-#: inc/evenements.php:797
+#: inc/evenements.php:807
 msgid "À voir, à écouter"
 msgstr "To watch, to listen to"
 
-#: inc/evenements.php:853
+#: inc/evenements.php:863 inc/sujets.php:486
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: inc/evenements.php:855
+#. translators: %s: le nom de la personne
+#: inc/evenements.php:865 inc/sujets.php:557
 msgid "À la librairie"
 msgstr "At the bookshop"
 
-#: inc/evenements.php:862
+#: inc/evenements.php:872
 msgid "Toutes les rencontres"
 msgstr "All events"
 
-#: inc/evenements.php:955
+#: inc/evenements.php:965
 msgid "Complet"
 msgstr "Sold out"
 
-#: inc/evenements.php:962
+#: inc/evenements.php:972
 msgid "Entrée libre"
 msgstr "Free"
 
-#: inc/evenements.php:964
+#: inc/evenements.php:974
 msgid "Voir"
 msgstr "View"
 
-#: inc/evenements.php:984
+#: inc/evenements.php:994 inc/medias.php:127 inc/medias.php:198
+#: inc/sujets.php:403 inc/sujets.php:418
 msgid "Vidéo"
 msgstr "Video"
 
-#: inc/evenements.php:1011
+#: inc/evenements.php:1021
 msgid "À venir"
 msgstr "Upcoming"
 
-#: inc/evenements.php:1016
+#: inc/evenements.php:1026
 msgid "Cette semaine"
 msgstr "This week"
 
-#: inc/evenements.php:1017
+#: inc/evenements.php:1027
 msgid "La semaine prochaine"
 msgstr "Next week"
 
-#: inc/evenements.php:1018
+#: inc/evenements.php:1028
 msgid "Plus tard"
 msgstr "Later"
 
-#: inc/evenements.php:1033
+#: inc/evenements.php:1043
 msgid ""
 "Pas de rencontre annoncée pour l’instant : les prochaines paraîtront ici."
 msgstr "No events announced yet: upcoming ones will appear here."
 
-#: inc/evenements.php:1049 inc/evenements.php:1050
+#: inc/evenements.php:1059 inc/evenements.php:1060
 msgid "Les rencontres passées"
 msgstr "Past events"
 
-#: inc/evenements.php:1054
+#: inc/evenements.php:1064
 msgid "Avec une vidéo"
 msgstr "With a video"
 
-#: inc/evenements.php:1063
+#: inc/evenements.php:1073
 msgid "Les cycles"
 msgstr "Series"
 
 #. translators: %d: le nombre de rencontres
-#: inc/evenements.php:1071
+#: inc/evenements.php:1081
 msgid "%d rencontre"
 msgid_plural "%d rencontres"
 msgstr[0] "%d event"
 msgstr[1] "%d events"
 
-#: inc/evenements.php:1251
+#: inc/evenements.php:1257
 msgid ""
 "Les rencontres, les conférences, les lectures et les expositions du centre, "
 "au 11, rue de la Montagne-Sainte-Geneviève."
@@ -598,6 +685,16 @@ msgctxt "fiche d’un livre"
 msgid "ISBN"
 msgstr "ISBN"
 
+#: inc/fiche.php:53
+msgctxt "fiche d’un livre"
+msgid "Autour de"
+msgstr "About"
+
+#: inc/fiche.php:54
+msgctxt "fiche d’un livre"
+msgid "Sujets"
+msgstr "Subjects"
+
 #: inc/import.php:28
 msgid "Rayons"
 msgstr "Sections"
@@ -610,11 +707,112 @@ msgstr "Labels"
 msgid "Slug"
 msgstr "Slug"
 
-#: inc/recherche.php:962 inc/recherche.php:970
+#. translators: %s: le nom de celui qui signe l'article
+#: inc/journal.php:55
+msgid "Par %s"
+msgstr "By %s"
+
+#: inc/medias.php:22 inc/medias.php:30
+msgid "Vidéos et podcasts"
+msgstr "Videos and podcasts"
+
+#: inc/medias.php:23
+msgid "Vidéo ou podcast"
+msgstr "Video or podcast"
+
+#: inc/medias.php:25
+msgid "Ajouter une vidéo ou un podcast"
+msgstr "Add a video or podcast"
+
+#: inc/medias.php:26
+msgid "Modifier"
+msgstr "Edit"
+
+#: inc/medias.php:27
+msgid "Toutes les vidéos et les podcasts"
+msgstr "All videos and podcasts"
+
+#: inc/medias.php:28
+msgid "Chercher"
+msgstr "Search"
+
+#: inc/medias.php:29
+msgid "Rien pour l’instant"
+msgstr "Nothing yet"
+
+#: inc/medias.php:49 inc/medias.php:54
+msgid "Séries"
+msgstr "Series"
+
+#: inc/medias.php:50
+msgid "Série"
+msgstr "Series"
+
+#: inc/medias.php:51
+msgid "Toutes les séries"
+msgstr "All series"
+
+#: inc/medias.php:52
+msgid "Modifier la série"
+msgstr "Edit series"
+
+#: inc/medias.php:53
+msgid "Ajouter une série"
+msgstr "Add a series"
+
+#: inc/medias.php:119
+msgid "La vidéo ou le podcast"
+msgstr "The video or podcast"
+
+#: inc/medias.php:124
+msgid "Lien"
+msgstr "Link"
+
+#: inc/medias.php:125
+msgid ""
+"YouTube, Vimeo, SoundCloud, Spotify, un fichier audio ou vidéo ; un lien par"
+" ligne, le premier est le principal. Pour un titre : « Titre | lien »."
+msgstr ""
+"YouTube, Vimeo, SoundCloud, Spotify, an audio or video file; one link per "
+"line, the first is the main one. For a title: “Title | link”."
+
+#: inc/medias.php:126
+msgid "Genre"
+msgstr "Type"
+
+#: inc/medias.php:128 inc/medias.php:198 inc/sujets.php:403
+msgid "Podcast"
+msgstr "Podcast"
+
+#: inc/medias.php:129
+msgid "Durée (minutes)"
+msgstr "Length (minutes)"
+
+#. translators: %d: la durée en minutes
+#: inc/medias.php:206
+msgid "%d min"
+msgstr "%d min"
+
+#: inc/medias.php:231
+msgid "Rien pour l’instant."
+msgstr "Nothing here yet."
+
+#: inc/medias.php:237 inc/medias.php:240
+msgid "Et aussi"
+msgstr "And also"
+
+#. translators: %d: le nombre de rencontres et d'articles
+#: inc/recherche.php:598
+msgid "Sujet · %d rencontre ou article"
+msgid_plural "Sujet · %d rencontres et articles"
+msgstr[0] "Subject · %d item"
+msgstr[1] "Subject · %d items"
+
+#: inc/recherche.php:985 inc/recherche.php:993
 msgid "Autres graphies"
 msgstr "Other spellings"
 
-#: inc/recherche.php:964 inc/recherche.php:972
+#: inc/recherche.php:987 inc/recherche.php:995
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -622,26 +820,126 @@ msgstr ""
 "One per line: the name in Russian, in English, an older transliteration. The"
 " search finds them all."
 
-#: inc/recherche.php:992
+#: inc/recherche.php:1015
 msgid "Traducteur, préfacier"
 msgstr "Translator, preface writer"
 
-#: inc/recherche.php:993
+#: inc/recherche.php:1016
 msgid "Éditeur"
 msgstr "Publisher"
 
-#: inc/recherche.php:994
+#: inc/recherche.php:1017
 msgid "Collection"
 msgstr "Series"
 
-#: inc/recherche.php:995
+#: inc/recherche.php:1018
 msgid "Année d’édition"
 msgstr "Year of publication"
 
-#: inc/recherche.php:996
+#: inc/recherche.php:1019
 msgid "Nombre de pages"
 msgstr "Number of pages"
 
-#: inc/recherche.php:997
+#: inc/recherche.php:1020
 msgid "Format (poche, broché, relié…)"
 msgstr "Format (paperback, hardback…)"
+
+#: inc/sujets.php:33 inc/sujets.php:42 inc/sujets.php:375
+msgid "Sujets"
+msgstr "Subjects"
+
+#: inc/sujets.php:34
+msgid "Sujet"
+msgstr "Subject"
+
+#: inc/sujets.php:35
+msgid "Chercher un sujet"
+msgstr "Search subjects"
+
+#: inc/sujets.php:36
+msgid "Tous les sujets"
+msgstr "All subjects"
+
+#: inc/sujets.php:37
+msgid "Modifier le sujet"
+msgstr "Edit subject"
+
+#: inc/sujets.php:38
+msgid "Ajouter un sujet"
+msgstr "Add a subject"
+
+#: inc/sujets.php:39
+msgid "Séparer les sujets par des virgules"
+msgstr "Separate subjects with commas"
+
+#: inc/sujets.php:40
+msgid "Choisir parmi les plus utilisés"
+msgstr "Choose from the most used"
+
+#: inc/sujets.php:41
+msgid "Aucun sujet"
+msgstr "No subjects"
+
+#: inc/sujets.php:62 inc/sujets.php:63 inc/sujets.php:151
+msgid "Autour de"
+msgstr "About"
+
+#. translators: %s: le nom de l'auteur
+#: inc/sujets.php:95
+msgid "%s est un auteur : choisissez-le dans « Auteurs » plutôt qu’en sujet."
+msgstr ""
+"%s is an author: choose them under “Authors” rather than as a subject."
+
+#: inc/sujets.php:156
+msgid ""
+"Les personnes dont parle le livre, séparées par des virgules : des auteurs "
+"(un nom nouveau devient un auteur). Le livre paraît sur leur page, dans « "
+"Autour de »."
+msgstr ""
+"The people the book is about, separated by commas: authors (a new name "
+"becomes an author). The book appears on their page, under “About”."
+
+#: inc/sujets.php:400
+msgid "Rencontre"
+msgstr "Event"
+
+#: inc/sujets.php:406
+msgid "Journal"
+msgstr "Journal"
+
+#: inc/sujets.php:471
+msgid "À lire, à revoir"
+msgstr "Read and watch more"
+
+#: inc/sujets.php:553
+msgid "Prochainement au centre"
+msgstr "Coming up at the centre"
+
+#. translators: %s: le nom de la personne
+#: inc/sujets.php:557
+msgid "Autour de %s"
+msgstr "About %s"
+
+#: inc/sujets.php:561
+msgid "Les rencontres"
+msgstr "Events"
+
+#: inc/sujets.php:561
+msgid "Au centre"
+msgstr "At the centre"
+
+#: inc/sujets.php:564
+msgid "Écouter, regarder"
+msgstr "Listen and watch"
+
+#: inc/sujets.php:567
+msgid "Dans le journal"
+msgstr "In the journal"
+
+#: inc/sujets.php:574
+msgid "À lire sur le site"
+msgstr "Read on the site"
+
+#: inc/sujets.php:577
+msgid "Rien encore sur ce sujet."
+msgstr "Nothing on this subject yet."

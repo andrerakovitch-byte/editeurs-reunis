@@ -85,120 +85,120 @@ msgstr "Veiled card"
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Paper ambience (heritage content)"
 
-#: functions.php:310
+#: functions.php:313
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "The publishing house"
 
-#: functions.php:311
+#: functions.php:314
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "A century of history"
 
-#: functions.php:312
+#: functions.php:315
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Catalogue"
 
-#: functions.php:313
+#: functions.php:316
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Friends of YMCA-Press"
 
-#: functions.php:316
+#: functions.php:319
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "About the centre"
 
-#: functions.php:317
+#: functions.php:320
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Events"
 
-#: functions.php:318
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Exhibitions"
 
-#: functions.php:319
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Podcasts"
 
-#: functions.php:320
+#: functions.php:323
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Videos"
 
-#: functions.php:321
+#: functions.php:324
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "The Centre’s journal"
 
-#: functions.php:322
+#: functions.php:325
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: functions.php:345 patterns/en-tete.php:62
+#: functions.php:350 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "YMCA-Press publishers"
 
-#: functions.php:346 patterns/en-tete.php:63
+#: functions.php:351 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Cultural centre"
 
-#: functions.php:452 inc/recherche.php:358
+#: functions.php:457 inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: functions.php:481
+#: functions.php:486
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:482
+#: functions.php:487
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:483
+#: functions.php:488
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:484
+#: functions.php:489
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:485
+#: functions.php:490
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:486
+#: functions.php:491
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:487
+#: functions.php:492
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:488
+#: functions.php:493
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:489
+#: functions.php:494
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:490
+#: functions.php:495
 msgid "Arts"
 msgstr "Arts"
 
-#: functions.php:512
+#: functions.php:517
 msgid "Compte"
 msgstr "Account"
 
-#: functions.php:523 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:528 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Language"
 
@@ -1085,22 +1085,26 @@ msgctxt "Pattern title"
 msgid "La librairie"
 msgstr ""
 
-#: patterns/librairie.php:28
+#: patterns/librairie.php:25
+msgid "Ses livres"
+msgstr "Books"
+
+#: patterns/librairie.php:34
 msgid "Les Éditeurs réunis, librairie de référence depuis 1925"
 msgstr "Les Éditeurs réunis, a Paris bookshop since 1925"
 
-#: patterns/librairie.php:57
+#: patterns/librairie.php:65
 msgctxt "pagination des livres"
 msgid "Précédents"
 msgstr "Previous"
 
-#: patterns/librairie.php:59
+#: patterns/librairie.php:67
 msgctxt "pagination des livres"
 msgid "Suivants"
 msgstr "Next"
 
 #. translators: %s: l'adresse de la librairie.
-#: patterns/librairie.php:66
+#: patterns/librairie.php:74
 msgid ""
 "Aucun livre ne correspond. <a href=\"%s\">Voir toute la librairie</a>, ou "
 "écrivez-nous : nous avons bien plus de livres en rayon qu’en ligne."
@@ -1673,6 +1677,15 @@ msgstr "The five books"
 #: patterns/selection-table.php:321
 msgid "Toute la sélection, en librairie"
 msgstr "The whole selection, at the bookshop"
+
+#: patterns/sujet.php
+msgctxt "Pattern title"
+msgid "La page d'un sujet"
+msgstr ""
+
+#: patterns/sujet.php:17
+msgid "Sujet"
+msgstr "Subject"
 
 #: patterns/une-archipel.php
 msgctxt "Pattern title"

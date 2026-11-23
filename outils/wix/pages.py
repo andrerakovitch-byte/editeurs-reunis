@@ -251,6 +251,14 @@ def chaine_youtube(url):
     return videos
 
 
+# Les chaînes du centre, lues même si les pages de Wix ne répondent pas.
+CHAINES = [
+    'https://www.youtube.com/channel/UCSs5trhAafqKlWNJEVI8c9w',
+    'https://soundcloud.com/editeursreunis',
+    'https://podcasts.apple.com/fr/podcast/les-podcasts-%C3%A0-livre-ouvert/id1539953466',
+]
+
+
 def medias(pages=()):
     resultat = {'pages': {}, 'liens': {}, 'chaines': {}, 'flux': {}, 'evenements': []}
     os.makedirs(os.path.join(SORTIE, 'brut'), exist_ok=True)
@@ -266,7 +274,7 @@ def medias(pages=()):
             json.dump(wix, open(os.path.join(SORTIE, 'brut', f'{nom or "accueil"}-wix.json'), 'w'), ensure_ascii=False)
         resultat['pages'][nom or 'accueil'] = {'meta': meta(html), 'taille': len(html)}
         resultat['liens'][nom or 'accueil'] = liens_medias(html)
-    tous = sorted({l for ls in resultat['liens'].values() for l in ls})
+    tous = sorted({l for ls in resultat['liens'].values() for l in ls} | set(CHAINES))
     for url in tous:
         apple = re.search(r'podcasts\.apple\.com/.*/id(\d+)', url)
         if apple:

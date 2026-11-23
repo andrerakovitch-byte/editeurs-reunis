@@ -1,6 +1,6 @@
 # Lit des pages publiques de l'ancien site Wix (editeurs-reunis.fr), injoignable depuis l'espace de travail de Claude :
-# outils/wix/pages.py. Le résultat est déposé sur la branche à part « wix-pages » (écrasée à chaque fois), jamais sur
-# main ; Claude la lit par git (les artefacts des workflows ne lui sont pas joignables). Ce ne sont que des pages
+# outils/wix/pages.py. Le résultat est déposé sur la branche à part « wix-pages » (chaque passage y ajoute ses fichiers),
+# jamais sur main ; Claude la lit par git (les artefacts des workflows ne lui sont pas joignables). Ce ne sont que des pages
 # publiques du site.
 name: Lire l'ancien site Wix
 
@@ -38,6 +38,9 @@ jobs:
           git init -q -b wix-pages
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "Pages lues de l'ancien site : ${{ inputs.quoi }}"
-          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wix-pages
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          # Les fichiers des passages précédents restent : on ajoute ceux-ci par-dessus.
+          if git fetch -q --depth 1 origin wix-pages; then git reset -q --soft FETCH_HEAD; fi
+          git add --ignore-removal .
+          git commit -q -m "Pages lues de l'ancien site : ${{ inputs.quoi }}" || exit 0
+          git push -q origin HEAD:wix-pages

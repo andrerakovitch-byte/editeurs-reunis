@@ -1,16 +1,21 @@
 <?php
 /**
- * Les étiquettes des articles du journal et des rencontres : les auteurs et les sujets.
+ * Les étiquettes de tout le site : les personnes (le classement des auteurs) et les sujets.
  *
- * - Les auteurs sont le classement des livres, étendu aux articles et aux rencontres : sur un livre, son auteur ; sur
- *   un article ou une rencontre, les auteurs de la librairie qui y sont liés (on en parle, ils l'ont écrit). Le compte
- *   d'un auteur reste son nombre de livres (« Gouzel Iakhina · 3 livres »).
- * - Les sujets (er_sujet) sont un classement libre des articles et des rencontres : l'émigration, la poésie, le
- *   Goulag… avec leur page, /sujet/<slug>/.
+ * Une personne n'a qu'une étiquette, son nom d'auteur, et une seule page, /auteur/<slug>/ ; un sujet n'est jamais une
+ * personne (un sujet qui porte le nom d'un auteur est refusé : on choisit l'auteur).
  *
- * Ils relient le site : la page d'un auteur montre, sous ses livres, les rencontres et les articles qui le concernent ;
- * la page d'un sujet, ses rencontres et ses articles ; un article ou une rencontre, ses étiquettes et ce qui lui est
- * proche (« À lire, à revoir »). Les étiquettes WordPress des articles (post_tag) laissent la place aux sujets.
+ * - Les auteurs : sur un livre, celui qui l'a écrit ; sur un article, une rencontre, une vidéo ou un podcast, une page,
+ *   les personnes qui y sont liées (on en parle, elles l'ont écrit ou y interviennent). Un livre qui parle d'une
+ *   personne la porte dans « Autour de » (er_autour, un classement caché, tenu avec les mêmes noms que les auteurs :
+ *   on y choisit un auteur, rien d'autre). Le compte d'un auteur reste son nombre de livres.
+ * - Les sujets (er_sujet) : l'émigration, la poésie, le Goulag…, sur les livres, les articles, les rencontres, les
+ *   vidéos et les podcasts, les pages ; avec leur page, /sujet/<slug>/.
+ *
+ * Ils relient le site : la page de Soljenitsyne donne ses livres, les livres autour de lui, les rencontres, les vidéos
+ * et les podcasts, les articles du journal et les pages qui le concernent ; la page d'un sujet, tout ce qui le porte ;
+ * un article, une rencontre, une vidéo, ses étiquettes et ce qui lui est proche (« À lire, à revoir »). Les étiquettes
+ * WordPress des articles (post_tag) laissent la place aux sujets.
  *
  * @package er-librairie
  */
@@ -22,7 +27,7 @@ add_action(
 	function () {
 		register_taxonomy(
 			'er_sujet',
-			array( 'post', ER_EVT ),
+			er_types_etiquetes(),
 			array(
 				'labels'            => array(
 					'name'                       => __( 'Sujets', 'er-librairie' ),
@@ -43,11 +48,131 @@ add_action(
 				'rewrite'           => array( 'slug' => 'sujet' ),
 			)
 		);
-		register_taxonomy_for_object_type( 'auteur', 'post' );
-		register_taxonomy_for_object_type( 'auteur', ER_EVT );
+		foreach ( er_types_etiquetes() as $type ) {
+			if ( 'product' !== $type ) {
+				register_taxonomy_for_object_type( 'auteur', $type );
+			}
+		}
 		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+		register_taxonomy(
+			'er_autour',
+			array( 'product' ),
+			array(
+				'labels'            => array(
+					'name'          => __( 'Autour de', 'er-librairie' ),
+					'singular_name' => __( 'Autour de', 'er-librairie' ),
+				),
+				'public'            => false,
+				'show_ui'           => false,
+				'show_in_rest'      => true,
+				'hierarchical'      => false,
+				'rewrite'           => false,
+			)
+		);
 	},
 	7
+);
+
+/**
+ * Les contenus qui portent des étiquettes : les livres, les articles, les rencontres, les vidéos et les podcasts, les
+ * pages.
+ */
+function er_types_etiquetes() {
+	return array( 'product', 'post', ER_EVT, 'er_media', 'page' );
+}
+
+// Un sujet n'est jamais une personne : celui qui porte le nom d'un auteur est refusé.
+add_filter(
+	'pre_insert_term',
+	function ( $terme, $taxonomie ) {
+		if ( 'er_sujet' !== $taxonomie || ! is_string( $terme ) || '' === trim( $terme ) ) {
+			return $terme;
+		}
+		$cle = er_cle_recherche( $terme );
+		foreach ( er_evt_auteurs_connus() as $nom => list( $t ) ) {
+			if ( $nom === $cle ) {
+				/* translators: %s: le nom de l'auteur */
+				return new WP_Error( 'er_sujet_auteur', sprintf( __( '%s est un auteur : choisissez-le dans « Auteurs » plutôt qu’en sujet.', 'er-librairie' ), $t->name ) );
+			}
+		}
+		return $terme;
+	},
+	10,
+	2
+);
+
+/**
+ * Les personnes dont parle un livre (« Autour de »), par leurs termes d'auteur.
+ *
+ * @param int $id Le livre.
+ * @return WP_Term[]
+ */
+function er_autour_de( $id ) {
+	$autour = array();
+	foreach ( wp_get_post_terms( $id, 'er_autour' ) as $miroir ) {
+		$auteur = get_term_by( 'slug', $miroir->slug, 'auteur' );
+		if ( $auteur ) {
+			$autour[] = $auteur;
+		}
+	}
+	return $autour;
+}
+
+/**
+ * Pose « Autour de » sur un livre : des auteurs (par leur identifiant ou leur nom, un nom inconnu devient un auteur).
+ *
+ * @param int   $id      Le livre.
+ * @param array $auteurs Les auteurs.
+ */
+function er_poser_autour_de( $id, $auteurs ) {
+	$slugs = array();
+	foreach ( $auteurs as $a ) {
+		$t = is_numeric( $a ) ? get_term( (int) $a, 'auteur' ) : get_term_by( 'name', trim( $a ), 'auteur' );
+		if ( ! $t && ! is_numeric( $a ) && '' !== trim( $a ) ) {
+			$cree = wp_insert_term( trim( $a ), 'auteur' );
+			$t    = is_wp_error( $cree ) ? null : get_term( $cree['term_id'], 'auteur' );
+		}
+		if ( $t && ! is_wp_error( $t ) ) {
+			if ( ! term_exists( $t->slug, 'er_autour' ) ) {
+				wp_insert_term( $t->name, 'er_autour', array( 'slug' => $t->slug ) );
+			}
+			$slugs[] = $t->slug;
+		}
+	}
+	wp_set_object_terms( $id, $slugs, 'er_autour' );
+}
+
+// La fiche d'un livre, dans l'administration : « Autour de », les personnes dont il parle (des auteurs).
+add_action(
+	'add_meta_boxes_product',
+	function () {
+		add_meta_box(
+			'er-autour',
+			__( 'Autour de', 'er-librairie' ),
+			function ( $post ) {
+				wp_nonce_field( 'er_autour', 'er_autour_jeton' );
+				$noms = implode( ', ', wp_list_pluck( er_autour_de( $post->ID ), 'name' ) );
+				echo '<p><input type="text" class="widefat" name="er_autour" list="er-auteurs" value="' . esc_attr( $noms ) . '"></p>';
+				echo '<p class="description">' . esc_html__( 'Les personnes dont parle le livre, séparées par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page, dans « Autour de ».', 'er-librairie' ) . '</p>';
+				echo '<datalist id="er-auteurs">';
+				foreach ( get_terms( array( 'taxonomy' => 'auteur', 'hide_empty' => false, 'fields' => 'names', 'number' => 3000 ) ) as $nom ) {
+					echo '<option value="' . esc_attr( $nom ) . '">';
+				}
+				echo '</datalist>';
+			},
+			'product',
+			'side'
+		);
+	}
+);
+add_action(
+	'save_post_product',
+	function ( $id ) {
+		if ( ! isset( $_POST['er_autour_jeton'], $_POST['er_autour'] ) || ! wp_verify_nonce( sanitize_key( $_POST['er_autour_jeton'] ), 'er_autour' ) || ! current_user_can( 'edit_post', $id ) ) {
+			return;
+		}
+		er_poser_autour_de( $id, array_filter( array_map( 'trim', explode( ',', sanitize_text_field( wp_unslash( $_POST['er_autour'] ) ) ) ) ) );
+	}
 );
 
 /**
@@ -100,13 +225,13 @@ function er_sujets_de_depart() {
 		'Goulag et dissidence' => '/goulag|gulag|гулаг|dissiden|диссидент|r[ée]pression|репресс|archipel du|архипелаг|samizdat|самиздат|terreur|kolyma|колым/iu',
 		'Orthodoxie'          => '/(?i:orthodox|[ée]glise|th[ée]olog|liturg|православ|христиан|церк|богослов|ic[ôo]ne|икон|святы)|\b[Pp][èe]re [A-ZÀ-Ý]|[Оо]т(?:ец|цом) [А-Я]/u',
 		'Histoire'            => '/histoire|historien|истори|r[ée]volution|революц|guerre|войн|m[ée]moire|память/iu',
-		'Musique'             => '/musique|musical|compositeur|op[ée]ra|concert|музык|композитор|опер[аы]|\bchants?\b/iu',
+		'Musique'             => '/musique|musical|musicien|compositeur|op[ée]ra|concert|chostakovitch|tcha[ïi]kovski|rachmaninov|moussorgski|stravinsk|prokofiev|glinka|музык|композитор|опер[аы]|шостакович|чайковск|рахманинов|\bchants?\b/iu',
 		'Cinéma'              => '/cin[ée]ma|\bfilms?\b|r[ée]alisateur|кино|фильм|режисс/iu',
-		'Arts'                => '/exposition|peint|gravure|\bart\b|artiste|sculpt|photograph|выставк|художник|живопис|графи/iu',
+		'Arts'                => '/exposition|peint|gravure|\bart\b|artiste|sculpt|photograph|выставк|художник|живопис|график|фотограф/iu',
 		'Traduction'          => '/traduction|traduct|traduire|перевод/iu',
 		'Philosophie'         => '/philosoph|философ|pens[ée]e russe/iu',
 		'Ukraine'             => '/ukrain|украин/iu',
-		'Théâtre'             => '/th[ée][âa]tre|lecture[- ]spectacle|театр|спектакл/iu',
+		'Théâtre'             => '/th[ée][âa]tre|lecture[- ]spectacle|театр|спектакл|пьес/iu',
 	);
 }
 
@@ -134,18 +259,53 @@ function er_sujets_deviner( $texte ) {
  * @return array [ [ le terme, ses noms, intervient ] ].
  */
 function er_auteurs_cites( $texte, $auteurs ) {
-	$cle = ' ' . er_cle_recherche( $texte ) . ' ';
-	$cle = str_replace( ' ' . er_cle_recherche( 'Centre culturel Alexandre Soljenitsyne' ) . ' ', ' ', $cle );
-	$cites = array();
+	$cle    = ' ' . er_cle_recherche( $texte ) . ' ';
+	$cle    = str_replace( ' ' . er_cle_recherche( 'Centre culturel Alexandre Soljenitsyne' ) . ' ', ' ', $cle );
+	$mots   = array_values( array_filter( explode( ' ', $cle ) ) );
+	$cites  = array();
 	foreach ( $auteurs as $nom => list( $t, $noms ) ) {
-		$position = strpos( $cle, ' ' . $nom . ' ' );
-		if ( false === $position || isset( $cites[ $t->term_id ] ) ) {
+		if ( isset( $cites[ $t->term_id ] ) ) {
 			continue;
 		}
-		$avant                  = array_slice( explode( ' ', trim( substr( $cle, 0, $position ) ) ), -3 );
-		$cites[ $t->term_id ] = array( $t, $noms, (bool) array_intersect( $avant, array( 'avec', 'par', 'presenc', 'recevons', 'invit', 'invite' ) ) );
+		$position = er_nom_dans( explode( ' ', $nom ), $mots );
+		if ( false === $position ) {
+			continue;
+		}
+		$avant                = array_slice( $mots, max( 0, $position - 3 ), min( 3, $position ) );
+		$cites[ $t->term_id ] = array( $t, $noms, (bool) array_intersect( $avant, array( 'avec', 'par', 'presenc', 'recevons', 'invit', 'invite', 's' ) ) );
 	}
 	return array_values( $cites );
+}
+
+/**
+ * Où un nom (ses mots) paraît dans un texte (ses mots), mots qui se suivent ; un mot peut changer de fin, comme en
+ * russe (« с Марией Степановой » pour Мария Степанова) : les deux dernières lettres d'un mot de cinq lettres et plus
+ * peuvent varier.
+ *
+ * @param array $nom   Les mots du nom.
+ * @param array $mots  Les mots du texte.
+ * @return int|false La position du premier mot.
+ */
+function er_nom_dans( $nom, $mots ) {
+	$n = count( $nom );
+	for ( $i = 0; $i + $n <= count( $mots ); $i++ ) {
+		$ok = true;
+		foreach ( $nom as $k => $m ) {
+			$t = $mots[ $i + $k ];
+			if ( $t === $m ) {
+				continue;
+			}
+			$racine = strlen( $m ) >= 5 ? substr( $m, 0, strlen( $m ) - 2 ) : null;
+			if ( null === $racine || 0 !== strpos( $t, $racine ) || abs( strlen( $t ) - strlen( $m ) ) > 3 ) {
+				$ok = false;
+				break;
+			}
+		}
+		if ( $ok ) {
+			return $i;
+		}
+	}
+	return false;
 }
 
 /**
@@ -239,12 +399,19 @@ function er_carte_contenu( $p ) {
 	if ( ER_EVT === $p->post_type ) {
 		$genre = __( 'Rencontre', 'er-librairie' );
 		$date  = er_evt_quand( $p->ID, false );
+	} elseif ( 'er_media' === $p->post_type ) {
+		$genre = 'podcast' === get_post_meta( $p->ID, 'er_genre', true ) ? __( 'Podcast', 'er-librairie' ) : __( 'Vidéo', 'er-librairie' );
+		$date  = get_the_date( __( 'j F Y', 'er-librairie' ), $p );
 	} else {
 		$genre = __( 'Journal', 'er-librairie' );
 		$date  = get_the_date( __( 'j F Y', 'er-librairie' ), $p );
 	}
 	$image = get_the_post_thumbnail( $p, 'medium_large', array( 'alt' => '', 'loading' => 'lazy' ) );
-	return '<li class="er-carte-contenu er-carte-' . ( ER_EVT === $p->post_type ? 'rencontre' : 'article' ) . '"><a href="' . esc_url( get_permalink( $p ) ) . '">'
+	if ( ! $image && 'er_media' === $p->post_type && function_exists( 'er_media_vignette' ) ) {
+		$image = er_media_vignette( $p->ID ); // L'image de la vidéo, chez YouTube.
+	}
+	$classes = array( ER_EVT => 'rencontre', 'er_media' => 'media', 'post' => 'article' );
+	return '<li class="er-carte-contenu er-carte-' . ( isset( $classes[ $p->post_type ] ) ? $classes[ $p->post_type ] : 'page' ) . '"><a href="' . esc_url( get_permalink( $p ) ) . '">'
 		. '<span class="er-carte-image">' . $image . '</span>'
 		. '<span class="er-carte-genre">' . esc_html( $genre ) . ' · ' . esc_html( $date ) . '</span>'
 		. '<span class="er-carte-titre">' . esc_html( get_the_title( $p ) ) . '</span>'
@@ -272,7 +439,7 @@ function er_bloc_proches( $id ) {
 	}
 	$candidats = get_posts(
 		array(
-			'post_type'      => array( 'post', ER_EVT ),
+			'post_type'      => array( 'post', ER_EVT, 'er_media' ),
 			'post_status'    => 'publish',
 			'posts_per_page' => 40,
 			'post__not_in'   => array( $id ),
@@ -300,66 +467,120 @@ function er_bloc_proches( $id ) {
 	if ( ! $choisis ) {
 		return '';
 	}
-	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => $choisis, 'post_type' => array( 'post', ER_EVT ), 'posts_per_page' => 4 ) ) );
+	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => $choisis, 'post_type' => array( 'post', ER_EVT, 'er_media' ), 'posts_per_page' => 4 ) ) );
 	return '<section class="er-proches"><h2 class="er-evt-section">' . esc_html__( 'À lire, à revoir', 'er-librairie' ) . '</h2><ul class="er-cartes">'
 		. implode( '', array_map( 'er_carte_contenu', array_map( 'get_post', $choisis ) ) ) . '</ul></section>';
 }
 
 /**
- * Sur la page d'un auteur ou d'un sujet : ses rencontres (à venir, puis passées) et ses articles.
+ * Un livre, en carte : la couverture, l'auteur, le titre, le prix.
+ *
+ * @param int $pid Le livre.
+ */
+function er_carte_livre( $pid ) {
+	$p = function_exists( 'wc_get_product' ) ? wc_get_product( $pid ) : null;
+	if ( ! $p || 'publish' !== $p->get_status() || $p->get_meta( 'er_evenement' ) ) {
+		return '';
+	}
+	$auteurs = wp_get_post_terms( $pid, 'auteur', array( 'fields' => 'names' ) );
+	$prix    = $p->is_in_stock() ? html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $p ) ) ), ENT_QUOTES, 'UTF-8' ) : __( 'épuisé pour l’instant', 'er-librairie' );
+	return '<li class="er-evt-livre"><a href="' . esc_url( get_permalink( $pid ) ) . '">'
+		. '<span class="er-evt-livre-couverture">' . $p->get_image( 'woocommerce_thumbnail' ) . '</span>'
+		. '<span class="er-evt-livre-auteur">' . esc_html( implode( ', ', is_wp_error( $auteurs ) ? array() : $auteurs ) ) . '</span>'
+		. '<span class="er-evt-livre-titre">' . esc_html( $p->get_name() ) . '</span></a>'
+		. '<span class="er-evt-livre-prix">' . esc_html( $prix ) . '</span></li>';
+}
+
+/**
+ * Les contenus d'un type qui portent une étiquette, les plus récents d'abord.
+ *
+ * @param string|array $type  Le type.
+ * @param array        $tax   La requête des classements.
+ * @param int          $nombre Combien.
+ * @param array        $plus  D'autres arguments.
+ */
+function er_contenus_etiquetes( $type, $tax, $nombre, $plus = array() ) {
+	return get_posts(
+		$plus + array(
+			'post_type'      => $type,
+			'post_status'    => 'publish',
+			'posts_per_page' => $nombre,
+			'tax_query'      => $tax, // phpcs:ignore WordPress.DB.SlowDBQuery
+			'lang'           => function_exists( 'pll_current_language' ) ? pll_current_language() : '',
+		)
+	);
+}
+
+/**
+ * Sur la page d'une personne ou d'un sujet, tout ce qui la concerne : les livres autour d'elle (ou les livres du
+ * sujet), les rencontres (à venir, puis passées), les vidéos et les podcasts, les articles du journal, les pages.
+ * Sur la page d'un auteur, ses propres livres sont au-dessus (la librairie).
  */
 function er_bloc_autour() {
 	$terme = get_queried_object();
 	if ( ! $terme instanceof WP_Term || ! in_array( $terme->taxonomy, array( 'auteur', 'er_sujet' ), true ) ) {
 		return '';
 	}
-	$sujet = 'er_sujet' === $terme->taxonomy;
-	$tax   = array( array( 'taxonomy' => $terme->taxonomy, 'terms' => $terme->term_id ) );
+	$sujet  = 'er_sujet' === $terme->taxonomy;
+	$sienne = array( array( 'taxonomy' => $terme->taxonomy, 'terms' => $terme->term_id ) );
+	$nombre = $sujet ? 48 : 12;
+
+	// Les livres : autour de la personne, ou du sujet.
+	if ( $sujet ) {
+		$livres = er_contenus_etiquetes( 'product', $sienne, $nombre, array( 'fields' => 'ids' ) );
+	} else {
+		$miroir = get_term_by( 'slug', $terme->slug, 'er_autour' );
+		$livres = $miroir ? er_contenus_etiquetes( 'product', array( array( 'taxonomy' => 'er_autour', 'terms' => $miroir->term_id ) ), $nombre, array( 'fields' => 'ids' ) ) : array();
+	}
+	// Les rencontres : la personne y est liée ou y intervient.
+	$tax_rencontres = $sienne;
 	if ( ! $sujet ) {
 		$intervenant = get_term_by( 'slug', $terme->slug, 'er_intervenant' );
 		if ( $intervenant ) {
-			$tax = array( 'relation' => 'OR', $tax[0], array( 'taxonomy' => 'er_intervenant', 'terms' => $intervenant->term_id ) );
+			$tax_rencontres = array( 'relation' => 'OR', $sienne[0], array( 'taxonomy' => 'er_intervenant', 'terms' => $intervenant->term_id ) );
 		}
 	}
-	$rencontres = get_posts(
-		array(
-			'post_type'      => ER_EVT,
-			'post_status'    => 'publish',
-			'posts_per_page' => $sujet ? 60 : 12,
-			'tax_query'      => $tax, // phpcs:ignore WordPress.DB.SlowDBQuery
-			'meta_key'       => 'er_debut', // phpcs:ignore WordPress.DB.SlowDBQuery
-			'orderby'        => 'meta_value',
-			'order'          => 'DESC',
-		)
-	);
-	$a_venir    = array_reverse( array_filter( $rencontres, fn( $p ) => ! er_evt_passee( $p->ID ) ) );
-	$passees    = array_filter( $rencontres, fn( $p ) => er_evt_passee( $p->ID ) );
-	$articles   = get_posts(
-		array(
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => $sujet ? 30 : 6,
-			'tax_query'      => array( array( 'taxonomy' => $terme->taxonomy, 'terms' => $terme->term_id ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
-		)
-	);
-	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => array_merge( array( 0 ), wp_list_pluck( $rencontres, 'ID' ), wp_list_pluck( $articles, 'ID' ) ), 'post_type' => array( 'post', ER_EVT ), 'posts_per_page' => -1 ) ) );
-	$html = '';
+	$rencontres = er_contenus_etiquetes( ER_EVT, $tax_rencontres, $sujet ? 60 : 24, array( 'meta_key' => 'er_debut', 'orderby' => 'meta_value', 'order' => 'DESC' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+	$a_venir    = array_reverse( array_values( array_filter( $rencontres, fn( $p ) => ! er_evt_passee( $p->ID ) ) ) );
+	$passees    = array_values( array_filter( $rencontres, fn( $p ) => er_evt_passee( $p->ID ) ) );
+	$medias     = post_type_exists( 'er_media' ) ? er_contenus_etiquetes( 'er_media', $sienne, $sujet ? 48 : 24 ) : array();
+	$articles   = er_contenus_etiquetes( 'post', $sienne, $nombre );
+	$pages      = er_contenus_etiquetes( 'page', $sienne, 12, array( 'orderby' => 'title', 'order' => 'ASC' ) );
+	update_post_thumbnail_cache( new WP_Query( array( 'post__in' => array_merge( array( 0 ), wp_list_pluck( array_merge( $rencontres, $medias, $articles ), 'ID' ) ), 'post_type' => 'any', 'posts_per_page' => -1 ) ) );
+
+	$sections = array();
 	if ( $a_venir ) {
-		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html__( 'Prochainement au centre', 'er-librairie' ) . '</h2>'
-			. '<ol class="er-evts-lignes">' . implode( '', array_map( 'er_evt_ligne', $a_venir ) ) . '</ol></section>';
+		$sections[] = array( __( 'Prochainement au centre', 'er-librairie' ), '<ol class="er-evts-lignes">' . implode( '', array_map( 'er_evt_ligne', $a_venir ) ) . '</ol>' );
+	}
+	if ( $livres ) {
+		/* translators: %s: le nom de la personne */
+		$titre      = $sujet ? __( 'À la librairie', 'er-librairie' ) : sprintf( __( 'Autour de %s', 'er-librairie' ), $terme->name );
+		$sections[] = array( $titre, '<ul class="er-autour-livres">' . implode( '', array_map( 'er_carte_livre', $livres ) ) . '</ul>' );
 	}
 	if ( $passees ) {
-		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html( $sujet ? __( 'Les rencontres', 'er-librairie' ) : __( 'Au centre', 'er-librairie' ) ) . '</h2>'
-			. '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul></section>';
+		$sections[] = array( $sujet ? __( 'Les rencontres', 'er-librairie' ) : __( 'Au centre', 'er-librairie' ), '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul>' );
+	}
+	if ( $medias ) {
+		$sections[] = array( __( 'Écouter, regarder', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $medias ) ) . '</ul>' );
 	}
 	if ( $articles ) {
-		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html__( 'Dans le journal', 'er-librairie' ) . '</h2>'
-			. '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $articles ) ) . '</ul></section>';
+		$sections[] = array( __( 'Dans le journal', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $articles ) ) . '</ul>' );
 	}
-	if ( '' === $html && $sujet ) {
-		$html = '<p class="er-evts-vide">' . esc_html__( 'Rien encore sur ce sujet.', 'er-librairie' ) . '</p>';
+	if ( $pages ) {
+		$liens = '';
+		foreach ( $pages as $p ) {
+			$liens .= '<li><a href="' . esc_url( get_permalink( $p ) ) . '">' . esc_html( get_the_title( $p ) ) . '</a></li>';
+		}
+		$sections[] = array( __( 'À lire sur le site', 'er-librairie' ), '<ul class="er-autour-pages er-lien-fleche">' . $liens . '</ul>' );
 	}
-	return $html ? '<div class="er-autour alignwide">' . $html . '</div>' : '';
+	if ( ! $sections ) {
+		return $sujet ? '<div class="er-autour alignwide"><p class="er-evts-vide">' . esc_html__( 'Rien encore sur ce sujet.', 'er-librairie' ) . '</p></div>' : '';
+	}
+	$html = '';
+	foreach ( $sections as list( $titre, $contenu ) ) {
+		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html( $titre ) . '</h2>' . $contenu . '</section>';
+	}
+	return '<div class="er-autour alignwide">' . $html . '</div>';
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

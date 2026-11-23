@@ -7,9 +7,10 @@
 #   variables  KINSTA_HOTE, KINSTA_PORT, KINSTA_UTILISATEUR (MyKinsta → le site → Infos → Accès SFTP/SSH)
 #   secret     KINSTA_CLE, la clé SSH privée dont la clé publique est enregistrée dans MyKinsta
 # Le mode d'emploi est dans le README, « Déployer chez Kinsta ».
-# Avec « evenements » : les rencontres de l'ancien site Wix (pages, vidéos de la chaîne YouTube), lues ici,
-# converties (outils/wix/evenements.py) et importées ; le rapport des vidéos va sur la branche « wix-pages ». Si Wix
-# refuse trop de demandes (429), « importer le fichier de la branche wix-pages » importe un fichier déjà converti.
+# Avec « ancien_site » : les rencontres, le journal, les vidéos et les podcasts de l'ancien site Wix, lus ici (les
+# pages, la chaîne YouTube, SoundCloud, le flux du podcast), convertis (outils/wix/*.py) et importés ; les rapports
+# vont sur la branche « wix-pages ». Si Wix refuse trop de demandes (429), « importer les fichiers de la branche
+# wix-pages » importe des fichiers déjà convertis. Avec « er » : une commande de l'extension (« sujets deviner »).
 name: Déployer chez Kinsta
 
 on:
@@ -26,11 +27,14 @@ on:
         description: "Relevé des couvertures : le nombre de livres par qualité"
         type: boolean
         default: false
-      evenements:
-        description: "Les rencontres de l'ancien site : les lire puis les importer (à relancer avant la bascule), ou importer le fichier déjà sur la branche wix-pages"
+      ancien_site:
+        description: "L'ancien site (rencontres, journal, vidéos et podcasts) : le lire puis l'importer (à relancer avant la bascule), ou importer les fichiers déjà sur la branche wix-pages"
         type: choice
-        options: ['non', 'lire et importer', 'importer le fichier de la branche wix-pages']
+        options: ['non', 'lire et importer', 'importer les fichiers de la branche wix-pages']
         default: 'non'
+      er:
+        description: "Une commande de l'extension, sans « wp er » (par exemple : sujets deviner)"
+        default: ''
 
 concurrency: kinsta
 
@@ -89,44 +93,71 @@ jobs:
         if: inputs.couvertures
         run: $SSH "$QUI@$HOTE" 'cd public && wp er couvertures'
 
-      - name: Les rencontres de l'ancien site (lire)
-        if: inputs.evenements == 'lire et importer'
+      - name: L'ancien site (lire et convertir)
+        if: inputs.ancien_site == 'lire et importer'
         run: |
-          pip install --quiet yt-dlp
+          pip install --quiet yt-dlp beautifulsoup4
           python3 outils/wix/pages.py evenements
+          python3 outils/wix/pages.py journal
           python3 outils/wix/pages.py medias
           python3 outils/wix/evenements.py sortie/evenements.json sortie/evenements-import.json --medias sortie/medias.json --rapport sortie/rapport.md
-          cat sortie/rapport.md >> "$GITHUB_STEP_SUMMARY"
+          python3 outils/wix/journal.py sortie/journal.json sortie/journal-import.json --rapport sortie/rapport-journal.md
+          python3 outils/wix/medias.py sortie/evenements.json sortie/medias.json sortie/medias-import.json
+          cat sortie/rapport.md sortie/rapport-journal.md >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Les rencontres de l'ancien site (le fichier de la branche wix-pages)
-        if: inputs.evenements == 'importer le fichier de la branche wix-pages'
+      - name: L'ancien site (les fichiers de la branche wix-pages)
+        if: inputs.ancien_site == 'importer les fichiers de la branche wix-pages'
         run: |
           mkdir -p sortie
           git fetch -q origin wix-pages
-          git show origin/wix-pages:evenements-import.json > sortie/evenements-import.json
-          git show origin/wix-pages:rapport.md > sortie/rapport.md || true
+          for f in evenements-import.json journal-import.json medias-import.json rapport.md rapport-journal.md; do
+            git show "origin/wix-pages:$f" > "sortie/$f" 2>/dev/null || rm -f "sortie/$f"
+          done
+          ls -la sortie
 
-      - name: Les rencontres de l'ancien site (importer)
-        if: inputs.evenements == 'lire et importer' || inputs.evenements == 'importer le fichier de la branche wix-pages'
+      - name: L'ancien site (importer)
+        if: inputs.ancien_site == 'lire et importer' || inputs.ancien_site == 'importer les fichiers de la branche wix-pages'
         run: |
-          $SSH "$QUI@$HOTE" 'mkdir -p private'
-          rsync -z -e "$SSH" sortie/evenements-import.json "$QUI@$HOTE:private/evenements-import.json"
-          $SSH "$QUI@$HOTE" 'cd public && wp er evenements importer ../private/evenements-import.json && wp rewrite flush && (wp kinsta cache purge --all || wp cache flush)' | tee sortie/import.txt
-          # De quoi vérifier : la page de la liste et une rencontre avec sa vidéo, telles que le site les sert.
+          $SSH "$QUI@$HOTE" 'mkdir -p private && rm -f private/*-import.json'
+          for f in evenements-import.json journal-import.json medias-import.json; do
+            if [ -s "sortie/$f" ]; then rsync -z -e "$SSH" "sortie/$f" "$QUI@$HOTE:private/$f"; fi
+          done
+          $SSH "$QUI@$HOTE" 'cd public
+            for f in evenements medias journal; do
+              if [ -s "../private/$f-import.json" ]; then wp er "$f" importer "../private/$f-import.json"; fi
+            done
+            wp rewrite flush
+            wp kinsta cache purge --all || wp cache flush' | tee sortie/import.txt
+          # De quoi vérifier : quelques pages telles que le site les sert.
           URL=$($SSH "$QUI@$HOTE" 'cd public && wp option get home')
           curl -sL "$URL/centre-culturel/evenements/" -o sortie/page-liste.html || true
-          curl -sL "$URL/centre-culturel/evenements/rencontre-avec-georges-nivat-ma-russie-de-17-a-90-ans/" -o sortie/page-nivat.html || true
+          curl -sL "$URL/auteur/alexandre-soljenitsyne/" -o sortie/page-soljenitsyne.html || true
+          curl -sL "$URL/sujet/poesie/" -o sortie/page-poesie.html || true
 
-      - name: Le rapport des rencontres, sur la branche wix-pages
-        if: inputs.evenements == 'lire et importer' || inputs.evenements == 'importer le fichier de la branche wix-pages'
+      - name: Une commande de l'extension
+        if: inputs.er != ''
+        env:
+          COMMANDE: ${{ inputs.er }}
         run: |
-          cd sortie && rm -rf brut
+          mkdir -p sortie
+          # Seulement des mots, des tirets et des signes égal : pas de quoi glisser une autre commande.
+          echo "$COMMANDE" | grep -Eq '^[a-z0-9 =_-]+$' || { echo "Commande refusée : $COMMANDE"; exit 1; }
+          $SSH "$QUI@$HOTE" "cd public && wp er $COMMANDE" | tee sortie/commande.txt
+
+      - name: Le rapport, sur la branche wix-pages
+        if: inputs.ancien_site == 'lire et importer' || inputs.ancien_site == 'importer les fichiers de la branche wix-pages' || inputs.er != ''
+        run: |
+          rm -rf sortie/brut
+          cd sortie
           git init -q -b wix-pages
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "Les rencontres de l'ancien site : import et rapport"
-          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wix-pages
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          # Les fichiers des passages précédents restent : on ajoute ceux-ci par-dessus.
+          if git fetch -q --depth 1 origin wix-pages; then git reset -q --soft FETCH_HEAD; fi
+          git add --ignore-removal .
+          git commit -q -m "L'ancien site : import et rapport" || exit 0
+          git push -q origin HEAD:wix-pages
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

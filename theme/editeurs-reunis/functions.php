@@ -278,14 +278,17 @@ function er_chemin_reference() {
  * La maison de la page affichée : 'librairie', 'ymca', 'centre', ou ''.
  */
 function er_maison() {
+	if ( is_tax( 'er_sujet' ) ) {
+		return ''; // Un sujet traverse les trois maisons : ses livres, ses rencontres, ses articles.
+	}
 	if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) || 'promos' === er_page_reference() ) {
 		return 'librairie';
 	}
 	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) {
 		return 'centre'; // Le journal du centre.
 	}
-	if ( is_singular( 'er_evenement' ) ) {
-		return 'centre'; // Une rencontre du centre.
+	if ( is_singular( array( 'er_evenement', 'er_media' ) ) ) {
+		return 'centre'; // Une rencontre, une vidéo ou un podcast du centre.
 	}
 	$racine = strtok( er_chemin_reference(), '/' );
 	if ( 'librairie' === $racine ) {
@@ -340,6 +343,8 @@ function er_sous_menu() {
 	}
 	if ( is_singular( 'er_evenement' ) ) {
 		$ici = 'centre-culturel/evenements';
+	} elseif ( is_singular( 'er_media' ) ) {
+		$ici = 'podcast' === get_post_meta( get_queried_object_id(), 'er_genre', true ) ? 'centre-culturel/podcasts' : 'centre-culturel/videos';
 	}
 	$noms  = array(
 		'ymca'   => _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ),
