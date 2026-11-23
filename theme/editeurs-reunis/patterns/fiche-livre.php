@@ -5,8 +5,10 @@
  * Categories: editeurs-reunis
  * Inserter: no
  *
- * La couverture en grand ; à côté, les mentions, le titre, l'auteur, le prix, le panier, la présentation et la fiche
- * (rayon, langue, auteur, référence) ; dessous, les livres du même rayon.
+ * La couverture en grand ; à côté, les mentions, le titre, l'auteur, le prix, le panier, la présentation, la fiche
+ * (rayon, langue, auteur, référence) et « Du même auteur » ; dessous, la bande « Autour de ce livre » et l'étagère
+ * « Du même rayon, de la même époque » (la piste B, retenue le 23 nov. 2026 ; les blocs er/fiche-* de l'extension,
+ * inc/recommandations.php).
  *
  * @package editeurs-reunis
  */
@@ -59,19 +61,15 @@
 			<!-- wp:paragraph {"className":"er-fiche-retrait","fontSize":"small"} -->
 			<p class="er-fiche-retrait has-small-font-size"><?php esc_html_e( 'Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-Geneviève, du mardi au samedi.', 'editeurs-reunis' ); ?></p>
 			<!-- /wp:paragraph -->
+
+			<!-- wp:er/fiche-auteur /-->
 		</div>
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
 
-	<!-- wp:woocommerce/product-collection {"align":"wide","queryId":41,"query":{"perPage":5,"pages":1,"offset":0,"postType":"product","order":"desc","orderBy":"date","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock","outofstock","onbackorder"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":false}},"tagName":"div","displayLayout":{"type":"flex","columns":5,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"],"className":"er-meme-rayon","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
-	<div class="wp-block-woocommerce-product-collection alignwide er-meme-rayon" style="margin-top:var(--wp--preset--spacing--60)">
-		<!-- wp:heading -->
-		<h2 class="wp-block-heading"><?php esc_html_e( 'Du même rayon', 'editeurs-reunis' ); ?></h2>
-		<!-- /wp:heading -->
+	<!-- wp:er/fiche-autour /-->
 
-		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-	</div>
-	<!-- /wp:woocommerce/product-collection -->
+	<!-- wp:er/fiche-rayon /-->
 </main>
 <!-- /wp:group -->

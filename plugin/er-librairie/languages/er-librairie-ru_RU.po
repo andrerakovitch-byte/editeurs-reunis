@@ -25,52 +25,52 @@ msgid ""
 "livres."
 msgstr ""
 
-#: er-librairie.php:176
+#: er-librairie.php:177
 msgid "Langue du site"
 msgstr "Язык сайта"
 
-#: er-librairie.php:190 er-librairie.php:196 inc/import.php:26
+#: er-librairie.php:191 er-librairie.php:197 inc/import.php:26
 #: inc/sujets.php:384
 msgid "Auteurs"
 msgstr "Авторы"
 
-#: er-librairie.php:191
+#: er-librairie.php:192
 msgid "Auteur"
 msgstr "Автор"
 
-#: er-librairie.php:192
+#: er-librairie.php:193
 msgid "Chercher un auteur"
 msgstr "Найти автора"
 
-#: er-librairie.php:193
+#: er-librairie.php:194
 msgid "Tous les auteurs"
 msgstr "Все авторы"
 
-#: er-librairie.php:194
+#: er-librairie.php:195
 msgid "Modifier l’auteur"
 msgstr "Изменить автора"
 
-#: er-librairie.php:195
+#: er-librairie.php:196
 msgid "Ajouter un auteur"
 msgstr "Добавить автора"
 
-#: er-librairie.php:212 er-librairie.php:217 inc/import.php:27
+#: er-librairie.php:213 er-librairie.php:218 inc/import.php:27
 msgid "Langues"
 msgstr "Языки"
 
-#: er-librairie.php:213 inc/evenements.php:122 inc/evenements.php:727
+#: er-librairie.php:214 inc/evenements.php:122 inc/evenements.php:727
 msgid "Langue"
 msgstr "Язык"
 
-#: er-librairie.php:214
+#: er-librairie.php:215
 msgid "Toutes les langues"
 msgstr "Все языки"
 
-#: er-librairie.php:215
+#: er-librairie.php:216
 msgid "Modifier la langue"
 msgstr "Изменить язык"
 
-#: er-librairie.php:216
+#: er-librairie.php:217
 msgid "Ajouter une langue"
 msgstr "Добавить язык"
 
@@ -524,7 +524,7 @@ msgid "j F"
 msgstr "j F"
 
 #: inc/evenements.php:187 inc/evenements.php:188 inc/evenements.php:191
-#: inc/journal-une.php:284 inc/journal-une.php:767 inc/journal-une.php:851
+#: inc/journal-une.php:284 inc/journal-une.php:772 inc/journal-une.php:856
 #: inc/journal.php:72 inc/medias.php:202 inc/sujets.php:414 inc/sujets.php:417
 msgid "j F Y"
 msgstr "j F Y"
@@ -538,7 +538,7 @@ msgid "En français"
 msgstr "На французском"
 
 #: inc/evenements.php:267 inc/evenements.php:468 inc/journal-une.php:264
-#: inc/journal-une.php:382 inc/journal-une.php:589 inc/journal-une.php:840
+#: inc/journal-une.php:382 inc/journal-une.php:594 inc/journal-une.php:845
 msgid "En russe"
 msgstr "На русском"
 
@@ -555,7 +555,7 @@ msgstr "На английском"
 msgid "Entrée — %s"
 msgstr "Вход — %s"
 
-#: inc/evenements.php:453
+#: inc/evenements.php:453 inc/recommandations.php:361
 msgid "La rencontre"
 msgstr "Событие"
 
@@ -657,7 +657,7 @@ msgstr "Проходила %s."
 msgid "Cette rencontre a eu lieu le %s."
 msgstr "Это событие прошло %s."
 
-#: inc/evenements.php:745
+#: inc/evenements.php:745 inc/recommandations.php:361
 msgid "Revoir la rencontre"
 msgstr "Смотреть запись"
 
@@ -695,7 +695,7 @@ msgstr "Смотреть и слушать"
 msgid "À voir, à écouter"
 msgstr "Смотреть и слушать"
 
-#: inc/evenements.php:863 inc/sujets.php:496
+#: inc/evenements.php:863 inc/recommandations.php:276 inc/sujets.php:496
 msgid "épuisé pour l’instant"
 msgstr "пока нет в наличии"
 
@@ -721,7 +721,7 @@ msgid "Voir"
 msgstr "Подробнее"
 
 #: inc/evenements.php:994 inc/medias.php:127 inc/medias.php:198
-#: inc/sujets.php:413 inc/sujets.php:428
+#: inc/recommandations.php:366 inc/sujets.php:413 inc/sujets.php:428
 msgid "Vidéo"
 msgstr "Видео"
 
@@ -955,7 +955,7 @@ msgstr[2] "%d мин чтения"
 msgid "%d min"
 msgstr "%d мин"
 
-#: inc/journal-une.php:356 inc/journal-une.php:881
+#: inc/journal-une.php:356 inc/journal-une.php:886
 msgid "Le journal du centre"
 msgstr "Журнал центра"
 
@@ -973,7 +973,7 @@ msgid "Depuis %s"
 msgstr "С %s года"
 
 #. translators: %d: un nombre de textes
-#: inc/journal-une.php:394 inc/journal-une.php:818 inc/journal-une.php:848
+#: inc/journal-une.php:394 inc/journal-une.php:823 inc/journal-une.php:853
 msgid "%d texte"
 msgid_plural "%d textes"
 msgstr[0] "%d текст"
@@ -1005,138 +1005,138 @@ msgid "Au centre"
 msgstr "В центре"
 
 #. translators: 1: la série, 2: le numéro de l'épisode
-#: inc/journal-une.php:484
+#: inc/journal-une.php:488
 msgid "%1$s, épisode %2$s"
 msgstr "%1$s, выпуск %2$s"
 
-#: inc/journal-une.php:488
+#: inc/journal-une.php:492
 msgid "Le podcast"
 msgstr "Подкаст"
 
-#: inc/journal-une.php:495
+#: inc/journal-une.php:499
 msgid "Les plumes"
 msgstr "Авторы"
 
-#: inc/journal-une.php:496
+#: inc/journal-une.php:500
 msgid "Les témoins"
 msgstr "Свидетели"
 
-#: inc/journal-une.php:497
+#: inc/journal-une.php:501
 msgid "Les auteurs"
 msgstr "Авторы"
 
-#: inc/journal-une.php:519
+#: inc/journal-une.php:524
 msgid "Les livres"
 msgstr "Книги"
 
-#: inc/journal-une.php:537
+#: inc/journal-une.php:542
 msgid "Il y est question de"
 msgstr "О ком"
 
-#: inc/journal-une.php:553 inc/sujets.php:33 inc/sujets.php:42
+#: inc/journal-une.php:558 inc/sujets.php:33 inc/sujets.php:42
 #: inc/sujets.php:385
 msgid "Sujets"
 msgstr "Темы"
 
 #. translators: %s: un sujet
-#: inc/journal-une.php:560
+#: inc/journal-une.php:565
 msgid "%s, ailleurs"
 msgstr "%s: другие материалы"
 
 #. translators: %s: un sujet
-#: inc/journal-une.php:560
+#: inc/journal-une.php:565
 msgid "Les rencontres, les livres, les vidéos"
 msgstr "Встречи, книги, видео"
 
-#: inc/journal-une.php:577
+#: inc/journal-une.php:582
 msgid "Sujets voisins"
 msgstr "Близкие темы"
 
 #. translators: %d: un nombre de textes
-#: inc/journal-une.php:583
+#: inc/journal-une.php:588
 msgid "%d texte en russe ou bilingue"
 msgid_plural "%d textes en russe ou bilingues"
 msgstr[0] "%d текст на русском или на двух языках"
 msgstr[1] "%d текста на русском или на двух языках"
 msgstr[2] "%d текстов на русском или на двух языках"
 
-#: inc/journal-une.php:603
+#: inc/journal-une.php:608
 msgid "Les années"
 msgstr "Годы"
 
-#: inc/journal-une.php:614
+#: inc/journal-une.php:619
 msgid "Repères"
 msgstr "Ориентиры"
 
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:626
+#: inc/journal-une.php:631
 msgid "Les sujets"
 msgstr "Темы"
 
 #. translators: %d: un nombre de sujets
-#: inc/journal-une.php:626
+#: inc/journal-une.php:631
 msgid "%d sujet"
 msgid_plural "%d sujets"
 msgstr[0] "%d тема"
 msgstr[1] "%d темы"
 msgstr[2] "%d тем"
 
-#: inc/journal-une.php:682 inc/journal-une.php:857 inc/medias.php:231
+#: inc/journal-une.php:687 inc/journal-une.php:862 inc/medias.php:231
 msgid "Rien pour l’instant."
 msgstr "Пока ничего нет."
 
-#: inc/journal-une.php:700
+#: inc/journal-une.php:705
 msgid "Le fil"
 msgstr "Лента"
 
-#: inc/journal-une.php:700
+#: inc/journal-une.php:705
 msgid "Du plus récent au plus ancien"
 msgstr "Сначала новые"
 
-#: inc/journal-une.php:703
+#: inc/journal-une.php:708
 msgctxt "date courte du fil"
 msgid "j M Y"
 msgstr "j M Y"
 
-#: inc/journal-une.php:707
+#: inc/journal-une.php:712
 msgid "Tout le fil"
 msgstr "Вся лента"
 
 #. translators: 1: le nombre de chroniques, 2: l'année de la première
-#: inc/journal-une.php:764
+#: inc/journal-une.php:769
 msgid "%1$d chronique depuis %2$s"
 msgid_plural "%1$d chroniques depuis %2$s"
 msgstr[0] "%1$d колонка с %2$s года"
 msgstr[1] "%1$d колонки с %2$s года"
 msgstr[2] "%1$d колонок с %2$s года"
 
-#: inc/journal-une.php:785
+#: inc/journal-une.php:790
 msgid "Les chroniques"
 msgstr "Колонки"
 
-#: inc/journal-une.php:788
+#: inc/journal-une.php:793
 msgid "Toutes les chroniques"
 msgstr "Все колонки"
 
-#: inc/journal-une.php:795
+#: inc/journal-une.php:800
 msgid "Grand format"
 msgstr "Большой материал"
 
-#: inc/journal-une.php:844
+#: inc/journal-une.php:849
 msgid "Tous les textes"
 msgstr "Все тексты"
 
-#: inc/journal-une.php:864
+#: inc/journal-une.php:869
 msgctxt "pagination du journal"
 msgid "Plus récents"
 msgstr "Более новые"
 
-#: inc/journal-une.php:865
+#: inc/journal-une.php:870
 msgctxt "pagination du journal"
 msgid "Plus anciens"
 msgstr "Более ранние"
 
-#: inc/journal-une.php:868
+#: inc/journal-une.php:873
 msgid "Les pages du journal"
 msgstr "Страницы журнала"
 
@@ -1204,7 +1204,8 @@ msgstr ""
 "YouTube, Vimeo, SoundCloud, Spotify, аудио- или видеофайл; по одной ссылке "
 "на строку, первая — основная. С названием: «Название | ссылка»."
 
-#: inc/medias.php:128 inc/medias.php:198 inc/sujets.php:413
+#: inc/medias.php:128 inc/medias.php:198 inc/recommandations.php:366
+#: inc/sujets.php:413
 msgid "Podcast"
 msgstr "Подкаст"
 
@@ -1224,11 +1225,11 @@ msgstr[0] "Тема · %d материал"
 msgstr[1] "Тема · %d материала"
 msgstr[2] "Тема · %d материалов"
 
-#: inc/recherche.php:995 inc/recherche.php:1003
+#: inc/recherche.php:1003 inc/recherche.php:1011
 msgid "Autres graphies"
 msgstr "Другие написания"
 
-#: inc/recherche.php:997 inc/recherche.php:1005
+#: inc/recherche.php:1005 inc/recherche.php:1013
 msgid ""
 "Une par ligne : le nom en russe, en anglais, une transcription ancienne. La "
 "recherche les trouve toutes."
@@ -1236,29 +1237,74 @@ msgstr ""
 "По одному в строке: имя по-русски, по-английски, старая транскрипция. Поиск "
 "найдёт любое."
 
-#: inc/recherche.php:1025
+#: inc/recherche.php:1033
 msgid "Traducteur, préfacier"
 msgstr "Переводчик, автор предисловия"
 
-#: inc/recherche.php:1026
+#: inc/recherche.php:1034
 msgid "Éditeur"
 msgstr "Издательство"
 
-#: inc/recherche.php:1027
+#: inc/recherche.php:1035
 msgid "Collection"
 msgstr "Серия"
 
-#: inc/recherche.php:1028
+#: inc/recherche.php:1036
 msgid "Année d’édition"
 msgstr "Год издания"
 
-#: inc/recherche.php:1029
+#: inc/recherche.php:1037
 msgid "Nombre de pages"
 msgstr "Число страниц"
 
-#: inc/recherche.php:1030
+#: inc/recherche.php:1038
 msgid "Format (poche, broché, relié…)"
 msgstr "Формат (карманный, в обложке, в переплёте…)"
+
+#: inc/recommandations.php:343
+msgid "Du même auteur"
+msgstr "Того же автора"
+
+#: inc/recommandations.php:345
+msgid "Sa page"
+msgstr "Страница автора"
+
+#: inc/recommandations.php:361
+msgid "Venir à la rencontre"
+msgstr "Прийти на встречу"
+
+#: inc/recommandations.php:362
+msgid "Rencontre au centre"
+msgstr "Встреча в центре"
+
+#: inc/recommandations.php:369
+msgid "Le journal"
+msgstr "Журнал"
+
+#. translators: %s: le nom de famille de l'auteur
+#: inc/recommandations.php:413
+msgid "%s, dans l’encyclopédie"
+msgstr "%s в энциклопедии"
+
+#: inc/recommandations.php:425
+msgid "Autour de ce livre"
+msgstr "Вокруг этой книги"
+
+#: inc/recommandations.php:426
+msgid "Les personnes et les sujets qu’il touche"
+msgstr "Люди и темы, которых она касается"
+
+#: inc/recommandations.php:475
+msgid "Du même rayon, de la même époque"
+msgstr "Тот же раздел, та же эпоха"
+
+#: inc/recommandations.php:476
+msgid "Du même rayon"
+msgstr "Из того же раздела"
+
+#: inc/recommandations.php:477
+msgid "Tout le rayon"
+msgstr "Весь раздел"
 
 #: inc/sujets.php:34
 msgid "Sujet"

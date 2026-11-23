@@ -31,174 +31,174 @@ msgid ""
 "dans theme.json ; le reste est ici."
 msgstr ""
 
-#: functions.php:70
+#: functions.php:72
 msgid "Voir plus"
 msgstr "Show more"
 
-#: functions.php:71
+#: functions.php:73
 msgid "Voir moins"
 msgstr "Show less"
 
-#: functions.php:90
+#: functions.php:92
 msgid "carrousel"
 msgstr "carousel"
 
-#: functions.php:91
+#: functions.php:93
 msgid "diapositive"
 msgstr "slide"
 
-#: functions.php:92
+#: functions.php:94
 msgid "À la une"
 msgstr "Featured"
 
 #. translators: 1: le rang de la diapositive, 2: le nombre de diapositives.
-#: functions.php:94
+#: functions.php:96
 msgid "%1$s sur %2$s"
 msgstr "%1$s of %2$s"
 
 #. translators: %s: le rang de la diapositive.
-#: functions.php:96
+#: functions.php:98
 msgid "Diapositive %s"
 msgstr "Slide %s"
 
-#: functions.php:97
+#: functions.php:99
 msgid "Diapositive précédente"
 msgstr "Previous slide"
 
-#: functions.php:98
+#: functions.php:100
 msgid "Diapositive suivante"
 msgstr "Next slide"
 
-#: functions.php:115
+#: functions.php:117
 msgid "Pilule blanche"
 msgstr "White pill"
 
-#: functions.php:122
+#: functions.php:124
 msgid "Cerné, avec une flèche"
 msgstr "Outlined, with an arrow"
 
-#: functions.php:129
+#: functions.php:131
 msgid "Carte voilée"
 msgstr "Veiled card"
 
-#: functions.php:136
+#: functions.php:138
 msgid "Ambiance papier (contenu patrimonial)"
 msgstr "Paper ambience (heritage content)"
 
-#: functions.php:313
+#: functions.php:315
 msgctxt "menu d’YMCA-Press"
 msgid "La maison d’édition"
 msgstr "The publishing house"
 
-#: functions.php:314
+#: functions.php:316
 msgctxt "menu d’YMCA-Press"
 msgid "Un siècle d’histoire"
 msgstr "A century of history"
 
-#: functions.php:315
+#: functions.php:317
 msgctxt "menu d’YMCA-Press"
 msgid "Le catalogue"
 msgstr "Catalogue"
 
-#: functions.php:316
+#: functions.php:318
 msgctxt "menu d’YMCA-Press"
 msgid "Les Amis d’YMCA-Press"
 msgstr "Friends of YMCA-Press"
 
-#: functions.php:319
+#: functions.php:321
 msgctxt "menu du centre culturel"
 msgid "Le centre"
 msgstr "About the centre"
 
-#: functions.php:320
+#: functions.php:322
 msgctxt "menu du centre culturel"
 msgid "Nos événements"
 msgstr "Events"
 
-#: functions.php:321
+#: functions.php:323
 msgctxt "menu du centre culturel"
 msgid "Nos expositions"
 msgstr "Exhibitions"
 
-#: functions.php:322
+#: functions.php:324
 msgctxt "menu du centre culturel"
 msgid "Nos podcasts"
 msgstr "Podcasts"
 
-#: functions.php:323
+#: functions.php:325
 msgctxt "menu du centre culturel"
 msgid "Nos vidéos"
 msgstr "Videos"
 
-#: functions.php:324
+#: functions.php:326
 msgctxt "menu du centre culturel"
 msgid "Le journal du centre"
 msgstr "The Centre’s journal"
 
-#: functions.php:325
+#: functions.php:327
 msgctxt "menu du centre culturel"
 msgid "Nous trouver"
 msgstr "Find us"
 
-#: functions.php:350 patterns/en-tete.php:62
+#: functions.php:352 patterns/en-tete.php:62
 msgctxt "menu du haut"
 msgid "Maison d’édition YMCA-Press"
 msgstr "YMCA-Press publishers"
 
-#: functions.php:351 patterns/en-tete.php:63
+#: functions.php:353 patterns/en-tete.php:63
 msgctxt "menu du haut"
 msgid "Le centre culturel"
 msgstr "Cultural centre"
 
-#: functions.php:457 inc/recherche.php:358
+#: functions.php:459 inc/recherche.php:358
 msgid "épuisé pour l’instant"
 msgstr "out of stock for now"
 
-#: functions.php:486
+#: functions.php:488
 msgid "Par genre"
 msgstr "By genre"
 
-#: functions.php:487
+#: functions.php:489
 msgid "Par époque"
 msgstr "By era"
 
-#: functions.php:488
+#: functions.php:490
 msgid "Par période"
 msgstr "By period"
 
-#: functions.php:489
+#: functions.php:491
 msgid "Par thème"
 msgstr "By theme"
 
-#: functions.php:490
+#: functions.php:492
 msgid "Par âge"
 msgstr "By age"
 
-#: functions.php:491
+#: functions.php:493
 msgid "Méthodes"
 msgstr "Coursebooks"
 
-#: functions.php:492
+#: functions.php:494
 msgid "Outils"
 msgstr "Tools"
 
-#: functions.php:493
+#: functions.php:495
 msgid "Pensée"
 msgstr "Thought"
 
-#: functions.php:494
+#: functions.php:496
 msgid "Religion"
 msgstr "Religion"
 
-#: functions.php:495
+#: functions.php:497
 msgid "Arts"
 msgstr "Arts"
 
-#: functions.php:517
+#: functions.php:519
 msgid "Compte"
 msgstr "Account"
 
-#: functions.php:528 inc/recherche.php:182 inc/recherche.php:264
+#: functions.php:530 inc/recherche.php:182 inc/recherche.php:264
 msgid "Langue"
 msgstr "Language"
 
@@ -1006,37 +1006,33 @@ msgctxt "Pattern title"
 msgid "La fiche d'un livre"
 msgstr ""
 
-#: patterns/fiche-livre.php:47
+#: patterns/fiche-livre.php:49
 msgctxt "fiche d’un livre"
 msgid "Rayon"
 msgstr "Section"
 
-#: patterns/fiche-livre.php:49
+#: patterns/fiche-livre.php:51
 msgctxt "fiche d’un livre"
 msgid "Langue"
 msgstr "Language"
 
-#: patterns/fiche-livre.php:51
+#: patterns/fiche-livre.php:53
 msgctxt "fiche d’un livre"
 msgid "Auteur"
 msgstr "Author"
 
-#: patterns/fiche-livre.php:55
+#: patterns/fiche-livre.php:57
 msgctxt "fiche d’un livre"
 msgid "Référence"
 msgstr "Reference"
 
-#: patterns/fiche-livre.php:60
+#: patterns/fiche-livre.php:62
 msgid ""
 "Vous pouvez aussi le demander à la librairie, 11, rue de la Montagne-Sainte-"
 "Geneviève, du mardi au samedi."
 msgstr ""
 "You can also ask for it at the bookshop, 11 rue de la Montagne-Sainte-"
 "Geneviève, Tuesday to Saturday."
-
-#: patterns/fiche-livre.php:70
-msgid "Du même rayon"
-msgstr "From the same section"
 
 #: patterns/journal-liste.php
 msgctxt "Pattern title"

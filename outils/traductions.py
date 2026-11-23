@@ -440,6 +440,18 @@ T = {
     (None, 'Toutes les langues'): ('All languages', 'Все языки'),
     (None, 'Modifier la langue'): ('Edit language', 'Изменить язык'),
     (None, 'Ajouter une langue'): ('Add language', 'Добавить язык'),
+    # La fiche d'un livre : les trois rangées (inc/recommandations.php) : la boutique.
+    (None, 'Du même auteur'): ('By the same author', 'Того же автора'),
+    (None, 'Sa page'): ('Author page', 'Страница автора'),
+    (None, 'Venir à la rencontre'): ('Come to the event', 'Прийти на встречу'),
+    (None, 'Rencontre au centre'): ('Event at the centre', 'Встреча в центре'),
+    (None, 'Le journal'): ('The journal', 'Журнал'),
+    (None, '%s, dans l’encyclopédie'): ('%s in the encyclopedia', '%s в энциклопедии'),
+    (None, 'Autour de ce livre'): ('Around this book', 'Вокруг этой книги'),
+    (None, 'Les personnes et les sujets qu’il touche'): ('The people and subjects it touches on', 'Люди и темы, которых она касается'),
+    (None, 'Du même rayon, de la même époque'): ('Same shelf, same period', 'Тот же раздел, та же эпоха'),
+    (None, 'Tout le rayon'): ('The whole shelf', 'Весь раздел'),
+
     # La recherche chez Algolia (Réglages → Recherche, inc/algolia.php) : la boutique.
     (None, 'Algolia n’est pas réglé.'): ('Algolia is not set up.', 'Algolia не настроена.'),
     (None, 'La recherche'): ('Search', 'Поиск'),

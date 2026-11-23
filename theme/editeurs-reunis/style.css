@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.8.1
+Version: 0.8.2
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -2790,4 +2790,123 @@ sup { font-size: 0.62em; line-height: 0; }
 	.er-j-une-gauche, .er-j-chroniques { grid-template-columns: minmax(0, 1fr); }
 	.er-j-fil li a { grid-template-columns: 64px minmax(0, 1fr); }
 	.er-j-ligne { grid-template-columns: minmax(0, 1fr) 96px; column-gap: 16px; }
+}
+
+/* --------------------------------------------------------------------------
+   La fiche d'un livre : les trois rangées (la piste B, retenue le 23 nov. 2026)
+   « Du même auteur » dans la colonne de la fiche ; « Autour de ce livre » sur une bande pervenche pâle, pleine
+   largeur ; « Du même rayon, de la même époque » en étagère, les livres debout sur un filet noir. Les blocs
+   er/fiche-* de l'extension (inc/recommandations.php).
+   -------------------------------------------------------------------------- */
+
+.er-reco-auteur-bloc { margin-top: 1.75rem; padding: 1.5rem; background: var(--wp--preset--color--doux); }
+.er-reco-auteur-tete { display: flex; align-items: center; gap: 1rem; }
+.er-reco-auteur-tete .er-petit-titre { margin: 0; color: var(--wp--preset--color--contrast); }
+.er-reco-auteur-tete .er-lien-fleche { margin: 0 0 0 auto; }
+.er-reco-initiale,
+.er-reco-lettrine {
+	flex: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background: var(--wp--preset--color--maison-librairie);
+	color: var(--wp--preset--color--base);
+	font-weight: 600;
+	line-height: 1;
+}
+.er-reco-initiale { width: 56px; height: 72px; font-size: 2.5rem; }
+.er-reco-initiale img { width: 100%; height: 100%; object-fit: cover; }
+.er-reco-auteur-nom { margin: 0.15rem 0 0; font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+.er-reco-auteur-nom > span { font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-reco-dates { display: block; font-size: var(--wp--preset--font-size--small); }
+
+/* Un livre en carte : couverture, mention, titre, auteur, prix (ou « épuisé pour l'instant »). */
+.er-reco-livre a,
+.er-reco-court a { color: inherit; text-decoration: none; }
+.er-reco-livre a { display: flex; flex-direction: column; gap: 0.25rem; }
+.er-reco-couverture { display: block; }
+.er-reco-couverture img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; background: var(--wp--preset--color--doux); box-shadow: var(--er-ombre-livre); border-radius: 1px; }
+.er-reco-livre .er-reco-couverture { margin-bottom: 0.65rem; }
+.er-reco-couverture img, .er-reco-couverture .er-couverture-typo { transition: transform 220ms ease, box-shadow 220ms ease; }
+.er-reco-livre a:hover .er-reco-couverture img,
+.er-reco-livre a:hover .er-couverture-typo { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
+.er-reco-mention { align-self: flex-start; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; padding: 0.42em 0.75em; border-radius: 999px; background: var(--wp--preset--color--accent); color: var(--wp--preset--color--contrast); }
+.er-reco-mention--rare { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-reco-titre { font-weight: 600; line-height: 1.3; }
+.er-reco-livre a:hover .er-reco-titre, .er-reco-court a:hover .er-reco-titre { text-decoration: underline; }
+.er-reco-auteur { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--encre-2); }
+.er-reco-prix { font-size: 0.95rem; }
+.er-reco-epuise { font-size: var(--wp--preset--font-size--small); font-weight: 500; color: var(--wp--preset--color--discret); }
+
+/* « Du même auteur » : la couverture à gauche, le titre et le prix à côté. */
+.er-reco-courts { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.er-reco-court a { display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: 0.9rem; row-gap: 0.2rem; align-content: start; }
+.er-reco-court .er-reco-couverture { grid-row: span 4; }
+.er-reco-court .er-reco-mention,
+.er-reco-court .er-reco-auteur { display: none; }
+
+/* La bande « Autour de ce livre ». */
+.er-reco-autour { margin-top: var(--wp--preset--spacing--60) !important; padding-block: clamp(3rem, 6vw, 4.5rem); background: var(--wp--preset--color--accent-pale); }
+.er-reco-autour-g { box-sizing: border-box; max-width: calc(var(--wp--style--global--wide-size) + var(--wp--style--root--padding-left) + var(--wp--style--root--padding-right)); margin-inline: auto; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 4rem); }
+.er-reco-autour-tete .er-petit-titre { color: var(--wp--preset--color--encre-2); }
+.er-reco-autour h2 { margin: 0.4rem 0 1.25rem; font-size: clamp(1.6rem, 2.6vw, 2.25rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; }
+.er-reco-pilules { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+.er-reco-pilule { font-size: var(--wp--preset--font-size--small); font-weight: 500; padding: 0.55rem 1rem; border-radius: 999px; background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-reco-pilule:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-reco-autour-corps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; align-items: start; }
+.er-reco-livres { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
+.er-reco-contenus { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+.er-reco-autour-corps--sans-livres { grid-template-columns: minmax(0, 1fr); }
+.er-reco-autour-corps--sans-livres .er-reco-contenus { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.er-reco-genre { display: flex; align-items: center; gap: 0.5rem; font-size: var(--wp--preset--font-size--x-small); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; }
+.er-reco-point { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--point-centre); }
+.er-reco-contenu-titre { font-size: 1.375rem; font-weight: 600; line-height: 1.2; }
+.er-reco-meta { font-size: var(--wp--preset--font-size--small); }
+.er-reco-rencontre a { box-sizing: border-box; min-height: 11rem; display: flex; flex-direction: column; gap: 0.75rem; padding: 1.75rem; background: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); text-decoration: none; }
+.er-reco-rencontre .er-reco-meta { margin-top: auto; opacity: 0.8; }
+.er-reco-article a { display: flex; gap: 1.25rem; padding: 1.5rem; background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-reco-lettrine { width: 64px; height: 82px; font-size: 2.5rem; }
+.er-reco-article-texte { display: flex; flex-direction: column; gap: 0.5rem; }
+.er-reco-article .er-reco-genre, .er-reco-article .er-reco-meta { color: var(--wp--preset--color--discret); }
+.er-reco-rencontre a:hover .er-reco-contenu-titre, .er-reco-article a:hover .er-reco-contenu-titre { text-decoration: underline; }
+
+/* L'étagère « Du même rayon, de la même époque » : les couvertures alignées en bas, sur un filet noir continu. */
+.er-reco-etagere { margin-top: var(--wp--preset--spacing--60) !important; }
+.er-reco-etagere-tete { display: flex; align-items: flex-end; gap: 2rem; margin-bottom: 2.25rem; }
+.er-reco-etagere-tete .er-petit-titre { margin: 0; }
+.er-reco-etagere-tete .er-lien-fleche { margin: 0 0 0.4rem auto; }
+.er-reco-etagere h2 { margin: 0.6rem 0 0; font-size: clamp(2.25rem, 4.5vw, 3.5rem); line-height: 0.95; font-weight: 600; letter-spacing: -0.035em; }
+.er-reco-debouts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.er-reco-debout { position: relative; min-width: 0; padding-inline-end: 1.75rem; }
+.er-reco-debout::after { content: ""; position: absolute; top: 250px; left: 0; right: 0; height: 3px; background: var(--wp--preset--color--contrast); }
+.er-reco-debout .er-reco-couverture { height: 250px; display: flex; align-items: flex-end; margin-bottom: 1.15rem; }
+.er-reco-debout .er-reco-couverture img { width: auto; max-width: 100%; max-height: 250px; aspect-ratio: auto; }
+.er-reco-debout .er-couverture-typo { width: min(100%, 160px); }
+
+@media (max-width: 1100px) {
+	.er-reco-autour-g { grid-template-columns: minmax(0, 1fr); }
+	.er-reco-debouts { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 2rem; }
+}
+@media (max-width: 781px) {
+	.er-reco-courts, .er-reco-autour-corps, .er-reco-autour-corps--sans-livres .er-reco-contenus { grid-template-columns: minmax(0, 1fr); }
+	/* Les livres de la bande et ceux de l'étagère se font glisser de côté. */
+	.er-reco-livres, .er-reco-debouts {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		margin-inline: calc(-1 * var(--wp--style--root--padding-left)) calc(-1 * var(--wp--style--root--padding-right));
+		padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
+		scroll-padding-inline: var(--wp--style--root--padding-left); /* L'aimant de défilement respecte la marge. */
+	}
+	.er-reco-livres { gap: 1.25rem; }
+	.er-reco-livres > li { flex: 0 0 46%; scroll-snap-align: start; }
+	.er-reco-debout { flex: 0 0 62%; scroll-snap-align: start; }
+	.er-reco-debout::after { top: 200px; }
+	.er-reco-debout .er-reco-couverture { height: 200px; }
+	.er-reco-debout .er-reco-couverture img { max-height: 200px; }
+	.er-reco-debout .er-couverture-typo { width: min(100%, 128px); }
+	.er-reco-etagere-tete { flex-direction: column; align-items: flex-start; gap: 1rem; }
+	.er-reco-etagere-tete .er-lien-fleche { margin: 0; }
 }

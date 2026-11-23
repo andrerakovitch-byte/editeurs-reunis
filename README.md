@@ -165,6 +165,16 @@ titre et l'éditeur sur le papier du système (sur l'aplat brun pour YMCA-Press)
 avec un lien pour changer l'image), et en ligne de commande, `wp er couvertures` (le workflow « Déployer chez Kinsta »,
 case « Relevé des couvertures », en donne les comptes).
 
+Sous la fiche, trois rangées tirées des données du site (la piste B, retenue le 23 nov. 2026 ; les blocs `er/fiche-*`,
+`plugin/…/inc/recommandations.php`, et leur section de `style.css`) : « Du même auteur » dans la colonne de la fiche
+(l'auteur, son portrait ou l'initiale de son nom en cyrillique sur le vert de la librairie, quatre de ses livres) ;
+« Autour de ce livre », une bande pervenche pâle (les personnes et les sujets en pilules, la page de l'encyclopédie,
+les livres sur l'auteur, ceux des personnes dont parle le livre et ceux qui partagent ses sujets, une rencontre, un
+article ou une vidéo qui les portent) ; « Du même rayon, de la même époque », l'étagère (le genre et l'époque
+ensemble, à défaut l'un ou l'autre). Un livre ne paraît qu'une fois, les livres en stock d'abord ; un bloc vide ne
+paraît pas. « Autour de ce livre » dépend des étiquettes : il se remplit à mesure qu'on pose les sujets et « Autour
+de » sur les livres. `wp er voisins <slug>` (le workflow, champ « boutique ») montre les trois rangées d'un livre.
+
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
 - son **rayon** est une catégorie de produit (Littérature russe, Poésie, Histoire, Essais et biographies, Cinéma) ;
