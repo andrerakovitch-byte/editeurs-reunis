@@ -12,6 +12,22 @@
  * @package editeurs-reunis
  */
 
+
+// La page d'une personne : sous les livres qu'elle a écrits, ceux qu'elle a traduits ou dirigés (er_personne_livres(),
+// traducteurs-editeurs.php, dans l'extension). Qui n'a rien écrit qui soit en vente (Georges Nivat, Sophie Benech) n'a
+// pas de « Ses livres » vide : ses traductions viennent tout de suite (24 nov. 2026).
+$er_roles    = array();
+$er_ecrivain = true;
+if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
+	$er_livres   = er_personne_livres( get_queried_object() );
+	$er_roles    = array_filter(
+		array(
+			__( 'Ses traductions', 'editeurs-reunis' )   => $er_livres['traduction'],
+			__( 'Sous sa direction', 'editeurs-reunis' ) => $er_livres['direction'],
+		)
+	);
+	$er_ecrivain = ! empty( $er_livres['auteur'] ) || ! $er_roles;
+}
 ?>
 <!-- wp:group {"tagName":"main","className":"er-librairie","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group er-librairie" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
@@ -21,9 +37,11 @@
 
 <?php if ( is_tax( 'auteur' ) ) : ?>
 		<!-- wp:er/auteur-fiche /-->
+	<?php if ( $er_ecrivain ) : ?>
 		<!-- wp:heading {"className":"er-auteur-livres"} -->
 		<h2 class="wp-block-heading er-auteur-livres"><?php esc_html_e( 'Ses livres', 'editeurs-reunis' ); ?></h2>
 		<!-- /wp:heading -->
+	<?php endif; ?>
 <?php elseif ( is_search() ) : ?>
 		<!-- wp:query-title {"type":"search"} /-->
 <?php else : ?>
@@ -40,6 +58,7 @@
 <?php endif; ?>
 	</div>
 	<!-- /wp:group -->
+<?php if ( $er_ecrivain ) : ?>
 
 	<!-- wp:group {"align":"wide","className":"er-filtres","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide er-filtres">
@@ -79,5 +98,51 @@
 		<!-- /wp:woocommerce/product-collection-no-results -->
 	</div>
 	<!-- /wp:woocommerce/product-collection -->
+<?php endif; ?>
+<?php
+$er_rang = 0;
+foreach ( $er_roles as $er_titre => $er_ids ) :
+	$er_requete = array(
+		'perPage'                      => min( 100, count( $er_ids ) ),
+		'pages'                        => 1,
+		'offset'                       => 0,
+		'postType'                     => 'product',
+		'order'                        => 'desc',
+		'orderBy'                      => 'date',
+		'search'                       => '',
+		'exclude'                      => array(),
+		'inherit'                      => false,
+		'taxQuery'                     => (object) array(),
+		'isProductCollectionBlock'     => true,
+		'woocommerceStockStatus'       => array( 'instock', 'outofstock', 'onbackorder' ),
+		'woocommerceAttributes'        => array(),
+		'woocommerceHandPickedProducts' => array_map( 'intval', $er_ids ),
+		'filterable'                   => false,
+	);
+	$er_bloc    = array(
+		'queryId'              => 32 + $er_rang++,
+		'query'                => $er_requete,
+		'tagName'              => 'div',
+		'displayLayout'        => array(
+			'type'          => 'flex',
+			'columns'       => 5,
+			'shrinkColumns' => true,
+		),
+		'dimensions'           => array( 'widthType' => 'fill' ),
+		'queryContextIncludes' => array( 'collection' ),
+		'align'                => 'wide',
+		'className'            => 'er-auteur-role',
+	);
+	?>
+	<!-- wp:heading {"align":"wide","className":"er-auteur-livres er-auteur-livres-role"} -->
+	<h2 class="wp-block-heading alignwide er-auteur-livres er-auteur-livres-role"><?php echo esc_html( $er_titre ); ?></h2>
+	<!-- /wp:heading -->
+
+	<!-- wp:woocommerce/product-collection <?php echo wp_json_encode( $er_bloc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?> -->
+	<div class="wp-block-woocommerce-product-collection alignwide er-auteur-role">
+		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+	</div>
+	<!-- /wp:woocommerce/product-collection -->
+<?php endforeach; ?>
 </main>
 <!-- /wp:group -->

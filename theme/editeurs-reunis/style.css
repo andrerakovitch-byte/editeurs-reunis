@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.9.4
+Version: 0.9.5
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -2874,6 +2874,8 @@ html { overflow-x: clip; }
 .er-auteur-photos figcaption { margin-top: 0.5rem; font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
 .er-auteur-liens ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
 .er-auteur-livres { margin: var(--wp--preset--spacing--50) 0 0; padding-top: 0.9rem; border-top: 1px solid var(--wp--preset--color--contrast); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; letter-spacing: -0.015em; }
+/* Les traductions d'une personne et les livres qu'elle a dirigés, sous ses livres (patterns/librairie.php). */
+.er-auteur-livres-role { margin-bottom: 1.5rem; }
 .er-page-vers-auteur { margin-top: 3rem; }
 @media (max-width: 800px) {
 	.er-auteur-avec-portrait { grid-template-columns: minmax(0, 1fr); }

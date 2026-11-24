@@ -262,9 +262,10 @@ l'auteur, le prix ; au clavier aussi ; au toucher, le lien suffit). `plugin/…/
   liens.
 - Les livres d'une personne sont ceux qu'elle a écrits, traduits ou dirigés : `er_personne_livres( $terme )` les donne
   rôle par rôle (`auteur`, `traduction`, `direction`, `autour`, et `tous`). La recherche les compte : « 3 livres en
-  rayon : 2 sous sa direction et une traduction » (Georges Nivat n'est l'auteur d'aucun livre du catalogue). **Côté
-  centre, la page d'une personne** donne ses traductions et ses ouvrages dirigés avec la même fonction (le compte d'un
-  auteur, lui, reste son nombre de livres écrits).
+  rayon : 2 sous sa direction et une traduction » (Georges Nivat n'est l'auteur d'aucun livre du catalogue). **La page
+  d'une personne** (`patterns/librairie.php`) montre, sous « Ses livres », « Ses traductions » et « Sous sa direction »,
+  avec la même fonction ; qui n'a rien écrit qui soit en vente n'a pas de « Ses livres » vide (corrigé le 24 nov. : la
+  page ne montrait que les livres écrits). Le compte d'un auteur, lui, reste son nombre de livres écrits.
 - Un éditeur est un classement public, `er_editeur`, avec sa page, `/editeur/<slug>/` (sa présentation, ses livres ;
   le gabarit `taxonomy-er_editeur`). Les métas `er_traducteur` et `er_editeur` reprises de Wix ne servent plus que de
   secours.

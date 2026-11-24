@@ -1519,6 +1519,8 @@ T = {
     # La une écran par écran (patterns/une-ecrans.php).
     (None, 'Faire défiler'): ('Scroll', 'Листать'),
     (None, 'Pause'): ('Pause', 'Пауза'),
+    (None, 'Ses traductions'): ('Translations', 'Переводы'),
+    (None, 'Sous sa direction'): ('Edited by them', 'Под его редакцией'),
     (None, 'Reprendre'): ('Resume', 'Продолжить'),
     (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
     (None, 'Une bougie derrière une vitre givrée : l’image que le roman a rendue célèbre.'):
