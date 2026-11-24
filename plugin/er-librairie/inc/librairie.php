@@ -228,6 +228,31 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	);
 
 	/**
+	 * Le texte entier de chaque livre, en lignes courtes (« #id.1 », « #id.2 »…) que le journal d'un workflow garde,
+	 * avec ses rôles posés : wp er librairie textes [<début>] [<nombre>]. Pour relire les sommaires des revues et des
+	 * recueils, que « fiches » coupe à 420 signes et que le JSON d'« exporter », sur une seule ligne, perd.
+	 *
+	 * @param array $args Le rang du premier livre, et combien.
+	 */
+	WP_CLI::add_command(
+		'er librairie textes',
+		function ( $args ) {
+			$ids = array_slice( er_librairie_ids(), (int) ( $args[0] ?? 0 ), (int) ( $args[1] ?? 2000 ) );
+			foreach ( $ids as $id ) {
+				$f     = er_librairie_fiche( $id );
+				$roles = array();
+				foreach ( $f['roles'] as $role => $noms ) {
+					$roles[] = $role . ' : ' . implode( ', ', $noms );
+				}
+				WP_CLI::log( '#' . $f['id'] . '.0 ' . $f['titre'] . ' | ' . implode( ', ', $f['auteurs'] ) . ' | ' . implode( ' ; ', $roles ) );
+				foreach ( mb_str_split( $f['texte'], 900, 'UTF-8' ) as $k => $morceau ) {
+					WP_CLI::log( '#' . $f['id'] . '.' . ( $k + 1 ) . ' ' . $morceau );
+				}
+			}
+		}
+	);
+
+	/**
 	 * Les fiches en JSON, sur la sortie : wp er librairie exporter.
 	 */
 	WP_CLI::add_command(
