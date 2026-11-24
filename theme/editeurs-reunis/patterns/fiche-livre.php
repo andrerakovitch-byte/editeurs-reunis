@@ -5,31 +5,37 @@
  * Categories: editeurs-reunis
  * Inserter: no
  *
- * La couverture en grand ; à côté, les mentions, le titre, l'auteur, le prix, le panier, la présentation, la fiche
- * (rayon, langue, auteur, référence) et « Du même auteur » ; dessous, la bande « Autour de ce livre » et l'étagère
- * « Du même rayon, de la même époque » (la piste B, retenue le 23 nov. 2026 ; les blocs er/fiche-* de l'extension,
- * inc/recommandations.php).
+ * En deux moitiés (la page C du canevas « Les Éditeurs réunis — plein écran », retenue le 24 nov. 2026) : à gauche,
+ * sur le fond doux et collée au bord de l'écran, la couverture, qui reste à l'écran pendant qu'on lit ; à droite,
+ * tout le reste qui défile : le fil d'Ariane, les mentions, le titre, l'auteur, le prix, le panier, la présentation,
+ * la fiche (rayon, langue, auteur, référence) et « Du même auteur ». Dessous, de marge à marge, la bande « Autour de
+ * ce livre » et l'étagère « Du même rayon, de la même époque » (la piste B, retenue le 23 nov. 2026 ; les blocs
+ * er/fiche-* de l'extension, inc/recommandations.php).
  *
  * @package editeurs-reunis
  */
 
 ?>
-<!-- wp:group {"tagName":"main","className":"er-fiche","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group er-fiche" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:woocommerce/breadcrumbs {"align":"wide","fontSize":"x-small"} /-->
-
-	<!-- wp:woocommerce/store-notices /-->
-
-	<!-- wp:columns {"align":"wide","className":"er-fiche-haut","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"},"margin":{"top":"var:preset|spacing|40"}}}} -->
-	<div class="wp-block-columns alignwide er-fiche-haut" style="margin-top:var(--wp--preset--spacing--40)">
-		<!-- wp:column {"width":"40%","className":"er-fiche-couverture"} -->
-		<div class="wp-block-column er-fiche-couverture" style="flex-basis:40%">
-			<!-- wp:woocommerce/product-image-gallery /-->
+<!-- wp:group {"tagName":"main","className":"er-fiche","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group er-fiche" style="padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"align":"full","className":"er-fiche-moities","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignfull er-fiche-moities">
+		<!-- wp:group {"className":"er-fiche-couverture","layout":{"type":"default"}} -->
+		<div class="wp-block-group er-fiche-couverture">
+			<!-- wp:group {"className":"er-fiche-couverture-colle","layout":{"type":"default"}} -->
+			<div class="wp-block-group er-fiche-couverture-colle">
+				<!-- wp:woocommerce/product-image-gallery /-->
+			</div>
+			<!-- /wp:group -->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 
-		<!-- wp:column {"width":"60%","className":"er-fiche-texte"} -->
-		<div class="wp-block-column er-fiche-texte" style="flex-basis:60%">
+		<!-- wp:group {"className":"er-fiche-texte","layout":{"type":"default"}} -->
+		<div class="wp-block-group er-fiche-texte">
+			<!-- wp:woocommerce/breadcrumbs {"fontSize":"x-small"} /-->
+
+			<!-- wp:woocommerce/store-notices /-->
+
 			<!-- wp:post-terms {"term":"product_tag","className":"er-mentions"} /-->
 
 			<!-- wp:post-title {"level":1,"className":"er-fiche-titre","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
@@ -64,9 +70,9 @@
 
 			<!-- wp:er/fiche-auteur /-->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 	</div>
-	<!-- /wp:columns -->
+	<!-- /wp:group -->
 
 	<!-- wp:er/fiche-autour /-->
 

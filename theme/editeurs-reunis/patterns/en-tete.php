@@ -6,7 +6,12 @@
  * Block Types: core/template-part/header
  * Inserter: no
  *
- * L'en-tête retenu le 21 novembre 2026 (B3 : « noir dessus, la couleur dessous »).
+ * L'en-tête plein écran, retenu le 24 novembre 2026 (le réglage 2 du canevas « Les Éditeurs réunis — plein écran »),
+ * de marge à marge : la barre d'informations (40 px), la barre noire (88 px), la ligne de la maison (48 px). Le détail
+ * est dans inc/entete.php ; en défilant, seule la ligne de la maison reste en haut de l'écran.
+ *
+ * Il prolonge l'en-tête du 21 novembre 2026 (B3 : « noir dessus, la couleur dessous »), dont le nom en capitales
+ * espacées est gardé :
  *
  * - La barre noire, la même partout : le nom ; les trois maisons, chacune précédée d'un point de sa couleur (vert
  *   pour la librairie, brun pour YMCA-Press, bleu nuit pour le centre culturel), la maison où l'on est soulignée ;
@@ -17,10 +22,10 @@
  *   de la page en blanc plein. Le nom garde l'espacement du logo d'origine ; entre 1280 et 1440 px, « Maison
  *   d'édition YMCA-Press » devient « YMCA-Press ».
  * - Au téléphone : la loupe et le panier dans la barre ; le compte et la langue au bas du menu (≡).
- * - Dessous, le menu de la maison où l'on est, sur sa couleur : les rayons dans la librairie (la composition
- *   « menu-librairie », appelée par les gabarits de la boutique), les pages d'YMCA-Press ou du centre ailleurs (le code
- *   court [er_sous_menu]). Sur l'accueil, la ligne de la librairie, « Accueil » souligné ; rien dessous sur les pages
- *   communes (panier, compte, pages légales).
+ * - Dessous, les lignes des trois maisons, sur leur couleur (le code court [er_lignes]) : les rayons de la librairie
+ *   (la composition « menu-librairie »), les pages d'YMCA-Press, celles du centre. Seule celle de la maison de la page
+ *   est visible (la librairie sur l'accueil, aucune sur les pages communes) ; un clic sur une maison de la barre montre
+ *   la sienne, sans quitter la page (assets/js/entete.js).
  * - Plus de menus déroulants à l'ordinateur ; au téléphone, le menu (≡) montre les trois maisons et leurs pages, le
  *   compte et la langue.
  *
@@ -47,6 +52,8 @@ $er_lien_maison = function ( $libelle, $chemin, $cle, $pages = array(), $court =
 };
 $er_pages = er_pages_des_maisons();
 ?>
+<!-- wp:html -->[er_infos]<!-- /wp:html -->
+
 <!-- wp:group {"className":"er-barre","backgroundColor":"noir","textColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group er-barre has-base-color has-noir-background-color has-text-color has-background">
 	<!-- wp:group {"align":"wide","className":"er-barre-dedans","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
@@ -79,4 +86,4 @@ $er_pages = er_pages_des_maisons();
 </div>
 <!-- /wp:group -->
 
-<!-- wp:html -->[er_sous_menu]<!-- /wp:html -->
+<!-- wp:html -->[er_lignes]<!-- /wp:html -->

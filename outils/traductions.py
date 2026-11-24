@@ -1491,6 +1491,43 @@ T = {
     (None, 'Chercher un livre, un article, une vidéo, une rencontre…'):
         ('Search for a book, an article, a video, an event…',
          'Найти книгу, статью, видео, встречу…'),
+    # La barre d'informations de l'en-tête (inc/entete.php, entete.js), le 24 novembre 2026.
+    (None, 'Ouvert en ce moment'): ('Open now', 'Сейчас открыто'),
+    (None, 'Fermé en ce moment'): ('Closed now', 'Сейчас закрыто'),
+    (None, 'la librairie, jusqu’à %s'): ('the bookshop, until %s', 'магазин, до %s'),
+    (None, 'réouverture %1$s à %2$s'): ('reopens %1$s at %2$s', 'откроется: %1$s, %2$s'),
+    (None, 'demain'): ('tomorrow', 'завтра'),
+    (None, 'Ce soir au centre'): ('Tonight at the centre', 'Сегодня вечером в центре'),
+    (None, 'Aujourd’hui au centre'): ('Today at the centre', 'Сегодня в центре'),
+    (None, 'Demain au centre'): ('Tomorrow at the centre', 'Завтра в центре'),
+    (None, '%s au centre'): ('%s at the centre', '%s в центре'),
+    (None, ', jusqu’au %s'): (', until %s', ', до %s'),
+    (None, 'lundi'): ('Monday', 'понедельник'),
+    (None, 'mardi'): ('Tuesday', 'вторник'),
+    (None, 'mercredi'): ('Wednesday', 'среда'),
+    (None, 'jeudi'): ('Thursday', 'четверг'),
+    (None, 'vendredi'): ('Friday', 'пятница'),
+    (None, 'samedi'): ('Saturday', 'суббота'),
+    (None, 'dimanche'): ('Sunday', 'воскресенье'),
+    (None, 'La librairie, du mardi au samedi'): ('The bookshop, Tuesday to Saturday', 'Магазин, со вторника по субботу'),
+    (None, '11, rue de la Montagne-Sainte-Geneviève'): ('11, rue de la Montagne-Sainte-Geneviève', 'Рю де ла Монтань-Сент-Женевьев, 11'),
+    (None, 'Nous trouver →'): ('Find us →', 'Как нас найти →'),
+    (None, 'Horaires de la librairie'): ('Bookshop opening hours', 'Часы работы магазина'),
+    (None, 'Une ligne par jour d’ouverture (« mardi 10:00-19:00 ») ; un jour absent est fermé. La barre d’informations, en haut du site, en tire « Ouvert en ce moment » ou « Fermé en ce moment ».'):
+        ('One line per opening day (“mardi 10:00-19:00”, day names in French); a missing day is closed. The information bar at the top of the site uses it to show “Open now” or “Closed now”.',
+         'Одна строка на рабочий день («mardi 10:00-19:00», дни по-французски); отсутствующий день — выходной. Информационная строка вверху сайта показывает по ним «Сейчас открыто» или «Сейчас закрыто».'),
+    # La une écran par écran (patterns/une-ecrans.php).
+    (None, 'Faire défiler'): ('Scroll', 'Листать'),
+    (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
+    (None, 'Une bougie derrière une vitre givrée : l’image que le roman a rendue célèbre.'):
+        ('A candle behind a frosted window: the image the novel made famous.',
+         'Свеча за заиндевевшим окном — образ, который роман сделал знаменитым.'),
+    (None, 'Le bourg de Tchevengour : on a cessé de travailler, le soleil travaille pour tous.'):
+        ('The town of Chevengur: people have stopped working, the sun works for everyone.',
+         'Городок Чевенгур: работать перестали, солнце трудится за всех.'),
+    (None, 'Le roman de Pasternak a paru d’abord en italien, à Milan, en 1957, avant toute édition en russe ; une nouvelle traduction le fait relire.'):
+        ('Pasternak’s novel first came out in Italian, in Milan, in 1957, before any Russian edition; a new translation brings it back.',
+         'Роман Пастернака впервые вышел по-итальянски, в Милане, в 1957 году, раньше любого русского издания; новый перевод заставляет перечитать его.'),
 }
 
 LANGUES = {

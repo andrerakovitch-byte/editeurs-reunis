@@ -91,7 +91,7 @@
 		},
 		"layout": {
 			"contentSize": "760px",
-			"wideSize": "1280px"
+			"wideSize": "100%"
 		},
 		"shadow": {
 			"defaultPresets": false,
@@ -108,8 +108,8 @@
 		"spacing": {
 			"blockGap": "1.25rem",
 			"padding": {
-				"left": "clamp(1.25rem, 4vw, 2.75rem)",
-				"right": "clamp(1.25rem, 4vw, 2.75rem)"
+				"left": "clamp(1.25rem, 6vw, 5rem)",
+				"right": "clamp(1.25rem, 6vw, 5rem)"
 			}
 		},
 		"typography": {

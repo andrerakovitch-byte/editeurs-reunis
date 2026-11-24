@@ -33,19 +33,46 @@ Elle reprend la maquette Wix : Montserrat, la pervenche `#9DB5F5`, la barre noir
 changer, on touche à `theme.json` et à `style.css`, et seulement à eux : les sections et les gabarits n'ont aucune
 couleur ni taille écrite en dur.
 
+## Le plein écran
+
+Retenu le 24 novembre 2026 (« code tout sauf garde le vieux logo », André). Le site occupe toute la largeur de
+l'écran : `theme.json` donne aux blocs larges (`alignwide`) 100 % de la page, et à la page des marges de
+`clamp(1.25rem, 6vw, 5rem)` (80 px sur un grand écran). Les grilles de livres passent à six colonnes à partir de
+1 280 px et à huit à partir de 1 600 px ; le texte courant garde sa largeur de lecture (`contentSize`). Tous les
+gabarits en profitent sans rien y changer.
+
 ## L'en-tête : trois maisons, trois couleurs
 
-Retenu le 21 novembre 2026. Une barre noire, la même partout : le nom, les trois maisons (Librairie, Maison
-d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa couleur, puis le coin droit en pictos (disposition A′, retenue le même jour) : la loupe, le compte, le panier, chacun dans un
-rond de 36 px (au survol, le rond grisé ; sélectionné, le rond blanc et le picto noir, à la même place), le nombre de
-livres dans une pastille pervenche quand le panier n'est pas vide, et les trois langues dans un interrupteur, la
-langue de la page en blanc plein. Le nom garde l'espacement du logo d'origine (0,95 em) ; entre 1280 et 1440 px,
-« Maison d'édition YMCA-Press » devient « YMCA-Press » ; au téléphone, la barre garde la loupe et le panier, le compte
-et la langue vont au bas du menu (≡). Dessous, le menu de la maison où l'on est, sur sa couleur : vert rayonnage pour la librairie
-(ses rayons, avec leurs tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel. L'accueil du
-site montre la ligne de la librairie, « Accueil » souligné (son entrée « Accueil » y mène) ; l'onglet « Librairie »
-n'y est pas souligné : l'accueil n'est pas toute la librairie. Rien dessous sur les pages communes. Plus de menus déroulants ; en dessous de 1280 px, le menu (≡) montre les trois
-maisons et leurs pages.
+Retenu le 21 novembre 2026, aéré le 24 (le « réglage 2 » du canevas « Les Éditeurs réunis — plein écran »). Trois
+étages, du haut vers le bas :
+
+1. **La barre d'informations** (40 px, noire, en petit gris) : si la librairie est ouverte en ce moment et jusqu'à
+   quelle heure, sinon le jour et l'heure de sa réouverture ; l'exposition en cours ; la prochaine rencontre de la
+   semaine (« Ce soir au centre », « Demain au centre »…) ; l'adresse et « Nous trouver ». Les horaires se règlent
+   dans Réglages → Général, champ « Horaires de la librairie », un jour par ligne (`mardi 10:00-19:00`) ; l'exposition
+   et les rencontres sont lues dans les contenus du centre. L'heure se calcule dans le navigateur, à l'heure de Paris
+   (`assets/js/entete.js`), parce que Kinsta garde les pages en cache. Au téléphone, seule l'ouverture reste ; en
+   dessous de 1 100 px, l'adresse s'en va.
+2. **La barre noire** (88 px, 64 au téléphone), la même partout : le nom dans l'espacement du logo d'origine (0,95 em),
+   les trois maisons (Librairie, Maison d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa
+   couleur, puis le coin droit en pictos (disposition A′, retenue le 21 nov.) : la loupe, le compte, le panier, chacun
+   dans un rond de 36 px (au survol, le rond grisé ; sélectionné, le rond blanc et le picto noir), le nombre de livres
+   dans une pastille pervenche quand le panier n'est pas vide, et les trois langues dans un interrupteur. Entre 1 280
+   et 1 440 px, « Maison d'édition YMCA-Press » devient « YMCA-Press » ; au téléphone, la barre garde la loupe et le
+   panier, le compte et la langue vont au bas du menu (≡).
+3. **La ligne de la maison** (48 px), sur sa couleur : vert rayonnage pour la librairie (ses rayons, avec leurs
+   tiroirs), brun reliure pour YMCA-Press, bleu nuit pour le centre culturel. La page où l'on est s'écrit en blanc et
+   en demi-gras ; l'accueil du site montre la ligne de la librairie, « Accueil » en blanc.
+
+**Un clic sur une maison n'ouvre pas sa page d'accueil** (règle du 24 nov.) : il montre sa ligne à la place de celle
+de la page, et l'onglet passe en blanc. L'accueil d'une maison est la première entrée de sa ligne. Le menu (≡) du
+téléphone garde ses liens. Les trois lignes sont dans la page (`[er_lignes]`, `inc/entete.php`) ; celles des autres
+maisons attendent, cachées.
+
+**En défilant** (la manière 2 du canevas, choisie le 24 nov.) : la barre d'informations et la barre noire s'en vont,
+la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe et le panier. Le troisième niveau d'une
+rubrique, comme les genres du journal (À la une, Chroniques, Critiques…), s'accroche juste dessous. Tout est en CSS
+(`position: sticky`) ; `entete.js` ne fait que mesurer les hauteurs et dire quand l'en-tête est accroché.
 
 La maison d'une page se déduit d'elle-même (`er_maison()` dans `functions.php`) : la boutique, les rayons, les livres,
 les auteurs et les promotions pour la librairie ; les pages sous `ymca-press/` pour YMCA-Press ; les pages sous
@@ -90,7 +117,13 @@ l'index (les fonctions `er_index_*`) vont chez Algolia d'eux-mêmes.
 
 L'accueil du site (`templates/front-page.html`) est fait des modules de la maquette « L'accueil, à la une » du canevas,
 chacun une composition en blocs de WordPress, qu'on modifie dans l'éditeur de site (21 nov. 2026 : « garde ces
-modules stp sauf le dernier [l'index], regarde les modifications et ajoute-les au site », André) :
+modules stp sauf le dernier [l'index], regarde les modifications et ajoute-les au site », André).
+
+Le premier module, depuis le 24 nov., est **la une écran par écran** (`une-ecrans`) : L'Archipel du Goulag, Le Docteur
+Jivago et Tchevengour, chacun un écran entier coupé en deux, à gauche sur l'aplat de sa maison la rubrique, le titre,
+la phrase et deux boutons, à droite la photo des archives ou le dessin ; le premier écran tient sous l'en-tête, les
+suivants sous la ligne de la maison. En bas de chaque écran, le sommaire des trois. Suivent le journal, le poème, les
+vidéos et l'encyclopédie. Les trois affiches longues d'avant restent dans `patterns/`, pour l'éditeur :
 
 - `une-archipel`, `une-jivago`, `une-tchevengour` : des affiches pleine largeur sur l'aplat d'une maison (brun
   d'YMCA-Press, vert de la librairie, noir). À gauche la rubrique et le point de chaque maison, le titre, les faits en
@@ -153,7 +186,11 @@ librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette ent
 
 ## Les livres
 
-La fiche d'un livre montre, sous le rayon, la langue et l'auteur, ce que l'extension garde du livre : traduction,
+La fiche d'un livre est coupée en deux moitiés (la version C du canevas, retenue le 24 nov. 2026) : à gauche, sur le
+papier, la couverture, qui reste à l'écran pendant qu'on lit ; à droite, le fil d'Ariane, les mentions, le titre en
+grand, l'auteur, le prix, le panier, la présentation et les renseignements. Au téléphone, la couverture passe au-dessus.
+
+Elle montre, sous le rayon, la langue et l'auteur, ce que l'extension garde du livre : traduction,
 éditeur, collection, parution, pages, format et ISBN (le champ « GTIN, UPC, EAN ou ISBN » de WooCommerce) ; une ligne
 vide ne paraît pas (le bloc `er/fiche-champs`, `plugin/…/inc/fiche.php`). La référence `WIX-…` d'un livre venu de Wix
 ne paraît pas.
@@ -343,7 +380,9 @@ et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag
 
 - **L'en-tête du journal** (`er/journal-tete`, « le bandeau », choisi le 23 nov. parmi quatre) : sur l'aplat du
   centre, sous son menu, le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque effacé, puis les
-  genres en onglets (et « En russe », les textes en russe ou bilingues, d'après `er_langues`).
+  genres en onglets (et « En russe », les textes en russe ou bilingues, d'après `er_langues`). Les genres sont une
+  bande à part (`.er-j-genres-bande`) : en défilant, elle s'accroche sous la ligne du centre, comme le troisième
+  niveau de toute rubrique.
 - **La ligne de repères**, sous le bandeau, sur une seule ligne (ce qui dépasse défile de côté), selon l'onglet : à
   la une, le prochain rendez-vous au centre et le dernier épisode du podcast ; les plumes des chroniques, les
   témoins des récits, les auteurs des archives (avec leur nombre de textes) ; les livres des critiques, à la

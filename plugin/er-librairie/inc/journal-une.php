@@ -393,14 +393,16 @@ function er_journal_tete() {
 	/* translators: %d: un nombre de textes */
 	$faits[] = sprintf( _n( '%d texte', '%d textes', $total, 'er-librairie' ), $total );
 
-	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; les genres en onglets à son pied ;
-	// « Журнал » en grand, presque effacé, en décor. Les sujets sont sous le fil, à la une.
+	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; « Журнал » en grand, presque effacé, en
+	// décor. Les sujets sont sous le fil, à la une. Les genres en onglets à son pied, le sous-menu du journal (le
+	// troisième niveau du système) : une bande à part, sœur du bandeau, pour pouvoir rester accrochée sous la ligne du
+	// centre quand on fait défiler (le thème, style.css).
 	return '<section class="er-j-tete alignfull"><span class="er-j-lettre" lang="ru" aria-hidden="true">Журнал</span><div class="er-j-g">'
 		. '<p class="er-j-faits"><span class="er-j-point" aria-hidden="true"></span>' . esc_html( implode( ' · ', $faits ) ) . '</p>'
 		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
 		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
-		. '<nav class="er-j-genres" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '">' . $onglets . '</nav>'
 		. '</div></section>'
+		. '<nav class="er-j-genres-bande alignfull" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '"><div class="er-j-g"><div class="er-j-genres">' . $onglets . '</div></div></nav>'
 		. er_journal_contexte( $vue, $quoi, $objet );
 }
 

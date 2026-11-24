@@ -12,6 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 require get_template_directory() . '/inc/recherche.php';
+require get_template_directory() . '/inc/entete.php';
 
 add_action(
 	'after_setup_theme',
@@ -40,6 +41,39 @@ add_action(
 				'strategy'  => 'defer',
 				'in_footer' => true,
 			)
+		);
+		// L'en-tête plein écran : un clic sur une maison montre son menu, l'en-tête accroché, la barre d'informations.
+		wp_enqueue_script(
+			'editeurs-reunis-entete',
+			get_theme_file_uri( 'assets/js/entete.js' ),
+			array(),
+			$version . '.' . filemtime( get_theme_file_path( 'assets/js/entete.js' ) ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		wp_add_inline_script(
+			'editeurs-reunis-entete',
+			'window.erEnteteTextes = ' . wp_json_encode(
+				array(
+					'ouvert'       => __( 'Ouvert en ce moment', 'editeurs-reunis' ),
+					/* translators: %s: l'heure de fermeture (« 19 h »). */
+					'jusqua'       => __( 'la librairie, jusqu’à %s', 'editeurs-reunis' ),
+					'ferme'        => __( 'Fermé en ce moment', 'editeurs-reunis' ),
+					/* translators: 1: le jour de la réouverture (« mardi », « demain »), 2: l'heure (« 10 h »). */
+					'reouvre'      => __( 'réouverture %1$s à %2$s', 'editeurs-reunis' ),
+					'demain'       => __( 'demain', 'editeurs-reunis' ),
+					'cesoir'       => __( 'Ce soir au centre', 'editeurs-reunis' ),
+					'aujcentre'    => __( 'Aujourd’hui au centre', 'editeurs-reunis' ),
+					'demaincentre' => __( 'Demain au centre', 'editeurs-reunis' ),
+					/* translators: %s: un jour de la semaine (« Jeudi »). */
+					'jourcentre'   => __( '%s au centre', 'editeurs-reunis' ),
+					'jours'        => array( __( 'dimanche', 'editeurs-reunis' ), __( 'lundi', 'editeurs-reunis' ), __( 'mardi', 'editeurs-reunis' ), __( 'mercredi', 'editeurs-reunis' ), __( 'jeudi', 'editeurs-reunis' ), __( 'vendredi', 'editeurs-reunis' ), __( 'samedi', 'editeurs-reunis' ) ),
+					'heureFr'      => 'fr' === substr( determine_locale(), 0, 2 ),
+				)
+			) . ';',
+			'before'
 		);
 		// Les pages d'exemple (les maquettes du canevas, dans la bêta) : réduites, sous 1 100 px.
 		if ( is_page_template( array( 'page-exemple', 'page-exemple-librairie' ) ) ) {
@@ -331,24 +365,31 @@ function er_pages_des_maisons() {
 
 /**
  * Le menu du dessous, sur la couleur de la maison, pour YMCA-Press et le centre culturel (la librairie a le sien,
- * avec ses rayons et leurs tiroirs). La page où l'on est est soulignée ; un article du journal souligne le journal.
+ * avec ses rayons et leurs tiroirs). La page où l'on est est marquée ; un article du journal marque le journal.
+ * L'en-tête rend le menu des deux maisons (inc/entete.php) : celui d'une autre maison que celle de la page ne marque
+ * rien.
+ *
+ * @param string|null $maison 'ymca' ou 'centre' ; par défaut, la maison de la page.
  */
-function er_sous_menu() {
-	$maison = er_maison();
+function er_sous_menu( $maison = null ) {
+	$maison = is_string( $maison ) && '' !== $maison ? $maison : er_maison();
 	$pages  = er_pages_des_maisons();
 	if ( ! isset( $pages[ $maison ] ) ) {
 		return '';
 	}
-	$ici = er_chemin_reference();
-	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) ) {
-		$ici = 'journal';
-	}
-	if ( is_singular( 'er_evenement' ) ) {
-		$ici = 'centre-culturel/evenements';
-	} elseif ( is_singular( 'er_exposition' ) ) {
-		$ici = 'centre-culturel/expositions';
-	} elseif ( is_singular( 'er_media' ) ) {
-		$ici = 'podcast' === get_post_meta( get_queried_object_id(), 'er_genre', true ) ? 'centre-culturel/podcasts' : 'centre-culturel/videos';
+	// Le menu d'une autre maison que celle de la page : rien n'y est marqué.
+	$ici = '';
+	if ( er_maison() === $maison ) {
+		$ici = er_chemin_reference();
+		if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) ) {
+			$ici = 'journal';
+		} elseif ( is_singular( 'er_evenement' ) ) {
+			$ici = 'centre-culturel/evenements';
+		} elseif ( is_singular( 'er_exposition' ) ) {
+			$ici = 'centre-culturel/expositions';
+		} elseif ( is_singular( 'er_media' ) ) {
+			$ici = 'podcast' === get_post_meta( get_queried_object_id(), 'er_genre', true ) ? 'centre-culturel/podcasts' : 'centre-culturel/videos';
+		}
 	}
 	$noms  = array(
 		'ymca'   => _x( 'Maison d’édition YMCA-Press', 'menu du haut', 'editeurs-reunis' ),
@@ -359,7 +400,7 @@ function er_sous_menu() {
 		$courant = trim( $chemin, '/' ) === $ici ? ' aria-current="page"' : '';
 		$liens  .= '<li><a href="' . er_lien( $chemin ) . '"' . $courant . '>' . esc_html( $libelle ) . '</a></li>';
 	}
-	return '<nav class="er-sous-menu" aria-label="' . esc_attr( $noms[ $maison ] ) . '"><ul>' . $liens . '</ul></nav>';
+	return '<nav class="er-sous-menu er-sous-menu-' . esc_attr( $maison ) . '" aria-label="' . esc_attr( $noms[ $maison ] ) . '"><ul>' . $liens . '</ul></nav>';
 }
 
 /**
@@ -539,7 +580,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|sous_menu|compte_entete)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|sous_menu|compte_entete|infos|lignes)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 
