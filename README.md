@@ -51,8 +51,12 @@ Retenu le 21 novembre 2026, aéré le 24 (le « réglage 2 » du canevas « Les 
    semaine (« Ce soir au centre », « Demain au centre »…) ; l'adresse et « Nous trouver ». Les horaires se règlent
    dans Réglages → Général, champ « Horaires de la librairie », un jour par ligne (`mardi 10:00-19:00`) ; l'exposition
    et les rencontres sont lues dans les contenus du centre. L'heure se calcule dans le navigateur, à l'heure de Paris
-   (`assets/js/entete.js`), parce que Kinsta garde les pages en cache. Au téléphone, seule l'ouverture reste ; en
-   dessous de 1 100 px, l'adresse s'en va.
+   (`assets/js/entete.js`), parce que Kinsta garde les pages en cache. En dessous de 1 100 px, l'adresse s'en va. Au
+   téléphone, les informations passent l'une après l'autre en **relais** (24 nov., la façon 4 de la page « Les
+   informations au téléphone » du canevas) : la suivante arrive par la droite et pousse l'autre, comme les sujets de
+   la une, et un trait gris, au pied de la barre, avance en quatre secondes. Un titre trop long finit en points de
+   suspension ; dans l'adresse, c'est le nom de la rue qui se raccourcit, « Nous trouver → » reste entier. Si le
+   système demande moins d'animations, la barre garde l'ouverture seule.
 2. **La barre noire** (88 px, 64 au téléphone), la même partout : le nom dans l'espacement du logo d'origine (0,95 em),
    les trois maisons (Librairie, Maison d'édition YMCA-Press, Le centre culturel), chacune précédée d'un point de sa
    couleur, puis le coin droit en pictos (disposition A′, retenue le 21 nov.) : la loupe, le compte, le panier, chacun

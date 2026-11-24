@@ -210,6 +210,81 @@
 		}
 	}
 
+	/* Au téléphone, le relais (24 nov., la façon 4 du canevas « Les informations au téléphone ») : la barre montre une
+	   information à la fois (l'ouverture, l'exposition, la rencontre, l'adresse) ; la suivante arrive par la droite et
+	   pousse l'autre, comme les sujets de la une. Un trait gris avance au pied de la barre et donne la mesure : quand il
+	   arrive au bout (quatre secondes, style.css), la suivante vient. Il attend pendant qu'on parcourt la barre au
+	   clavier ; si le système demande moins d'animations, la barre garde l'ouverture seule, comme avant. */
+	var telephone = window.matchMedia( '(max-width: 781px)' );
+	var calme = window.matchMedia( '(prefers-reduced-motion: reduce)' );
+	var relaisCourant = null;
+	var relaisDedans = infos && infos.querySelector( '.er-infos-dedans' );
+	function relaisListe() {
+		return Array.prototype.slice.call( infos.querySelectorAll( '.er-info' ) ).filter( function ( i ) {
+			return ! i.hidden;
+		} );
+	}
+	function relaisRepartir() {
+		infos.classList.remove( 'est-en-route' );
+		void infos.offsetWidth; // le trait repart de zéro
+		infos.classList.add( 'est-en-route' );
+	}
+	function relaisSuivant() {
+		var liste = relaisListe();
+		if ( liste.length < 2 ) {
+			return;
+		}
+		var vient = liste[ ( liste.indexOf( relaisCourant ) + 1 ) % liste.length ];
+		vient.classList.add( 'sans-glisse' );
+		vient.classList.remove( 'est-avant', 'est-ici' ); // à droite, prête à entrer
+		void vient.offsetWidth;
+		vient.classList.remove( 'sans-glisse' );
+		vient.classList.add( 'est-ici' );
+		if ( relaisCourant ) {
+			relaisCourant.classList.remove( 'est-ici' );
+			relaisCourant.classList.add( 'est-avant' );
+		}
+		relaisCourant = vient;
+	}
+	function relaisRegler() {
+		var oui = telephone.matches && ! calme.matches && relaisListe().length > 1;
+		var marche = infos.classList.contains( 'est-relais' );
+		if ( oui && ! marche ) {
+			var liste = relaisListe();
+			liste.forEach( function ( i ) {
+				i.classList.add( 'sans-glisse' );
+				i.classList.remove( 'est-avant' );
+				i.classList.toggle( 'est-ici', i === liste[ 0 ] );
+			} );
+			infos.classList.add( 'est-relais' );
+			void infos.offsetWidth;
+			liste.forEach( function ( i ) {
+				i.classList.remove( 'sans-glisse' );
+			} );
+			relaisCourant = liste[ 0 ];
+			relaisRepartir();
+		} else if ( ! oui && marche ) {
+			infos.classList.remove( 'est-relais', 'est-en-route' );
+			infos.querySelectorAll( '.er-info' ).forEach( function ( i ) {
+				i.classList.remove( 'est-ici', 'est-avant', 'sans-glisse' );
+			} );
+		}
+	}
+	if ( relaisDedans ) {
+		relaisDedans.addEventListener( 'animationend', function ( e ) {
+			if ( 'er-infos-trait' === e.animationName && infos.classList.contains( 'est-relais' ) ) {
+				relaisSuivant();
+				relaisRepartir();
+			}
+		} );
+		relaisRegler();
+		[ telephone, calme ].forEach( function ( m ) {
+			if ( m.addEventListener ) {
+				m.addEventListener( 'change', relaisRegler );
+			}
+		} );
+	}
+
 	/* Les interrupteurs : la loupe, le panier et le menu (≡) referment ce qu'ils ont ouvert, à la même place (24 nov.).
 	   Leur panneau s'ouvre sous la barre ou la ligne où ils sont ; eux restent visibles et deviennent une croix
 	   (style.css). La loupe est un interrupteur d'elle-même (recherche.js) ; le menu de WordPress et le volet du panier

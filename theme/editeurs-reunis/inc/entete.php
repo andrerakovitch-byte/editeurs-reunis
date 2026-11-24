@@ -238,7 +238,7 @@ function er_infos() {
 	}
 
 	$items[] = sprintf(
-		'<a class="er-info er-info-adresse er-info-plus" href="%1$s">%2$s · <strong>%3$s</strong></a>',
+		'<a class="er-info er-info-adresse er-info-plus" href="%1$s"><span class="er-info-rue">%2$s</span> · <strong>%3$s</strong></a>',
 		$nous_trouver,
 		esc_html__( '11, rue de la Montagne-Sainte-Geneviève', 'editeurs-reunis' ),
 		esc_html__( 'Nous trouver →', 'editeurs-reunis' )
