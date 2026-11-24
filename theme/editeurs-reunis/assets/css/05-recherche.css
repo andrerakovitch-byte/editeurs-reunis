@@ -13,10 +13,11 @@
 
 /* La page ne défile plus sous le panneau. Seulement sur <html> : sur <body>, il ferait de lui un cadre de défilement,
    et l'en-tête accroché lâcherait prise (il disparaîtrait, avec la loupe qui referme). Même chose pour le volet du
-   panier de WooCommerce, qui bloque <body>. */
-.er-recherche-ouverte { overflow: hidden; }
-html:has(> body.drawer-open) { overflow: hidden; }
-body.drawer-open { overflow: visible !important; }
+   panier de WooCommerce, qui bloque <body> par un style en ligne (la classe drawer-open a disparu avec WooCommerce 11) :
+   entete.js pose er-panier-ouvert sur <html> quand le volet s'ouvre. */
+.er-recherche-ouverte,
+html.er-panier-ouvert { overflow: hidden; }
+html.er-panier-ouvert body { overflow: visible !important; }
 .er-recherche { position: fixed; inset: var(--er-recherche-haut, 56px) 0 0 0; z-index: 9990; }
 .er-recherche[hidden] { display: none; }
 .er-recherche-voile { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }

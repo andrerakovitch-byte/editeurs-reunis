@@ -346,6 +346,7 @@
 		return el && el.closest ? el.closest( '.er-ligne-panier, .er-barre .wc-block-mini-cart__button' ) : null;
 	};
 	var panierEtaitOuvert = false;
+	var dessousPose = false; // la place du volet, prise au clic sur l'un des paniers
 	var relais = false; // le clic que la ligne passe au bouton de la barre
 	window.addEventListener( 'pointerdown', function ( e ) {
 		if ( estPanier( e.target ) ) {
@@ -370,6 +371,7 @@
 			return;
 		}
 		racine.style.setProperty( '--er-dessous', dessousDe( ouvreur ) + 'px' );
+		dessousPose = true;
 		var bouton = miniPanier();
 		if ( ouvreur.classList.contains( 'er-ligne-panier' ) && bouton && ! ( e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ) ) {
 			e.preventDefault();
@@ -379,9 +381,26 @@
 			relais = false;
 		}
 	}, true );
-	// L'état du volet, sur <html> : les deux paniers passent à la croix, le volet se cale sous la barre.
+	// L'état du volet, sur <html> : les deux paniers passent à la croix, le volet se cale sous la barre. Ouvert sans
+	// clic sur un panier (WooCommerce peut l'ouvrir après un ajout), il se cale sous la bande visible à ce moment-là :
+	// la ligne accrochée si la barre est sortie de l'écran, sinon la barre.
+	var voletEtaitOuvert = false;
+	var panierVisible = function () {
+		var ligne = lignesPanier.filter( function ( l ) {
+			return l.getClientRects().length && 'visible' === window.getComputedStyle( l ).visibility && l.getBoundingClientRect().bottom > 0;
+		} )[ 0 ];
+		return ligne || miniPanier();
+	};
 	var suivrePanier = function () {
-		racine.classList.toggle( 'er-panier-ouvert', panierOuvert() );
+		var ouvert = panierOuvert();
+		if ( ouvert && ! voletEtaitOuvert && ! dessousPose ) {
+			racine.style.setProperty( '--er-dessous', dessousDe( panierVisible() ) + 'px' );
+		}
+		if ( ! ouvert ) {
+			dessousPose = false;
+		}
+		voletEtaitOuvert = ouvert;
+		racine.classList.toggle( 'er-panier-ouvert', ouvert );
 	};
 	if ( window.MutationObserver ) {
 		new MutationObserver( suivrePanier ).observe( document.body, { subtree: true, childList: true, attributes: true, attributeFilter: [ 'class' ] } );

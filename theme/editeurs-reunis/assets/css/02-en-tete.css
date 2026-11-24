@@ -181,6 +181,21 @@ html.er-panier-ouvert .er-ligne-panier::after {
 /* Le panier de WooCommerce : son volet et son voile sous la barre (ou la ligne) d'où on l'a ouvert. */
 html.er-panier-ouvert .wc-block-components-drawer__screen-overlay { top: var(--er-dessous, 0px) !important; }
 html.er-panier-ouvert .wc-block-components-drawer { top: var(--er-dessous, 0px) !important; height: calc(100% - var(--er-dessous, 0px)) !important; margin-top: 0 !important; }
+/* Sa croix à lui ne se montre qu'au clavier (le panier de l'en-tête, devenu croix, referme) : WooCommerce la place à
+   moitié hors du volet (marge négative), et son anneau de focus était coupé au bord droit. */
+.wc-block-components-button.wc-block-components-drawer__close:focus-visible {
+	top: 0.75rem;
+	inset-inline-end: 0.75rem;
+	margin: 0;
+	padding: 0.5rem !important;
+	border-radius: 50%;
+	opacity: 1;
+	outline: 2px solid var(--wp--preset--color--accent-texte);
+	outline-offset: 2px;
+}
+/* Une ligne à un seul exemplaire : le prix à l'unité répétait le total de la ligne, à droite. Il revient dès deux
+   exemplaires (le « − » n'est plus grisé), et reste quand il y a une remise (le prix barré). */
+.wc-block-mini-cart__drawer .wc-block-cart-items__row:has(.wc-block-components-quantity-selector__button--minus:disabled) .wc-block-cart-item__prices:not(:has(> .price:not([hidden]) del)) { display: none; }
 .er-menu .wp-block-navigation__responsive-container-close:not(:focus-visible),
 .wc-block-components-drawer__close:not(:focus-visible),
 .er-recherche-fermer:not(:focus-visible) {
