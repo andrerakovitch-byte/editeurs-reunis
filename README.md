@@ -18,7 +18,9 @@ n'est gardé quand on ferme l'onglet.
   - `theme.json` : la direction artistique, toute entière (les couleurs, la police Montserrat, les tailles, les
     espacements, les boutons en pilule).
   - `assets/css/` : le reste du dessin, un fichier par composant, numérotés dans l'ordre où ils se chargent
-    (`style.css` ne garde que l'en-tête du thème).
+    (`style.css` ne garde que l'en-tête du thème). Trois tailles d'écran pour le contenu : 600 px (téléphone),
+    781 px (tablette, comme les colonnes de WordPress), 1100 px (petit écran) ; le plein écran à partir de 1280 px,
+    puis 1680 px. L'en-tête garde ses seuils à lui (1180, 1440 px) : sa barre doit tenir en russe.
   - `patterns/` : les modules de l'accueil (`une-*.php`), l'en-tête, le pied, la librairie et la fiche d'un livre.
   - `templates/` et `parts/` : les gabarits, qui ne font qu'appeler les sections.
 - `plugin/er-librairie/` : l'extension de la librairie, séparée du thème pour que les livres survivent à un

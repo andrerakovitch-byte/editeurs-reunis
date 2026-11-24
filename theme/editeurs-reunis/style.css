@@ -17,5 +17,6 @@ Text Domain: editeurs-reunis
  * les met tous, dans cet ordre ; l'éditeur aussi). L'ordre compte : une règle plus bas l'emporte à égalité.
  *
  * Les tailles d'écran, les mêmes partout : 600 px (téléphone), 781 px (tablette, comme les colonnes de WordPress),
- * 1100 px (petit écran d'ordinateur) ; au-dessus, le plein écran (18-plein-ecran.css).
+ * 1100 px (petit écran d'ordinateur) ; le plein écran à partir de 1280 px, puis 1680 px. L'en-tête garde ses seuils à
+ * lui (1180 et 1440 px, 02-en-tete.css) : sa barre doit tenir en russe, où les noms sont plus longs.
  */

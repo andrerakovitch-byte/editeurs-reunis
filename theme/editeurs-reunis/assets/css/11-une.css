@@ -350,7 +350,7 @@
 @media (max-width: 781px) {
 	.er-une-strophe { font-size: min(1.45rem, 4.85vw); }
 }
-@media (max-width: 340px) {
+@media (max-width: 600px) {
 	.er-une-strophe { white-space: normal; }
 }
 @media (max-width: 600px) {
