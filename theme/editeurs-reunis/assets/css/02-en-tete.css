@@ -180,7 +180,10 @@ html.er-panier-ouvert .er-ligne-panier::after {
 .er-menu .is-menu-open .wp-block-navigation__responsive-dialog { margin-top: 0 !important; }
 /* Le panier de WooCommerce : son volet et son voile sous la barre (ou la ligne) d'où on l'a ouvert. */
 html.er-panier-ouvert .wc-block-components-drawer__screen-overlay { top: var(--er-dessous, 0px) !important; }
-html.er-panier-ouvert .wc-block-components-drawer { top: var(--er-dessous, 0px) !important; height: calc(100% - var(--er-dessous, 0px)) !important; margin-top: 0 !important; }
+html.er-panier-ouvert .wc-block-components-drawer { top: var(--er-dessous, 0px) !important; height: calc(100% - var(--er-dessous, 0px)) !important; height: calc(100dvh - var(--er-dessous, 0px)) !important; margin-top: 0 !important; }
+/* Son contenu fait 100dvh chez WooCommerce : le volet descendu sous la barre, le bas (sous-total, « Panier »,
+   « Commander ») sortait de l'écran. */
+html.er-panier-ouvert .wc-block-components-drawer__content { height: 100% !important; }
 /* Sa croix à lui ne se montre qu'au clavier (le panier de l'en-tête, devenu croix, referme) : WooCommerce la place à
    moitié hors du volet (marge négative), et son anneau de focus était coupé au bord droit. */
 .wc-block-components-button.wc-block-components-drawer__close:focus-visible {
