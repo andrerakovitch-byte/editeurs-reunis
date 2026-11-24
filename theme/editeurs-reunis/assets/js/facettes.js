@@ -13,7 +13,7 @@
 		return;
 	}
 
-	var PARAMS = [ 'rayon', 'langue', 'epoque', 'ecrit', 'genre', 'sujet', 'auteur', 'maison', 'decennie', 'dispo' ];
+	var PARAMS = [ 'rayons', 'langues', 'epoques', 'ecriture', 'genres', 'sujets', 'auteurs', 'maisons', 'decennies', 'dispo' ];
 	var GARDES = [ 'orderby', 's', 'post_type' ];
 	var etroit = window.matchMedia( '(max-width: 781px)' );
 	var mode = null;

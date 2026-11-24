@@ -476,10 +476,10 @@ de livres resteraient si on la cochait ; dans une facette les options s'addition
 se cumulent. Une facette qui ne partage pas la page n'y est pas (pas d'« Auteur » sur la page d'un auteur) ; moins de
 six livres, pas de colonne.
 
-Le filtre est dans l'adresse (`?langue=francais&epoque=annees-1920-et-1930&sans-date=non`) ; le calcul se fait en PHP
+Le filtre est dans l'adresse (`?langues=francais&epoques=annees-1920-et-1930&sans-date=non`, au pluriel : « langue » et « auteur » sont déjà ceux des classements de WordPress) ; le calcul se fait en PHP
 sur les livres de la page, et la requête principale reçoit la liste des livres retenus. `assets/js/facettes.js`
 remplace la colonne et les livres sans recharger la page ; au téléphone, la colonne s'ouvre en panneau plein écran.
-Sans JavaScript, le formulaire s'envoie par son bouton. `wp er facettes essayer litterature langue=francais` l'essaie
+Sans JavaScript, le formulaire s'envoie par son bouton. `wp er facettes essayer litterature langues=francais` l'essaie
 sur un rayon (case « er » du workflow). La maquette : le canevas « Librairie — le module « Filtrer par » ».
 
 ## Les vidéos et les podcasts

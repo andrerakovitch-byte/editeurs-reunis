@@ -12,7 +12,8 @@
  * Une facette qui ne partage pas la page n'y est pas : pas d'« Auteur » sur la page d'un auteur, pas de « Langue »
  * sur celle d'une langue, pas de « Maison d'édition » sur celle d'un éditeur. Moins de six livres : pas de colonne.
  *
- * Le filtre est dans l'adresse (?langue=francais,bilingue-russe-francais&epoque=annees-1920-et-1930), qui se partage.
+ * Le filtre est dans l'adresse (?langues=francais,bilingue-russe-francais&epoques=annees-1920-et-1930), qui se partage.
+ * Les paramètres sont au pluriel : « langue » et « auteur » sont déjà ceux des classements de WordPress.
  * Le calcul se fait ici, en PHP, sur les livres de la page (quelques centaines au plus) : les mêmes règles donnent les
  * comptes et les livres montrés (la requête principale reçoit leur liste, post__in), sans que les deux divergent.
  *
@@ -32,15 +33,15 @@ defined( 'ABSPATH' ) || exit;
  */
 function er_facettes_definitions() {
 	return array(
-		'rayon'    => array( 'rayon', __( 'Rayon', 'er-librairie' ), 'liste' ),
-		'langue'   => array( 'langue', __( 'Langue', 'er-librairie' ), 'liste' ),
-		'epoque'   => array( 'epoque', __( 'Époque', 'er-librairie' ), 'frise' ),
-		'ecrit'    => array( 'ecrit', __( 'Époque', 'er-librairie' ), 'frise' ),
-		'genre'    => array( 'genre', __( 'Genre', 'er-librairie' ), 'liste' ),
-		'sujet'    => array( 'sujet', __( 'Sujet', 'er-librairie' ), 'pilules' ),
-		'auteur'   => array( 'auteur', __( 'Auteur', 'er-librairie' ), 'recherche' ),
-		'maison'   => array( 'maison', __( 'Maison d’édition', 'er-librairie' ), 'recherche' ),
-		'decennie' => array( 'decennie', __( 'Année de publication', 'er-librairie' ), 'histo' ),
+		'rayon'    => array( 'rayons', __( 'Rayon', 'er-librairie' ), 'liste' ),
+		'langue'   => array( 'langues', __( 'Langue', 'er-librairie' ), 'liste' ),
+		'epoque'   => array( 'epoques', __( 'Époque', 'er-librairie' ), 'frise' ),
+		'ecrit'    => array( 'ecriture', __( 'Époque', 'er-librairie' ), 'frise' ),
+		'genre'    => array( 'genres', __( 'Genre', 'er-librairie' ), 'liste' ),
+		'sujet'    => array( 'sujets', __( 'Sujet', 'er-librairie' ), 'pilules' ),
+		'auteur'   => array( 'auteurs', __( 'Auteur', 'er-librairie' ), 'recherche' ),
+		'maison'   => array( 'maisons', __( 'Maison d’édition', 'er-librairie' ), 'recherche' ),
+		'decennie' => array( 'decennies', __( 'Année de publication', 'er-librairie' ), 'histo' ),
 		'dispo'    => array( 'dispo', __( 'Disponibilité', 'er-librairie' ), 'liste' ),
 	);
 }
@@ -373,8 +374,7 @@ function er_facettes_donnees( $ids, $contexte ) {
 			} elseif ( 'er_editeur' === $m->cle && '' !== trim( wp_strip_all_tags( $m->val ) ) && empty( $livres[ $m->id ]['maison'] ) ) {
 				// Un éditeur écrit à la main (l'import, les notices), quand le livre n'en a pas d'autre.
 				// « les Belles lettres (Paris) », comme l'écrit la BnF : sans la ville, avec une capitale.
-				$nom                         = preg_replace( '/\s*\([^)]*\)\s*$/u', '', trim( wp_strip_all_tags( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) ) ) );
-				$nom                         = mb_strtoupper( mb_substr( $nom, 0, 1 ) ) . mb_substr( $nom, 1 );
+				$nom                         = er_notice_editeur( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) );
 				$k                           = sanitize_title( $nom );
 				$livres[ $m->id ]['maison'][] = $k;
 				$noms['maison'][ $k ]        = $noms['maison'][ $k ] ?? $nom;
@@ -655,7 +655,7 @@ function er_facettes_colonne( $etat ) {
 				/* translators: 1: une décennie, 2: un nombre de livres */
 				$titre   = sprintf( _n( 'Les années %1$s : %2$s livre', 'Les années %1$s : %2$s livres', $nb, 'er-librairie' ), $k, number_format_i18n( $nb ) );
 				$barres .= '<label class="er-histo__barre' . ( $on ? ' is-coche' : '' ) . ( $nb || $on ? '' : ' is-vide' ) . '" title="' . esc_attr( $titre ) . '">'
-					. '<input type="checkbox" name="decennie[]" value="' . esc_attr( $k ) . '"' . ( $on ? ' checked' : '' ) . ( $nb || $on ? '' : ' disabled' ) . '>'
+					. '<input type="checkbox" name="decennies[]" value="' . esc_attr( $k ) . '"' . ( $on ? ' checked' : '' ) . ( $nb || $on ? '' : ' disabled' ) . '>'
 					. '<span class="screen-reader-text">' . esc_html( $titre ) . '</span>'
 					. '<span class="er-histo__trait" aria-hidden="true" style="height:' . esc_attr( max( $nb ? 6 : 2, round( 100 * $nb / $max ) ) ) . '%"></span></label>';
 			}
@@ -769,7 +769,7 @@ add_action(
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
-	 * Essayer la colonne sur un rayon, sans navigateur : wp er facettes essayer <rayon> [langue=francais …]. Dit le
+	 * Essayer la colonne sur un rayon, sans navigateur : wp er facettes essayer <rayon> [langues=francais …]. Dit le
 	 * nombre de livres retenus, les cinq premières options de chaque facette avec leur compte, et la taille du HTML.
 	 */
 	WP_CLI::add_command(

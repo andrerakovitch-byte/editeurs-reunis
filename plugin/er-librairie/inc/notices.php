@@ -55,7 +55,7 @@ function er_notice_poser( $n, $appliquer ) {
 	if ( ! empty( $sur['editeur'] ) && '' === trim( (string) $p->get_meta( 'er_editeur' ) ) && ! er_editeur_du_livre( $p->get_id() )['termes'] ) {
 		$pose[] = 'éditeur';
 		if ( $appliquer ) {
-			$p->update_meta_data( 'er_editeur', sanitize_text_field( $sur['editeur'] ) );
+			$p->update_meta_data( 'er_editeur', er_notice_editeur( sanitize_text_field( $sur['editeur'] ) ) );
 		}
 	}
 	$oeuvre = $n['oeuvre'] ?? array();
@@ -93,6 +93,17 @@ function er_notice_poser( $n, $appliquer ) {
 		$p->save();
 	}
 	return $pose;
+}
+
+/**
+ * L'éditeur comme l'écrit la BnF (« les Éditions Noir sur blanc (Lausanne (Suisse)) »), tel qu'une fiche le montre :
+ * sans la ville entre parenthèses, avec une capitale (« Les Éditions Noir sur blanc »).
+ *
+ * @param string $texte L'éditeur du catalogue.
+ */
+function er_notice_editeur( $texte ) {
+	$t = trim( preg_replace( '/\s*\(.*$/u', '', trim( wp_strip_all_tags( (string) $texte ) ) ) );
+	return '' === $t ? '' : mb_strtoupper( mb_substr( $t, 0, 1 ) ) . mb_substr( $t, 1 );
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -145,6 +156,33 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 				WP_CLI::log( sprintf( 'REVOIR #%d %s || %s', $p->get_id(), html_entity_decode( $p->get_name(), ENT_QUOTES, 'UTF-8' ), implode( ' || ', $candidates ) ) );
 			}
+		}
+	);
+
+	/**
+	 * Les éditeurs posés par les notices, sans leur ville : wp er notices editeurs [appliquer].
+	 */
+	WP_CLI::add_command(
+		'er notices editeurs',
+		function ( $args ) {
+			$appliquer = in_array( 'appliquer', $args, true );
+			$n         = 0;
+			foreach ( er_librairie_ids() as $id ) {
+				$avant = (string) get_post_meta( $id, 'er_editeur', true );
+				if ( '' === $avant || false === strpos( $avant, '(' ) || '' === (string) get_post_meta( $id, 'er_notice', true ) ) {
+					continue;
+				}
+				$apres = er_notice_editeur( $avant );
+				if ( $apres === $avant || '' === $apres ) {
+					continue;
+				}
+				++$n;
+				WP_CLI::log( '#' . $id . ' ' . $avant . ' → ' . $apres );
+				if ( $appliquer ) {
+					update_post_meta( $id, 'er_editeur', $apres );
+				}
+			}
+			WP_CLI::success( sprintf( '%d éditeurs %s.', $n, $appliquer ? 'nettoyés' : 'à nettoyer (ajouter « appliquer »)' ) );
 		}
 	);
 }

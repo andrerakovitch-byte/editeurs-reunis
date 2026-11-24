@@ -20,8 +20,8 @@ function er_test_facettes_livres() {
 function test_facettes_selection_lit_virgules_et_crochets() {
 	$sel = er_facettes_selection(
 		array(
-			'langue'    => 'francais,bilingue-russe-francais',
-			'genre'     => array( 'romans', 'Poésie' ),
+			'langues'   => 'francais,bilingue-russe-francais',
+			'genres'    => array( 'romans', 'Poésie' ),
 			'sans-date' => 'non',
 		)
 	);
@@ -35,15 +35,15 @@ function test_facettes_selection_lit_virgules_et_crochets() {
 
 function test_facettes_ou_dans_une_facette_et_d_une_facette_a_l_autre() {
 	$livres = er_test_facettes_livres();
-	$sel    = er_facettes_selection( array( 'langue' => 'francais,bilingue-russe-francais' ) );
+	$sel    = er_facettes_selection( array( 'langues' => 'francais,bilingue-russe-francais' ) );
 	egal( array( 1, 2, 3 ), er_facettes_resultats( $livres, $sel ) );
-	$sel = er_facettes_selection( array( 'langue' => 'francais,bilingue-russe-francais', 'genre' => 'romans' ) );
+	$sel = er_facettes_selection( array( 'langues' => 'francais,bilingue-russe-francais', 'genres' => 'romans' ) );
 	egal( array( 1, 2 ), er_facettes_resultats( $livres, $sel ) );
 }
 
 function test_facettes_comptes_sans_la_facette_comptee() {
 	$livres = er_test_facettes_livres();
-	$sel    = er_facettes_selection( array( 'langue' => 'francais', 'genre' => 'romans' ) );
+	$sel    = er_facettes_selection( array( 'langues' => 'francais', 'genres' => 'romans' ) );
 	// Les langues se comptent comme si aucune n'était cochée, mais avec le genre : deux romans en français.
 	egal( array( 'francais' => 2 ), er_facettes_compter( $livres, $sel, 'langue' ) );
 	egal( array( 'romans' => 2 ), er_facettes_compter( $livres, $sel, 'genre' ) );
@@ -54,8 +54,8 @@ function test_facettes_livres_sans_date() {
 	$livres = er_test_facettes_livres();
 	egal( array( 1, 2, 3, 4 ), er_facettes_resultats( $livres, er_facettes_selection( array() ) ) );
 	egal( array( 1, 2, 3 ), er_facettes_resultats( $livres, er_facettes_selection( array( 'sans-date' => 'non' ) ) ) );
-	egal( array( 2, 3, 4 ), er_facettes_resultats( $livres, er_facettes_selection( array( 'decennie' => '2020' ) ) ), 'une décennie garde les livres sans date si on les veut' );
-	egal( array( '2010' => 1, '2020' => 2, 'sans' => 1 ), er_facettes_compter( $livres, er_facettes_selection( array( 'decennie' => '2020' ) ), 'decennie' ) );
+	egal( array( 2, 3, 4 ), er_facettes_resultats( $livres, er_facettes_selection( array( 'decennies' => '2020' ) ) ), 'une décennie garde les livres sans date si on les veut' );
+	egal( array( '2010' => 1, '2020' => 2, 'sans' => 1 ), er_facettes_compter( $livres, er_facettes_selection( array( 'decennies' => '2020' ) ), 'decennie' ) );
 }
 
 function test_facettes_decennie_d_une_annee_ecrite_a_la_main() {
