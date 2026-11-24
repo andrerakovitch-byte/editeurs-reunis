@@ -1,22 +1,18 @@
-#34 Convoi pour Samarcande | rayons: romans,contemporains → romans,contemporains | sujets: Enfance et famille, Caucase et Asie centrale, Paysans et campagne | ecriture: pou | periode: rev
-#36 Сценарии кинофильмов Андрея Звягинцева | rayons: arts → cinema | sujets: Cinéma | ecriture: pou | periode: pou | autour: Andreï Zviaguintsev | auteur: Andreï Zviaguintsev
-#38 L’Archipel du Goulag, cinquante ans après | rayons: goulag → goulag | sujets: Goulag et dissidence, Histoire de la maison | ecriture: pou | periode: 2030,deg,sta | autour: Alexandre Soljenitsyne
-#40 Путь фильма | sujets: Cinéma | ecriture: pou | periode: pou | autour: Andreï Zviaguintsev
-#42 Tchevengour | rayons: romans,periode-sovietique → romans,periode-sovietique | sujets: Paysans et campagne, Pouvoir et politique, Fantastique et anticipation | ecriture: 2030 | periode: rev,2030
-#44 Le docteur Jivago | rayons: romans,periode-sovietique → romans,periode-sovietique | sujets: Amour, Guerre, Poésie | ecriture: deg | periode: ar,rev,2030
-#46 Voix et visages du Goulag | sujets: Goulag et dissidence | ecriture: pou | periode: 2030,ww2,deg
-#48 Les Douze | langue: francais,russe → bilingue-russe-francais | rayons: poesie,age-d-argent → poesie,age-d-argent | sujets: Poésie, Saint-Pétersbourg | ecriture: rev | periode: rev
-#50 Ekatérina Ivanovna, suivi de Requiem | rayons: theatre,age-d-argent → theatre,age-d-argent | sujets: Théâtre, Femmes | ecriture: ar | periode: ar
-#52 Les enfants de la Volga | rayons: romans,contemporains → romans,contemporains | sujets: Enfance et famille, Paysans et campagne | ecriture: pou | periode: rev,2030
-#54 Poésies choisies | langue: francais,russe → bilingue-russe-francais | rayons: poesie,age-d-argent → poesie,age-d-argent | sujets: Poésie | ecriture: ar | periode: ar,rev
-#56 Русская поэзия | rayons: poesie → poesie,classiques | sujets: Poésie | ecriture: or
-859 livres lus, 0 absents du site.
-  langue     68 livres
-  rayons     796 livres
-  sujets     853 livres
-  ecriture   837 livres
-  periode    567 livres
-  autour     135 livres
-  auteur     28 livres
-Personnes inconnues (58), créées comme auteurs : Modeste Moussorgski ; Constantin Stanislavski ; Gavrila Derjavine ; Jean de Changhaï ; Alexandre Borodine ; Søren Kierkegaard ; Maria Knebel ; Gérard Gorokhoff ; Vladimir Iagello ; Alexandre Guinzbourg ; Vladimir Orlov ; Léonid Brejnev ; Olga Ivinskaïa ; Basile Krivochéine ; Julia Danzas ; Alexandre Koltchak ; Jean-Paul Deschler ; Pierre Gonneau ; Alexandre Alekhine ; Dante Alighieri ; Piotr Wrangel ; Catherine II ; Alexeï Khomiakov ; Ernest Daudet ; Vassili Polenov ; Tatiana Mojenok ; Alexandra Kollontaï ; Andreï Siniavski ; Tamara Karsavina ; Léonard de Vinci ; Charles de Gaulle ; Lénine ; Nikolaï Vavilov ; Vladimir Poutine ; Fédor Chaliapine ; François Malye ; Jean-Marie Chopin ; Serhii Plokhy ; Ilya Répine ; Igor Grabar ; Elsa Triolet ; Vladimir Popov ; Vassili Joukovski ; Denis Davydov ; Jean-Paul Sartre ; Larissa Andersen ; Paul Boyer ; Nicolas Spéranski ; Séraphin de Sarov ; Anastasia Kopřivová ; Lukáš Babka ; Vladimir Bekhterev ; Rostislav Doboujinsky ; Maria Struve ; Natalie Stepanoff-Kontchalovski ; Natalia Estemirova ; Sergueï Eisenstein ; Alexander Werth
-Success: Étiquettes posées.
+#34 Convoi pour Samarcande : La Libre Belgique
+#52 Les enfants de la Volga : Le Temps ; Prix du Meilleur livre étranger
+#792 Alpinistes de Staline : Prix Albert-Londres du livre ; Slate
+#896 La diagonale Alekhine : Le Petit Journal (Lisbonne)
+#1228 En mémoire de la mémoire : Prix du Meilleur livre étranger ; Bibliosurf, la revue de presse
+#1574 Kremulator : Prix Transfuge du meilleur roman européen ; Nasha Gazeta
+#1588 Histoire de l’île : Bibliosurf, la revue de presse
+#1596 Russie, mon pays bien-aimé : Politis
+#1377 Journal d’une invasion : Politis ; Le Temps
+#1868 Adieu ma Russie : Le Grand Continent
+#1598 L’entretien d’embauche au KGB : Livres Hebdo ; Slate
+#1040 Les services compétents : Le Temps ; La Libre Belgique
+#1234 Z comme zombie : La Libre Belgique
+#1133 Les abeilles grises : Prix Médicis étranger
+#1243 Le Débutant : Prix Transfuge du meilleur roman étranger
+#1131 Lénine, l’inventeur du totalitarisme : Grand Prix du livre d'Histoire
+#1664 Saison toxique pour les fœtus : Politis ; Meduza (Galina Iouzefovitch)
+Success: 17 livres dans le fichier, 17 posés.
