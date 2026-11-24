@@ -139,10 +139,11 @@ function er_personnes_du_livre( $id, $taxonomie ) {
  */
 function er_personnes_cles() {
 	static $cles = null;
-	if ( null !== $cles ) {
+	if ( null !== $cles && empty( $GLOBALS['er_personnes_cles_perimees'] ) ) {
 		return $cles;
 	}
-	$cles = get_transient( 'er_personnes_cles' );
+	$GLOBALS['er_personnes_cles_perimees'] = false;
+	$cles = get_transient( 'er_personnes_cles_2' );
 	if ( is_array( $cles ) ) {
 		return $cles;
 	}
@@ -157,27 +158,33 @@ function er_personnes_cles() {
 		}
 	}
 	$cles = array_map( 'array_values', array_map( 'array_unique', $cles ) );
-	set_transient( 'er_personnes_cles', $cles, DAY_IN_SECONDS );
+	set_transient( 'er_personnes_cles_2', $cles, DAY_IN_SECONDS );
 	return $cles;
 }
+
+/**
+ * Les clés sont à refaire : au prochain appel, dans ce passage comme dans les suivants. (La première version n'écoutait
+ * que updated_term_meta, et une première graphie, ajoutée, ne la périmait pas.)
+ */
+function er_personnes_cles_perimer() {
+	delete_transient( 'er_personnes_cles_2' );
+	$GLOBALS['er_personnes_cles_perimees'] = true;
+}
 foreach ( array( 'created_auteur', 'edited_auteur', 'delete_auteur' ) as $er_crochet ) {
+	add_action( $er_crochet, 'er_personnes_cles_perimer' );
+}
+foreach ( array( 'added_term_meta', 'updated_term_meta', 'deleted_term_meta' ) as $er_crochet ) {
 	add_action(
 		$er_crochet,
-		function () {
-			delete_transient( 'er_personnes_cles' );
-		}
+		function ( $meta_id, $terme, $cle ) {
+			if ( in_array( $cle, array( 'er_graphies', 'er_anciens' ), true ) ) {
+				er_personnes_cles_perimer();
+			}
+		},
+		10,
+		3
 	);
 }
-add_action(
-	'updated_term_meta',
-	function ( $meta_id, $terme, $cle ) {
-		if ( in_array( $cle, array( 'er_graphies', 'er_anciens' ), true ) ) {
-			delete_transient( 'er_personnes_cles' );
-		}
-	},
-	10,
-	3
-);
 
 /**
  * Retrouve une personne, quelle que soit la façon dont on l'écrit (24 nov. 2026, l'audit : « А. Солженицын » et

@@ -320,7 +320,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				WP_CLI::log( '  ' . $double . ' → ' . implode( ' + ', $noms ) . ' : ' . ( $appliquer ? er_personne_separer( $t, $noms ) : $t->count . ' livres' ) );
 				++$n;
 			}
-			delete_transient( 'er_personnes_cles' );
+			er_personnes_cles_perimer();
 			if ( $appliquer && $n && function_exists( 'er_index_reconstruire' ) ) {
 				er_index_reconstruire();
 				WP_CLI::log( '  L’index de la recherche est refait.' );
