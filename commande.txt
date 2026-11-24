@@ -1,6 +1,6 @@
-Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
+Posé sur 840 livres en vente :
   161 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-164 personnes (169 graphies), dont 29 qui ne sont pas encore des auteurs :
+162 personnes (167 graphies), dont 27 qui ne sont pas encore des auteurs (créées) :
   Sophie Benech (11)
   Georges Nivat (9)
   André Markowicz (8)
@@ -47,7 +47,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Michel Niqueux (2)
   Céline Marangé (2)
   Nikita Struve (2)
-  Autobiographie d'Anna Akhmatova (2) · nouveau
   Sylvie Luneau (2)
   Edith Sherrer (2)
   Lily Denis (2)
@@ -144,7 +143,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Louis Viardot (1)
   Bernard Le Caro (1)
   Anne Buguet (1) · nouveau
-  Albums du Père Castor (1) · nouveau
   Natalia Soljénistyne (1)
   J. Cathala (1)
   Henri Léonard-Bordier (1)
