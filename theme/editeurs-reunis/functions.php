@@ -88,6 +88,29 @@ add_action(
 				)
 			);
 		}
+		// L'accueil, la une écran par écran : les sujets défilent (patterns/une-ecrans.php).
+		if ( is_front_page() ) {
+			wp_enqueue_script(
+				'editeurs-reunis-une-ecrans',
+				get_theme_file_uri( 'assets/js/une-ecrans.js' ),
+				array(),
+				$version . '.' . filemtime( get_theme_file_path( 'assets/js/une-ecrans.js' ) ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+			wp_add_inline_script(
+				'editeurs-reunis-une-ecrans',
+				'window.erUneEcransTextes = ' . wp_json_encode(
+					array(
+						'pause'     => __( 'Pause', 'editeurs-reunis' ),
+						'reprendre' => __( 'Reprendre', 'editeurs-reunis' ),
+					)
+				) . ';',
+				'before'
+			);
+		}
 		// L'accueil, à la une : au téléphone, « Voir plus » sous l'essentiel de chaque module.
 		wp_enqueue_script(
 			'editeurs-reunis-une',

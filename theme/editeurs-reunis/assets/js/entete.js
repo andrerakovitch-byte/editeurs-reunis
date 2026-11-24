@@ -209,5 +209,41 @@
 			break;
 		}
 	}
+
+	/* Le panier au bout de la ligne accrochée : il ouvre le volet du panier de la barre noire (le bloc de WooCommerce),
+	   sans quitter la page ni la faire remonter, et se referme comme lui (la croix, un clic à côté, Échap). Sa pastille
+	   recopie celle de la barre. Sans le volet, c'est un lien vers la page du panier. */
+	var lignePanier = document.querySelector( '.er-ligne-panier' );
+	if ( lignePanier ) {
+		var miniPanier = function () {
+			return document.querySelector( '.er-barre .wc-block-mini-cart__button' );
+		};
+		if ( miniPanier() ) {
+			lignePanier.setAttribute( 'aria-haspopup', 'dialog' );
+		}
+		lignePanier.addEventListener( 'click', function ( e ) {
+			var bouton = miniPanier();
+			if ( ! bouton || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ) {
+				return;
+			}
+			e.preventDefault();
+			bouton.click();
+		} );
+		var pastille = lignePanier.querySelector( '.er-ligne-badge' );
+		var recopier = function () {
+			var b = document.querySelector( '.er-barre .wc-block-mini-cart__badge' );
+			var n = b && ! b.hidden && 'none' !== window.getComputedStyle( b ).display ? b.textContent.trim() : '';
+			if ( pastille ) {
+				pastille.textContent = n;
+				pastille.hidden = ! n || '0' === n;
+			}
+		};
+		recopier();
+		var cadrePanier = document.querySelector( '.er-barre .er-panier' );
+		if ( cadrePanier && window.MutationObserver ) {
+			new MutationObserver( recopier ).observe( cadrePanier, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: [ 'hidden', 'class', 'style' ] } );
+		}
+	}
+
 	mesurer();
 } )();

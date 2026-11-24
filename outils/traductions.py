@@ -1518,6 +1518,8 @@ T = {
          'Одна строка на рабочий день («mardi 10:00-19:00», дни по-французски); отсутствующий день — выходной. Информационная строка вверху сайта показывает по ним «Сейчас открыто» или «Сейчас закрыто».'),
     # La une écran par écran (patterns/une-ecrans.php).
     (None, 'Faire défiler'): ('Scroll', 'Листать'),
+    (None, 'Pause'): ('Pause', 'Пауза'),
+    (None, 'Reprendre'): ('Resume', 'Продолжить'),
     (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
     (None, 'Une bougie derrière une vitre givrée : l’image que le roman a rendue célèbre.'):
         ('A candle behind a frosted window: the image the novel made famous.',

@@ -70,8 +70,11 @@ téléphone garde ses liens. Les trois lignes sont dans la page (`[er_lignes]`, 
 maisons attendent, cachées.
 
 **En défilant** (la manière 2 du canevas, choisie le 24 nov.) : la barre d'informations et la barre noire s'en vont,
-la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe et le panier. Le troisième niveau d'une
-rubrique, comme les genres du journal (À la une, Chroniques, Critiques…), s'accroche juste dessous. Tout est en CSS
+la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe et le panier. La loupe ouvre la recherche
+sur place, sous la ligne, sans faire remonter la page ; le panier ouvre le volet du panier de WooCommerce, avec la même
+pastille que celui de la barre noire. L'un et l'autre se referment comme ils se sont ouverts (la loupe, la croix, un
+clic à côté, Échap). Le troisième niveau d'une rubrique, comme les genres du journal (À la une, Chroniques,
+Critiques…), s'accroche juste dessous. Tout est en CSS
 (`position: sticky`) ; `entete.js` ne fait que mesurer les hauteurs et dire quand l'en-tête est accroché.
 
 La maison d'une page se déduit d'elle-même (`er_maison()` dans `functions.php`) : la boutique, les rayons, les livres,
@@ -120,10 +123,13 @@ chacun une composition en blocs de WordPress, qu'on modifie dans l'éditeur de s
 modules stp sauf le dernier [l'index], regarde les modifications et ajoute-les au site », André).
 
 Le premier module, depuis le 24 nov., est **la une écran par écran** (`une-ecrans`) : L'Archipel du Goulag, Le Docteur
-Jivago et Tchevengour, chacun un écran entier coupé en deux, à gauche sur l'aplat de sa maison la rubrique, le titre,
-la phrase et deux boutons, à droite la photo des archives ou le dessin ; le premier écran tient sous l'en-tête, les
-suivants sous la ligne de la maison. En bas de chaque écran, le sommaire des trois. Suivent le journal, le poème, les
-vidéos et l'encyclopédie. Les trois affiches longues d'avant restent dans `patterns/`, pour l'éditeur :
+Jivago et Tchevengour, chacun un écran coupé en deux, à gauche sur l'aplat de sa maison la rubrique, le titre, la phrase
+et deux boutons, à droite la photo des archives ou le dessin. Les trois **défilent** sur un seul écran, qui tient la
+fenêtre sous l'en-tête : un sujet toutes les sept secondes, qui arrive par la droite (`assets/js/une-ecrans.js`). Le
+sommaire, au pied, reste en place : un trait avance sur le filet au-dessus du sujet en cours, un clic mène à un sujet,
+« Pause » arrête le défilement ; au téléphone, on fait glisser du doigt. Le défilement attend pendant qu'on parcourt le
+module au clavier, et ne part pas de lui-même si le système demande moins d'animations ; sans JavaScript, les trois
+sujets se suivent l'un sous l'autre. Suivent le journal, le poème, les vidéos et l'encyclopédie. Les trois affiches longues d'avant restent dans `patterns/`, pour l'éditeur :
 
 - `une-archipel`, `une-jivago`, `une-tchevengour` : des affiches pleine largeur sur l'aplat d'une maison (brun
   d'YMCA-Press, vert de la librairie, noir). À gauche la rubrique et le point de chaque maison, le titre, les faits en

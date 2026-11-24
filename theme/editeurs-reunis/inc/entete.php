@@ -259,7 +259,7 @@ function er_ligne_pictos() {
 	$loupe  = function_exists( 'er_lien_recherche' ) ? er_lien_recherche() : home_url( '/?s=' );
 	return '<div class="er-ligne-pictos">'
 		. '<a class="er-loupe er-picto er-ligne-loupe" href="' . esc_url( $loupe ) . '" aria-controls="er-recherche" aria-expanded="false" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="screen-reader-text er-loupe-libelle">' . esc_html__( 'Rechercher', 'editeurs-reunis' ) . '</span></a>'
-		. '<a class="er-picto er-ligne-panier" href="' . esc_url( $panier ) . '"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="screen-reader-text">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</span></a>'
+		. '<a class="er-picto er-ligne-panier" href="' . esc_url( $panier ) . '"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="screen-reader-text">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</span><span class="er-ligne-badge" aria-hidden="true" hidden></span></a>'
 		. '</div>';
 }
 

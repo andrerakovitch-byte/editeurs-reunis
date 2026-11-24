@@ -3,15 +3,19 @@
  * Title: À la une — écran par écran
  * Slug: editeurs-reunis/une-ecrans
  * Categories: editeurs-reunis
- * Description: Le premier module de l'accueil : les sujets de la une, un par écran, sur l'aplat de leur maison ; la photo ou le dessin à droite, d'un bord à l'autre ; le sommaire des sujets au pied de chaque écran.
+ * Description: Le premier module de l'accueil : les sujets de la une défilent sur un écran, chacun sur l'aplat de sa maison ; la photo ou le dessin à droite, d'un bord à l'autre ; le sommaire des sujets au pied.
  *
  * Retenu le 24 novembre 2026 (« garde le module d'accueil de B pour le premier module de l'accueil », canevas « Les
  * Éditeurs réunis — plein écran »). Les trois affiches de l'accueil (L'Archipel du Goulag, Le Docteur Jivago,
  * Tchevengour) y passent chacune sur un écran ; le détail (les faits, « Pour aller plus loin ») est sur la fiche et
  * dans l'encyclopédie. Les prix et « Ajouter au panier » sont lus dans la librairie (er_prix(), er_ajout_panier()).
  *
- * Chaque écran tient la hauteur de la fenêtre sous la ligne de la maison (le premier, sous tout l'en-tête) ; au
- * téléphone, l'image passe au-dessus et l'écran prend la hauteur de son contenu.
+ * Les sujets défilent (24 nov. : « le module d'accueil était censé être défilant », André) : un toutes les sept
+ * secondes, de droite à gauche, sur un seul écran, qui tient la hauteur de la fenêtre sous l'en-tête
+ * (assets/js/une-ecrans.js). Le sommaire, au pied, reste en place : un trait avance sous le sujet en cours, un clic
+ * mène à un sujet, un bouton arrête le défilement ; au téléphone, on fait glisser du doigt. Le défilement attend
+ * quand on parcourt le module au clavier ; il ne part pas de lui-même si le système demande moins d'animations.
+ * Sans JavaScript, les sujets se suivent l'un sous l'autre. Au téléphone, l'image passe au-dessus du texte.
  *
  * @package editeurs-reunis
  */
@@ -75,14 +79,12 @@ $er_ecrans = array(
 	),
 );
 
-// Le sommaire, au pied de chaque écran : les trois sujets, celui de l'écran marqué.
-$er_sommaire = function ( $ici ) use ( $er_ecrans ) {
-	$html = '<nav class="er-ecran-sommaire" aria-label="' . esc_attr__( 'Les sujets de la une', 'editeurs-reunis' ) . '">';
-	foreach ( $er_ecrans as $rang => $e ) {
-		$html .= '<a href="#' . esc_attr( $e['id'] ) . '"' . ( $e['id'] === $ici ? ' aria-current="true"' : '' ) . '><span>' . ( $rang + 1 ) . '</span> ' . esc_html( $e['titre'] ) . '</a>';
-	}
-	return $html . '<span class="er-ecran-defiler" aria-hidden="true">' . esc_html__( 'Faire défiler', 'editeurs-reunis' ) . ' <svg viewBox="0 0 24 24" width="16" height="16" focusable="false"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></nav>';
-};
+// Le sommaire, au pied du module : les trois sujets, celui de l'écran marqué ; le bouton d'arrêt (montré par le script).
+$er_sommaire = '<nav class="er-ecrans-sommaire" aria-label="' . esc_attr__( 'Les sujets de la une', 'editeurs-reunis' ) . '">';
+foreach ( $er_ecrans as $er_rang => $er_e ) {
+	$er_sommaire .= '<a href="#' . esc_attr( $er_e['id'] ) . '"' . ( 0 === $er_rang ? ' aria-current="true"' : '' ) . '><span>' . ( $er_rang + 1 ) . '</span> <span class="er-ecrans-nom">' . esc_html( $er_e['titre'] ) . '</span></a>';
+}
+$er_sommaire .= '<button type="button" class="er-ecrans-pause" aria-pressed="false" hidden><svg class="er-ecrans-icone-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="er-ecrans-icone-lecture" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span>' . esc_html__( 'Pause', 'editeurs-reunis' ) . '</span></button></nav>';
 ?>
 <!-- wp:group {"align":"full","className":"er-ecrans","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull er-ecrans">
@@ -131,11 +133,11 @@ $er_sommaire = function ( $ici ) use ( $er_ecrans ) {
 		<figure class="wp-block-image size-full er-ecran-image<?php echo $er_e['dessin'] ? ' est-dessin' : ''; ?>"><img src="<?php echo $er_e['image']; // phpcs:ignore WordPress.Security.EscapeOutput -- déjà échappé (er_image). ?>" alt="<?php echo esc_attr( $er_e['alt'] ); ?>"/><figcaption class="wp-element-caption"><?php echo esc_html( $er_e['legende'] ); ?></figcaption></figure>
 		<!-- /wp:image -->
 
-		<!-- wp:html -->
-		<?php echo $er_sommaire( $er_e['id'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- échappé pièce à pièce. ?>
-		<!-- /wp:html -->
 	</section>
 	<!-- /wp:group -->
 <?php endforeach; ?>
+	<!-- wp:html -->
+	<?php echo $er_sommaire; // phpcs:ignore WordPress.Security.EscapeOutput -- échappé pièce à pièce. ?>
+	<!-- /wp:html -->
 </div>
 <!-- /wp:group -->

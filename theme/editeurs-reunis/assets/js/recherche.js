@@ -37,7 +37,6 @@
 
 	var ouvert = false;
 	var dernier = null; // L'élément qui avait la main avant l'ouverture.
-	var defilement = 0;
 	var donnees = null;
 	var portee = 'tout';
 	// Les filtres de la colonne de gauche : où chercher (une maison), puis, pour les livres, rayons, langues, états.
@@ -107,9 +106,13 @@
 
 	/* Ouvrir, fermer --------------------------------------------------------------------------------------------- */
 
+	// Le panneau s'ouvre là où l'on est, sous ce qu'on voit de l'en-tête : la barre noire en haut de la page ; la
+	// ligne de la maison quand l'en-tête est accroché (sa loupe reste là, pour refermer).
 	function placer() {
-		var barre = document.querySelector( '.er-barre' );
-		var bas = barre ? Math.max( 0, barre.getBoundingClientRect().bottom ) : 0;
+		var haut = document.querySelector( 'header.er-haut' );
+		var repere = haut && haut.classList.contains( 'est-accroche' ) ? haut.querySelector( '.er-ligne:not([hidden])' ) : null;
+		repere = repere || document.querySelector( '.er-barre' );
+		var bas = repere ? Math.max( 0, repere.getBoundingClientRect().bottom ) : 0;
 		panneau.style.setProperty( '--er-recherche-haut', bas + 'px' );
 	}
 	function ouvrir( detail ) {
@@ -118,8 +121,6 @@
 		}
 		ouvert = true;
 		dernier = document.activeElement;
-		defilement = window.scrollY;
-		window.scrollTo( 0, 0 );
 		placer();
 		panneau.hidden = false;
 		document.documentElement.classList.add( 'er-recherche-ouverte' );
@@ -152,7 +153,6 @@
 				libelle.textContent = M.rechercher;
 			}
 		} );
-		window.scrollTo( 0, defilement );
 		if ( dernier && dernier.focus && document.contains( dernier ) ) {
 			dernier.focus();
 		}
@@ -170,6 +170,13 @@
 	} );
 	panneau.addEventListener( 'click', function ( e ) {
 		if ( e.target.closest( '[data-er-fermer]' ) ) {
+			fermer();
+		}
+	} );
+	// Échap referme aussi quand la main n'est plus dans le panneau (le panneau a son Échap plus bas).
+	document.addEventListener( 'keydown', function ( e ) {
+		if ( ouvert && 'Escape' === e.key && ! e.defaultPrevented ) {
+			e.preventDefault();
 			fermer();
 		}
 	} );

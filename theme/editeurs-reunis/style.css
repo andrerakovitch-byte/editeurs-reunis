@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.9.1
+Version: 0.9.2
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -295,6 +295,24 @@ sup { font-size: 0.62em; line-height: 0; }
 	margin: 0;
 }
 .er-panier .wc-block-mini-cart__badge[hidden] { display: none; }
+/* Le panier au bout de la ligne accrochée : la même pastille, recopiée de celle de la barre noire (entete.js). */
+.er-ligne-badge {
+	position: absolute;
+	top: -0.125rem;
+	right: -0.25rem;
+	min-width: 1rem;
+	height: 1rem;
+	box-sizing: border-box;
+	padding: 0 0.25rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--noir);
+	font-size: 0.625rem;
+	font-weight: 700;
+	line-height: 1rem;
+	text-align: center;
+}
+.er-ligne-badge[hidden] { display: none; }
 
 /* Entre 1280 et 1440 px, le nom court d'YMCA-Press ; ailleurs, et dans le menu (≡), le nom long. */
 .er-nom-court { display: none; }
@@ -542,7 +560,12 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 .er-choix.est-active .er-point-ymca { background: var(--wp--preset--color--point-ymca); }
 .er-choix.est-active .er-point-centre { background: var(--wp--preset--color--point-centre); }
 
-.er-recherche-ouverte, .er-recherche-ouverte body { overflow: hidden; }
+/* La page ne défile plus sous le panneau. Seulement sur <html> : sur <body>, il ferait de lui un cadre de défilement,
+   et l'en-tête accroché lâcherait prise (il disparaîtrait, avec la loupe qui referme). Même chose pour le volet du
+   panier de WooCommerce, qui bloque <body>. */
+.er-recherche-ouverte { overflow: hidden; }
+html:has(> body.drawer-open) { overflow: hidden; }
+body.drawer-open { overflow: visible !important; }
 .er-recherche { position: fixed; inset: var(--er-recherche-haut, 56px) 0 0 0; z-index: 9990; }
 .er-recherche[hidden] { display: none; }
 .er-recherche-voile { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
@@ -3244,8 +3267,10 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 .er-accueil > .er-une-journal + .er-une-poeme { background-color: var(--wp--preset--color--doux); }
 
 /* La une, écran par écran (patterns/une-ecrans.php) : un sujet par écran, le texte à gauche sur l'aplat de sa maison,
-   la photo ou le dessin à droite, d'un bord à l'autre ; le sommaire des sujets au pied. */
+   la photo ou le dessin à droite, d'un bord à l'autre ; le sommaire des sujets au pied. Les sujets défilent sur un seul
+   écran (assets/js/une-ecrans.js, qui pose .est-defilant) ; sans script, ils se suivent l'un sous l'autre. */
 .er-accueil > .er-ecrans { margin-block: 0 !important; }
+.er-ecrans { --er-une-duree: 7s; --er-une-glisse: 0.8s cubic-bezier(0.65, 0, 0.35, 1); position: relative; }
 .er-ecran {
 	position: relative;
 	isolation: isolate;
@@ -3259,7 +3284,8 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 	color: var(--wp--preset--color--base);
 	scroll-margin-top: var(--er-ligne, 48px);
 }
-.er-ecran:first-child { min-height: max(640px, calc(100svh - var(--er-haut-cache, 128px) - var(--er-ligne, 48px))); }
+/* Le module ouvre la page : il tient la fenêtre sous tout l'en-tête. */
+.er-ecrans > .er-ecran { min-height: max(640px, calc(100svh - var(--er-haut-cache, 128px) - var(--er-ligne, 48px))); }
 .er-ecran.er-aplat-ymca { background-color: var(--wp--preset--color--maison-ymca); }
 .er-ecran > * { margin-block: 0 !important; }
 .er-ecran-glyphe {
@@ -3338,31 +3364,88 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 	line-height: 1.4;
 	color: rgba(255, 255, 255, 0.86);
 }
-.er-ecran-sommaire {
-	grid-column: 1;
-	grid-row: 2;
+.er-ecrans-sommaire { display: none; }
+
+/* Le défilement : les trois écrans dans la même case ; celui du moment au milieu, les autres cachés, à droite (ceux
+   qui viennent) ou à gauche (celui qui s'en va). */
+.er-ecrans.est-defilant { display: grid; overflow: hidden; }
+.er-ecrans.est-defilant > .er-ecran {
+	grid-area: 1 / 1;
+	visibility: hidden;
+	transform: translateX(100%);
+	transition: transform var(--er-une-glisse), visibility 0s linear 0.8s;
+}
+.er-ecrans.est-defilant > .er-ecran.est-avant { transform: translateX(-100%); }
+.er-ecrans.est-defilant > .er-ecran.est-ici { visibility: visible; transform: none; transition: transform var(--er-une-glisse), visibility 0s; }
+.er-ecrans.est-defilant > .er-ecran.sans-glisse { transition: none; }
+.er-ecrans.est-defilant .er-ecran-texte { padding-bottom: 136px; } /* la place du sommaire */
+
+/* Le sommaire reste en place pendant que les écrans glissent dessous : au pied de la moitié gauche. */
+.er-ecrans.est-defilant .er-ecrans-sommaire {
+	grid-area: 1 / 1;
+	align-self: end;
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	gap: 2rem;
+	width: calc((100% - 32px) / 2 - var(--wp--style--root--padding-left));
 	margin-inline-start: var(--wp--style--root--padding-left);
 	padding: 1rem 0 1.75rem;
 	border-top: 1px solid rgba(255, 255, 255, 0.24);
 	font-size: 0.8125rem;
+	color: var(--wp--preset--color--base);
 }
-.er-ecran-sommaire a { display: inline-flex; gap: 0.5rem; color: rgba(255, 255, 255, 0.64); text-decoration: none; }
-.er-ecran-sommaire a:hover { color: var(--wp--preset--color--base); }
-.er-ecran-sommaire a[aria-current] { color: var(--wp--preset--color--base); font-weight: 600; }
-.er-ecran-defiler { display: inline-flex; align-items: center; gap: 0.5rem; margin-inline-start: auto; color: rgba(255, 255, 255, 0.64); }
+.er-ecrans-sommaire a { position: relative; display: inline-flex; gap: 0.5rem; color: rgba(255, 255, 255, 0.64); text-decoration: none; }
+.er-ecrans-sommaire a:hover { color: var(--wp--preset--color--base); }
+.er-ecrans-sommaire a[aria-current] { color: var(--wp--preset--color--base); font-weight: 600; }
+/* Le trait qui avance sur le filet, au-dessus du sujet en cours : quand il arrive au bout, le sujet suivant vient. */
+.er-ecrans-sommaire a[aria-current]::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(-1rem - 1.5px);
+	height: 2px;
+	background: var(--wp--preset--color--base);
+	transform-origin: left center;
+	animation: er-une-avance var(--er-une-duree) linear forwards;
+}
+.er-ecrans.est-en-pause .er-ecrans-sommaire a[aria-current]::after,
+.er-ecrans.est-defilant:focus-within .er-ecrans-sommaire a[aria-current]::after { animation-play-state: paused; }
+@keyframes er-une-avance { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.er-ecrans-pause {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-inline-start: auto;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	color: rgba(255, 255, 255, 0.64);
+	cursor: pointer;
+}
+.er-ecrans-pause:hover { color: var(--wp--preset--color--base); }
+.er-ecrans-pause[hidden] { display: none; }
+.er-ecrans-pause .er-ecrans-icone-lecture,
+.er-ecrans-pause[aria-pressed="true"] .er-ecrans-icone-pause { display: none; }
+.er-ecrans-pause[aria-pressed="true"] .er-ecrans-icone-lecture { display: block; }
 @media (max-width: 1100px) {
-	.er-ecran-sommaire a:not([aria-current]) { display: none; }
+	/* Moins de place : les numéros, et le nom du sujet en cours. */
+	.er-ecrans-sommaire a:not([aria-current]) .er-ecrans-nom { display: none; }
+	.er-ecrans.est-defilant .er-ecrans-sommaire { gap: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.er-ecrans { --er-une-glisse: 0s linear; }
 }
 @media (max-width: 781px) {
 	/* Au téléphone : l'image au-dessus, puis le texte ; l'écran prend la hauteur de son contenu. */
-	.er-ecran, .er-ecran:first-child { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; min-height: 0; }
+	.er-ecran, .er-ecrans > .er-ecran { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; min-height: 0; }
 	.er-ecran-image { grid-column: 1; grid-row: 1; height: 56vw; min-height: 0; }
 	.er-ecran-texte { grid-column: 1; grid-row: 2; padding: 40px var(--wp--style--root--padding-right) 32px var(--wp--style--root--padding-left); }
-	.er-ecran-sommaire { grid-column: 1; grid-row: 3; margin-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
 	.er-ecran-glyphe { display: none; }
+	.er-ecrans.est-defilant .er-ecran-texte { padding-bottom: 96px; }
+	.er-ecrans.est-defilant .er-ecrans-sommaire { width: auto; margin-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); padding-bottom: 1.25rem; }
 }
 
 /* La fiche d'un livre, en deux moitiés (patterns/fiche-livre.php) : la couverture à gauche, sur le fond doux, collée
