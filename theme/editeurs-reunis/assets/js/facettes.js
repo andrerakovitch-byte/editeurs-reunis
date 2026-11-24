@@ -13,7 +13,7 @@
 		return;
 	}
 
-	var PARAMS = [ 'rayons', 'langues', 'epoques', 'ecriture', 'genres', 'sujets', 'auteurs', 'maisons', 'decennies', 'dispo' ];
+	var PARAMS = [ 'rayons', 'langues', 'genres', 'auteurs', 'maisons', 'decennies', 'dispo', 'epoques', 'ecriture', 'sujets' ];
 	var GARDES = [ 'orderby', 's', 'post_type' ];
 	var etroit = window.matchMedia( '(max-width: 781px)' );
 	var mode = null;
@@ -64,9 +64,9 @@
 				}
 			} );
 		} else if ( etroit.matches ) {
-			// Au téléphone, seules les facettes où un choix est posé restent ouvertes, avec l'époque.
-			c.querySelectorAll( 'details[data-facette]' ).forEach( function ( d ) {
-				d.open = 'epoque' === d.dataset.facette || !! d.querySelector( '.er-facette__actifs' );
+			// Au téléphone, seules les facettes où un choix est posé restent ouvertes, avec la première.
+			c.querySelectorAll( 'details[data-facette]' ).forEach( function ( d, i ) {
+				d.open = 0 === i || !! d.querySelector( '.er-facette__actifs' );
 			} );
 		}
 	}

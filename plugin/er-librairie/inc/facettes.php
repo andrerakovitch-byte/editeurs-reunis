@@ -27,7 +27,8 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Les facettes, dans l'ordre de la colonne : clé → paramètre de l'adresse, libellé, forme.
+ * Les facettes, dans l'ordre de la colonne : clé → paramètre de l'adresse, libellé, forme. L'époque et le sujet, les
+ * plus fins, viennent à la fin (demandé le 24 nov. 2026).
  *
  * @return array
  */
@@ -35,14 +36,14 @@ function er_facettes_definitions() {
 	return array(
 		'rayon'    => array( 'rayons', __( 'Rayon', 'er-librairie' ), 'liste' ),
 		'langue'   => array( 'langues', __( 'Langue', 'er-librairie' ), 'liste' ),
-		'epoque'   => array( 'epoques', __( 'Époque', 'er-librairie' ), 'frise' ),
-		'ecrit'    => array( 'ecriture', __( 'Époque', 'er-librairie' ), 'frise' ),
 		'genre'    => array( 'genres', __( 'Genre', 'er-librairie' ), 'liste' ),
-		'sujet'    => array( 'sujets', __( 'Sujet', 'er-librairie' ), 'pilules' ),
 		'auteur'   => array( 'auteurs', __( 'Auteur', 'er-librairie' ), 'recherche' ),
 		'maison'   => array( 'maisons', __( 'Maison d’édition', 'er-librairie' ), 'recherche' ),
 		'decennie' => array( 'decennies', __( 'Année de publication', 'er-librairie' ), 'histo' ),
 		'dispo'    => array( 'dispo', __( 'Disponibilité', 'er-librairie' ), 'liste' ),
+		'epoque'   => array( 'epoques', __( 'Époque', 'er-librairie' ), 'frise' ),
+		'ecrit'    => array( 'ecriture', __( 'Époque', 'er-librairie' ), 'frise' ),
+		'sujet'    => array( 'sujets', __( 'Sujet', 'er-librairie' ), 'pilules' ),
 	);
 }
 
@@ -300,6 +301,17 @@ function er_facettes_ids( $q, $contexte ) {
 }
 
 /**
+ * La clé d'une maison d'édition dans la colonne : les graphies d'un même éditeur n'en font qu'une (« Noir sur Blanc »
+ * et « Les Éditions Noir sur blanc », er_editeur_cle).
+ *
+ * @param string $nom Le nom de l'éditeur.
+ */
+function er_facettes_cle_maison( $nom ) {
+	$cle = function_exists( 'er_editeur_cle' ) ? er_editeur_cle( $nom ) : '';
+	return '' !== $cle ? $cle : sanitize_title( $nom );
+}
+
+/**
  * Les facettes de chaque livre, et les libellés des clés : identifiant → facette → clés ; facette → clé → nom.
  *
  * @param int[] $ids      Les livres.
@@ -344,6 +356,33 @@ function er_facettes_donnees( $ids, $contexte ) {
 		return $t->slug;
 	};
 	$mentions = array( 'nouveaute', 'occasion', 'tres-rare' );
+	// Les maisons : clé (er_facettes_cle_maison) → [ slug, nom ], celui de l'éditeur du classement le plus fourni s'il y
+	// en a un ; une graphie écrite à la main (la méta) rejoint l'éditeur de même clé.
+	$maisons = array();
+	if ( isset( $taxes['er_editeur'] ) ) {
+		$editeurs = get_terms(
+			array(
+				'taxonomy'   => 'er_editeur',
+				'hide_empty' => false,
+				'orderby'    => 'count',
+				'order'      => 'DESC',
+			)
+		);
+		foreach ( is_array( $editeurs ) ? $editeurs : array() as $t ) {
+			$n = html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' );
+			$c = er_facettes_cle_maison( $n );
+			if ( ! isset( $maisons[ $c ] ) ) {
+				$maisons[ $c ] = array( $t->slug, $n );
+			}
+		}
+	}
+	$maison = function ( $nom ) use ( &$maisons ) {
+		$c = er_facettes_cle_maison( $nom );
+		if ( ! isset( $maisons[ $c ] ) ) {
+			$maisons[ $c ] = array( sanitize_title( $nom ), $nom );
+		}
+		return $maisons[ $c ];
+	};
 	foreach ( array_chunk( $ids, 400 ) as $lot ) {
 		$trous = implode( ',', array_fill( 0, count( $lot ), '%d' ) );
 		$tx    = implode( ',', array_fill( 0, count( $taxes ), '%s' ) );
@@ -369,7 +408,10 @@ function er_facettes_donnees( $ids, $contexte ) {
 				continue;
 			}
 			if ( 'maison' === $f ) {
-				$k = sanitize_title( $l->name );
+				list( $k, $n )            = $maison( html_entity_decode( $l->name, ENT_QUOTES, 'UTF-8' ) );
+				$livres[ $l->id ][ $f ][] = $k;
+				$noms[ $f ][ $k ]         = $n;
+				continue;
 			}
 			$livres[ $l->id ][ $f ][] = $k;
 			$noms[ $f ][ $k ]         = html_entity_decode( $l->name, ENT_QUOTES, 'UTF-8' );
@@ -384,10 +426,9 @@ function er_facettes_donnees( $ids, $contexte ) {
 			} elseif ( 'er_editeur' === $m->cle && '' !== trim( wp_strip_all_tags( $m->val ) ) && empty( $livres[ $m->id ]['maison'] ) ) {
 				// Un éditeur écrit à la main (l'import, les notices), quand le livre n'en a pas d'autre.
 				// « les Belles lettres (Paris) », comme l'écrit la BnF : sans la ville, avec une capitale.
-				$nom                         = er_notice_editeur( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) );
-				$k                           = sanitize_title( $nom );
+				list( $k, $nom )              = $maison( er_notice_editeur( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) ) );
 				$livres[ $m->id ]['maison'][] = $k;
-				$noms['maison'][ $k ]        = $noms['maison'][ $k ] ?? $nom;
+				$noms['maison'][ $k ]         = $nom;
 			}
 		}
 	}

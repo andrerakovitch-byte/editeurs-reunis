@@ -361,6 +361,9 @@ nulle part renvoie (301) vers la personne qu'elle désigne.
   présentation), les directeurs (« sous la direction de … » dans le titre), les préfaciers, les éditions établies, les
   illustrateurs et les éditeurs ; ce qui n'est pas un nom (un titre, une collection, un mot collé au nom par la perte
   des retours à la ligne de Wix) est écarté. `wp er roles appliquer` les pose (un nom inconnu devient un auteur).
+- `wp er editeurs fusionner` montre les éditeurs écrits de plusieurs façons (« Noir sur Blanc », « Les Éditions Noir
+  sur blanc ») ; avec `appliquer`, le plus fourni reprend les livres des autres, et un livre qui n'a qu'un éditeur
+  écrit à la main reçoit l'éditeur du classement de même nom.
 
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
@@ -469,9 +472,10 @@ L'audit de la librairie (24 novembre 2026) a relu les 859 fiches une à une ; ce
 
 Toutes les pages de la librairie (un rayon, un auteur, une langue, une maison, une collection, une mention, la
 recherche) ont à gauche des livres la colonne « Filtrer par » (`er-librairie/inc/facettes.php`, blocs `er/facettes`
-et `er/facettes` `{"partie":"puces"}` posés par `patterns/librairie.php`) : la langue, l'époque (« Parle de » ou
-« Écrit pendant », sur la frise des quatorze périodes), le genre (les sous-rayons de genre d'un rayon) ou le rayon, le
-sujet, l'auteur, la maison d'édition, l'année de publication par décennie, la disponibilité. Chaque option dit combien
+et `er/facettes` `{"partie":"puces"}` posés par `patterns/librairie.php`), dans cet ordre : le rayon (hors d'un
+rayon), la langue, le genre (les sous-rayons de genre d'un rayon), l'auteur, la maison d'édition (les graphies d'un
+même éditeur réunies, `er_editeur_cle`), l'année de publication par décennie, la disponibilité, puis l'époque
+(« Parle de » ou « Écrit pendant », sur la frise des quatorze périodes) et le sujet. Chaque option dit combien
 de livres resteraient si on la cochait ; dans une facette les options s'additionnent, d'une facette à l'autre elles
 se cumulent. Une facette qui ne partage pas la page n'y est pas (pas d'« Auteur » sur la page d'un auteur) ; moins de
 six livres, pas de colonne.

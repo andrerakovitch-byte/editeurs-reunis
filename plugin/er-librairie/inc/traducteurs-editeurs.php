@@ -596,14 +596,15 @@ function er_roles_releves( $id ) {
 
 /**
  * La clé d'un nom d'éditeur, pour reconnaître ses variantes : « Éditions Fayard » et « Fayard », « Éditions de
- * l’EHESS » et « Éditions EHESS », « Institut d’études slaves » et « Institut dEtudes Slaves ».
+ * l’EHESS » et « Éditions EHESS », « Institut d’études slaves » et « Institut dEtudes Slaves », « Les Éditions Noir
+ * sur blanc » et « Noir sur Blanc ».
  *
  * @param string $nom Le nom.
  */
 function er_editeur_cle( $nom ) {
 	$cle = mb_strtolower( remove_accents( $nom ), 'UTF-8' );
 	$cle = preg_replace( '/\b(?:editions?|editeurs?|publishing|publications?|publisher)\b/u', ' ', $cle );
-	$cle = preg_replace( '/^\s*(?:de la|de l|du|des|de|d|l)[\s’\']+/u', '', trim( $cle ) );
+	$cle = preg_replace( '/^\s*(?:(?:de la|de l|du|des|de|d|les|le|la|l)[\s’\']+)+/u', '', trim( $cle ) );
 	return trim( preg_replace( '/[^\p{L}\p{N}]+/u', '', $cle ) );
 }
 
@@ -806,6 +807,119 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				WP_CLI::log( $e );
 			}
 			wp_cache_delete( 'er_personnes_livres', 'er' );
+		}
+	);
+
+	/**
+	 * Réunit les graphies d'un même éditeur (« Noir sur Blanc » et « Les Éditions Noir sur blanc ») : wp er editeurs
+	 * fusionner [appliquer]. Les éditeurs du classement de même clé (er_editeur_cle) n'en font plus qu'un, le plus
+	 * fourni, qui reprend leurs livres (et leur présentation, s'il n'en a pas) ; un livre qui n'a qu'un éditeur écrit à
+	 * la main (la méta, de l'import ou des notices) reçoit l'éditeur du classement de même clé. Sans « appliquer », il ne
+	 * fait que montrer.
+	 *
+	 * @param array $args « fusionner », puis « appliquer » ou rien.
+	 */
+	WP_CLI::add_command(
+		'er editeurs',
+		function ( $args ) {
+			if ( ! isset( $args[0] ) || 'fusionner' !== $args[0] ) {
+				WP_CLI::error( 'Usage : wp er editeurs fusionner [appliquer]' );
+			}
+			$appliquer = isset( $args[1] ) && 'appliquer' === $args[1];
+			$nom       = fn( $t ) => html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' );
+			$termes    = get_terms(
+				array(
+					'taxonomy'   => 'er_editeur',
+					'hide_empty' => false,
+					'orderby'    => 'count',
+					'order'      => 'DESC',
+				)
+			);
+			$groupes   = array();
+			foreach ( is_array( $termes ) ? $termes : array() as $t ) {
+				$groupes[ er_editeur_cle( $nom( $t ) ) ][] = $t;
+			}
+			$chefs  = array(); // Clé → l'éditeur retenu.
+			$lignes = array();
+			foreach ( $groupes as $cle => $ts ) {
+				$chef = array_shift( $ts );
+				if ( '' !== $cle ) {
+					$chefs[ $cle ] = $chef;
+				}
+				if ( '' === $cle || ! $ts ) {
+					continue;
+				}
+				$lignes[] = '  ' . $nom( $chef ) . ' (' . $chef->count . ') ← ' . implode( ', ', array_map( fn( $t ) => $nom( $t ) . ' (' . $t->count . ')', $ts ) );
+				if ( ! $appliquer ) {
+					continue;
+				}
+				foreach ( $ts as $t ) {
+					$objets = get_objects_in_term( $t->term_id, 'er_editeur' );
+					foreach ( is_array( $objets ) ? $objets : array() as $id ) {
+						wp_set_object_terms( (int) $id, array( (int) $chef->term_id ), 'er_editeur', true );
+					}
+					if ( '' === trim( $chef->description ) && '' !== trim( $t->description ) ) {
+						wp_update_term( $chef->term_id, 'er_editeur', array( 'description' => $t->description ) );
+					}
+					wp_delete_term( $t->term_id, 'er_editeur' );
+				}
+			}
+			WP_CLI::log( count( $lignes ) . ' éditeurs écrits de plusieurs façons dans le classement' . ( $appliquer ? ' (réunis)' : '' ) . ' :' );
+			foreach ( $lignes as $l ) {
+				WP_CLI::log( $l );
+			}
+			// Les livres qui n'ont qu'un éditeur écrit à la main.
+			$ids   = get_posts(
+				array(
+					'post_type'        => 'product',
+					'post_status'      => 'any',
+					'posts_per_page'   => -1,
+					'fields'           => 'ids',
+					'lang'             => '',
+					'suppress_filters' => true,
+					'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+						array(
+							'key'     => 'er_editeur',
+							'value'   => '',
+							'compare' => '!=',
+						),
+					),
+					'tax_query'        => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+						array(
+							'taxonomy' => 'er_editeur',
+							'operator' => 'NOT EXISTS',
+						),
+					),
+				)
+			);
+			$poses = array(); // Éditeur retenu → graphie → nombre de livres.
+			$seuls = array(); // Clé → graphie → nombre de livres.
+			foreach ( $ids as $id ) {
+				$texte = er_notice_editeur( trim( wp_strip_all_tags( html_entity_decode( (string) get_post_meta( $id, 'er_editeur', true ), ENT_QUOTES, 'UTF-8' ) ) ) );
+				$cle   = er_editeur_cle( $texte );
+				if ( '' === $cle ) {
+					continue;
+				}
+				if ( isset( $chefs[ $cle ] ) ) {
+					$c                     = $nom( $chefs[ $cle ] );
+					$poses[ $c ][ $texte ] = ( $poses[ $c ][ $texte ] ?? 0 ) + 1;
+					if ( $appliquer ) {
+						wp_set_object_terms( $id, array( (int) $chefs[ $cle ]->term_id ), 'er_editeur', false );
+					}
+				} else {
+					$seuls[ $cle ][ $texte ] = ( $seuls[ $cle ][ $texte ] ?? 0 ) + 1;
+				}
+			}
+			WP_CLI::log( array_sum( array_map( 'array_sum', $poses ) ) . ' livres à l’éditeur écrit à la main, qui existe dans le classement' . ( $appliquer ? ' (posé)' : '' ) . ' :' );
+			foreach ( $poses as $c => $graphies ) {
+				WP_CLI::log( '  ' . $c . ' ← ' . implode( ', ', array_map( fn( $g, $n ) => $g . ' (' . $n . ')', array_keys( $graphies ), $graphies ) ) );
+			}
+			$variantes = array_filter( $seuls, fn( $g ) => count( $g ) > 1 );
+			WP_CLI::log( array_sum( array_map( 'array_sum', $seuls ) ) . ' livres à l’éditeur écrit à la main, absent du classement (' . count( $seuls ) . ' éditeurs, dont ' . count( $variantes ) . ' écrits de plusieurs façons) :' );
+			foreach ( $variantes as $graphies ) {
+				arsort( $graphies );
+				WP_CLI::log( '  ' . implode( ', ', array_map( fn( $g, $n ) => $g . ' (' . $n . ')', array_keys( $graphies ), $graphies ) ) );
+			}
 		}
 	);
 }

@@ -64,3 +64,12 @@ function test_facettes_decennie_d_une_annee_ecrite_a_la_main() {
 	egal( 'sans', er_facettes_decennie( '' ) );
 	egal( 'sans', er_facettes_decennie( '128 стр.' ) );
 }
+
+function test_facettes_une_maison_pour_ses_graphies() {
+	egal( er_facettes_cle_maison( 'Noir sur Blanc' ), er_facettes_cle_maison( 'Les Éditions Noir sur blanc' ) );
+	egal( er_facettes_cle_maison( 'Gallimard' ) === er_facettes_cle_maison( 'Noir sur Blanc' ), false );
+}
+
+function test_facettes_epoque_et_sujet_a_la_fin() {
+	egal( array_slice( array_keys( er_facettes_definitions() ), -3 ), array( 'epoque', 'ecrit', 'sujet' ) );
+}

@@ -86,6 +86,9 @@ function test_cle_d_un_editeur_et_ses_variantes() {
 	egal( er_editeur_cle( 'Fayard' ), er_editeur_cle( 'Éditions Fayard' ) );
 	egal( er_editeur_cle( 'Éditions EHESS' ), er_editeur_cle( 'Éditions de l’EHESS' ) );
 	egal( er_editeur_cle( 'Institut dEtudes Slaves' ), er_editeur_cle( 'Institut d’études slaves' ) );
+	egal( er_editeur_cle( 'Noir sur Blanc' ), er_editeur_cle( 'Les Éditions Noir sur blanc' ) );
+	egal( er_editeur_cle( 'Le Seuil' ), er_editeur_cle( 'Éditions du Seuil' ) );
+	egal( er_editeur_cle( 'Les Éditeurs réunis' ) === er_editeur_cle( 'YMCA-Press' ), false );
 }
 
 function test_editeurs_regroupes_a_une_lettre_pres() {
