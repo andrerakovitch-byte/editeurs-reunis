@@ -72,10 +72,12 @@ jobs:
           ssh-keyscan -p "$PORT" "$HOTE" >> ~/.ssh/known_hosts 2>/dev/null
           echo "SSH=ssh -i $HOME/.ssh/kinsta -p $PORT" >> "$GITHUB_ENV"
 
-      - name: Le thème et l'extension
+      - name: Le thème et les extensions
         run: |
           rsync -rlz --delete -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
           rsync -rlz --delete -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
+          # L'extension de la bascule (le contenu de l'ébauche, les imports de Wix) : à retirer d'ici après la bascule.
+          rsync -rlz --delete -e "$SSH" plugin/er-bascule/ "$QUI@$HOTE:public/wp-content/plugins/er-bascule/"
 
       # Polylang Pro et Polylang pour WooCommerce sont payants : téléversés à la main dans l'administration, jamais
       # par ce dépôt ; activés ici dès qu'ils sont là (wp er langues installer règle ensuite les trois langues).
@@ -84,7 +86,7 @@ jobs:
       - name: Les extensions
         run: |
           $SSH "$QUI@$HOTE" 'cd public && set -e
-            for e in woocommerce woocommerce-gateway-stripe er-librairie; do
+            for e in woocommerce woocommerce-gateway-stripe er-librairie er-bascule; do
               wp plugin is-installed "$e" || wp plugin install "$e"
               wp plugin is-active "$e" || wp plugin activate "$e"
             done
@@ -106,7 +108,7 @@ jobs:
             wp site switch-language fr_FR
             wp language plugin install woocommerce fr_FR ru_RU en_GB
             wp option update blog_public 0
-            wp eval-file wp-content/plugins/er-librairie/donnees/semer.php
+            wp eval-file wp-content/plugins/er-bascule/donnees/semer.php
             wp rewrite structure "/%postname%/"
             wp rewrite flush'
 

@@ -15,6 +15,7 @@
 
 	<file>theme/editeurs-reunis</file>
 	<file>plugin/er-librairie</file>
+	<file>plugin/er-bascule</file>
 	<exclude-pattern>*/languages/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 

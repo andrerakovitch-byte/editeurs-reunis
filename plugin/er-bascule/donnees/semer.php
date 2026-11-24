@@ -3,7 +3,7 @@
  * Remplit un WordPress neuf avec le contenu de l'ébauche : les réglages, les pages, les rayons, les livres de la
  * maquette Wix et leurs couvertures, le communiqué.
  *
- * À lancer une fois, sur un site vide : `wp eval-file wp-content/plugins/er-librairie/donnees/semer.php`, ou dans
+ * À lancer une fois, sur un site vide : `wp eval-file wp-content/plugins/er-bascule/donnees/semer.php`, ou dans
  * WordPress Playground (étape runPHP du plan d'aperçu). Relancé, il ne crée rien en double : chaque page, chaque
  * livre est retrouvé par son slug.
  *
@@ -579,7 +579,7 @@ function er_semer_exemple( $titre, $slug, $parent = 0, $gabarit = 'page-exemple'
 	}
 	$html = str_replace(
 		array( '{{IMAGES}}', '{{SITE}}' ),
-		array( plugins_url( 'donnees/exemples/images', dirname( __DIR__ ) . '/er-librairie.php' ), untrailingslashit( home_url() ) ),
+		array( plugins_url( 'donnees/exemples/images', dirname( __DIR__ ) . '/er-bascule.php' ), untrailingslashit( home_url() ) ),
 		file_get_contents( $fichier ) // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	);
 	$note    = '<p class="er-exemple-note"><strong>Page d’exemple.</strong> La maquette du canevas, posée telle quelle pour voir la bêta ; elle sera refaite en blocs, modifiables dans WordPress. Les liens ne mènent pas encore partout.</p>';

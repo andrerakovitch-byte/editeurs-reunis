@@ -17,15 +17,18 @@ n'est gardé quand on ferme l'onglet.
   (Apparence → Éditeur).
   - `theme.json` : la direction artistique, toute entière (les couleurs, la police Montserrat, les tailles, les
     espacements, les boutons en pilule).
-  - `style.css` : le reste du dessin (l'en-tête, les fiches des livres, le pied).
+  - `assets/css/` : le reste du dessin, un fichier par composant, numérotés dans l'ordre où ils se chargent
+    (`style.css` ne garde que l'en-tête du thème).
   - `patterns/` : les modules de l'accueil (`une-*.php`), l'en-tête, le pied, la librairie et la fiche d'un livre.
   - `templates/` et `parts/` : les gabarits, qui ne font qu'appeler les sections.
 - `plugin/er-librairie/` : l'extension de la librairie, séparée du thème pour que les livres survivent à un
   changement de dessin : les auteurs et les langues des livres, et des traductions de secours pour WooCommerce.
+- `plugin/er-bascule/` : l'extension de la bascule, ce qui ne sert qu'à passer de Wix au nouveau site, à supprimer
+  après le 15 décembre : les imports de Wix (`inc/import-wix.php`) et le contenu de l'ébauche.
   - `donnees/semer.php` : remplit un site vide avec le contenu de l'ébauche (les réglages, les pages, les rayons,
     les quinze livres et leurs couvertures, le communiqué). Relancé, il ne crée rien en double.
 - `blueprint.json` : le plan de l'aperçu Playground.
-- `apercu/` : les deux archives que l'aperçu installe. `outils/construire.sh` les refait.
+- `apercu/` : les trois archives que l'aperçu installe. `outils/construire.sh` les refait.
 - `tests/`, `outils/verifier.sh`, `phpcs.xml.dist`, `ruff.toml` : le contrôle qui précède chaque déploiement
   (« Vérifier le code »).
 
@@ -234,7 +237,7 @@ bêta en montre une : `/librairie/selections/`.
 ## Les pages d'exemple de la bêta
 
 Pour voir la bêta en entier, les maquettes du canevas sont posées en pages, telles quelles (`semer.php`, avec le HTML
-et les images de `plugin/…/donnees/exemples/`), sous un bandeau pervenche pâle « Page d'exemple » : elles seront
+et les images de `plugin/er-bascule/donnees/exemples/`), sous un bandeau pervenche pâle « Page d'exemple » : elles seront
 refaites en blocs. Deux gabarits les accueillent : `page-exemple`, et `page-exemple-librairie` (avec les rayons de la
 librairie). Au-dessus de 1 100 px elles s'étirent ; au-dessous, la maquette entière est réduite à l'écran
 (`assets/js/exemple.js`).
@@ -528,7 +531,7 @@ exposition paraît aussi sur la page de ses auteurs et de ses sujets, et dans la
   regarder), l'accrochage (six œuvres par rangée), les autres expositions.
 - **Les titres** des expositions sont des titres d'œuvres : en italique.
 
-L'ancien site n'avait que des événements : les huit expositions sont relues dans `donnees/expositions.json` (le
+L'ancien site n'avait que des événements : les huit expositions sont relues dans `plugin/er-bascule/donnees/expositions.json` (le
 titre, les artistes et les personnes dont il est question, les techniques, les dates, les rencontres de l'ancien site
 par leur identifiant de Wix, les articles par leur slug, les livres par leur référence). `wp er expositions importer`
 les crée ou les complète (ce qu'on a saisi à la main l'emporte ; les rattachements s'ajoutent) : le texte, le chapô
@@ -741,7 +744,8 @@ site dans le rapport qu'il dépose.
    Général, pour que WordPress et WooCommerce téléchargent leurs traductions.
 2. Apparence → Thèmes → Ajouter → Téléverser `apercu/editeurs-reunis.zip`, puis l'activer.
 3. Extensions → Ajouter → Téléverser `apercu/er-librairie.zip`, puis l'activer.
-4. Pour partir du contenu de l'ébauche : `wp eval-file wp-content/plugins/er-librairie/donnees/semer.php`.
+4. Pour partir du contenu de l'ébauche : téléverser et activer `apercu/er-bascule.zip`, puis
+   `wp eval-file wp-content/plugins/er-bascule/donnees/semer.php`.
 5. Réglages → Permaliens : « Titre de la publication ».
 6. Polylang Pro et Polylang for WooCommerce : comme sur la bêta (« Trois langues », « Mettre Polylang en place »),
    puis `wp er langues installer`.
