@@ -141,7 +141,7 @@
 	.er-j-ligne-texte { grid-column: 1; }
 	.er-j-ligne .er-j-image { grid-column: 2; }
 }
-@media (max-width: 781px) {
+@media (max-width: 600px) {
 	.er-j-g { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; }
 	.er-j-module { padding-block: 56px; }
 	.er-j-une { padding-top: 32px; }
