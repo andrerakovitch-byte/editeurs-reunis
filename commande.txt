@@ -44,7 +44,7 @@ mentions-legales/ · 200 · 1 tête, 0 bande
   tête [er-tete-librairie er-tete-sans-chapo] Librairie | 8 livres en rayon — « Georges Nivat »
   [er-bande-librairie er-bande-sommaire] Georges Nivat : Ses traductions • · Sous sa direction · Ses préfaces · Au centre · Dans le journal
 /auteur/alexandre-soljenitsyne/ · 200 · 1 tête, 1 bande
-  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 19 livres en rayon — « Alexandre Soljenitsyne » (Александр Солженицын · Aleksandr Solzhenitsyn) · Александр Солженицын
+  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 19 livres en rayon — « Alexandre Soljenitsyne » (Александр Солженицын · Aleksandr Solzhenitsyn) · Солженицын
   [er-bande-librairie er-bande-sommaire] Alexandre Soljenitsyne : Ses livres • · Au centre · Dans le journal · À lire sur le site
 /sujet/histoire/ · 200 · 1 tête, 1 bande
   tête [er-tete-aucune er-tete-sans-chapo] Sujet | 46 rencontres · 19 textes — « Histoire »
