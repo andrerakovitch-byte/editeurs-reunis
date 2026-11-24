@@ -12,6 +12,8 @@
 }
 .er-rayonnage .er-livres { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) !important; }
 .er-rayonnage .er-tri { margin-block-start: 0; }
+/* Ce que le script cache (une option que la recherche écarte, la frise de l'autre époque) reste caché. */
+.er-facettes [hidden] { display: none !important; }
 html.er-facettes-charge .er-rayonnage__livres { opacity: 0.45; transition: opacity 120ms ease 80ms; }
 
 .er-facettes .screen-reader-text,
