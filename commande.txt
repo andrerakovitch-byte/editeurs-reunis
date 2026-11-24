@@ -1,49 +1,48 @@
-Le catalogue, hors billets des rencontres
-  Livres                                 859   (840 publiés, 19 brouillons)
-  Venus de Wix (référence WIX-…)         859
-  Sans référence (exemples, saisis)        0
-  Avec une autre référence                 0
-Le prix
-  Avec un prix                           859
-  Sans prix (ne se commandent pas)         0
-  En promotion                           162   (dont 1 d’occasion)
-  Hors occasion, remise de plus de 5 %   161
-Le stock
-  En stock                               722
-  Épuisés                                137
-  En réassort                              0
-  Stock suivi en quantité                 31
-  En stock sans quantité                 693
-  Commandables                           717   (publiés, avec un prix, en stock)
-  Prix médian des commandables       15,00 €
-  Commandables à moins de 35 €           686
-Pour la livraison
-  Avec un poids                          826
-  Sans poids                              33   (dont 26 commandables)
-  Poids médian                         400 g   (de 60 à 15 000 g)
-  Commandables jusqu’à 250 g              77
-  de 251 à 500 g                         497
-  de 501 g à 1 kg                         77
-  de 1 à 2 kg                             16
-  plus de 2 kg                            24
-  Livres virtuels (sans livraison)         0
-  Livres cachés du catalogue               0
-Les fiches
-  Avec un ISBN                             0   (dont 0 commandables)
-  Sans rayon                              79
-  Sans auteur                            198
-  Sans langue                              0
-  Mention « Nouveauté »                  120
-  Mention « Occasion »                    19
-  Mention « Nouvelle édition »            15
-  Mention « Très rare »                   10
-  Mention « Nouvelle traduction »          5
-Les couvertures
-  Trop petites                           274   (dont 229 commandables)
-  Absentes                                 0   (dont 0 commandables)
-  Passables                              260   (dont 217 commandables)
-  Bonnes                                 325   (dont 271 commandables)
-Les billets des rencontres
-  Billets                                  0
-  Virtuels                                 0
-  Cachés du catalogue                      0
+Les remises saisies : 162 livres.
+  titre de la maison                                102
+  année d’édition inconnue                       54
+  soldes, dernier approvisionnement non noté         5
+  occasion                                            1
+Soldes permises : 5, dont 5 sans date de dernier approvisionnement (à noter dans la fiche, onglet Inventaire).
+Remises ignorées (le livre se vend au prix de l’éditeur) : 156
+  Ossip Mandelstam · année d’édition inconnue · 10 € au lieu de 21 €
+  Ротонда · année d’édition inconnue · 7 € au lieu de 14 €
+  Le "Cher ami" de Gogol · titre de la maison · 10 € au lieu de 20 €
+  Избранная Поэзия · titre de la maison · 10 € au lieu de 12 €
+  Малознакомый Ленин · année d’édition inconnue · 5 € au lieu de 10 €
+  Сквозь Чада · titre de la maison · 2.5 € au lieu de 5 €
+  Публицистика · titre de la maison · 12.5 € au lieu de 25 €
+  Князь Серебреный · titre de la maison · 6 € au lieu de 12 €
+  Как нам обостроить Росию? · titre de la maison · 3.5 € au lieu de 7 €
+  Отверзи ми Двери · titre de la maison · 10 € au lieu de 20 €
+  Со старинной полки · titre de la maison · 10 € au lieu de 20 €
+  Фенька · titre de la maison · 8 € au lieu de 16 €
+  Верность · titre de la maison · 10 € au lieu de 12 €
+  Из под глыб · titre de la maison · 6 € au lieu de 12 €
+  Сорок Сороков Альбом указатель всех московских церквей · titre de la maison · 50 € au lieu de 100 €
+  Русские православные иерархи-исповедники и мученики · titre de la maison · 11.5 € au lieu de 23 €
+  Православная мысль, выпуск 14 · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск XI · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск X · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск IX · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск VIII · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск 7 · titre de la maison · 5 € au lieu de 10 €
+  Православная мысль, выпуск 5 · titre de la maison · 5 € au lieu de 10 €
+  Забытые · titre de la maison · 5 € au lieu de 10 €
+  Красное Колесо - Апрель Семнадцатого т. 2 · titre de la maison · 12.5 € au lieu de 25 €
+  Красное Колесо - Апрель Семнадцатого т. 1 · titre de la maison · 12.5 € au lieu de 25 €
+  Муза и мода · titre de la maison · 5 € au lieu de 12 €
+  СтепанчикогСело о и др. рассказы · titre de la maison · 7 € au lieu de 14 €
+  Неизданные стихи и письма · titre de la maison · 7 € au lieu de 14 €
+  Мик. Африканская Поэма · titre de la maison · 3 € au lieu de 6 €
+  Неизданное и несобранное · titre de la maison · 8 € au lieu de 16 €
+  На пороге зрелости · titre de la maison · 5 € au lieu de 10 €
+  О нашем уповании · titre de la maison · 5 € au lieu de 10 €
+  Многосемейная хроника · titre de la maison · 9.5 € au lieu de 19 €
+  Требник · année d’édition inconnue · 5 € au lieu de 20 €
+  Русская земля. Альманах для юношества · année d’édition inconnue · 12.5 € au lieu de 25 €
+  Chaliapine · titre de la maison · 13.5 € au lieu de 27 €
+  La Fuite - Pièces et nouvelles · titre de la maison · 8 € au lieu de 16 €
+  Вестник Русского христианского движения, № 212 · titre de la maison · 7.5 € au lieu de 15 €
+  L’apocalypse russe, Dieu au pays de Dostoïevski · année d’édition inconnue · 10 € au lieu de 20 €
+  … « wp er prix tout » pour la liste entière.
