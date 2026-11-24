@@ -1105,6 +1105,7 @@ function er_champs_livre() {
 		'er_annee'      => __( 'Année d’édition', 'er-librairie' ),
 		'er_pages'      => __( 'Nombre de pages', 'er-librairie' ),
 		'er_format'     => __( 'Format (poche, broché, relié…)', 'er-librairie' ),
+		'er_phrase'     => __( 'Sa phrase, sous sa couverture quand la fiche d’un autre livre le propose', 'er-librairie' ),
 	);
 }
 add_action(

@@ -371,7 +371,8 @@ function er_reco_prix( $p ) {
 }
 
 /**
- * Un livre en carte : la couverture, la mention, le titre, l'auteur, le prix.
+ * Un livre en carte : la couverture, la mention, le titre, l'auteur, sa phrase (les cartes de la bande et de
+ * l'étagère, pas les courtes de la colonne), le prix.
  *
  * @param int    $pid    Le livre.
  * @param string $classe La classe de la carte.
@@ -385,10 +386,12 @@ function er_reco_carte( $pid, $classe = 'er-reco-livre' ) {
 	$mentions = wp_get_post_terms( $pid, 'product_tag' );
 	$mention  = $mentions && ! is_wp_error( $mentions ) ? '<span class="er-reco-mention' . ( 'tres-rare' === $mentions[0]->slug ? ' er-reco-mention--rare' : '' ) . '">' . esc_html( $mentions[0]->name ) . '</span>' : '';
 	$russe    = preg_match( '/\p{Cyrillic}/u', $p->get_name() ) ? ' lang="ru"' : '';
+	$phrase   = false !== strpos( $classe, 'er-reco-livre' ) && function_exists( 'er_reco_phrase' ) ? er_reco_phrase( $pid ) : '';
 	return '<li class="' . esc_attr( $classe ) . '"><a href="' . esc_url( get_permalink( $pid ) ) . '">'
 		. '<span class="er-reco-couverture">' . er_reco_couverture( $p ) . '</span>' . $mention
 		. '<span class="er-reco-titre"' . $russe . '>' . esc_html( wptexturize( $p->get_name() ) ) . '</span>'
 		. ( $auteurs && ! is_wp_error( $auteurs ) ? '<span class="er-reco-auteur">' . esc_html( implode( ', ', $auteurs ) ) . '</span>' : '' )
+		. ( '' !== $phrase ? '<span class="er-reco-phrase">' . esc_html( $phrase ) . '</span>' : '' )
 		. er_reco_prix( $p ) . '</a></li>';
 }
 
@@ -508,6 +511,7 @@ function er_reco_bloc_autour( $id ) {
 	foreach ( array_slice( $r['autour'], 0, 4 ) as $pid ) {
 		$livres .= er_reco_carte( $pid );
 	}
+	$note     = $livres && function_exists( 'er_reco_mention_phrases' ) ? er_reco_mention_phrases( array_slice( $r['autour'], 0, 4 ) ) : '';
 	$contenus = '';
 	foreach ( array_slice( $r['contenus'], 0, 2 ) as $cid ) {
 		$contenus .= er_reco_contenu( $cid );
@@ -519,7 +523,7 @@ function er_reco_bloc_autour( $id ) {
 		. '<div class="er-reco-autour-corps' . ( $livres ? '' : ' er-reco-autour-corps--sans-livres' ) . '">'
 		. ( $livres ? '<ul class="er-reco-livres">' . $livres . '</ul>' : '' )
 		. ( $contenus ? '<ul class="er-reco-contenus">' . $contenus . '</ul>' : '' )
-		. '</div></div></section>';
+		. $note . '</div></div></section>';
 }
 
 /**
@@ -566,7 +570,8 @@ function er_reco_bloc_rayon( $id ) {
 		. '<p class="er-petit-titre">' . esc_html__( 'Du même rayon, de la même époque', 'er-librairie' ) . '</p>'
 		. '<h2 id="er-reco-etagere-titre">' . esc_html( $titre ? $titre : __( 'Du même rayon', 'er-librairie' ) ) . '</h2></div>'
 		. ( $lien && ! is_wp_error( $lien ) ? '<p class="er-lien-fleche"><a href="' . esc_url( $lien ) . '">' . esc_html__( 'Tout le rayon', 'er-librairie' ) . '</a></p>' : '' ) . '</div>'
-		. '<ul class="er-reco-debouts">' . $livres . '</ul></section>';
+		. '<ul class="er-reco-debouts">' . $livres . '</ul>'
+		. ( function_exists( 'er_reco_mention_phrases' ) ? er_reco_mention_phrases( array_slice( $r['rayon'], 0, 6 ) ) : '' ) . '</section>';
 }
 
 add_action(

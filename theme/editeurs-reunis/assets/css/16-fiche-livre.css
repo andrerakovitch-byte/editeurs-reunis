@@ -42,7 +42,12 @@
 .er-reco-titre { font-weight: 600; line-height: 1.3; }
 .er-reco-livre a:hover .er-reco-titre, .er-reco-court a:hover .er-reco-titre { text-decoration: underline; }
 .er-reco-auteur { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--encre-2); }
+.er-reco-phrase { margin-top: 0.15rem; font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
+.er-reco-phrase + .er-reco-prix, .er-reco-phrase + .er-reco-epuise { margin-top: 0.25rem; }
 .er-reco-prix { font-size: 0.95rem; }
+/* La mention sous une rangée dont les livres ont leur phrase (er-librairie/inc/phrases.php). */
+.er-reco-note-phrases { margin: 2rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+.er-reco-autour-corps > .er-reco-note-phrases { grid-column: 1 / -1; margin-top: 0.25rem; color: var(--wp--preset--color--encre-2); } /* Le gris discret n'a pas le contraste voulu sur la pervenche pâle. */
 .er-reco-epuise { font-size: var(--wp--preset--font-size--small); font-weight: 500; color: var(--wp--preset--color--discret); }
 
 /* « Du même auteur » : la couverture à gauche, le titre et le prix à côté. */
