@@ -131,7 +131,7 @@
 }
 
 /* La vue en liste : une ligne par livre, des colonnes alignées sous leurs intitulés. */
-.er-liste-tete { display: none; }
+.er-livres > .er-liste-tete { display: none; }
 .er-livres--liste { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; border-top: 1px solid var(--wp--preset--color--contrast); }
 .er-livres--liste > li { border-bottom: var(--er-filet); }
 .er-livres--liste .er-module { display: none; }

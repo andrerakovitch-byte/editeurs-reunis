@@ -866,7 +866,7 @@ function er_rayonnage_module_auteur( $etat ) {
 }
 
 /**
- * Les modules du fil, à leur place : nombre de livres avant → module.
+ * Les modules du fil, à leur place : nombre de livres avant → module (une page en montre 16).
  */
 function er_rayonnage_modules() {
 	$etat  = er_facettes_etat();
@@ -876,10 +876,10 @@ function er_rayonnage_modules() {
 	}
 	$modules = array(
 		0  => er_rayonnage_module_moment( $rayon ),
-		7  => er_rayonnage_module_epoque( $etat ),
-		12 => er_rayonnage_module_ymca( $etat ),
-		15 => er_rayonnage_module_langues( $etat ),
-		20 => er_rayonnage_module_auteur( $etat ),
+		5  => er_rayonnage_module_epoque( $etat ),
+		8  => er_rayonnage_module_ymca( $etat ),
+		11 => er_rayonnage_module_langues( $etat ),
+		14 => er_rayonnage_module_auteur( $etat ),
 	);
 	return array_filter( $modules );
 }
