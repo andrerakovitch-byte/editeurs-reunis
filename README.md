@@ -702,6 +702,11 @@ s'arrête s'il échoue. Le même contrôle se lance sur un poste avec `bash outi
 4. PHPCS, avec les règles de sécurité de WordPress et une hygiène de base des fichiers, pas toute la mise en forme
    (`phpcs.xml.dist`) ; sur un poste, après `composer install`.
 
+Un changement de CSS se vérifie à l'œil avec le workflow « Comparer les captures » (`outils/captures.py`) : les pages
+de la bêta rendues avec les feuilles de deux révisions, à vingt largeurs d'écran, comparées pixel par pixel. Le rapport
+et les images avant | après | différence vont sur une branche `captures-<avant>-<après>`. Une page qui bouge toute
+seule (un carrousel, la fiche d'un livre) est signalée par son « bruit », mesuré sur deux images sans changement.
+
 Une règle : chaque bogue corrigé arrive avec le test qui l'aurait vu ; chaque mauvais nom trouvé dans le catalogue
 devient un cas dans `tests/php/roles-test.php`. Une fonction qui rend du HTML ou une adresse déjà échappés se déclare
 dans `phpcs.xml.dist` plutôt qu'avec un « phpcs:ignore » à chaque `echo`.
