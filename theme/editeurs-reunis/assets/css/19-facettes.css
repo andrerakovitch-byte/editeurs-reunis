@@ -10,6 +10,9 @@
 	gap: 0 2.5rem;
 	align-items: start;
 }
+/* La colonne descend aussi bas que les livres : c'est dans sa hauteur que le panneau reste à l'écran (sticky). Aussi
+   haute que le panneau, elle partait avec la page, et le bas du panneau restait coupé. */
+.er-rayonnage > .er-facettes { align-self: stretch; }
 .er-rayonnage .er-livres { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) !important; }
 .er-rayonnage .er-tri { margin-block-start: 0; }
 /* Ce que le script cache (une option que la recherche écarte, la frise de l'autre époque) reste caché. */
