@@ -1,33 +1,12 @@
-847 adresses de livres sur Wix : 831 trouvent leur livre, 16 mènent à la recherche.
-14 livres reçoivent plusieurs adresses (des doublons de Wix) :
-  Crime et Châtiment ← crime-et-châtiment-fedor-dostoïevski, crime-et-châtiment
-  Ce n’était que la peste ← ce-n-était-que-la-peste-ludmila-oulitskaïa, ce-n-était-que-la-peste-ludmila-oulitskaïa-1
-  L’Archipel du Goulag ← l-archipel-du-goulag-alexandre-soljénitsyne, l-archipel-du-goulag--alexandre-soljénitsyne
-  L’histoire de ma sœur ← l-histoire-de-ma-sœur-michel-ossorguine-1, l-histoire-de-ma-sœur-michel-ossorguine
-  Le Maître et Marguerite ← le-maître-et-marguerite, le-maître-et-marguerite-mikhaïl-boulgakov-1, le-maître-et-marguerite-mikhaïl-boulgakov
-  La guerre civile russe 1917-1922 ← la-guerre-civile-russe-1917-1922-alexandre-jevakhoff, la-guerre-civile-russe-1917-1922-alexandre-jevakhoff-1
-  Le Messager orthodoxe, n° 159 ← le-messager-orthodoxe-n-159-1, le-messager-orthodoxe-n-159
-  Le Roman de Monsieur de Molière ← le-roman-de-monsieur-de-molière-mikhaïl-boulgakov-1, le-roman-de-monsieur-de-molière-mikhaïl-boulgakov
-  Les Russes blancs : contexte d’un exil forcé – Volume 1 ← copie-de-les-russes-blancs-contexte-d-un-exil-forcé-volume-1-nicolas-zname, les-russes-blancs-contexte-d-un-exil-forcé-volume-1-nicolas-znamensky
-  Les Douze ← les-douze-alexandre-blok-1, les-douze-alexandre-blok
-  Récits de la Kolyma ← récits-de-la-kolyma-varlam-chalamov-1, récits-de-la-kolyma-varlam-chalamov
-  Верность ← верность-е-каннак, верность-евгения-каннак
-  Вестник Русского христианского движения, № 212 ← вестник-русского-христианского-движения-212, вестник-русского-христианского-движения-212-1
-  Вестник Русского христианского движения, № 217 ← вестник-русского-христианского-движения-217, вестник-русского-христианского-движения-217-1
-Sans livre (elles mènent à la recherche de la librairie) :
-  anthologie-poesie-russe-xixe
-  anthologie-poesie-russe-xxe
-  alexandra-kollontaï-la-walkyrie-de-la-révolution
-  culture-russe-en-exil-andré-korliakov
-  histoire-illustrée-de-l-émigration-russe-france-1917-1947
-  l-apocalypse-russe
-  la-joie-du-royaume
-  la-plus-moche-partie-du-corps-sergueï-soloükh
-  les-tchouraïev-georges-grebenchtchikov
-  le-psiol-georges-odartchenko
-  sergueï-rachmaninov-portrait-d-un-artiste-andré-lischke
-  medicima-animae-светлана-носова
-  lioubava-georges-grebenchtchikov
-  veillées-d-ukraine-nikolaï-gogol
-  recueil-anna-akhmatova
-  село-степанчикого-и-др-рассказы-достоевский
+  /librairie → /librairie/
+  /evenements → /centre-culturel/evenements/
+  /conferences → /centre-culturel/evenements/
+  /expo → /centre-culturel/expositions/
+  /podcast → /centre-culturel/podcasts/
+  /audiotheque → /centre-culturel/podcasts/
+  /videos → /centre-culturel/videos/
+  /notre-histoire → /ymca-press/histoire/
+  /les-editions-ymca-press → /ymca-press/
+  /nous-soutenir → /ymca-press/amis-ymca-press/
+  /store-policy → /conditions-generales-de-vente/
+  /politique-confidentialite → /politique-de-confidentialite/
