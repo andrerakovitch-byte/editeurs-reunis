@@ -475,7 +475,7 @@ recherche) ont à gauche des livres la colonne « Filtrer par » (`er-librairie/
 et `er/facettes` `{"partie":"puces"}` posés par `patterns/librairie.php`), dans cet ordre : le rayon (hors d'un
 rayon), la langue, le genre (les sous-rayons de genre d'un rayon), l'auteur, la maison d'édition (les graphies d'un
 même éditeur réunies, `er_editeur_cle`), l'année de publication par décennie, la disponibilité, puis l'époque
-(« Parle de » ou « Écrit pendant », sur la frise des quatorze périodes) et le sujet. Chaque option dit combien
+(« Parle de » ou « Écrit durant », sur la frise des quatorze périodes) et le sujet. Chaque option dit combien
 de livres resteraient si on la cochait ; dans une facette les options s'additionnent, d'une facette à l'autre elles
 se cumulent. Une facette qui ne partage pas la page n'y est pas (pas d'« Auteur » sur la page d'un auteur) ; moins de
 six livres, pas de colonne.

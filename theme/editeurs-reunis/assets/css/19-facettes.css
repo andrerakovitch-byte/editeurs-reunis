@@ -73,7 +73,7 @@ html.er-facettes-charge .er-rayonnage__livres { opacity: 0.45; transition: opaci
 	font: inherit; font-size: 0.875rem; color: inherit; background: var(--wp--preset--color--base);
 }
 
-/* L'époque : « Écrit pendant » ou « Parle de », puis la frise des quatorze périodes. */
+/* L'époque : « Écrit durant » ou « Parle de », puis la frise des quatorze périodes. */
 .er-frise__bascule { display: flex; padding: 3px; margin-bottom: 0.5rem; border: var(--er-filet); border-radius: 999px; }
 .er-frise__bascule button {
 	flex: 1; height: 2rem; border: 0; border-radius: 999px; background: transparent; cursor: pointer;

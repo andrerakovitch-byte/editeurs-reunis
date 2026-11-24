@@ -646,7 +646,7 @@ function er_facettes_colonne( $etat ) {
 						er_facettes_option( $defs[ $mode ][0], $e[0], $e[1], $nb, $coche, 'er-frise__ligne', $dedans )
 					);
 				}
-				$titre   = 'epoque' === $mode ? __( 'Parle de', 'er-librairie' ) : __( 'Écrit pendant', 'er-librairie' );
+				$titre   = 'epoque' === $mode ? __( 'Parle de', 'er-librairie' ) : __( 'Écrit durant', 'er-librairie' );
 				$aide    = 'epoque' === $mode
 					? __( 'L’époque dont parle le livre : Les Enfants de la Volga, écrit en 2017, se passe dans les années 1920 et 1930.', 'er-librairie' )
 					: __( 'Quand le livre a été écrit : Boulgakov écrit Le Maître et Marguerite dans les années 1930.', 'er-librairie' );
@@ -655,7 +655,7 @@ function er_facettes_colonne( $etat ) {
 			if ( $total ) {
 				$mode   = $sel['ecrit'] && ! $sel['epoque'] ? 'ecrit' : 'epoque';
 				$bascul = '<div class="er-frise__bascule" role="group" aria-label="' . esc_attr__( 'Quelle époque', 'er-librairie' ) . '" data-mode="' . esc_attr( $mode ) . '" hidden>'
-					. '<button type="button" data-mode="ecrit" aria-pressed="' . ( 'ecrit' === $mode ? 'true' : 'false' ) . '">' . esc_html__( 'Écrit pendant', 'er-librairie' ) . '</button>'
+					. '<button type="button" data-mode="ecrit" aria-pressed="' . ( 'ecrit' === $mode ? 'true' : 'false' ) . '">' . esc_html__( 'Écrit durant', 'er-librairie' ) . '</button>'
 					. '<button type="button" data-mode="epoque" aria-pressed="' . ( 'epoque' === $mode ? 'true' : 'false' ) . '">' . esc_html__( 'Parle de', 'er-librairie' ) . '</button></div>';
 				$section( 'epoque', $def[1], $bascul . $frises, count( $sel['epoque'] ) + count( $sel['ecrit'] ) );
 			}
@@ -766,7 +766,7 @@ function er_facettes_puces( $etat ) {
 	$puces  = '';
 	$prefix = array(
 		'epoque' => __( 'Parle de : %s', 'er-librairie' ),
-		'ecrit'  => __( 'Écrit pendant : %s', 'er-librairie' ),
+		'ecrit'  => __( 'Écrit durant : %s', 'er-librairie' ),
 	);
 	foreach ( array_keys( er_facettes_definitions() ) as $f ) {
 		foreach ( $sel[ $f ] as $k ) {

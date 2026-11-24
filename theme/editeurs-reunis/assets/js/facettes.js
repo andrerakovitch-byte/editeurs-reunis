@@ -2,7 +2,7 @@
  * « Filtrer par » sans recharger la page (er-librairie/inc/facettes.php, assets/css/19-facettes.css).
  *
  * Une case cochée : la page filtrée est demandée au site, et la colonne (ses comptes) et les livres sont remplacés
- * par les siens ; l'adresse suit, et se partage. La frise de l'époque bascule entre « Écrit pendant » et « Parle de » ;
+ * par les siens ; l'adresse suit, et se partage. La frise de l'époque bascule entre « Écrit durant » et « Parle de » ;
  * le champ d'un auteur ou d'une maison trie la liste en tapant. Au téléphone, la colonne s'ouvre en panneau plein
  * écran, fermé par « Voir les N livres ». Sans JavaScript, le formulaire s'envoie par son bouton.
  */
