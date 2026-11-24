@@ -6,9 +6,13 @@
  * @package editeurs-reunis
  */
 
+// Les collections du catalogue, lues une fois par er_roles_maisons() : posées avant le premier test.
+er_test_termes( 'er_collection', array( 'Pavillons Poche' ) );
+
 function test_noms_coupes_sur_et_virgules_et_esperluettes() {
 	egal( array( 'Hélène Henry', 'Michel Aucouturier' ), er_roles_noms( 'Hélène Henry et Michel Aucouturier' ) );
 	egal( array( 'Georges Nivat', 'Anne Coldefy-Faucard' ), er_roles_noms( 'Traduit du russe par Georges Nivat & Anne Coldefy-Faucard' ) );
+	egal( array( 'Pierre Léon' ), er_roles_noms( 'Traduit de l’anglais par Pierre Léon' ) );
 }
 
 function test_noms_ecartes_avec_leur_raison() {
@@ -54,6 +58,23 @@ function test_releve_sans_les_faux_noms_du_24_novembre() {
 	egal( array( 'Misha Zaslavsky' ), array_keys( $r['illustration'] ), '« Actes Sud BDMisha » : deux majuscules collées coupent le nom' );
 	egal( array(), $r['preface'], '« Autobiographie d’Anna Akhmatova » est un titre' );
 	egal( array(), $r['edition'], '« Pasquierь » mêle le latin et le cyrillique' );
+}
+
+function test_traducteurs_sans_les_maisons_d_edition_du_24_novembre() {
+	er_test_article(
+		104,
+		array(
+			'post_title'   => 'Vie et destin',
+			'post_content' => 'Traduit du russe par Michèle KahnRobert Laffont, Pavillons Poche. Traduit de l’anglais par Pierre Léon et Michel Lafon.',
+		)
+	);
+	$r = er_roles_releves( 104 );
+	egal( array( 'Michèle Kahn', 'Pierre Léon' ), array_keys( $r['traduction'] ), '« Traduit » avec une majuscule, sans les éditeurs collés au nom' );
+	egal( 'pas une personne', $r['ecart']['Robert Laffont'] );
+	egal( 'pas une personne', $r['ecart']['Michel Lafon'] );
+	vrai( er_roles_pas_une_personne( 'Pavillons Poche' ), 'une collection du catalogue' );
+	vrai( er_roles_pas_une_personne( 'Suivi de Le' ), 'un bout de phrase' );
+	vrai( ! er_roles_pas_une_personne( 'Hélène Henry' ), 'une personne' );
 }
 
 function test_direction_lue_dans_le_titre() {

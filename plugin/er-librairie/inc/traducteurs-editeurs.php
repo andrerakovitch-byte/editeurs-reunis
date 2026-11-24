@@ -440,7 +440,7 @@ function er_roles_noms( $texte, $titre = '', &$ecart = array() ) {
 	$texte = preg_replace( '/(?<=\p{Ll})(?=\p{Lu})/u', "\n", $texte );
 	$noms  = array();
 	foreach ( preg_split( '/\s*(?:\R|,|;|&|\/|\bet\b|\band\b|\bи\b)\s*/u', $texte ) as $nom ) {
-		$nom = preg_replace( '/^(?:trad(?:uit|uite|uction|\.)?)\s*(?:(?:du|de l[’\']|de|depuis le)\s+\p{Ll}+\s*)?(?:par|:)?\s*/iu', '', trim( $nom ) );
+		$nom = preg_replace( '/^(?:trad(?:uit|uite|uction|\.)?)\s*(?:(?:de l[’\']|(?:du|de|depuis le)\s+)\p{Ll}+\s*)?(?:par|:)?\s*/iu', '', trim( $nom ) );
 		$nom = trim( $nom, " \t\n\r\0\x0B.()[]:" );
 		if ( '' === $nom ) {
 			continue;
@@ -472,6 +472,48 @@ function er_roles_noms( $texte, $titre = '', &$ecart = array() ) {
 }
 
 /**
+ * Un nom relevé dans le texte d'un livre qui n'est pas celui d'une personne : un mot du texte collé au nom
+ * (« Collection Folio », « UN RÔLE », « Bibliothèque Rivages », « Suivi de Le »), un mot trop long pour un nom
+ * (« Pascalbibliographie »), un mot qui mêle l'alphabet latin et le cyrillique (« Pasquierь »), un titre ou une
+ * collection pris pour un nom (« Autobiographie d'Anna Akhmatova », « Albums du Père Castor »), un éditeur ou une
+ * collection du catalogue (« Robert Laffont », « Pavillons Poche »).
+ *
+ * @param string $n Le nom.
+ */
+function er_roles_pas_une_personne( $n ) {
+	if ( preg_match( '/^(?:collection|biblioth\p{L}*|aujourd\S*|le|la|les|un|une|des|du|de|suivi|[ée]ditions?|traduction|tome|volume|livre|roman|albums?|autobiographie|biographie|m[ée]moires|journal|lettres|correspondance|contes?|po[èe]mes?|po[ée]sies?|[œo]uvres?|r[ée]cits?|nouvelles|histoire|souvenirs|essais?|textes?)\b/iu', $n )
+		|| preg_match( '/\b\p{Lu}{2,}\b/u', $n )
+		|| preg_match( '/[\p{L}’\']{15,}/u', $n )
+		|| preg_match( '/(?=[\p{L}]*\p{Latin})(?=[\p{L}]*\p{Cyrillic})[\p{L}]+/u', $n ) ) {
+		return true;
+	}
+	return isset( er_roles_maisons()[ er_editeur_cle( $n ) ] );
+}
+
+/**
+ * Les éditeurs et les collections du catalogue, en clés (er_editeur_cle). Les maisons qui portent un nom de personne
+ * y sont d'office, même quand aucun livre ne les a encore pour éditeur.
+ */
+function er_roles_maisons() {
+	static $cles = null;
+	if ( null === $cles ) {
+		$noms = array( 'Robert Laffont', 'Michel Lafon', 'Albin Michel', 'Calmann-Lévy', 'Odile Jacob', 'Christian Bourgois', 'Jacqueline Chambon', 'Jean-Claude Lattès' );
+		foreach ( array( 'er_editeur', 'er_collection' ) as $taxonomie ) {
+			$termes = get_terms(
+				array(
+					'taxonomy'   => $taxonomie,
+					'hide_empty' => false,
+					'fields'     => 'names',
+				)
+			);
+			$noms   = array_merge( $noms, is_wp_error( $termes ) ? array() : $termes );
+		}
+		$cles = array_fill_keys( array_filter( array_map( 'er_editeur_cle', $noms ) ), true );
+	}
+	return $cles;
+}
+
+/**
  * Ce que le catalogue dit des rôles d'un livre : traducteurs, directeurs, éditeurs, ce qui est mis de côté.
  *
  * @param int $id Le livre.
@@ -500,9 +542,13 @@ function er_roles_releves( $id ) {
 	$post  = get_post( $id );
 	$texte = $titre . "\n" . wp_strip_all_tags( $post ? $post->post_excerpt . "\n" . $post->post_content : '' );
 	$nom   = '\p{Lu}[\p{L}’\'\-]+(?:\s+(?:de\s+|du\s+|d[’\']|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3}';
-	if ( preg_match_all( '/[Tt]radu(?:it|ite|its|ction)\s+(?:(?:du|de l[’\']|de)\s+\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
+	if ( preg_match_all( '/[Tt]radu(?:it|ite|its|ction)\s+(?:(?:de l[’\']|(?:du|de)\s+)\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
 		foreach ( $mm[1] as $trouve ) {
 			foreach ( er_roles_noms( $trouve, $titre_seul, $releve['ecart'] ) as $n ) {
+				if ( er_roles_pas_une_personne( $n ) ) {
+					$releve['ecart'][ $n ] = 'pas une personne';
+					continue;
+				}
 				if ( ! isset( $releve['traduction'][ $n ] ) ) {
 					$releve['traduction'][ $n ] = 'texte';
 				}
@@ -527,15 +573,7 @@ function er_roles_releves( $id ) {
 			// majuscules dont la seconde ouvre un mot.
 			$trouve = preg_replace( '/(?<=\p{Lu})(?=\p{Lu}\p{Ll})/u', "\n", $trouve );
 			foreach ( er_roles_noms( $trouve, $titre_seul, $ecart ) as $n ) {
-				// Ce qui n'est pas une personne : un mot du texte collé au nom (« Collection Folio », « UN RÔLE »,
-				// « Bibliothèque Rivages »), un mot trop long pour un nom (« Pascalbibliographie »), un mot qui mêle
-				// l'alphabet latin et le cyrillique (« Pasquierь »).
-				// Un titre ou une collection pris pour un nom aussi : « Autobiographie d'Anna Akhmatova », « Albums du
-				// Père Castor ».
-				if ( preg_match( '/^(?:collection|biblioth\p{L}*|aujourd\S*|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman|albums?|autobiographie|biographie|m[ée]moires|journal|lettres|correspondance|contes?|po[èe]mes?|po[ée]sies?|[œo]uvres?|r[ée]cits?|nouvelles|histoire|souvenirs|essais?|textes?)\b/iu', $n )
-					|| preg_match( '/\b\p{Lu}{2,}\b/u', $n )
-					|| preg_match( '/[\p{L}’\']{15,}/u', $n )
-					|| preg_match( '/(?=[\p{L}]*\p{Latin})(?=[\p{L}]*\p{Cyrillic})[\p{L}]+/u', $n ) ) {
+				if ( er_roles_pas_une_personne( $n ) ) {
 					continue;
 				}
 				$releve[ $role ][ $n ] = 'texte';
