@@ -7,7 +7,8 @@
  *
  * Toute la librairie, un rayon, un auteur, une langue ou une recherche : le titre, les rayons et les langues en
  * pilules, puis les livres en grand, sur toute la largeur. Pour un auteur, sa fiche (er/auteur-fiche : portrait,
- * dates, présentation, biographie, photos) remplace le titre, et ses livres viennent dessous.
+ * dates, présentation) remplace le titre ; la bande de page (son sommaire) vient dessous, puis sa biographie, ses
+ * livres, ses rôles et ce qui l'entoure (er/autour). Un rayon a sa bande : ses sous-rayons.
  *
  * @package editeurs-reunis
  */
@@ -40,12 +41,7 @@ if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
 		<!-- wp:woocommerce/breadcrumbs {"fontSize":"x-small"} /-->
 
 <?php if ( is_tax( 'auteur' ) ) : ?>
-		<!-- wp:er/auteur-fiche /-->
-	<?php if ( $er_ecrivain ) : ?>
-		<!-- wp:heading {"className":"er-auteur-livres"} -->
-		<h2 class="wp-block-heading er-auteur-livres"><?php esc_html_e( 'Ses livres', 'editeurs-reunis' ); ?></h2>
-		<!-- /wp:heading -->
-	<?php endif; ?>
+		<!-- wp:er/auteur-fiche {"partie":"tete"} /-->
 <?php elseif ( is_search() ) : ?>
 		<!-- wp:query-title {"type":"search"} /-->
 <?php else : ?>
@@ -62,6 +58,68 @@ if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
 <?php endif; ?>
 	</div>
 	<!-- /wp:group -->
+<?php
+// La bande de page, sous la tête : le sommaire d'une personne (sa biographie, ses livres, ses traductions…, ce qui
+// l'entoure au centre et au journal), ou les sous-rayons d'un rayon (inc/bande.php).
+$er_bande = '';
+if ( is_tax( 'auteur' ) && function_exists( 'er_bande_page' ) ) {
+	$er_personne = get_queried_object();
+	$er_entrees  = array();
+	if ( '' !== trim( (string) get_term_meta( $er_personne->term_id, 'er_biographie', true ) ) ) {
+		$er_entrees[] = array(
+			'texte' => __( 'Biographie', 'editeurs-reunis' ),
+			'lien'  => '#biographie',
+		);
+	}
+	if ( $er_ecrivain ) {
+		$er_entrees[] = array(
+			'texte' => __( 'Ses livres', 'editeurs-reunis' ),
+			'lien'  => '#ses-livres',
+		);
+	}
+	foreach ( array_keys( $er_roles ) as $er_titre ) {
+		$er_entrees[] = array(
+			'texte' => $er_titre,
+			'lien'  => '#' . sanitize_title( remove_accents( $er_titre ) ),
+		);
+	}
+	if ( function_exists( 'er_autour_sommaire' ) ) {
+		$er_entrees = array_merge( $er_entrees, er_autour_sommaire( $er_personne ) );
+	}
+	if ( $er_entrees ) {
+		$er_entrees[0]['courant'] = true;
+	}
+	$er_bande = er_bande_page(
+		array(
+			'maison'   => 'librairie',
+			'nom'      => $er_personne->name,
+			'sommaire' => true,
+			'entrees'  => $er_entrees,
+		)
+	);
+} elseif ( is_tax( 'product_cat' ) && function_exists( 'er_bande_rayon' ) ) {
+	$er_bande = er_bande_rayon( get_queried_object() );
+}
+if ( $er_bande ) :
+	?>
+	<!-- wp:html -->
+	<?php echo $er_bande; // phpcs:ignore WordPress.Security.EscapeOutput ?>
+	<!-- /wp:html -->
+<?php endif; ?>
+<?php if ( is_tax( 'auteur' ) ) : ?>
+
+	<!-- wp:group {"align":"wide","className":"er-auteur-suite","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide er-auteur-suite">
+		<!-- wp:er/auteur-fiche {"partie":"suite"} /-->
+	</div>
+	<!-- /wp:group -->
+	<?php if ( $er_ecrivain ) : ?>
+
+	<!-- wp:heading {"align":"wide","className":"er-auteur-livres"} -->
+	<h2 class="wp-block-heading alignwide er-auteur-livres" id="ses-livres"><?php esc_html_e( 'Ses livres', 'editeurs-reunis' ); ?></h2>
+	<!-- /wp:heading -->
+	<?php endif; ?>
+<?php endif; ?>
 <?php if ( $er_ecrivain ) : ?>
 
 	<!-- wp:group {"align":"wide","className":"er-filtres","layout":{"type":"default"}} -->
@@ -139,7 +197,7 @@ foreach ( $er_roles as $er_titre => $er_ids ) :
 	);
 	?>
 	<!-- wp:heading {"align":"wide","className":"er-auteur-livres er-auteur-livres-role"} -->
-	<h2 class="wp-block-heading alignwide er-auteur-livres er-auteur-livres-role"><?php echo esc_html( $er_titre ); ?></h2>
+	<h2 class="wp-block-heading alignwide er-auteur-livres er-auteur-livres-role" id="<?php echo esc_attr( sanitize_title( remove_accents( $er_titre ) ) ); ?>"><?php echo esc_html( $er_titre ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:woocommerce/product-collection <?php echo wp_json_encode( $er_bloc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?> -->
@@ -148,5 +206,13 @@ foreach ( $er_roles as $er_titre => $er_ids ) :
 	</div>
 	<!-- /wp:woocommerce/product-collection -->
 <?php endforeach; ?>
+<?php if ( is_tax( 'auteur' ) ) : // Ce qui l'entoure, dans la page : la bande s'accroche jusqu'au bout. ?>
+
+	<!-- wp:group {"align":"wide","className":"er-autour-auteur","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide er-autour-auteur">
+		<!-- wp:er/autour /-->
+	</div>
+	<!-- /wp:group -->
+<?php endif; ?>
 </main>
 <!-- /wp:group -->

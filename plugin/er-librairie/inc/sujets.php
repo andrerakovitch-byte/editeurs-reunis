@@ -530,6 +530,29 @@ function er_bloc_autour() {
 	if ( ! $terme instanceof WP_Term || ! in_array( $terme->taxonomy, array( 'auteur', 'er_sujet' ), true ) ) {
 		return '';
 	}
+	$sections = er_autour_sections( $terme );
+	if ( ! $sections ) {
+		return 'er_sujet' === $terme->taxonomy ? '<div class="er-autour alignwide"><p class="er-evts-vide">' . esc_html__( 'Rien encore sur ce sujet.', 'er-librairie' ) . '</p></div>' : '';
+	}
+	$html = '';
+	foreach ( $sections as $cle => list( $titre, $contenu ) ) {
+		$html .= '<section class="er-autour-section" id="' . esc_attr( 'er-autour-' . $cle ) . '"><h2 class="er-evts-titre">' . esc_html( $titre ) . '</h2>' . $contenu . '</section>';
+	}
+	return '<div class="er-autour alignwide">' . $html . '</div>';
+}
+
+/**
+ * Les parties de « tout ce qui la concerne », pour la page d'une personne ou d'un sujet : clé → [titre, contenu], dans
+ * l'ordre de la page. Calculées une fois par page : la bande de page en fait son sommaire (er_autour_sommaire()).
+ *
+ * @param WP_Term $terme La personne ou le sujet.
+ * @return array<string,array{0:string,1:string}>
+ */
+function er_autour_sections( $terme ) {
+	static $faites = array();
+	if ( isset( $faites[ $terme->term_taxonomy_id ] ) ) {
+		return $faites[ $terme->term_taxonomy_id ];
+	}
 	$sujet  = 'er_sujet' === $terme->taxonomy;
 	$sienne = array( array( 'taxonomy' => $terme->taxonomy, 'terms' => $terme->term_id ) );
 	$nombre = $sujet ? 48 : 12;
@@ -567,40 +590,50 @@ function er_bloc_autour() {
 
 	$sections = array();
 	if ( $a_venir ) {
-		$sections[] = array( __( 'Prochainement au centre', 'er-librairie' ), '<ol class="er-evts-lignes">' . implode( '', array_map( 'er_evt_ligne', $a_venir ) ) . '</ol>' );
+		$sections['a-venir'] = array( __( 'Prochainement au centre', 'er-librairie' ), '<ol class="er-evts-lignes">' . implode( '', array_map( 'er_evt_ligne', $a_venir ) ) . '</ol>' );
 	}
 	if ( $livres ) {
 		/* translators: %s: le nom de la personne */
 		$titre      = $sujet ? __( 'À la librairie', 'er-librairie' ) : sprintf( __( 'Autour de %s', 'er-librairie' ), $terme->name );
-		$sections[] = array( $titre, '<ul class="er-autour-livres">' . implode( '', array_map( 'er_carte_livre', $livres ) ) . '</ul>' );
+		$sections['livres'] = array( $titre, '<ul class="er-autour-livres">' . implode( '', array_map( 'er_carte_livre', $livres ) ) . '</ul>' );
 	}
 	if ( $passees ) {
-		$sections[] = array( $sujet ? __( 'Les rencontres', 'er-librairie' ) : __( 'Au centre', 'er-librairie' ), '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul>' );
+		$sections['rencontres'] = array( $sujet ? __( 'Les rencontres', 'er-librairie' ) : __( 'Au centre', 'er-librairie' ), '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul>' );
 	}
 	if ( $expos ) {
-		$sections[] = array( _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $expos ) ) . '</ul>' );
+		$sections['expositions'] = array( _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $expos ) ) . '</ul>' );
 	}
 	if ( $medias ) {
-		$sections[] = array( __( 'Écouter, regarder', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $medias ) ) . '</ul>' );
+		$sections['medias'] = array( __( 'Écouter, regarder', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $medias ) ) . '</ul>' );
 	}
 	if ( $articles ) {
-		$sections[] = array( __( 'Dans le journal', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $articles ) ) . '</ul>' );
+		$sections['journal'] = array( __( 'Dans le journal', 'er-librairie' ), '<ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $articles ) ) . '</ul>' );
 	}
 	if ( $pages ) {
 		$liens = '';
 		foreach ( $pages as $p ) {
 			$liens .= '<li><a href="' . esc_url( get_permalink( $p ) ) . '">' . esc_html( get_the_title( $p ) ) . '</a></li>';
 		}
-		$sections[] = array( __( 'À lire sur le site', 'er-librairie' ), '<ul class="er-autour-pages er-lien-fleche">' . $liens . '</ul>' );
+		$sections['pages'] = array( __( 'À lire sur le site', 'er-librairie' ), '<ul class="er-autour-pages er-lien-fleche">' . $liens . '</ul>' );
 	}
-	if ( ! $sections ) {
-		return $sujet ? '<div class="er-autour alignwide"><p class="er-evts-vide">' . esc_html__( 'Rien encore sur ce sujet.', 'er-librairie' ) . '</p></div>' : '';
+	$faites[ $terme->term_taxonomy_id ] = $sections;
+	return $sections;
+}
+
+/**
+ * Le sommaire de « tout ce qui la concerne », en entrées de la bande de page.
+ *
+ * @param WP_Term $terme La personne ou le sujet.
+ */
+function er_autour_sommaire( $terme ) {
+	$entrees = array();
+	foreach ( er_autour_sections( $terme ) as $cle => list( $titre ) ) {
+		$entrees[] = array(
+			'texte' => $titre,
+			'lien'  => '#er-autour-' . $cle,
+		);
 	}
-	$html = '';
-	foreach ( $sections as list( $titre, $contenu ) ) {
-		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html( $titre ) . '</h2>' . $contenu . '</section>';
-	}
-	return '<div class="er-autour alignwide">' . $html . '</div>';
+	return $entrees;
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

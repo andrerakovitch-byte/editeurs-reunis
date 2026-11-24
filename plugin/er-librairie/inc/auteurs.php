@@ -165,6 +165,12 @@ add_action(
 			'er/auteur-fiche',
 			array(
 				'api_version'     => 3,
+				'attributes'      => array(
+					'partie' => array(
+						'type'    => 'string',
+						'default' => '',
+					),
+				),
 				'render_callback' => 'er_auteur_bloc_fiche',
 			)
 		);
@@ -174,10 +180,14 @@ add_action(
 
 /**
  * La fiche de l'auteur, en tête de sa page : le portrait, le nom, ses autres graphies, ses dates, sa présentation ;
- * puis sa biographie (le début, et la suite à déplier), ses photos, ses liens.
+ * puis sa biographie (le début, et la suite à déplier), ses photos, ses liens. En deux parties (« tete », « suite »)
+ * quand la bande de page passe entre les deux (patterns/librairie.php, dans le thème) ; les deux par défaut.
+ *
+ * @param array $attributs partie : tete, suite, ou rien pour les deux.
  */
-function er_auteur_bloc_fiche() {
-	$t = get_queried_object();
+function er_auteur_bloc_fiche( $attributs = array() ) {
+	$partie = isset( $attributs['partie'] ) ? (string) $attributs['partie'] : '';
+	$t      = get_queried_object();
 	if ( ! $t instanceof WP_Term || 'auteur' !== $t->taxonomy ) {
 		return '';
 	}
@@ -200,14 +210,18 @@ function er_auteur_bloc_fiche() {
 		$tete .= '<div class="er-auteur-presentation">' . wpautop( wp_kses_post( $t->description ) ) . '</div>';
 	}
 	$tete .= '</div>';
-	$html  = '<div class="er-auteur-tete' . ( $portrait ? ' er-auteur-avec-portrait' : '' ) . '">' . $tete . '</div>';
+	$tete  = '<div class="er-auteur-tete' . ( $portrait ? ' er-auteur-avec-portrait' : '' ) . '">' . $tete . '</div>';
+	if ( 'tete' === $partie ) {
+		return '<div class="er-auteur-fiche er-auteur-fiche-tete">' . $tete . '</div>';
+	}
+	$html = 'suite' === $partie ? '' : $tete;
 
 	// La biographie : les deux premiers paragraphes, la suite à déplier.
 	$bio = trim( $meta( 'er_biographie' ) );
 	if ( '' !== $bio ) {
 		$bio      = wpautop( do_shortcode( $bio ) );
 		$morceaux = preg_split( '#(?<=</p>)#', $bio, 3 );
-		$html    .= '<section class="er-auteur-bio"><h2 class="er-evt-section">' . esc_html__( 'Biographie', 'er-librairie' ) . '</h2>';
+		$html    .= '<section class="er-auteur-bio" id="biographie"><h2 class="er-evt-section">' . esc_html__( 'Biographie', 'er-librairie' ) . '</h2>';
 		if ( count( $morceaux ) > 2 && strlen( wp_strip_all_tags( $morceaux[2] ) ) > 200 ) {
 			$html .= '<div class="er-auteur-bio-texte">' . $morceaux[0] . $morceaux[1] . '</div>'
 				. '<details class="er-auteur-bio-suite"><summary>' . esc_html__( 'Lire toute la biographie', 'er-librairie' ) . '</summary><div class="er-auteur-bio-texte">' . $morceaux[2] . '</div></details>';
@@ -219,7 +233,7 @@ function er_auteur_bloc_fiche() {
 
 	$photos = array_filter( array_map( 'absint', explode( ',', $meta( 'er_photos' ) ) ) );
 	if ( $photos ) {
-		$html .= '<section class="er-auteur-photos"><h2 class="er-evt-section">' . esc_html__( 'Photos', 'er-librairie' ) . '</h2><ul>';
+		$html .= '<section class="er-auteur-photos" id="photos"><h2 class="er-evt-section">' . esc_html__( 'Photos', 'er-librairie' ) . '</h2><ul>';
 		foreach ( $photos as $p ) {
 			$legende = wp_get_attachment_caption( $p );
 			$html   .= '<li><figure><a href="' . esc_url( (string) wp_get_attachment_image_url( $p, 'full' ) ) . '">' . wp_get_attachment_image( $p, 'medium_large', false, array( 'loading' => 'lazy' ) ) . '</a>'
@@ -245,7 +259,10 @@ function er_auteur_bloc_fiche() {
 	if ( $liens ) {
 		$html .= '<section class="er-auteur-liens"><h2 class="er-evt-section">' . esc_html__( 'Pour aller plus loin', 'er-librairie' ) . '</h2><ul class="er-lien-fleche">' . implode( '', $liens ) . '</ul></section>';
 	}
-	return '<div class="er-auteur-fiche">' . $html . '</div>';
+	if ( '' === $html ) {
+		return '';
+	}
+	return '<div class="er-auteur-fiche' . ( 'suite' === $partie ? ' er-auteur-fiche-suite' : '' ) . '">' . $html . '</div>';
 }
 
 /**

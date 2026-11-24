@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 require get_template_directory() . '/inc/recherche.php';
 require get_template_directory() . '/inc/entete.php';
+require get_template_directory() . '/inc/bande.php';
 
 add_action(
 	'after_setup_theme',
@@ -37,6 +38,17 @@ add_action(
 			get_theme_file_uri( 'assets/js/menu-librairie.js' ),
 			array(),
 			$version,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		// La bande de page (inc/bande.php) : accrochée, le nom de la page, le trait qui suit la lecture, les menus.
+		wp_enqueue_script(
+			'editeurs-reunis-bande',
+			get_theme_file_uri( 'assets/js/bande.js' ),
+			array(),
+			$version . '.' . filemtime( get_theme_file_path( 'assets/js/bande.js' ) ),
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

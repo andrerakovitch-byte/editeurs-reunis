@@ -1534,6 +1534,15 @@ T = {
     (None, 'Collection'): ('Series', 'Серия'),
     (None, 'Reprendre'): ('Resume', 'Продолжить'),
     (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
+    # La bande de page (inc/bande.php et ses usages).
+    (None, 'Dans cette page'): ('On this page', 'На этой странице'),
+    ('bande de page, un groupe replié et son entrée choisie', '%1$s : %2$s'): ('%1$s: %2$s', '%1$s: %2$s'),
+    (None, 'Passées'): ('Past', 'Прошедшие'),
+    (None, 'Plus anciennes'): ('Earlier', 'Более ранние'),
+    (None, 'avec une vidéo'): ('with a video', 'с видео'),
+    (None, 'Les rencontres du centre'): ('The centre’s events', 'Встречи центра'),
+    (None, 'Les horaires →'): ('Opening hours →', 'Часы работы →'),
+    (None, 'Les expositions du centre'): ('The centre’s exhibitions', 'Выставки центра'),
     (None, 'Une bougie derrière une vitre givrée : l’image que le roman a rendue célèbre.'):
         ('A candle behind a frosted window: the image the novel made famous.',
          'Свеча за заиндевевшим окном — образ, который роман сделал знаменитым.'),

@@ -747,29 +747,48 @@ function er_expo_bloc_liste() {
 		}
 	}
 	krsort( $annees );
-	$ligne = '<span class="er-j-contexte-titre">' . esc_html__( 'En ce moment', 'er-librairie' ) . '</span>';
+	// La bande de la page (la bande de page du thème) : en ce moment, à venir ; les expositions passées, toutes, par
+	// année (les quatre dernières dépliées), par technique (repliées) ; à droite, les horaires.
+	$entrees = array();
 	if ( $en_cours ) {
-		foreach ( $en_cours as $e ) {
-			$ligne .= '<a href="' . esc_url( get_permalink( $e ) ) . '" class="er-j-oeuvre">' . esc_html( get_the_title( $e ) ) . '</a>';
-		}
-	} else {
-		$ligne .= '<span class="er-x-rien">' . esc_html( $a_venir ? __( 'Pas d’exposition ; la prochaine est annoncée plus bas', 'er-librairie' ) : __( 'Pas d’exposition', 'er-librairie' ) ) . '</span>';
+		$entrees[] = array(
+			'texte' => __( 'En ce moment', 'er-librairie' ),
+			'lien'  => '#en-ce-moment',
+		);
+	}
+	if ( $a_venir ) {
+		$entrees[] = array(
+			'texte' => __( 'À venir', 'er-librairie' ),
+			'lien'  => '#a-venir',
+		);
 	}
 	if ( $annees ) {
-		$ligne .= '<span class="er-j-sep" aria-hidden="true"></span><span class="er-j-contexte-titre">' . esc_html__( 'Les années', 'er-librairie' ) . '</span>';
-		foreach ( $annees as $an => $n ) {
-			$ligne .= '<a href="' . esc_url( add_query_arg( 'annee', $an, $ici ) ) . '"' . ( (int) $an === $annee ? ' class="est-actif" aria-current="page"' : '' ) . '>' . esc_html( (string) $an ) . '<span class="er-j-n">' . (int) $n . '</span></a>';
+		if ( $entrees ) {
+			$entrees[] = array( 'separateur' => true );
 		}
+		$entrees[] = array( 'groupe' => __( 'Passées', 'er-librairie' ) );
+		$entrees[] = array(
+			'texte'   => __( 'Toutes', 'er-librairie' ),
+			'lien'    => $ici . '#passees',
+			'courant' => ! $annee && ! $tech,
+		);
+		$entrees = array_merge( $entrees, ! function_exists( 'er_bande_annees' ) ? array() : er_bande_annees( array_keys( $annees ), fn( $an ) => add_query_arg( 'annee', $an, $ici ) . '#passees', $annee ? (string) $annee : '', __( 'Plus anciennes', 'er-librairie' ) ) );
 	}
 	if ( $techs ) {
-		$ligne .= '<span class="er-j-sep" aria-hidden="true"></span><span class="er-j-contexte-titre">' . esc_html__( 'Les techniques', 'er-librairie' ) . '</span>';
-		foreach ( $techs as $slug => $nom ) {
-			$ligne .= '<a href="' . esc_url( add_query_arg( 'technique', $slug, $ici ) ) . '"' . ( $slug === $tech ? ' class="est-actif" aria-current="page"' : '' ) . '>' . esc_html( $nom ) . '</a>';
-		}
+		$entrees[] = array(
+			'menu'    => __( 'Les techniques', 'er-librairie' ),
+			'entrees' => array_map(
+				fn( $slug, $nom ) => array(
+					'texte'   => $nom,
+					'lien'    => add_query_arg( 'technique', $slug, $ici ) . '#passees',
+					'courant' => $slug === $tech,
+				),
+				array_keys( $techs ),
+				$techs
+			),
+		);
 	}
-	if ( $annee || $tech ) {
-		$ligne .= '<span class="er-j-sep" aria-hidden="true"></span><a href="' . esc_url( $ici ) . '" class="er-j-souligne">' . esc_html__( 'Toutes', 'er-librairie' ) . '</a>';
-	}
+	$trouver = get_page_by_path( 'nous-trouver' );
 	// La tête, 7 | 5 : le titre de la page, sa phrase (le résumé de la page, sinon ce qu'on accroche et depuis quand).
 	$page   = get_post();
 	$phrase = $page && 'page' === $page->post_type ? trim( $page->post_excerpt ) : '';
@@ -783,11 +802,23 @@ function er_expo_bloc_liste() {
 	}
 	$html = '<div class="er-x-liste alignfull">'
 		. '<section class="er-x-tete"><div class="er-j-g"><h1 class="er-x-page-titre">' . esc_html( $page ? get_the_title( $page ) : __( 'Nos expositions', 'er-librairie' ) ) . '</h1><p class="er-x-page-phrase">' . esc_html( $phrase ) . '</p></div></section>'
-		. '<div class="er-j-g"><nav class="er-j-contexte er-x-reperes" aria-label="' . esc_attr__( 'Repères', 'er-librairie' ) . '">' . $ligne . '</nav></div>';
+		. ( function_exists( 'er_bande_page' )
+			? er_bande_page(
+				array(
+					'maison'  => 'centre',
+					'nom'     => $page ? html_entity_decode( get_the_title( $page ), ENT_QUOTES, 'UTF-8' ) : __( 'Nos expositions', 'er-librairie' ),
+					'entrees' => $entrees,
+					'action'  => $trouver ? array( 'texte' => __( 'Les horaires →', 'er-librairie' ), 'lien' => get_permalink( $trouver ) ) : null,
+					'libelle' => __( 'Les expositions du centre', 'er-librairie' ),
+				)
+			)
+			: '' );
 
 	// Ce qui est accroché, et ce qui le sera : sur l'aplat du centre.
-	foreach ( array_merge( $en_cours, $a_venir ) as $e ) {
-		$html .= er_expo_affiche( $e->ID );
+	foreach ( array( 'en-ce-moment' => $en_cours, 'a-venir' => $a_venir ) as $ancre => $liste ) {
+		foreach ( $liste as $i => $e ) {
+			$html .= ( 0 === $i ? '<div id="' . $ancre . '" class="er-x-ancre"></div>' : '' ) . er_expo_affiche( $e->ID );
+		}
 	}
 
 	// Les expositions passées, filtrées.
@@ -805,7 +836,7 @@ function er_expo_bloc_liste() {
 		}
 	);
 	if ( $passees ) {
-		$html .= '<section class="er-x-passees"><div class="er-j-g"><div class="er-j-titre-sec er-j-plein"><h2>' . esc_html__( 'Les expositions passées', 'er-librairie' ) . '</h2><span>' . esc_html__( 'De la plus récente à la plus ancienne', 'er-librairie' ) . '</span></div>';
+		$html .= '<section class="er-x-passees" id="passees"><div class="er-j-g"><div class="er-j-titre-sec er-j-plein"><h2>' . esc_html__( 'Les expositions passées', 'er-librairie' ) . '</h2><span>' . esc_html__( 'De la plus récente à la plus ancienne', 'er-librairie' ) . '</span></div>';
 		foreach ( $passees as $e ) {
 			$html .= er_expo_cartel( $e->ID );
 		}

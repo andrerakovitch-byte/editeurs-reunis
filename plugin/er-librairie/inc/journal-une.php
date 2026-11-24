@@ -355,11 +355,13 @@ function er_journal_tete() {
 	$page   = (int) get_option( 'page_for_posts' );
 	$titre  = $page ? get_the_title( $page ) : __( 'Le journal du centre', 'er-librairie' );
 	$titre  = '<a href="' . esc_url( er_journal_lien() ) . '">' . esc_html( html_entity_decode( $titre, ENT_QUOTES, 'UTF-8' ) ) . '</a>';
-	$onglet = function ( $lien, $texte, $actif ) {
-		return '<a class="er-j-onglet' . ( $actif ? ' est-actif' : '' ) . '" href="' . esc_url( $lien ) . '"' . ( $actif ? ' aria-current="page"' : '' ) . '>' . esc_html( $texte ) . '</a>';
-	};
-
-	$onglets = $onglet( er_journal_lien(), __( 'À la une', 'er-librairie' ), 'une' === $vue );
+	$entrees = array(
+		array(
+			'texte'   => __( 'À la une', 'er-librairie' ),
+			'lien'    => er_journal_lien(),
+			'courant' => 'une' === $vue,
+		),
+	);
 	$genres  = get_terms( array( 'taxonomy' => 'er_genre', 'hide_empty' => true ) );
 	$genres  = is_wp_error( $genres ) ? array() : $genres;
 	$ordre   = array_keys( er_genres() );
@@ -374,12 +376,21 @@ function er_journal_tete() {
 	foreach ( $genres as $g ) {
 		$lien = get_term_link( $g );
 		if ( ! is_wp_error( $lien ) ) {
-			$onglets .= $onglet( $lien, er_journal_genre_pluriel( $g ), 'genre' === $quoi && $objet && $objet->term_id === $g->term_id );
+			$entrees[] = array(
+				'texte'   => er_journal_genre_pluriel( $g ),
+				'lien'    => $lien,
+				'courant' => 'genre' === $quoi && $objet && $objet->term_id === $g->term_id,
+			);
 		}
 	}
 	$russes = get_posts( array( 'post_type' => 'post', 'numberposts' => 1, 'fields' => 'ids', 'meta_query' => array( array( 'key' => 'er_langues', 'value' => 'ru', 'compare' => 'LIKE' ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
 	if ( $russes ) {
-		$onglets .= $onglet( er_journal_lien( array( 'en' => 'russe' ) ), __( 'En russe', 'er-librairie' ), 'russe' === $quoi );
+		$entrees[] = array( 'separateur' => true );
+		$entrees[] = array(
+			'texte'   => __( 'En russe', 'er-librairie' ),
+			'lien'    => er_journal_lien( array( 'en' => 'russe' ) ),
+			'courant' => 'russe' === $quoi,
+		);
 	}
 
 	// « Le centre culturel · Depuis 2020 · 67 textes »
@@ -394,15 +405,24 @@ function er_journal_tete() {
 	$faits[] = sprintf( _n( '%d texte', '%d textes', $total, 'er-librairie' ), $total );
 
 	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; « Журнал » en grand, presque effacé, en
-	// décor. Les sujets sont sous le fil, à la une. Les genres en onglets à son pied, le sous-menu du journal (le
-	// troisième niveau du système) : une bande à part, sœur du bandeau, pour pouvoir rester accrochée sous la ligne du
-	// centre quand on fait défiler (le thème, style.css).
+	// décor. Les sujets sont sous le fil, à la une. Les genres à son pied, dans la bande de page (le troisième niveau,
+	// le même sur tout le site : er_bande_page(), dans le thème), sœur du bandeau, qui s'accroche sous la ligne du
+	// centre quand on fait défiler.
 	return '<section class="er-j-tete alignfull"><span class="er-j-lettre" lang="ru" aria-hidden="true">Журнал</span><div class="er-j-g">'
 		. '<p class="er-j-faits"><span class="er-j-point" aria-hidden="true"></span>' . esc_html( implode( ' · ', $faits ) ) . '</p>'
 		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
 		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
 		. '</div></section>'
-		. '<nav class="er-j-genres-bande alignfull" aria-label="' . esc_attr__( 'Les genres du journal', 'er-librairie' ) . '"><div class="er-j-g"><div class="er-j-genres">' . $onglets . '</div></div></nav>'
+		. ( function_exists( 'er_bande_page' )
+			? er_bande_page(
+				array(
+					'maison'  => 'centre',
+					'nom'     => html_entity_decode( $page ? get_the_title( $page ) : __( 'Le journal du centre', 'er-librairie' ), ENT_QUOTES, 'UTF-8' ),
+					'entrees' => $entrees,
+					'libelle' => __( 'Les genres du journal', 'er-librairie' ),
+				)
+			)
+			: '' )
 		. er_journal_contexte( $vue, $quoi, $objet );
 }
 

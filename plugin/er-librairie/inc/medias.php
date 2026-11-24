@@ -294,14 +294,33 @@ function er_media_bloc_liste( $genre ) {
 		unset( $groupes[ $autres ] );
 		$groupes[ $autres ] = $fin;
 	}
-	$html = '';
+	$html    = '';
+	$entrees = array();
 	foreach ( $groupes as $nom => $liste ) {
 		if ( $autres !== $nom && $liste !== $rencontres ) {
 			usort( $liste, fn( $x, $y ) => strnatcasecmp( $x->post_title, $y->post_title ) ); // Épisode 1, 2… 10.
 		}
-		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html( $nom ) . '</h2><ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $liste ) ) . '</ul></section>';
+		$ancre     = 'er-serie-' . sanitize_title( remove_accents( $nom ) );
+		$entrees[] = array(
+			'texte'   => $nom,
+			'lien'    => '#' . $ancre,
+			'courant' => ! $entrees,
+		);
+		$html .= '<section class="er-autour-section" id="' . esc_attr( $ancre ) . '"><h2 class="er-evts-titre">' . esc_html( $nom ) . '</h2><ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $liste ) ) . '</ul></section>';
 	}
-	return '<div class="er-autour alignwide">' . $html . '</div>';
+	// La bande de la page (la bande de page du thème) : les séries, en sommaire.
+	$page  = get_post();
+	$bande = function_exists( 'er_bande_page' ) && count( $entrees ) > 1
+		? er_bande_page(
+			array(
+				'maison'   => 'centre',
+				'nom'      => $page && 'page' === $page->post_type ? html_entity_decode( get_the_title( $page ), ENT_QUOTES, 'UTF-8' ) : ( 'podcast' === $genre ? __( 'Nos podcasts', 'er-librairie' ) : __( 'Nos vidéos', 'er-librairie' ) ),
+				'sommaire' => true,
+				'entrees'  => $entrees,
+			)
+		)
+		: '';
+	return $bande . '<div class="er-autour alignwide">' . $html . '</div>';
 }
 
 /* L'import -------------------------------------------------------------------------------------------------------

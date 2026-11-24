@@ -1018,6 +1018,74 @@ function er_evt_carte( $p ) {
 }
 
 /**
+ * La bande de la page « Nos événements » (la bande de page du thème, er_bande_page()) : à venir ; les années passées,
+ * les quatre dernières dépliées, les autres sous « Plus anciennes » ; avec une vidéo ; les cycles, repliés.
+ *
+ * @param array $criteres annee, cycle, video : ce que la page montre.
+ */
+function er_evt_bande( $criteres ) {
+	if ( ! function_exists( 'er_bande_page' ) ) {
+		return '';
+	}
+	$choisi  = $criteres['annee'] || $criteres['cycle'] || $criteres['video'];
+	$entrees = array(
+		array(
+			'texte'   => __( 'À venir', 'er-librairie' ),
+			'lien'    => er_evt_page_liste() . '#a-venir',
+			'courant' => ! $choisi,
+		),
+	);
+	$annees = er_evt_annees();
+	if ( $annees ) {
+		$entrees[] = array( 'separateur' => true );
+		$entrees[] = array( 'groupe' => __( 'Passées', 'er-librairie' ) );
+		$entrees   = array_merge(
+			$entrees,
+			er_bande_annees(
+				$annees,
+				fn( $a ) => er_evt_page_liste( array( 'annee' => $a ) ) . '#archive',
+				$criteres['cycle'] || $criteres['video'] ? '' : $criteres['annee'],
+				__( 'Plus anciennes', 'er-librairie' )
+			)
+		);
+		$entrees[] = array( 'separateur' => true );
+		$entrees[] = array(
+			'texte'   => __( 'Avec une vidéo', 'er-librairie' ),
+			'lien'    => er_evt_page_liste( array( 'video' => '1' ) ) . '#archive',
+			'courant' => (bool) $criteres['video'],
+		);
+		$cycles = get_terms(
+			array(
+				'taxonomy'   => 'er_cycle',
+				'hide_empty' => true,
+			)
+		);
+		if ( $cycles && ! is_wp_error( $cycles ) ) {
+			$entrees[] = array(
+				'menu'    => __( 'Les cycles', 'er-librairie' ),
+				'entrees' => array_map(
+					fn( $c ) => array(
+						'texte'   => $c->name,
+						'lien'    => er_evt_page_liste( array( 'cycle' => $c->slug ) ) . '#archive',
+						'courant' => $c->slug === $criteres['cycle'],
+					),
+					$cycles
+				),
+			);
+		}
+	}
+	$page = get_page_by_path( 'centre-culturel/evenements' );
+	return er_bande_page(
+		array(
+			'maison'  => 'centre',
+			'nom'     => $page ? html_entity_decode( get_the_title( $page ), ENT_QUOTES, 'UTF-8' ) : __( 'Nos événements', 'er-librairie' ),
+			'entrees' => $entrees,
+			'libelle' => __( 'Les rencontres du centre', 'er-librairie' ),
+		)
+	);
+}
+
+/**
  * La liste de la page « Nos événements » : les rencontres à venir (cette semaine, la semaine prochaine, plus tard),
  * puis les rencontres passées, par année, avec un cycle ou les vidéos seulement.
  */
@@ -1029,11 +1097,11 @@ function er_evt_bloc_liste() {
 		'video' => ! empty( $_GET['video'] ) ? '1' : '',
 	);
 	// phpcs:enable
-	$html = '<div class="er-evts alignwide">';
+	$html = er_evt_bande( $criteres ) . '<div class="er-evts alignwide">';
 
 	// À venir.
 	$a_venir = er_evt_requete( true );
-	$html   .= '<section class="er-evts-section er-evts-a-venir"><h2 class="er-evts-titre">' . esc_html__( 'À venir', 'er-librairie' ) . '</h2>';
+	$html   .= '<section class="er-evts-section er-evts-a-venir" id="a-venir"><h2 class="er-evts-titre">' . esc_html__( 'À venir', 'er-librairie' ) . '</h2>';
 	if ( $a_venir ) {
 		$maintenant = new DateTimeImmutable( 'now', er_evt_fuseau() );
 		$dimanche   = $maintenant->modify( 'sunday this week' )->setTime( 23, 59 );
@@ -1068,30 +1136,15 @@ function er_evt_bloc_liste() {
 		$criteres['annee'] = $annees[0];
 	}
 	$passees = er_evt_requete( false, $criteres );
-	$pilule  = function ( $texte, $lien_criteres, $actif ) {
-		return '<li><a class="er-evts-pilule" href="' . esc_url( er_evt_page_liste( $lien_criteres ) . '#archive' ) . '"' . ( $actif ? ' aria-current="true"' : '' ) . '>' . esc_html( $texte ) . '</a></li>';
-	};
-	$html .= '<section class="er-evts-section er-evts-archive" id="archive"><h2 class="er-evts-titre">' . esc_html__( 'Les rencontres passées', 'er-librairie' ) . '</h2>';
-	$html .= '<nav class="er-evts-filtres" aria-label="' . esc_attr__( 'Les rencontres passées', 'er-librairie' ) . '"><ul class="er-pilules er-evts-pilules">';
-	foreach ( $annees as $a ) {
-		$html .= $pilule( $a, array( 'annee' => $a ), $a === $criteres['annee'] && ! $criteres['cycle'] && ! $criteres['video'] );
+	// Ce que montre l'archive, choisi dans la bande : une année, un cycle, les vidéos.
+	$quoi = $criteres['annee'];
+	if ( $criteres['cycle'] ) {
+		$cycle = get_term_by( 'slug', $criteres['cycle'], 'er_cycle' );
+		$quoi  = $cycle ? $cycle->name : '';
+	} elseif ( $criteres['video'] ) {
+		$quoi = __( 'avec une vidéo', 'er-librairie' );
 	}
-	$html .= $pilule( __( 'Avec une vidéo', 'er-librairie' ), array( 'video' => '1' ), (bool) $criteres['video'] );
-	$html .= '</ul>';
-	$cycles = get_terms(
-		array(
-			'taxonomy'   => 'er_cycle',
-			'hide_empty' => true,
-		)
-	);
-	if ( $cycles && ! is_wp_error( $cycles ) ) {
-		$html .= '<ul class="er-pilules er-evts-pilules er-evts-cycles"><li class="er-evts-filtres-libelle">' . esc_html__( 'Les cycles', 'er-librairie' ) . '</li>';
-		foreach ( $cycles as $c ) {
-			$html .= $pilule( $c->name, array( 'cycle' => $c->slug ), $c->slug === $criteres['cycle'] );
-		}
-		$html .= '</ul>';
-	}
-	$html .= '</nav>';
+	$html .= '<section class="er-evts-section er-evts-archive" id="archive"><h2 class="er-evts-titre">' . esc_html__( 'Les rencontres passées', 'er-librairie' ) . ( $quoi ? ' · ' . esc_html( $quoi ) : '' ) . '</h2>';
 	/* translators: %d: le nombre de rencontres */
 	$html .= '<p class="er-evts-compte">' . esc_html( sprintf( _n( '%d rencontre', '%d rencontres', count( $passees ), 'er-librairie' ), count( $passees ) ) ) . '</p>';
 	$html .= $passees ? '<ul class="er-evts-grille">' . implode( '', array_map( 'er_evt_carte', $passees ) ) . '</ul>' : '';

@@ -712,3 +712,65 @@ function er_audit() {
  * Le rapport des recoupements, en lecture seule : wp er audit.
  */
 WP_CLI::add_command( 'er audit', 'er_audit' );
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	/**
+	 * Montre la bande de page de quelques pages, telle que le site la sert : wp er bande [<chemin>…]. Sans chemin, les
+	 * pages qui doivent en avoir une (un rayon, une personne, un sujet, les rencontres, les expositions, le journal…).
+	 *
+	 * @param array $args Les chemins.
+	 */
+	WP_CLI::add_command(
+		'er bande',
+		function ( $args ) {
+			$chemins = $args;
+			if ( ! $chemins ) {
+				$chemins = array( 'centre-culturel/evenements/', 'centre-culturel/expositions/', 'journal/', 'ymca-press/histoire/', 'librairie/encyclopedie/age-d-argent/', 'nous-trouver/', 'centre-culturel/videos/' );
+				$rayon   = get_term_by( 'slug', 'litterature', 'product_cat' );
+				if ( $rayon ) {
+					$chemins[] = wp_make_link_relative( get_term_link( $rayon ) );
+				}
+				foreach ( array( 'georges-nivat', 'alexandre-soljenitsyne' ) as $slug ) {
+					$t = get_term_by( 'slug', $slug, 'auteur' );
+					if ( $t ) {
+						$chemins[] = wp_make_link_relative( get_term_link( $t ) );
+					}
+				}
+				$sujets = get_terms( array( 'taxonomy' => 'er_sujet', 'number' => 1, 'orderby' => 'count', 'order' => 'DESC' ) );
+				if ( $sujets && ! is_wp_error( $sujets ) ) {
+					$chemins[] = wp_make_link_relative( get_term_link( $sujets[0] ) );
+				}
+			}
+			foreach ( $chemins as $chemin ) {
+				$url = 0 === strpos( $chemin, 'http' ) ? $chemin : home_url( '/' . ltrim( $chemin, '/' ) );
+				$r   = wp_remote_get( $url, array( 'timeout' => 30, 'sslverify' => false, 'redirection' => 3 ) );
+				if ( is_wp_error( $r ) ) {
+					WP_CLI::log( $chemin . ' : ' . $r->get_error_message() );
+					continue;
+				}
+				$html = wp_remote_retrieve_body( $r );
+				$n    = preg_match_all( '#<nav class="er-bande ([^"]*)"[^>]*>(.*?)</nav>#s', $html, $m, PREG_SET_ORDER );
+				WP_CLI::log( $chemin . ' · ' . wp_remote_retrieve_response_code( $r ) . ' · ' . $n . ' bande' . ( $n > 1 ? 's' : '' ) );
+				foreach ( $m as $x ) {
+					preg_match( '#er-bande-nom-texte">([^<]*)<#', $x[2], $nom );
+					preg_match_all( '#<li class="er-bande-(groupe|sep)"[^>]*>([^<]*)</li>|<a class="er-bande-lien"[^>]*?(aria-current="[^"]*")?>(?:<span class="er-bande-avant">([^<]*)</span>)?<span>([^<]*)</span>|<button[^>]*class="er-bande-lien[^"]*"[^>]*><span>([^<]*)</span>#', $x[2], $e, PREG_SET_ORDER );
+					$entrees = array();
+					foreach ( $e as $y ) {
+						if ( ! empty( $y[1] ) ) {
+							$entrees[] = 'sep' === $y[1] ? '|' : strtoupper( $y[2] );
+						} elseif ( ! empty( $y[6] ) ) {
+							$entrees[] = $y[6] . ' ▾';
+						} else {
+							$entrees[] = ( empty( $y[4] ) ? '' : $y[4] . ' ' ) . html_entity_decode( $y[5], ENT_QUOTES, 'UTF-8' ) . ( empty( $y[3] ) ? '' : ' •' );
+						}
+					}
+					WP_CLI::log( '  [' . trim( $x[1] ) . '] ' . ( $nom ? html_entity_decode( $nom[1], ENT_QUOTES, 'UTF-8' ) . ' : ' : '' ) . implode( ' · ', $entrees ) );
+				}
+				// L'accroche : la bande doit être l'enfant d'un contenant qui va jusqu'au bout de la page.
+				if ( $n && preg_match( '#<(\w+)([^>]*)>\s*(?:<!--[^>]*-->\s*)*<div class="er-bande-repere"#', $html, $p ) ) {
+					WP_CLI::log( '  dans <' . $p[1] . ( preg_match( '#class="([^"]*)"#', $p[2], $c ) ? ' class="' . $c[1] . '"' : '' ) . '>' );
+				}
+			}
+		}
+	);
+}

@@ -38,7 +38,10 @@
 				{ "slug": "maison-centre", "name": "Maison · centre culturel, bleu nuit", "color": "#101642" },
 				{ "slug": "point-librairie", "name": "Point · librairie, sur le noir", "color": "#5A9C8C" },
 				{ "slug": "point-ymca", "name": "Point · YMCA-Press, sur le noir", "color": "#B8744A" },
-				{ "slug": "point-centre", "name": "Point · centre culturel, sur le noir", "color": "#5465EA" }
+				{ "slug": "point-centre", "name": "Point · centre culturel, sur le noir", "color": "#5465EA" },
+				{ "slug": "teinte-librairie", "name": "Teinte · librairie, la bande de page", "color": "#E6F0EE" },
+				{ "slug": "teinte-ymca", "name": "Teinte · YMCA-Press, la bande de page", "color": "#F4EAE4" },
+				{ "slug": "teinte-centre", "name": "Teinte · centre culturel, la bande de page", "color": "#E5E8FC" }
 			]
 		},
 		"typography": {
