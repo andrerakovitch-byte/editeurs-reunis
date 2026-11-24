@@ -88,8 +88,13 @@ def capturer(page, url, largeur, css_avant, css_apres):
         page.wait_for_function('[...document.images].every(i => i.complete)', timeout=30000)
     except Exception:  # une image qui ne vient pas : on compare quand même
         pass
+    page.evaluate('document.fonts.ready.then(() => true)')
     page.wait_for_timeout(600)
     avant = cliche(page)
+    # Le témoin : la même page, sans rien changer. S'il diffère de la première image, la page bouge toute seule
+    # (un carrousel, une vidéo) : l'écart avant/après se compare au témoin, pas à la première image.
+    page.wait_for_timeout(600)
+    temoin = cliche(page)
     page.evaluate("""(css) => {
         const liens = [...document.querySelectorAll('link[rel="stylesheet"]')].filter(l => l.href.includes('/themes/editeurs-reunis/'));
         const style = document.createElement('style');
@@ -97,8 +102,9 @@ def capturer(page, url, largeur, css_avant, css_apres):
         liens[0].after(style);
         liens.forEach(l => { l.disabled = true; });
     }""", css_apres)
-    page.wait_for_timeout(400)
-    return avant, cliche(page)
+    page.evaluate('document.fonts.ready.then(() => true)')
+    page.wait_for_timeout(600)
+    return avant, temoin, cliche(page)
 
 
 def ecart(a, b):
@@ -146,12 +152,13 @@ def main():
             url = args.site + chemin
             for largeur in LARGEURS:
                 try:
-                    a, b = capturer(page, url, largeur, css_avant, css_apres)
+                    a, t, b = capturer(page, url, largeur, css_avant, css_apres)
                 except Exception as erreur:  # une page qui ne répond pas n'arrête pas les autres
-                    lignes.append((chemin, largeur, None, str(erreur)[:120]))
+                    lignes.append((chemin, largeur, None, str(erreur).split('\n')[0][:120]))
                     continue
-                part, a2, b2, diff = ecart(a, b)
-                lignes.append((chemin, largeur, part, ''))
+                bruit = ecart(a, t)[0]
+                part, a2, b2, diff = ecart(t, b)
+                lignes.append((chemin, largeur, part, f'bruit {bruit:.2%}' if bruit >= args.seuil else ''))
                 if part >= args.seuil:
                     planches.append((part, chemin, largeur, a2, b2, diff))
         nav.close()
@@ -164,13 +171,15 @@ def main():
     with open(os.path.join(args.sortie, 'rapport.md'), 'w', encoding='utf-8') as f:
         f.write(f'# Captures : {args.avant} → {args.apres}\n\n')
         ecarts = [x for x in lignes if x[2] is not None and x[2] >= args.seuil]
-        f.write(f'{len(PAGES)} pages, {len(LARGEURS)} largeurs : {len(ecarts)} écarts sur {len(lignes)} rendus.\n\n')
+        instables = [x for x in lignes if x[3].startswith('bruit')]
+        f.write(f'{len(PAGES)} pages, {len(LARGEURS)} largeurs : {len(ecarts)} écarts sur {len(lignes)} rendus ; '
+                f'{len(instables)} rendus bougent tout seuls (le « bruit » : deux images de la même page, sans rien changer).\n\n')
         f.write('| Page | Largeur | Pixels changés | Planche |\n| --- | --- | --- | --- |\n')
-        for chemin, largeur, part, erreur in lignes:
-            if erreur:
-                f.write(f'| {chemin} | {largeur} | erreur : {erreur} | |\n')
+        for chemin, largeur, part, note in lignes:
+            if part is None:
+                f.write(f'| {chemin} | {largeur} | erreur : {note} | |\n')
             elif part >= args.seuil:
-                f.write(f'| {chemin} | {largeur} | {part:.2%} | {noms.get((chemin, largeur), "")} |\n')
+                f.write(f'| {chemin} | {largeur} | {part:.2%} {note} | {noms.get((chemin, largeur), "")} |\n')
     print(open(os.path.join(args.sortie, 'rapport.md'), encoding='utf-8').read())
 
 

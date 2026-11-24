@@ -1,6 +1,6 @@
 # Compare le rendu des pages de la bêta avec deux versions des feuilles de style du thème (outils/captures.py), à
 # plusieurs largeurs d'écran : ce qui a bougé, page par page. Le rapport et les planches vont sur la branche
-# « captures/<avant>-<après> » (des pages publiques de la bêta, rien d'autre), que Claude lit par git.
+# « captures-<avant>-<après> » (des pages publiques de la bêta, rien d'autre), que Claude lit par git.
 name: Comparer les captures
 
 on:
@@ -44,6 +44,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -q -m "Captures : $AVANT → $APRES"
-          BRANCHE="captures/$(printf '%s' "$AVANT-$APRES" | tr -c 'a-zA-Z0-9-' '-' | cut -c1-60)"
+          BRANCHE="captures-$(printf '%s' "$AVANT-$APRES" | tr -c 'a-zA-Z0-9-' '-' | cut -c1-60)"
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "HEAD:$BRANCHE"
           echo "Sur la branche $BRANCHE" >> "$GITHUB_STEP_SUMMARY"
