@@ -139,11 +139,14 @@
 .er-livres--liste .er-carte__mentions:empty { display: none; }
 .er-livres--liste .er-carte__titre { margin: 0; font-size: 0.9375rem; line-height: 1.35; }
 .er-livres--liste .er-carte__presse { display: none; }
-@media (min-width: 782px) {
+/* La liste suit la largeur de la grille (une requête de conteneur) : neuf colonnes quand elle a la place, sept
+   (sans la maison ni les pages) quand elle est plus étroite, une fiche courte au téléphone. */
+.er-rayonnage__livres { container: livres / inline-size; }
+@container livres (min-width: 40rem) {
 	.er-livres--liste > .er-liste-tete,
 	.er-livres--liste .er-carte {
 		display: grid;
-		grid-template-columns: 3.5rem minmax(0, 2.4fr) minmax(0, 1.5fr) minmax(0, 1.2fr) 3.25rem 3.75rem 6rem 5.5rem 6.5rem;
+		grid-template-columns: 3.5rem minmax(0, 2.4fr) minmax(0, 1.5fr) 3.25rem 6rem 5.5rem 6.5rem;
 		align-items: center;
 		column-gap: 1.25rem;
 		height: auto;
@@ -156,23 +159,47 @@
 	.er-livres--liste .er-carte__couv { grid-column: 1; grid-row: 1; }
 	.er-livres--liste .er-carte__tete { grid-column: 2; grid-row: 1; }
 	.er-livres--liste .er-carte__auteur { grid-column: 3; grid-row: 1; margin: 0; }
-	.er-livres--liste .er-carte__maison { grid-column: 4; grid-row: 1; }
-	.er-livres--liste .er-carte__annee { grid-column: 5; grid-row: 1; }
-	.er-livres--liste .er-carte__pages { grid-column: 6; grid-row: 1; }
-	.er-livres--liste .er-carte__langue { grid-column: 7; grid-row: 1; }
+	.er-livres--liste .er-carte__annee,
+	.er-liste-tete__annee { grid-column: 4; grid-row: 1; }
+	.er-livres--liste .er-carte__langue,
+	.er-liste-tete__langue { grid-column: 5; grid-row: 1; }
+	.er-livres--liste .er-carte__maison,
+	.er-livres--liste .er-carte__pages,
+	.er-liste-tete__maison,
+	.er-liste-tete__pages { display: none; }
 	.er-livres--liste .er-carte__faits > span { font-size: 0.875rem; color: var(--wp--preset--color--encre-2); font-variant-numeric: tabular-nums; }
 	.er-livres--liste .er-carte__faits > span::after { content: none !important; }
-	.er-livres--liste .er-carte__prix { grid-column: 8; grid-row: 1; text-align: right; }
+	.er-livres--liste .er-carte__prix,
+	.er-liste-tete__prix { grid-column: 6; grid-row: 1; text-align: right; }
 	.er-livres--liste .er-carte__ajouter,
-	.er-livres--liste .er-carte__prevenir { grid-column: 9; grid-row: 1; justify-self: end; }
-	.er-liste-tete__prix { text-align: right; }
+	.er-livres--liste .er-carte__prevenir { grid-column: 7; grid-row: 1; justify-self: end; }
+	.er-liste-tete__couv { grid-column: 1; grid-row: 1; }
+	.er-liste-tete__titre { grid-column: 2; grid-row: 1; }
+	.er-liste-tete__auteur { grid-column: 3; grid-row: 1; }
+	.er-liste-tete__achat { grid-column: 7; grid-row: 1; }
 }
-@media (max-width: 781px) {
+@container livres (min-width: 56rem) {
+	.er-livres--liste > .er-liste-tete,
+	.er-livres--liste .er-carte { grid-template-columns: 3.5rem minmax(0, 2.4fr) minmax(0, 1.5fr) minmax(0, 1.2fr) 3.25rem 3.75rem 6rem 5.5rem 6.5rem; }
+	.er-livres--liste .er-carte__maison,
+	.er-liste-tete__maison { display: block; grid-column: 4; grid-row: 1; }
+	.er-livres--liste .er-carte__annee,
+	.er-liste-tete__annee { grid-column: 5; }
+	.er-livres--liste .er-carte__pages,
+	.er-liste-tete__pages { display: block; grid-column: 6; grid-row: 1; }
+	.er-livres--liste .er-carte__langue,
+	.er-liste-tete__langue { grid-column: 7; }
+	.er-livres--liste .er-carte__prix,
+	.er-liste-tete__prix { grid-column: 8; }
+	.er-livres--liste .er-carte__ajouter,
+	.er-livres--liste .er-carte__prevenir,
+	.er-liste-tete__achat { grid-column: 9; }
+}
+@container livres (max-width: 39.99rem) {
 	.er-livres--liste .er-carte { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; align-items: start; column-gap: 0.875rem; padding: 1rem 0; height: auto; }
 	.er-livres--liste .er-carte__couv { grid-column: 1; grid-row: 1; height: 5rem; }
 	.er-livres--liste .er-carte__corps { grid-column: 2; grid-row: 1; }
 	.er-livres--liste .er-carte__achat { grid-column: 3; grid-row: 1; flex-direction: column; align-items: flex-end; gap: 0.625rem; margin: 0; padding: 0; }
-	.er-livres--liste .er-carte__translit { display: inline; }
 }
 
 /* Les modules du fil du libraire. */
