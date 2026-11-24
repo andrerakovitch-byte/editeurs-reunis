@@ -1,303 +1,49 @@
-Posé sur 840 livres en vente :
-  170 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-174 personnes (180 graphies), dont 11 qui ne sont pas encore des auteurs (créées) :
-  Sophie Benech (12)
-  Georges Nivat (9)
-  Christian Mouze (8)
-  André Markowicz (8)
-  Hélène Henry (7)
-  Jean-Louis Chavarot (5)
-  Paul Lequesne (5) ← Paul Lesquesne
-  Anne Davidenkoff (4)
-  Maïa Varsimashvili-Raphael (4)
-  Henri Mongault (4)
-  Gustave Aucouturier (4)
-  Christine Zeytounian-Beloüs (3)
-  Anne Kichilov (3)
-  Nicolas Struve (3)
-  Anne-Marie Tatsis-Botton (3)
-  Pierre Léon (3)
-  Luba Jurgenson (4) ← Liouba Jurgenson
-  Olga Lossky (2)
-  Lucile Nivat (2)
-  Jean-Noël Benoit (2)
-  Anne Coldefy-Faucard (2)
-  Henri de Lubac (2)
-  Françoise Lhoest (2)
-  Olga Lossky-Laham (2)
-  Maud Mabillard (2)
-  Jérôme Cler (3) ← Jérôme Clerc
-  Raphaëlle Pache (2)
-  Gabriel Arout (3) ← G. Arout
-  Bernard Hubert (2)
-  Carine Masutti (2)
-  Jean Laury (2)
-  Laure Troubetzkoy (2)
-  Tatiana Nikishina (2)
-  Olivier Gallon (2)
-  Boris de Schlœzer (3) ← Boris de Schloezer
-  Joëlle Dublanchet (2)
-  Rambert Nicolas (2)
-  Cédric Gras (2)
-  Nicolas Werth (2)
-  Gérard Abensour (2)
-  Alain Préchac (2)
-  Ludmila Savitzky (2)
-  Louis Martinez (2)
-  Michel Aucouturier (2)
-  Mahaut de Cordon-Prache (2)
-  Claude Ligny (2)
-  Nicolas Molinier (2)
-  Michel Niqueux (2)
-  Céline Marangé (2)
-  Nikita Struve (2)
-  Sylvie Luneau (2)
-  Edith Sherrer (2)
-  Lily Denis (2)
-  Elena Balzamo (2) ← Elena Balzano
-  Catherine Géry (1)
-  Asya Marakulina (1)
-  Léon Bernstein (1)
-  Louise Desormonts (1)
-  Dany Savelli (1)
-  Nikolaï Lugansky (1)
-  Jacqueline Lafond (1)
-  Alexis Berelowitch (1) · nouveau
-  Antony Beevor (1)
-  Liouba Vinogradova (1)
-  Konstantin Batynkov (1)
-  Valérie Pozner (1)
-  Maurice Parijanine (1)
-  Georges Kassai (1)
-  Georges Spitzer (1) · nouveau
-  Ladislas Gara (1) · nouveau
-  Andrée Lück-Gaye (1)
-  Claude Vincenot (1)
-  Manuela Boublil-Friedrich (1)
-  Franck Manara (1)
-  Yves Gauthier (1)
-  Alain Cappon (1)
-  Hélène Vivier-Kousnetzoff (1)
-  Rodolphe Baudin (1)
-  Michel Cadot (1)
-  Jean-Claude Lanne (1)
-  Colette Stoïanov (1)
-  Christine Zeytounian (1)
-  Marina Bobrova (1)
-  Philie Arnoux (1)
-  Marine Le Berre Semenov (1)
-  Christine Bouvart (1)
-  Gilles Barbedette (1)
-  Veronika Dorman (1)
-  Laëtitia Decourt (1)
-  Elena Ponomareva (1)
-  Natalino Valentini (1)
-  Claire Hauchard (1) · nouveau
-  Madeleine Lejeune (1) · nouveau
-  Johann Bihr (1)
-  Andreï Vieru (1)
-  E. Semenoff (1)
-  Léandre Lucas (1)
-  Julie Bouvard (1)
-  Andreï Kovrine (1)
-  M. Dumesnil' de Gramont (1)
-  Hélène Arjakovsky (1)
-  Michel Parfenov (1)
-  Misha Zaslavsky (1)
-  Askold Akishine (1)
-  Jean Bodiou (1)
-  Odile Belkeddar (1)
-  Renata Lesnik (1)
-  Jean-Louis Panné (1)
-  Mathias Enard (1)
-  Éveline Amoursky (1)
-  Ludmila Oulitskaïa (1)
-  Claude Levenson (1)
-  Jean-Christophe Peuch (1)
-  Nilima Changkakoti (1)
-  Stefan Zweig (1)
-  Grégory Dufaud (1)
-  Hélène Carrère d'Encausse (1)
-  Ivan Bilibine (1)
-  Françoise Morvan (1)
-  Anita Davidenkoff (1) ← Anna Davidenkoff
-  Anna Lushenkova-Foscolo (1) · nouveau
-  Hélène Péras (1)
-  Leonid Livak (1)
-  Alice Devaux (1)
-  Innokenti Platonov (1)
-  Valentina Chepiga (1)
-  Florian Voutev (1)
-  Adèle Bloch (1)
-  Robert André (1)
-  Geneviève Leibrich (1) · nouveau
-  Ève Malleret (1)
-  Zéno Bianu (1)
-  Marianne Gourg-Antuszewic (1)
-  Odile Melnik-Ardin (1) · nouveau
-  Irène Sokologorsky (1) · nouveau
-  André Donzeau (1)
-  Michèle Kahn (1) · nouveau
-  Francine Andreieff (1)
-  Myriam Odayski (1)
-  Elisabeth Mouravieff (1)
-  Irène Markowicz (1)
-  Laurence Dyèvre (1)
-  Véronique Schiltz (1)
-  Jacques Catteau (1)
-  Michel Pétris (1)
-  Marie Leymarie (1)
-  Ekaterina Cherezova (1)
-  Lydia Ouspensky (1)
-  Denis Roche (1)
-  Louis Viardot (1)
-  Bernard Le Caro (1)
-  René Marichal (1) · nouveau
-  Anne Buguet (1)
-  Natalia Soljénistyne (1)
-  J. Cathala (1)
-  Henri Léonard-Bordier (1)
-  Irène Rovere-Sova (1)
-  Mireille Rovere-Tsivikis (1)
-  C. Andronikof (1)
-  A. de Couriss (1)
-  Pierre Pascal (1)
-  Michel Sollogoub (1)
-  Lucette Marçais (1)
-  André Gide (1)
-  Jacques Schiffrin (1)
-  Nina Kchayan (1)
-  Edouard Parayre (1)
-  Roger Grenier (1)
-  Tatiana Victoroff (1)
-  Boris Zaïtsev (1)
-  Geneviève Johannet (1)
-  Cécile Odartchenko (1)
-  Bertrand Jeuffrain (1)
-  Henri Bloch (1)
-59 éditeurs (68 graphies) :
-  YMCA-Press (175) ← Éditions YMCA-Press
-  Éditions des Syrtes (38)
-  Gallimard (9)
-  Ginkgo éditeur (10) ← Gingko éditions, Ginkco éditeurs
-  Sandermoen Publishing (5)
-  La Barque (3)
-  Institut d’études slaves (4) ← Institut dEtudes Slaves
-  Masha Publishing (3)
-  Robert Laffont (3)
-  Захаров (3)
-  Éditions Sillage (3)
-  Éditions Tourgueneff (2)
-  Fayard (3) ← Éditions Fayard
-  Русский путь (2)
-  Нигма (2)
-  Actes Sud (2)
-  Desclée de Brouwer (2)
-  Harpo (2)
-  Sibérie (1)
-  The Faith of a Mushroom (1)
-  Bouquins (1)
-  Noir sur Blanc (2) ← Éditions Noir sur blanc
-  Kiev (1)
-  Les Bas-fonds (1)
-  Éditions Nouvel Attila (1)
-  Saint Leger éditions (1)
-  Éditions de l’EHESS (2) ← Éditions EHESS
-  Folio (1)
-  Éditions de Minuit (1)
-  Éditions Circé (1)
-  Éditions La Coopérative (1)
-  Éditions Ca et là (1)
-  Mediaspaul éditions (1)
-  Éditions Interférences (1)
-  Barthillat (2) ← Bartillat
-  Bagne rouge (1)
-  Cerf Patrimoine (1)
-  Buchet-Chastel (1)
-  Reprint (1)
-  Stock (1)
-  André Korliakov (1)
-  Éditions du Panthéon (1)
-  Éditions Natania (2) ← Natania
-  Éditions Jourdan (1)
-  Vibratrion éditions (1)
-  Éditions Paroles et Silence (1)
-  Éditions du Fallois (1)
-  Belfond (1)
-  Éditions du Cerf (1)
-  Fraternité orthodoxe en Europe occidentale (1)
-  Librairie des Cinq Continents (1)
-  Éditions Infoli (1)
-  Éditions Mame (1)
-  Imprimerie Nationale (1)
-  L’Œil (1)
-  Éditions ROD (1)
-  Éditions de la Présentation (1)
-  Perrin (1)
-  Bleu nuit éditeur (1)
-65 mentions mises de côté, à revoir dans la fiche du livre :
-  Rilke · un seul mot · Palimpsestes (palimpsestes)
-  Goethe · un seul mot · Palimpsestes (palimpsestes)
-  Martin de Tours · dans le titre · La Vie de St Martin de Tours (la-vie-de-st-martin-de-tours)
-  Djann · un seul mot · Djann (djann)
-  Illustrations de Konstantin Batynkov · autre rôle · Les préceptes du philosophe Yakov (les-preceptes-du-philosophe-yakov)
-  Exilé · un seul mot · Zoo (zoo)
-  Exilé · un seul mot · Lettres à Elsa Triolet (lettres-a-elsa-triolet)
-  Enfant · autre rôle · Sainte marie Skobtsova (sainte-marie-skobtsova)
-  Editions · autre rôle · Une école à la frontière (une-ecole-a-la-frontiere)
-  Préface Dominique Dussidour · autre rôle · Arrêt sur le Ponte Vecchio (arret-sur-le-ponte-vecchio)
-  Editions · autre rôle · Arrêt sur le Ponte Vecchio (arret-sur-le-ponte-vecchio)
-  Postface Olivier Gallon · autre rôle · Les songes de Tchang. Poèmes (les-songes-de-tchang-poemes)
-  Paru · un seul mot · La Chronique de Belgrade (la-chronique-de-belgrade)
-  Illustré · autre rôle · Contes (contes)
-  Purextase · un seul mot · Purextase (purextase)
-  Le Journal d’Anna · pas un nom · Journal (1867) (journal-1867)
-  À · un seul mot · En mémoire de la mémoire (en-memoire-de-la-memoire)
-  Préface de Sarah Gruszka · autre rôle · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
-  Iouri · un seul mot · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
-  Dans Méditations · pas un nom · Méditations spirituelles (meditations-spirituelles)
-  Préface · autre rôle · Récits de la Perdition (recits-de-la-perdition)
-  Michel Lafon · pas une personne · Moi, Marat, ex-commandant de l’armée Wagner (moi-marat-ex-commandant-de-larmee-wagner)
-  La Veilleuse · pas un nom · La Veilleuse des Solovki (la-veilleuse-des-solovki)
-  Cet · un seul mot · Nouvelles (nouvelles)
-  Boulgakov · un seul mot · La Fuite – Pièces et nouvelles (la-fuite-pieces-et-nouvelles)
-  Si · un seul mot · Le corps et l’âme (le-corps-et-lame)
-  Ginkgoéditeur · un seul mot · Le second Avènement N° 1 (le-second-avenement-n-1)
-  Russie · un seul mot · Le Visiteur de marbre et autres oeuvres théâtrales (le-visiteur-de-marbre-et-autres-oeuvres-theatrales)
-  Les · un seul mot · Un Roi Lear des steppes (un-roi-lear-des-steppes)
-  Ine · un seul mot · Portrait de Monsieur Podjabrine (portrait-de-monsieur-podjabrine)
-  Troisième · un seul mot · Purgatoire (purgatoire)
-  s · éditeur douteux · Naissance des Dieux (naissance-des-dieux)
-  Tandis · un seul mot · La rose des vents (la-rose-des-vents)
-  Ce · un seul mot · La traductrice (la-traductrice)
-  Ce · un seul mot · Sofia Pétrovna (sofia-petrovna)
-  Le Fléau de Dieu · pas un nom · Le Fléau de Dieu (le-fleau-de-dieu)
-  Si Ceux du Donbass · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
-  @Acer-mjo · éditeur douteux · La liturgie expliquée aux jeunes (la-liturgie-expliquee-aux-jeunes)
-  Découvrez · un seul mot · Vivre pleinement (vivre-pleinement)
-  Dans · un seul mot · Les quatre vies d’Arseni (les-quatre-vies-darseni)
-  A · un seul mot · Brisbane (brisbane)
-  Editions · autre rôle · Journal des mes rencontres (journal-des-mes-rencontres)
-  Actes-Sud · un seul mot · Les dieux de la steppe (les-dieux-de-la-steppe)
-  Né · un seul mot · Pérégrinations (1723-1747) (peregrinations-1723-1747)
-  Février · un seul mot · Les jours (les-jours)
-  Suivi de Le · pas une personne · Pétersbourg (petersbourg)
-  Préface de Jacques Catteau · autre rôle · L’histoire de ma sœur (lhistoire-de-ma-soeur)
-  L’histoire · un seul mot · L’histoire de ma sœur (lhistoire-de-ma-soeur)
-  Un · un seul mot · Volia volnaïa (volia-volnaia)
-  Rédaction · un seul mot · Le Poisson (le-poisson)
-  Archim · un seul mot · Le Messager orthodoxe, n° 100 (le-messager-orthodoxe-n-100)
-  Editions Sillage · autre rôle · Trois Années (trois-annees)
-  Publié · un seul mot · Journal (1973-1983) (journal-1973-1983)
-  Editions · autre rôle · Le Mont Athos et Valaam (le-mont-athos-et-valaam)
-  L · un seul mot · Une journée d’Ivan Denissovitch (une-journee-divan-denissovitch)
-  Préface de Nikita Struve · autre rôle · Judas Iscarioth, l’apôtre félon (judas-iscarioth-lapotre-felon)
-  Dans · un seul mot · Judas Iscarioth, l’apôtre félon (judas-iscarioth-lapotre-felon)
-  Introduction de Nikita Struve · autre rôle · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
-  Traçant · un seul mot · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
-  G · un seul mot · L’Idiot (lidiot)
-  Pavillons Poche · pas une personne · Le Maître et Marguerite (le-maitre-et-marguerite)
-  Robert Laffont · pas une personne · Le Maître et Marguerite (le-maitre-et-marguerite)
-  Editions · autre rôle · Les Fondements de la Culture russe (les-fondements-de-la-culture-russe)
-  Collection Que · pas une personne · Le mariage dans la perspective orthodoxe (le-mariage-dans-la-perspective-orthodoxe)
-  Préface · autre rôle · La dame de pique (la-dame-de-pique)
+Le catalogue, hors billets des rencontres
+  Livres                                 859   (840 publiés, 19 brouillons)
+  Venus de Wix (référence WIX-…)         859
+  Sans référence (exemples, saisis)        0
+  Avec une autre référence                 0
+Le prix
+  Avec un prix                           859
+  Sans prix (ne se commandent pas)         0
+  En promotion                           162   (dont 1 d’occasion)
+  Hors occasion, remise de plus de 5 %   161
+Le stock
+  En stock                               722
+  Épuisés                                137
+  En réassort                              0
+  Stock suivi en quantité                 31
+  En stock sans quantité                 693
+  Commandables                           717   (publiés, avec un prix, en stock)
+  Prix médian des commandables       15,00 €
+  Commandables à moins de 35 €           686
+Pour la livraison
+  Avec un poids                          826
+  Sans poids                              33   (dont 26 commandables)
+  Poids médian                         400 g   (de 60 à 15 000 g)
+  Commandables jusqu’à 250 g              77
+  de 251 à 500 g                         497
+  de 501 g à 1 kg                         77
+  de 1 à 2 kg                             16
+  plus de 2 kg                            24
+  Livres virtuels (sans livraison)         0
+  Livres cachés du catalogue               0
+Les fiches
+  Avec un ISBN                             0   (dont 0 commandables)
+  Sans rayon                              79
+  Sans auteur                            198
+  Sans langue                              0
+  Mention « Nouveauté »                  120
+  Mention « Occasion »                    19
+  Mention « Nouvelle édition »            15
+  Mention « Très rare »                   10
+  Mention « Nouvelle traduction »          5
+Les couvertures
+  Trop petites                           274   (dont 229 commandables)
+  Absentes                                 0   (dont 0 commandables)
+  Passables                              260   (dont 217 commandables)
+  Bonnes                                 325   (dont 271 commandables)
+Les billets des rencontres
+  Billets                                  0
+  Virtuels                                 0
+  Cachés du catalogue                      0
