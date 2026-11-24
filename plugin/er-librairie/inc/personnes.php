@@ -518,6 +518,55 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 	);
 
+	/**
+	 * Supprime des personnes sans rien : wp er personnes supprimer <identifiant>… [appliquer]. Seulement une personne qui
+	 * n'a aucun livre (écrit, traduit, préfacé…, ni « autour de »), aucun contenu, aucune page de l'encyclopédie ; ses
+	 * miroirs (les classements des rôles) partent avec elle. Pour les personnages pris pour des personnes par le premier
+	 * relevé des rôles (Andreï Kovrine, Innokenti Platonov).
+	 *
+	 * @param array $args Les identifiants (slugs), puis « appliquer », ou rien pour seulement montrer.
+	 */
+	WP_CLI::add_command(
+		'er personnes supprimer',
+		function ( $args ) {
+			$appliquer = in_array( 'appliquer', $args, true );
+			$slugs     = array_values( array_diff( $args, array( 'appliquer' ) ) );
+			if ( ! $slugs ) {
+				WP_CLI::error( 'Usage : wp er personnes supprimer <identifiant>… [appliquer]' );
+			}
+			foreach ( $slugs as $slug ) {
+				$t = get_term_by( 'slug', sanitize_title( $slug ), 'auteur' );
+				if ( ! $t ) {
+					WP_CLI::log( '  ' . $slug . ' : introuvable (déjà supprimée ?)' );
+					continue;
+				}
+				wp_cache_delete( 'er_personnes_livres', 'er' );
+				$livres  = er_personne_livres( $t );
+				$miroirs = array();
+				$restes  = (int) $t->count;
+				foreach ( er_personnes_miroirs() as $tax ) {
+					$m = get_term_by( 'slug', $t->slug, $tax );
+					if ( $m ) {
+						$miroirs[ $tax ] = $m;
+						$restes         += (int) $m->count;
+					}
+				}
+				if ( $livres['tous'] || $livres['autour'] || $restes || get_term_meta( $t->term_id, 'er_page', true ) ) {
+					WP_CLI::warning( $t->name . ' a encore des livres, des contenus ou une page : laissée.' );
+					continue;
+				}
+				WP_CLI::log( '  ' . $t->name . ( $appliquer ? ' : supprimée' : ' : à supprimer' ) . ( $miroirs ? ', avec ' . count( $miroirs ) . ' miroirs' : '' ) );
+				if ( $appliquer ) {
+					foreach ( $miroirs as $tax => $m ) {
+						wp_delete_term( $m->term_id, $tax );
+					}
+					wp_delete_term( $t->term_id, 'auteur' );
+				}
+			}
+			er_personnes_cles_perimer();
+		}
+	);
+
 	WP_CLI::add_command(
 		'er personnes rattacher',
 		function ( $args ) {
