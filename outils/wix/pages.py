@@ -139,7 +139,7 @@ def section(html, marque):
     if debut < 0:
         return ''
     debut = html.rfind('<section', 0, debut)
-    profondeur, i = 0, debut
+    profondeur = 0
     for m in re.finditer(r'<(/?)section\b[^>]*>', html[debut:]):
         profondeur += -1 if m.group(1) else 1
         if profondeur == 0:

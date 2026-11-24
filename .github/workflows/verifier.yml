@@ -1,0 +1,30 @@
+# Vérifie le code : la syntaxe, les tests, le style et les règles de sécurité de WordPress (outils/verifier.sh).
+# Le déploiement chez Kinsta l'appelle d'abord et ne part pas s'il échoue (kinsta.yml, « needs: verifier »).
+# Tourne aussi seul quand on pousse les tests, les outils ou les règles, et à la main (Actions → Vérifier → Run workflow).
+name: Vérifier
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tests/**', 'outils/**', 'composer.json', 'phpcs.xml.dist', 'ruff.toml', '.github/workflows/verifier.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      # PHP 8.3, Composer et Node sont déjà sur la machine de GitHub ; il reste PHPCS, ruff et pytest.
+      - name: Les outils
+        run: |
+          php -v | head -1
+          composer install --no-interaction --no-progress --quiet
+          pip install --quiet ruff==0.8.6 pytest==8.3.4 beautifulsoup4==4.12.3
+
+      - name: Vérifier
+        run: bash outils/verifier.sh

@@ -25,7 +25,7 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 sys.path.insert(0, __import__('os').path.dirname(__file__))
-from evenements import typo, mots  # noqa: E402
+from evenements import typo  # noqa: E402
 
 PARIS = ZoneInfo('Europe/Paris')
 WIX = 'https://static.wixstatic.com/media/'

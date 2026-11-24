@@ -1,0 +1,15 @@
+{
+	"name": "andrerakovitch-byte/editeurs-reunis",
+	"description": "Les outils de contrôle du site (PHPCS et les règles de WordPress). Rien de tout cela ne part en ligne.",
+	"type": "project",
+	"license": "proprietary",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

@@ -19,7 +19,11 @@ ISBN-13 (978…) : WooCommerce ne garde que les chiffres et les tirets, il perdr
 
 Les fichiers lus et écrits restent hors du dépôt, qui est public (.gitignore).
 """
-import csv, re, sys, unicodedata, collections
+import csv
+import re
+import sys
+import unicodedata
+import collections
 
 # --- les ISBN ------------------------------------------------------------------------------------------------------
 

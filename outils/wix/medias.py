@@ -32,7 +32,7 @@ def episodes_du_flux(xml):
     titre_serie = html.unescape((re.search(r'<channel>.*?<title>(.*?)</title>', xml, re.S) or [None, ''])[1]).strip()
     titre_serie = ev.typo(re.sub(r'^<!\[CDATA\[(.*)\]\]>$', r'\1', titre_serie)).strip()
     for item in re.findall(r'<item>(.*?)</item>', xml, re.S):
-        def champ(nom):
+        def champ(nom, item=item):
             m = re.search(rf'<{nom}[^>]*>(.*?)</{nom}>', item, re.S)
             v = m.group(1).strip() if m else ''
             return html.unescape(re.sub(r'^<!\[CDATA\[(.*)\]\]>$', r'\1', v, flags=re.S)).strip()

@@ -710,7 +710,6 @@ T = {
     (None, 'Grand format'): ('Long read', 'Большой материал'),
     (None, 'Depuis %s'): ('Since %s', 'С %s года'),
     (None, 'Les sujets'): ('Topics', 'Темы'),
-    (None, 'Au centre'): ('At the centre', 'В центре'),
     (None, 'Tous nos événements'): ('All our events', 'Все наши события'),
     (None, 'Le podcast'): ('The podcast', 'Подкаст'),
     (None, '%1$s, épisode %2$s'): ('%1$s, episode %2$s', '%1$s, выпуск %2$s'),
@@ -1531,7 +1530,6 @@ T = {
     ('fiche d’un livre', 'Les autres volumes'): ('Other volumes', 'Другие тома'),
     (None, 'Les rencontres, à revoir'): ('Recorded events', 'Записи встреч'),
     (None, 'Collections'): ('Series', 'Серии'),
-    (None, 'Collection'): ('Series', 'Серия'),
     (None, 'Reprendre'): ('Resume', 'Продолжить'),
     (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
     # La tête de page (inc/tete.php et ses usages).

@@ -1,0 +1,5 @@
+# Le contrôle des outils Python (outils/, tests/python/) : les erreurs, pas la mise en forme.
+# E741 (« l » comme nom de variable, pour une ligne) et B905 (zip sans strict=) sont des choix de lecture, pas des fautes.
+[lint]
+select = ["E4", "E7", "E9", "F", "B"]
+ignore = ["E741", "B905"]

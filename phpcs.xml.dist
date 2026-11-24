@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+	Les règles que PHPCS fait respecter au thème et à l'extension, avant chaque déploiement (outils/verifier.sh).
+
+	Pas toute la norme WordPress : sa mise en forme (alignements, espaces dans les parenthèses…) produirait des milliers
+	de remarques sans rien changer au site. On garde ce qui protège : les sorties échappées, les jetons et les droits,
+	les entrées nettoyées, les requêtes préparées, pas de fonction de débogage oubliée ; et une hygiène de base des
+	fichiers (tabulations, fins de ligne, pas d'espace en bout de ligne, pas de balise courte, comparaisons strictes).
+
+	Une sortie déjà échappée par une fonction du site (er_bande_page, er_image…) est déclarée plus bas, une fois pour
+	toutes, plutôt qu'un « phpcs:ignore » à chaque echo.
+-->
+<ruleset name="editeurs-reunis">
+	<description>Le contrôle du thème et de l'extension des Éditeurs réunis.</description>
+
+	<file>theme/editeurs-reunis</file>
+	<file>plugin/er-librairie</file>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg name="parallel" value="8"/>
+
+	<config name="minimum_wp_version" value="6.6"/>
+
+	<!-- La sécurité. -->
+	<rule ref="WordPress.Security"/>
+	<rule ref="WordPress.DB.PreparedSQL"/>
+	<rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+	<rule ref="WordPress.DB.RestrictedFunctions"/>
+	<rule ref="WordPress.DB.RestrictedClasses"/>
+	<rule ref="WordPress.PHP.DevelopmentFunctions"/>
+	<rule ref="WordPress.PHP.DontExtract"/>
+	<rule ref="WordPress.PHP.RestrictedPHPFunctions"/>
+	<rule ref="WordPress.WP.DeprecatedFunctions"/>
+	<rule ref="Squiz.PHP.Eval"/>
+	<rule ref="Generic.PHP.BacktickOperator"/>
+
+	<!-- L'hygiène des fichiers. -->
+	<rule ref="Generic.Files.ByteOrderMark"/>
+	<rule ref="Generic.Files.LineEndings"/>
+	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+	<rule ref="Universal.Operators.StrictComparisons"/>
+	<rule ref="WordPress.PHP.StrictInArray"/>
+	<rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+
+	<!-- Les fonctions du site qui rendent du HTML déjà échappé. -->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="er_bande_page"/>
+				<element value="er_bande_rayon"/>
+				<element value="er_tete_page"/>
+				<element value="er_tete_de_la_page"/>
+				<element value="er_fiche_livre"/>
+				<element value="er_image"/>
+				<element value="er_lien"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

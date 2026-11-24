@@ -500,7 +500,7 @@ function er_roles_releves( $id ) {
 	$post  = get_post( $id );
 	$texte = $titre . "\n" . wp_strip_all_tags( $post ? $post->post_excerpt . "\n" . $post->post_content : '' );
 	$nom   = '\p{Lu}[\p{L}’\'\-]+(?:\s+(?:de\s+|du\s+|d[’\']|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3}';
-	if ( preg_match_all( '/tradu(?:it|ite|its|ction)\s+(?:(?:du|de l[’\']|de)\s+\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
+	if ( preg_match_all( '/[Tt]radu(?:it|ite|its|ction)\s+(?:(?:du|de l[’\']|de)\s+\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
 		foreach ( $mm[1] as $trouve ) {
 			foreach ( er_roles_noms( $trouve, $titre_seul, $releve['ecart'] ) as $n ) {
 				if ( ! isset( $releve['traduction'][ $n ] ) ) {

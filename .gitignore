@@ -8,3 +8,6 @@ isbn-a-remplir*.xlsx
 isbn-a-revoir.md
 __pycache__/
 sortie/
+vendor/
+composer.lock
+.phpcs-cache

@@ -13,7 +13,13 @@ des premières lignes de la description, seulement quand elles sont nettes (la d
 rayons, la langue et les mentions, des catégories et des rubans Wix. Chaque livre reçoit une référence stable,
 WIX- et le début de son identifiant Wix : réimporter met à jour, sans doublon.
 """
-import csv, html, re, sys, unicodedata, collections, random
+import csv
+import html
+import re
+import sys
+import unicodedata
+import collections
+import random
 
 SOURCE = sys.argv[1] if len(sys.argv) > 1 else 'wix.csv'
 MEDIA = 'https://static.wixstatic.com/media/'
@@ -415,7 +421,7 @@ par_cle = collections.defaultdict(list)
 for a in compte:
     par_cle[cle(a)].append(a)
 retenu = {}
-for k, formes in par_cle.items():
+for formes in par_cle.values():
     # La graphie latine d'abord (le français est la langue du site), puis la plus fréquente, puis la translittération
     # française (ï, é, ou, -ski plutôt que w ou y).
     meilleure = max(formes, key=lambda a: (not re.search('[а-яА-Я]', a), compte[a],
