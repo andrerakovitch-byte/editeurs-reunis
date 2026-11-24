@@ -387,32 +387,50 @@ function er_continuer_cites( $id ) {
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
-	 * L'index et les notices en JSON, sur la sortie : wp er continuer exporter. Rien que ce que le site montre déjà
-	 * (des titres, des noms, des rayons, en stock ou non, les notices).
+	 * L'index et les notices en JSON, sur la sortie : wp er continuer exporter [--partie=index|notices] [--debut=0]
+	 * [--n=400]. Rien que ce que le site montre déjà (des titres, des noms, des rayons, en stock ou non, les notices).
+	 * Une ligne par morceau : l'index d'abord, puis les notices et les personnes qu'elles nomment, livre par livre.
+	 *
+	 * @param array $args  Rien.
+	 * @param array $assoc partie, debut, n.
 	 */
 	WP_CLI::add_command(
 		'er continuer exporter',
-		function () {
-			$index   = er_continuer_construire();
-			$notices = array();
-			$cites   = array();
-			foreach ( array_keys( $index['livres'] ) as $id ) {
-				$notices[ $id ] = er_continuer_notice( $id );
-				$c              = er_continuer_cites( $id );
-				if ( $c ) {
-					$cites[ $id ] = $c;
+		function ( $args, $assoc ) {
+			unset( $args );
+			// Une erreur fatale (la mémoire, le temps) se dit aussi sur la sortie, que le workflow garde.
+			register_shutdown_function(
+				function () {
+					$erreur = error_get_last();
+					if ( $erreur && in_array( $erreur['type'], array( E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR ), true ) ) {
+						WP_CLI::line( '# Erreur : ' . $erreur['message'] . ' (' . basename( $erreur['file'] ) . ':' . $erreur['line'] . ')' );
+					}
 				}
-			}
-			WP_CLI::line(
-				wp_json_encode(
-					array(
-						'index'   => $index,
-						'notices' => $notices,
-						'cites'   => $cites,
-					),
-					JSON_UNESCAPED_UNICODE
-				)
 			);
+			WP_CLI::line( '# Mémoire : ' . ini_get( 'memory_limit' ) );
+			$partie = isset( $assoc['partie'] ) ? (string) $assoc['partie'] : 'index';
+			$index  = er_continuer_construire();
+			WP_CLI::line( '# ' . count( $index['livres'] ) . ' livres, ' . count( $index['contenus'] ) . ' contenus, ' . round( memory_get_peak_usage() / 1048576 ) . ' Mo au plus' );
+			if ( 'index' === $partie ) {
+				WP_CLI::line( wp_json_encode( array( 'index' => $index ), JSON_UNESCAPED_UNICODE ) );
+				return;
+			}
+			$ids   = array_slice( array_keys( $index['livres'] ), isset( $assoc['debut'] ) ? (int) $assoc['debut'] : 0, isset( $assoc['n'] ) ? (int) $assoc['n'] : 400 );
+			$index = null;
+			foreach ( $ids as $id ) {
+				WP_CLI::line(
+					wp_json_encode(
+						array(
+							'id'     => $id,
+							'notice' => er_continuer_notice( $id ),
+							'cites'  => er_continuer_cites( $id ),
+						),
+						JSON_UNESCAPED_UNICODE
+					)
+				);
+				wp_cache_delete( $id, 'posts' );
+				wp_cache_delete( $id, 'post_meta' );
+			}
 		}
 	);
 }
