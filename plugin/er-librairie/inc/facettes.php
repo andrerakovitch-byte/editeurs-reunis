@@ -276,7 +276,15 @@ function er_facettes_ids( $q, $contexte ) {
 		$args['lang'] = pll_current_language();
 	}
 	if ( $q->is_search() ) {
-		$args['s'] = $q->get( 's' );
+		// La recherche du site passe par son index (recherche.php : les trois écritures, les auteurs), pas par celle
+		// de WordPress : la colonne compte les mêmes livres, dans le même ordre.
+		if ( function_exists( 'er_livres_trouves' ) ) {
+			$trouves          = er_livres_trouves( $q->get( 's' ) );
+			$args['post__in'] = $trouves ? $trouves : array( 0 );
+			$args['orderby']  = 'post__in';
+		} else {
+			$args['s'] = $q->get( 's' );
+		}
 	}
 	if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) ) {
 		$args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery
@@ -443,10 +451,13 @@ add_action(
 		}
 		$etat = er_facettes_etat( $q );
 		if ( $etat ) {
-			$q->set( 'post__in', $etat['resultats'] ? $etat['resultats'] : array( 0 ) );
+			// Après la recherche du site (qui pose déjà sa liste, dans son ordre) : on n'en garde que les retenus.
+			$deja = array_map( 'intval', (array) $q->get( 'post__in' ) );
+			$ids  = $deja ? array_values( array_intersect( $deja, $etat['resultats'] ) ) : $etat['resultats'];
+			$q->set( 'post__in', $ids ? $ids : array( 0 ) );
 		}
 	},
-	20
+	30
 );
 
 /**
