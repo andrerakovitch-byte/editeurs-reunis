@@ -379,8 +379,9 @@ function er_ld_personne( $terme ) {
 
 /* Dans la page ----------------------------------------------------------------------------------------------- */
 
-// Une seule description d'un livre : la nôtre.
+// Une seule description d'un livre, et un seul fil d'Ariane : les nôtres.
 add_filter( 'woocommerce_structured_data_product', '__return_empty_array' );
+add_filter( 'woocommerce_structured_data_breadcrumblist', '__return_empty_array' );
 
 add_action(
 	'wp_head',

@@ -618,6 +618,19 @@ rapport va sur la branche `boutique` (`catalogue.md`). `wp er extensions` (champ
 relevé des extensions installées et des réglages du paiement, de la livraison et des langues, sans jamais montrer une
 clé ni un secret (« posée » ou « vide »).
 
+## La bascule depuis Wix
+
+Les anciennes adresses mènent aux nouvelles (301), pour les liens qui circulent et pour les moteurs de recherche :
+les rencontres (`/events-1/…`), le journal (`/post/…`), les livres (`/product-page/…`) et les pages (`/expo`,
+`/notre-histoire`…, la table de `plugin/er-librairie/inc/bascule.php`). Un livre de Wix est retrouvé par le nom de sa
+page, que `wp er bascule livres appliquer` a lu dans le plan du site de Wix et retenu dans la fiche (831 sur 847) ;
+une adresse sans livre mène à la recherche de la librairie. `wp er bascule pages` montre où mène chaque page.
+
+Les données structurées (`inc/donnees-structurees.php`) disent aux moteurs de recherche ce qu'est chaque page : un
+livre (son prix, sa disponibilité, son ISBN, ses auteurs et traducteurs), une rencontre ou une exposition (sa date,
+son lieu, son entrée), une personne (ses dates, son nom russe), la librairie à l'accueil, et le fil d'Ariane de chaque
+tête de page. `wp er ld` les relève sur quelques pages et essaie les anciennes adresses.
+
 ## Le paiement
 
 Par l'extension WooCommerce Stripe Payment Gateway, reliée au compte Stripe de la maison par son bouton de connexion
