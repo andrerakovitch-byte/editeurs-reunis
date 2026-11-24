@@ -1,3 +1,11 @@
+  personne : « Nina Kchayan » → « Nina Kehayan »
+  personne : « Edith Sherrer » → « Édith Scherrer »
+  personne : « Natalia Soljénistyne » → « Natalia Soljénitsyne »
+  personne : « A. de Couriss » → « Alexandre de Couriss »
+  personne : « C. Andronikof » → « Constantin Andronikof »
+  personne : « J. Cathala » → « Jean Cathala »
+  personne : « Marianne Gourg-Antuszewic » → « Marianne Gourg-Antuszewicz »
+  personne : « M. Dumesnil' de Gramont » → « Michel Dumesnil de Gramont »
   46 « Voix et visages du Goulag », Édition établie, notes, choix : — → Anna Artemeva, Elena Ratcheva
   48 « Les Douze », Illustrations : — → Arthur Molev
   48 « Les Douze », Traduction : — → Georges Nivat
@@ -105,7 +113,7 @@
   415 « Византия И Московская Русь », Édition établie, notes, choix : — → Н. Б. Артамонова
   423 « Откровенные рассказы странника духовному своему отцу », Préface, présentation : — → Kiprian Kern, Василий Гролимунд
   431 « Христос и его церковь », Illustrations : — → Julia Reitlinger
-  443 « Пути русского богословия », Préface, présentation : — → Jean Meyendorff
+  443 « Пути русского богословия », Préface, présentation : — → P. Jean Meyendorff
   463 « Сахарный Немец », Préface, présentation : — → Michel Niqueux
   463 « Сахарный Немец », Édition établie, notes, choix : — → Michel Niqueux
   467 « Переписка Льва Шестова c Борисом Шлёцером », Édition établie, notes, choix : — → Ольга Табашникова
@@ -169,7 +177,7 @@
   942 « Les Douze », Illustrations : — → Christian Olivier
   955 « Le Manuel du Goulag », Traduction : — → Sophie Benech, Véronique Patte
   978 « Pierre & le loup », Illustrations : — → Lili la Baleine
-  981 « L’Esprit, l’âme et le corps », Préface, présentation : — → Jean Becchio, Jean Breck
+  981 « L’Esprit, l’âme et le corps », Préface, présentation : — → Jean Becchio, John Breck
   1002 « Crime et Châtiment », Illustrations : — → Bastien Loukia
   1024 « Contes populaires slaves », Traduction : — → Louis Léger
   1024 « Contes populaires slaves », Édition établie, notes, choix : — → Louis Léger
@@ -195,7 +203,7 @@
   1335 « Aux portes de l’Europe, Histoire de l’Ukraine, Serhii Plokhy », Traduction : — → Jacques Dalarun
   1345 « Arrêt sur le Ponte Vecchio », Préface, présentation : — → Dominique Dussidour
   1359 « Русская земля. Альманах для юношества », Illustrations : — → Feodor Rojankovsky, А. Гефтер
-  1359 « Русская земля. Альманах для юношества », Sous la direction de : — → Basile Zenkovsky, А. М. Черный
+  1359 « Русская земля. Альманах для юношества », Sous la direction de : — → Василий Зеньковский, А. М. Черный
   1361 « Une église sous la torture – Martyre Mémoire Prophétie », Préface, présentation : — → Antoine Arjakovsky
   1363 « Semences de l’unité – Voix orthodoxes et fraternelles », Préface, présentation : — → Patrice Mahieu
   1370 « Перед лицом катастрофы », Préface, présentation : — → Николай Плотников
@@ -205,7 +213,7 @@
   1395 « Mes universités », Préface, présentation : — → Dominique Fernandez
   1397 « Carnets de guerre », Édition établie, notes, choix : — → Antony Beevor, Liouba Vinogradova
   1405 « Ma liberté secrète », Édition établie, notes, choix : — → Jean-Noël Benoit
-  1448 « Vers la paix intérieure », Préface, présentation : — → Michel Fortounatto
+  1448 « Vers la paix intérieure », Préface, présentation : — → Протоиерей Михаил Фортунато
   1475 « Неизданные стихи и письма », Édition établie, notes, choix : — → Gleb Struve
   1525 « Со старинной полки », Préface, présentation : — → А. Н. Богословский
   1525 « Со старинной полки », Édition établie, notes, choix : — → А. Н. Богословский
@@ -222,13 +230,14 @@
   1738 « Un rôle à jouer / Обречённые на роль любую », Édition établie, notes, choix : — → Roma Liberov
   1787 « Elisabeth de S*** ou l’histoire d’une russe », Préface, présentation : Catherine Géry → Catherine Géry, Galina Subbotina
   1820 « Поэт и время – Поэтический сборник », Édition établie, notes, choix : — → Дмитрий Макаров
-  1822 « Прогулки по памяти », Édition établie, notes, choix : — → Андрей Корляков, Дмитрий Северюхин, Николай Эндегор
+  1822 « Прогулки по памяти », Édition établie, notes, choix : — → André Korliakov, Дмитрий Северюхин, Николай Эндегор
   1824 « Examen de conscience – Poésie russe en temps de guerre », Sous la direction de : — → Elena Balzamo
   1858 « Comme un flambeau, dans ces ténèbres noires », Édition établie, notes, choix : — → André Markowicz
   1882 « La Roue rouge, chapitres choisis », Préface, présentation : — → Georges Nivat
   1882 « La Roue rouge, chapitres choisis », Édition établie, notes, choix : — → Georges Nivat
 Rôles à poser : 229 changements ; 213 déjà justes.
-104 personnes nouvelles, à créer : Anna Artemeva, Elena Ratcheva, Arthur Molev, Аркадий Сосницкий, Jean-Claude Roberti, Simone Sentz-Michel, Nina Kehayan, Michel Stavrou, Michel Gay, Anne-Marie Passaret, Paul Toutchkov, Sergueï Ermolinski, Georges Arout, Pierre Sipriot, Alexandre de Couriss, Constantin Andronikof, Georges Philippenko, Лев Зандер, Pierre Pasquier, Temira Pachmuss, Natalia Soljénitsyne, Jean Cathala, Lucia Cathala, Jean Roberti, Alexandre Rozanov, Alexandre Viktorov, Ekaterina Chorban, Robert Giraud, Lazar Fleishman, Mathieu Malinine, Dmitri Stelletsky, Н. Б. Артамонова, Kiprian Kern, Василий Гролимунд, Julia Reitlinger, Jean Meyendorff, Ольга Табашникова, А. Н. Богословский, Sophie Lafaille, Stéphanie Scudiero, Gabriel Superfin, Macaire de Simonos Pétra, Claude Ernoult, Jean-Marc Bordier, Jean-Paul Sémon, Léon Robel, Marianne Gourg-Antuszewicz, Doussia Ergaz, Vladimir Pozner, Stephen Cartwright, Antoine Audouard, Nadine Dubourvieux, Michelle-Irène Brudny-de Launay, Andreï Makine, Анатолий Шайкевич, Владимир Смоленский, Юрий Одарченко, Mikhaïl Malychev, Alexandre Skabitchevski, Modeste Hofmann, Pierre Belvès, Nathalie Parain, Isabelle Ribadeau Dumas, Evgueni Ratchev, José Johannet, Étienne Fouilloux, Joël Gayraud, Anne Gorouben, Véronique Patte, Lili la Baleine, Jean Becchio, Jean Breck, Bastien Loukia, Louis Léger, Michel Dumesnil de Gramont, Daniel-Rops, Sarah Gruszka, Hélène Menegaldo, Emmanuel Ruben, Iryna Dmytrychyn, Arnaud Cochet, Lidia Popova, Mikhaïl Nesterov, Jacques Dalarun, Dominique Dussidour, Feodor Rojankovsky, А. Гефтер, Basile Zenkovsky, А. М. Черный, Antoine Arjakovsky, Patrice Mahieu, Les Chats Pelés, Dominique Fernandez, Michel Fortounatto, Gleb Struve, Evgueni Lanceray, Vladimir Souteïev, Véronique Lossky, Boris Filippov, Roma Liberov, Galina Subbotina, Андрей Корляков, Дмитрий Северюхин, Николай Эндегор
+99 personnes nouvelles, à créer : Anna Artemeva, Elena Ratcheva, Arthur Molev, Аркадий Сосницкий, Jean-Claude Roberti, Simone Sentz-Michel, Nina Kehayan, Michel Stavrou, Michel Gay, Anne-Marie Passaret, Paul Toutchkov, Sergueï Ermolinski, Georges Arout, Pierre Sipriot, Alexandre de Couriss, Constantin Andronikof, Georges Philippenko, Лев Зандер, Pierre Pasquier, Temira Pachmuss, Natalia Soljénitsyne, Jean Cathala, Lucia Cathala, Jean Roberti, Alexandre Rozanov, Alexandre Viktorov, Ekaterina Chorban, Robert Giraud, Lazar Fleishman, Mathieu Malinine, Dmitri Stelletsky, Н. Б. Артамонова, Kiprian Kern, Василий Гролимунд, Julia Reitlinger, Ольга Табашникова, А. Н. Богословский, Sophie Lafaille, Stéphanie Scudiero, Gabriel Superfin, Macaire de Simonos Pétra, Claude Ernoult, Jean-Marc Bordier, Jean-Paul Sémon, Léon Robel, Marianne Gourg-Antuszewicz, Doussia Ergaz, Vladimir Pozner, Stephen Cartwright, Antoine Audouard, Nadine Dubourvieux, Michelle-Irène Brudny-de Launay, Andreï Makine, Анатолий Шайкевич, Владимир Смоленский, Юрий Одарченко, Mikhaïl Malychev, Alexandre Skabitchevski, Modeste Hofmann, Pierre Belvès, Nathalie Parain, Isabelle Ribadeau Dumas, Evgueni Ratchev, José Johannet, Étienne Fouilloux, Joël Gayraud, Anne Gorouben, Véronique Patte, Lili la Baleine, Jean Becchio, Bastien Loukia, Louis Léger, Michel Dumesnil de Gramont, Daniel-Rops, Sarah Gruszka, Hélène Menegaldo, Emmanuel Ruben, Iryna Dmytrychyn, Arnaud Cochet, Lidia Popova, Mikhaïl Nesterov, Jacques Dalarun, Dominique Dussidour, Feodor Rojankovsky, А. Гефтер, А. М. Черный, Antoine Arjakovsky, Patrice Mahieu, Les Chats Pelés, Dominique Fernandez, Gleb Struve, Evgueni Lanceray, Vladimir Souteïev, Véronique Lossky, Boris Filippov, Roma Liberov, Galina Subbotina, Дмитрий Северюхин, Николай Эндегор
+11 personnes retirées d’au moins un rôle : Boris Zaïtsev, Nina Kchayan, A. de Couriss, C. Andronikof, J. Cathala, Marianne Gourg-Antuszewic, Innokenti Platonov, Askold Akishine, Misha Zaslavsky, M. Dumesnil' de Gramont, Andreï Kovrine
   104 texte : « Kchayan » → « Kehayan » (1)
   110 texte : « Sherrer » → « Scherrer » (1)
   159 texte : « S. Ermolonski » → « S. Ermolinski » (1)
