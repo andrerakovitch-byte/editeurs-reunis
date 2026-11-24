@@ -102,7 +102,7 @@ def ecart(a, b):
     a2.paste(a)
     b2.paste(b)
     diff = ImageChops.difference(a2, b2).convert('L').point(lambda v: 255 if v > 24 else 0)
-    n = sum(1 for v in diff.getdata() if v)
+    n = diff.histogram()[255]
     return n / (largeur * hauteur), a2, b2, diff
 
 
