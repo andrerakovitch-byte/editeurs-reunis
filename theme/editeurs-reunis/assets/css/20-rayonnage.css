@@ -79,10 +79,9 @@
 .er-carte__translit { color: var(--wp--preset--color--discret); }
 .er-carte__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
 .er-carte__faits > span:empty { display: none; }
-.er-carte__faits > span:not(:empty):has(~ span:not(:empty))::after { content: " · "; }
-/* En couvertures, pas de pages : le point ne s'arrête pas devant elles. */
+/* Un point entre les faits ; en couvertures, pas de pages, et le point ne s'arrête pas devant elles. */
+.er-livres--liste .er-carte__faits > span:not(:empty):has(~ span:not(:empty))::after { content: " · "; }
 .er-livres:not(.er-livres--liste) .er-carte__pages { display: none; }
-.er-livres:not(.er-livres--liste) .er-carte__faits > span::after { content: none; }
 .er-livres:not(.er-livres--liste) .er-carte__faits > span:not(:empty):has(~ span:not(:empty):not(.er-carte__pages))::after { content: " · "; }
 .er-carte__maison--ymca::before {
 	content: "";
@@ -294,11 +293,11 @@
 @media (max-width: 600px) { .er-langues { padding: 1.25rem; } .er-langues__couv { height: 10.5rem; } }
 
 /* Par époque : le titre de chaque chapitre, sur toute la largeur. */
-.er-chapitre { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-livres > .er-chapitre { grid-column: 1 / -1; display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 0.25rem 1rem; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--wp--preset--color--contrast); text-align: left; }
 .er-chapitre__annees { flex-basis: 100%; margin: 0; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.02em; color: var(--wp--preset--color--discret); font-variant-numeric: tabular-nums; }
 .er-chapitre__nom { margin: 0; font-size: 1.75rem; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; }
 .er-chapitre__compte { margin: 0; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
-.er-livres--liste .er-chapitre { margin: 0; padding: 2rem 0 0.75rem; border-top: 0; }
+.er-livres--liste > .er-chapitre { margin: 0; padding: 2rem 0 0.75rem; border-top: 0; }
 @media (max-width: 600px) { .er-chapitre__nom { font-size: 1.375rem; } }
 
 /* « Voir 24 livres de plus » : avec le script, elle remplace les numéros de page. */
