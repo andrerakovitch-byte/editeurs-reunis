@@ -1,4 +1,4 @@
-Audit des recoupements — 24 novembre 2026, 11:07
+Audit des recoupements — 24 novembre 2026, 11:09
 840 livres, 68 articles, 169 rencontres, 19 vidéos et podcasts, 8 expositions, 39 pages, 608 personnes.
 
 ## 1. Les personnes en double (même nom à l’accent ou à la transcription près, ou par une autre graphie)
@@ -58,12 +58,7 @@ Audit des recoupements — 24 novembre 2026, 11:07
 
 ## 5. Les livres
   Les rôles posés (livres) : Préface 46, Édition établie par 22, Illustrations 5, Traduction 161, Sous la direction de 3.
-  Relevés dans les textes mais pas posés : 5 (Préface 1, Traduction 4) — wp er roles appliquer.
-    Elena Balzano (1)
-    Paul Lesquesne (1)
-    Anna Davidenkoff (1)
-    Jérôme Clerc (1)
-    G. Arout (1)
+  Relevés dans les textes mais pas posés : 0.
   Livres avec un traducteur repris de Wix, mais personne posée (wp er roles l’a mis de côté) : 2
     Palimpsestes · « Rilke et Goethe »
     La Vie de St Martin de Tours · « Martin de Tours »
@@ -105,4 +100,4 @@ Audit des recoupements — 24 novembre 2026, 11:07
   vidéos et podcasts : 1 sur 19.
   expositions : 0 sur 8.
 
-Fait en 2.0 s. Rien n’a été modifié.
+Fait en 2.1 s. Rien n’a été modifié.
