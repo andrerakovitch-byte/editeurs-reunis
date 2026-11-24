@@ -197,7 +197,7 @@
 .er-diaporama-mini .er-diaporama-commandes { inset-inline: auto 1.5rem; bottom: 1.5rem; width: auto; margin: 0; }
 .er-diaporama-mini .er-diaporama-fleche { width: 40px; height: 40px; }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
 	.er-rayons-liste { gap: 0 0.9rem; }
 	.er-rayon-lien { font-size: 0.875rem; }
 }

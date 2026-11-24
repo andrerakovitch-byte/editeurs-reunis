@@ -80,7 +80,7 @@
 .er-tete-avec-image .er-tete-titres { grid-column: 3 / span 6; }
 .er-tete-avec-image .er-tete-chapo { grid-column: 9 / span 4; }
 .er-tete-avec-image.er-tete-sans-chapo .er-tete-titres { grid-column: 3 / -1; }
-@media (max-width: 1099px) {
+@media (max-width: 1100px) {
 	.er-tete-titre { font-size: 2.875rem; }
 	.er-tete-chapo { font-size: 1.125rem; }
 	.er-tete-lettre { font-size: 10rem; bottom: -40px; }

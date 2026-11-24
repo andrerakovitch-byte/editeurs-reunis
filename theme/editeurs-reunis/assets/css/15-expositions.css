@@ -118,7 +118,7 @@
 .er-x-liee .er-j-sur { font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
 .er-x-liee .er-x-carte-titre { font-size: 1.125rem; }
 
-@media (max-width: 1099px) {
+@media (max-width: 1100px) {
 	/* Une seule colonne : les règles des colonnes ci-dessus viennent après celles du journal, on les reprend ici */
 	.er-x-affiche-texte, .er-x-affiche .er-x-image, .er-x-entete .er-x-image, .er-x-cartel, .er-x-texte, .er-x-marge, .er-x-entree { grid-column: 1 / -1; }
 	.er-x-entete .er-x-image { max-width: 480px; }
@@ -132,7 +132,7 @@
 	.er-x-autres ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 	.er-x-entete .er-x-image img { max-height: 560px; }
 }
-@media (max-width: 719px) {
+@media (max-width: 781px) {
 	.er-x-titre { font-size: 2.25rem; }
 	.er-x-chapo { font-size: 1.0625rem; }
 	.er-x-affiche { padding-block: 48px; }

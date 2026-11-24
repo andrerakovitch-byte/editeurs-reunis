@@ -122,7 +122,7 @@
 .er-j-surtitre a { color: inherit; }
 .er-j-surtitre a:hover { text-decoration: underline; }
 
-@media (max-width: 1099px) {
+@media (max-width: 1100px) {
 	.er-j-g { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 24px; }
 	.er-j-g > * { grid-column: 1 / -1; }
 	.er-j-module { padding-block: 72px; }
@@ -141,7 +141,7 @@
 	.er-j-ligne-texte { grid-column: 1; }
 	.er-j-ligne .er-j-image { grid-column: 2; }
 }
-@media (max-width: 719px) {
+@media (max-width: 781px) {
 	.er-j-g { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; }
 	.er-j-module { padding-block: 56px; }
 	.er-j-une { padding-top: 32px; }

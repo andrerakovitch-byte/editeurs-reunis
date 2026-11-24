@@ -119,7 +119,7 @@ html { overflow-x: clip; }
 .er-evt-livre-prix { display: block; margin-top: 0.3rem; font-size: var(--wp--preset--font-size--x-small); }
 .er-evt-retour { margin-top: 3.5rem; }
 
-@media (max-width: 900px) {
+@media (max-width: 781px) {
 	.er-evt-grille { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
 	.er-evt-affiche-colonne { position: static; max-width: min(100%, 20rem); }
 }
@@ -166,7 +166,7 @@ html { overflow-x: clip; }
 .er-evt-lien { padding: 0.5em 1.1em; border: 1px solid var(--wp--preset--color--contrast); border-radius: 999px; font-weight: 500; transition: background var(--er-transition), color var(--er-transition); }
 .er-evt-ligne a:hover .er-evt-lien { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
 .er-evt-ligne a:hover .er-evt-ligne-titre { text-decoration: underline; text-underline-offset: 0.2em; }
-@media (max-width: 700px) {
+@media (max-width: 781px) {
 	.er-evt-ligne a { grid-template-columns: 4rem minmax(0, 1fr); gap: 0.6rem 1rem; align-items: start; }
 	.er-evt-vignette { display: none; }
 	.er-evt-entree { grid-column: 2; }
@@ -182,7 +182,7 @@ html { overflow-x: clip; }
 	gap: 3rem clamp(1rem, 2.2vw, 1.75rem);
 }
 @media (max-width: 1100px) { .er-evts-grille { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 700px) { .er-evts-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; } }
+@media (max-width: 781px) { .er-evts-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; } }
 .er-evt-carte a { display: grid; gap: 0.4rem; color: inherit; text-decoration: none; }
 .er-evt-affiche { display: block; margin-bottom: 0.5rem; aspect-ratio: 4 / 5; overflow: hidden; background: var(--wp--preset--color--doux); }
 .er-evt-affiche img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
