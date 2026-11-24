@@ -603,7 +603,7 @@ function er_roles_releves( $id ) {
  */
 function er_editeur_cle( $nom ) {
 	$cle = mb_strtolower( remove_accents( $nom ), 'UTF-8' );
-	$cle = preg_replace( '/\b(?:editions?|editeurs?|publishing|publications?|publisher)\b/u', ' ', $cle );
+	$cle = preg_replace( '/\b(?:editions?|eds?|editeurs?|publishing|publications?|publisher)\b/u', ' ', $cle );
 	$cle = preg_replace( '/^\s*(?:(?:de la|de l|du|des|de|d|les|le|la|l)[\s’\']+)+/u', '', trim( $cle ) );
 	return trim( preg_replace( '/[^\p{L}\p{N}]+/u', '', $cle ) );
 }

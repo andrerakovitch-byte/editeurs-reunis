@@ -88,6 +88,7 @@ function test_cle_d_un_editeur_et_ses_variantes() {
 	egal( er_editeur_cle( 'Institut dEtudes Slaves' ), er_editeur_cle( 'Institut d’études slaves' ) );
 	egal( er_editeur_cle( 'Noir sur Blanc' ), er_editeur_cle( 'Les Éditions Noir sur blanc' ) );
 	egal( er_editeur_cle( 'Le Seuil' ), er_editeur_cle( 'Éditions du Seuil' ) );
+	egal( er_editeur_cle( 'Les Éd. du Cerf' ), er_editeur_cle( 'Éditions du Cerf' ) );
 	egal( er_editeur_cle( 'Les Éditeurs réunis' ) === er_editeur_cle( 'YMCA-Press' ), false );
 }
 
