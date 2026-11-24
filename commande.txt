@@ -1,5 +1,51 @@
-  centre-culturel/evenements : « Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-Geneviève. »
-  centre-culturel : « Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts et des vidéos autour de la littérature et de l’histoire russes. »
-  ymca-press/amis-ymca-press : « Notre équipe est uniquement composée de bénévoles. Rejoignez l’Association des Amis d’YMCA-Press pour nous aider à faire vivre la librairie, la maison d’édition et le centre. »
-  ymca-press : « Depuis un siècle, YMCA-Press publie la littérature et la pensée russes en exil. »
-Success: 4 chapôs posés.
+centre-culturel/evenements/ · 200 · 1 tête, 1 bande
+  tête [er-tete-centre] Le centre culturel | 169 rencontres depuis 2018 — « Nos événements » · Встречи
+    chapô : Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-G
+  [er-bande-centre] Nos événements : À venir • · | · PASSéES · 2026 · 2025 · 2024 · 2023 · Plus anciennes ▾ · | · Avec une vidéo · Les cycles ▾
+  dans <div class="entry-content alignwide wp-block-post-content has-global-padding is-content-justification-left is-layout-constrained wp-container-core-post-content-is-layout-94d391da wp-block-post-content-is-layout-constrained">
+centre-culturel/expositions/ · 200 · 1 tête, 1 bande
+  tête [er-tete-centre] Le centre culturel | 8 expositions depuis 2020 — « Nos expositions » · Выставки
+    chapô : Peintures, gravures, images et archives, accrochées au 11, rue de la Montagne-Sainte-Geneviève.
+  [er-bande-centre] Nos expositions : PASSéES · Toutes • · 2023 · 2022 · 2021 · 2020 · Les techniques ▾
+journal/ · 200 · 1 tête, 1 bande
+  tête [er-tete-centre] Le centre culturel | Depuis 2020 · 68 textes — « Le journal du centre » · Журнал
+    chapô : Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la
+  [er-bande-centre] Le journal du centre : À la une • · Chroniques · Critiques · Essais · Récits · Entretiens · Hommages · Archives · Documents · | · En russe
+ymca-press/histoire/ · 200 · 0 tête, 1 bande
+  [er-bande-ymca er-bande-sommaire] Un siècle d’histoire : 1921 La naissance • · 1925 L’essor · 1940 La résistance · 1955 Le renouveau · 1971 La dissidence · L’Archipel · 1975 L’association · 1991 Le retour en Russie · 1995 L’avenir · L’héritage
+  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
+librairie/encyclopedie/age-d-argent/ · 200 · 0 tête, 1 bande
+  [er-bande-librairie er-bande-sommaire] L’Âge d’argent : 1.Un âge nommé après coup • · 2.Le symbolisme · 3.L’acméisme · 4.Le futurisme · 5.Hors des écoles · 6.La fin d’un monde · Les œuvres clés · Les livres de ce chapitre · Bibliographie · Notes
+  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
+nous-trouver/ · 200 · 1 tête, 0 bande
+  tête [er-tete-centre er-tete-sans-chapo] Le centre culturel — « Nous trouver » · Адрес
+centre-culturel/videos/ · 200 · 0 tête, 0 bande
+centre-culturel/ · 200 · 1 tête, 0 bande
+  tête [er-tete-centre] Le centre culturel — « Le centre culturel » · Центр
+    chapô : Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts e
+ymca-press/ · 200 · 1 tête, 0 bande
+  tête [er-tete-ymca] Maison d’édition YMCA-Press — « Maison d’édition YMCA-Press » · ИМКА-Пресс
+    chapô : Depuis un siècle, YMCA-Press publie la littérature et la pensée russes en exil.
+ymca-press/catalogue/ · 200 · 1 tête, 0 bande
+  tête [er-tete-ymca er-tete-sans-chapo] Maison d’édition YMCA-Press — « Le catalogue » · Каталог
+librairie/ · 200 · 1 tête, 0 bande
+  tête [er-tete-librairie] Librairie | 840 livres — « Librairie » · Магазин
+    chapô : Les Éditeurs réunis, librairie de référence depuis 1925
+mentions-legales/ · 200 · 1 tête, 0 bande
+  tête [er-tete-aucune er-tete-sans-chapo] Les Éditeurs réunis — « Mentions légales »
+/rayon/litterature/ · 200 · 1 tête, 1 bande
+  tête [er-tete-librairie] Librairie | 378 livres — « Littérature » · Литература
+    chapô : Les classiques et les contemporains, en français et en russe.
+  [er-bande-librairie] Littérature : Tout le rayon • · | · PAR GENRE · Romans · Nouvelles et récits · Poésie · Théâtre · Mémoires et témoignages · Récits de voyage · Essais · | · Par époque ▾
+/rayon/litterature/romans/ · 200 · 1 tête, 1 bande
+  tête [er-tete-librairie er-tete-sans-chapo] Librairie / Littérature | 120 livres — « Romans »
+  [er-bande-librairie] Littérature : Tout le rayon · | · PAR GENRE · Romans • · Nouvelles et récits · Poésie · Théâtre · Mémoires et témoignages · Récits de voyage · Essais · | · Par époque ▾
+/auteur/georges-nivat/ · 200 · 1 tête, 1 bande
+  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 8 livres en rayon — « Georges Nivat »
+  [er-bande-librairie er-bande-sommaire] Georges Nivat : Ses traductions • · Sous sa direction · Ses préfaces · Au centre · Dans le journal
+/auteur/alexandre-soljenitsyne/ · 200 · 1 tête, 1 bande
+  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 19 livres en rayon — « Alexandre Soljenitsyne » (Александр Солженицын · Aleksandr Solzhenitsyn) · Александр Солженицын
+  [er-bande-librairie er-bande-sommaire] Alexandre Soljenitsyne : Ses livres • · Au centre · Dans le journal · À lire sur le site
+/sujet/histoire/ · 200 · 1 tête, 1 bande
+  tête [er-tete-aucune er-tete-sans-chapo] Sujet | 46 rencontres · 19 textes — « Histoire »
+  [er-bande-aucune er-bande-sommaire] Histoire : Prochainement au centre • · Les rencontres · Dans le journal
