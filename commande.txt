@@ -2,4 +2,4 @@
   centre-culturel : « Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts et des vidéos autour de la littérature et de l’histoire russes. »
   ymca-press/amis-ymca-press : « Notre équipe est uniquement composée de bénévoles. Rejoignez l’Association des Amis d’YMCA-Press pour nous aider à faire vivre la librairie, la maison d’édition et le centre. »
   ymca-press : « Depuis un siècle, YMCA-Press publie la littérature et la pensée russes en exil. »
-Success: 4 chapôs à poser. Avec « appliquer », c’est fait.
+Success: 4 chapôs posés.
