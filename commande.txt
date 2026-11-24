@@ -1,9 +1,8 @@
-  Taxes calculées                             no (attendu : yes)
-  Prix saisis TTC                              no (attendu : yes)
-  Calcul d’après l’adresse de la boutique shipping (attendu : base)
-  Livraison au taux des articles               inherit
-  Prix affichés TTC dans la boutique          excl (attendu : incl)
-  Prix affichés TTC dans le panier            excl (attendu : incl)
-  Taux pour la France                           aucun (attendu : 5,5 %, livraison comprise)
-« wp er tva appliquer » pour poser ces réglages.
+  Taxes calculées                               yes (était : no)
+  Prix saisis TTC                               yes (était : no)
+  Calcul d’après l’adresse de la boutique       base (était : shipping)
+  Livraison au taux des articles                inherit
+  Prix affichés TTC dans la boutique            incl (était : excl)
+  Prix affichés TTC dans le panier              incl (était : excl)
+  Taux pour la France                           5,5 %, livraison comprise (posé)
 Les billets des rencontres suivent le même taux : à confirmer avec le comptable.
