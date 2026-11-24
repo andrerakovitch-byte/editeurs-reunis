@@ -17,18 +17,18 @@
   223 « Histoire de la Russie des tsars », Préface, présentation : — → Andreï Kozovoï
   351 « Le Messager orthodoxe, n° 141 », Sous la direction de : — → Nikita Struve
   353 « Le Messager orthodoxe, n° 140 », Sous la direction de : — → Nikita Struve
-  409 « Моя жизнь во Христе », Édition établie, notes, choix : — → Alexandre Eltchaninov
+  409 « Моя жизнь во Христе », Édition établie, notes, choix : — → père Alexandre Eltchaninoff
   435 « Лицо России », Préface, présentation : — → Е. Федотова
   537 « Об о. Павле Флоренском », Illustrations : — → А. Ракузин, Надежда Симонович-Ефимова
   563 « Памяти отца александра ельчанинова », Préface, présentation : — → Métropolite Euloge
   631 « Correspondance », Révision de la traduction : — → Luba Jurgenson
   649 « Journal de La Roue Rouge », Traduction : — → Françoise Lesourd
-  663 « Entretiens avec Anna Akhmatova », Édition établie, notes, choix : — → Sophie Benech, Lydia Tchoukovskaïa, Elena Tchoukovskaïa
+  663 « Entretiens avec Anna Akhmatova », Édition établie, notes, choix : — → Sophie Benech, Elena Tchoukovskaïa
   748 « Anthologie de la poésie russe, la renaissance du XXe siècle », Édition établie, notes, choix : — → Nikita Struve
   780 « Сказки », Illustrations : — → Evgueni Antonenkov
   784 « Русские сказки для детей », Illustrations : — → Evgueni Antonenkov
   802 « Россия и эмиграция », Préface, présentation : — → Наталья Ликвинцева
-  802 « Россия и эмиграция », Édition établie, notes, choix : — → Наталья Ликвинцева, Татьяна Викторова, Nikita Struve
+  802 « Россия и эмиграция », Édition établie, notes, choix : — → Наталья Ликвинцева, Tatiana Victoroff, Nikita Struve
   995 « Лиса и медведь », Illustrations : — → Evgueni Ratchev
   1030 « Le Chat, Le Général et La Corneille », Traduction : — → Rose Labourie
   1045 « Cмерть Андрея Белого (1880-1934) », Édition établie, notes, choix : — → Моника Спивак, Елена Наседкина
@@ -44,7 +44,7 @@
   1775 « Что нам с этим делать », Illustrations : — → Sacha Skotchilenko
   1779 « Fragments d’un tout », Illustrations : — → Andreï Krassouline
 Rôles à poser : 33 changements ; 451 déjà justes.
-24 personnes nouvelles, à créer : Iaroslav Dobrynine, père Zénon, Claude-Dominique Béguin, Emmanuelle Vernoux, Henry Guérin, Michel Patrizio, Ksenia Bolchakova, Alexandre Eltchaninov, Е. Федотова, А. Ракузин, Надежда Симонович-Ефимова, Métropolite Euloge, Elena Tchoukovskaïa, Evgueni Antonenkov, Наталья Ликвинцева, Татьяна Викторова, Rose Labourie, Моника Спивак, Елена Наседкина, Boris Siemaszko, Владимир Русак, Gérald Auclin, Sacha Skotchilenko, Andreï Krassouline
+22 personnes nouvelles, à créer : Iaroslav Dobrynine, père Zénon, Claude-Dominique Béguin, Emmanuelle Vernoux, Henry Guérin, Michel Patrizio, Ksenia Bolchakova, Е. Федотова, А. Ракузин, Надежда Симонович-Ефимова, Métropolite Euloge, Elena Tchoukovskaïa, Evgueni Antonenkov, Наталья Ликвинцева, Rose Labourie, Моника Спивак, Елена Наседкина, Boris Siemaszko, Владимир Русак, Gérald Auclin, Sacha Skotchilenko, Andreï Krassouline
   881 éditeur : Bagne rouge → Éditions des Syrtes
   1078 éditeur : s → Calmann-Lévy
   881 annee : 1935 → 2020
@@ -306,7 +306,6 @@ Rôles à poser : 33 changements ; 451 déjà justes.
   1249 auteur : Сони Вестерхольт (personne nouvelle)
   1271 auteur : Alexandre Afanassiev (personne nouvelle)
   1271 auteur : Marko Vovtchok (personne nouvelle)
-  1273 auteur : Marina et Natacha (personne nouvelle)
   1645 auteur : Erwan Barillot (personne nouvelle)
   1645 auteur : Arnaud Frilley (personne nouvelle)
   1652 auteur : Svetlana Le Fleming (personne nouvelle)
@@ -319,5 +318,5 @@ Rôles à poser : 33 changements ; 451 déjà justes.
   1805 auteur : Damien Marguet (personne nouvelle)
   1805 auteur : Eugénie Zvonkine (personne nouvelle)
   1033 texte : « Virgil Dubreuil » → « Virgile Dureuil » (1)
-Corrections à faire (« wp er recoupement appliquer » pour tout poser) : 274.
+Corrections à faire (« wp er recoupement appliquer » pour tout poser) : 273.
 117 laissées (introuvables ou déjà faites) : 104 texte « Kchayan » ; 110 texte « Sherrer » ; 159 texte « S. Ermolonski » ; 183 texte « Pasquierь » ; 195 texte « Soljénistyne » ; 205 texte « tradution » ; 205 texte « Jérôme Clerc » ; 635 texte « Traduit du Joëlle Dublanchet » ; 651 texte « Antuszewic » ; 681 texte « traduit du russe pas » ; 691 texte « Одраченко » ; 786 texte « Parrain » ; 869 texte « Lesquesne » ; 1078 texte « Dumesnil' de Gramont » ; 1220 texte « Taduit » ; 1232 texte « Christine Zeytounian » ; 1399 texte « Liouba Jurgenson » ; 1824 texte « Balzano » ; 1882 texte « convain cu » ; 1866 titre « dispraître » ; 1866 texte « dispraître » ; 501 titre «  – sous la direction de Georges Nivat » ; 867 titre «  - sous la direction de Georges Nivat » ; 1152 titre «  - Sous la direction de Johann Bihr » ; 853 titre «  - Ilf & Petrov » ; 1335 titre « , Serhii Plokhy » ; 730 titre «  / Nathalie Gigounova-Komarova » ; 177 titre «  Nicolas Berdiaev » ; 661 auteur (déjà : Heather Amery) ; 730 auteur (déjà : Nathalie Gigounova-Komarova) ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 1605 auteur (déjà : Корней Чуковский) ; 177 auteur (déjà : Nicolas Berdiaev) ; 50 éditeur (déjà : Mesures) ; 94 éditeur (déjà : Gallimard) ; 100 annee (déjà : 2012) ; 134 éditeur (déjà : Éditions du Cerf) ; 140 éditeur (déjà : Fayard) ; 485 éditeur (déjà : F.-X. de Guibert) ; 599 éditeur (déjà : Éditions du Cerf) ; 607 éditeur (déjà : Éditions du Cerf) ; 623 éditeur (déjà : Fayard) ; 625 annee (déjà : 1993) ; 625 éditeur (déjà : Gallimard) ; 627 annee (déjà : 1987) ; 627 éditeur (déjà : Gallimard) ; 639 éditeur (déjà : Verdier) ; 649 pages (déjà : 701) ; 649 éditeur (déjà : Fayard) ; 651 annee (déjà : 2016) ; 665 pages (déjà : 1053) ; 665 éditeur (déjà : Robert Laffont) ; 673 pages (déjà : 126) ; 673 éditeur (déjà : Ginkgo éditeur) ; 683 annee (déjà : 2020) ; 683 pages (déjà : 257) ; 683 éditeur (déjà : Mesures) ; 685 éditeur (déjà : Bleu nuit éditeur) ; 687 éditeur (déjà : YMCA-Press) ; 728 éditeur (déjà : Temps présent) ; 741 annee (déjà : 2007) ; 741 éditeur (déjà : Harpo) ; 751 annee (déjà : 1994) ; 755 éditeur (déjà : Rostok) ; 761 annee (déjà : 2009) ; 761 éditeur (déjà : YMCA-Press) ; 767 éditeur (déjà : Perrin) ; 828 éditeur (déjà : Librairie des Cinq Continents) ; 857 éditeur (déjà : Perrin) ; 871 éditeur (déjà : L'Âge d'homme) ; 900 éditeur (déjà : La Barque) ; 902 éditeur (déjà : La Barque) ; 906 éditeur (déjà : Perrin) ; 923 pages (déjà : 144) ; 935 pages (déjà : 115) ; 955 éditeur (déjà : Le Cherche midi éd.) ; 1035 éditeur (déjà : Parenthèses) ; 1074 éditeur (déjà : Parole et silence) ; 1096 éditeur (déjà : Solin-Actes Sud) ; 1136 éditeur (déjà : Éditions Natania) ; 1138 éditeur (déjà : Éditions Natania) ; 1177 éditeur (déjà : Mesures) ; 1183 annee (déjà : 2022) ; 1183 éditeur (déjà : La Barque) ; 1193 annee (déjà : 2022) ; 1193 éditeur (déjà : Buchet-Chastel) ; 1210 éditeur (déjà : Ginkgo éditeur) ; 1216 éditeur (déjà : Éditions des Syrtes) ; 1218 éditeur (déjà : Éditions des Syrtes) ; 1263 éditeur (déjà : Éditions des Syrtes) ; 1319 éditeur (déjà : Lis & parle éditions) ; 1321 éditeur (déjà : La Barque) ; 1323 éditeur (déjà : Noir sur Blanc) ; 1327 éditeur (déjà : FYP) ; 1361 éditeur (déjà : Saint Leger éditions) ; 1382 éditeur (déjà : Perrin) ; 1384 éditeur (déjà : Presses universitaires de Rennes) ; 1405 éditeur (déjà : UGA éditions) ; 1576 annee (déjà : 2023) ; 1576 pages (déjà : 192) ; 1576 éditeur (déjà : Mesures) ; 1749 annee (déjà : 2018) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 933 auteur (déjà : Ernest Daudet) ; 997 auteur (déjà : Tatiana Mojenok) ; 1296 auteur (déjà : François Malye) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1837 auteur (déjà : Natalie Stepanoff-Kontchalovski) ; 1854 auteur (déjà : Андрей Зубов) ; 706 texte « Черниршов »
