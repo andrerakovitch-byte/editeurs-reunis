@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.9.0
+Version: 0.9.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -457,11 +457,10 @@ header.er-haut {
 .er-lignes .er-a-tiroir.ouvert > .er-rayon-lien { color: var(--wp--preset--color--base); font-weight: 500; text-decoration: none; }
 .er-lignes .er-sous-menu a:hover,
 .er-lignes .er-rayon-lien:hover { color: var(--wp--preset--color--base); }
+/* Les trois lignes ont la police de celle de la librairie (24 nov. 2026) : 14 px, demi-gras léger (500). */
+.er-lignes .er-sous-menu a { font-size: 0.875rem; font-weight: 500; }
 @media (min-width: 1680px) {
-	/* Les menus d'YMCA-Press et du centre en 16 px, 44 px entre les pages ; la librairie, qui a plus d'entrées (ses
-	   rayons, chacun avec la flèche de son tiroir), garde 14 px pour tenir sur une ligne. */
-	.er-lignes .er-sous-menu ul { gap: 0 2.75rem; }
-	.er-lignes .er-sous-menu a { font-size: 1rem; }
+	.er-lignes .er-sous-menu ul { gap: 0 2rem; }
 	.er-lignes .er-rayons-liste { gap: 0 1.5rem; }
 }
 
@@ -1705,6 +1704,7 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 	left: 0;
 	right: 0;
 	top: 100%;
+	color: var(--wp--preset--color--contrast); /* le tiroir est dans l'en-tête : il ne prend pas sa couleur */
 	background: var(--wp--preset--color--base);
 	border-block: 1px solid var(--wp--preset--color--contrast);
 	box-shadow: 0 24px 40px -28px rgba(0, 0, 0, 0.35);
@@ -1714,7 +1714,7 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 
 .er-tiroir-colonne {
 	box-sizing: border-box;
-	padding: 1.9rem 1.75rem 1.6rem max(var(--wp--style--root--padding-left), calc((100vw - var(--wp--style--global--wide-size)) / 2));
+	padding: 1.9rem 1.75rem 1.6rem var(--wp--style--root--padding-left); /* plein écran : la marge de la page, alignée sur « Accueil » */
 	display: flex;
 	flex-direction: column;
 }
@@ -1729,7 +1729,7 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 }
 .er-tiroir-liens { list-style: none; margin: 0; padding: 0; }
 .er-tiroir-liens li { margin: 0; }
-.er-tiroir-liens a { display: inline-block; padding: 0.22rem 0; text-decoration: none; font-weight: 500; font-size: 0.9375rem; line-height: 1.45; }
+.er-tiroir-liens a { display: inline-block; padding: 0.22rem 0; color: inherit; text-decoration: none; font-weight: 500; font-size: 0.9375rem; line-height: 1.45; }
 .er-tiroir-liens a:hover { color: var(--wp--preset--color--accent-texte); text-decoration: underline; }
 .er-tiroir-tout { margin-top: auto; padding-top: 1rem; font-size: var(--wp--preset--font-size--small); font-weight: 600; text-decoration: none; color: var(--wp--preset--color--contrast); }
 .er-tiroir-tout::after { content: " →"; }
@@ -1744,7 +1744,7 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: 1.75rem;
 	align-items: stretch;
-	padding: 2.1rem max(var(--wp--style--root--padding-right), calc((100vw - var(--wp--style--global--wide-size)) / 2)) 1.6rem 2rem;
+	padding: 2.1rem var(--wp--style--root--padding-right) 1.6rem 2rem;
 	border-left: var(--er-filet);
 }
 .er-vitrine-livre { display: flex; align-items: flex-end; gap: 0.6rem; min-width: 0; text-decoration: none; color: var(--wp--preset--color--contrast); }
