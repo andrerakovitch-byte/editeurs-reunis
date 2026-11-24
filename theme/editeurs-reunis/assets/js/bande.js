@@ -1,7 +1,7 @@
 /**
  * La bande de page (inc/bande.php) :
  * - accrochée sous la ligne de la maison, elle prend la classe « est-accrochee » : une ombre d'un pixel, et le nom de la
- *   page se glisse à gauche (style.css) ;
+ *   page se glisse à gauche (style.css), s'il y a la place (sinon « est-sans-nom ») ;
  * - dans un sommaire (er-bande-sommaire), le trait suit la lecture : l'entrée de la partie qu'on lit est marquée ;
  * - l'entrée courante reste en vue quand la bande défile de côté (au téléphone), avec un fondu du côté où il reste à
  *   voir ;
@@ -25,6 +25,7 @@
 	bandes.forEach( function ( bande ) {
 		var repere = bande.previousElementSibling && bande.previousElementSibling.classList.contains( 'er-bande-repere' ) ? bande.previousElementSibling : null;
 		var liste = bande.querySelector( '.er-bande-liste' );
+		var nom = bande.querySelector( '.er-bande-nom' );
 		var sommaire = bande.classList.contains( 'er-bande-sommaire' );
 		var liens = Array.prototype.slice.call( bande.querySelectorAll( '.er-bande-liste a.er-bande-lien' ) );
 		var cibles = [];
@@ -116,6 +117,10 @@
 			var haut = hautAccroche( bande );
 			var accrochee = repere ? repere.getBoundingClientRect().top < haut - 0.5 : bande.getBoundingClientRect().top <= haut + 0.5;
 			if ( accrochee !== bande.classList.contains( 'est-accrochee' ) ) {
+				// Le nom ne se glisse que s'il y a la place : les entrées passent avant.
+				if ( accrochee && nom && liste ) {
+					bande.classList.toggle( 'est-sans-nom', liste.scrollWidth + nom.scrollWidth + 49 > liste.clientWidth + 1 );
+				}
 				bande.classList.toggle( 'est-accrochee', accrochee );
 				window.setTimeout( fondus, 320 ); // le nom qui entre prend de la place
 			}

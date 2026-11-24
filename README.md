@@ -76,8 +76,31 @@ maisons attendent, cachées.
 **En défilant** (la manière 2 du canevas, choisie le 24 nov.) : la barre d'informations et la barre noire s'en vont,
 la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe et le panier. La loupe ouvre la recherche
 sur place, sous la ligne, sans faire remonter la page ; le panier ouvre le volet du panier de WooCommerce, avec la même
-pastille que celui de la barre noire. Le troisième niveau d'une rubrique, comme les genres du journal (À la une,
-Chroniques, Critiques…), s'accroche juste dessous.
+pastille que celui de la barre noire. La bande de page (le troisième niveau, ci-dessous) s'accroche juste dessous.
+
+**La bande de page, le troisième niveau** (retenue le 24 nov. 2026 ; le canevas, page « Le troisième niveau ») : la
+même sur toutes les pages qui ont au moins trois parties. Sous le titre de la page, une bande de 48 px dans la teinte
+pâle de la maison (`theme.json`, « Teinte · ») : un ton plus bas à chaque niveau, le noir de la barre, la couleur de la
+ligne, sa teinte, le papier. Les entrées en 14 px comme la ligne ; celle où l'on est à l'encre, soulignée d'un trait de
+2 px dans la couleur de la maison ; un groupe, après un filet, sous son titre en petites capitales (« Passées ») ; un
+groupe de trop replié en menu (« Par époque », « Les cycles », « Plus anciennes » : le seul menu déroulant du site) ;
+à droite, une action facultative. En défilant, elle monte avec la page, se pose sous la ligne avec une ombre d'un
+pixel, et le nom de la page s'y glisse à gauche quand il y a la place. Dans un sommaire, le trait suit la lecture. Au
+téléphone, 44 px, sans le nom ni l'action ; elle défile de côté et garde l'entrée courante en vue. Une page sans maison
+(un sujet) l'a sur le fond doux, avec les trois points, accrochée seule en haut.
+
+- Le composant : `er_bande_page()` (`inc/bande.php`), `assets/js/bande.js`, la section « La bande de page » de
+  `style.css`. Les années d'une liste : `er_bande_annees()` (les quatre dernières dépliées).
+- Les pages : un rayon (`er_bande_rayon()` : tout le rayon, le premier groupe de sous-rayons déplié, les autres
+  repliés), la page d'une personne (sa biographie, ses livres, ses traductions…, ce qui l'entoure :
+  `er_autour_sommaire()`), un sujet, Nos événements (`er_evt_bande()`), Nos expositions, Nos vidéos et Nos podcasts
+  (le bloc `er/medias`), le journal, et toute page de texte qui a trois intertitres (un sommaire automatique, ce qui
+  précède les deux-points ; « Chapitre 03 · 1940 – 1945 » donne son année : Un siècle d'histoire).
+- Pour que la bande s'accroche tout le long, elle doit être l'enfant direct d'un contenant qui va jusqu'au bout de la
+  page (le `main` du gabarit, le contenu de la page, la liste) : sur la page d'une personne, la fiche est coupée en
+  deux (`er/auteur-fiche`, `{"partie":"tete"}` puis `{"partie":"suite"}`) et « Autour » est passé dans le `main`.
+- `wp er bande [<chemin>…]` (le workflow, champ « Une commande de l'extension » : `bande`) montre la bande des pages
+  telle que le site la sert.
 
 **Les interrupteurs** (24 nov. : « *les boutons fermer se trouvent au même endroit exact que ceux qui ouvrent, comme un
 interrupteur on off* ») : la loupe, le panier et le menu du téléphone (≡) ouvrent leur panneau sous la barre (ou sous
@@ -341,8 +364,7 @@ librairie ». L'affiche est l'image mise en avant ; le chapô, l'extrait.
   exemple) ; les livres.
 - **La liste**, sur la page « Nos événements » (le bloc `er/evenements`, dans le gabarit « Page large ») : à venir,
   en lignes (cette semaine, la semaine prochaine, plus tard), puis les rencontres passées en affiches, par année, avec
-  « Avec une vidéo » et les cycles en pilules ; une vidéo, une annulation sont marquées sur l'affiche. Au téléphone,
-  les pilules glissent de côté.
+  une vidéo ou par cycle, choisis dans la bande de page ; une vidéo, une annulation sont marquées sur l'affiche.
 - **La billetterie** est dans WooCommerce : une rencontre payante (avec un prix) ou sur inscription a son billet, un
   produit virtuel caché de la librairie, tenu à jour à chaque enregistrement (le nom, le prix, les places : changer
   le nombre de places décale le stock d'autant). On le prend depuis la page de la rencontre ; sa page à lui y
@@ -436,9 +458,8 @@ et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag
 
 - **L'en-tête du journal** (`er/journal-tete`, « le bandeau », choisi le 23 nov. parmi quatre) : sur l'aplat du
   centre, sous son menu, le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque effacé, puis les
-  genres en onglets (et « En russe », les textes en russe ou bilingues, d'après `er_langues`). Les genres sont une
-  bande à part (`.er-j-genres-bande`) : en défilant, elle s'accroche sous la ligne du centre, comme le troisième
-  niveau de toute rubrique.
+  genres dans la bande de page (et « En russe », les textes en russe ou bilingues, d'après `er_langues`), qui
+  s'accroche sous la ligne du centre en défilant, comme sur toute page qui a ses parties.
 - **La ligne de repères**, sous le bandeau, sur une seule ligne (ce qui dépasse défile de côté), selon l'onglet : à
   la une, le prochain rendez-vous au centre et le dernier épisode du podcast ; les plumes des chroniques, les
   témoins des récits, les auteurs des archives (avec leur nombre de textes) ; les livres des critiques, à la
@@ -474,8 +495,8 @@ dans la page de la rencontre ou de la vidéo, dans la bande « Autour de ce livr
 exposition paraît aussi sur la page de ses auteurs et de ses sujets, et dans la recherche (avec le centre).
 
 - **La page « Nos expositions »** (`er/expositions`, posé sur la page par l'import, gabarit en modules) : le titre et
-  sa phrase ; la ligne de repères (ce qui est accroché, les années, les techniques : `?annee=2023`,
-  `?technique=peinture`) ; ce qui est accroché, ou annoncé, sur l'aplat du centre, *Выставка* en décor ; les
+  sa phrase ; la bande de page (en ce moment, à venir, les expositions passées par année, les techniques repliées :
+  `?annee=2023`, `?technique=peinture` ; à droite, les horaires) ; ce qui est accroché, ou annoncé, sur l'aplat du centre, *Выставка* en décor ; les
   expositions passées, une par une, comme des cartels (l'année, la technique, le titre, les artistes, les dates, ce
   qui s'y rattache en pastilles) ; trois entrées pour finir (la prochaine rencontre, le journal, venir).
 - **La fiche** (`single-er_exposition.html`) : l'image et le cartel (les dates, le vernissage et la clôture, le lieu,

@@ -12,6 +12,7 @@
  * - Un groupe : un titre en petites capitales (« Passés »), après un filet ; un groupe de trop se replie en menu
  *   (« Par époque »), le seul menu déroulant du site.
  * - À droite, une action et une seule, facultative.
+ * - Le nom de la page ne se glisse que s'il y a la place : les entrées passent avant.
  * - Au téléphone : 44 px, sans le nom de la page ni l'action ; la bande défile de côté et garde l'entrée courante en vue.
  * - Une page sans maison (un sujet) : la bande sur le fond doux, avec les trois points, accrochée seule en haut.
  *
@@ -261,7 +262,8 @@ add_filter(
 				$an = $y[1];
 			}
 			$entrees[] = array(
-				'texte'   => $texte,
+				// « 2. Le symbolisme : le monde comme signe » : la bande garde ce qui précède les deux-points.
+				'texte'   => preg_replace( '/[\s\x{00A0}\x{202F}]+:[\s\x{00A0}\x{202F}].*$/u', '', $texte ),
 				'lien'    => '#' . $id,
 				'courant' => ! $entrees,
 				'avant'   => $an,

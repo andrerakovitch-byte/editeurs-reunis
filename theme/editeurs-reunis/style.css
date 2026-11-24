@@ -652,6 +652,7 @@ header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding
 	padding-inline-end: 24px;
 	border-inline-end: 1px solid rgba(28, 28, 28, 0.2);
 }
+.er-bande.est-accrochee.est-sans-nom .er-bande-nom { max-width: 0; opacity: 0; margin: 0; padding: 0; border: 0; }
 .er-bande-points { display: inline-flex; gap: 4px; }
 .er-bande-point { width: 8px; height: 8px; border-radius: 50%; background: var(--er-point); }
 .er-bande-aucune .er-bande-point { width: 7px; height: 7px; }
