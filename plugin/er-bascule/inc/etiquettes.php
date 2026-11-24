@@ -294,7 +294,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				$par_livre[ (int) $c[0] ][] = array(
 					'genre' => 'prix' === trim( $c[1] ) ? 'prix' : 'presse',
 					'nom'   => trim( $c[2] ),
-					'date'  => trim( $c[3] ),
+					'date'  => '-' === trim( $c[3] ) ? '' : trim( $c[3] ),
 					'lien'  => '-' === trim( $c[4] ) ? '' : esc_url_raw( trim( $c[4] ) ),
 				);
 			}

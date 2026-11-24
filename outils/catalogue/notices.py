@@ -23,6 +23,7 @@ import sys
 import time
 import unicodedata
 import urllib.parse
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -122,14 +123,30 @@ LANGUES = {'fre': 'fr', 'fra': 'fr', 'fr': 'fr', 'rus': 'ru', 'ru': 'ru', 'eng':
 # --- les catalogues ------------------------------------------------------------------------------------------------
 
 
-def lire(url, essais=4):
+# Un catalogue qui refuse (quota dépassé, accès interdit) n'est pas relancé quatre fois par livre : après dix refus de
+# suite, on le laisse de côté pour le reste du passage (le rapport le dit).
+REFUS = {}
+REFUS_MAX = 10
+
+
+def lire(url, essais=3):
+    hote = urllib.parse.urlsplit(url).hostname or ''
+    if REFUS.get(hote, 0) >= REFUS_MAX:
+        return ''
     for essai in range(essais):
         try:
             req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr'})
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                REFUS[hote] = 0
                 return r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as e:
+            if 400 <= e.code < 500:
+                REFUS[hote] = REFUS.get(hote, 0) + 1
+                if e.code != 429 or essai:
+                    return ''
+            time.sleep(2 + 3 * essai)
         except Exception:
-            time.sleep(2 + 4 * essai)
+            time.sleep(2 + 3 * essai)
     return ''
 
 
@@ -379,6 +396,9 @@ def main():
         f'- rien trouvé : {sum(1 for r in resultats if not r["sur"] and not r["oeuvre"] and not r["a_revoir"])}',
         f'- erreurs de catalogue : {sum(1 for r in resultats if r.get("erreurs"))}',
     ]
+    for hote, refus in sorted(REFUS.items()):
+        if refus >= REFUS_MAX:
+            lignes.append(f'- {hote} a refusé les demandes (quota ?) : laissé de côté en cours de route')
     texte = '\n'.join(lignes) + '\n'
     print(texte)
     if args.rapport:
