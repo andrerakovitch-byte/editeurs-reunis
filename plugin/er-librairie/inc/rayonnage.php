@@ -712,6 +712,9 @@ function er_rayonnage_module_epoque( $etat ) {
 	$sel['epoque'] = array( $slug );
 	$terme = get_term_by( 'slug', $slug, 'er_periode' );
 	$desc  = $terme ? trim( wp_strip_all_tags( $terme->description ) ) : '';
+	if ( mb_strlen( $desc ) < 24 || false !== strpos( $desc, $annees ) ) {
+		$desc = ''; // Une description qui ne redit que les années.
+	}
 	$frise = '';
 	foreach ( $epoques as $x ) {
 		$frise .= '<span class="er-mini-frise__point' . ( $x[0] === $slug ? ' is-actif' : '' ) . '"></span>';
@@ -815,9 +818,9 @@ function er_rayonnage_module_langues( $etat ) {
 	$auteurs = wp_get_post_terms( $paire[0], 'auteur', array( 'fields' => 'names' ) );
 	return '<li class="er-module er-module--large er-langues">'
 		. er_rayonnage_surtitre( __( 'Lire en deux langues', 'er-librairie' ) )
-		. '<h2 class="er-module__titre">' . esc_html( preg_split( '/\s*[,:(]/u', $titres[0] )[0] . ' · ' . preg_split( '/\s*[.,:(]/u', $titres[1] )[0] ) . '</h2>'
+		. '<h2 class="er-module__titre">' . esc_html( preg_split( '/\s*[,:(—–]/u', $titres[0] )[0] . ' · ' . preg_split( '/\s*[.,:(—–]/u', $titres[1] )[0] ) . '</h2>'
 		/* translators: %s: l'auteur. */
-		. '<p class="er-module__texte">' . esc_html( sprintf( __( 'Le même livre de %s, en français et en russe.', 'er-librairie' ), $auteurs && ! is_wp_error( $auteurs ) ? $auteurs[0] : '' ) ) . '</p>'
+		. '<p class="er-module__texte">' . esc_html( sprintf( __( '%s : le même livre, en français et en russe.', 'er-librairie' ), $auteurs && ! is_wp_error( $auteurs ) ? $auteurs[0] : '' ) ) . '</p>'
 		. '<div class="er-langues__paire">' . $cotes . '</div>'
 		. '</li>';
 }
