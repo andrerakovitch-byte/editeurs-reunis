@@ -372,7 +372,9 @@ function er_facettes_donnees( $ids, $contexte ) {
 				$livres[ $m->id ]['dispo'][] = 'stock';
 			} elseif ( 'er_editeur' === $m->cle && '' !== trim( wp_strip_all_tags( $m->val ) ) && empty( $livres[ $m->id ]['maison'] ) ) {
 				// Un éditeur écrit à la main (l'import, les notices), quand le livre n'en a pas d'autre.
-				$nom                         = trim( wp_strip_all_tags( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) ) );
+				// « les Belles lettres (Paris) », comme l'écrit la BnF : sans la ville, avec une capitale.
+				$nom                         = preg_replace( '/\s*\([^)]*\)\s*$/u', '', trim( wp_strip_all_tags( html_entity_decode( $m->val, ENT_QUOTES, 'UTF-8' ) ) ) );
+				$nom                         = mb_strtoupper( mb_substr( $nom, 0, 1 ) ) . mb_substr( $nom, 1 );
 				$k                           = sanitize_title( $nom );
 				$livres[ $m->id ]['maison'][] = $k;
 				$noms['maison'][ $k ]        = $noms['maison'][ $k ] ?? $nom;
@@ -482,6 +484,9 @@ function er_facettes_nom( $etat, $f, $k ) {
 	}
 	if ( 'genre' === $f && isset( $etat['contexte']['enfants'][ $k ] ) ) {
 		return html_entity_decode( $etat['contexte']['enfants'][ $k ]->name, ENT_QUOTES, 'UTF-8' );
+	}
+	if ( 'decennie' === $f && 'sans' === $k ) {
+		return __( 'Sans date', 'er-librairie' );
 	}
 	if ( 'decennie' === $f ) {
 		/* translators: %s: une décennie, 1980 */
