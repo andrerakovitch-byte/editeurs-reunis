@@ -57,19 +57,29 @@ function er_collection_du_livre( $id ) {
 	$termes = taxonomy_exists( 'er_collection' ) ? wp_get_post_terms( $id, 'er_collection' ) : array();
 	return array(
 		'termes' => is_wp_error( $termes ) ? array() : $termes,
-		'texte'  => (string) get_post_meta( $id, 'er_collection', true ),
+		'texte'  => er_collection_propre( get_post_meta( $id, 'er_collection', true ) ),
 	);
 }
 
 /**
- * Le nom d'une collection tel que Wix l'a gardé, sans guillemets ni blancs en trop.
+ * Le nom d'une collection tel que Wix l'a gardé, remis au propre, ou rien quand ce n'est pas un nom : sans guillemets,
+ * sans numéro (« GF n° 1466 » → GF, « ВМБ № 12 » → ВМБ), sans ce qui suit un point ou deux-points (« Le sel de la
+ * terre. Spiritualité », « Kuro Savoir : Une collection inédite… »), sans parenthèses (« Père Castor (Flammarion) ») ;
+ * un bout de phrase resté dans le champ (« de la Pléiade. Il s'appuie… », « ) », « inédite pour expliquer… ») n'en
+ * est pas une.
  *
  * @param string $nom Le nom.
  */
 function er_collection_propre( $nom ) {
 	$nom = trim( wp_strip_all_tags( html_entity_decode( (string) $nom, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
-	$nom = trim( $nom, " \t\n\r\0\x0B\"'«»“”„" );
-	return trim( preg_replace( '/\s+/u', ' ', $nom ) );
+	$nom = preg_split( '/\.\s+|\s+:\s+/u', $nom )[0];
+	$nom = preg_replace( '/\s*\([^)]*\)?|\s*(?:n°|№|no\.?)\s*\d+.*$/iu', '', $nom );
+	$nom = trim( $nom, " \t\n\r\0\x0B\"'«»“”„()-–—,;" );
+	$nom = trim( preg_replace( '/\s+/u', ' ', $nom ) );
+	if ( '' === $nom || mb_strlen( $nom ) > 40 || ! preg_match( '/^[\p{Lu}\p{N}]/u', $nom ) ) {
+		return '';
+	}
+	return $nom;
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -105,6 +115,17 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			if ( $appliquer ) {
 				foreach ( $livres as $id => $nom ) {
 					wp_set_object_terms( $id, $retenus[ $nom ], 'er_collection', false );
+				}
+				// Les livres dont le champ n'est pas un nom de collection n'en ont plus ; les collections vides s'en vont.
+				foreach ( get_posts( array( 'post_type' => 'product', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids', 'lang' => '', 'tax_query' => array( array( 'taxonomy' => 'er_collection', 'operator' => 'EXISTS' ) ) ) ) as $id ) { // phpcs:ignore WordPress.DB.SlowDBQuery
+					if ( ! isset( $livres[ $id ] ) ) {
+						wp_set_object_terms( $id, array(), 'er_collection', false );
+					}
+				}
+				foreach ( get_terms( array( 'taxonomy' => 'er_collection', 'hide_empty' => false ) ) as $t ) {
+					if ( 0 === (int) $t->count ) {
+						wp_delete_term( $t->term_id, 'er_collection' );
+					}
 				}
 			}
 			WP_CLI::success( sprintf( $appliquer ? '%d collections posées sur %d livres.' : '%d collections pour %d livres. Avec « appliquer », elles sont posées.', count( $par ), count( $livres ) ) );
