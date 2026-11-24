@@ -1,363 +1,78 @@
-  personne : « Nina Kchayan » introuvable (déjà renommée ?)
-  personne : « Edith Sherrer » introuvable (déjà renommée ?)
-  personne : « Natalia Soljénistyne » introuvable (déjà renommée ?)
-  personne : « A. de Couriss » introuvable (déjà renommée ?)
-  personne : « C. Andronikof » introuvable (déjà renommée ?)
-  personne : « J. Cathala » introuvable (déjà renommée ?)
-  personne : « Marianne Gourg-Antuszewic » introuvable (déjà renommée ?)
-  personne : « M. Dumesnil' de Gramont » introuvable (déjà renommée ?)
-  éditeur : « Masha Publishing » introuvable (déjà renommé ?)
-  éditeur : « Barthillat » introuvable (déjà renommé ?)
-  éditeur : « Vibratrion éditions » introuvable (déjà renommé ?)
-  éditeur : « Éditions Paroles et Silence » introuvable (déjà renommé ?)
-Rôles posés : 0 changements ; 570 déjà justes.
-  34 annee : — → 2023
-  34 éditeur : — → Noir sur Blanc
-  42 annee : — → 2023
-  42 éditeur : — → Ginkgo éditeur
-  42 pages : — → 584
-  46 annee : — → 2021
-  46 éditeur : — → Éditions des Quatre vivants
-  46 pages : — → 430
-  58 annee : — → 2021
-  58 éditeur : — → Ginkgo éditeur
-  58 pages : — → 158
-  62 annee : — → 2024
-  62 éditeur : — → Noir sur Blanc
-  62 pages : — → 261
-  78 éditeur : — → ACER-MJO
-  80 éditeur : — → ACER-MJO
-  112 éditeur : — → ACER-MJO
-  114 éditeur : — → ACER-MJO
-  116 éditeur : — → ACER-MJO
-  118 éditeur : — → ACER-MJO
-  120 éditeur : — → ACER-MJO
-  122 éditeur : — → ACER-MJO
-  124 éditeur : — → ACER-MJO
-  126 éditeur : — → ACER-MJO
-  128 éditeur : — → ACER-MJO
-  211 éditeur : — → YMCA-Press
-  217 éditeur : — → YMCA-Press
-  289 éditeur : — → ACER-MJO
-  291 éditeur : — → ACER-MJO
-  293 éditeur : — → ACER-MJO
-  295 éditeur : — → ACER-MJO
-  297 éditeur : — → ACER-MJO
-  299 éditeur : — → ACER-MJO
-  301 éditeur : — → ACER-MJO
-  303 éditeur : — → ACER-MJO
-  305 éditeur : — → ACER-MJO
-  307 éditeur : — → ACER-MJO
-  309 éditeur : — → ACER-MJO
-  311 éditeur : — → ACER-MJO
-  313 éditeur : — → ACER-MJO
-  315 éditeur : — → ACER-MJO
-  317 éditeur : — → ACER-MJO
-  319 éditeur : — → ACER-MJO
-  321 éditeur : — → ACER-MJO
-  323 éditeur : — → ACER-MJO
-  327 éditeur : — → ACER-MJO
-  329 éditeur : — → ACER-MJO
-  331 éditeur : — → ACER-MJO
-  333 éditeur : — → ACER-MJO
-  335 éditeur : — → ACER-MJO
-  337 éditeur : — → ACER-MJO
-  339 éditeur : — → ACER-MJO
-  341 éditeur : — → ACER-MJO
-  343 éditeur : — → ACER-MJO
-  345 éditeur : — → ACER-MJO
-  347 éditeur : — → ACER-MJO
-  349 éditeur : — → ACER-MJO
-  351 éditeur : — → ACER-MJO
-  353 éditeur : — → ACER-MJO
-  355 éditeur : — → ACER-MJO
-  357 éditeur : — → ACER-MJO
-  359 éditeur : — → ACER-MJO
-  361 éditeur : — → ACER-MJO
-  363 éditeur : — → ACER-MJO
-  365 éditeur : — → ACER-MJO
-  367 éditeur : — → ACER-MJO
-  369 éditeur : — → ACER-MJO
-  371 éditeur : — → ACER-MJO
-  373 éditeur : — → ACER-MJO
-  375 éditeur : — → ACER-MJO
-  377 éditeur : — → YMCA-Press
-  379 éditeur : — → YMCA-Press
-  381 éditeur : — → YMCA-Press
-  383 éditeur : — → YMCA-Press
-  385 éditeur : — → YMCA-Press
-  387 éditeur : — → YMCA-Press
-  389 éditeur : — → YMCA-Press
-  391 éditeur : — → YMCA-Press
-  393 éditeur : — → YMCA-Press
-  395 éditeur : — → YMCA-Press
-  397 éditeur : — → YMCA-Press
-  399 éditeur : — → YMCA-Press
-  613 éditeur : — → LGF
-  613 pages : — → 377
-  663 annee : — → 2019
-  663 éditeur : — → Le Bruit du temps
-  663 pages : — → 1244
-  697 éditeur : — → First éditions
-  710 annee : — → 2020
-  710 éditeur : — → Vibration éditions
-  710 pages : — → 137
-  712 annee : — → 2020
-  712 éditeur : — → Éditions Transboréal
-  712 pages : — → 276
-  732 éditeur : — → YMCA-Press
-  745 annee : — → 2020
-  745 éditeur : — → Éditions Art sacré
-  745 pages : — → 156
-  757 annee : — → 1937
-  757 éditeur : — → Speer & Schmidt
-  757 pages : — → 1098
-  855 annee : — → 2021
-  855 éditeur : — → Perrin
-  855 pages : — → 534
-  867 annee : — → 2021
-  867 éditeur : — → Fayard
-  867 pages : — → 417
-  888 annee : — → 2020
-  888 éditeur : — → Викмо-М
-  888 pages : — → 411
-  959 annee : — → 1992
-  959 éditeur : — → Éditions Interférences
-  973 annee : — → 2005
-  973 éditeur : — → Ginkgo éditeur
-  973 pages : — → 191
-  978 annee : — → 2014
-  978 éditeur : — → Hélium
-  986 annee : — → 2021
-  986 éditeur : — → Ginkgo éditeur
-  986 pages : — → 271
-  992 annee : — → 2021
-  992 éditeur : — → Éditions du Cerf
-  992 pages : — → 353
-  999 annee : — → 2022
-  999 éditeur : — → Pluriel
-  999 pages : — → 306
-  1002 annee : — → 2019
-  1002 éditeur : — → Philippe Rey
-  1002 pages : — → 156
-  1040 annee : — → 2021
-  1040 éditeur : — → Folio
-  1040 pages : — → 273
-  1065 éditeur : — → Éditions des Syrtes
-  1100 annee : — → 2021
-  1100 éditeur : — → Gallimard
-  1100 pages : — → 449
-  1102 annee : — → 2021
-  1102 éditeur : — → Éditions Sillage
-  1102 pages : — → 100
-  1112 annee : — → 2021
-  1112 éditeur : — → Vendémiaire
-  1112 pages : — → 355
-  1114 éditeur : — → Éditions Transboréal
-  1116 éditeur : — → Éditions Transboréal
-  1118 annee : — → 2021
-  1118 éditeur : — → Éditions Transboréal
-  1118 pages : — → 761
-  1131 annee : — → 2017
-  1131 éditeur : — → Perrin
-  1131 pages : — → 498
-  1133 annee : — → 2022
-  1133 éditeur : — → Liana Levi
-  1144 annee : — → 2022
-  1144 éditeur : — → Boukovki
-  1144 pages : — → 43
-  1152 annee : — → 2021
-  1152 éditeur : — → Les Petits matins
-  1152 pages : — → 124
-  1154 éditeur : — → Premier Parallèle
-  1157 annee : — → 2020
-  1157 éditeur : — → Les Arènes
-  1157 pages : — → 282
-  1165 annee : — → 2022
-  1165 éditeur : — → Gallimard
-  1165 pages : — → 204
-  1172 éditeur : — → Nevicata
-  1179 éditeur : — → Éditions des Syrtes
-  1181 annee : — → 2022
-  1181 éditeur : — → Éditions des Syrtes
-  1181 pages : — → 601
-  1200 annee : — → 2022
-  1200 éditeur : — → Eur’Orbem
-  1243 annee : — → 2022
-  1243 éditeur : — → Noir sur Blanc
-  1243 pages : — → 218
-  1253 annee : — → 2022
-  1253 éditeur : — → Robert Laffont
-  1253 pages : — → 451
-  1261 annee : — → 2022
-  1261 éditeur : — → Stock
-  1261 pages : — → 288
-  1271 annee : — → 1999
-  1271 éditeur : — → Hachette Littératures
-  1271 pages : — → 203
-  1275 éditeur : — → ACER-MJO
-  1281 annee : — → 2023
-  1281 éditeur : — → Éditions des Syrtes
-  1281 pages : — → 331
-  1292 éditeur : — → Eyrolles
-  1296 annee : — → 2023
-  1296 éditeur : — → Perrin
-  1296 pages : — → 314
-  1298 annee : — → 2023
-  1298 éditeur : — → Gallimard
-  1298 pages : — → 167
-  1300 annee : — → 2022
-  1300 éditeur : — → BoD – Books on Demand
-  1300 pages : — → 210
-  1302 annee : — → 2022
-  1302 éditeur : — → Institut d’études slaves
-  1302 pages : — → 780
-  1377 annee : — → 2023
-  1377 éditeur : — → Noir sur Blanc
-  1377 pages : — → 254
-  1380 annee : — → 2023
-  1380 éditeur : — → Noir sur Blanc
-  1380 pages : — → 204
-  1403 annee : — → 2023
-  1403 éditeur : — → Calmann-Lévy
-  1421 éditeur : — → Verdier
-  1423 éditeur : — → Verdier
-  1425 éditeur : — → Verdier
-  1427 éditeur : — → Verdier
-  1429 éditeur : — → Verdier
-  1431 éditeur : — → Verdier
-  1435 annee : — → 1991
-  1435 éditeur : — → Maurice Nadeau
-  1437 annee : — → 1993
-  1437 éditeur : — → Gallimard
-  1439 éditeur : — → Verdier
-  1443 annee : — → 2023
-  1443 éditeur : — → Ginkgo éditeur
-  1443 pages : — → 238
-  1448 annee : — → 2020
-  1448 éditeur : — → Éditions des Quatre vivants
-  1448 pages : — → 141
-  1453 éditeur : — → YMCA-Press
-  1453 pages : — → 415
-  1560 annee : — → 2023
-  1560 éditeur : — → Les Carnets de l’aléatoire
-  1562 annee : — → 2023
-  1562 éditeur : — → Tallandier
-  1562 pages : — → 349
-  1580 annee : — → 2023
-  1580 éditeur : — → Éditions Mesures
-  1580 pages : — → 120
-  1582 annee : — → 2017
-  1582 éditeur : — → Éditions Interférences
-  1582 pages : — → 63
-  1584 annee : — → 2023
-  1584 éditeur : — → Ginkgo éditeur
-  1584 pages : — → 188
-  1590 annee : — → 2024
-  1590 éditeur : — → Éditions des Syrtes
-  1590 pages : — → 221
-  1592 annee : — → 2024
-  1592 éditeur : — → Éditions des Syrtes
-  1592 pages : — → 248
-  1598 annee : — → 2024
-  1598 éditeur : — → Bayard
-  1598 pages : — → 216
-  1603 annee : — → 2021
-  1603 éditeur : — → Christian Bourgois
-  1603 pages : — → 618
-  1614 annee : — → 2024
-  1614 éditeur : — → Ginkgo éditeur
-  1614 pages : — → 141
-  1616 annee : — → 2024
-  1616 éditeur : — → Monastère Saint-Silouane
-  1616 pages : — → 60
-  1621 éditeur : — → YMCA-Press
-  1633 annee : — → 2024
-  1633 éditeur : — → Ginkgo éditeur
-  1633 pages : — → 255
-  1643 annee : — → 2024
-  1643 éditeur : — → Armand Colin
-  1643 pages : — → 410
-  1652 annee : — → 2023
-  1652 éditeur : — → Armand Colin
-  1652 pages : — → 397
-  1655 annee : — → 2024
-  1655 éditeur : — → Calmann-Lévy
-  1655 pages : — → 349
-  1666 annee : — → 2024
-  1666 éditeur : — → Noir sur Blanc
-  1666 pages : — → 944
-  1673 annee : — → 2020
-  1673 éditeur : — → Pocket
-  1673 pages : — → 120
-  1675 annee : — → 2024
-  1675 éditeur : — → Robert Laffont
-  1675 pages : — → 520
-  1679 annee : — → 2024
-  1679 éditeur : — → Les Belles lettres
-  1679 pages : — → 402
-  1695 éditeur : — → YMCA-Press
-  1699 éditeur : — → YMCA-Press
-  1702 éditeur : — → BAbook
-  1709 annee : — → 2024
-  1709 pages : — → 398
-  1712 annee : — → 2024
-  1712 éditeur : — → Vidim Books
-  1714 annee : — → 2024
-  1714 éditeur : — → Meduza
-  1714 pages : — → 428
-  1716 annee : — → 2024
-  1718 annee : — → 2023
-  1718 éditeur : — → Meduza
-  1718 pages : — → 470
-  1720 annee : — → 2024
-  1720 éditeur : — → Ginkgo éditeur
-  1720 pages : — → 299
-  1726 annee : — → 2023
-  1726 éditeur : — → Гилея
-  1726 pages : — → 499
-  1736 annee : — → 2024
-  1736 éditeur : — → Ginkgo éditeur
-  1736 pages : — → 797
-  1740 annee : — → 2025
-  1740 éditeur : — → Éditions Mesures
-  1740 pages : — → 200
-  1755 éditeur : — → CNRS éditions
-  1766 éditeur : — → YMCA-Press
-  1768 annee : — → 2025
-  1768 éditeur : — → Verdier
-  1768 pages : — → 279
-  1770 annee : — → 2025
-  1770 éditeur : — → Sorbonne Université Presses
-  1770 pages : — → 396
-  1772 annee : — → 2018
-  1772 éditeur : — → Éditions Sofia
-  1772 pages : — → 46
-  1793 annee : — → 2025
-  1793 éditeur : — → Время
-  1801 éditeur : — → YMCA-Press
-  1805 annee : — → 2025
-  1805 éditeur : — → Éditions Mimésis
-  1805 pages : — → 253
-  1811 annee : — → 2025
-  1811 éditeur : — → Überbau
-  1817 annee : — → 2025
-  1817 éditeur : — → Новое литературное обозрение
-  1817 pages : — → 416
-  1837 éditeur : — → Les Éditeurs réunis
-  1837 pages : — → 210
-  1839 annee : — → 2026
-  1839 éditeur : — → Vidim Books
-  1852 éditeur : — → YMCA-Press
-  1854 éditeur : — → Vidim Books
-  1860 annee : — → 2026
-  1860 éditeur : — → Meduza
-  1862 annee : — → 2025
-  1862 éditeur : — → Редакция Елены Шубиной
-  1862 pages : — → 544
-  1866 annee : — → 2026
-  1866 éditeur : — → Stock
-  1866 pages : — → 201
-  1885 annee : — → 2026
-Fiches corrigées : 348.
-439 laissées (introuvables ou déjà faites) : 104 texte « Kchayan » ; 110 texte « Sherrer » ; 159 texte « S. Ermolonski » ; 183 texte « Pasquierь » ; 195 texte « Soljénistyne » ; 205 texte « tradution » ; 205 texte « Jérôme Clerc » ; 635 texte « Traduit du Joëlle Dublanchet » ; 651 texte « Antuszewic » ; 681 texte « traduit du russe pas » ; 691 texte « Одраченко » ; 786 texte « Parrain » ; 869 texte « Lesquesne » ; 1078 texte « Dumesnil' de Gramont » ; 1220 texte « Taduit » ; 1232 texte « Christine Zeytounian » ; 1399 texte « Liouba Jurgenson » ; 1824 texte « Balzano » ; 1882 texte « convain cu » ; 1866 titre « dispraître » ; 1866 texte « dispraître » ; 501 titre «  – sous la direction de Georges Nivat » ; 867 titre «  - sous la direction de Georges Nivat » ; 1152 titre «  - Sous la direction de Johann Bihr » ; 853 titre «  - Ilf & Petrov » ; 1335 titre « , Serhii Plokhy » ; 730 titre «  / Nathalie Gigounova-Komarova » ; 177 titre «  Nicolas Berdiaev » ; 661 auteur (déjà : Heather Amery) ; 730 auteur (déjà : Nathalie Gigounova-Komarova) ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 1605 auteur (déjà : Корней Чуковский) ; 177 auteur (déjà : Nicolas Berdiaev) ; 881 éditeur (déjà : Éditions des Syrtes) ; 1078 éditeur (déjà : Calmann-Lévy) ; 881 annee (déjà : 2020) ; 923 annee (déjà : 2021) ; 1071 annee (déjà : 2022) ; 44 éditeur (déjà : Gallimard) ; 50 éditeur (déjà : Éditions Mesures) ; 56 annee (déjà : 1892) ; 84 annee (déjà : 2019) ; 94 éditeur (déjà : Gallimard) ; 100 annee (déjà : 2012) ; 112 annee (déjà : 2017) ; 114 annee (déjà : 2016) ; 132 éditeur (déjà : Apostolia) ; 134 éditeur (déjà : Éditions du Cerf) ; 140 éditeur (déjà : Fayard) ; 161 éditeur (déjà : Flammarion) ; 163 éditeur (déjà : LGF) ; 165 éditeur (déjà : LGF) ; 177 annee (déjà : 2009) ; 177 éditeur (déjà : Éditions du Cerf) ; 187 pages (déjà : 180) ; 189 pages (déjà : 191) ; 195 éditeur (déjà : Fayard) ; 211 annee (déjà : 2018) ; 223 éditeur (déjà : Perrin) ; 225 annee (déjà : 2018) ; 225 éditeur (déjà : Flammarion) ; 227 éditeur (déjà : Flammarion) ; 249 éditeur (déjà : Éditions Sillage) ; 253 éditeur (déjà : Gallimard) ; 283 annee (déjà : 1989) ; 285 annee (déjà : 1989) ; 289 annee (déjà : 1985) ; 293 annee (déjà : 1986) ; 295 annee (déjà : 1987) ; 297 annee (déjà : 1988) ; 299 annee (déjà : 1988) ; 301 annee (déjà : 1988) ; 303 annee (déjà : 1989) ; 305 annee (déjà : 1989) ; 307 annee (déjà : 1990) ; 309 annee (déjà : 1990) ; 311 annee (déjà : 1991) ; 313 annee (déjà : 1991) ; 315 annee (déjà : 1992) ; 317 annee (déjà : 1992) ; 319 annee (déjà : 1993) ; 321 annee (déjà : 1993) ; 323 annee (déjà : 1994-95) ; 327 annee (déjà : 1994-95) ; 329 annee (déjà : 2012) ; 331 annee (déjà : 2012) ; 335 annee (déjà : 2010-2011) ; 337 annee (déjà : 2009) ; 339 annee (déjà : 2009) ; 341 annee (déjà : 2008) ; 343 annee (déjà : 2007) ; 343 pages (déjà : 99) ; 345 annee (déjà : 2006-2007) ; 347 annee (déjà : 2005) ; 349 annee (déjà : 2005) ; 353 annee (déjà : 2004) ; 355 annee (déjà : 2003) ; 357 annee (déjà : 2003) ; 359 annee (déjà : 2001) ; 361 annee (déjà : 2000) ; 363 annee (déjà : 2000) ; 367 annee (déjà : 1998-99) ; 369 annee (déjà : 1998-99) ; 371 annee (déjà : 1997) ; 373 annee (déjà : 1997) ; 375 annee (déjà : 1996) ; 377 annee (déjà : 2016) ; 399 annee (déjà : 2009) ; 399 pages (déjà : 303) ; 403 pages (déjà : 148) ; 457 annee (déjà : 1977) ; 467 pages (déjà : 176) ; 485 éditeur (déjà : F.-X. de Guibert) ; 501 éditeur (déjà : Fayard) ; 511 éditeur (déjà : Harpo) ; 523 éditeur (déjà : Азбука-Аттикус) ; 525 éditeur (déjà : Время) ; 533 éditeur (déjà : Молодая гвардия) ; 579 éditeur (déjà : Institut d’études slaves) ; 587 annee (déjà : 2020) ; 587 éditeur (déjà : YMCA-Press) ; 591 annee (déjà : 1979) ; 591 éditeur (déjà : Abbaye de Bellefontaine) ; 595 annee (déjà : 2011) ; 595 pages (déjà : 388) ; 595 éditeur (déjà : L’Âge d’Homme) ; 599 éditeur (déjà : Éditions du Cerf) ; 601 éditeur (déjà : Éditions du Cerf) ; 607 éditeur (déjà : Éditions du Cerf) ; 615 annee (déjà : 1993) ; 615 éditeur (déjà : Gallimard) ; 623 éditeur (déjà : Fayard) ; 625 annee (déjà : 1993) ; 625 éditeur (déjà : Gallimard) ; 627 annee (déjà : 1987) ; 627 éditeur (déjà : Gallimard) ; 631 pages (déjà : 224) ; 631 éditeur (déjà : Verdier) ; 635 annee (déjà : 2010) ; 635 pages (déjà : 384) ; 635 éditeur (déjà : Actes Sud) ; 637 annee (déjà : 2016) ; 637 pages (déjà : 352) ; 637 éditeur (déjà : Actes Sud) ; 639 éditeur (déjà : Verdier) ; 645 annee (déjà : 2011) ; 645 éditeur (déjà : Éditions Singulières) ; 649 pages (déjà : 701) ; 649 éditeur (déjà : Fayard) ; 651 annee (déjà : 2016) ; 653 annee (déjà : 1999) ; 653 éditeur (déjà : Gallimard) ; 655 annee (déjà : 2019) ; 655 éditeur (déjà : Gallimard) ; 657 annee (déjà : 2018) ; 657 éditeur (déjà : Robert Laffont) ; 659 annee (déjà : 2019) ; 659 pages (déjà : 600) ; 659 éditeur (déjà : Allary éditions) ; 661 éditeur (déjà : Usborne) ; 665 pages (déjà : 1053) ; 665 éditeur (déjà : Robert Laffont) ; 667 éditeur (déjà : Gallimard) ; 669 annee (déjà : 1995) ; 669 éditeur (déjà : Gallimard) ; 671 éditeur (déjà : Gallimard) ; 673 pages (déjà : 126) ; 673 éditeur (déjà : Ginkgo éditeur) ; 679 éditeur (déjà : Buchet-Chastel) ; 681 annee (déjà : 2020) ; 681 pages (déjà : 160) ; 681 éditeur (déjà : Éditions Mesures) ; 683 annee (déjà : 2020) ; 683 pages (déjà : 257) ; 683 éditeur (déjà : Éditions Mesures) ; 685 éditeur (déjà : Bleu nuit éditeur) ; 687 éditeur (déjà : YMCA-Press) ; 689 éditeur (déjà : Дом книги / Современные записки) ; 701 annee (déjà : 2014) ; 701 pages (déjà : 64) ; 701 éditeur (déjà : Larousse) ; 703 éditeur (déjà : Assimil) ; 706 annee (déjà : 2019) ; 706 éditeur (déjà : Златоуст) ; 714 annee (déjà : 2018) ; 714 éditeur (déjà : Éditions de la paroisse Notre-Dame du Signe) ; 722 éditeur (déjà : Perrin) ; 726 éditeur (déjà : Éditions Mesures) ; 728 éditeur (déjà : Temps présent) ; 732 annee (déjà : 2020) ; 741 annee (déjà : 2007) ; 741 éditeur (déjà : Harpo) ; 748 annee (déjà : 2020) ; 751 annee (déjà : 1994) ; 755 éditeur (déjà : Rostok) ; 759 annee (déjà : 1932) ; 759 pages (déjà : 216) ; 759 éditeur (déjà : Новый град) ; 761 annee (déjà : 2009) ; 761 éditeur (déjà : YMCA-Press) ; 765 éditeur (déjà : Inculte) ; 767 éditeur (déjà : Perrin) ; 773 annee (déjà : 2005) ; 773 éditeur (déjà : YMCA-Press) ; 776 éditeur (déjà : Les Amis de l’Histoire de Sainte-Geneviève-des-Bois et de ses environs) ; 778 éditeur (déjà : Flammarion) ; 782 annee (déjà : 2019) ; 782 pages (déjà : 108) ; 788 éditeur (déjà : Albin Michel / BnF) ; 798 annee (déjà : 2024) ; 804 éditeur (déjà : Издание общества любителей церковной истории) ; 806 éditeur (déjà : Perrin) ; 808 annee (déjà : 2020) ; 808 éditeur (déjà : Harpo) ; 822 annee (déjà : 1931) ; 828 éditeur (déjà : Librairie des Cinq Continents) ; 834 éditeur (déjà : Ginkgo éditeur) ; 842 annee (déjà : 2017) ; 842 éditeur (déjà : Русский путь) ; 844 annee (déjà : 2017) ; 844 éditeur (déjà : Научная библиотека) ; 846 pages (déjà : 872) ; 851 éditeur (déjà : Ginkgo éditeur) ; 853 éditeur (déjà : Ginkgo éditeur) ; 857 éditeur (déjà : Perrin) ; 869 éditeur (déjà : Liana Levi) ; 871 éditeur (déjà : L’Âge d’Homme) ; 873 éditeur (déjà : Le Temps retrouvé) ; 875 éditeur (déjà : Gallimard) ; 881 pages (déjà : 382) ; 890 éditeur (déjà : Éditions Natania) ; 898 éditeur (déjà : Fayard) ; 900 éditeur (déjà : La Barque) ; 902 éditeur (déjà : La Barque) ; 904 annee (déjà : 2020) ; 904 éditeur (déjà : Белый крест) ; 906 éditeur (déjà : Perrin) ; 909 éditeur (déjà : Éditions des Syrtes) ; 912 éditeur (déjà : Народный комиссариат по иностранным делам) ; 915 annee (déjà : 1852) ; 921 éditeur (déjà : Autrement) ; 923 pages (déjà : 144) ; 923 éditeur (déjà : Gallimard) ; 930 annee (déjà : 1864) ; 930 éditeur (déjà : Типография Бахметова) ; 933 annee (déjà : 1894) ; 933 éditeur (déjà : Paul Ollendorff) ; 935 pages (déjà : 115) ; 942 éditeur (déjà : Éditions Mesures) ; 945 éditeur (déjà : ACER-MJO) ; 952 éditeur (déjà : Éditions Interférences) ; 955 éditeur (déjà : Le Cherche midi éd.) ; 957 éditeur (déjà : Éditions Interférences) ; 961 éditeur (déjà : Éditions Interférences) ; 964 éditeur (déjà : Ginkgo éditeur) ; 975 annee (déjà : 2022) ; 975 éditeur (déjà : Casa di Matriona) ; 981 éditeur (déjà : Éditions du monastère Sretenski) ; 1004 annee (déjà : 2020) ; 1016 annee (déjà : 2005) ; 1018 éditeur (déjà : Le Local) ; 1021 annee (déjà : 2022) ; 1027 éditeur (déjà : Actes Sud BD) ; 1030 annee (déjà : 2021) ; 1030 pages (déjà : 588) ; 1030 éditeur (déjà : Belfond) ; 1033 annee (déjà : 2021) ; 1033 éditeur (déjà : Casterman) ; 1035 éditeur (déjà : Parenthèses) ; 1049 annee (déjà : 1990) ; 1049 éditeur (déjà : Художественная литература) ; 1051 annee (déjà : 1988) ; 1059 éditeur (déjà : Éditions Première partie) ; 1074 éditeur (déjà : Parole et Silence) ; 1076 annee (déjà : 1926) ; 1076 éditeur (déjà : Librairie académique Perrin) ; 1096 éditeur (déjà : Solin-Actes Sud) ; 1136 éditeur (déjà : Éditions Natania) ; 1138 éditeur (déjà : Éditions Natania) ; 1160 annee (déjà : 2022) ; 1160 pages (déjà : 282) ; 1160 éditeur (déjà : Ginkgo éditeur) ; 1175 éditeur (déjà : Rivages) ; 1177 éditeur (déjà : Éditions Mesures) ; 1183 annee (déjà : 2022) ; 1183 éditeur (déjà : La Barque) ; 1186 annee (déjà : 2012) ; 1188 annee (déjà : 2022) ; 1188 éditeur (déjà : Michel Lafon) ; 1191 annee (déjà : 2022) ; 1191 éditeur (déjà : Grasset) ; 1193 annee (déjà : 2022) ; 1193 éditeur (déjà : Buchet-Chastel) ; 1195 éditeur (déjà : Bartillat) ; 1210 éditeur (déjà : Ginkgo éditeur) ; 1212 éditeur (déjà : Ginkgo éditeur) ; 1214 éditeur (déjà : Noir sur Blanc) ; 1216 éditeur (déjà : Éditions des Syrtes) ; 1218 éditeur (déjà : Éditions des Syrtes) ; 1220 éditeur (déjà : Gallimard) ; 1222 éditeur (déjà : Robert Laffont) ; 1224 éditeur (déjà : Éditions des Syrtes) ; 1228 éditeur (déjà : Stock) ; 1234 éditeur (déjà : P.O.L) ; 1237 éditeur (déjà : Dukh i Litera) ; 1263 éditeur (déjà : Éditions des Syrtes) ; 1279 annee (déjà : 2022) ; 1279 éditeur (déjà : Babel) ; 1308 éditeur (déjà : Ginkgo éditeur) ; 1313 annee (déjà : 1838) ; 1313 éditeur (déjà : Firmin Didot frères) ; 1319 éditeur (déjà : Lis & parle éditions) ; 1321 éditeur (déjà : La Barque) ; 1323 éditeur (déjà : Noir sur Blanc) ; 1327 éditeur (déjà : FYP) ; 1329 annee (déjà : 1992) ; 1329 éditeur (déjà : Actes Sud) ; 1331 éditeur (déjà : Éditions Mareuil) ; 1333 éditeur (déjà : Éditions de l’Observatoire / Institut Montaigne) ; 1335 éditeur (déjà : Gallimard) ; 1359 annee (déjà : 1928) ; 1359 pages (déjà : 101) ; 1359 éditeur (déjà : YMCA-Press) ; 1361 éditeur (déjà : Saint Leger éditions) ; 1363 éditeur (déjà : Saint Leger éditions) ; 1368 annee (déjà : 1979) ; 1382 éditeur (déjà : Perrin) ; 1384 éditeur (déjà : Presses universitaires de Rennes) ; 1386 éditeur (déjà : Ginkgo éditeur) ; 1390 éditeur (déjà : Ginkgo éditeur) ; 1393 éditeur (déjà : Ginkgo éditeur) ; 1397 éditeur (déjà : Calmann-Lévy) ; 1399 éditeur (déjà : Calmann-Lévy) ; 1401 éditeur (déjà : Calmann-Lévy) ; 1405 éditeur (déjà : UGA éditions) ; 1576 annee (déjà : 2023) ; 1576 pages (déjà : 192) ; 1576 éditeur (déjà : Éditions Mesures) ; 1732 pages (déjà : 192) ; 1749 annee (déjà : 2018) ; 1852 annee (déjà : 2025) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 146 auteur (déjà : Mgr Semenoff-Tian-Chansky) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 225 auteur (déjà : Robert Giraud) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 703 auteur (déjà : Victoria Melnikova-Suchet) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 933 auteur (déjà : Ernest Daudet) ; 975 auteur (déjà : Michele Bacci) ; 997 auteur (déjà : Tatiana Mojenok) ; 1033 auteur (déjà : Virgile Dureuil) ; 1245 auteur (déjà : Alexandra Zelenskaïa) ; 1249 auteur (déjà : Сони Вестерхольт) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1296 auteur (déjà : François Malye) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1785 auteur (déjà : Jean Liamine) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1837 auteur (déjà : Natalie Stepanoff-Kontchalovski) ; 1854 auteur (déjà : Андрей Зубов) ; 1033 texte « Virgil Dubreuil » ; 706 texte « Черниршов » ; 56 nature (déjà : collectif) ; 86 nature (déjà : collectif) ; 92 nature (déjà : collectif) ; 142 nature (déjà : collectif) ; 233 nature (déjà : collectif) ; 269 nature (déjà : collectif) ; 499 nature (déjà : collectif) ; 501 nature (déjà : collectif) ; 513 nature (déjà : collectif) ; 563 nature (déjà : collectif) ; 691 nature (déjà : collectif) ; 699 nature (déjà : collectif) ; 748 nature (déjà : collectif) ; 751 nature (déjà : collectif) ; 776 nature (déjà : collectif) ; 830 nature (déjà : collectif) ; 844 nature (déjà : collectif) ; 867 nature (déjà : collectif) ; 915 nature (déjà : collectif) ; 970 nature (déjà : collectif) ; 1024 nature (déjà : collectif) ; 1045 nature (déjà : collectif) ; 1141 nature (déjà : collectif) ; 1144 nature (déjà : collectif) ; 1152 nature (déjà : collectif) ; 1240 nature (déjà : collectif) ; 1253 nature (déjà : collectif) ; 1261 nature (déjà : collectif) ; 1277 nature (déjà : collectif) ; 1359 nature (déjà : collectif) ; 1517 nature (déjà : collectif) ; 1738 nature (déjà : collectif) ; 1820 nature (déjà : collectif) ; 1824 nature (déjà : collectif) ; 1530 nature (déjà : revue) ; 1532 nature (déjà : revue) ; 144 auteur (déjà : Alexandre Afanassiev) ; 227 auteur (déjà : Natha Caputo) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 1511 auteur (déjà : Пётр Паламарчук) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 241 titre «  - André Benoit, B. Bobrinskoy, F. Coudreau » ; 1296 titre « - François Malye » ; 1419 titre «  - Vladimir Popov , Yuri Felshtinsky »
+IND #36 | ref:WIX-5ADE4CB5 | prix:30 | isbn: | img:26fb71_6561296f931d49faa4fbe5c9533ca746mv2-scaled.jpg | coll: | 
+IND #38 | ref:WIX-9B258CFD | prix:30 | isbn: | img:26fb71_456e39ea06bb43a19802169b0c9d4953mv2.jpg | coll: | traduction:Geneviève Johannet ; preface:Georges Nivat
+IND #40 | ref:WIX-3DB3BFFC | prix:15 | isbn: | img:26fb71_8292d834ff454737ac42edb82d5dd348mv2.jpg | coll: | 
+IND #325 | ref:WIX-0C0B8785 | prix:33.6 | isbn: | img:26fb71_22c863caf660459cad82583071a8cdecmv2.jpg | coll: | 
+IND #487 | ref:WIX-A54549F4 | prix:7 | isbn: | img:26fb71_f0f620d62a434eb1af9138e8a22e5aa4mv2.jpg | coll: | 
+IND #693 | ref:WIX-74A5589D | prix:50 | isbn: | img:26fb71_18fec81ea10c40af85cba915110b916cmv2.jpg | coll: | 
+IND #695 | ref:WIX-27804EAB | prix:7.95 | isbn: | img:26fb71_211c67da0d6943d09f32557c3839f7a3mv2.jpg | coll: | 
+IND #699 | ref:WIX-FFB7736B | prix:17.95 | isbn: | img:26fb71_d8f8372a5d114cafaeac83ffaab3181dmv2.jpeg | coll: | 
+IND #820 | ref:WIX-6EDE32E6 | prix:10 | isbn: | img:26fb71_c3b7a440293441ceae1f14a34efbf332mv2.jpg | coll: | illustration:Evgueni Ratchev
+IND #826 | ref:WIX-4940840E | prix:20 | isbn: | img:26fb71_1e4a255e1b704d42aa1aa188614bf84amv2-scaled.jpeg | coll: | 
+IND #836 | ref:WIX-E3CA364A | prix:20 | isbn: | img:26fb71_be2e77cd2be94dc586011dc30138fd2fmv2.png | coll: | 
+IND #838 | ref:WIX-DDBC03AF | prix:20 | isbn: | img:26fb71_6a50b73b2deb4bee88da7321286298ebmv2.jpg | coll: | 
+IND #840 | ref:WIX-90AB88CB | prix:12 | isbn: | img:26fb71_b9fc802f4bd048869f414153e6b5328bmv2.jpg | coll: | 
+IND #970 | ref:WIX-F11C22D0 | prix:17 | isbn: | img:26fb71_7cb33976980e4cfd86066b323ae848fbmv2-scaled.jpeg | coll: | contribution:Alexandre Pouchkine,Alexeï Varlamov,Fiodor Sologoub,Iouri Dombrovski,Léon Tolstoï,Léonid Andréïev,Nicolas Leskov,Panteleïmon Romanov,Vassili Grossman,Victor Astafiev,Vladimir Tendriakov
+IND #995 | ref:WIX-140946C5 | prix:10 | isbn: | img:26fb71_3a673cbbc39e422e9ca5f2a527b29ad7mv2-scaled.jpeg | coll: | illustration:Evgueni Ratchev
+IND #1009 | ref:WIX-6F111142 | prix:9 | isbn: | img:26fb71_ee648f953aca4d36b487d3652e2bf6c1mv2.jpg | coll: | 
+IND #1038 | ref:WIX-8E3E965F | prix:11.9 | isbn: | img:26fb71_f3b9dc620d7d4ee2aeea7a6d8502b4b4mv2.jpg | coll: | 
+IND #1045 | ref:WIX-D7ECFBF9 | prix:25 | isbn: | img:26fb71_13daa7239be44e9f832e009c421c625fmv2-scaled.jpeg | coll: | edition:Елена Наседкина,Моника Спивак
+IND #1080 | ref:WIX-25C6609E | prix:10 | isbn: | img:26fb71_ed9dee3ba9f34aefa1cd8eaf6532d174mv2.jpg | coll: | traduction:Gabriel Arout ; preface:Daniel-Rops
+IND #1083 | ref:WIX-3BFF6115 | prix:14 | isbn: | img:26fb71_741655d2097a4272b1f51e4b21093bcbmv2.jpg | coll: | 
+IND #1085 | ref:WIX-2DC4672A | prix:12 | isbn: | img:26fb71_753ae0e580244271b444faf4c5bfa022mv2-scaled.jpeg | coll: | 
+IND #1110 | ref:WIX-6B6E37EE | prix:16 | isbn: | img:26fb71_3f862fbc874644ddacfe9e15262c0ec9mv2.jpg | coll: | 
+IND #1129 | ref:WIX-358F90AF | prix:26 | isbn: | img:26fb71_9d1d85e50f6e4446a39f8406874e40afmv2.jpg | coll: | 
+IND #1141 | ref:WIX-0BB14F54 | prix:15 | isbn: | img:26fb71_4be485ecae474d92a7a31e3f37086a3bmv2.jpg | coll: | 
+IND #1147 | ref:WIX-9D7DE721 | prix:6.8 | isbn: | img:26fb71_3d79b0a44b7349c6bac283851bb680abmv2.jpg | coll:Kuro Savoir | 
+IND #1150 | ref:WIX-A14F39F7 | prix:6.8 | isbn: | img:26fb71_5975c4ae5f4a48719403481481d140d2mv2.jpg | coll: | 
+IND #1162 | ref:WIX-48A929AD | prix:9.5 | isbn: | img:26fb71_1cb39301feb443c88f7fe2d81fc0f997mv2.jpg | coll: | 
+IND #1240 | ref:WIX-8233A7DB | prix:18 | isbn: | img:26fb71_acf5e94deb2940b9b52f8a73803ff1cdmv2-scaled.jpg | coll: | contribution:Mikhaïl Kritchman,Oleg Neguine,Андрей Звягинцев
+IND #1255 | ref:WIX-DDB1D31C | prix:11 | isbn: | img:26fb71_e9627feb97c74bebb717807a8b897d85mv2.jpg | coll: | traduction:Jean-Claude Lanne
+IND #1265 | ref:WIX-EBA4CAF0 | prix:30 | isbn: | img:26fb71_37ed8213270c4edfa9aaa4065f00a613mv2.webp | coll: | 
+IND #1277 | ref:WIX-85418434 | prix:18 | isbn: | img:26fb71_946c64e24d234452bc81103ff15fdab9mv2-scaled.jpg | coll: | contribution:Oleg Neguine,Андрей Звягинцев
+IND #1351 | ref:WIX-3FA82C96 | prix:30 | isbn: | img:26fb71_82acd7c5facc47abba0e52da7e6acd18mv2.jpg | coll: | 
+IND #1366 | ref:WIX-4898A203 | prix:100 | isbn: | img:26fb71_3da774c387414c5abdb1156d918fd0e9mv2.jpg | coll: | 
+IND #1370 | ref:WIX-BF00BD9F | prix:30 | isbn: | img:26fb71_1bb7d7e24ed74a84a7dc364622023bbbmv2.jpg | coll: | direction:Николай Плотников ; preface:Николай Плотников
+IND #1375 | ref:WIX-4AE2AD7B | prix:19 | isbn: | img:26fb71_6896c0361f8340ccb6b588be27ed4aaemv2-scaled.jpg | coll: | 
+IND #1411 | ref:WIX-AA575B3F | prix:18 | isbn: | img:26fb71_a18302740ea14c76baa376aa5b859c80mv2.jpg | coll: | 
+IND #1445 | ref:WIX-641F6271 | prix:10 | isbn: | img:26fb71_3c2d56edef854f9b91b24af9d2b24b95mv2.webp | coll: | 
+IND #1451 | ref:WIX-197E46BF | prix:22 | isbn: | img:26fb71_765a8bdaa2914df09eaca6721de29e69mv2.jpg | coll: | 
+IND #1491 | ref:WIX-7CC7E643 | prix:12 | isbn: | img:26fb71_17708dc3404b4387a78dc0f7ca544558mv2-scaled.jpg | coll: | 
+IND #1513 | ref:WIX-8E180712 | prix:14 | isbn: | img:26fb71_7b41b1a73d4a490797fd18f2b210248fmv2-scaled.jpg | coll: | 
+IND #1527 | ref:WIX-B3E0FFA6 | prix:20 | isbn: | img:26fb71_5099e627f7984ac19b0149639cf61090mv2-scaled.jpg | coll: | 
+IND #1549 | ref:WIX-027E2878 | prix:10 | isbn: | img:26fb71_a9e14827cf6f49b3a1b33f6382ddc423mv2-scaled.jpg | coll: | 
+IND #1553 | ref:WIX-3971B0A0 | prix:15 | isbn: | img:26fb71_5bd180d2561b41788f2b371fc6d4b4c2mv2-scaled.jpg | coll: | 
+IND #1566 | ref:WIX-719B05FE | prix:14 | isbn: | img:26fb71_3e9f1ca5a9a74a348e0d4de943886601mv2-scaled.jpg | coll: | 
+IND #1578 | ref:WIX-204FF5CA | prix:18 | isbn: | img:26fb71_1231089171a944b3b67067a030d00410mv2.webp | coll: | traduction:André Markowicz
+IND #1605 | ref:WIX-3E0E91E4 | prix:23 | isbn: | img:26fb71_0743133a71d04591a48ed37fb074f10emv2.webp | coll: | illustration:Vladimir Souteïev
+IND #1619 | ref:WIX-20EEADD9 | prix:7.5 | isbn: | img:26fb71_37f550f631134521b8fcdd0c819a64c6mv2.jpg | coll: | 
+IND #1625 | ref:WIX-71A971B9 | prix:10 | isbn: | img:26fb71_9b4dadb43f44446dbd96cfe32be80bc1mv2.webp | coll: | 
+IND #1631 | ref:WIX-ED222758 | prix:10 | isbn: | img:26fb71_e291d2108f3a4d5bbc9a034d42fc50aemv2.jpg | coll: | 
+IND #1650 | ref:WIX-53A522C2 | prix:100 | isbn: | img:26fb71_73c3af3f27384181802832bb6cbbe9c1mv2-scaled.jpg | coll: | 
+IND #1659 | ref:WIX-728AF098 | prix:14 | isbn: | img:26fb71_ed3209959d9d4721b366ba3d56c94715mv2.jpeg | coll: | traduction:Elena Balzamo
+IND #1664 | ref:WIX-A7C1D36C | prix:23 | isbn: | img:26fb71_166ec11b60ec4c7eb26b2dc411b33980mv2.jpeg | coll: | 
+IND #1677 | ref:WIX-B9B7F0A5 | prix:20 | isbn: | img:26fb71_df93f408295641a3bd67ec4a9ba81af6mv2.jpg | coll: | 
+IND #1683 | ref:WIX-BD8DB7B9 | prix:15 | isbn: | img:26fb71_c2c6a9de669d43d7927c48e083b19302mv2.jpeg | coll: | 
+IND #1685 | ref:WIX-9AEA4252 | prix:15 | isbn: | img:26fb71_a6756b40b90e43a3b924fc76a05e0dccmv2.png | coll: | 
+IND #1687 | ref:WIX-B2CECBA6 | prix:15 | isbn: | img:26fb71_f8cbf7b69697431484435ad133f1e42cmv2.jpeg | coll: | 
+IND #1691 | ref:WIX-056B4096 | prix:15 | isbn: | img:26fb71_6d85aa223560412e9029a550e1699943mv2.webp | coll: | 
+IND #1693 | ref:WIX-DE9CDDBB | prix:15 | isbn: | img:26fb71_e7638f7d86084583a74b9702d990b249mv2.png | coll: | 
+IND #1697 | ref:WIX-87462DB9 | prix:10 | isbn: | img:26fb71_61727b07fe924c93898841cb2bf11402mv2.png | coll: | 
+IND #1722 | ref:WIX-AF14E462 | prix:20 | isbn: | img:26fb71_f15381880e1447fc8fcc8084dd4ee7dfmv2.jpeg | coll: | 
+IND #1724 | ref:WIX-97D42A3B | prix:20 | isbn: | img:26fb71_7e77cddc82d04a70ad966077de1e3ff8mv2.jpeg | coll: | 
+IND #1734 | ref:WIX-8C982CDD | prix:12 | isbn: | img:26fb71_ac9d8e3875134a77b4dc5c8ca801c9admv2.jpeg | coll: | 
+IND #1738 | ref:WIX-8CBAFE95 | prix:12 | isbn: | img:26fb71_8c85829a3dea44308edb4bfc7a4564b5mv2.png | coll: | traduction:Paul Lequesne ; edition:Roma Liberov ; illustration:Asya Marakulina
+IND #1761 | ref:WIX-B8241D32 | prix:22 | isbn: | img:26fb71_8a18b8ecb8b447f48f15b8097d882ec0mv2.png | coll: | edition:Olga Lossky
+IND #1775 | ref:WIX-36F7EA23 | prix:18 | isbn: | img:26fb71_20bf8db74faa426981793e4035fb2a4bmv2-scaled.jpg | coll: | illustration:Sacha Skotchilenko
+IND #1777 | ref:WIX-102329ED | prix:18 | isbn: | img:26fb71_ea20f947fed943d1afb17cb024e2a3famv2.webp | coll: | 
+IND #1785 | ref:WIX-2E9234D1 | prix:16 | isbn: | img:26fb71_e8a245383f8f483aaf618c1d26c99162mv2.jpg | coll: | 
+IND #1799 | ref:WIX-CFDEC3D4 | prix:15 | isbn: | img:26fb71_1d088e3af39348219e06221a86ce02d2mv2.jpeg | coll: | 
+IND #1803 | ref:WIX-77B3E275 | prix:25 | isbn: | img:26fb71_8726f9be111149d08cd5a4ebf21bd69emv2.webp | coll: | 
+IND #1813 | ref:WIX-AC4FD870 | prix:20 | isbn: | img:26fb71_6ae9b50436664946a14150000b13db43mv2.jpg | coll: | 
+IND #1815 | ref:WIX-1D520832 | prix:24 | isbn: | img:26fb71_3aa7ead0f15e4a68a5273b32ece78023mv2.jpg | coll: | 
+IND #1824 | ref:WIX-D06DAE5F | prix:11.95 | isbn: | img:26fb71_f38fe7dc593c41a4a694a7f73d5bdc1amv2.webp | coll: | direction:Elena Balzamo ; preface:Elena Balzamo
+IND #1827 | ref:WIX-A5EBCE6E | prix:30 | isbn: | img:26fb71_9fd21cdf1996414499896fe50d0639dfmv2-scaled.jpg | coll: | 
+IND #1842 | ref:WIX-27A83EBD | prix:15 | isbn: | img:26fb71_5d7d40f29bc84f7091c7f13f38c3bfdfmv2.webp | coll: | 
+IND #1847 | ref:WIX-AA3D1AE1 | prix:15 | isbn: | img:26fb71_b709840f08124e28bea09b6be64d482fmv2.jpeg | coll: | 
+IND #1856 | ref:WIX-296A602D | prix:15 | isbn: | img:26fb71_0c44ca38af3d4d35a830e8cb818b29b3mv2-scaled.jpg | coll: | 
+IND #1874 | ref:WIX-5BED134A | prix:27 | isbn: | img:26fb71_a1a7d1f43a9c4406ad4eda284a2201b5mv2.jpg | coll: | 
+IND #1878 | ref:WIX-80C44F74 | prix:26 | isbn: | img:26fb71_d759468f903f4d35a2401d9208f19d61mv2.jpg | coll: | 
