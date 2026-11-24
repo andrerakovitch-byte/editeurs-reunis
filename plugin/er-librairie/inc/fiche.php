@@ -193,6 +193,21 @@ add_action(
 						}
 						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . implode( ', ', $liens ) . '</p>';
 					}
+					// Les prix, puis la presse (er_presse, la revue de presse des livres récents).
+					$presse = get_post_meta( $id, 'er_presse', true );
+					foreach ( array( 'prix' => _x( 'Prix', 'fiche d’un livre', 'er-librairie' ), 'presse' => _x( 'Ils en parlent', 'fiche d’un livre', 'er-librairie' ) ) as $genre => $libelle ) {
+						$liens = array();
+						foreach ( is_array( $presse ) ? $presse : array() as $e ) {
+							if ( ( $e['genre'] ?? '' ) !== $genre ) {
+								continue;
+							}
+							$texte   = esc_html( $e['nom'] ) . ( '' !== ( $e['date'] ?? '' ) ? ' (' . esc_html( substr( $e['date'], 0, 4 ) ) . ')' : '' );
+							$liens[] = '' !== ( $e['lien'] ?? '' ) ? '<a href="' . esc_url( $e['lien'] ) . '" rel="noopener">' . $texte . '</a>' : $texte;
+						}
+						if ( $liens ) {
+							$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . implode( ', ', $liens ) . '</p>';
+						}
+					}
 					return $lignes ? '<div class="wp-block-er-fiche-champs">' . $lignes . '</div>' : '';
 				},
 			)

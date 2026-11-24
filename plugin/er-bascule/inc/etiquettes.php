@@ -275,4 +275,42 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			WP_CLI::success( $appliquer ? 'Étiquettes posées.' : 'Rien n’est écrit : ajouter « appliquer » pour poser.' );
 		}
 	);
+
+	/**
+	 * La revue de presse des livres récents : wp er presse poser [appliquer] [--fichier=<chemin>]. Le fichier
+	 * (donnees/presse.tsv) donne, par livre, les articles et les prix ; ils remplacent ceux du livre (er_presse).
+	 */
+	WP_CLI::add_command(
+		'er presse poser',
+		function ( $args, $assoc ) {
+			$fichier   = $assoc['fichier'] ?? dirname( __DIR__ ) . '/donnees/presse.tsv';
+			$appliquer = in_array( 'appliquer', $args, true );
+			$par_livre = array();
+			foreach ( file( $fichier, FILE_IGNORE_NEW_LINES ) as $ligne ) {
+				$c = explode( "\t", $ligne );
+				if ( '' === trim( $ligne ) || '#' === $ligne[0] || count( $c ) < 5 ) {
+					continue;
+				}
+				$par_livre[ (int) $c[0] ][] = array(
+					'genre' => 'prix' === trim( $c[1] ) ? 'prix' : 'presse',
+					'nom'   => trim( $c[2] ),
+					'date'  => trim( $c[3] ),
+					'lien'  => '-' === trim( $c[4] ) ? '' : esc_url_raw( trim( $c[4] ) ),
+				);
+			}
+			$poses = 0;
+			foreach ( $par_livre as $id => $entrees ) {
+				if ( 'product' !== get_post_type( $id ) ) {
+					WP_CLI::warning( "#$id n’est pas un livre." );
+					continue;
+				}
+				WP_CLI::log( '#' . $id . ' ' . html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) . ' : ' . implode( ' ; ', wp_list_pluck( $entrees, 'nom' ) ) );
+				if ( $appliquer ) {
+					update_post_meta( $id, 'er_presse', $entrees );
+					++$poses;
+				}
+			}
+			WP_CLI::success( sprintf( '%d livres dans le fichier, %d posés.', count( $par_livre ), $poses ) );
+		}
+	);
 }
