@@ -207,12 +207,107 @@ function get_bloginfo( $quoi = '' ) {
 	return 'Les Éditeurs réunis';
 }
 
+/* WooCommerce, au plus simple ---------------------------------------------------------------------------------- */
+
+function wp_date( $format, $quand = null ) {
+	return $GLOBALS['er_test_aujourdhui'] ?? gmdate( $format );
+}
+function taxonomy_exists( $t ) {
+	return isset( $GLOBALS['er_test_termes_de'] );
+}
+function wp_get_post_terms( $id, $taxonomie, $a = array() ) {
+	return $GLOBALS['er_test_termes_de'][ $id ][ $taxonomie ] ?? array();
+}
+function has_term( $terme, $taxonomie, $id ) {
+	return in_array( $terme, $GLOBALS['er_test_termes_de'][ $id ][ $taxonomie ] ?? array(), true );
+}
+
+/**
+ * Un produit : ses métas, son prix, ses termes (er_test_termes_de).
+ */
+class WC_Product {
+	public $id;
+	public $metas;
+	public $prix;
+	public function __construct( $id, $metas = array(), $prix = array() ) {
+		$this->id    = $id;
+		$this->metas = $metas;
+		$this->prix  = array_merge( array( 'regular' => '20', 'sale' => '' ), $prix );
+	}
+	public function get_id() {
+		return $this->id;
+	}
+	public function get_meta( $cle ) {
+		return $this->metas[ $cle ] ?? '';
+	}
+	public function get_regular_price( $c = 'view' ) {
+		return $this->prix['regular'];
+	}
+	public function get_sale_price( $c = 'view' ) {
+		return 'view' === $c ? apply_filters( 'woocommerce_product_get_sale_price', $this->prix['sale'], $this ) : $this->prix['sale'];
+	}
+	public function get_price( $c = 'view' ) {
+		$prix = '' !== $this->prix['sale'] ? $this->prix['sale'] : $this->prix['regular'];
+		return 'view' === $c ? apply_filters( 'woocommerce_product_get_price', $prix, $this ) : $prix;
+	}
+}
+
+/**
+ * Un tarif de livraison.
+ */
+class WC_Shipping_Rate {
+	public $methode;
+	public $cout;
+	public $taxes = array();
+	public $libelle;
+	public function __construct( $methode, $cout, $libelle = '' ) {
+		$this->methode = $methode;
+		$this->cout    = $cout;
+		$this->libelle = $libelle;
+	}
+	public function get_method_id() {
+		return $this->methode;
+	}
+	public function get_cost() {
+		return $this->cout;
+	}
+	public function get_taxes() {
+		return $this->taxes;
+	}
+	public function set_cost( $c ) {
+		$this->cout = $c;
+	}
+	public function set_taxes( $t ) {
+		$this->taxes = $t;
+	}
+	public function set_label( $l ) {
+		$this->libelle = $l;
+	}
+}
+
+/**
+ * Les taxes : un seul taux, celui de la livraison, posé par le test (er_test_taux_livraison, en %).
+ */
+class WC_Tax {
+	public static function get_shipping_tax_rates() {
+		return isset( $GLOBALS['er_test_taux_livraison'] ) ? array( 1 => array( 'rate' => $GLOBALS['er_test_taux_livraison'] ) ) : array();
+	}
+	public static function calc_tax( $prix, $taux, $ttc = false ) {
+		$t = reset( $taux )['rate'] / 100;
+		return array( 1 => $ttc ? $prix - $prix / ( 1 + $t ) : $prix * $t );
+	}
+}
+function wc_tax_enabled() {
+	return isset( $GLOBALS['er_test_taux_livraison'] );
+}
+
 /* Les fichiers testés ------------------------------------------------------------------------------------------ */
 
 foreach ( array(
 	'plugin/er-librairie/inc/recherche.php',
 	'plugin/er-librairie/inc/collections.php',
 	'plugin/er-librairie/inc/traducteurs-editeurs.php',
+	'plugin/er-librairie/inc/prix-du-livre.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',
 ) as $fichier ) {

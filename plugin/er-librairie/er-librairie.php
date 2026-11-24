@@ -26,6 +26,7 @@ require __DIR__ . '/inc/couvertures.php';
 require __DIR__ . '/inc/catalogue.php';
 require __DIR__ . '/inc/recommandations.php';
 require __DIR__ . '/inc/traducteurs-editeurs.php';
+require __DIR__ . '/inc/prix-du-livre.php';
 require __DIR__ . '/inc/liens-livres.php';
 require __DIR__ . '/inc/reglages.php';
 require __DIR__ . '/inc/langues.php';
