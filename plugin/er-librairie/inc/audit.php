@@ -107,7 +107,19 @@ function er_audit_nommes( $texte, $par_mot ) {
 			continue;
 		}
 		foreach ( $par_mot[ $mot ] as list( $cle, $tid ) ) {
-			if ( false !== strpos( $texte, ' ' . $cle . ' ' ) ) {
+			$n = substr_count( $texte, ' ' . $cle . ' ' );
+			if ( ! $n ) {
+				continue;
+			}
+			// Le nom pris dans celui d'une institution, d'une rue ou d'un prix ne compte pas.
+			static $institutions = null;
+			if ( null === $institutions ) {
+				$institutions = array_unique( array_map( 'er_cle_recherche', array( 'centre culturel', 'centre', 'fondation', 'prix', 'musée', 'bibliothèque', 'rue', 'avenue', 'boulevard', 'institut', 'maison', 'fonds', 'lycée', 'école', 'université', 'place', 'gymnase', 'центр', 'фонд', 'премия', 'улица', 'дом' ) ) );
+			}
+			foreach ( $institutions as $avant ) {
+				$n -= substr_count( $texte, ' ' . $avant . ' ' . $cle . ' ' );
+			}
+			if ( $n > 0 ) {
 				$trouves[ $tid ] = $tid;
 			}
 		}
@@ -181,6 +193,37 @@ function er_audit() {
 	$ln( '  ' . count( $groupes ) . ' groupes.' );
 	foreach ( array_slice( $groupes, 0, 20 ) as $tids ) {
 		$ln( '    ' . implode( ' = ', array_map( fn( $t ) => $p['termes'][ $t ]->name . ' [' . $p['termes'][ $t ]->count . ']', $tids ) ) );
+	}
+	// Les doublons probables : même nom de famille et même initiale (« А. Солженицын » et « Alexandre Soljenitsyne »),
+	// ou un nom tout entier au début d'un autre (« Christine Zeytounian » et « Christine Zeytounian-Beloüs »).
+	$familles = array();
+	$noms_cle = array();
+	foreach ( $p['termes'] as $tid => $t ) {
+		$cle  = er_cle_recherche( $t->name );
+		$mots = explode( ' ', $cle );
+		if ( count( $mots ) < 2 ) {
+			continue;
+		}
+		$noms_cle[ $tid ]                                  = $cle;
+		$familles[ end( $mots ) . '|' . $mots[0][0] ][ $tid ] = $tid;
+	}
+	$probables = array();
+	foreach ( $familles as $tids ) {
+		if ( count( $tids ) > 1 ) {
+			$probables[ implode( ',', $tids ) ] = array_values( $tids );
+		}
+	}
+	foreach ( $noms_cle as $a => $ca ) {
+		foreach ( $noms_cle as $b => $cb ) {
+			if ( $a !== $b && strlen( $cb ) > strlen( $ca ) && 0 === strpos( $cb, $ca . ' ' ) ) {
+				$k               = min( $a, $b ) . ',' . max( $a, $b );
+				$probables[ $k ] = array( $a, $b );
+			}
+		}
+	}
+	$ln( '  Doublons probables (même nom de famille et même initiale, ou un nom au début d’un autre) : ' . count( $probables ) . ' groupes, à vérifier un par un.' );
+	foreach ( array_slice( $probables, 0, 25 ) as $tids ) {
+		$ln( '    ' . implode( ' ~ ', array_map( fn( $t ) => $p['termes'][ $t ]->name . ' [' . $p['termes'][ $t ]->count . ']', $tids ) ) );
 	}
 
 	/* 2. Les signatures du journal ------------------------------------------------------------------------------ */
@@ -423,6 +466,73 @@ function er_audit() {
 	foreach ( array_slice( $cassees, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
+	// La fiche d'un livre choisit ses rencontres, articles et vidéos par les auteurs, les personnes « Autour de » et les
+	// sujets qu'ils partagent avec lui (er_recommandations) : la citation elle-même n'y compte pas.
+	$termes_de = function ( $id, $tax ) {
+		$t = taxonomy_exists( $tax ) ? wp_get_post_terms( $id, $tax, array( 'fields' => 'ids' ) ) : array();
+		return is_wp_error( $t ) ? array() : array_map( 'intval', $t );
+	};
+	$sens_unique = array();
+	$cites       = 0;
+	foreach ( array( 'rencontres' => $rencontres, 'articles' => $articles, 'vidéos' => $medias ) as $sorte => $ids ) {
+		foreach ( $ids as $id ) {
+			$siens = $termes_de( $id, 'auteur' );
+			$sujets_c = $termes_de( $id, 'er_sujet' );
+			foreach ( array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, 'er_livres', true ) ) ) ) as $ref ) {
+				$livre = er_audit_livre( $ref );
+				if ( ! $livre ) {
+					continue;
+				}
+				++$cites;
+				$autour = array_map( fn( $t ) => $t->term_id, function_exists( 'er_autour_de' ) ? er_autour_de( $livre ) : array() );
+				if ( ! array_intersect( $siens, array_merge( $termes_de( $livre, 'auteur' ), $autour ) ) && ! array_intersect( $sujets_c, $termes_de( $livre, 'er_sujet' ) ) ) {
+					$sens_unique[] = '    ' . $titre_de( $livre ) . ' ← ' . $sorte . ' · ' . $titre_de( $id );
+				}
+			}
+		}
+	}
+	$ln( sprintf( '  Citations à sens unique : %d livres cités sur %d ne montrent pas, sur leur fiche, le contenu qui les cite (rien en commun pour la fiche : ni auteur, ni personne, ni sujet).', count( $sens_unique ), $cites ) );
+	foreach ( array_slice( $sens_unique, 0, 15 ) as $l ) {
+		$ln( $l );
+	}
+	// Les traducteurs et les directeurs : une rencontre avec le traducteur d'un livre n'apparaît pas sur la fiche du livre.
+	$par_trad = 0;
+	$exemples = array();
+	foreach ( $livres as $id ) {
+		$gens = array();
+		foreach ( array( 'er_traduction', 'er_direction' ) as $tax ) {
+			foreach ( taxonomy_exists( $tax ) ? wp_get_post_terms( $id, $tax ) : array() as $miroir ) {
+				$a = get_term_by( 'slug', $miroir->slug, 'auteur' );
+				if ( $a ) {
+					$gens[] = (int) $a->term_id;
+				}
+			}
+		}
+		$gens = array_diff( $gens, $termes_de( $id, 'auteur' ) );
+		if ( ! $gens ) {
+			continue;
+		}
+		$leurs = get_posts(
+			array(
+				'post_type'   => array_values( array_filter( array( 'post', defined( 'ER_EVT' ) ? ER_EVT : '', 'er_media' ), 'post_type_exists' ) ),
+				'post_status' => 'publish',
+				'numberposts' => 3,
+				'fields'      => 'ids',
+				'lang'        => '',
+				'tax_query'   => array( array( 'taxonomy' => 'auteur', 'terms' => $gens ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+			)
+		);
+		if ( $leurs ) {
+			++$par_trad;
+			if ( count( $exemples ) < 12 ) {
+				$exemples[] = '    ' . $titre_de( $id ) . ' ← ' . $titre_de( $leurs[0] );
+			}
+		}
+	}
+	$ln( '  Livres dont le traducteur ou le directeur a des rencontres, des articles ou des vidéos que la fiche ne montre pas : ' . $par_trad );
+	foreach ( $exemples as $l ) {
+		$ln( $l );
+	}
 
 	/* 7. Les vidéos des rencontres ----------------------------------------------------------------------------- */
 	$ln();
@@ -472,6 +582,12 @@ function er_audit() {
 		}
 	}
 	$ln( sprintf( '  %d articles de l’encyclopédie, %d reliés à la page d’une personne ; %d portent le nom d’une personne qui a sa page, sans lien entre les deux.', $encyclo, count( array_intersect_key( $avec_page, array_flip( $pages ) ) ), count( $a_relier ) ) );
+	$racines = array();
+	foreach ( $pages as $id ) {
+		$r             = strtok( (string) get_page_uri( $id ), '/' );
+		$racines[ $r ] = ( isset( $racines[ $r ] ) ? $racines[ $r ] : 0 ) + 1;
+	}
+	$ln( '  Les pages du site, par rubrique : ' . implode( ', ', array_map( fn( $r, $n ) => $r . ' (' . $n . ')', array_keys( $racines ), $racines ) ) );
 	foreach ( array_slice( $a_relier, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
