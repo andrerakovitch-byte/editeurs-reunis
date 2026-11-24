@@ -387,17 +387,13 @@ function er_continuer_cites( $id ) {
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
-	 * L'index et les notices en JSON, sur la sortie : wp er continuer exporter [--partie=index|notices] [--debut=0]
-	 * [--n=400]. Rien que ce que le site montre déjà (des titres, des noms, des rayons, en stock ou non, les notices).
-	 * Une ligne par morceau : l'index d'abord, puis les notices et les personnes qu'elles nomment, livre par livre.
-	 *
-	 * @param array $args  Rien.
-	 * @param array $assoc partie, debut, n.
+	 * L'index et les notices, sur la sortie : wp er continuer exporter. Rien que ce que le site montre déjà (des titres,
+	 * des noms, des rayons, en stock ou non, les notices). Le JSON est compressé puis écrit en base64, en lignes
+	 * courtes qui commencent par « J » : le journal du workflow ne coupe pas une ligne longue de cette façon.
 	 */
 	WP_CLI::add_command(
 		'er continuer exporter',
-		function ( $args, $assoc ) {
-			unset( $args );
+		function () {
 			// Une erreur fatale (la mémoire, le temps) se dit aussi sur la sortie, que le workflow garde.
 			register_shutdown_function(
 				function () {
@@ -407,29 +403,29 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					}
 				}
 			);
-			WP_CLI::line( '# Mémoire : ' . ini_get( 'memory_limit' ) );
-			$partie = isset( $assoc['partie'] ) ? (string) $assoc['partie'] : 'index';
-			$index  = er_continuer_construire();
-			WP_CLI::line( '# ' . count( $index['livres'] ) . ' livres, ' . count( $index['contenus'] ) . ' contenus, ' . round( memory_get_peak_usage() / 1048576 ) . ' Mo au plus' );
-			if ( 'index' === $partie ) {
-				WP_CLI::line( wp_json_encode( array( 'index' => $index ), JSON_UNESCAPED_UNICODE ) );
-				return;
-			}
-			$ids   = array_slice( array_keys( $index['livres'] ), isset( $assoc['debut'] ) ? (int) $assoc['debut'] : 0, isset( $assoc['n'] ) ? (int) $assoc['n'] : 400 );
-			$index = null;
-			foreach ( $ids as $id ) {
-				WP_CLI::line(
-					wp_json_encode(
-						array(
-							'id'     => $id,
-							'notice' => er_continuer_notice( $id ),
-							'cites'  => er_continuer_cites( $id ),
-						),
-						JSON_UNESCAPED_UNICODE
-					)
-				);
+			$index   = er_continuer_construire();
+			$notices = array();
+			$cites   = array();
+			foreach ( array_keys( $index['livres'] ) as $id ) {
+				$notices[ $id ] = er_continuer_notice( $id );
+				$c              = er_continuer_cites( $id );
+				if ( $c ) {
+					$cites[ $id ] = $c;
+				}
 				wp_cache_delete( $id, 'posts' );
-				wp_cache_delete( $id, 'post_meta' );
+			}
+			$json = wp_json_encode(
+				array(
+					'index'   => $index,
+					'notices' => $notices,
+					'cites'   => $cites,
+				),
+				JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE
+			);
+			WP_CLI::line( '# ' . count( $index['livres'] ) . ' livres, ' . count( $index['contenus'] ) . ' contenus, ' . strlen( (string) $json ) . ' octets, ' . round( memory_get_peak_usage() / 1048576 ) . ' Mo au plus' );
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- des données publiques, pour le journal.
+			foreach ( str_split( base64_encode( (string) gzcompress( (string) $json, 9 ) ), 2000 ) as $morceau ) {
+				WP_CLI::line( 'J' . $morceau );
 			}
 		}
 	);
