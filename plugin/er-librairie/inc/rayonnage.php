@@ -819,19 +819,19 @@ function er_rayonnage_module_langues( $etat ) {
 			return '';
 		}
 		$titres[] = er_carte_titre( $p );
-		$cotes   .= '<div class="er-langues__cote"><a class="er-langues__couv" href="' . esc_url( $p->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . er_carte_couverture( $p, '200px' ) . '</a>'
-			. '<p class="er-langues__langue">' . esc_html( 0 === $k ? __( 'En français', 'er-librairie' ) : __( 'En russe', 'er-librairie' ) ) . '</p>'
-			. '<h3 class="er-langues__titre"><a href="' . esc_url( $p->get_permalink() ) . '"' . ( 1 === $k ? ' lang="ru"' : '' ) . '>' . esc_html( er_carte_titre( $p ) ) . '</a></h3>'
-			. '<p class="er-langues__faits">' . er_rayonnage_faits( $p ) . '</p>'
+		$cotes   .= '<div class="er-deux-langues__cote"><a class="er-deux-langues__couv" href="' . esc_url( $p->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . er_carte_couverture( $p, '200px' ) . '</a>'
+			. '<p class="er-deux-langues__langue">' . esc_html( 0 === $k ? __( 'En français', 'er-librairie' ) : __( 'En russe', 'er-librairie' ) ) . '</p>'
+			. '<h3 class="er-deux-langues__titre"><a href="' . esc_url( $p->get_permalink() ) . '"' . ( 1 === $k ? ' lang="ru"' : '' ) . '>' . esc_html( er_carte_titre( $p ) ) . '</a></h3>'
+			. '<p class="er-deux-langues__faits">' . er_rayonnage_faits( $p ) . '</p>'
 			. '<div class="er-carte__achat"><span class="er-carte__prix">' . $p->get_price_html() . '</span>' . er_carte_bouton( $p ) . '</div></div>';
 	}
 	$auteurs = wp_get_post_terms( $paire[0], 'auteur', array( 'fields' => 'names' ) );
-	return '<li class="er-module er-module--large er-langues">'
+	return '<li class="er-module er-module--large er-deux-langues">'
 		. er_rayonnage_surtitre( __( 'Lire en deux langues', 'er-librairie' ) )
 		. '<h2 class="er-module__titre">' . esc_html( preg_split( '/\s*[,:(—–]|\s-\s/u', $titres[0] )[0] . ' · ' . preg_split( '/\s*[.,:(—–]|\s-\s/u', $titres[1] )[0] ) . '</h2>'
 		/* translators: %s: l'auteur. */
 		. '<p class="er-module__texte">' . esc_html( sprintf( __( '%s : le même livre, en français et en russe.', 'er-librairie' ), $auteurs && ! is_wp_error( $auteurs ) ? $auteurs[0] : '' ) ) . '</p>'
-		. '<div class="er-langues__paire">' . $cotes . '</div>'
+		. '<div class="er-deux-langues__paire">' . $cotes . '</div>'
 		. '</li>';
 }
 

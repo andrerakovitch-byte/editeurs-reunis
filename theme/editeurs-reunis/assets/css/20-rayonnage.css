@@ -258,7 +258,7 @@
 :is(.er-moment, .er-module--epoque, .er-ymca) .er-module__texte { color: rgba(255, 255, 255, 0.78); }
 :is(.er-moment, .er-module--epoque, .er-ymca) .er-module__pilule { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
 :is(.er-moment, .er-module--epoque, .er-ymca) a:not(.er-module__pilule):not(.er-carte__ajouter) { color: var(--wp--preset--color--base); }
-.er-langues,
+.er-deux-langues,
 .er-module--auteur { background: var(--wp--preset--color--doux); }
 
 /* Le livre du moment. */
@@ -308,16 +308,16 @@
 }
 
 /* Le même livre en deux langues. */
-.er-langues { padding: 2rem; }
-.er-langues__paire { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.25rem; }
-.er-langues__couv { display: flex; align-items: flex-end; height: 12.5rem; }
-.er-langues__couv img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; box-shadow: var(--er-ombre-livre); }
-.er-langues__couv .er-couverture-typo { height: 100%; width: auto; }
-.er-langues__langue { margin: 0.875rem 0 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
-.er-langues__titre { margin: 0.25rem 0 0; font-size: 1rem; line-height: 1.3; font-weight: 600; overflow-wrap: anywhere; }
-.er-langues__titre a { color: inherit; text-decoration: none; }
-.er-langues__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
-@media (max-width: 600px) { .er-langues { padding: 1.25rem; } .er-langues__couv { height: 10.5rem; } }
+.er-deux-langues { padding: 2rem; }
+.er-deux-langues__paire { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.25rem; }
+.er-deux-langues__couv { display: flex; align-items: flex-end; height: 12.5rem; }
+.er-deux-langues__couv img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; box-shadow: var(--er-ombre-livre); }
+.er-deux-langues__couv .er-couverture-typo { height: 100%; width: auto; }
+.er-deux-langues__langue { margin: 0.875rem 0 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-deux-langues__titre { margin: 0.25rem 0 0; font-size: 1rem; line-height: 1.3; font-weight: 600; overflow-wrap: anywhere; }
+.er-deux-langues__titre a { color: inherit; text-decoration: none; }
+.er-deux-langues__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+@media (max-width: 600px) { .er-deux-langues { padding: 1.25rem; } .er-deux-langues__couv { height: 10.5rem; } }
 
 /* Par époque : le titre de chaque chapitre, sur toute la largeur. */
 .er-livres > .er-chapitre { grid-column: 1 / -1; display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 0.25rem 1rem; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--wp--preset--color--contrast); text-align: left; }
