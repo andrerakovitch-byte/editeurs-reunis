@@ -1,8 +1,0 @@
-  Taxes calculées                               yes (était : no)
-  Prix saisis TTC                               yes (était : no)
-  Calcul d’après l’adresse de la boutique       base (était : shipping)
-  Livraison au taux des articles                inherit
-  Prix affichés TTC dans la boutique            incl (était : excl)
-  Prix affichés TTC dans le panier              incl (était : excl)
-  Taux pour la France                           5,5 %, livraison comprise (posé)
-Les billets des rencontres suivent le même taux : à confirmer avec le comptable.
