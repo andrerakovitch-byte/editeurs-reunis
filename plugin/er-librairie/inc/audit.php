@@ -555,7 +555,8 @@ function er_audit() {
 			isset( $mediatheque[ $u ] ) ? ++$dans : ++$hors;
 		}
 	}
-	$ln( sprintf( '  %d vidéos de rencontres : %d sont aussi dans « Vidéos et podcasts », %d n’y sont pas (on ne les trouve que sur la page de la rencontre).', $dans + $hors, $dans, $hors ) );
+	$par_rencontre = function_exists( 'er_media_rencontres' ) ? count( er_media_rencontres( '' ) ) : 0;
+	$ln( sprintf( '  %d vidéos de rencontres : %d sont aussi des vidéos de la médiathèque ; « Vidéos et podcasts » montre %d rencontres enregistrées (« Les rencontres, à revoir »).', $dans + $hors, $dans, $par_rencontre ) );
 
 	/* 8. L'encyclopédie ------------------------------------------------------------------------------------------ */
 	$ln();

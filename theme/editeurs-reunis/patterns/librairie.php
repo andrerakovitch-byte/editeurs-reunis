@@ -13,7 +13,8 @@
  */
 
 
-// La page d'une personne : sous les livres qu'elle a écrits, ceux qu'elle a traduits ou dirigés (er_personne_livres(),
+// La page d'une personne : sous les livres qu'elle a écrits, ceux qu'elle a traduits, dirigés, préfacés, établis ou
+// illustrés (er_personne_livres(),
 // traducteurs-editeurs.php, dans l'extension). Qui n'a rien écrit qui soit en vente (Georges Nivat, Sophie Benech) n'a
 // pas de « Ses livres » vide : ses traductions viennent tout de suite (24 nov. 2026).
 $er_roles    = array();
@@ -22,8 +23,11 @@ if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
 	$er_livres   = er_personne_livres( get_queried_object() );
 	$er_roles    = array_filter(
 		array(
-			__( 'Ses traductions', 'editeurs-reunis' )   => $er_livres['traduction'],
-			__( 'Sous sa direction', 'editeurs-reunis' ) => $er_livres['direction'],
+			__( 'Ses traductions', 'editeurs-reunis' )    => $er_livres['traduction'],
+			__( 'Sous sa direction', 'editeurs-reunis' )  => $er_livres['direction'],
+			__( 'Ses préfaces', 'editeurs-reunis' )       => isset( $er_livres['preface'] ) ? $er_livres['preface'] : array(),
+			__( 'Éditions établies', 'editeurs-reunis' )  => isset( $er_livres['edition'] ) ? $er_livres['edition'] : array(),
+			__( 'Ses illustrations', 'editeurs-reunis' )  => isset( $er_livres['illustration'] ) ? $er_livres['illustration'] : array(),
 		)
 	);
 	$er_ecrivain = ! empty( $er_livres['auteur'] ) || ! $er_roles;

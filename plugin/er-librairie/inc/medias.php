@@ -5,7 +5,9 @@
  *
  * Ce qu'il garde : le lien (YouTube, SoundCloud, un fichier audio…), le genre (vidéo ou podcast), la durée.
  * L'enregistrement d'une rencontre reste sur la page de la rencontre (« Revoir, réécouter ») : ici, les vidéos et les
- * épisodes qui ne sont pas une rencontre (les podcasts, les séries des bénévoles, les entretiens).
+ * épisodes qui ne sont pas une rencontre (les podcasts, les séries des bénévoles, les entretiens). Mais la liste les
+ * montre aussi, par leur rencontre, dans « Les rencontres, à revoir » (24 nov. 2026, l'audit : 44 enregistrements
+ * qu'on ne trouvait que sur la page de leur rencontre) : la carte mène à la rencontre, rien n'est recopié.
  *
  * @package er-librairie
  */
@@ -213,6 +215,51 @@ function er_media_bloc_lecteur( $id ) {
 }
 
 /**
+ * Le genre d'un lien : podcast pour un son (SoundCloud, Spotify, un fichier audio), vidéo sinon.
+ *
+ * @param string $url Le lien.
+ */
+function er_media_genre_du_lien( $url ) {
+	return preg_match( '#soundcloud\.com|spotify\.com|anchor\.fm|podcasts?\.|\.(mp3|m4a|ogg|wav)(\?|$)#i', $url ) ? 'podcast' : 'video';
+}
+
+/**
+ * Les rencontres passées qui ont un enregistrement du genre voulu, les plus récentes d'abord.
+ *
+ * @param string $genre video, podcast, ou les deux.
+ * @return WP_Post[]
+ */
+function er_media_rencontres( $genre ) {
+	if ( ! defined( 'ER_EVT' ) || ! function_exists( 'er_evt_videos' ) ) {
+		return array();
+	}
+	$rencontres = get_posts(
+		array(
+			'post_type'      => ER_EVT,
+			'post_status'    => 'publish',
+			'posts_per_page' => 200,
+			'meta_query'     => array( array( 'key' => 'er_videos', 'value' => 'http', 'compare' => 'LIKE' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_key'       => 'er_debut', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'orderby'        => 'meta_value',
+			'order'          => 'DESC',
+		)
+	);
+	return array_values(
+		array_filter(
+			$rencontres,
+			function ( $r ) use ( $genre ) {
+				foreach ( er_evt_videos( $r->ID ) as list( , $url ) ) {
+					if ( ! in_array( $genre, array( 'video', 'podcast' ), true ) || er_media_genre_du_lien( $url ) === $genre ) {
+						return true;
+					}
+				}
+				return false;
+			}
+		)
+	);
+}
+
+/**
  * La liste des vidéos ou des podcasts, par série puis les autres, les plus récents d'abord.
  *
  * @param string $genre video, podcast, ou les deux.
@@ -226,8 +273,9 @@ function er_media_bloc_liste( $genre ) {
 	if ( in_array( $genre, array( 'video', 'podcast' ), true ) ) {
 		$args['meta_query'] = array( array( 'key' => 'er_genre', 'value' => $genre ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
 	}
-	$medias = get_posts( $args );
-	if ( ! $medias ) {
+	$medias     = get_posts( $args );
+	$rencontres = er_media_rencontres( $genre );
+	if ( ! $medias && ! $rencontres ) {
 		return '<p class="er-evts-vide">' . esc_html__( 'Rien pour l’instant.', 'er-librairie' ) . '</p>';
 	}
 	update_post_thumbnail_cache( new WP_Query( $args ) );
@@ -238,6 +286,9 @@ function er_media_bloc_liste( $genre ) {
 		$groupes[ $nom ][] = $m;
 	}
 	$autres = __( 'Et aussi', 'er-librairie' );
+	if ( $rencontres ) { // Les enregistrements des rencontres, après les séries, par leur rencontre.
+		$groupes[ __( 'Les rencontres, à revoir', 'er-librairie' ) ] = $rencontres;
+	}
 	if ( isset( $groupes[ $autres ] ) ) { // Les vidéos sans série, à la fin.
 		$fin = $groupes[ $autres ];
 		unset( $groupes[ $autres ] );
@@ -245,7 +296,7 @@ function er_media_bloc_liste( $genre ) {
 	}
 	$html = '';
 	foreach ( $groupes as $nom => $liste ) {
-		if ( $autres !== $nom ) {
+		if ( $autres !== $nom && $liste !== $rencontres ) {
 			usort( $liste, fn( $x, $y ) => strnatcasecmp( $x->post_title, $y->post_title ) ); // Épisode 1, 2… 10.
 		}
 		$html .= '<section class="er-autour-section"><h2 class="er-evts-titre">' . esc_html( $nom ) . '</h2><ul class="er-cartes">' . implode( '', array_map( 'er_carte_contenu', $liste ) ) . '</ul></section>';

@@ -31,12 +31,37 @@ function er_roles_personnes() {
 			'boite' => __( 'Traduction', 'er-librairie' ),
 			'aide'  => __( 'Les traducteurs, séparés par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page, dans leurs traductions.', 'er-librairie' ),
 			'meta'  => 'er_traducteur',
+			'cle'   => 'traduction',
 		),
 		'er_direction'  => array(
 			'fiche' => _x( 'Sous la direction de', 'fiche d’un livre', 'er-librairie' ),
 			'boite' => __( 'Sous la direction de', 'er-librairie' ),
 			'aide'  => __( 'Les directeurs de l’ouvrage, séparés par des virgules : des auteurs (un nom nouveau devient un auteur). Le livre paraît sur leur page.', 'er-librairie' ),
 			'meta'  => '',
+			'cle'   => 'direction',
+		),
+		// Les rôles que Wix ne connaissait pas, relevés dans les textes des livres (24 nov. 2026, l'audit : 45 mentions,
+		// dont 17 de personnes qui ont leur page, comme Georges Nivat ou Sophie Benech).
+		'er_preface'      => array(
+			'fiche' => _x( 'Préface', 'fiche d’un livre', 'er-librairie' ),
+			'boite' => __( 'Préface, présentation', 'er-librairie' ),
+			'aide'  => __( 'Qui préface, présente, postface l’ouvrage, séparés par des virgules : des auteurs. Le livre paraît sur leur page.', 'er-librairie' ),
+			'meta'  => '',
+			'cle'   => 'preface',
+		),
+		'er_edition'      => array(
+			'fiche' => _x( 'Édition établie par', 'fiche d’un livre', 'er-librairie' ),
+			'boite' => __( 'Édition établie, notes', 'er-librairie' ),
+			'aide'  => __( 'Qui établit le texte, l’annote, choisit les textes, séparés par des virgules : des auteurs. Le livre paraît sur leur page.', 'er-librairie' ),
+			'meta'  => '',
+			'cle'   => 'edition',
+		),
+		'er_illustration' => array(
+			'fiche' => _x( 'Illustrations', 'fiche d’un livre', 'er-librairie' ),
+			'boite' => __( 'Illustrations', 'er-librairie' ),
+			'aide'  => __( 'Les illustrateurs, séparés par des virgules : des auteurs. Le livre paraît sur leur page.', 'er-librairie' ),
+			'meta'  => '',
+			'cle'   => 'illustration',
 		),
 	);
 }
@@ -283,11 +308,14 @@ function er_requete_livres_en_vente() {
 function er_personne_livres( $auteur ) {
 	$auteur = is_object( $auteur ) ? $auteur : get_term( (int) $auteur, 'auteur' );
 	$vide   = array(
-		'auteur'     => array(),
-		'traduction' => array(),
-		'direction'  => array(),
-		'autour'     => array(),
-		'tous'       => array(),
+		'auteur'       => array(),
+		'traduction'   => array(),
+		'direction'    => array(),
+		'preface'      => array(),
+		'edition'      => array(),
+		'illustration' => array(),
+		'autour'       => array(),
+		'tous'         => array(),
 	);
 	if ( ! $auteur || is_wp_error( $auteur ) ) {
 		return $vide;
@@ -297,12 +325,11 @@ function er_personne_livres( $auteur ) {
 	if ( isset( $cache[ $auteur->term_id ] ) ) {
 		return $cache[ $auteur->term_id ];
 	}
-	$par_role = array(
-		'auteur'     => array( 'auteur', 'term_id', $auteur->term_id ),
-		'traduction' => array( 'er_traduction', 'slug', $auteur->slug ),
-		'direction'  => array( 'er_direction', 'slug', $auteur->slug ),
-		'autour'     => array( 'er_autour', 'slug', $auteur->slug ),
-	);
+	$par_role = array( 'auteur' => array( 'auteur', 'term_id', $auteur->term_id ) );
+	foreach ( er_roles_personnes() as $taxonomie => $role ) {
+		$par_role[ $role['cle'] ] = array( $taxonomie, 'slug', $auteur->slug );
+	}
+	$par_role['autour'] = array( 'er_autour', 'slug', $auteur->slug );
 	$livres = $vide;
 	foreach ( $par_role as $role => list( $taxonomie, $champ, $valeur ) ) {
 		if ( ! taxonomy_exists( $taxonomie ) ) {
@@ -316,7 +343,7 @@ function er_personne_livres( $auteur ) {
 		);
 		$livres[ $role ]     = array_map( 'intval', ( new WP_Query( $args ) )->posts );
 	}
-	$livres['tous']               = array_values( array_unique( array_merge( $livres['auteur'], $livres['traduction'], $livres['direction'] ) ) );
+	$livres['tous']               = array_values( array_unique( array_merge( ...array_values( array_diff_key( $livres, array( 'autour' => 1, 'tous' => 1 ) ) ) ) ) );
 	$cache[ $auteur->term_id ] = $livres;
 	wp_cache_set( 'er_personnes_livres', $cache, 'er', HOUR_IN_SECONDS );
 	return $livres;
@@ -446,10 +473,13 @@ function er_roles_noms( $texte, $titre = '', &$ecart = array() ) {
 function er_roles_releves( $id ) {
 	$titre  = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
 	$releve = array(
-		'traduction' => array(),
-		'direction'  => array(),
-		'editeurs'   => array(),
-		'ecart'      => array(),
+		'traduction'   => array(),
+		'direction'    => array(),
+		'preface'      => array(),
+		'edition'      => array(),
+		'illustration' => array(),
+		'editeurs'     => array(),
+		'ecart'        => array(),
 	);
 	$titre_seul = preg_replace( '/\s*[-–—]?\s*sous la direction d.*$/iu', '', $titre );
 	foreach ( er_roles_noms( (string) get_post_meta( $id, 'er_traducteur', true ), $titre_seul, $releve['ecart'] ) as $nom ) {
@@ -469,6 +499,29 @@ function er_roles_releves( $id ) {
 				if ( ! isset( $releve['traduction'][ $n ] ) ) {
 					$releve['traduction'][ $n ] = 'texte';
 				}
+			}
+		}
+	}
+	// Les autres rôles : « Préface de Georges Nivat », « édition établie et annotée par… », « illustrations d'Ivan
+	// Bilibine ». Dans les textes du livre et dans la méta « Traducteur, préfacier » de Wix, qui les mêlait.
+	$tout   = $texte . "\n" . wp_strip_all_tags( html_entity_decode( (string) get_post_meta( $id, 'er_traducteur', true ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+	$motifs = array(
+		'preface'      => '(?:pr[ée]fac(?:e|[ée]e?s?)|postface|avant-propos|introduction|pr[ée]sentation|pr[ée]sent[ée]e?s?)',
+		'edition'      => '(?:[ée]dition\s+[ée]tablie|[ée]tablie?s?|annot[ée]e?s?|notes|choix(?:\s+de\s+textes)?|commentaires?)',
+		'illustration' => '(?:illustr(?:ations?|[ée]e?s?)|dessins)',
+	);
+	foreach ( $motifs as $role => $motif ) {
+		if ( ! preg_match_all( '/\b' . $motif . '\s+(?:et\s+\p{Ll}+\s+)?(?:de\s+|par\s+|d[’\'])\s*(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/iu', $tout, $mm ) ) {
+			continue;
+		}
+		foreach ( $mm[1] as $trouve ) {
+			$ecart = array();
+			foreach ( er_roles_noms( $trouve, $titre_seul, $ecart ) as $n ) {
+				// Un mot du texte collé au nom (« Collection Folio », « UN RÔLE ») n'est pas une personne.
+				if ( preg_match( '/^(?:collection|aujourd|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman)\b/iu', $n ) || preg_match( '/\b\p{Lu}{2,}\b/u', $n ) ) {
+					continue;
+				}
+				$releve[ $role ][ $n ] = 'texte';
 			}
 		}
 	}
@@ -615,15 +668,12 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			$nouveaux  = array();
 			$editeurs  = array();
 			$ecarts    = array();
-			$comptes   = array(
-				'traduction' => 0,
-				'direction'  => 0,
-				'editeur'    => 0,
-			);
+			$roles     = array_column( er_roles_personnes(), 'cle' );
+			$comptes   = array_fill_keys( $roles, 0 ) + array( 'editeur' => 0 );
 			foreach ( $ids as $id ) {
 				$r              = er_roles_releves( $id );
 				$releves[ $id ] = $r;
-				foreach ( array( 'traduction', 'direction' ) as $role ) {
+				foreach ( $roles as $role ) {
 					$comptes[ $role ] += $r[ $role ] ? 1 : 0;
 					foreach ( array_keys( $r[ $role ] ) as $nom ) {
 						$personnes[ $nom ] = ( isset( $personnes[ $nom ] ) ? $personnes[ $nom ] : 0 ) + 1;
@@ -654,11 +704,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			}
 			if ( $appliquer ) {
 				foreach ( $releves as $id => $r ) {
-					foreach ( array(
-						'traduction' => 'er_traduction',
-						'direction'  => 'er_direction',
-					) as $role => $taxonomie ) {
-						if ( $r[ $role ] ) {
+					foreach ( er_roles_personnes() as $taxonomie => $def ) {
+						$role = $def['cle'];
+						if ( ! empty( $r[ $role ] ) ) {
 							er_poser_personnes( $id, $taxonomie, array_values( array_unique( array_map( fn( $n ) => $memes[ $n ], array_keys( $r[ $role ] ) ) ) ), true );
 						}
 					}
@@ -668,7 +716,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 			}
 			WP_CLI::log( ( $appliquer ? 'Posé' : 'Relevé (rien n’est posé ; « wp er roles appliquer » pour poser)' ) . ' sur ' . count( $ids ) . ' livres en vente :' );
-			WP_CLI::log( '  ' . $comptes['traduction'] . ' livres avec une traduction, ' . $comptes['direction'] . ' sous la direction de quelqu’un, ' . $comptes['editeur'] . ' avec un éditeur.' );
+			WP_CLI::log( '  ' . $comptes['traduction'] . ' livres avec une traduction, ' . $comptes['direction'] . ' sous la direction de quelqu’un, ' . $comptes['preface'] . ' avec une préface ou une présentation, ' . $comptes['edition'] . ' avec une édition établie ou des notes, ' . $comptes['illustration'] . ' illustrés, ' . $comptes['editeur'] . ' avec un éditeur.' );
 			$par_chef = array();
 			foreach ( $memes as $nom => $chef ) {
 				$par_chef[ $chef ][] = $nom;
