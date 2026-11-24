@@ -1,246 +1,138 @@
-Posé sur 840 livres en vente :
-  161 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-162 personnes (167 graphies), dont 27 qui ne sont pas encore des auteurs (créées) :
-  Sophie Benech (11)
-  Georges Nivat (9)
-  André Markowicz (8)
-  Christian Mouze (7)
-  Hélène Henry (6)
-  Jean-Louis Chavarot (5)
-  Paul Lequesne (5) ← Paul Lesquesne
-  Anne Davidenkoff (4)
-  Maïa Varsimashvili-Raphael (4)
-  Henri Mongault (4)
-  Gustave Aucouturier (4)
-  Nicolas Struve (3)
-  Pierre Léon (3)
-  Luba Jurgenson (3)
-  Olga Lossky (2)
-  Jean-Noël Benoit (2)
-  Henri de Lubac (2)
-  Françoise Lhoest (2)
-  Olga Lossky-Laham (2) · nouveau
-  Jérôme Cler (3) ← Jérôme Clerc
-  Raphaëlle Pache (2)
-  Gabriel Arout (3) ← G. Arout
-  Bernard Hubert (2) · nouveau
-  Carine Masutti (2)
-  Jean Laury (2)
-  Laure Troubetzkoy (2)
-  Tatiana Nikishina (2)
-  Olivier Gallon (2)
-  Anne Kichilov (2)
-  Boris de Schlœzer (3) ← Boris de Schloezer
-  Rambert Nicolas (2)
-  Christine Zeytounian-Beloüs (2)
-  Cédric Gras (2)
-  Nicolas Werth (2)
-  Gérard Abensour (2)
-  Alain Préchac (2)
-  Ludmila Savitzky (2)
-  Anne-Marie Tatsis-Botton (2)
-  Louis Martinez (2)
-  Michel Aucouturier (2)
-  Mahaut de Cordon-Prache (2)
-  Claude Ligny (2)
-  Nicolas Molinier (2)
-  Michel Niqueux (2)
-  Céline Marangé (2)
-  Nikita Struve (2)
-  Sylvie Luneau (2)
-  Edith Sherrer (2)
-  Lily Denis (2)
-  Elena Balzamo (2) ← Elena Balzano
-  Catherine Géry (1) · nouveau
-  Asya Marakulina (1) · nouveau
-  Léon Bernstein (1)
-  Louise Desormonts (1)
-  Dany Savelli (1) · nouveau
-  Nikolaï Lugansky (1) · nouveau
-  Lucile Nivat (1)
-  Jacqueline Lafond (1)
-  Antony Beevor (1) · nouveau
-  Liouba Vinogradova (1) · nouveau
-  Konstantin Batynkov (1) · nouveau
-  Valérie Pozner (1)
-  Maurice Parijanine (1)
-  Georges Kassai (1)
-  Andrée Lück-Gaye (1)
-  Claude Vincenot (1)
-  Manuela Boublil-Friedrich (1)
-  Franck Manara (1)
-  Yves Gauthier (1)
-  Alain Cappon (1)
-  Hélène Vivier-Kousnetzoff (1)
-  Rodolphe Baudin (1) · nouveau
-  Michel Cadot (1)
-  Jean-Claude Lanne (1)
-  Anne Coldefy-Faucard (1)
-  Colette Stoïanov (1)
-  Christine Zeytounian (1)
-  Marina Bobrova (1)
-  Maud Mabillard (1)
-  Philie Arnoux (1)
-  Marine Le Berre Semenov (1)
-  Christine Bouvart (1)
-  Gilles Barbedette (1) · nouveau
-  Veronika Dorman (1)
-  Laëtitia Decourt (1)
-  Elena Ponomareva (1)
-  Natalino Valentini (1) · nouveau
-  Johann Bihr (1)
-  Andreï Vieru (1)
-  E. Semenoff (1)
-  Léandre Lucas (1)
-  Julie Bouvard (1)
-  Andreï Kovrine (1) · nouveau
-  M. Dumesnil' de Gramont (1)
-  Hélène Arjakovsky (1)
-  Michel Parfenov (1) · nouveau
-  Misha Zaslavsky (1) · nouveau
-  Askold Akishine (1) · nouveau
-  Jean Bodiou (1)
-  Odile Belkeddar (1)
-  Renata Lesnik (1)
-  Jean-Louis Panné (1) · nouveau
-  Mathias Enard (1) · nouveau
-  Éveline Amoursky (1)
-  Ludmila Oulitskaïa (1)
-  Claude Levenson (1)
-  Jean-Christophe Peuch (1)
-  Nilima Changkakoti (1)
-  Stefan Zweig (1)
-  Grégory Dufaud (1) · nouveau
-  Hélène Carrère d'Encausse (1) · nouveau
-  Ivan Bilibine (1) · nouveau
-  Françoise Morvan (1)
-  Anita Davidenkoff (1) ← Anna Davidenkoff
-  Hélène Péras (1)
-  Leonid Livak (1)
-  Alice Devaux (1) · nouveau
-  Joëlle Dublanchet (1)
-  Innokenti Platonov (1)
-  Valentina Chepiga (1)
-  Florian Voutev (1)
-  Adèle Bloch (1)
-  Robert André (1) · nouveau
-  Ève Malleret (1)
-  Zéno Bianu (1) · nouveau
-  Marianne Gourg-Antuszewic (1)
-  André Donzeau (1)
-  Francine Andreieff (1)
-  Myriam Odayski (1)
-  Elisabeth Mouravieff (1)
-  Irène Markowicz (1)
-  Laurence Dyèvre (1)
-  Véronique Schiltz (1)
-  Jacques Catteau (1)
-  Michel Pétris (1)
-  Marie Leymarie (1)
-  Ekaterina Cherezova (1)
-  Lydia Ouspensky (1)
-  Denis Roche (1)
-  Louis Viardot (1)
-  Bernard Le Caro (1)
-  Anne Buguet (1) · nouveau
-  Natalia Soljénistyne (1)
-  J. Cathala (1)
-  Henri Léonard-Bordier (1)
-  Irène Rovere-Sova (1)
-  Mireille Rovere-Tsivikis (1)
-  C. Andronikof (1)
-  A. de Couriss (1)
-  Pierre Pascal (1)
-  Michel Sollogoub (1)
-  Lucette Marçais (1)
-  André Gide (1)
-  Jacques Schiffrin (1)
-  Nina Kchayan (1) · nouveau
-  Edouard Parayre (1)
-  Roger Grenier (1) · nouveau
-  Tatiana Victoroff (1)
-  Boris Zaïtsev (1)
-  Cécile Odartchenko (1)
-  Bertrand Jeuffrain (1)
-  Henri Bloch (1)
-59 éditeurs (68 graphies) :
-  YMCA-Press (175) ← Éditions YMCA-Press
-  Éditions des Syrtes (38)
-  Gallimard (9)
-  Ginkgo éditeur (10) ← Gingko éditions, Ginkco éditeurs
-  Sandermoen Publishing (5)
-  La Barque (3)
-  Institut d’études slaves (4) ← Institut dEtudes Slaves
-  Masha Publishing (3)
-  Robert Laffont (3)
-  Захаров (3)
-  Éditions Sillage (3)
-  Éditions Tourgueneff (2)
-  Fayard (3) ← Éditions Fayard
-  Русский путь (2)
-  Нигма (2)
-  Actes Sud (2)
-  Desclée de Brouwer (2)
-  Harpo (2)
-  Sibérie (1)
-  The Faith of a Mushroom (1)
-  Bouquins (1)
-  Noir sur Blanc (2) ← Éditions Noir sur blanc
-  Kiev (1)
-  Les Bas-fonds (1)
-  Éditions Nouvel Attila (1)
-  Saint Leger éditions (1)
-  Éditions de l’EHESS (2) ← Éditions EHESS
-  Folio (1)
-  Éditions de Minuit (1)
-  Éditions Circé (1)
-  Éditions La Coopérative (1)
-  Éditions Ca et là (1)
-  Mediaspaul éditions (1)
-  Éditions Interférences (1)
-  Barthillat (2) ← Bartillat
-  Bagne rouge (1)
-  Cerf Patrimoine (1)
-  Buchet-Chastel (1)
-  Reprint (1)
-  Stock (1)
-  André Korliakov (1)
-  Éditions du Panthéon (1)
-  Éditions Natania (2) ← Natania
-  Éditions Jourdan (1)
-  Vibratrion éditions (1)
-  Éditions Paroles et Silence (1)
-  Éditions du Fallois (1)
-  Belfond (1)
-  Éditions du Cerf (1)
-  Fraternité orthodoxe en Europe occidentale (1)
-  Librairie des Cinq Continents (1)
-  Éditions Infoli (1)
-  Éditions Mame (1)
-  Imprimerie Nationale (1)
-  L’Œil (1)
-  Éditions ROD (1)
-  Éditions de la Présentation (1)
-  Perrin (1)
-  Bleu nuit éditeur (1)
-20 mentions mises de côté, à revoir dans la fiche du livre :
-  Rilke · un seul mot · Palimpsestes (palimpsestes)
-  Goethe · un seul mot · Palimpsestes (palimpsestes)
-  Martin de Tours · dans le titre · La Vie de St Martin de Tours (la-vie-de-st-martin-de-tours)
-  Djann · un seul mot · Djann (djann)
-  Illustrations de Konstantin Batynkov · autre rôle · Les préceptes du philosophe Yakov (les-preceptes-du-philosophe-yakov)
-  Enfant · autre rôle · Sainte marie Skobtsova (sainte-marie-skobtsova)
-  Préface de Sarah Gruszka · autre rôle · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
-  Iouri · un seul mot · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
-  Préface · autre rôle · Récits de la Perdition (recits-de-la-perdition)
-  Boulgakov · un seul mot · La Fuite – Pièces et nouvelles (la-fuite-pieces-et-nouvelles)
-  s · éditeur douteux · Naissance des Dieux (naissance-des-dieux)
-  Tandis · un seul mot · La rose des vents (la-rose-des-vents)
-  Ce · un seul mot · Sofia Pétrovna (sofia-petrovna)
-  Si Ceux du Donbass · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
-  @Acer-mjo · éditeur douteux · La liturgie expliquée aux jeunes (la-liturgie-expliquee-aux-jeunes)
-  Dans · un seul mot · Les quatre vies d’Arseni (les-quatre-vies-darseni)
-  Archim · un seul mot · Le Messager orthodoxe, n° 100 (le-messager-orthodoxe-n-100)
-  L · un seul mot · Une journée d’Ivan Denissovitch (une-journee-divan-denissovitch)
-  G · un seul mot · L’Idiot (lidiot)
-  Préface · autre rôle · La dame de pique (la-dame-de-pique)
+Audit des recoupements — 24 novembre 2026, 11:00
+840 livres, 68 articles, 169 rencontres, 19 vidéos et podcasts, 8 expositions, 39 pages, 608 personnes.
+
+## 1. Les personnes en double (même nom à l’accent ou à la transcription près, ou par une autre graphie)
+  0 groupes.
+  Doublons probables (même nom de famille et même initiale, ou un nom au début d’un autre) : 6 groupes, à vérifier un par un.
+    A. Tolstoï [1] ~ А. К. Толстой [1]
+    Anita Davidenkoff [2] ~ Anne Davidenkoff [0]
+    Mahaut de Cordon-Prache [0] ~ Marie-Astrid Prache [1]
+    Nicolas Struve [0] ~ Nikita Struve [3]
+    Véra Nabokov [1] ~ Vladimir Nabokov [1]
+    Olga Lossky [1] ~ Olga Lossky-Laham [0]
+
+## 2. Les signatures du journal
+  22 signatures (11 articles sans signature) : 20 reliées à une page, 2 qui ont une page sous une autre graphie (le lien manque), 0 sans page.
+  Signatures à relier (graphie → page) :
+    Irina Roskina → Ирина Роскина (1)
+    Svetlana Nosova → Светлана Носова (1)
+  Articles signés par une personne qui a sa page, mais pas rattachés à elle (absents de sa page) : 0
+
+## 3. Les intervenants des rencontres
+  27 intervenants reliés à leur page, 0 qui ont une page sous une autre graphie (le lien manque : ni lien, ni rencontre sur leur page), 0 sans page.
+
+## 4. Les personnes nommées dans un texte sans y être rattachées (prénom et nom en toutes lettres)
+  articles : 54 sur 68 nomment au moins une personne sans y être rattachés (105 rattachements qui manquent).
+  rencontres : 53 sur 169 nomment au moins une personne sans y être rattachés (79 rattachements qui manquent).
+  vidéos et podcasts : 0 sur 19 nomment au moins une personne sans y être rattachés (0 rattachements qui manquent).
+  expositions : 1 sur 8 nomment au moins une personne sans y être rattachés (4 rattachements qui manquent).
+  pages : 6 sur 39 nomment au moins une personne sans y être rattachés (33 rattachements qui manquent).
+  Les personnes les plus nommées sans rattachement :
+    Alexandre Soljenitsyne (35)
+    Tatiana Victoroff (8)
+    Léon Tolstoï (7)
+    Nikita Struve (6)
+    Georges Nivat (6)
+    Anna Akhmatova (6)
+    André Lischke (6)
+    Дмитрий Макаров (6)
+    Nicolas Berdiaev (5)
+    Efim Etkind (4)
+    Andreï Biely (4)
+    Fiodor Dostoïevski (4)
+    Mikhaïl Boulgakov (3)
+    Boris Pasternak (3)
+    Daniel Struve (3)
+    Lydia Tchoukovskaïa (3)
+    Alexandre Blok (3)
+    Boris de Schlœzer (3)
+    Vassili Peskov (2)
+    Ольга Седакова (2)
+    Pierre Pascal (2)
+    Varlam Chalamov (2)
+    Nadejda Mandelstam (2)
+    Alexandre Schmemann (2)
+    Василий Зеньковский (2)
+    … et 76 autres
+
+## 5. Les livres
+  Rôles que la fiche ne connaît pas (préface, postface, illustrations, présentation, édition établie…) : 45 mentions, dans les textes de livres ; 26 désignent une personne qui a déjà sa page.
+    préfac (13)
+    notes (9)
+    annot (8)
+    présent (7)
+    établi (2)
+    illustr (2)
+    postface (2)
+    avant-propos (1)
+    introduction (1)
+  Les noms les plus cités dans ces rôles :
+    Georges Nivat (2)
+    Sophie Benech (2)
+    Gustave Aucouturier (2)
+    Jean-Louis ChavarotCollection Folio (2)
+    Elena Balzano (1)
+    Catherine Géry (1)
+    Olga LosskyAujourd’hui (1)
+    Asya MarakulinaUN RÔLE (1)
+    Dany Savelli (1)
+    Jean-Noël Benoit (1)
+    Jérôme Cler
+Jérôme Cler (1)
+    Rodolphe Baudin (1)
+    Maïa Varsimashvili-RaphaelLe (1)
+    Bernard HubertLe (1)
+    Jean Laury (1)
+    … et 26 autres
+  Livres avec un traducteur repris de Wix, mais personne posée (wp er roles l’a mis de côté) : 2
+    Palimpsestes · « Rilke et Goethe »
+    La Vie de St Martin de Tours · « Martin de Tours »
+  Livres avec un éditeur repris de Wix mais sans éditeur posé : 2
+  Collections (une méta, sans page ni « Dans la même collection ») : 42 noms, 10 qui réunissent au moins trois livres.
+    Le Messager orthodoxe (55)
+    Вестник РХД (23)
+    Православная мысль (7)
+    Folio bilingue (7) — écrite aussi : Folio-Bilingue
+    "Избранная поэзия" (6) — écrite aussi : Избранная поэзия
+    Du monde entier (4)
+    ИНРИ (4)
+    ВМБ (3)
+    Новый детективъ (3)
+    FolioBilingue (3)
+  Le même livre en plusieurs fiches (mêmes auteurs, même titre) : 12 groupes, qu’aucune fiche ne relie aux autres.
+    Патриот [WIX-B1CC11FC] / Patriote [WIX-9DD6C31B]
+    L’histoire de ma sœur [WIX-ED222758] / L’histoire de ma sœur [WIX-1B2AC0D3]
+    Красное Колесо – Апрель Семнадцатого т. 2 [WIX-F09EE352] / Красное Колесо – Апрель Семнадцатого т. 1 [WIX-F934D680] / Красное Колесо – Март Семнадцатого том 4 [WIX-51D624B2] / Красное Колесо – Март Семнадцатого том 3 [WIX-98A29475] / Красное Колесо – Март Семнадцатого том 2 [WIX-7EF53134] / Красное Колесо – Март Семнадцатого том 1 [WIX-8C210C45]
+    Récits de la Kolyma [WIX-D5617B12] / Récits de la Kolyma [WIX-18EAD3CB]
+    Les Russes blancs : retracer la vie d’un ancêtre – Volume 2 [WIX-471FEE05] / Les Russes blancs : contexte d’un exil forcé – Volume 1 [WIX-DC18AA4E]
+    Ce n’était que la peste [WIX-258B2847] / Ce n’était que la peste [WIX-2410E7D8]
+    L’Apocalypse russe, Dieu au pays de Dostoïevski [WIX-48A929AD] / L’apocalypse russe, Dieu au pays de Dostoïevski [WIX-A1251BD1]
+    Le Roman de Monsieur de Molière [WIX-3BFF6115] / Le roman de monsieur de Molière [WIX-C017897A]
+    Le Maître et Marguerite [WIX-8E3E965F] / Le Maître et Marguerite [WIX-751C9F2C] / Le Maître et Marguerite [WIX-99401039]
+    Crime et Châtiment [WIX-2F6B8F7F] / Crime et Châtiment [WIX-3972A53B]
+    Les Douze [WIX-BDC24240] / Les Douze [WIX-017CB8DC]
+    La guerre civile russe 1917-1922 [WIX-FEA512F2] / La guerre civile russe 1917-1922 [WIX-4B6D2A77]
+
+## 6. Les livres cités par référence (« Livres liés » des rencontres, des articles, des expositions)
+  53 références, 0 qui ne mènent à aucun livre.
+  Citations à sens unique : 3 livres cités sur 53 ne montrent pas, sur leur fiche, le contenu qui les cite.
+    L’Archipel du Goulag ← articles · Hommage à Alexandre Soljénitsyne
+    L’Archipel du Goulag ← articles · « 35 années plus tard »
+    L’Archipel du Goulag ← articles · « Gardons-nous d’“idéologiser” Soljenitsyne »
+  Livres dont le traducteur ou le directeur a des rencontres, des articles ou des vidéos que la fiche ne montre pas : 1
+    Le Maître et Marguerite ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+
+## 7. Les vidéos des rencontres et la médiathèque
+  44 vidéos de rencontres : 0 sont aussi des vidéos de la médiathèque ; « Vidéos et podcasts » montre 41 rencontres enregistrées (« Les rencontres, à revoir »).
+
+## 8. L’encyclopédie et les pages des personnes
+  0 articles de l’encyclopédie, 0 reliés à la page d’une personne ; 0 portent le nom d’une personne qui a sa page, sans lien entre les deux.
+  Les pages du site, par rubrique : centre-culturel (7), librairie (6), promos (1), accueil (3), mentions-legales (1), faq (1), livraison-et-retours (1), conditions-generales-de-vente (1), nous-trouver (1), ymca-press (4), journal (1), my-account (2), checkout (2), cart (1), shop (1), basket-2 (1), basket (1), mon-compte (1), commande (1), panier (1), politique-de-confidentialite (1)
+
+## 9. Les contenus isolés (ni personne, ni sujet : aucune page ne les montre en dehors de leur rubrique)
+  articles : 1 sur 68.
+  rencontres : 20 sur 169.
+  vidéos et podcasts : 1 sur 19.
+  expositions : 0 sur 8.
+
+Fait en 2.3 s. Rien n’a été modifié.
