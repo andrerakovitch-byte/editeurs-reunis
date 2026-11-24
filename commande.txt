@@ -1,1 +1,107 @@
-Success: 8 pages d’exemple prennent les images de l’extension de la bascule.
+Audit des recoupements — 24 novembre 2026, 15:12
+840 livres, 68 articles, 169 rencontres, 19 vidéos et podcasts, 8 expositions, 39 pages, 619 personnes.
+
+## 1. Les personnes en double (même nom à l’accent ou à la transcription près, ou par une autre graphie)
+  0 groupes.
+  Doublons probables (même nom de famille et même initiale, ou un nom au début d’un autre) : 6 groupes, à vérifier un par un.
+    A. Tolstoï [1] ~ А. К. Толстой [1]
+    Anita Davidenkoff [2] ~ Anne Davidenkoff [0]
+    Mahaut de Cordon-Prache [0] ~ Marie-Astrid Prache [1]
+    Nicolas Struve [0] ~ Nikita Struve [3]
+    Véra Nabokov [1] ~ Vladimir Nabokov [1]
+    Olga Lossky [1] ~ Olga Lossky-Laham [0]
+
+## 2. Les signatures du journal
+  22 signatures (11 articles sans signature) : 22 reliées à une page (dont 2 par une autre graphie), 0 qui ont une page sous une autre graphie sans que le lien se fasse (plusieurs personnes possibles), 0 sans page.
+  Reliées par une autre graphie (signature → page) :
+    Irina Roskina → Ирина Роскина (1)
+    Svetlana Nosova → Светлана Носова (1)
+  Articles signés par une personne qui a sa page, mais pas rattachés à elle (absents de sa page) : 0
+
+## 3. Les intervenants des rencontres
+  27 intervenants reliés à leur page, 0 qui ont une page sous une autre graphie (le lien manque : ni lien, ni rencontre sur leur page), 0 sans page.
+
+## 4. Les personnes nommées dans un texte sans y être rattachées (prénom et nom en toutes lettres)
+  articles : 0 sur 68 nomment au moins une personne sans y être rattachés (0 rattachements qui manquent).
+  rencontres : 53 sur 169 nomment au moins une personne sans y être rattachés (80 rattachements qui manquent).
+  vidéos et podcasts : 0 sur 19 nomment au moins une personne sans y être rattachés (0 rattachements qui manquent).
+  expositions : 1 sur 8 nomment au moins une personne sans y être rattachés (4 rattachements qui manquent).
+  pages : 6 sur 39 nomment au moins une personne sans y être rattachés (33 rattachements qui manquent).
+  Sans compter 106 noms laissés de côté dans des contenus aux étiquettes relues à la main.
+  Les personnes les plus nommées sans rattachement :
+    Léon Tolstoï (7)
+    André Lischke (6)
+    Дмитрий Макаров (6)
+    Tatiana Victoroff (5)
+    Alexandre Soljenitsyne (5)
+    Anna Akhmatova (4)
+    Fiodor Dostoïevski (4)
+    Georges Nivat (3)
+    Boris Pasternak (2)
+    Hélène Péras (2)
+    Natalia Pashkeeva (2)
+    Nikolaï Goumilev (2)
+    Marina Tsvétaïéva (2)
+    Nikita Struve (2)
+    Boris de Schlœzer (2)
+    Boris Poplavski (2)
+    Catherine Géry (2)
+    Ivan Tourguéniev (2)
+    Mère Marie Skobtsova (2)
+    Dmitri Merejkovski (2)
+    Andreï Biely (2)
+    Владислав Ходасевич (2)
+    Andreï Platonov (2)
+    André Korliakov (1)
+    Elena Ponomareva (1)
+    … et 45 autres
+
+## 5. Les livres
+  Les rôles posés (livres) : Préface 46, Édition établie par 22, Illustrations 5, Traduction 170, Sous la direction de 3.
+  Relevés dans les textes mais pas posés : 0.
+  Livres avec un traducteur repris de Wix, mais personne posée (wp er roles l’a mis de côté) : 2
+    Palimpsestes · « Rilke et Goethe »
+    La Vie de St Martin de Tours · « Martin de Tours »
+  Livres avec un éditeur repris de Wix mais sans éditeur posé : 2
+  Collections : 33 pages, 143 livres rangés ; 0 livres dont la collection reste à poser (wp er collections appliquer) ; 8 textes de Wix qui ne sont pas un nom de collection, écartés ; 0 collections en deux pages.
+    Les plus grandes : Le Messager orthodoxe (55), Вестник РХД (23), Folio bilingue (10), Православная мысль (7), Избранная поэзия (6), Du monde entier (4), ВМБ (4), ИНРИ (4)
+  Le même livre en plusieurs fiches (mêmes auteurs, même titre) : 12 groupes, 0 que « Autres éditions » ou « Les autres volumes » ne relient pas encore.
+  Dont la même édition en plusieurs fiches (même titre, langue, éditeur et année : un doublon, ou le neuf et l’occasion) : 4
+    Récits de la Kolyma [WIX-D5617B12, 49 €, en stock] / Récits de la Kolyma [WIX-18EAD3CB, 8.1 €, en stock]
+    L’Apocalypse russe, Dieu au pays de Dostoïevski [WIX-48A929AD, 9.5 €, en stock] / L’apocalypse russe, Dieu au pays de Dostoïevski [WIX-A1251BD1, 10 €, en stock]
+    Le Roman de Monsieur de Molière [WIX-3BFF6115, 14 €, en stock] / Le roman de monsieur de Molière [WIX-C017897A, 7.5 €, en stock]
+    Le Maître et Marguerite [WIX-8E3E965F, 11.9 €, en stock] / Le Maître et Marguerite [WIX-751C9F2C, 22.9 €, en stock]
+
+## 6. Les livres cités par référence (« Livres liés » des rencontres, des articles, des expositions)
+  53 références, 0 qui ne mènent à aucun livre.
+  Citations à sens unique : 0 livres cités sur 53 ne montrent pas, sur leur fiche, le contenu qui les cite ; 11 n’y manquent que parce que la fiche en montre déjà un autre qui le cite.
+    L’Archipel du Goulag (5)
+    Ossip Mandelstam (2)
+    L’Archipel du Goulag, cinquante ans après (2)
+    La Roue rouge, chapitres choisis (1)
+    Le docteur Jivago (1)
+  Livres dont le traducteur, le préfacier… a des rencontres, des articles ou des vidéos que la fiche ne montre pas : 6
+    Rire dans la nuit ← Laure Troubetzkoy : L’œuvre de théâtre de Boulgakov est d’une « extraordinaire diversité de formes et de registres »
+    Le Maître et Marguerite ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+    Vivre pleinement ← Présentation de la nouvelle traduction du Docteur Jivago de Boris Pasternak, par Hélène Henry
+    Phèdre ← Soirée Goumilev, à l’occasion du centenaire de sa mort
+    Crime et châtiment suivi de Journal de Raskolnikov ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
+    L’Archipel du Goulag, cinquante ans après ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
+
+## 7. Les vidéos des rencontres et la médiathèque
+  44 vidéos de rencontres : 0 sont aussi des vidéos de la médiathèque ; « Vidéos et podcasts » montre 41 rencontres enregistrées (« Les rencontres, à revoir »).
+
+## 8. L’encyclopédie et les pages des personnes
+  0 articles de l’encyclopédie, 0 reliés à la page d’une personne ; 0 portent le nom d’une personne qui a sa page, sans lien entre les deux.
+  Les pages du site, par rubrique : centre-culturel (7), librairie (6), promos (1), accueil (3), mentions-legales (1), faq (1), livraison-et-retours (1), conditions-generales-de-vente (1), nous-trouver (1), ymca-press (4), journal (1), my-account (2), checkout (2), cart (1), shop (1), basket-2 (1), basket (1), mon-compte (1), commande (1), panier (1), politique-de-confidentialite (1)
+
+## 9. Les contenus isolés (ni personne, ni sujet : aucune page ne les montre en dehors de leur rubrique)
+  articles : 1 sur 68.
+  rencontres : 20 sur 169.
+  vidéos et podcasts : 1 sur 19.
+  expositions : 0 sur 8.
+
+## 10. Les miroirs des personnes (rôles, « Autour de » : même identifiant, même nom que la personne)
+  Aucun écart.
+
+Fait en 3.5 s. Rien n’a été modifié.
