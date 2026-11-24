@@ -254,6 +254,44 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	);
 
 	/**
+	 * Les indices d'édition des fiches à qui manquent l'éditeur, l'année et les pages (le « noyau dur ») : la
+	 * référence, le prix, l'ISBN, le nom du fichier de la couverture, la collection et les rôles, de quoi reconnaître
+	 * l'édition vendue parmi celles que donnent les catalogues : wp er librairie indices [tous].
+	 *
+	 * @param array $args « tous » : toutes les fiches, pas seulement le noyau dur.
+	 */
+	WP_CLI::add_command(
+		'er librairie indices',
+		function ( $args ) {
+			$tous = in_array( 'tous', $args, true );
+			foreach ( er_librairie_ids() as $id ) {
+				$f = er_librairie_fiche( $id );
+				if ( ! $tous && ( '' !== $f['editeur'] || preg_match( '/\d{4}/', $f['annee'] ) || $f['pages'] ) ) {
+					continue;
+				}
+				$p       = wc_get_product( $id );
+				$fichier = $p->get_image_id() ? wp_basename( (string) get_post_meta( $p->get_image_id(), '_wp_attached_file', true ) ) : '';
+				$roles   = array();
+				foreach ( $f['roles'] as $role => $noms ) {
+					$roles[] = $role . ':' . implode( ',', $noms );
+				}
+				WP_CLI::log(
+					sprintf(
+						'IND #%d | ref:%s | prix:%s | isbn:%s | img:%s | coll:%s | %s',
+						$id,
+						$f['ref'],
+						$p->get_regular_price(),
+						$f['isbn'],
+						$fichier,
+						$f['collection'],
+						implode( ' ; ', $roles )
+					)
+				);
+			}
+		}
+	);
+
+	/**
 	 * Les fiches en JSON, sur la sortie : wp er librairie exporter.
 	 */
 	WP_CLI::add_command(
