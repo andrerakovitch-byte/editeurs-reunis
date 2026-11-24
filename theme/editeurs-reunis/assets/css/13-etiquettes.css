@@ -1,0 +1,78 @@
+/* --------------------------------------------------------------------------
+   Les étiquettes (auteurs, sujets) et ce qu'elles relient : les pilules sous un article, une rencontre, une vidéo ;
+   « À lire, à revoir » ; la page d'un sujet et le bas de la page d'un auteur (le bloc er/autour) ; les vidéos et les
+   podcasts.
+   -------------------------------------------------------------------------- */
+
+.er-etiquettes { display: grid; gap: 0.75rem; margin-block: 3rem 0; padding-top: 1.25rem; border-top: var(--er-filet); }
+.er-etiquettes-ligne { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+.er-etiquettes-libelle { min-width: 5.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-etiquettes .er-pilules li a:hover { border-color: var(--wp--preset--color--contrast); }
+
+/* Les cartes : un article, une rencontre, une vidéo, un podcast, côte à côte. */
+.er-cartes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem clamp(1rem, 2.2vw, 1.75rem); }
+.er-proches .er-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .er-cartes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .er-cartes, .er-proches .er-cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; } }
+.er-carte-contenu a { display: grid; gap: 0.4rem; color: inherit; text-decoration: none; }
+.er-carte-image { display: block; margin-bottom: 0.5rem; aspect-ratio: 3 / 2; overflow: hidden; background: var(--wp--preset--color--doux); }
+.er-carte-rencontre .er-carte-image { aspect-ratio: 4 / 5; }
+.er-proches .er-carte-image, .er-proches .er-carte-rencontre .er-carte-image { aspect-ratio: 3 / 2; } /* Côte à côte, la même mesure. */
+.er-carte-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+.er-carte-contenu a:hover .er-carte-image img { transform: scale(1.02); }
+.er-carte-genre { font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-carte-titre { font-size: 0.9375rem; font-weight: 600; line-height: 1.35; }
+.er-carte-contenu a:hover .er-carte-titre { text-decoration: underline; text-underline-offset: 0.2em; }
+.er-media-vignette { display: grid; place-items: center; height: 100%; background: var(--wp--preset--color--maison-centre); color: rgba(255, 255, 255, 0.16); font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 600; }
+
+/* La page d'un sujet, le bas de la page d'un auteur : une section par genre. */
+.er-autour { margin-block: var(--wp--preset--spacing--50) 0; }
+.er-autour-section + .er-autour-section { margin-top: var(--wp--preset--spacing--60); }
+.er-autour-section > .er-evts-titre { padding-top: 0.9rem; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-autour-livres { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2rem clamp(1rem, 2vw, 1.5rem); }
+@media (max-width: 1100px) { .er-autour-livres { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .er-autour-livres { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.er-autour-pages { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+.er-autour-auteur { padding-bottom: var(--wp--preset--spacing--60); }
+.er-sujet-surtitre { margin-bottom: 0.75rem !important; }
+.er-sujet-description { max-width: 42rem; color: var(--wp--preset--color--encre-2); }
+
+/* Une vidéo, un podcast : le titre, puis le lecteur sur toute la colonne. */
+.er-media-colonne { max-width: 52rem; }
+.er-media-tete { margin-bottom: 2.5rem; }
+.er-media-tete .er-evt-surtitre { margin-bottom: 1.25rem; }
+.er-media-principal .er-evt-lecteur iframe { aspect-ratio: 16 / 9; }
+
+/* La page d'un auteur, comme une page d'encyclopédie : le portrait à gauche, le nom, ses graphies, ses dates et sa
+   présentation à droite ; la biographie (la suite se déplie), les photos, les liens ; puis ses livres. */
+.er-auteur-fiche { margin-block: 1rem var(--wp--preset--spacing--50); }
+.er-auteur-tete { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: end; }
+.er-auteur-avec-portrait { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 5rem); }
+.er-auteur-portrait { margin: 0; }
+.er-auteur-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(0.15); background: var(--wp--preset--color--doux); }
+.er-auteur-nom { margin: 0 0 0.75rem; font-size: var(--wp--preset--font-size--xx-large); letter-spacing: -0.025em; line-height: 1.05; }
+.er-auteur-graphies { margin: 0 0 0.4rem; font-size: var(--wp--preset--font-size--large); color: var(--wp--preset--color--encre-2); }
+.er-auteur-dates { margin: 0 0 1.5rem; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-auteur-presentation { max-width: 40rem; font-size: 1.0625rem; line-height: 1.6; }
+.er-auteur-presentation > :last-child { margin-bottom: 0; }
+.er-auteur-bio, .er-auteur-photos, .er-auteur-liens { max-width: 46rem; }
+.er-auteur-photos { max-width: none; }
+.er-auteur-bio-texte { font-size: 1rem; line-height: 1.75; }
+.er-auteur-bio-texte img { max-width: 100%; height: auto; }
+.er-auteur-bio-suite summary { display: inline-block; margin-block: 0.5rem 1rem; padding: 0.55em 1.2em; border: 1px solid var(--wp--preset--color--contrast); border-radius: 999px; font-size: var(--wp--preset--font-size--small); font-weight: 500; cursor: pointer; list-style: none; }
+.er-auteur-bio-suite summary::-webkit-details-marker { display: none; }
+.er-auteur-bio-suite[open] summary { display: none; }
+.er-auteur-photos ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.er-auteur-photos figure { margin: 0; }
+.er-auteur-photos img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: var(--wp--preset--color--doux); }
+.er-auteur-photos figcaption { margin-top: 0.5rem; font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-auteur-liens ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.er-auteur-livres { margin: var(--wp--preset--spacing--50) 0 0; padding-top: 0.9rem; border-top: 1px solid var(--wp--preset--color--contrast); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; letter-spacing: -0.015em; }
+/* Les traductions d'une personne et les livres qu'elle a dirigés, sous ses livres (patterns/librairie.php). */
+.er-auteur-livres-role { margin-bottom: 1.5rem; }
+.er-page-vers-auteur { margin-top: 3rem; }
+@media (max-width: 800px) {
+	.er-auteur-avec-portrait { grid-template-columns: minmax(0, 1fr); }
+	.er-auteur-portrait { max-width: 16rem; }
+	.er-auteur-photos ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -810,7 +810,7 @@ function er_expo_bloc_liste() {
 					'chapo'  => $phrase,
 				)
 			)
-			: '<section class="er-x-tete"><div class="er-j-g"><h1 class="er-x-page-titre">' . esc_html( $titre ) . '</h1><p class="er-x-page-phrase">' . esc_html( $phrase ) . '</p></div></section>' )
+			: '<h1>' . esc_html( $titre ) . '</h1>' ) // Sans le thème : le titre seul.
 		. ( function_exists( 'er_bande_page' )
 			? er_bande_page(
 				array(

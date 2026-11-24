@@ -1,0 +1,166 @@
+/* --------------------------------------------------------------------------
+   La bande de page : le troisième niveau, le même partout (retenue le 24 nov. 2026 ; inc/bande.php,
+   assets/js/bande.js). Sous le titre de la page, dans la teinte pâle de la maison : un ton plus bas à chaque niveau,
+   le noir de la barre, la couleur de la ligne, sa teinte, le papier. En défilant, elle s'accroche sous la ligne ; le
+   nom de la page s'y glisse à gauche. 48 px, 44 au téléphone.
+   -------------------------------------------------------------------------- */
+.er-bande-librairie { --er-teinte: var(--wp--preset--color--teinte-librairie); --er-trait: var(--wp--preset--color--maison-librairie); --er-point: var(--wp--preset--color--point-librairie); }
+.er-bande-ymca { --er-teinte: var(--wp--preset--color--teinte-ymca); --er-trait: var(--wp--preset--color--maison-ymca); --er-point: var(--wp--preset--color--point-ymca); }
+.er-bande-centre { --er-teinte: var(--wp--preset--color--teinte-centre); --er-trait: var(--wp--preset--color--maison-centre); --er-point: var(--wp--preset--color--point-centre); }
+.er-bande-aucune { --er-teinte: var(--wp--preset--color--doux); --er-trait: var(--wp--preset--color--contrast); --er-point: var(--wp--preset--color--discret); }
+.er-bande-repere { height: 0; margin: 0 !important; }
+.er-bande {
+	position: sticky;
+	top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--er-ligne, 48px));
+	z-index: 90; /* sous l'en-tête (100) et ses tiroirs */
+	box-sizing: border-box;
+	/* De bord à bord, quel que soit le contenant : la bande sort de la colonne du contenu. */
+	width: 100vw;
+	max-width: none !important;
+	margin-block: 0 !important;
+	margin-inline: calc(50% - 50vw) !important;
+	background: var(--er-teinte);
+	color: var(--wp--preset--color--contrast);
+	transition: box-shadow var(--er-transition);
+}
+.er-bande.est-accrochee { box-shadow: 0 1px 0 rgba(28, 28, 28, 0.12); }
+.er-bande-dedans {
+	display: flex;
+	align-items: center;
+	height: 48px;
+	padding-inline: var(--wp--style--root--padding-left, 5rem) var(--wp--style--root--padding-right, 5rem);
+}
+/* Le nom de la page : caché au repos (le titre est juste au-dessus), il se glisse à gauche quand la bande s'accroche. */
+.er-bande-nom {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	max-width: 0;
+	overflow: hidden;
+	opacity: 0;
+	white-space: nowrap;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	transition: max-width 300ms cubic-bezier(0.65, 0, 0.35, 1), opacity 300ms ease, margin 300ms cubic-bezier(0.65, 0, 0.35, 1), padding 300ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.er-bande.est-accrochee .er-bande-nom {
+	max-width: 24em;
+	opacity: 1;
+	margin-inline-end: 24px;
+	padding-inline-end: 24px;
+	border-inline-end: 1px solid rgba(28, 28, 28, 0.2);
+}
+.er-bande.est-accrochee.est-sans-nom .er-bande-nom { max-width: 0; opacity: 0; margin: 0; padding: 0; border: 0; }
+.er-bande-points { display: inline-flex; gap: 4px; }
+.er-bande-point { width: 8px; height: 8px; border-radius: 50%; background: var(--er-point); }
+.er-bande-aucune .er-bande-point { width: 7px; height: 7px; }
+.er-bande-point-librairie { background: var(--wp--preset--color--point-librairie); }
+.er-bande-point-ymca { background: var(--wp--preset--color--point-ymca); }
+.er-bande-point-centre { background: var(--wp--preset--color--point-centre); }
+.er-bande-liste {
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 0 28px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow-x: auto;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
+}
+.er-bande-liste::-webkit-scrollbar { display: none; }
+.er-bande-liste > li { flex: none; margin: 0; }
+/* Ce qui dépasse s'efface sous un fondu, du côté où il reste à voir. */
+.er-bande-liste.est-a-droite { mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent); }
+.er-bande-liste.est-a-gauche { mask-image: linear-gradient(90deg, transparent, #000 40px); }
+.er-bande-liste.est-a-gauche.est-a-droite { mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 56px), transparent); }
+.er-bande-lien {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 20px;
+	color: var(--wp--preset--color--encre-2);
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.er-bande-lien::after {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	bottom: 0;
+	height: 2px;
+	background: var(--er-trait);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 250ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.er-bande-lien:hover,
+.er-bande-lien[aria-current],
+.er-bande-lien.est-courant,
+.er-bande-lien[aria-expanded="true"] { color: var(--wp--preset--color--contrast); }
+.er-bande-lien[aria-current]::after,
+.er-bande-lien.est-courant::after { transform: scaleX(1); }
+.er-bande-lien:focus-visible { outline: 2px solid var(--er-trait); outline-offset: -2px; }
+.er-bande-avant { font-size: 0.75rem; font-variant-numeric: tabular-nums; color: var(--wp--preset--color--encre-2); }
+.er-bande-chevron { flex: none; transition: transform var(--er-transition); }
+.er-bande-lien[aria-expanded="true"] .er-bande-chevron { transform: rotate(180deg); }
+.er-bande-sep { width: 1px; height: 16px; background: rgba(28, 28, 28, 0.2); }
+.er-bande-groupe { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--encre-2); }
+/* L'action, à droite : une seule, facultative. */
+.er-bande-action {
+	flex: none;
+	margin-inline-start: auto;
+	padding-inline-start: 28px;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+	white-space: nowrap;
+}
+.er-bande-action:hover { text-decoration: underline; text-underline-offset: 0.3em; }
+/* Un groupe replié : son menu pend sous la bande, sous l'entrée qui l'ouvre (placé par bande.js). */
+.er-bande-panneau {
+	position: absolute;
+	top: 100%;
+	left: var(--er-panneau-gauche, 0px);
+	z-index: 2;
+	min-width: 248px;
+	box-sizing: border-box;
+	padding: 12px 0;
+	background: var(--wp--preset--color--base);
+	border-top: 2px solid var(--er-trait);
+	box-shadow: 0 12px 32px rgba(28, 28, 28, 0.14);
+}
+.er-bande-panneau[hidden] { display: none; }
+.er-bande-panneau ul { list-style: none; margin: 0; padding: 0; max-height: min(60vh, 420px); overflow-y: auto; }
+.er-bande-panneau li { margin: 0; }
+.er-bande-panneau a { display: block; padding: 8px 20px; font-size: 0.875rem; font-weight: 500; color: var(--wp--preset--color--encre-2); text-decoration: none; }
+.er-bande-panneau a:hover, .er-bande-panneau a[aria-current] { color: var(--wp--preset--color--contrast); background: var(--er-teinte); }
+@media (max-width: 781px) {
+	.er-bande-dedans { height: 44px; padding-inline: var(--wp--style--root--padding-left, 1.25rem) 0; }
+	.er-bande-liste { height: 44px; gap: 0 22px; padding-inline-end: var(--wp--style--root--padding-right, 1.25rem); }
+	.er-bande-lien { height: 44px; font-size: 0.8125rem; }
+	.er-bande-nom, .er-bande-action { display: none; }
+}
+@media (max-width: 600px) {
+	.er-bande { top: var(--er-ligne, 48px); }
+}
+@media (prefers-reduced-motion: reduce) {
+	.er-bande, .er-bande-nom, .er-bande-lien::after, .er-bande-chevron { transition: none; }
+}

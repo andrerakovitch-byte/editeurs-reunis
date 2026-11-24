@@ -1,0 +1,216 @@
+/* --------------------------------------------------------------------------
+   Les rencontres du centre : une rencontre, et la liste de « Nos événements »
+   (les blocs er/evenement-* et er/evenements de l'extension). Le texte un peu plus petit, beaucoup d'air, comme
+   la direction retenue le 23 nov. 2026 (« police un peu plus petite et plus d'air », d'après noguchi.org).
+   -------------------------------------------------------------------------- */
+
+.er-evt { padding-block: var(--wp--preset--spacing--50) var(--wp--preset--spacing--60); }
+.er-evt-grille {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	gap: clamp(2rem, 6vw, 6rem);
+	align-items: start;
+}
+.er-evt-affiche-colonne { position: sticky; top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--er-ligne, 48px) + 2rem); } /* sous la ligne accrochée */
+.er-evt-affiche-grande { margin: 0; }
+.er-evt-affiche-grande img { display: block; width: 100%; height: auto; background: var(--wp--preset--color--doux); }
+.er-evt-colonne { max-width: 42rem; }
+
+.er-evt-surtitre {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--discret);
+}
+.er-evt-surtitre::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--maison-centre); }
+.er-evt-surtitre a { color: inherit; text-decoration: none; }
+.er-evt-surtitre a:hover { color: var(--wp--preset--color--contrast); text-decoration: underline; text-underline-offset: 0.2em; }
+.er-evt-titre {
+	margin: 0 0 1.5rem;
+	font-size: clamp(1.625rem, 3vw, 2.25rem);
+	font-weight: 600;
+	line-height: 1.18;
+	letter-spacing: -0.015em;
+	text-wrap: balance;
+}
+.er-evt-chapo { margin: 0 0 2rem; font-size: 1.0625rem; line-height: 1.55; color: var(--wp--preset--color--encre-2); }
+
+.er-evt-infos { margin: 0 0 2rem; border-top: var(--er-filet); }
+.er-evt-info {
+	display: grid;
+	grid-template-columns: 7rem minmax(0, 1fr);
+	gap: 1rem;
+	padding-block: 0.8rem;
+	border-bottom: var(--er-filet);
+	font-size: var(--wp--preset--font-size--small);
+}
+.er-evt-info dt { color: var(--wp--preset--color--discret); }
+.er-evt-info dd { margin: 0; }
+.er-evt-info a { color: inherit; text-underline-offset: 0.2em; }
+
+.er-evt-actions { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; margin: 0 0 3rem; }
+.er-evt-bouton {
+	display: inline-block;
+	padding: 0.8em 1.75em;
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 999px;
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	font: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background var(--er-transition);
+}
+.er-evt-bouton:hover { background: var(--wp--preset--color--encre-2); color: var(--wp--preset--color--base); }
+.er-evt-nombre { display: grid; gap: 0.3rem; font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-evt-nombre input {
+	width: 5.5rem;
+	padding: 0.7em 1em;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	font: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--contrast);
+}
+.er-evt-etat { margin: 0 0 3rem; font-size: var(--wp--preset--font-size--small); font-weight: 600; }
+.er-evt-etat-annule { color: var(--wp--preset--color--reliure); }
+
+.er-evt-texte-long { font-size: 1rem; line-height: 1.7; }
+/* Un mot trop long pour la ligne (une adresse collée telle quelle dans un texte) se coupe au lieu d'élargir la page :
+   au téléphone, il la faisait glisser de côté, en-tête compris (24 nov. 2026). */
+.wp-block-post-content, .er-evt-texte-long, .er-texte { overflow-wrap: break-word; }
+.wp-block-post-content :is(p, li, blockquote, figcaption, td) a { overflow-wrap: anywhere; }
+/* Et si un jour quelque chose dépasse quand même, la page ne glisse pas de côté (clip garde l'en-tête accroché). */
+html { overflow-x: clip; }
+.er-evt-texte-long > * { max-width: 40rem; }
+
+/* « Revoir, réécouter », « À la librairie » : un filet noir, un petit titre en capitales. */
+.er-evt-section {
+	margin: 3.5rem 0 1.5rem;
+	padding-top: 0.8rem;
+	border-top: 1px solid var(--wp--preset--color--contrast);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+.er-evt-media { margin: 0 0 2rem; }
+.er-evt-media figcaption { margin-top: 0.6rem; font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-evt-lecteur iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; background: var(--wp--preset--color--doux); }
+.er-evt-lecteur iframe[src*="soundcloud"] { aspect-ratio: auto; height: 166px; }
+.er-evt-lecteur iframe[src*="spotify"] { aspect-ratio: auto; height: 152px; }
+.er-evt-lien-video a { font-size: var(--wp--preset--font-size--small); font-weight: 600; }
+
+.er-evt-livres ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem clamp(1rem, 2vw, 1.5rem); }
+.er-evt-livre a { display: grid; gap: 0.3rem; color: inherit; text-decoration: none; }
+.er-evt-livre-couverture { display: block; margin-bottom: 0.6rem; }
+.er-evt-livre-couverture img { display: block; width: 100%; height: auto; box-shadow: var(--er-ombre-livre); }
+.er-evt-livre-auteur { font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-evt-livre-titre { font-size: var(--wp--preset--font-size--small); font-weight: 600; line-height: 1.35; }
+.er-evt-livre-prix { display: block; margin-top: 0.3rem; font-size: var(--wp--preset--font-size--x-small); }
+.er-evt-retour { margin-top: 3.5rem; }
+
+@media (max-width: 900px) {
+	.er-evt-grille { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+	.er-evt-affiche-colonne { position: static; max-width: min(100%, 20rem); }
+}
+@media (max-width: 600px) {
+	.er-evt-info { grid-template-columns: 5.5rem minmax(0, 1fr); }
+	.er-evt-livres ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* La liste : à venir, en lignes ; les rencontres passées, en affiches. */
+.er-evts { margin-block: var(--wp--preset--spacing--40) var(--wp--preset--spacing--60); }
+.er-evts-section + .er-evts-section { margin-top: var(--wp--preset--spacing--60); }
+.er-evts-titre { margin: 0 0 1.5rem; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; letter-spacing: -0.015em; }
+.er-evts-groupe {
+	margin: 2.5rem 0 0;
+	padding-bottom: 0.8rem;
+	border-bottom: 1px solid var(--wp--preset--color--contrast);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+.er-evts-vide { color: var(--wp--preset--color--discret); }
+.er-evts-lignes { list-style: none; padding: 0; margin: 0; }
+.er-evt-ligne a {
+	display: grid;
+	grid-template-columns: 5.5rem 5rem minmax(0, 1fr) auto;
+	gap: 1.5rem;
+	align-items: center;
+	padding-block: 1.25rem;
+	border-bottom: var(--er-filet);
+	color: inherit;
+	text-decoration: none;
+}
+.er-evt-date { display: grid; line-height: 1.1; }
+.er-evt-jour { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; }
+.er-evt-mois { font-size: var(--wp--preset--font-size--small); }
+.er-evt-heure { margin-top: 0.25rem; font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-evt-vignette img { display: block; width: 5rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--wp--preset--color--doux); }
+.er-evt-texte { display: grid; gap: 0.3rem; }
+.er-evt-ligne-surtitre { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-evt-ligne-titre { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+.er-evt-ligne-lieu { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-evt-entree { display: flex; align-items: center; gap: 1rem; font-size: var(--wp--preset--font-size--small); white-space: nowrap; }
+.er-evt-lien { padding: 0.5em 1.1em; border: 1px solid var(--wp--preset--color--contrast); border-radius: 999px; font-weight: 500; transition: background var(--er-transition), color var(--er-transition); }
+.er-evt-ligne a:hover .er-evt-lien { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-evt-ligne a:hover .er-evt-ligne-titre { text-decoration: underline; text-underline-offset: 0.2em; }
+@media (max-width: 700px) {
+	.er-evt-ligne a { grid-template-columns: 4rem minmax(0, 1fr); gap: 0.6rem 1rem; align-items: start; }
+	.er-evt-vignette { display: none; }
+	.er-evt-entree { grid-column: 2; }
+}
+
+.er-evts-compte { margin: 0 0 1.75rem; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-evts-grille {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 3rem clamp(1rem, 2.2vw, 1.75rem);
+}
+@media (max-width: 1100px) { .er-evts-grille { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .er-evts-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; } }
+.er-evt-carte a { display: grid; gap: 0.4rem; color: inherit; text-decoration: none; }
+.er-evt-affiche { display: block; margin-bottom: 0.5rem; aspect-ratio: 4 / 5; overflow: hidden; background: var(--wp--preset--color--doux); }
+.er-evt-affiche img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+.er-evt-carte a:hover .er-evt-affiche img { transform: scale(1.02); }
+.er-evt-affiche-vide { display: grid; place-items: center; height: 100%; background: var(--wp--preset--color--maison-centre); color: rgba(255, 255, 255, 0.14); font-size: 2rem; font-weight: 600; }
+.er-evt-carte-date { font-size: var(--wp--preset--font-size--x-small); color: var(--wp--preset--color--discret); }
+.er-evt-carte-titre {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+.er-evt-carte a:hover .er-evt-carte-titre { text-decoration: underline; text-underline-offset: 0.2em; }
+.er-evt-marques { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.15rem; }
+.er-evt-marque {
+	padding: 0.25em 0.75em;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.er-evt-marque-video { background: var(--wp--preset--color--maison-centre); border-color: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); }
+.er-evt-marque-video::before { content: "▶\FE0E"; margin-inline-end: 0.45em; font-size: 0.8em; }
+.er-evt-marque-annule { border-color: currentColor; color: var(--wp--preset--color--reliure); }
+.er-evt-annulee .er-evt-affiche img { filter: grayscale(1); opacity: 0.5; }
+.er-evt-annulee .er-evt-carte-titre, .er-evt-annulee .er-evt-ligne-titre { color: var(--wp--preset--color--discret); }

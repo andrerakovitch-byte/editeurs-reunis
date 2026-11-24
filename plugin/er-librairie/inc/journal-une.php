@@ -420,7 +420,7 @@ function er_journal_tete() {
 				'mot'    => 'Журнал',
 			)
 		)
-		: '<section class="er-j-tete alignfull"><div class="er-j-g">' . ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' ) . '</div></section>';
+		: ( 'une' === $vue ? '<h1>' . $titre . '</h1>' : '' ); // Sans le thème : le titre seul.
 	return $tete
 		. ( function_exists( 'er_bande_page' )
 			? er_bande_page(

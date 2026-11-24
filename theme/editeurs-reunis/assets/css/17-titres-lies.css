@@ -1,0 +1,24 @@
+/* --------------------------------------------------------------------------
+   Les titres liés : le titre d'un livre, dans n'importe quel texte du site, mène à sa fiche ; sa vignette paraît au
+   survol (er-librairie, liens-livres.php et assets/js/vignettes.js)
+   -------------------------------------------------------------------------- */
+
+/* Un lien de texte comme les autres, souligné de pervenche : on y reconnaît un livre de la librairie. */
+.er-lien-livre { text-decoration: underline; text-decoration-color: var(--wp--preset--color--accent); text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+.er-lien-livre:hover, .er-lien-livre:focus-visible { text-decoration-color: currentColor; }
+
+.er-vignette { position: absolute; z-index: 1000; width: 320px; max-width: calc(100vw - 24px); background: var(--wp--preset--color--base); border-radius: 2px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 18px 40px -12px rgba(0, 0, 0, 0.35); }
+.er-vignette[hidden] { display: none; }
+.er-vignette__lien { display: flex; gap: 1rem; padding: 1rem; color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-vignette__couverture { flex: none; width: 72px; }
+.er-vignette__couverture img, .er-vignette__couverture .er-couverture-typo { display: block; width: 72px; height: auto; box-shadow: var(--er-ombre-livre); border-radius: 1px; }
+.er-vignette__texte { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+.er-vignette__mention { align-self: flex-start; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; padding: 0.42em 0.75em; border-radius: 999px; background: var(--wp--preset--color--accent); }
+.er-vignette__titre { font-weight: 600; line-height: 1.25; }
+.er-vignette__auteur { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--encre-2); }
+.er-vignette__voir { margin-top: 0.4rem; font-size: var(--wp--preset--font-size--small); font-weight: 600; }
+.er-vignette__lien:hover .er-vignette__voir { color: var(--wp--preset--color--accent-texte); }
+@media (prefers-reduced-motion: no-preference) {
+	.er-vignette:not([hidden]) { animation: er-vignette-entree 140ms ease-out; }
+	@keyframes er-vignette-entree { from { opacity: 0; transform: translateY(4px); } }
+}

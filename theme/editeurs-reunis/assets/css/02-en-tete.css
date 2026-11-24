@@ -1,0 +1,509 @@
+/* --------------------------------------------------------------------------
+   L'en-tête : la barre noire, puis le menu de la maison sur sa couleur
+   -------------------------------------------------------------------------- */
+
+/* Retenu le 21 novembre 2026 (« B3 ») : la barre noire, la même partout, avec le nom, les trois maisons, les outils
+   et la langue ; dessous, le menu de la maison où l'on est, sur sa couleur. Chaque maison a sa couleur et son point,
+   la même teinte éclaircie pour se voir sur le noir. La classe de la maison est sur le corps de la page
+   (er-maison-librairie, er-maison-ymca, er-maison-centre ; functions.php). */
+.er-maison-librairie { --er-maison: var(--wp--preset--color--maison-librairie); }
+.er-maison-ymca { --er-maison: var(--wp--preset--color--maison-ymca); }
+.er-maison-centre { --er-maison: var(--wp--preset--color--maison-centre); }
+.er-onglet-librairie { --er-point: var(--wp--preset--color--point-librairie); }
+.er-onglet-ymca { --er-point: var(--wp--preset--color--point-ymca); }
+.er-onglet-centre { --er-point: var(--wp--preset--color--point-centre); }
+
+.er-barre { padding-block: 0.75rem; font-size: 0.8125rem; }
+.er-barre-dedans { --er-ecart: 1.75rem; gap: var(--er-ecart); align-items: center; }
+.er-barre a { color: inherit; text-decoration: none; }
+
+/* Le nom sur deux lignes, en capitales très espacées (plus petit dans la barre que dans le pied). */
+.er-logo { margin: 0; line-height: 1.45; }
+.er-logo a {
+	display: inline-block;
+	text-decoration: none;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.95em;
+	text-transform: uppercase;
+	color: inherit;
+}
+.er-logo span { display: block; }
+.er-barre .er-logo { margin-inline-end: auto; }
+/* Le nom garde l'espacement du logo d'origine (0,95 em), que les pictos laissent la place de tenir. */
+.er-barre .er-logo a { font-size: 0.6875rem; letter-spacing: 0.95em; white-space: nowrap; }
+
+/* Les trois maisons : un point de couleur, le nom ; la maison où l'on est en blanc, soulignée. */
+.er-menu { font-size: 0.875rem; }
+.er-menu a { text-decoration: none; }
+.er-menu .er-onglet { flex: none; }
+.er-menu .er-onglet > .wp-block-navigation-item__content {
+	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	color: rgba(255, 255, 255, 0.78);
+	font-weight: 500;
+}
+.er-menu .er-onglet > .wp-block-navigation-item__content::before {
+	content: "";
+	flex: none;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--er-point);
+}
+.er-menu .er-onglet > .wp-block-navigation-item__content:hover,
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content { color: var(--wp--preset--color--base); }
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content { font-weight: 600; }
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content .wp-block-navigation-item__label {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.55em;
+}
+
+/* À l'ordinateur, plus de menus déroulants : le menu de la maison est dessous. Les pages des maisons, la recherche et
+   le compte n'apparaissent que dans le menu du téléphone. */
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container,
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-icon,
+.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-menu-telephone { display: none !important; }
+
+/* Le menu (≡) jusqu'à 1200 px, en plein écran, noir ; les trois maisons en grand avec leur point, leurs pages dessous. */
+.er-menu .wp-block-navigation__responsive-container-open { color: var(--wp--preset--color--base); }
+.er-menu .wp-block-navigation__responsive-container.is-menu-open { padding: 1.25rem var(--wp--style--root--padding-right) 2rem var(--wp--style--root--padding-left); }
+.er-menu .is-menu-open .wp-block-navigation__container { gap: 1.6rem; }
+.er-menu .is-menu-open .wp-block-navigation__responsive-container-content,
+.er-menu .is-menu-open .wp-block-navigation__container,
+.er-menu .is-menu-open .wp-block-navigation-item,
+.er-menu .is-menu-open .wp-block-navigation__submenu-container { align-items: flex-start !important; text-align: start; }
+.er-menu .is-menu-open .er-onglet > .wp-block-navigation-item__content { font-size: var(--wp--preset--font-size--large); color: var(--wp--preset--color--base); }
+.er-menu .is-menu-open .wp-block-navigation__submenu-container { padding: 0.6rem 0 0 17px !important; gap: 0.55rem; }
+.er-menu .is-menu-open .wp-block-navigation__submenu-container a { font-size: 0.9375rem; color: rgba(255, 255, 255, 0.78); }
+.er-menu .is-menu-open .er-menu-telephone > a { font-size: 0.9375rem; }
+
+/* À partir de 1280 px, les trois maisons sont dans la barre (le menu de WordPress ne passe en ligne qu'à 600 px ; ici,
+   « toujours en menu », puis en ligne à partir de 1280). */
+@media (min-width: 1280px) {
+	.er-menu .wp-block-navigation__responsive-container-open.always-shown { display: none; }
+	.er-menu .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) {
+		display: block;
+		position: relative;
+		width: 100%;
+		z-index: auto;
+		background-color: inherit;
+	}
+	.er-menu .wp-block-navigation__responsive-container.hidden-by-default:not(.is-menu-open) .wp-block-navigation__responsive-container-close { display: none; }
+}
+@media (max-width: 1279px) {
+	.er-barre .er-menu { order: 10; }
+}
+@media (min-width: 1280px) and (max-width: 1439px) {
+	/* Un peu moins d'air entre les objets : la barre tient en russe, où le nom et les maisons sont plus longs. */
+	.er-barre-dedans { --er-ecart: 1.35rem; }
+	.er-menu .wp-block-navigation__container, .er-menu .wp-block-navigation__responsive-container-content { gap: 1.35rem !important; }
+}
+
+/* Le coin droit, en pictos (A′, retenue le 21 nov. 2026) : la loupe, le compte, le panier, chacun dans un rond de
+   36 px. Au survol, le rond grisé ; sélectionné (la recherche ouverte, la page du compte), le rond blanc et le picto
+   noir. Rien ne bouge d'un état à l'autre. Un filet les sépare des maisons ; 8 px entre eux. */
+.er-picto,
+.er-panier .wc-block-mini-cart__button {
+	position: relative;
+	flex: none;
+	display: inline-grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--wp--preset--color--base) !important;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background var(--er-transition), color var(--er-transition);
+}
+.er-picto svg { display: block; }
+.er-picto:hover,
+.er-panier .wc-block-mini-cart__button:hover { background: rgba(255, 255, 255, 0.2); }
+.er-picto:focus-visible,
+.er-panier .wc-block-mini-cart__button:focus-visible { outline: 2px solid var(--wp--preset--color--base); outline-offset: 2px; }
+.er-loupe[aria-expanded="true"],
+.er-compte[aria-current] { background: var(--wp--preset--color--base); color: var(--wp--preset--color--noir) !important; }
+
+/* Les interrupteurs (24 nov. 2026 : « les boutons fermer se trouvent au même endroit exact que ceux qui ouvrent,
+   comme un interrupteur on off », André). La loupe, le panier et le menu (≡) ouvrent leur panneau sous la barre (ou
+   sous la ligne accrochée) ; eux restent à leur place, passent au rond blanc, et leur picto devient une croix : on
+   referme en touchant au même endroit (entete.js, recherche.js). Les boutons « Fermer » des panneaux ne servent plus
+   qu'au clavier : on ne les voit que lorsqu'ils ont la main. */
+:root { --er-croix: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.er-menu .wp-block-navigation__responsive-container-open {
+	position: relative;
+	display: inline-grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border-radius: 50%;
+	transition: background var(--er-transition), color var(--er-transition);
+}
+.er-menu .wp-block-navigation__responsive-container-open:hover { background: rgba(255, 255, 255, 0.2); }
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__button,
+html.er-panier-ouvert .er-ligne-panier { background: var(--wp--preset--color--base); color: var(--wp--preset--color--noir) !important; }
+.er-loupe[aria-expanded="true"] svg,
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open svg,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__quantity-badge,
+html.er-panier-ouvert .er-ligne-panier > :not(.screen-reader-text) { visibility: hidden; }
+.er-loupe[aria-expanded="true"]::after,
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open::after,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__button::after,
+html.er-panier-ouvert .er-ligne-panier::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 20px;
+	height: 20px;
+	background: currentColor;
+	-webkit-mask: var(--er-croix) center / contain no-repeat;
+	mask: var(--er-croix) center / contain no-repeat;
+}
+/* Le menu du téléphone : sous la barre, qui reste là avec son interrupteur ; la croix de WordPress, pour le clavier. */
+.er-menu .wp-block-navigation__responsive-container.is-menu-open { top: var(--er-menu-haut, 0px) !important; }
+.er-menu .is-menu-open .wp-block-navigation__responsive-dialog { margin-top: 0 !important; }
+/* Le panier de WooCommerce : son volet et son voile sous la barre (ou la ligne) d'où on l'a ouvert. */
+html.er-panier-ouvert .wc-block-components-drawer__screen-overlay { top: var(--er-dessous, 0px) !important; }
+html.er-panier-ouvert .wc-block-components-drawer { top: var(--er-dessous, 0px) !important; height: calc(100% - var(--er-dessous, 0px)) !important; margin-top: 0 !important; }
+.er-menu .wp-block-navigation__responsive-container-close:not(:focus-visible),
+.wc-block-components-drawer__close:not(:focus-visible),
+.er-recherche-fermer:not(:focus-visible) {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+}
+.er-barre .er-compte, .er-barre .er-panier { margin-inline-start: calc(0.5rem - var(--er-ecart)); }
+@media (min-width: 1280px) {
+	.er-barre .er-loupe { margin-inline-start: var(--er-ecart); }
+	.er-barre .er-loupe::before {
+		content: "";
+		position: absolute;
+		inset-inline-start: calc(-1 * var(--er-ecart) - 1px);
+		top: 50%;
+		width: 1px;
+		height: 20px;
+		margin-top: -10px;
+		background: rgba(255, 255, 255, 0.3);
+	}
+}
+
+/* Les langues dans un interrupteur cerné : la langue de la page en blanc plein. Une langue où la page n'est pas
+   traduite mène à l'accueil de cette langue, en plus discret. */
+.er-langues ul {
+	display: flex;
+	align-items: center;
+	gap: 1px;
+	height: 1.75rem;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0 2px;
+	list-style: none;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 999px;
+}
+.er-langue {
+	display: inline-flex;
+	align-items: center;
+	height: 1.5rem;
+	padding: 0 0.6rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.78) !important;
+	text-decoration: none !important;
+	transition: background var(--er-transition), color var(--er-transition);
+}
+.er-langue:hover, .er-langue:focus-visible { color: var(--wp--preset--color--base) !important; background: rgba(255, 255, 255, 0.12); }
+.er-langue-actuelle, .er-langue-actuelle:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--noir) !important; font-weight: 700; }
+.er-langue-absente { color: rgba(255, 255, 255, 0.5) !important; }
+
+/* Le panier : son picto, et le nombre de livres dans une pastille pervenche, en haut à droite, seulement s'il y en a. */
+.er-panier .wc-block-mini-cart__quantity-badge { position: relative; display: grid; place-items: center; }
+.er-panier .wc-block-mini-cart__icon { display: block; width: 1.5rem; height: 1.5rem; }
+.er-panier .wc-block-mini-cart__badge {
+	position: absolute;
+	top: -0.5rem;
+	right: -0.55rem;
+	left: auto;
+	transform: none;
+	min-width: 1rem;
+	height: 1rem;
+	box-sizing: border-box;
+	padding: 0 0.25rem;
+	border: 0;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent) !important;
+	color: var(--wp--preset--color--noir) !important;
+	font-size: 0.625rem;
+	font-weight: 700;
+	line-height: 1rem;
+	margin: 0;
+}
+.er-panier .wc-block-mini-cart__badge[hidden] { display: none; }
+/* Le panier au bout de la ligne accrochée : la même pastille, recopiée de celle de la barre noire (entete.js). */
+.er-ligne-badge {
+	position: absolute;
+	top: -0.125rem;
+	right: -0.25rem;
+	min-width: 1rem;
+	height: 1rem;
+	box-sizing: border-box;
+	padding: 0 0.25rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--noir);
+	font-size: 0.625rem;
+	font-weight: 700;
+	line-height: 1rem;
+	text-align: center;
+}
+.er-ligne-badge[hidden] { display: none; }
+
+/* Entre 1280 et 1440 px, le nom court d'YMCA-Press ; ailleurs, et dans le menu (≡), le nom long. */
+.er-nom-court { display: none; }
+@media (min-width: 1280px) and (max-width: 1439px) {
+	.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-nom-long { display: none; }
+	.er-menu .wp-block-navigation__responsive-container:not(.is-menu-open) .er-nom-court { display: inline; }
+}
+
+/* Au bas du menu (≡), la langue : seulement au téléphone (ailleurs, elle est dans la barre). */
+.er-menu-langues { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; margin-top: 0.4rem; padding-top: 1.1rem; border-top: 1px solid rgba(255, 255, 255, 0.3); }
+.er-menu-langues-titre { font-size: 0.8125rem; color: rgba(255, 255, 255, 0.78); }
+@media (min-width: 782px) {
+	.er-menu .er-menu-langues { display: none !important; }
+}
+
+
+/* Le menu de la maison, sur sa couleur : les pages d'YMCA-Press ou du centre culturel (la librairie a ses rayons, plus
+   bas). Sur une ligne qu'on fait glisser de côté quand elle déborde. */
+.er-sous-menu { background: var(--er-maison); color: var(--wp--preset--color--base); }
+.er-sous-menu ul {
+	list-style: none;
+	box-sizing: content-box;
+	max-width: var(--wp--style--global--wide-size);
+	margin: 0 auto;
+	padding: 0 var(--wp--style--root--padding-right) 0 var(--wp--style--root--padding-left);
+	display: flex;
+	gap: 0 1.6rem;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.er-sous-menu ul::-webkit-scrollbar { display: none; }
+.er-sous-menu li { flex: none; }
+.er-sous-menu a {
+	display: block;
+	padding: 0.8rem 0;
+	color: rgba(255, 255, 255, 0.86);
+	font-size: 0.875rem;
+	font-weight: 500;
+	white-space: nowrap;
+	text-decoration: none;
+}
+.er-sous-menu a:hover { color: var(--wp--preset--color--base); text-decoration: underline; text-underline-offset: 0.45em; }
+.er-sous-menu a[aria-current] {
+	color: var(--wp--preset--color--base);
+	font-weight: 600;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.45em;
+}
+
+@media (max-width: 1180px) {
+	.er-logo a { letter-spacing: 0.6em; }
+}
+/* Juste au-dessus du téléphone, le nom un peu moins espacé : la barre tient en russe. */
+@media (min-width: 782px) and (max-width: 919px) {
+	.er-barre .er-logo a { letter-spacing: 0.7em; }
+}
+@media (max-width: 781px) {
+	.er-barre { padding-block: 0.8rem; }
+	.er-barre-dedans { --er-ecart: 0.8rem; }
+	.er-barre .er-logo a { font-size: 0.5625rem; letter-spacing: 0.2em; }
+	/* La loupe et le panier dans la barre ; le compte et la langue au bas du menu (≡). */
+	.er-barre .er-compte, .er-barre-dedans > .er-langues { display: none; }
+	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
+}
+
+/* --------------------------------------------------------------------------
+   L'en-tête plein écran (retenu le 24 novembre 2026) : la barre d'informations (40 px), la barre noire (88 px), la
+   ligne de la maison (48 px), de marge à marge. En défilant, seule la ligne reste en haut de l'écran.
+   Le détail est dans inc/entete.php et assets/js/entete.js.
+   -------------------------------------------------------------------------- */
+
+/* L'en-tête accroché : il remonte de ce qui part (la barre d'informations et la barre noire, mesurées par
+   assets/js/entete.js ; 128 px sans lui), puis reste, sous la barre d'administration de WordPress quand elle est là. */
+header.er-haut {
+	position: sticky;
+	top: calc(var(--wp-admin--admin-bar--height, 0px) - var(--er-haut-cache, 128px));
+	z-index: 100;
+}
+@media (max-width: 600px) {
+	/* Au téléphone, la barre d'administration de WordPress part avec la page : elle ne compte pas. */
+	header.er-haut { top: calc(-1 * var(--er-haut-cache, 96px)); }
+}
+
+/* La barre d'informations : noire comme la barre, plus discrète ; un filet la sépare de la barre noire. */
+.er-infos {
+	background: var(--wp--preset--color--noir);
+	color: rgba(255, 255, 255, 0.64);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1.3;
+}
+.er-infos-dedans {
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+	min-height: 39px;
+	padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
+	white-space: nowrap;
+	overflow: hidden;
+}
+.er-info { display: inline-block; color: inherit !important; text-decoration: none !important; }
+.er-info-ouvert { display: inline-flex; align-items: center; gap: 0.6rem; }
+.er-info[hidden] { display: none; }
+.er-info strong { font-weight: 500; color: var(--wp--preset--color--base); }
+.er-info:hover strong, .er-info:focus-visible strong { text-decoration: underline; text-underline-offset: 0.3em; }
+.er-info-point { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--wp--preset--color--accent); }
+.er-info-ouvert.est-ferme .er-info-point { background: rgba(255, 255, 255, 0.4); }
+.er-info-adresse { margin-inline-start: auto; }
+@media (max-width: 1100px) {
+	.er-info-adresse { display: none !important; }
+}
+@media (max-width: 781px) {
+	/* Au téléphone, « Ouvert en ce moment » seul, tant que le volet n'est pas en marche. */
+	.er-info-plus { display: none !important; }
+	.er-infos-dedans { min-height: 31px; }
+	/* Le relais (entete.js) : les informations l'une sur l'autre ; celle du moment à sa place, les suivantes à droite,
+	   celle qui s'en va à gauche. Le trait gris, au pied, avance en quatre secondes ; au bout, la suivante entre. */
+	.er-infos.est-relais .er-infos-dedans { position: relative; display: block; height: 31px; min-height: 0; padding: 0; }
+	.er-infos.est-relais .er-info {
+		position: absolute;
+		inset: 0 0 auto;
+		display: block !important;
+		height: 31px;
+		box-sizing: border-box;
+		padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
+		line-height: 31px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		transform: translateX(100%);
+		transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+	}
+	.er-infos.est-relais .er-info[hidden] { display: none !important; }
+	.er-infos.est-relais .er-info.est-ici { transform: none; }
+	.er-infos.est-relais .er-info.est-avant { transform: translateX(-100%); }
+	.er-infos.est-relais .er-info.sans-glisse { transition: none; }
+	.er-infos.est-relais .er-info-point { display: inline-block; margin-inline-end: 0.6rem; vertical-align: 1px; }
+	/* L'adresse : si la place manque, c'est le nom de la rue qui se raccourcit ; « Nous trouver → » reste entier. */
+	.er-infos.est-relais .er-info-adresse { display: flex !important; gap: 0.3em; }
+	.er-infos.est-relais .er-info-rue { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+	.er-infos.est-relais .er-info-adresse strong { flex: none; }
+	.er-infos.est-relais .er-infos-dedans::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 1px;
+		background: rgba(255, 255, 255, 0.4); /* gris : une barre secondaire, qui ne doit pas tirer l'œil (24 nov.) */
+		transform: scaleX(0);
+		transform-origin: left center;
+	}
+	.er-infos.est-relais.est-en-route .er-infos-dedans::after { animation: er-infos-trait 4s linear forwards; }
+	.er-infos.est-relais:focus-within .er-infos-dedans::after { animation-play-state: paused; }
+}
+
+@keyframes er-infos-trait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* La barre noire : 88 px, sans marge haute ni basse (la hauteur fait l'air). */
+.er-barre { padding-block: 0; }
+.er-barre-dedans { min-height: 88px; }
+@media (max-width: 781px) {
+	.er-barre { padding-block: 0; }
+	.er-barre-dedans { min-height: 64px; }
+}
+
+/* Les maisons : la maison ouverte (celle de la page, ou celle qu'on vient de cliquer) en blanc, sans trait ; les autres
+   en blanc doux. */
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content .wp-block-navigation-item__label,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content .wp-block-navigation-item__label { text-decoration: none; }
+.er-maison-librairie .er-onglet-librairie > .wp-block-navigation-item__content,
+.er-maison-ymca .er-onglet-ymca > .wp-block-navigation-item__content,
+.er-maison-centre .er-onglet-centre > .wp-block-navigation-item__content { font-weight: 500; }
+.er-menu .er-onglet.est-ouverte > .wp-block-navigation-item__content { color: var(--wp--preset--color--base); }
+.er-menu:has(.est-ouverte) .er-onglet:not(.est-ouverte) > .wp-block-navigation-item__content { color: rgba(255, 255, 255, 0.72); }
+@media (min-width: 1680px) {
+	/* Assez de place : les maisons en 16 px, 56 px entre elles, comme le canevas. */
+	.er-menu { font-size: 1rem; }
+	.er-menu .wp-block-navigation__container,
+	.er-menu .wp-block-navigation__responsive-container-content { gap: 3.5rem !important; }
+	.er-barre-dedans { --er-ecart: 2.5rem; }
+}
+
+/* Les lignes des maisons : une par maison, une seule visible ; chacune sur sa couleur, de marge à marge, 48 px. */
+.er-lignes { position: relative; }
+.er-ligne { position: relative; }
+.er-ligne[hidden] { display: none !important; }
+.er-ligne-librairie { background: var(--wp--preset--color--maison-librairie); }
+.er-ligne-ymca { background: var(--wp--preset--color--maison-ymca); }
+.er-ligne-centre { background: var(--wp--preset--color--maison-centre); }
+.er-lignes .er-sous-menu { background: transparent; }
+.er-lignes .er-sous-menu a,
+.er-lignes .er-rayon-lien { padding-block: 14px; line-height: 20px; color: rgba(255, 255, 255, 0.72); }
+.er-lignes .er-rayon-ouvrir { height: 48px; color: rgba(255, 255, 255, 0.72); }
+/* La page où l'on est, et le rayon dont le tiroir est ouvert : en blanc, sans trait. */
+.er-lignes .er-sous-menu a[aria-current],
+.er-lignes .er-rayon-lien[aria-current],
+.er-lignes .er-a-tiroir.ouvert > .er-rayon-lien { color: var(--wp--preset--color--base); font-weight: 500; text-decoration: none; }
+.er-lignes .er-sous-menu a:hover,
+.er-lignes .er-rayon-lien:hover { color: var(--wp--preset--color--base); }
+/* Les trois lignes ont la police de celle de la librairie (24 nov. 2026) : 14 px, demi-gras léger (500). */
+.er-lignes .er-sous-menu a { font-size: 0.875rem; font-weight: 500; }
+@media (min-width: 1680px) {
+	.er-lignes .er-sous-menu ul { gap: 0 2rem; }
+	.er-lignes .er-rayons-liste { gap: 0 1.5rem; }
+}
+
+/* La loupe et le panier au bout de la ligne : seulement quand l'en-tête est accroché (la barre noire est partie). */
+.er-ligne-pictos {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: 0;
+	z-index: 30; /* au-dessus du bandeau de la librairie (z-index 20), sous ses tiroirs ouverts */
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-inline: 0.75rem var(--wp--style--root--padding-right);
+	background: inherit; /* la couleur de la ligne : le menu qu'on fait glisser passe dessous */
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity var(--er-transition), visibility var(--er-transition);
+}
+header.est-accroche .er-ligne-pictos { visibility: visible; opacity: 1; }
+header.est-accroche .er-lignes :is(.er-rayons-liste, .er-sous-menu ul) { padding-inline-end: calc(var(--wp--style--root--padding-right) + 6rem); }

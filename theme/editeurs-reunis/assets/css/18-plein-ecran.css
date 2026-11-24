@@ -1,0 +1,224 @@
+/* --------------------------------------------------------------------------
+   Plein écran (24 novembre 2026) : la grille va d'une marge à l'autre (theme.json : la largeur large à 100 %, des marges
+   jusqu'à 80 px). Ce qui suit règle ce que la largeur change : les rangées de livres, l'accueil, la fiche d'un livre.
+   -------------------------------------------------------------------------- */
+
+/* Les rangées de livres : plus de livres par rangée sur un grand écran, des couvertures de la même taille. */
+@media (min-width: 1280px) {
+	.wp-block-woocommerce-product-collection.alignwide .er-livres { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 1600px) {
+	.wp-block-woocommerce-product-collection.alignwide .er-livres { grid-template-columns: repeat(8, minmax(0, 1fr)) !important; }
+}
+
+/* L'accueil : deux modules blancs ne se suivent pas ; le poème prend le fond doux après le journal. */
+.er-accueil > .er-une-journal + .er-une-poeme { background-color: var(--wp--preset--color--doux); }
+
+/* La une, écran par écran (patterns/une-ecrans.php) : un sujet par écran, le texte à gauche sur l'aplat de sa maison,
+   la photo ou le dessin à droite, d'un bord à l'autre ; le sommaire des sujets au pied. Les sujets défilent sur un seul
+   écran (assets/js/une-ecrans.js, qui pose .est-defilant) ; sans script, ils se suivent l'un sous l'autre. */
+.er-accueil > .er-ecrans { margin-block: 0 !important; }
+.er-ecrans { --er-une-duree: 7s; --er-une-glisse: 0.8s cubic-bezier(0.65, 0, 0.35, 1); position: relative; }
+.er-ecran {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: 1fr auto;
+	column-gap: 32px;
+	min-height: max(640px, calc(100svh - var(--er-ligne, 48px)));
+	margin-block: 0 !important;
+	color: var(--wp--preset--color--base);
+	scroll-margin-top: var(--er-ligne, 48px);
+}
+/* Le module ouvre la page : il tient la fenêtre sous tout l'en-tête. */
+.er-ecrans > .er-ecran { min-height: max(640px, calc(100svh - var(--er-haut-cache, 128px) - var(--er-ligne, 48px))); }
+.er-ecran.er-aplat-ymca { background-color: var(--wp--preset--color--maison-ymca); }
+.er-ecran > * { margin-block: 0 !important; }
+.er-ecran-glyphe {
+	position: absolute;
+	left: 24px;
+	bottom: 40px;
+	z-index: -1;
+	font-size: clamp(8rem, 12.5vw, 15rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.04em;
+	white-space: nowrap;
+	color: rgba(255, 255, 255, 0.06);
+	pointer-events: none;
+	user-select: none;
+}
+.er-ecran-texte {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: end;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	max-width: 47.5rem;
+	padding: 128px 0 64px var(--wp--style--root--padding-left);
+}
+.er-ecran-texte > * { margin-block: 0 !important; }
+.er-ecran-rubrique {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.64);
+}
+.er-ecran-rubrique::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; }
+.er-ecran-rubrique.er-points-librairie::before { background: var(--wp--preset--color--point-librairie); }
+.er-ecran-rubrique.er-points-ymca::before { background: var(--wp--preset--color--point-ymca); }
+.er-ecran-rubrique.er-points-centre::before { background: var(--wp--preset--color--point-centre); }
+.er-ecran-rubrique.er-points-tous::before {
+	width: 32px;
+	border-radius: 0;
+	background:
+		radial-gradient(circle 4px at 4px 50%, var(--wp--preset--color--point-ymca) 96%, transparent 100%),
+		radial-gradient(circle 4px at 16px 50%, var(--wp--preset--color--point-librairie) 96%, transparent 100%),
+		radial-gradient(circle 4px at 28px 50%, var(--wp--preset--color--point-centre) 96%, transparent 100%);
+}
+.er-ecran-titre { margin: 0; font-size: clamp(2.75rem, 4.2vw, 5rem); line-height: 1.02; font-weight: 600; letter-spacing: -0.03em; color: inherit; }
+.er-ecran-titre a { color: inherit; text-decoration: none; }
+.er-ecran-titre a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.12em; }
+.er-ecran-phrase { margin-top: 0.5rem !important; font-size: clamp(1.25rem, 1.4vw, 1.5rem); line-height: 1.28; font-weight: 600; }
+.er-ecran-boutons { margin-top: 1rem !important; gap: 0.625rem; }
+.er-ecran .is-style-outline > .wp-block-button__link { color: var(--wp--preset--color--base); border-color: var(--wp--preset--color--base); }
+.er-ecran .is-style-outline > .wp-block-button__link:hover { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+.er-ecran-prix { font-size: 0.875rem; color: rgba(255, 255, 255, 0.64); }
+.er-ecran-image {
+	position: relative;
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	min-height: 320px;
+	background: rgba(0, 0, 0, 0.22);
+}
+.er-ecran .er-ecran-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.er-ecran .er-ecran-image.est-dessin img { object-fit: contain; padding: 8%; box-sizing: border-box; }
+.er-ecran .er-ecran-image figcaption {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	max-width: 80%;
+	margin: 0;
+	padding: 0.5rem 0.875rem;
+	background: rgba(0, 0, 0, 0.6);
+	font-size: 0.75rem;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.86);
+}
+.er-ecrans-sommaire { display: none; }
+
+/* Le défilement : les trois écrans dans la même case ; celui du moment au milieu, les autres cachés, à droite (ceux
+   qui viennent) ou à gauche (celui qui s'en va). */
+.er-ecrans.est-defilant { display: grid; overflow: hidden; }
+.er-ecrans.est-defilant > .er-ecran {
+	grid-area: 1 / 1;
+	visibility: hidden;
+	transform: translateX(100%);
+	transition: transform var(--er-une-glisse), visibility 0s linear 0.8s;
+}
+.er-ecrans.est-defilant > .er-ecran.est-avant { transform: translateX(-100%); }
+.er-ecrans.est-defilant > .er-ecran.est-ici { visibility: visible; transform: none; transition: transform var(--er-une-glisse), visibility 0s; }
+.er-ecrans.est-defilant > .er-ecran.sans-glisse { transition: none; }
+.er-ecrans.est-defilant .er-ecran-texte { padding-bottom: 136px; } /* la place du sommaire */
+
+/* Le sommaire reste en place pendant que les écrans glissent dessous : au pied de la moitié gauche. */
+.er-ecrans.est-defilant .er-ecrans-sommaire {
+	grid-area: 1 / 1;
+	align-self: end;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	width: calc((100% - 32px) / 2 - var(--wp--style--root--padding-left));
+	margin-inline-start: var(--wp--style--root--padding-left);
+	padding: 1rem 0 1.75rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.24);
+	font-size: 0.8125rem;
+	color: var(--wp--preset--color--base);
+}
+.er-ecrans-sommaire a { position: relative; display: inline-flex; gap: 0.5rem; color: rgba(255, 255, 255, 0.64); text-decoration: none; }
+.er-ecrans-sommaire a:hover { color: var(--wp--preset--color--base); }
+.er-ecrans-sommaire a[aria-current] { color: var(--wp--preset--color--base); font-weight: 600; }
+/* Le trait qui avance sur le filet, au-dessus du sujet en cours : quand il arrive au bout, le sujet suivant vient. */
+.er-ecrans-sommaire a[aria-current]::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(-1rem - 1.5px);
+	height: 2px;
+	background: var(--wp--preset--color--base);
+	transform-origin: left center;
+	animation: er-une-avance var(--er-une-duree) linear forwards;
+}
+.er-ecrans.est-en-pause .er-ecrans-sommaire a[aria-current]::after,
+.er-ecrans.est-defilant:focus-within .er-ecrans-sommaire a[aria-current]::after { animation-play-state: paused; }
+@keyframes er-une-avance { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.er-ecrans-pause {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-inline-start: auto;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	color: rgba(255, 255, 255, 0.64);
+	cursor: pointer;
+}
+.er-ecrans-pause:hover { color: var(--wp--preset--color--base); }
+.er-ecrans-pause[hidden] { display: none; }
+.er-ecrans-pause .er-ecrans-icone-lecture,
+.er-ecrans-pause[aria-pressed="true"] .er-ecrans-icone-pause { display: none; }
+.er-ecrans-pause[aria-pressed="true"] .er-ecrans-icone-lecture { display: block; }
+@media (max-width: 1100px) {
+	/* Moins de place : les numéros, et le nom du sujet en cours. */
+	.er-ecrans-sommaire a:not([aria-current]) .er-ecrans-nom { display: none; }
+	.er-ecrans.est-defilant .er-ecrans-sommaire { gap: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.er-ecrans { --er-une-glisse: 0s linear; }
+}
+@media (max-width: 781px) {
+	/* Au téléphone : l'image au-dessus, puis le texte ; l'écran prend la hauteur de son contenu. */
+	.er-ecran, .er-ecrans > .er-ecran { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; min-height: 0; }
+	.er-ecran-image { grid-column: 1; grid-row: 1; height: 56vw; min-height: 0; }
+	.er-ecran-texte { grid-column: 1; grid-row: 2; padding: 40px var(--wp--style--root--padding-right) 32px var(--wp--style--root--padding-left); }
+	.er-ecran-glyphe { display: none; }
+	.er-ecrans.est-defilant .er-ecran-texte { padding-bottom: 96px; }
+	.er-ecrans.est-defilant .er-ecrans-sommaire { width: auto; margin-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); padding-bottom: 1.25rem; }
+}
+
+/* La fiche d'un livre, en deux moitiés (patterns/fiche-livre.php) : la couverture à gauche, sur le fond doux, collée
+   au bord de l'écran et accrochée sous la ligne de la maison pendant qu'on lit ; tout le reste à droite. */
+.er-fiche-moities {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-block: 0 !important;
+}
+.er-fiche-moities > * { margin-block: 0 !important; }
+.er-fiche-moities > .er-fiche-couverture {
+	max-width: none;
+	background: var(--wp--preset--color--doux);
+	padding: 96px 64px 96px var(--wp--style--root--padding-left);
+}
+.er-fiche-couverture-colle { position: sticky; top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--er-ligne, 48px) + 48px); }
+.er-fiche-couverture-colle .woocommerce-product-gallery__image img { max-height: min(680px, calc(100svh - 240px)); width: auto !important; }
+.er-fiche-moities > .er-fiche-texte { padding: 48px var(--wp--style--root--padding-right) 96px 64px; }
+.er-fiche-moities .er-fiche-texte > .wp-block-woocommerce-breadcrumbs { margin-bottom: 2rem; }
+.er-fiche-moities .er-fiche-titre { font-size: clamp(2.5rem, 4.2vw, 5rem); line-height: 1.02; letter-spacing: -0.03em; }
+.er-fiche-moities .er-fiche-resume { max-width: 42.5rem; }
+@media (max-width: 781px) {
+	.er-fiche-moities { grid-template-columns: minmax(0, 1fr); }
+	.er-fiche-moities > .er-fiche-couverture { padding: 40px var(--wp--style--root--padding-right) 40px var(--wp--style--root--padding-left); }
+	.er-fiche-couverture-colle { position: static; }
+	.er-fiche-couverture-colle .woocommerce-product-gallery__image img { max-height: 420px; }
+	.er-fiche-moities > .er-fiche-texte { padding: 32px var(--wp--style--root--padding-right) 64px var(--wp--style--root--padding-left); }
+}

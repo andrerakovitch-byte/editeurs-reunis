@@ -1,0 +1,205 @@
+/* --------------------------------------------------------------------------
+   Les livres, en grille : l'accueil, la librairie, « Du même rayon »
+   -------------------------------------------------------------------------- */
+
+.er-livres {
+	row-gap: var(--wp--preset--spacing--50) !important;
+	column-gap: clamp(1rem, 2.2vw, 1.75rem) !important;
+	grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+@media (max-width: 1100px) { .er-livres { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+@media (max-width: 860px) { .er-livres { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+@media (max-width: 600px) { .er-livres { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+.er-livres > li { display: flex; flex-direction: column; gap: 0; }
+.er-couverture { margin-block-end: 0.85rem !important; }
+.er-couverture a { display: block; }
+.er-couverture img {
+	background: var(--wp--preset--color--doux);
+	box-shadow: var(--er-ombre-livre);
+	border-radius: 1px;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.er-livres > li:hover .er-couverture img { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
+
+/* La couverture typographique : un livre sans photo, ou dont la photo est trop petite pour rester nette. Ses mesures
+   suivent sa largeur (cqi), de la vignette du menu à la fiche. */
+.er-couverture-typo {
+	display: block;
+	container-type: inline-size;
+	aspect-ratio: 2 / 3;
+	background: var(--wp--preset--color--papier);
+	color: var(--wp--preset--color--contrast);
+	box-shadow: var(--er-ombre-livre);
+	border-radius: 1px;
+	overflow: hidden;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.er-couverture-typo__page {
+	display: flex;
+	flex-direction: column;
+	gap: 4cqi;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 11cqi 10cqi 10cqi;
+	text-align: start;
+}
+.er-couverture-typo__auteur { font-size: 6.6cqi; font-weight: 500; line-height: 1.25; color: var(--wp--preset--color--encre-2); }
+.er-couverture-typo__titre {
+	margin-block: auto;
+	font-size: 10.5cqi;
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	hyphens: manual;
+	overflow-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.er-couverture-typo__editeur {
+	display: flex;
+	align-items: center;
+	gap: 2.6cqi;
+	font-size: max(9px, 4.2cqi);
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--discret);
+}
+.er-couverture-typo__editeur::before { content: ""; flex: none; width: 2.6cqi; height: 2.6cqi; border-radius: 50%; background: var(--wp--preset--color--point-librairie); }
+.er-couverture-typo--ymca { background: var(--wp--preset--color--maison-ymca); color: var(--wp--preset--color--base); }
+.er-couverture-typo--ymca .er-couverture-typo__auteur,
+.er-couverture-typo--ymca .er-couverture-typo__editeur { color: rgba(255, 255, 255, 0.74); }
+.er-couverture-typo--ymca .er-couverture-typo__editeur::before { background: var(--wp--preset--color--point-ymca); }
+.er-couverture a:has(.er-couverture-typo) { text-decoration: none; }
+.er-livres > li:hover .er-couverture-typo { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
+.er-fiche-typo .er-couverture-typo { max-width: 28rem; }
+
+/* Une photo de taille passable n'est jamais agrandie sur la fiche : elle garde sa taille, dans la largeur. */
+.er-fiche-couverture .woocommerce-product-gallery__image img { width: auto !important; max-width: 100%; height: auto; }
+
+.er-mentions { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem !important; font-size: 0; }
+.er-mentions .wp-block-post-terms__separator { display: none; }
+.er-mentions a {
+	font-size: 0.66rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 1;
+	padding: 0.42em 0.75em;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--contrast);
+}
+.er-mentions a[href*="tres-rare"] { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+.er-livre-titre { font-size: 1rem !important; font-weight: 600 !important; line-height: 1.3 !important; margin: 0 0 0.2rem !important; letter-spacing: 0; }
+.er-livre-titre a { text-decoration: none; }
+.er-livre-titre a:hover { text-decoration: underline; }
+.er-livre-auteur { font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--encre-2); margin: 0 0 0.45rem !important; }
+.er-livre-auteur a { text-decoration: none; }
+.er-livre-prix { font-size: 0.95rem !important; margin: 0 !important; }
+.er-livre-stock { margin: 0 !important; text-align: left !important; }
+
+.wc-block-components-product-stock-indicator--in-stock,
+.wc-block-components-product-stock-indicator--available-on-backorder { display: none !important; }
+.wc-block-components-product-stock-indicator--out-of-stock {
+	color: var(--wp--preset--color--discret) !important;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   La librairie
+   -------------------------------------------------------------------------- */
+
+.er-librairie-tete .wp-block-query-title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	margin-block: 0.6rem 0.5rem;
+	letter-spacing: -0.025em;
+}
+.er-librairie-tete .wp-block-term-description { max-width: 46rem; color: var(--wp--preset--color--encre-2); }
+.er-filtres { margin-block: var(--wp--preset--spacing--40); display: grid; gap: 0.6rem; }
+.er-pilules-langues li a { border-style: dashed; }
+.er-tri { border-top: var(--er-filet); padding-block: 1rem; margin-block-end: var(--wp--preset--spacing--40); align-items: center; }
+.er-tri p, .er-tri .woocommerce-result-count { margin: 0; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--discret); }
+.er-tri select, .woocommerce-ordering select {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	padding: 0.45em 2em 0.45em 1em;
+	background-color: var(--wp--preset--color--base);
+}
+.woocommerce-ordering { margin: 0 !important; }
+
+.wp-block-woocommerce-breadcrumbs, .woocommerce-breadcrumb { color: var(--wp--preset--color--discret); }
+.woocommerce-breadcrumb a { text-decoration: none; }
+
+.wp-block-query-pagination { margin-block-start: var(--wp--preset--spacing--50); font-weight: 500; }
+.wp-block-query-pagination a { text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   La fiche d'un livre
+   -------------------------------------------------------------------------- */
+
+.er-fiche-haut { row-gap: var(--wp--preset--spacing--50); }
+.er-fiche-couverture .woocommerce-product-gallery { margin: 0; }
+.er-fiche-couverture img { box-shadow: var(--er-ombre-livre); background: var(--wp--preset--color--doux); }
+.er-fiche-couverture .woocommerce-product-gallery__trigger { display: none; }
+
+.er-fiche-texte > * + * { margin-block-start: 1rem; }
+.er-fiche-titre { font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.04; letter-spacing: -0.02em; margin-block: 0.4rem 0 !important; }
+.er-fiche-auteur { font-size: var(--wp--preset--font-size--large); font-weight: 500; margin-block-start: 0.5rem !important; }
+.er-fiche-auteur a { text-decoration: none; }
+.er-fiche-auteur a:hover { text-decoration: underline; }
+.er-fiche-prix { margin-block-start: 1.5rem !important; font-weight: 600; }
+.er-fiche-resume { color: var(--wp--preset--color--encre-2); max-width: 36rem; margin-block-start: 1.5rem !important; }
+.er-fiche-resume > :first-child { margin-block-start: 0; }
+
+.er-fiche-panier form.cart { display: flex; gap: 0.75rem; align-items: stretch; flex-wrap: wrap; margin: 0; }
+.er-fiche-panier .quantity input {
+	width: 4.5rem;
+	height: 100%;
+	min-height: 3rem;
+	border: 1px solid var(--wp--preset--color--filet);
+	border-radius: 999px;
+	text-align: center;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--medium);
+}
+.er-fiche-panier .single_add_to_cart_button,
+.woocommerce .er-fiche-panier button.button.alt {
+	background: var(--wp--preset--color--contrast) !important;
+	color: var(--wp--preset--color--base) !important;
+	border-radius: 999px !important;
+	padding: 0.9em 2em !important;
+	font-family: inherit;
+	font-weight: 600 !important;
+	font-size: var(--wp--preset--font-size--small) !important;
+	border: 0;
+}
+.er-fiche-panier .single_add_to_cart_button:hover { background: var(--wp--preset--color--encre-2) !important; }
+
+.er-fiche-infos { border-top: var(--er-filet); padding-top: 1.1rem; margin-block-start: 1.75rem !important; display: grid; gap: 0.45rem; font-size: var(--wp--preset--font-size--small); }
+.er-fiche-infos > * { margin: 0 !important; }
+.er-fiche-infos .wp-block-er-fiche-champs { display: contents; }
+.er-fiche-infos .er-fiche-champ { margin: 0; }
+.er-fiche-infos .wp-block-post-terms__prefix,
+.er-fiche-infos .er-fiche-champ__libelle,
+.er-fiche-infos .wc-block-components-product-sku strong,
+.er-fiche-infos .wp-block-woocommerce-product-sku > span:first-child {
+	display: inline-block;
+	width: 7rem;
+	color: var(--wp--preset--color--discret);
+	font-weight: 500;
+	text-transform: none;
+}
+.er-fiche-infos a { text-decoration: none; }
+.er-fiche-infos a:hover { text-decoration: underline; }
+.er-fiche-retrait { color: var(--wp--preset--color--discret); }
+
+.er-meme-rayon > h2 { margin-block-end: var(--wp--preset--spacing--40); }

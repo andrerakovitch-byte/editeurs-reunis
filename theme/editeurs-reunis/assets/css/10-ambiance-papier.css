@@ -1,0 +1,38 @@
+/* --------------------------------------------------------------------------
+   L'ambiance papier : la palette chaude, pour le contenu patrimonial
+   -------------------------------------------------------------------------- */
+
+/* Deux registres de couleurs (décision du 21 nov. 2026). La DA actuelle reste celle du site : la navigation, la
+   librairie, l'accueil, les pages de service. La palette chaude, relevée sur les rayonnages de la librairie, habille
+   le contenu patrimonial et éditorial : les archives, « Notre histoire », « Il y a cent ans », le Paris de l'émigration,
+   l'histoire de la littérature. On l'applique à une page entière (classe sur body) ou à un bloc Groupe (style
+   « Ambiance papier »). La pervenche y reste, mais seulement en signal : les liens, les mentions, les pastilles. */
+.er-ambiance-papier,
+.is-style-ambiance-papier {
+	--wp--preset--color--base: #FBF8F1;
+	--wp--preset--color--doux: var(--wp--preset--color--papier);
+	--wp--preset--color--filet: var(--wp--preset--color--filet-papier);
+	--wp--preset--color--aplat-nuit: var(--wp--preset--color--reliure);
+	--wp--preset--color--aplat-vert: var(--wp--preset--color--rayonnage);
+	--wp--preset--color--aplat-brun: var(--wp--preset--color--cuir);
+	background-color: var(--wp--preset--color--papier-clair);
+}
+.er-ambiance-papier .er-aplat-pervenche,
+.is-style-ambiance-papier .er-aplat-pervenche { background: var(--wp--preset--color--ocre); }
+
+/* Le cadre du site ne change jamais : l'en-tête, les rayons de la librairie et le pied gardent la DA du site, même
+   sur une page en ambiance papier (« le footer ne change pas », André, 21 nov. 2026). */
+.er-ambiance-papier header.wp-block-template-part,
+.er-ambiance-papier footer.wp-block-template-part,
+.er-ambiance-papier .er-librairie-entete {
+	--wp--preset--color--base: #FFFFFF;
+	--wp--preset--color--doux: #F6F6F4;
+	--wp--preset--color--filet: #DADAD6;
+	--wp--preset--color--aplat-nuit: #101642;
+	--wp--preset--color--aplat-vert: #2F4943;
+	--wp--preset--color--aplat-brun: #2C1F17;
+}
+.er-ambiance-papier header.wp-block-template-part { background-color: #FFFFFF; }
+.er-ambiance-papier header.wp-block-template-part .er-aplat-pervenche,
+.er-ambiance-papier footer.wp-block-template-part .er-aplat-pervenche,
+.er-ambiance-papier .er-librairie-entete .er-aplat-pervenche { background: var(--wp--preset--color--accent); }

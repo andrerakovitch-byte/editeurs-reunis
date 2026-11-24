@@ -1,0 +1,75 @@
+/* --------------------------------------------------------------------------
+   Les pages, le journal
+   -------------------------------------------------------------------------- */
+
+.er-page-titre, .er-article-titre { letter-spacing: -0.025em; }
+.er-article-date { color: var(--wp--preset--color--discret); font-size: var(--wp--preset--font-size--small); }
+.er-articles .wp-block-post-title a { text-decoration: none; }
+.er-articles .wp-block-post-title a:hover { text-decoration: underline; }
+.er-articles > li { border-top: 1px solid var(--wp--preset--color--contrast); padding-top: 1rem; }
+
+/* --------------------------------------------------------------------------
+   Le pied
+   -------------------------------------------------------------------------- */
+
+.er-pied { padding-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--50); }
+.er-pied a { color: inherit; }
+.er-pied .er-colonne { color: var(--wp--preset--color--contrast); }
+.er-pied .er-colonne p { line-height: 1.55; }
+.er-pied .er-colonne p + p { margin-block-start: 1rem; }
+.er-pied .er-logo { margin-block-end: 1.5rem; }
+.er-pied .er-logo a { font-size: 0.72rem; letter-spacing: 0.3em; }
+.er-pied-copyright { margin-block-start: 2.5rem !important; }
+.er-pied-discret { color: #BDBDB8; }
+.er-pied-titre {
+	font-size: var(--wp--preset--font-size--x-small) !important;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: #9C9C96 !important;
+	margin-block: 0 1rem;
+}
+.er-pied p { line-height: 1.65; }
+.er-pied-liens { list-style: none; padding: 0; margin: 0; font-size: var(--wp--preset--font-size--small); line-height: 2; }
+.er-pied-liens a { text-decoration: none; }
+.er-pied-liens a:hover { text-decoration: underline; }
+.er-pied-bas { border-top: 1px solid #333; margin-block-start: var(--wp--preset--spacing--50) !important; padding-top: 1.25rem; gap: 0.5rem 2rem; }
+.er-pied-bas p { margin: 0; }
+
+/* --------------------------------------------------------------------------
+   WooCommerce : panier, commande, avis
+   -------------------------------------------------------------------------- */
+
+.wc-block-components-button:not(.is-link),
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button {
+	border-radius: 999px !important;
+	font-family: inherit;
+	font-weight: 600;
+}
+.woocommerce-tabs, .woocommerce-Reviews { display: none; }
+
+/* --------------------------------------------------------------------------
+   Au téléphone : moins de défilement
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+	/* Les nouveautés deviennent une étagère qu'on fait glisser de côté. */
+	.er-nouveautes .er-livres {
+		grid-template-columns: none !important;
+		grid-auto-flow: column;
+		grid-auto-columns: 44%;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		margin-inline: calc(-1 * var(--wp--style--root--padding-left));
+		padding-inline: var(--wp--style--root--padding-left);
+		scroll-padding-inline: var(--wp--style--root--padding-left);
+		padding-block-end: 0.5rem;
+	}
+	.er-nouveautes .er-livres::-webkit-scrollbar { display: none; }
+	.er-nouveautes .er-livres > li { scroll-snap-align: start; }
+
+	.er-branche-image img { aspect-ratio: 3 / 2 !important; object-position: 50% 25%; }
+	.er-fiche-couverture { max-width: 70%; }
+}

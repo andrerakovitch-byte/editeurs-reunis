@@ -23,17 +23,33 @@ add_action(
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'wp-block-styles' );
 		add_theme_support( 'editor-styles' );
-		add_editor_style( 'style.css' );
+		add_editor_style( er_feuilles_de_style() );
 	}
 );
+
+/**
+ * Les feuilles de style du thème, dans l'ordre où elles se chargent (assets/css/, numérotées).
+ *
+ * @return string[] Leurs chemins depuis le dossier du thème.
+ */
+function er_feuilles_de_style() {
+	$feuilles = glob( get_template_directory() . '/assets/css/*.css' );
+	sort( $feuilles );
+	return array_map( fn( $f ) => 'assets/css/' . basename( $f ), $feuilles );
+}
 
 add_action(
 	'wp_enqueue_scripts',
 	function () {
 		$version = wp_get_theme()->get( 'Version' );
-		// La date de la feuille de style dans son adresse : un navigateur ne garde jamais l'ancienne après un déploiement,
-		// même quand on oublie de changer le numéro de version.
-		wp_enqueue_style( 'editeurs-reunis', get_stylesheet_uri(), array(), $version . '.' . filemtime( get_stylesheet_directory() . '/style.css' ) );
+		// Chaque feuille après la précédente, la date du fichier dans son adresse : un navigateur ne garde jamais
+		// l'ancienne après un déploiement, même quand on oublie de changer le numéro de version.
+		$avant = array();
+		foreach ( er_feuilles_de_style() as $feuille ) {
+			$nom = 'editeurs-reunis-' . basename( $feuille, '.css' );
+			wp_enqueue_style( $nom, get_theme_file_uri( $feuille ), $avant, $version . '.' . filemtime( get_theme_file_path( $feuille ) ) );
+			$avant = array( $nom );
+		}
 		wp_enqueue_script(
 			'editeurs-reunis-menu-librairie',
 			get_theme_file_uri( 'assets/js/menu-librairie.js' ),
