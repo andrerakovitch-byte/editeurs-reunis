@@ -1,6 +1,6 @@
 Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
-  161 livres avec une traduction, 3 sous la direction de quelqu’un, 47 avec une préface ou une présentation, 23 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-165 personnes (170 graphies), dont 30 qui ne sont pas encore des auteurs :
+  161 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
+164 personnes (169 graphies), dont 29 qui ne sont pas encore des auteurs :
   Sophie Benech (11)
   Georges Nivat (9)
   André Markowicz (8)
@@ -47,6 +47,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Michel Niqueux (2)
   Céline Marangé (2)
   Nikita Struve (2)
+  Autobiographie d'Anna Akhmatova (2) · nouveau
   Sylvie Luneau (2)
   Edith Sherrer (2)
   Lily Denis (2)
@@ -88,7 +89,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Laëtitia Decourt (1)
   Elena Ponomareva (1)
   Natalino Valentini (1) · nouveau
-  Bibliothèque Rivages (1) · nouveau
   Johann Bihr (1)
   Andreï Vieru (1)
   E. Semenoff (1)
@@ -98,7 +98,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   M. Dumesnil' de Gramont (1)
   Hélène Arjakovsky (1)
   Michel Parfenov (1) · nouveau
-  Actes Sud BDMisha Zaslavsky (1) · nouveau
+  Misha Zaslavsky (1) · nouveau
   Askold Akishine (1) · nouveau
   Jean Bodiou (1)
   Odile Belkeddar (1)
@@ -112,7 +112,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Nilima Changkakoti (1)
   Stefan Zweig (1)
   Grégory Dufaud (1) · nouveau
-  Hélène Carrère (1) · nouveau
+  Hélène Carrère d'Encausse (1) · nouveau
   Ivan Bilibine (1) · nouveau
   Françoise Morvan (1)
   Anita Davidenkoff (1) ← Anna Davidenkoff
@@ -144,16 +144,15 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Louis Viardot (1)
   Bernard Le Caro (1)
   Anne Buguet (1) · nouveau
+  Albums du Père Castor (1) · nouveau
   Natalia Soljénistyne (1)
   J. Cathala (1)
   Henri Léonard-Bordier (1)
-  Pierre Pasquierь Œil (1) · nouveau
   Irène Rovere-Sova (1)
   Mireille Rovere-Tsivikis (1)
   C. Andronikof (1)
   A. de Couriss (1)
   Pierre Pascal (1)
-  Pierre Pascalbibliographie (1) · nouveau
   Michel Sollogoub (1)
   Lucette Marçais (1)
   André Gide (1)
@@ -240,7 +239,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   s · éditeur douteux · Naissance des Dieux (naissance-des-dieux)
   Tandis · un seul mot · La rose des vents (la-rose-des-vents)
   Ce · un seul mot · Sofia Pétrovna (sofia-petrovna)
-  Si Ceux · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
+  Si Ceux du Donbass · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
   @Acer-mjo · éditeur douteux · La liturgie expliquée aux jeunes (la-liturgie-expliquee-aux-jeunes)
   Dans · un seul mot · Les quatre vies d’Arseni (les-quatre-vies-darseni)
   Archim · un seul mot · Le Messager orthodoxe, n° 100 (le-messager-orthodoxe-n-100)
