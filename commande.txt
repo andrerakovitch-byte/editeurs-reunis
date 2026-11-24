@@ -1,176 +1,25 @@
-Audit des recoupements — 24 novembre 2026, 07:10
-840 livres, 68 articles, 169 rencontres, 19 vidéos et podcasts, 8 expositions, 39 pages, 601 personnes.
-
-## 1. Les personnes en double (même nom à l’accent ou à la transcription près, ou par une autre graphie)
-  0 groupes.
-  Doublons probables (même nom de famille et même initiale, ou un nom au début d’un autre) : 26 groupes, à vérifier un par un.
-    A. Tolstoï [1] ~ А. К. Толстой [1]
-    Alexandre Soljenitsyne [13] ~ А. Солженицын [5] ~ А.И Солженицын [1]
-    Anita Davidenkoff [2] ~ Anne Davidenkoff [0]
-    Fedor Dostoïevski [6] ~ Fiodor Dostoïevski [2]
-    Léon Tolstoï [3] ~ Лев Толстой [1]
-    Mahaut de Cordon-Prache [0] ~ Marie-Astrid Prache [1]
-    Mère Marie Skobtsova [0] ~ Мать Мария Скобцова [1]
-    Métropolite Antoine Bloom [1] ~ Monseigneur Antoine Bloom [5]
-    Michel Ossorguine [2] ~ Mikhaïl Ossorguine [2]
-    Nadejda Teffi [2] ~ Н.А. Тэффи [1]
-    Nicolas Berdiaev [1] ~ Николай Бердяев [3]
-    Nicolas Ross [5] ~ Николай Росс [1]
-    Nicolas Struve [0] ~ Nikita Struve [3]
-    Nicolas Zernov [0] ~ Николай Зернов [1]
-    P. Jean Meyendorff [1] ~ Прот. Иоанн Мейендорф [1]
-    Paul Florensky [1] ~ Pavel Florenski [2]
-    Père Serge Boulgakov [2] ~ прот. Сергей Булгаков [1] ~ прот. Сергий Булгаков [2]
-    Pierre Struve [0] ~ П.Б. Струве [1]
-    Simon Frank [1] ~ Семен Франк [1]
-    Véra Nabokov [1] ~ Vladimir Nabokov [1]
-    Yuri Felshtinsky [1] ~ Ю. Фельштинский [1]
-    Г. Федотов [1] ~ Георгий Фeдотов [3]
-    Anton Tchekhov [7] ~ Anton Tchekhov et Lydia Mizinova [1]
-    Christine Zeytounian [0] ~ Christine Zeytounian-Beloüs [0]
-    Marina Tsvétaïéva [5] ~ Marina Tsvétaïeva et Maximilian Volochine [1]
-
-## 2. Les signatures du journal
-  22 signatures (11 articles sans signature) : 20 reliées à une page, 2 qui ont une page sous une autre graphie (le lien manque), 0 sans page.
-  Signatures à relier (graphie → page) :
-    Irina Roskina → Ирина Роскина (1)
-    Svetlana Nosova → Светлана Носова (1)
-  Articles signés par une personne qui a sa page, mais pas rattachés à elle (absents de sa page) : 0
-
-## 3. Les intervenants des rencontres
-  27 intervenants reliés à leur page, 0 qui ont une page sous une autre graphie (le lien manque : ni lien, ni rencontre sur leur page), 0 sans page.
-
-## 4. Les personnes nommées dans un texte sans y être rattachées (prénom et nom en toutes lettres)
-  articles : 54 sur 68 nomment au moins une personne sans y être rattachés (111 rattachements qui manquent).
-  rencontres : 63 sur 169 nomment au moins une personne sans y être rattachés (109 rattachements qui manquent).
-  vidéos et podcasts : 0 sur 19 nomment au moins une personne sans y être rattachés (0 rattachements qui manquent).
-  expositions : 1 sur 8 nomment au moins une personne sans y être rattachés (4 rattachements qui manquent).
-  pages : 8 sur 39 nomment au moins une personne sans y être rattachés (44 rattachements qui manquent).
-  Les personnes les plus nommées sans rattachement :
-    Alexandre Soljenitsyne (36)
-    Nikita Struve (8)
-    Tatiana Victoroff (8)
-    Anna Akhmatova (8)
-    Georges Nivat (6)
-    André Lischke (6)
-    Léon Tolstoï (6)
-    Дмитрий Макаров (6)
-    Alexandre Blok (5)
-    Nikolaï Fiodorov (5)
-    Efim Etkind (4)
-    Nicolas Berdiaev (4)
-    Pierre Struve (4)
-    Andreï Biely (4)
-    Christine Zeytounian (4)
-    Fiodor Dostoïevski (4)
-    Mikhaïl Boulgakov (3)
-    А. Солженицын (3)
-    Boris Pasternak (3)
-    Daniel Struve (3)
-    Lydia Tchoukovskaïa (3)
-    Hélène Henry (3)
-    Ossip Mandelstam (3)
-    Boris de Schlœzer (3)
-    Christine Zeytounian-Beloüs (3)
-    … et 92 autres
-
-## 5. Les livres
-  Rôles que la fiche ne connaît pas (préface, postface, illustrations, présentation, édition établie…) : 45 mentions, dans les textes de livres ; 17 désignent une personne qui a déjà sa page.
-    préfac (13)
-    notes (9)
-    annot (8)
-    présent (7)
-    établi (2)
-    illustr (2)
-    postface (2)
-    avant-propos (1)
-    introduction (1)
-  Les noms les plus cités dans ces rôles :
-    Georges Nivat (2)
-    Sophie Benech (2)
-    Gustave Aucouturier (2)
-    Jean-Louis ChavarotCollection Folio (2)
-    Elena Balzano (1)
-    Catherine Géry (1)
-    Olga LosskyAujourd’hui (1)
-    Asya MarakulinaUN RÔLE (1)
-    Dany Savelli (1)
-    Jean-Noël Benoit (1)
-    Jérôme Cler
-Jérôme Cler (1)
-    Rodolphe Baudin (1)
-    Maïa Varsimashvili-RaphaelLe (1)
-    Bernard HubertLe (1)
-    Jean Laury (1)
-    … et 26 autres
-  Livres avec un traducteur repris de Wix, mais personne posée (wp er roles l’a mis de côté) : 2
-    Palimpsestes · « Rilke et Goethe »
-    La Vie de St Martin de Tours · « Martin de Tours »
-  Livres avec un éditeur repris de Wix mais sans éditeur posé : 2
-  Collections (une méta, sans page ni « Dans la même collection ») : 42 noms, 10 qui réunissent au moins trois livres.
-    Le Messager orthodoxe (55)
-    Вестник РХД (23)
-    Православная мысль (7)
-    Folio bilingue (7) — écrite aussi : Folio-Bilingue
-    "Избранная поэзия" (6) — écrite aussi : Избранная поэзия
-    Du monde entier (4)
-    ИНРИ (4)
-    ВМБ (3)
-    Новый детективъ (3)
-    FolioBilingue (3)
-  Le même livre en plusieurs fiches (mêmes auteurs, même titre) : 11 groupes, qu’aucune fiche ne relie aux autres.
-    Патриот [WIX-B1CC11FC] / Patriote [WIX-9DD6C31B]
-    L’histoire de ma sœur [WIX-ED222758] / L’histoire de ma sœur [WIX-1B2AC0D3]
-    Красное Колесо – Апрель Семнадцатого т. 2 [WIX-F09EE352] / Красное Колесо – Апрель Семнадцатого т. 1 [WIX-F934D680] / Красное Колесо – Март Семнадцатого том 4 [WIX-51D624B2] / Красное Колесо – Март Семнадцатого том 3 [WIX-98A29475] / Красное Колесо – Март Семнадцатого том 2 [WIX-7EF53134] / Красное Колесо – Март Семнадцатого том 1 [WIX-8C210C45]
-    Récits de la Kolyma [WIX-D5617B12] / Récits de la Kolyma [WIX-18EAD3CB]
-    Les Russes blancs : retracer la vie d’un ancêtre – Volume 2 [WIX-471FEE05] / Les Russes blancs : contexte d’un exil forcé – Volume 1 [WIX-DC18AA4E]
-    Ce n’était que la peste [WIX-258B2847] / Ce n’était que la peste [WIX-2410E7D8]
-    L’Apocalypse russe, Dieu au pays de Dostoïevski [WIX-48A929AD] / L’apocalypse russe, Dieu au pays de Dostoïevski [WIX-A1251BD1]
-    Le Roman de Monsieur de Molière [WIX-3BFF6115] / Le roman de monsieur de Molière [WIX-C017897A]
-    Le Maître et Marguerite [WIX-8E3E965F] / Le Maître et Marguerite [WIX-751C9F2C] / Le Maître et Marguerite [WIX-99401039]
-    Les Douze [WIX-BDC24240] / Les Douze [WIX-017CB8DC]
-    La guerre civile russe 1917-1922 [WIX-FEA512F2] / La guerre civile russe 1917-1922 [WIX-4B6D2A77]
-
-## 6. Les livres cités par référence (« Livres liés » des rencontres, des articles, des expositions)
-  53 références, 0 qui ne mènent à aucun livre.
-  Citations à sens unique : 12 livres cités sur 53 ne montrent pas, sur leur fiche, le contenu qui les cite (rien en commun pour la fiche : ni auteur, ni personne, ni sujet).
-    Ossip Mandelstam ← articles · Quand un chardonneret s’échappe dans le métro
-    L’Archipel du Goulag, un séisme littéraire – Catalogue d’exposition ← articles · 50 ans de l’Archipel du Goulag : « Aux millions de tués pour rien, Soljenitsyne donne un contour, une vie, un visage »
-    Архипелаг ГУЛаг ← articles · Boris Akounine : « L’époque de l’Archipel du Goulag vivra tant que la Russie restera un empire »
-    La Joie éternelle ← articles · Pavel Florensky, par le père Alexandre Men
-    Soljénitsyne et la France – sous la direction de Georges Nivat ← articles · Souvenirs de la soirée de présentation des Actes du colloque « Soljenitsyne et la France »
-    Anna Akhmatova, requiem pour l’Europe ← articles · Rencontres avec Anna Akhmatova en 1964-65
-    Entretiens avec Anna Akhmatova ← articles · Rencontres avec Anna Akhmatova en 1964-65
-    Ossip Mandelstam ← articles · Mandelstam à Voronej : « Je mange de l’air mort »
-    Иосиф Бродский: годы в СССР ← articles · Dans les plis du marbre : la poésie de Brodski
-    Boris Pasternak, un poète dans son temps ← articles · « 2 Juin 1960 », à l’occasion du 60ème anniversaire du décès de Boris Pasternak
-    Anthologie de la poésie russe du début du XXIe siècle ← articles · Nouveauté : Anthologie de la poésie russe du début du XXIe siècle
-    Chroniques cannoises, dialogues ← articles · Publication Mai 2019 : Chroniques Cannoises
-  Livres dont le traducteur ou le directeur a des rencontres, des articles ou des vidéos que la fiche ne montre pas : 18
-    Ermites dans la taïga ← Présentation de la traduction du roman Nostalgie russe de Ksenia Kirillova, par Marie Barbier, éditrice et Yves Gauthier
-    Poésies choisies ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
-    La Russie l’été ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
-    La Fuite – Pièces et nouvelles ← Laure Troubetzkoy : L’œuvre de théâtre de Boulgakov est d’une « extraordinaire diversité de formes et de registres »
-    Les Douze ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
-    Kotik Letaïev ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
-    Soljénitsyne et la France – sous la direction de Georges Nivat ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
-    Le Maître et Marguerite ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
-    Art sacré au Skite Sainte Foy ← Découverte de la Russie par une petite étudiante de la Sorbonne
-    Les Hommes d’août ← L’Archipel du Goulag sur la Montagne Sainte Geneviève
-    L’Affaire Kravtchenko ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
-    Le mal noir ← L’Archipel du Goulag sur la Montagne Sainte Geneviève
-
-## 7. Les vidéos des rencontres et la médiathèque
-  44 vidéos de rencontres : 0 sont aussi dans « Vidéos et podcasts », 44 n’y sont pas (on ne les trouve que sur la page de la rencontre).
-
-## 8. L’encyclopédie et les pages des personnes
-  0 articles de l’encyclopédie, 0 reliés à la page d’une personne ; 0 portent le nom d’une personne qui a sa page, sans lien entre les deux.
-  Les pages du site, par rubrique : centre-culturel (7), librairie (6), promos (1), accueil (3), mentions-legales (1), faq (1), livraison-et-retours (1), conditions-generales-de-vente (1), nous-trouver (1), ymca-press (4), journal (1), my-account (2), checkout (2), cart (1), shop (1), basket-2 (1), basket (1), mon-compte (1), commande (1), panier (1), politique-de-confidentialite (1)
-
-## 9. Les contenus isolés (ni personne, ni sujet : aucune page ne les montre en dehors de leur rubrique)
-  articles : 1 sur 68.
-  rencontres : 22 sur 169.
-  vidéos et podcasts : 1 sur 19.
-  expositions : 0 sur 8.
-
-Fait en 0.9 s. Rien n’a été modifié.
+  А. Солженицын → Alexandre Soljenitsyne : 5 livres
+  А.И Солженицын → Alexandre Soljenitsyne : 1 livres
+  Fedor Dostoïevski → Fiodor Dostoïevski : 6 livres
+  Лев Толстой → Léon Tolstoï : 1 livres
+  Николай Бердяев → Nicolas Berdiaev : 3 livres
+  Paul Florensky → Pavel Florenski : 1 livres
+  Pavel Florenski s’écrit désormais Pavel Florensky
+  прот. Сергей Булгаков → Père Serge Boulgakov : 1 livres
+  прот. Сергий Булгаков → Père Serge Boulgakov : 2 livres
+  Métropolite Antoine Bloom → Monseigneur Antoine Bloom : 1 livres
+  Michel Ossorguine → Mikhaïl Ossorguine : 2 livres
+  Н.А. Тэффи → Nadejda Teffi : 1 livres
+  Николай Росс → Nicolas Ross : 1 livres
+  П.Б. Струве → Pierre Struve : 1 livres
+  Николай Зернов → Nicolas Zernov : 1 livres
+  Прот. Иоанн Мейендорф → P. Jean Meyendorff : 1 livres
+  Семен Франк → Simon Frank : 1 livres
+  Ю. Фельштинский → Yuri Felshtinsky : 1 livres
+  Г. Федотов → Георгий Фeдотов : 1 livres
+  Георгий Фeдотов s’écrit désormais Георгий Федотов
+  Мать Мария Скобцова → Mère Marie Skobtsova : 1 livres
+  Christine Zeytounian → Christine Zeytounian-Beloüs : 0 livres
+  Anton Tchekhov et Lydia Mizinova → Anton Tchekhov + Lydia Mizinova : 1 livres
+  Marina Tsvétaïeva et Maximilian Volochine → Marina Tsvétaïéva + Maximilian Volochine : 1 livres
+Success: 22 à réunir ou séparer. Avec « appliquer », c’est fait.
