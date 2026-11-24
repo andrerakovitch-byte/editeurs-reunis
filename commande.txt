@@ -1,135 +1,29 @@
-#50 Mesures (Paris) → Mesures
-#54 Vibration éditions (Strasbourg) → Vibration éditions
-#94 Gallimard (Paris) → Gallimard
-#100 Gallimard (Paris) → Gallimard
-#134 les Éd. du Cerf (Paris) → Les Éd. du Cerf
-#140 Fayard (Paris) → Fayard
-#485 F.-X. de Guibert (Paris) → F.-X. de Guibert
-#535 YMCA press (Paris) → YMCA press
-#599 les Éd. du Cerf (Paris) → Les Éd. du Cerf
-#605 les Éd. du Cerf (Paris) → Les Éd. du Cerf
-#607 les Éd. du Cerf (Paris) → Les Éd. du Cerf
-#621 Actes Sud (Arles) → Actes Sud
-#623 Fayard (Paris) → Fayard
-#625 Gallimard (Paris) → Gallimard
-#627 Gallimard (Paris) → Gallimard
-#639 Verdier (Lagrasse) → Verdier
-#649 Fayard (Paris) → Fayard
-#665 Robert Laffont (Paris) → Robert Laffont
-#673 Ginkgo éditeur (Paris) → Ginkgo éditeur
-#683 Mesures (Paris) → Mesures
-#685 Bleu nuit éd. (Paris) → Bleu nuit éd.
-#687 YMCA-press (Париж) → YMCA-press
-#728 Temps présent (Paris) → Temps présent
-#741 Harpo & (Corbière) → Harpo &
-#755 Rostok (Sankt-Peterburg) → Rostok
-#761 Ymca-press (Paris) → Ymca-press
-#767 Perrin (Paris) → Perrin
-#828 Librairie des Cinq continents (Paris) → Librairie des Cinq continents
-#857 Perrin (Paris) → Perrin
-#871 l'Âge d'homme (Lausanne) → L'Âge d'homme
-#883 Éditions Border line (Troyes) → Éditions Border line
-#900 la Barque (Paris) → La Barque
-#902 la Barque (Paris) → La Barque
-#906 Perrin (Paris) → Perrin
-#935 Loco (Paris) → Loco
-#955 le Cherche midi éd. (Paris) → Le Cherche midi éd.
-#997 Éd. Point de vues (Rouen) → Éd. Point de vues
-#1014 l'Inventaire (Paris) → L'Inventaire
-#1035 Parenthèses (Marseille) → Parenthèses
-#1042 Éditions Interférence (Paris) → Éditions Interférence
-#1053 Fayard (Paris) → Fayard
-#1055 Fayard (Paris) → Fayard
-#1057 Éditions Art sacré (Saint-Julien-des-Points) → Éditions Art sacré
-#1062 Éditions du Rocher (Monaco) → Éditions du Rocher
-#1068 Macha (Paris) → Macha
-#1074 Parole et silence (Les Plans-sur-Bex (Suisse)) → Parole et silence
-#1089 Gallimard bande dessinée (Paris) → Gallimard bande dessinée
-#1093 Gallimard bande dessinée (Paris) → Gallimard bande dessinée
-#1096 Solin-Actes Sud (Arles) → Solin-Actes Sud
-#1098 les Éditions Noir sur blanc (Paris) → Les Éditions Noir sur blanc
-#1104 Éditions Sillage (Paris) → Éditions Sillage
-#1106 Stock (Paris) → Stock
-#1108 Éditions Transboréal (Paris) → Éditions Transboréal
-#1120 Arléa (Paris) → Arléa
-#1136 Éditions Natania (Paris) → Éditions Natania
-#1138 Éditions Natania (Paris) → Éditions Natania
-#1167 les Éditions Noir sur blanc (Lausanne) → Les Éditions Noir sur blanc
-#1177 Mesures (Paris) → Mesures
-#1183 la Barque (Rennes) → La Barque
-#1193 Buchet-Chastel (Paris) → Buchet-Chastel
-#1197 Plon (Paris) → Plon
-#1208 Folio (Harʹkov) → Folio
-#1210 Ginkgo éditeur (Paris) → Ginkgo éditeur
-#1216 Éditions des Syrtes (Genève (Suisse)) → Éditions des Syrtes
-#1218 Éditions des Syrtes (Genève (Suisse)) → Éditions des Syrtes
-#1251 Talent éditions (Paris) → Talent éditions
-#1263 Éditions des Syrtes (Genève (Suisse)) → Éditions des Syrtes
-#1267 Éditions du Rocher-Litos (Monaco) → Éditions du Rocher-Litos
-#1269 XO éditions (Paris) → XO éditions
-#1290 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1294 Ypsilon (Paris) → Ypsilon
-#1319 Lis & parle éditions (Bagnolet) → Lis & parle éditions
-#1321 la Barque (Rennes) → La Barque
-#1323 les Éditions Noir sur blanc (Lausanne (Suisse)) → Les Éditions Noir sur blanc
-#1325 Michel Lafon (Neuilly-sur-Seine) → Michel Lafon
-#1327 FYP (Limoges) → FYP
-#1341 Archives & culture (Paris) → Archives & culture
-#1343 Archives & culture (Paris) → Archives & culture
-#1361 Saint-Léger éditions (Le Coudray-Macouard) → Saint-Léger éditions
-#1382 Perrin (Paris) → Perrin
-#1384 Presses universitaires de Rennes (Rennes) → Presses universitaires de Rennes
-#1405 UGA éditions (Grenoble) → UGA éditions
-#1407 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1409 Éd. du Rocher (Monaco) → Éd. du Rocher
-#1413 Éd. du Rocher (Monaco) → Éd. du Rocher
-#1415 Éd. du Rocher (Monaco) → Éd. du Rocher
-#1417 Éd. du Rocher (Monaco) → Éd. du Rocher
-#1419 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1433 Verdier (Lagrasse) → Verdier
-#1441 La baconnière (Chêne-Bourg (Suisse)) → La baconnière
-#1558 l'Herne (Paris) → L'Herne
-#1570 Liana Levi (Paris) → Liana Levi
-#1572 Presses universitaires de Rennes (Rennes) → Presses universitaires de Rennes
-#1574 les Éditions Noir sur blanc (Lausanne (Suisse)) → Les Éditions Noir sur blanc
-#1576 Mesures (Paris) → Mesures
-#1588 Éditions des Syrtes (Genève (Suisse)) → Éditions des Syrtes
-#1594 Éditions Paulsen (PARIS) → Éditions Paulsen
-#1596 les Éditions Noir sur blanc (Lausanne (Suisse)) → Les Éditions Noir sur blanc
-#1607 Presses universitaires de Rennes (Rennes) → Presses universitaires de Rennes
-#1610 Imprimerie nationale éditions (Paris) → Imprimerie nationale éditions
-#1623 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1627 Novyj Hronograf (Moskva) → Novyj Hronograf
-#1635 Salvator (Paris) → Salvator
-#1657 Éditions Marie Barbier (Paris) → Éditions Marie Barbier
-#1662 les Presses de la Cité (Paris) → Les Presses de la Cité
-#1681 Bartillat (Paris) → Bartillat
-#1689 Vremâ (Moskva) → Vremâ
-#1704 BAbook (Riga) → BAbook
-#1707 Vidim Books (Bratislava) → Vidim Books
-#1742 Mesures (Paris) → Mesures
-#1744 Mesures (Paris) → Mesures
-#1747 the Hoochie coochie (Luc-en-Diois) → The Hoochie coochie
-#1749 the Hoochie coochie (Poitiers) → The Hoochie coochie
-#1751 Stock (Paris) → Stock
-#1753 Salvator (Paris) → Salvator
-#1757 Saint-Léger éditions (Le Coudray-Macouard) → Saint-Léger éditions
-#1759 Plon (Paris) → Plon
-#1779 Gallimard (Paris) → Gallimard
-#1781 la Coopérative (Paris) → La Coopérative
-#1783 les Belles lettres (Paris) → Les Belles lettres
-#1789 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1791 CNRS éditions (Paris) → CNRS éditions
-#1795 À l'Est de Brest-Litovsk (Paris) → À l'Est de Brest-Litovsk
-#1797 Ginkgo éditeur (Nevers) → Ginkgo éditeur
-#1809 les Éditions du Cerf (Paris) → Les Éditions du Cerf
-#1829 Meduza (Riga) → Meduza
-#1833 les Éditions Noir sur blanc (Paris) → Les Éditions Noir sur blanc
-#1835 Marie Barbier (Paris) → Marie Barbier
-#1858 Éditions Gallimard (Paris) → Éditions Gallimard
-#1864 Alʹpina Pablišer (Moskva) → Alʹpina Pablišer
-#1868 les Belles lettres (Paris) → Les Belles lettres
-#1876 Institut d'études slaves (Paris) → Institut d'études slaves
-#1880 Circé (Saulxures) → Circé
-#1882 Fayard (Paris) → Fayard
-Success: 134 éditeurs nettoyés.
+0 éditeurs écrits de plusieurs façons dans le classement :
+65 livres à l’éditeur écrit à la main, qui existe dans le classement :
+  Fayard ← Fayard (6)
+  Éditions Circé ← Circé (1)
+  Institut d’études slaves ← Institut d'études slaves (1)
+  Gallimard ← Éditions Gallimard (1), Gallimard (5)
+  Noir sur Blanc ← Les Éditions Noir sur blanc (6)
+  Éditions du Cerf ← Les Éditions du Cerf (6), Éditions du Cerf (1)
+  Ginkgo éditeur ← Ginkgo éditeur (3)
+  Éditions La Coopérative ← La Coopérative (1)
+  Saint Leger éditions ← Saint-Léger éditions (2)
+  Stock ← Stock (2)
+  Imprimerie Nationale ← Imprimerie nationale éditions (1)
+  Éditions des Syrtes ← Éditions des Syrtes (5)
+  Perrin ← Perrin (4)
+  La Barque ← La Barque (4)
+  Folio ← Folio (1)
+  Buchet-Chastel ← Buchet-Chastel (1)
+  Éditions Natania ← Éditions Natania (2)
+  Éditions Sillage ← Éditions Sillage (1)
+  Librairie des Cinq Continents ← Librairie des Cinq continents (1)
+  YMCA-Press ← Ymca-press (1), YMCA-press (1), YMCA press (1), YMCA-Press (1)
+  Harpo ← Harpo & (1)
+  Robert Laffont ← Robert Laffont (1)
+  Actes Sud ← Actes Sud (3)
+  Éditions Mame ← Éditions Mame (1)
+82 livres à l’éditeur écrit à la main, absent du classement (60 éditeurs, dont 2 écrits de plusieurs façons) :
+  Marie Barbier (1), Éditions Marie Barbier (1)
+  Liana Levi (1), Éditions Liana Levi (1)
