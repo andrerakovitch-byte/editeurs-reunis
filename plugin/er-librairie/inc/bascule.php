@@ -64,11 +64,14 @@ function er_bascule_livre( $nom, $livres ) {
 			continue;
 		}
 		$niveau = 0;
+		// Hors du cas courant, le titre doit être de la même écriture que le nom : « Dostoïevski » (Julia Kristeva)
+		// n'est pas dans « село-степанчиково-и-др-рассказы-достоевский ».
+		$meme = ( $l['cyrillique'] ?? $cyr ) === $cyr;
 		if ( 0 === strpos( $cle, $titre ) || 0 === strpos( $sans_num, $titre ) ) {
 			$niveau = 3;
-		} elseif ( $long >= 10 && false !== strpos( $cle, $titre ) ) {
+		} elseif ( $meme && $long >= 10 && false !== strpos( trim( $titre ), ' ' ) && false !== strpos( $cle, $titre ) ) {
 			$niveau = 2;
-		} elseif ( $long >= 12 && er_bascule_presque( trim( $cle ), trim( $titre ) ) ) {
+		} elseif ( $meme && $long >= 12 && er_bascule_presque( trim( $cle ), trim( $titre ) ) ) {
 			$niveau = 1;
 		}
 		if ( ! $niveau ) {

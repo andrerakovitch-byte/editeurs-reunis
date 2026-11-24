@@ -62,8 +62,10 @@ function test_bascule_auteur_en_tete_fautes_de_frappe_et_langues() {
 			22 => array( 'Patriote', 'Alexeï Navalny' ),
 			23 => array( 'Патриот', 'Алексей Навальный' ),
 			24 => array( 'Les Russes blancs, contexte d’un exil forcé', 'Nicolas Zname' ),
+			25 => array( 'Dostoïevski', 'Julia Kristeva' ),
 		)
 	);
+	egal( 0, er_bascule_livre( 'село-степанчикого-и-др-рассказы-достоевский', $livres ), 'un nom d’auteur pris pour un titre, dans une autre écriture' );
 	egal( 20, er_bascule_livre( 'monseigneur-antoine-bloom-l-expérience-de-la-foi', $livres ), 'l’auteur avant le titre' );
 	egal( 21, er_bascule_livre( 'la-sonate-à-kreutzner-léon-tolstoï', $livres ), 'une faute de frappe' );
 	egal( 22, er_bascule_livre( 'patriote-alexeï-navalny', $livres ), 'le livre en français pour un nom en lettres latines' );
