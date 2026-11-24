@@ -523,7 +523,9 @@ function er_roles_releves( $id ) {
 				// Ce qui n'est pas une personne : un mot du texte collé au nom (« Collection Folio », « UN RÔLE »,
 				// « Bibliothèque Rivages »), un mot trop long pour un nom (« Pascalbibliographie »), un mot qui mêle
 				// l'alphabet latin et le cyrillique (« Pasquierь »).
-				if ( preg_match( '/^(?:collection|biblioth\p{L}*|aujourd\S*|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman)\b/iu', $n )
+				// Un titre ou une collection pris pour un nom aussi : « Autobiographie d'Anna Akhmatova », « Albums du
+				// Père Castor ».
+				if ( preg_match( '/^(?:collection|biblioth\p{L}*|aujourd\S*|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman|albums?|autobiographie|biographie|m[ée]moires|journal|lettres|correspondance|contes?|po[èe]mes?|po[ée]sies?|[œo]uvres?|r[ée]cits?|nouvelles|histoire|souvenirs|essais?|textes?)\b/iu', $n )
 					|| preg_match( '/\b\p{Lu}{2,}\b/u', $n )
 					|| preg_match( '/[\p{L}’\']{15,}/u', $n )
 					|| preg_match( '/(?=[\p{L}]*\p{Latin})(?=[\p{L}]*\p{Cyrillic})[\p{L}]+/u', $n ) ) {
