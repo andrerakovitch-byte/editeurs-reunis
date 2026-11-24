@@ -448,6 +448,23 @@ Philosophie, Ukraine, Théâtre) : une liste à reprendre à la main (Articles �
 workflow, case « er » : `sujets deviner`) les repose sur ce qui est déjà en place ; `--simulation` dit ce qu'il
 poserait.
 
+### Les livres : sujets, époques, langues, presse
+
+L'audit de la librairie (24 novembre 2026) a relu les 859 fiches une à une ; ce qui en sort est dans
+`plugin/er-bascule/donnees/` et se pose d'une commande (case « er » du workflow) qui dit d'abord ce qu'elle changerait :
+
+- `etiquettes.tsv`, une ligne par livre (l'identifiant et des codes) : la langue, les sous-rayons (la liste entière,
+  les rayons parents s'ajoutent), les sujets (un vocabulaire fermé de trente, `inc/etiquettes.php`), l'époque
+  d'écriture et les époques traitées, « Autour de », l'auteur qui manque. `etiquettes poser`, puis
+  `etiquettes poser appliquer`.
+- `presse.tsv` : les articles et les prix, livre par livre. `presse poser appliquer` ; la fiche montre « Prix » et
+  « Ils en parlent ».
+- Les époques sont deux classements, `er_ecriture` (/ecrit/…) et `er_periode` (/epoque/…), sur les mêmes quatorze
+  périodes (`er-librairie/inc/epoques.php`) ; les langues des livres y sont aussi (bilingue russe-français, slavon
+  d'Église…). Une édition bilingue porte « Bilingue russe-français », pas « français » et « russe » à la fois.
+- Les notices des bibliothèques (BnF, Open Library ; Google Books refuse les machines de GitHub) : case « notices »
+  du workflow, « chercher » puis `notices importer appliquer`, qui reprend le fichier déposé hors du site.
+
 ## Les vidéos et les podcasts
 
 Un contenu à part, « Vidéos et podcasts » dans l'administration (`inc/medias.php`), à l'adresse
