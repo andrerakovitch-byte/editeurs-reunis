@@ -1,6 +1,15 @@
 # Les corrections des fiches tirées du relevé des rôles (24 nov. 2026) : identifiant, champ, avant, après.
 # texte : remplace dans la présentation et le résumé du livre ; titre : dans son titre (un « après » vide retire le
-# morceau) ; auteur : pose l'auteur d'un livre qui n'en a pas. « wp er recoupement [appliquer] » les applique.
+# morceau) ; auteur : pose l'auteur d'un livre qui n'en a pas ; personne : renomme une personne déjà sur le site (le
+# premier livre où elle paraît en tête), avant la pose des rôles. « wp er recoupement [appliquer] » les applique.
+104	personne	Nina Kchayan	Nina Kehayan
+110	personne	Edith Sherrer	Édith Scherrer
+195	personne	Natalia Soljénistyne	Natalia Soljénitsyne
+165	personne	A. de Couriss	Alexandre de Couriss
+165	personne	C. Andronikof	Constantin Andronikof
+197	personne	J. Cathala	Jean Cathala
+651	personne	Marianne Gourg-Antuszewic	Marianne Gourg-Antuszewicz
+1078	personne	M. Dumesnil' de Gramont	Michel Dumesnil de Gramont
 104	texte	Kchayan	Kehayan
 110	texte	Sherrer	Scherrer
 159	texte	S. Ermolonski	S. Ermolinski

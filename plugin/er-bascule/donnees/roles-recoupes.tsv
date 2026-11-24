@@ -1,5 +1,7 @@
 # Les rôles des livres, recoupés (24 nov. 2026, d'après le texte des fiches, la BnF et les libraires) : identifiant, rôle, personne.
 # Pour un livre, chaque rôle cité ici remplace les personnes posées dans ce rôle ; les autres rôles ne bougent pas.
+# Les personnes déjà sur le site gardent leur nom (P. Jean Meyendorff, John Breck, André Korliakov, Василий Зеньковский,
+# Протоиерей Михаил Фортунато) : pas de seconde page pour la même personne.
 # « wp er recoupement [appliquer] » les pose. Laissé de côté, à vérifier :
 #   38 Sous la direction de : Georges Nivat (« sous la direction de » selon les libraires)
 #   249 Traduction : ? (« traduction Hetzel »  à vérifier)
@@ -187,7 +189,7 @@
 423	Préface, présentation	Kiprian Kern
 423	Préface, présentation	Василий Гролимунд
 431	Illustrations	Julia Reitlinger
-443	Préface, présentation	Jean Meyendorff
+443	Préface, présentation	P. Jean Meyendorff
 463	Préface, présentation	Michel Niqueux
 463	Édition établie, notes, choix	Michel Niqueux
 467	Édition établie, notes, choix	Ольга Табашникова
@@ -357,7 +359,7 @@
 964	Traduction	Renata Lesnik
 978	Illustrations	Lili la Baleine
 981	Préface, présentation	Jean Becchio
-981	Préface, présentation	Jean Breck
+981	Préface, présentation	John Breck
 981	Traduction	Anne Davidenkoff
 1002	Illustrations	Bastien Loukia
 1006	Traduction	Odile Belkeddar
@@ -473,7 +475,7 @@
 1353	Traduction	Françoise Lhoest
 1359	Illustrations	Feodor Rojankovsky
 1359	Illustrations	А. Гефтер
-1359	Sous la direction de	Basile Zenkovsky
+1359	Sous la direction de	Василий Зеньковский
 1359	Sous la direction de	А. М. Черный
 1361	Préface, présentation	Antoine Arjakovsky
 1363	Préface, présentation	Patrice Mahieu
@@ -498,7 +500,7 @@
 1405	Traduction	Jean-Noël Benoit
 1405	Édition établie, notes, choix	Jean-Noël Benoit
 1435	Traduction	Christian Mouze
-1448	Préface, présentation	Michel Fortounatto
+1448	Préface, présentation	Протоиерей Михаил Фортунато
 1475	Édition établie, notes, choix	Gleb Struve
 1525	Préface, présentation	А. Н. Богословский
 1525	Édition établie, notes, choix	А. Н. Богословский
@@ -521,7 +523,7 @@
 1787	Préface, présentation	Catherine Géry
 1787	Préface, présentation	Galina Subbotina
 1820	Édition établie, notes, choix	Дмитрий Макаров
-1822	Édition établie, notes, choix	Андрей Корляков
+1822	Édition établie, notes, choix	André Korliakov
 1822	Édition établie, notes, choix	Дмитрий Северюхин
 1822	Édition établie, notes, choix	Николай Эндегор
 1824	Préface, présentation	Elena Balzamo

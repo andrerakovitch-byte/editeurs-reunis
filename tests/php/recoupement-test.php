@@ -20,7 +20,7 @@ function test_recoupement_roles_tous_connus_et_par_livre() {
 }
 
 function test_recoupement_corrections_lisibles() {
-	$champs = array( 'texte', 'titre', 'auteur' );
+	$champs = array( 'texte', 'titre', 'auteur', 'personne' );
 	foreach ( er_recoupement_lire( ER_RACINE . '/plugin/er-bascule/donnees/corrections-fiches.tsv', 4 ) as list( $id, $champ, $avant, $apres ) ) {
 		vrai( in_array( $champ, $champs, true ), $id . ' : champ « ' . $champ . ' »' );
 		vrai( 'auteur' === $champ ? '' !== $apres : '' !== $avant, $id . ' : de quoi corriger' );

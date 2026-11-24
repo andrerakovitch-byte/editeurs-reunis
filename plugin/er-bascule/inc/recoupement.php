@@ -115,12 +115,38 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			if ( ! function_exists( 'er_poser_personnes' ) ) {
 				WP_CLI::error( 'L’extension de la librairie n’est pas active (er_poser_personnes).' );
 			}
-			$noms_roles = array_flip( er_recoupement_roles() );
+			$noms_roles  = array_flip( er_recoupement_roles() );
+			$corrections = er_recoupement_lire( $dossier . 'corrections-fiches.tsv', 4 );
 
-			// 1. Les rôles.
+			// 1. Les personnes déjà sur le site sous un nom fautif ou tronqué : renommées (l'identifiant ne change pas, les
+			// rôles déjà posés suivent), avant les rôles, pour que le relevé les retrouve.
+			foreach ( $corrections as list( $id, $champ, $avant, $apres ) ) {
+				if ( 'personne' !== $champ ) {
+					continue;
+				}
+				$t = get_term_by( 'name', $avant, 'auteur' );
+				if ( ! $t ) {
+					WP_CLI::log( '  personne : « ' . $avant . ' » introuvable (déjà renommée ?)' );
+					continue;
+				}
+				if ( get_term_by( 'name', $apres, 'auteur' ) ) {
+					WP_CLI::warning( '« ' . $apres . ' » existe déjà : « ' . $avant . ' » est laissé, à réunir à la main.' );
+					continue;
+				}
+				WP_CLI::log( '  personne : « ' . $avant . ' » → « ' . $apres . ' »' );
+				if ( $appliquer ) {
+					wp_update_term( $t->term_id, 'auteur', array( 'name' => $apres ) );
+					if ( function_exists( 'er_personnes_cles_perimer' ) ) {
+						er_personnes_cles_perimer();
+					}
+				}
+			}
+
+			// 2. Les rôles.
 			$changes   = 0;
 			$pareils   = 0;
 			$nouvelles = array();
+			$otes      = array();
 			$absents   = array();
 			foreach ( er_recoupement_roles_par_livre( $dossier . 'roles-recoupes.tsv' ) as $id => $roles ) {
 				if ( 'product' !== get_post_type( $id ) ) {
@@ -150,6 +176,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 						continue;
 					}
 					++$changes;
+					foreach ( array_diff( $avant, $trouves ) as $ote ) {
+						$otes[ $ote ] = true;
+					}
 					WP_CLI::log( '  ' . $id . ' « ' . html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) . ' », ' . $noms_roles[ $taxonomie ] . ' : ' . ( $avant ? implode( ', ', $avant ) : '—' ) . ' → ' . implode( ', ', $trouves ) );
 					if ( $appliquer ) {
 						er_poser_personnes( $id, $taxonomie, $personnes );
@@ -161,10 +190,32 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				WP_CLI::log( count( $nouvelles ) . ' personnes nouvelles' . ( $appliquer ? ', créées' : ', à créer' ) . ' : ' . implode( ', ', array_keys( $nouvelles ) ) );
 			}
 
-			// 2. Les fiches : textes, titres, auteurs.
+			// Les personnes que le relevé retire d'un rôle : celles qui n'ont plus aucun livre sont signalées, pas effacées.
+			if ( $otes ) {
+				$seules = array();
+				foreach ( array_keys( $otes ) as $nom ) {
+					$t = get_term_by( 'name', $nom, 'auteur' );
+					if ( $t && $appliquer ) {
+						wp_cache_delete( 'er_personnes_livres', 'er' );
+						$l = er_personne_livres( $t );
+						if ( ! $l['tous'] && ! $l['autour'] ) {
+							$seules[] = $nom;
+						}
+					}
+				}
+				WP_CLI::log( count( $otes ) . ' personnes retirées d’au moins un rôle : ' . implode( ', ', array_keys( $otes ) ) );
+				if ( $seules ) {
+					WP_CLI::log( count( $seules ) . ' n’ont plus aucun livre (leur page est vide, à supprimer à la main si elle ne sert à rien) : ' . implode( ', ', $seules ) );
+				}
+			}
+
+			// 3. Les fiches : textes, titres, auteurs.
 			$faits       = 0;
 			$introuvable = array();
-			foreach ( er_recoupement_lire( $dossier . 'corrections-fiches.tsv', 4 ) as list( $id, $champ, $avant, $apres ) ) {
+			foreach ( $corrections as list( $id, $champ, $avant, $apres ) ) {
+				if ( 'personne' === $champ ) {
+					continue;
+				}
 				$post = get_post( $id );
 				if ( ! $post || 'product' !== $post->post_type ) {
 					$absents[] = $id;
@@ -213,7 +264,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				++$faits;
 			}
 			if ( $appliquer && function_exists( 'er_index_contenu' ) ) {
-				foreach ( array_unique( array_column( er_recoupement_lire( $dossier . 'corrections-fiches.tsv', 4 ), 0 ) ) as $id ) {
+				foreach ( array_unique( array_column( $corrections, 0 ) ) as $id ) {
 					er_index_contenu( $id );
 				}
 			}
