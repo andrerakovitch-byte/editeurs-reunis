@@ -231,11 +231,13 @@ function er_facettes_ids( $q, $contexte ) {
 	$taxes = array( 'relation' => 'AND' );
 	if ( function_exists( 'wc_get_product_visibility_term_ids' ) ) {
 		$vis = wc_get_product_visibility_term_ids();
-		if ( ! empty( $vis['exclude-from-catalog'] ) ) {
+		// Comme WooCommerce : le catalogue écarte ce qui est caché du catalogue, la recherche ce qui l'est de la recherche.
+		$cache = $vis[ $q->is_search() ? 'exclude-from-search' : 'exclude-from-catalog' ] ?? 0;
+		if ( $cache ) {
 			$taxes[] = array(
 				'taxonomy' => 'product_visibility',
 				'field'    => 'term_taxonomy_id',
-				'terms'    => array( $vis['exclude-from-catalog'] ),
+				'terms'    => array( $cache ),
 				'operator' => 'NOT IN',
 			);
 		}
