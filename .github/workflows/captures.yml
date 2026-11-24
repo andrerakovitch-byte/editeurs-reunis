@@ -1,0 +1,47 @@
+# Compare le rendu des pages de la bêta avec deux versions des feuilles de style du thème (outils/captures.py), à
+# plusieurs largeurs d'écran : ce qui a bougé, page par page. Le rapport et les planches vont sur la branche
+# « captures » (des pages publiques de la bêta, rien d'autre), que Claude lit par git.
+name: Comparer les captures
+
+on:
+  workflow_dispatch:
+    inputs:
+      avant:
+        description: "La révision d'avant (un commit, main~1…)"
+        required: true
+      apres:
+        description: "La révision d'après"
+        default: main
+
+permissions:
+  contents: write
+
+jobs:
+  comparer:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Les outils
+        run: |
+          pip install --quiet playwright==1.49.1 pillow==11.0.0
+          python3 -m playwright install --with-deps chromium
+      - name: Comparer
+        env:
+          AVANT: ${{ inputs.avant }}
+          APRES: ${{ inputs.apres }}
+        run: |
+          python3 outils/captures.py "$AVANT" "$APRES" --sortie captures | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Sur la branche captures
+        env:
+          AVANT: ${{ inputs.avant }}
+          APRES: ${{ inputs.apres }}
+        run: |
+          cd captures
+          git init -q -b captures
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "Captures : $AVANT → $APRES"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:captures
