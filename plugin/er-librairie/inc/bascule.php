@@ -39,38 +39,68 @@ function er_bascule_pages() {
 }
 
 /**
- * Le livre que désigne le nom d'une page de livre de Wix, parmi des livres donnés par leurs clés.
+ * Le livre que désigne le nom d'une page de livre de Wix, parmi des livres donnés par leurs clés. Dans l'ordre :
+ * le titre qui ouvre le nom (« titre-auteur », le cas courant) ; le titre ailleurs dans le nom (« auteur-titre ») ;
+ * un titre à une ou deux lettres près (les fautes de frappe de Wix : « la-sonate-à-kreutzner »). Le titre le plus
+ * long l'emporte ; à titre égal (deux éditions, deux langues), celui dont les auteurs suivent, puis celui de la même
+ * écriture que le nom.
  *
  * @param string $nom    Le nom de la page (« dieu-et-l-etat-bakounine »), décodé.
- * @param array  $livres Identifiant → array( 'titre' => clé du titre, 'tout' => clé du titre, des auteurs… ).
+ * @param array  $livres Identifiant → array( 'titre' => clé du titre, 'tout' => clé du titre, des auteurs…,
+ *                       'cyrillique' => le titre est-il en cyrillique ).
  * @return int Le livre, ou 0.
  */
 function er_bascule_livre( $nom, $livres ) {
-	$cle     = ' ' . er_cle_recherche( str_replace( '-', ' ', $nom ) ) . ' ';
-	$cles    = array_unique( array( $cle, (string) preg_replace( '/ \d+ $/', ' ', $cle ) ) ); // « …-1 » : un doublon de Wix.
-	$retenu  = 0;
-	$meilleur = -1;
+	$nom      = (string) preg_replace( '/^copie-de-/u', '', $nom );
+	$cle      = ' ' . er_cle_recherche( str_replace( '-', ' ', $nom ) ) . ' ';
+	$sans_num = (string) preg_replace( '/ \d+ $/', ' ', $cle ); // « …-1 » : un doublon de Wix.
+	$cyr      = (bool) preg_match( '/\p{Cyrillic}/u', $nom );
+	$retenu   = 0;
+	$meilleur = 0;
 	foreach ( $livres as $id => $l ) {
 		$titre = ' ' . trim( $l['titre'] ) . ' ';
-		if ( '  ' === $titre ) {
+		$long  = strlen( $titre );
+		if ( $long < 3 ) {
 			continue;
 		}
-		foreach ( $cles as $c ) {
-			if ( 0 !== strpos( $c, $titre ) ) {
-				continue;
-			}
-			// Le titre le plus long l'emporte ; à titre égal (deux éditions), celle dont les auteurs suivent dans le nom.
-			$reste  = array_filter( explode( ' ', trim( substr( $c, strlen( $titre ) ) ) ) );
-			$communs = count( array_intersect( $reste, explode( ' ', trim( $l['tout'] ?? '' ) ) ) );
-			$score  = strlen( $titre ) * 100 + $communs * 10 + ( $c === $cle ? 1 : 0 );
-			if ( $score > $meilleur ) {
-				$meilleur = $score;
-				$retenu   = (int) $id;
-			}
-			break;
+		$niveau = 0;
+		if ( 0 === strpos( $cle, $titre ) || 0 === strpos( $sans_num, $titre ) ) {
+			$niveau = 3;
+		} elseif ( $long >= 10 && false !== strpos( $cle, $titre ) ) {
+			$niveau = 2;
+		} elseif ( $long >= 12 && er_bascule_presque( trim( $cle ), trim( $titre ) ) ) {
+			$niveau = 1;
+		}
+		if ( ! $niveau ) {
+			continue;
+		}
+		$reste   = array_filter( explode( ' ', trim( str_replace( $titre, ' ', $cle ) ) ) );
+		$communs = count( array_intersect( $reste, explode( ' ', trim( $l['tout'] ?? '' ) ) ) );
+		$score   = $niveau * 1000000 + $long * 1000 + $communs * 10 + ( ( $l['cyrillique'] ?? $cyr ) === $cyr ? 2 : 0 ) + ( 0 === strpos( $cle, $titre ) ? 1 : 0 );
+		if ( $score > $meilleur ) {
+			$meilleur = $score;
+			$retenu   = (int) $id;
 		}
 	}
 	return $retenu;
+}
+
+/**
+ * Le début d'un nom diffère-t-il d'un titre d'une lettre ou deux au plus (deux à partir de 24 lettres) ? Une lettre en
+ * trop, en moins ou changée.
+ *
+ * @param string $cle   La clé du nom.
+ * @param string $titre La clé du titre.
+ */
+function er_bascule_presque( $cle, $titre ) {
+	$n     = strlen( $titre );
+	$seuil = $n >= 24 ? 2 : 1;
+	for ( $k = $n - $seuil; $k <= $n + $seuil; $k++ ) {
+		if ( $k <= strlen( $cle ) && levenshtein( substr( $cle, 0, $k ), $titre ) <= $seuil && ( strlen( $cle ) === $k || ' ' === $cle[ $k ] ) ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -81,10 +111,11 @@ function er_bascule_livres_de_l_index() {
 	$livres = array();
 	$table  = er_index_table();
 	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery -- le nom de la table vient de $wpdb->prefix.
-	foreach ( (array) $wpdb->get_results( "SELECT objet, cle_titre, cle FROM {$table} WHERE genre = 'livre'" ) as $l ) {
+	foreach ( (array) $wpdb->get_results( "SELECT objet, titre, cle_titre, cle FROM {$table} WHERE genre = 'livre'" ) as $l ) {
 		$livres[ (int) $l->objet ] = array(
-			'titre' => trim( $l->cle_titre ),
-			'tout'  => trim( $l->cle ),
+			'titre'      => trim( $l->cle_titre ),
+			'tout'       => trim( $l->cle ),
+			'cyrillique' => (bool) preg_match( '/\p{Cyrillic}/u', $l->titre ),
 		);
 	}
 	return $livres;
