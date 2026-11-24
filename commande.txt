@@ -1,10 +1,1 @@
-/ · 200 · BookStore, WebSite
-/livre/%d1%80%d0%b5%d0%b3%d0%b8%d1%81%d1%82%d1%80%d0%b0%d1%86%d0%b8%d1%8f/ · 200 · Book+Product (16.00 EUR, InStock), BreadcrumbList (4 étapes), BreadcrumbList (4 étapes)
-/centre-culturel/evenements/presentation-du-livre-mikhail-mikhailovitche-fedorov-1858-1949-une-vie-au-service-dune-russie-libre-et-democratique/ · 200 · Event
-/auteur/alexandre-soljenitsyne/ · 200 · Person, BreadcrumbList (2 étapes)
-/centre-culturel/evenements/ · 200 · BreadcrumbList (2 étapes)
-/product-page/dieu-et-l-etat-bakounine → 301 /livre/dieu-et-letat/
-/product-page/la-sonate-à-kreutzner-léon-tolstoï → 301 /livre/la-sonate-a-kreutzer/
-/product-page/un-livre-qui-n-existe-pas → 302 /?s=un livre qui n existe pas&post_type=product
-/expo → 301 /centre-culturel/expositions/
-/notre-histoire → 301 /ymca-press/histoire/
+Les miroirs des personnes sont en ordre : chacun a sa personne, sous le même nom.
