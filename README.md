@@ -256,28 +256,59 @@ l'auteur, le prix ; au clavier aussi ; au toucher, le lien suffit). `plugin/…/
 **Les traducteurs, les directeurs d'ouvrage et les éditeurs ont leur page** (décision du 24 nov. 2026 ;
 `plugin/…/inc/traducteurs-editeurs.php`) :
 
-- Un traducteur, un directeur d'ouvrage est une personne : un auteur, avec la page d'une personne. Un livre le porte
-  dans « Traduction » ou « Sous la direction de », deux classements cachés tenus avec les noms des auteurs, comme
-  « Autour de » (`er_traduction`, `er_direction` ; deux boîtes dans la fiche du produit). La fiche du livre en fait des
-  liens.
-- Les livres d'une personne sont ceux qu'elle a écrits, traduits ou dirigés : `er_personne_livres( $terme )` les donne
-  rôle par rôle (`auteur`, `traduction`, `direction`, `autour`, et `tous`). La recherche les compte : « 3 livres en
-  rayon : 2 sous sa direction et une traduction » (Georges Nivat n'est l'auteur d'aucun livre du catalogue). **La page
-  d'une personne** (`patterns/librairie.php`) montre, sous « Ses livres », « Ses traductions » et « Sous sa direction »,
-  avec la même fonction ; qui n'a rien écrit qui soit en vente n'a pas de « Ses livres » vide (corrigé le 24 nov. : la
-  page ne montrait que les livres écrits). Le compte d'un auteur, lui, reste son nombre de livres écrits.
+- Un traducteur, un directeur d'ouvrage, un préfacier, celui qui établit une édition, un illustrateur est une
+  personne : un auteur, avec la page d'une personne. Un livre le porte dans un classement caché tenu avec les noms des
+  auteurs, comme « Autour de » : `er_traduction` (Traduction), `er_direction` (Sous la direction de), `er_preface`
+  (Préface), `er_edition` (Édition établie par), `er_illustration` (Illustrations) ; une boîte chacun dans la fiche du
+  produit. La fiche du livre en fait des liens. La liste des rôles est dans `er_roles_personnes()` : un rôle de plus
+  s'y ajoute en une ligne.
+- Les livres d'une personne sont ceux qu'elle a écrits ou auxquels elle a pris part : `er_personne_livres( $terme )`
+  les donne rôle par rôle (`auteur`, `traduction`, `direction`, `preface`, `edition`, `illustration`, `autour`, et
+  `tous`, qui laisse « Autour de » de côté). La recherche les compte : « 3 livres en rayon : 2 sous sa direction et une
+  traduction » (Georges Nivat n'est l'auteur d'aucun livre du catalogue). **La page d'une personne**
+  (`patterns/librairie.php`) montre, sous « Ses livres », « Ses traductions », « Sous sa direction », « Ses préfaces »,
+  « Éditions établies » et « Ses illustrations », avec la même fonction ; qui n'a rien écrit qui soit en vente n'a pas
+  de « Ses livres » vide (corrigé le 24 nov. : la page ne montrait que les livres écrits). Le compte d'un auteur, lui,
+  reste son nombre de livres écrits.
 - Un éditeur est un classement public, `er_editeur`, avec sa page, `/editeur/<slug>/` (sa présentation, ses livres ;
   le gabarit `taxonomy-er_editeur`). Les métas `er_traducteur` et `er_editeur` reprises de Wix ne servent plus que de
   secours.
+- Une collection aussi : `er_collection`, à l'adresse `/collection/<slug>/` (le gabarit `taxonomy-er_collection` ;
+  `plugin/…/inc/collections.php`). La fiche en fait un lien. `wp er collections` relève les collections du texte de
+  Wix, nettoyées (sans numéro, sans parenthèses, sans la phrase qui suit) et regroupées par éditeur ;
+  `wp er collections appliquer` les pose.
+- Sous les renseignements, « Autres éditions » et « Les autres volumes » (`er_autres_editions()`) : les fiches du même
+  auteur au même titre — même titre entier, une autre édition (la langue si elle diffère, l'éditeur, l'année) ; même
+  titre avant le sous-titre, un autre volume.
+- « Autour de ce livre » compte aussi les personnes des rôles, et les contenus qui citent le livre (un article, une
+  rencontre, une page qui le porte dans ses livres, `er_reco_citants()`), qui passent devant.
+
+**Retrouver une personne** (`er_personne_trouver()`, le 24 nov. 2026) : tout ce qui rattache un nom à une personne
+(les rôles, les signatures du journal, les intervenants d'une rencontre, les expositions, l'import du catalogue, les
+« Autour de ») passe par une seule fonction, qui essaie dans l'ordre le nom exact, le slug, les anciens slugs d'une
+fiche fondue (`er_anciens`), puis la clé de recherche (sans accents, la transcription du russe ramenée à une forme,
+« Autres graphies » comprises) quand elle ne désigne qu'une personne. Une adresse `/auteur/<ancien-slug>/` qui ne mène plus
+nulle part renvoie (301) vers la personne qu'elle désigne.
+
+- `wp er personnes fusionner` montre les doublons à fondre (la liste est dans `er_personnes_fusions()`,
+  `plugin/…/inc/personnes.php` : Soljenitsyne et « А. Солженицын », Fiodor et Fedor Dostoïevski…) et les fiches qui
+  mêlaient deux personnes (`er_personnes_separations()` : Tchekhov et Mizinova) ; `wp er personnes fusionner
+  appliquer` les fond : les livres, les rôles, les étiquettes et les intervenants passent à la fiche gardée, l'autre
+  graphie va dans ses « Autres graphies », l'ancien slug dans `er_anciens`. Un cas douteux ne s'ajoute à la liste
+  qu'une fois tranché.
+- `wp er personnes rattacher` relève les personnes nommées dans le titre ou le chapô d'un contenu, ou deux fois dans
+  son texte, sans y être rattachées ; `appliquer` les rattache (« Autour de »). Les étiquettes relues à la main
+  (`er_etiquettes_relues`) ne sont pas touchées ; une mention isolée est seulement listée, à trancher à la main.
 - `wp er audit` (24 nov. 2026), en lecture seule : ce qui devrait se répondre et ne se répond pas, compté dans les
   données — personnes en double ou probablement en double, signatures et intervenants sous une autre graphie, personnes
-  nommées dans un texte sans y être rattachées, rôles que la fiche ignore (préface, notes…), collections sans page,
-  même livre en plusieurs fiches, citations à sens unique, vidéos des rencontres absentes de la médiathèque, contenus
-  isolés. Le lancer par le déploiement (champ « Une commande de l'extension » : `audit`) ; le rapport va sur la branche
-  `wix-pages` (`commande.txt`).
+  nommées dans un texte sans y être rattachées, rôles que la fiche ignore, collections sans page, même livre en
+  plusieurs fiches, citations à sens unique, vidéos des rencontres absentes de la médiathèque, contenus isolés. Le
+  lancer par le déploiement (champ « Une commande de l'extension » : `audit`) ; le rapport va sur la branche
+  `wix-pages` (`commande.txt`). À relancer après chaque import.
 - `wp er roles` relève dans le catalogue les traducteurs (la méta, « traduit du russe par … » dans le titre ou la
-  présentation), les directeurs (« sous la direction de … » dans le titre) et les éditeurs ; `wp er roles appliquer`
-  les pose (un nom inconnu devient un auteur).
+  présentation), les directeurs (« sous la direction de … » dans le titre), les préfaciers, les éditions établies, les
+  illustrateurs et les éditeurs ; ce qui n'est pas un nom (un titre, une collection, un mot collé au nom par la perte
+  des retours à la ligne de Wix) est écarté. `wp er roles appliquer` les pose (un nom inconnu devient un auteur).
 
 Un livre est un produit WooCommerce (Produits → Ajouter) :
 
@@ -374,7 +405,9 @@ le principal), le genre (vidéo ou podcast), la durée, la série (Les podcasts 
 l'Archipel du Goulag…), les étiquettes. Sa page : le titre, le lecteur, le texte, les étiquettes, « À lire, à
 revoir ». Le bloc `er/medias` donne la liste, par série (les épisodes dans l'ordre) : à poser sur « Nos vidéos »
 (`{"genre":"video"}`) ou « Nos podcasts » (`{"genre":"podcast"}`), qui sont encore les maquettes. L'enregistrement
-d'une rencontre reste sur la page de la rencontre.
+d'une rencontre reste sur la page de la rencontre, et la liste le reprend aussi, à la fin, sous « Les rencontres, à
+revoir » (`er_media_rencontres()` : les rencontres dont un lien est une vidéo, ou un podcast pour « Nos podcasts ») ;
+ainsi la médiathèque n'oublie plus les vidéos que Wix ne rangeait que sur la page de l'événement.
 
 ## Le journal
 

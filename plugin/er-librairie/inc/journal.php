@@ -97,10 +97,12 @@ function er_bloc_livres_article( $id ) {
 			$ids[] = $trouve;
 		}
 	}
-	$signature = (string) get_post_meta( $id, 'er_signature', true );
+	// Celui qui signe, sous son nom ou sous une autre graphie (« Irina Roskina », la page « Ирина Роскина »).
+	$signature = trim( (string) get_post_meta( $id, 'er_signature', true ) );
+	$signe     = '' !== $signature && function_exists( 'er_personne_trouver' ) ? er_personne_trouver( $signature ) : null;
 	$personnes = array();
 	foreach ( wp_get_post_terms( $id, 'auteur' ) as $t ) {
-		if ( $t->name !== $signature ) {
+		if ( $t->name !== $signature && ! ( $signe && (int) $signe->term_id === (int) $t->term_id ) ) {
 			$personnes[] = $t->term_id;
 		}
 	}

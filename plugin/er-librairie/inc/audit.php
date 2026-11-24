@@ -243,12 +243,18 @@ function er_audit() {
 	$a_relier   = array();
 	$sans_page  = array();
 	$absents    = array(); // signés par la personne, mais pas rattachés à elle : absents de sa page.
+	$par_graphie = array();
 	foreach ( $signatures as $sig => $ids ) {
-		$exact = get_term_by( 'name', $sig, 'auteur' );
+		// La signature mène à la page que trouve er_personne_trouver() (er_bloc_signature) : le nom, l'ancien slug, ou
+		// une autre graphie qui ne désigne qu'une personne.
+		$exact = function_exists( 'er_personne_trouver' ) ? er_personne_trouver( $sig ) : get_term_by( 'name', $sig, 'auteur' );
 		$cand  = isset( $p['index'][ er_cle_recherche( $sig ) ] ) ? $p['index'][ er_cle_recherche( $sig ) ] : array();
 		if ( $exact ) {
 			$liees[ $sig ] = count( $ids );
 			$tid           = $exact->term_id;
+			if ( $exact->name !== $sig ) {
+				$par_graphie[ $sig . ' → ' . $exact->name ] = count( $ids );
+			}
 		} elseif ( $cand ) {
 			$a_relier[ $sig . ' → ' . $p['termes'][ $cand[0] ]->name ] = count( $ids );
 			$tid = $cand[0];
@@ -265,7 +271,11 @@ function er_audit() {
 			}
 		}
 	}
-	$ln( sprintf( '  %d signatures (%d articles sans signature) : %d reliées à une page, %d qui ont une page sous une autre graphie (le lien manque), %d sans page.', count( $signatures ), $sans_sig, count( $liees ), count( $a_relier ), count( $sans_page ) ) );
+	$ln( sprintf( '  %d signatures (%d articles sans signature) : %d reliées à une page (dont %d par une autre graphie), %d qui ont une page sous une autre graphie sans que le lien se fasse (plusieurs personnes possibles), %d sans page.', count( $signatures ), $sans_sig, count( $liees ), count( $par_graphie ), count( $a_relier ), count( $sans_page ) ) );
+	if ( $par_graphie ) {
+		$ln( '  Reliées par une autre graphie (signature → page) :' );
+		$ln( er_audit_tete( $par_graphie, 20 ) );
+	}
 	if ( $a_relier ) {
 		$ln( '  Signatures à relier (graphie → page) :' );
 		$ln( er_audit_tete( $a_relier, 20 ) );
@@ -287,7 +297,7 @@ function er_audit() {
 	$inter_seuls  = array();
 	if ( taxonomy_exists( 'er_intervenant' ) ) {
 		foreach ( get_terms( array( 'taxonomy' => 'er_intervenant', 'hide_empty' => false ) ) as $t ) {
-			if ( get_term_by( 'slug', $t->slug, 'auteur' ) ) {
+			if ( function_exists( 'er_evt_personne' ) ? er_evt_personne( $t ) : get_term_by( 'slug', $t->slug, 'auteur' ) ) {
 				++$inter_lies;
 				continue;
 			}
@@ -330,6 +340,7 @@ function er_audit() {
 		'pages'             => array( $pages, array() ),
 	);
 	$par_personne = array();
+	$relues_n     = 0;
 	foreach ( $sortes as $sorte => list( $ids, $metas ) ) {
 		$contenus = 0;
 		$liens    = 0;
@@ -338,17 +349,23 @@ function er_audit() {
 			$rattaches = is_wp_error( $rattaches ) ? array() : array_map( 'intval', $rattaches );
 			if ( 'rencontres' === $sorte && taxonomy_exists( 'er_intervenant' ) ) {
 				foreach ( wp_get_post_terms( $id, 'er_intervenant' ) as $it ) {
-					$a = get_term_by( 'slug', $it->slug, 'auteur' );
+					$a = function_exists( 'er_evt_personne' ) ? er_evt_personne( $it ) : get_term_by( 'slug', $it->slug, 'auteur' );
 					if ( $a ) {
 						$rattaches[] = (int) $a->term_id;
 					}
 				}
 			}
-			$sig = 'articles' === $sorte ? get_term_by( 'name', trim( (string) get_post_meta( $id, 'er_signature', true ) ), 'auteur' ) : null;
+			$signature = 'articles' === $sorte ? trim( (string) get_post_meta( $id, 'er_signature', true ) ) : '';
+			$sig       = '' !== $signature && function_exists( 'er_personne_trouver' ) ? er_personne_trouver( $signature ) : null;
 			if ( $sig ) {
 				$rattaches[] = (int) $sig->term_id;
 			}
 			$manque = array_diff( er_audit_nommes( er_audit_texte( $id, $metas ), $par_mot ), $rattaches );
+			// Les étiquettes relues à la main (er_etiquettes_relues) : ce qui n'y est pas a été laissé exprès.
+			if ( $manque && get_post_meta( $id, 'er_etiquettes_relues', true ) ) {
+				$relues_n += count( $manque );
+				continue;
+			}
 			if ( $manque ) {
 				++$contenus;
 				$liens += count( $manque );
@@ -360,43 +377,47 @@ function er_audit() {
 		}
 		$ln( sprintf( '  %s : %d sur %d nomment au moins une personne sans y être rattachés (%d rattachements qui manquent).', $sorte, $contenus, count( $ids ), $liens ) );
 	}
+	$ln( '  Sans compter ' . $relues_n . ' noms laissés de côté dans des contenus aux étiquettes relues à la main.' );
 	$ln( '  Les personnes les plus nommées sans rattachement :' );
 	$ln( er_audit_tete( $par_personne, 25 ) );
 
 	/* 5. Les livres -------------------------------------------------------------------------------------------- */
 	$ln();
 	$ln( '## 5. Les livres' );
-	// Les rôles que la fiche ne connaît pas : préface, postface, illustrations, présentation, édition établie par…
-	$motif = '/\b(pr[ée]fac[ée]e?|pr[ée]face|postface|illustr[ée]e?s?|illustrations?|dessins|pr[ée]sentation|pr[ée]sent[ée]e?|introduction|avant-propos|notes|[ée]dition [ée]tablie|[ée]tablie?|choix|annot[ée]e?s?|commentaires?)\s+(?:et\s+\p{L}+\s+)?(?:de|par|d[’\'])\s*((?:\p{Lu}[\p{L}’\'\-]+)(?:\s+(?:de\s+|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3})/u';
-	$roles_livres = array();
+	// Les rôles relevés dans les textes (er_roles_releves : la méta du traducteur, « préface de… », « illustrations
+	// d'… ») et ceux qui sont posés : ce qui reste à poser par `wp er roles appliquer`.
+	$roles_tax    = function_exists( 'er_roles_personnes' ) ? er_roles_personnes() : array();
+	$roles_poses  = array(); // rôle → livres qui en ont au moins un posé.
+	$roles_manque = array(); // rôle → noms relevés mais pas posés.
 	$roles_noms   = array();
-	$roles_connus = 0;
-	$roles_n      = 0;
 	$trad_sans    = array();
 	$edit_sans    = 0;
-	$collections  = array();
+	$col_posees   = 0;
+	$col_a_poser  = array();
+	$col_ecart    = array();
 	$editions     = array();
 	foreach ( $livres as $id ) {
 		if ( get_post_meta( $id, 'er_evenement', true ) ) {
 			continue; // un billet de rencontre
 		}
-		$post  = get_post( $id );
-		$texte = wp_strip_all_tags( html_entity_decode( $post->post_title . "\n" . $post->post_excerpt . "\n" . $post->post_content . "\n" . get_post_meta( $id, 'er_traducteur', true ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
-		if ( preg_match_all( $motif, $texte, $m, PREG_SET_ORDER ) ) {
-			$vus = array();
-			foreach ( $m as $x ) {
-				$role = mb_strtolower( preg_replace( '/^(pr[ée]fac|illustr|pr[ée]sent|annot|[ée]tabli).*/u', '$1', $x[1] ), 'UTF-8' );
-				$nom  = trim( $x[2] );
-				if ( isset( $vus[ $role . $nom ] ) ) {
+		$post    = get_post( $id );
+		$releves = function_exists( 'er_roles_releves' ) ? er_roles_releves( $id ) : array();
+		foreach ( $roles_tax as $tax => $r ) {
+			if ( ! taxonomy_exists( $tax ) ) {
+				continue;
+			}
+			$poses = wp_get_post_terms( $id, $tax );
+			$poses = is_wp_error( $poses ) ? array() : wp_list_pluck( $poses, 'slug' );
+			if ( $poses ) {
+				$roles_poses[ $r['fiche'] ] = ( isset( $roles_poses[ $r['fiche'] ] ) ? $roles_poses[ $r['fiche'] ] : 0 ) + 1;
+			}
+			foreach ( array_keys( isset( $releves[ $r['cle'] ] ) ? $releves[ $r['cle'] ] : array() ) as $nom ) {
+				$qui = er_personne_trouver( $nom );
+				if ( $qui && in_array( $qui->slug, $poses, true ) ) {
 					continue;
 				}
-				$vus[ $role . $nom ]   = true;
-				$roles_livres[ $role ] = ( isset( $roles_livres[ $role ] ) ? $roles_livres[ $role ] : 0 ) + 1;
-				$roles_noms[ $nom ]    = ( isset( $roles_noms[ $nom ] ) ? $roles_noms[ $nom ] : 0 ) + 1;
-				++$roles_n;
-				if ( isset( $p['index'][ er_cle_recherche( $nom ) ] ) ) {
-					++$roles_connus;
-				}
+				$roles_manque[ $r['fiche'] ] = ( isset( $roles_manque[ $r['fiche'] ] ) ? $roles_manque[ $r['fiche'] ] : 0 ) + 1;
+				$roles_noms[ $nom ]          = ( isset( $roles_noms[ $nom ] ) ? $roles_noms[ $nom ] : 0 ) + 1;
 			}
 		}
 		// La méta du traducteur, reprise de Wix, sans personne posée.
@@ -407,44 +428,101 @@ function er_audit() {
 		if ( '' !== trim( (string) get_post_meta( $id, 'er_editeur', true ) ) && taxonomy_exists( 'er_editeur' ) && ! wp_get_post_terms( $id, 'er_editeur', array( 'fields' => 'ids' ) ) ) {
 			++$edit_sans;
 		}
+		// La collection : posée (une page), à poser (`wp er collections appliquer`), ou un texte de Wix qui n'en est pas une.
 		$col = trim( (string) get_post_meta( $id, 'er_collection', true ) );
-		if ( '' !== $col ) {
-			$cle                 = er_cle_recherche( $col );
-			$collections[ $cle ] = array(
-				'nom' => isset( $collections[ $cle ] ) ? $collections[ $cle ]['nom'] : $col,
-				'n'   => ( isset( $collections[ $cle ] ) ? $collections[ $cle ]['n'] : 0 ) + 1,
-				'graphies' => array_unique( array_merge( isset( $collections[ $cle ] ) ? $collections[ $cle ]['graphies'] : array(), array( $col ) ) ),
-			);
+		if ( '' !== $col && function_exists( 'er_collection_du_livre' ) ) {
+			$c = er_collection_du_livre( $id );
+			if ( $c['termes'] ) {
+				++$col_posees;
+			} elseif ( '' !== $c['texte'] ) {
+				$col_a_poser[ $c['texte'] ] = ( isset( $col_a_poser[ $c['texte'] ] ) ? $col_a_poser[ $c['texte'] ] : 0 ) + 1;
+			} else {
+				$col_ecart[ mb_substr( $col, 0, 50 ) ] = 1;
+			}
 		}
-		// Le même livre en plusieurs éditions : mêmes auteurs, même titre (avant le sous-titre).
+		// Le même livre en plusieurs fiches : mêmes auteurs, même titre (avant le sous-titre).
 		$auteurs = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'ids' ) );
 		if ( $auteurs && ! is_wp_error( $auteurs ) ) {
 			sort( $auteurs );
-			$titre = er_cle_recherche( preg_split( '/\s[:—–-]\s|[:(]/u', $post->post_title )[0] );
+			$titre = er_cle_recherche( preg_split( '/\s[:—–-]\s|[:(]/u', html_entity_decode( $post->post_title, ENT_QUOTES, 'UTF-8' ) )[0] );
 			if ( strlen( $titre ) > 3 ) {
 				$editions[ implode( ',', $auteurs ) . '|' . $titre ][] = $id;
 			}
 		}
 	}
-	$ln( sprintf( '  Rôles que la fiche ne connaît pas (préface, postface, illustrations, présentation, édition établie…) : %d mentions, dans les textes de livres ; %d désignent une personne qui a déjà sa page.', $roles_n, $roles_connus ) );
-	$ln( er_audit_tete( $roles_livres, 10 ) );
-	$ln( '  Les noms les plus cités dans ces rôles :' );
-	$ln( er_audit_tete( $roles_noms, 15 ) );
+	$ln( '  Les rôles posés (livres) : ' . ( $roles_poses ? implode( ', ', array_map( fn( $r, $n ) => $r . ' ' . $n, array_keys( $roles_poses ), $roles_poses ) ) : 'aucun' ) . '.' );
+	$ln( '  Relevés dans les textes mais pas posés : ' . array_sum( $roles_manque ) . ( $roles_manque ? ' (' . implode( ', ', array_map( fn( $r, $n ) => $r . ' ' . $n, array_keys( $roles_manque ), $roles_manque ) ) . ') — wp er roles appliquer' : '' ) . '.' );
+	if ( $roles_noms ) {
+		$ln( er_audit_tete( $roles_noms, 15 ) );
+	}
 	$ln( '  Livres avec un traducteur repris de Wix, mais personne posée (wp er roles l’a mis de côté) : ' . count( $trad_sans ) );
 	foreach ( array_slice( $trad_sans, 0, 15, true ) as $t => $m ) {
 		$ln( '    ' . $t . ' · « ' . mb_substr( $m, 0, 80 ) . ' »' );
 	}
 	$ln( '  Livres avec un éditeur repris de Wix mais sans éditeur posé : ' . $edit_sans );
-	$grosses = array_filter( $collections, fn( $c ) => $c['n'] >= 3 );
-	uasort( $grosses, fn( $a, $b ) => $b['n'] <=> $a['n'] );
-	$ln( sprintf( '  Collections (une méta, sans page ni « Dans la même collection ») : %d noms, %d qui réunissent au moins trois livres.', count( $collections ), count( $grosses ) ) );
-	foreach ( array_slice( $grosses, 0, 15 ) as $c ) {
-		$ln( '    ' . $c['nom'] . ' (' . $c['n'] . ')' . ( count( $c['graphies'] ) > 1 ? ' — écrite aussi : ' . implode( ' / ', array_slice( $c['graphies'], 1, 3 ) ) : '' ) );
+	// Les collections : celles qui ont leur page, et deux pages pour une même collection (« Folio bilingue »,
+	// « FolioBilingue »), à la casse, aux espaces et aux traits d'union près.
+	$col_termes = taxonomy_exists( 'er_collection' ) ? get_terms( array( 'taxonomy' => 'er_collection', 'hide_empty' => false, 'orderby' => 'count', 'order' => 'DESC' ) ) : array();
+	$col_termes = is_wp_error( $col_termes ) ? array() : $col_termes;
+	$col_cles   = array();
+	foreach ( $col_termes as $t ) {
+		$col_cles[ str_replace( array( ' ', '-' ), '', er_cle_recherche( $t->name ) ) ][] = $t->name . ' (' . $t->count . ')';
 	}
-	$multi = array_filter( $editions, fn( $ids ) => count( $ids ) > 1 );
-	$ln( '  Le même livre en plusieurs fiches (mêmes auteurs, même titre) : ' . count( $multi ) . ' groupes, qu’aucune fiche ne relie aux autres.' );
-	foreach ( array_slice( $multi, 0, 12 ) as $ids ) {
+	$col_doubles = array_filter( $col_cles, fn( $n ) => count( $n ) > 1 );
+	$ln( sprintf( '  Collections : %d pages, %d livres rangés ; %d livres dont la collection reste à poser (wp er collections appliquer) ; %d textes de Wix qui ne sont pas un nom de collection, écartés ; %d collections en deux pages.', count( $col_termes ), $col_posees, array_sum( $col_a_poser ), count( $col_ecart ), count( $col_doubles ) ) );
+	$ln( '    Les plus grandes : ' . implode( ', ', array_map( fn( $t ) => $t->name . ' (' . $t->count . ')', array_slice( $col_termes, 0, 8 ) ) ) );
+	foreach ( array_slice( $col_a_poser, 0, 10, true ) as $nom => $n ) {
+		$ln( '    à poser : ' . $nom . ' (' . $n . ')' );
+	}
+	foreach ( $col_doubles as $noms ) {
+		$ln( '    en double : ' . implode( ' / ', $noms ) );
+	}
+	// Le même livre en plusieurs fiches : relié par « Autres éditions » ou « Les autres volumes » (er_autres_editions),
+	// ou non. Les fiches d'une même édition (même titre entier, même langue, même éditeur, même année) sont à trancher :
+	// un doublon de Wix, ou le neuf et l'occasion.
+	$multi    = array_filter( $editions, fn( $ids ) => count( $ids ) > 1 );
+	$non_lies = array();
+	$jumeaux  = array();
+	foreach ( $multi as $ids ) {
+		$autres = function_exists( 'er_autres_editions' ) ? er_autres_editions( $ids[0] ) : array( 'editions' => array(), 'volumes' => array() );
+		if ( array_diff( array_slice( $ids, 1 ), array_merge( $autres['editions'], $autres['volumes'] ) ) ) {
+			$non_lies[] = $ids;
+		}
+		$par_edition = array();
+		foreach ( $ids as $i ) {
+			$langue = wp_get_post_terms( $i, 'langue', array( 'fields' => 'ids' ) );
+			$ed     = function_exists( 'er_editeur_du_livre' ) ? er_editeur_du_livre( $i ) : array( 'termes' => array(), 'texte' => '' );
+			$cle    = er_cle_recherche( html_entity_decode( get_the_title( $i ), ENT_QUOTES, 'UTF-8' ) )
+				. '|' . ( is_wp_error( $langue ) ? '' : implode( ',', $langue ) )
+				. '|' . ( $ed['termes'] ? $ed['termes'][0]->term_id : er_cle_recherche( (string) $ed['texte'] ) )
+				. '|' . trim( (string) get_post_meta( $i, 'er_annee', true ) );
+			$par_edition[ $cle ][] = $i;
+		}
+		foreach ( $par_edition as $memes ) {
+			if ( count( $memes ) > 1 ) {
+				$jumeaux[] = $memes;
+			}
+		}
+	}
+	$ln( sprintf( '  Le même livre en plusieurs fiches (mêmes auteurs, même titre) : %d groupes, %d que « Autres éditions » ou « Les autres volumes » ne relient pas encore.', count( $multi ), count( $non_lies ) ) );
+	foreach ( array_slice( $non_lies, 0, 12 ) as $ids ) {
 		$ln( '    ' . implode( ' / ', array_map( fn( $i ) => $titre_de( $i ) . ' [' . get_post_meta( $i, '_sku', true ) . ']', $ids ) ) );
+	}
+	$ln( '  Dont la même édition en plusieurs fiches (même titre, langue, éditeur et année : un doublon, ou le neuf et l’occasion) : ' . count( $jumeaux ) );
+	foreach ( array_slice( $jumeaux, 0, 15 ) as $ids ) {
+		$ln(
+			'    ' . implode(
+				' / ',
+				array_map(
+					function ( $i ) use ( $titre_de ) {
+						$prix  = get_post_meta( $i, '_price', true );
+						$stock = get_post_meta( $i, '_stock_status', true );
+						return $titre_de( $i ) . ' [' . get_post_meta( $i, '_sku', true ) . ( '' !== (string) $prix ? ', ' . $prix . ' €' : '' ) . ( 'instock' === $stock ? ', en stock' : ', épuisé' ) . ']';
+					},
+					$ids
+				)
+			)
+		);
 	}
 
 	/* 6. Les références de livres ------------------------------------------------------------------------------- */
@@ -466,8 +544,14 @@ function er_audit() {
 	foreach ( array_slice( $cassees, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
-	// La fiche d'un livre choisit ses rencontres, articles et vidéos par les auteurs, les personnes « Autour de » et les
-	// sujets qu'ils partagent avec lui (er_recommandations) : la citation elle-même n'y compte pas.
+	// La fiche d'un livre montre deux contenus dans « Autour de ce livre » (er_reco_bloc_autour) : la meilleure rencontre
+	// et le meilleur article ou vidéo, choisis par les citations d'abord (er_reco_citants), puis les auteurs, les
+	// personnes et les sujets qu'ils partagent avec lui. Un contenu qui cite le livre n'y manque que si la place de sa
+	// sorte est prise par un autre qui le cite aussi ; sinon, la citation est à sens unique.
+	$montres_de  = function ( $livre ) {
+		return function_exists( 'er_recommandations' ) ? array_slice( array_map( 'intval', er_recommandations( $livre )['contenus'] ), 0, 2 ) : array();
+	};
+	$place_prise = array();
 	$termes_de = function ( $id, $tax ) {
 		$t = taxonomy_exists( $tax ) ? wp_get_post_terms( $id, $tax, array( 'fields' => 'ids' ) ) : array();
 		return is_wp_error( $t ) ? array() : array_map( 'intval', $t );
@@ -484,23 +568,33 @@ function er_audit() {
 					continue;
 				}
 				++$cites;
-				$montres = function_exists( 'er_recommandations' ) ? er_recommandations( $livre )['contenus'] : array();
-				if ( ! in_array( (int) $id, array_map( 'intval', $montres ), true ) ) {
+				$montres = $montres_de( $livre );
+				if ( ! in_array( (int) $id, $montres, true ) ) {
+					$rencontre = defined( 'ER_EVT' ) && ER_EVT === get_post_type( $id );
+					$sa_place  = array_filter( $montres, fn( $m ) => ( defined( 'ER_EVT' ) && ER_EVT === get_post_type( $m ) ) === $rencontre );
+					$citants   = function_exists( 'er_reco_citants' ) ? array_map( 'intval', er_reco_citants( $livre ) ) : array();
+					if ( array_intersect( $sa_place, $citants ) ) {
+						$place_prise[ $titre_de( $livre ) ] = ( isset( $place_prise[ $titre_de( $livre ) ] ) ? $place_prise[ $titre_de( $livre ) ] : 0 ) + 1;
+						continue;
+					}
 					$sens_unique[] = '    ' . $titre_de( $livre ) . ' ← ' . $sorte . ' · ' . $titre_de( $id );
 				}
 			}
 		}
 	}
-	$ln( sprintf( '  Citations à sens unique : %d livres cités sur %d ne montrent pas, sur leur fiche, le contenu qui les cite.', count( $sens_unique ), $cites ) );
+	$ln( sprintf( '  Citations à sens unique : %d livres cités sur %d ne montrent pas, sur leur fiche, le contenu qui les cite ; %d n’y manquent que parce que la fiche en montre déjà un autre qui le cite.', count( $sens_unique ), $cites, array_sum( $place_prise ) ) );
+	if ( $place_prise ) {
+		$ln( er_audit_tete( $place_prise, 8 ) );
+	}
 	foreach ( array_slice( $sens_unique, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
-	// Les traducteurs et les directeurs : une rencontre avec le traducteur d'un livre n'apparaît pas sur la fiche du livre.
+	// Les traducteurs, les préfaciers… : une rencontre avec le traducteur d'un livre n'apparaît pas sur la fiche du livre.
 	$par_trad = 0;
 	$exemples = array();
 	foreach ( $livres as $id ) {
 		$gens = array();
-		foreach ( array( 'er_traduction', 'er_direction' ) as $tax ) {
+		foreach ( array_keys( function_exists( 'er_roles_personnes' ) ? er_roles_personnes() : array() ) as $tax ) {
 			foreach ( taxonomy_exists( $tax ) ? wp_get_post_terms( $id, $tax ) : array() as $miroir ) {
 				$a = get_term_by( 'slug', $miroir->slug, 'auteur' );
 				if ( $a ) {
@@ -522,7 +616,7 @@ function er_audit() {
 				'tax_query'   => array( array( 'taxonomy' => 'auteur', 'terms' => $gens ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
 			)
 		);
-		$montres = function_exists( 'er_recommandations' ) ? array_map( 'intval', er_recommandations( $id )['contenus'] ) : array();
+		$montres = $montres_de( $id );
 		if ( $leurs && ! array_intersect( array_map( 'intval', $leurs ), $montres ) ) {
 			++$par_trad;
 			if ( count( $exemples ) < 12 ) {
@@ -530,7 +624,7 @@ function er_audit() {
 			}
 		}
 	}
-	$ln( '  Livres dont le traducteur ou le directeur a des rencontres, des articles ou des vidéos que la fiche ne montre pas : ' . $par_trad );
+	$ln( '  Livres dont le traducteur, le préfacier… a des rencontres, des articles ou des vidéos que la fiche ne montre pas : ' . $par_trad );
 	foreach ( $exemples as $l ) {
 		$ln( $l );
 	}
