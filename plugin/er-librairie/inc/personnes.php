@@ -479,6 +479,26 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	 * @param array $args « appliquer », ou rien pour seulement montrer.
 	 */
 	/**
+	 * Toutes les personnes, une par ligne (identifiant, nom, livres, autres graphies) : wp er personnes liste. Pour
+	 * rattacher un nom relevé dans un sommaire à la page qui existe déjà, sans en créer une seconde.
+	 */
+	WP_CLI::add_command(
+		'er personnes liste',
+		function () {
+			$termes = get_terms(
+				array(
+					'taxonomy'   => 'auteur',
+					'hide_empty' => false,
+				)
+			);
+			foreach ( is_array( $termes ) ? $termes : array() as $t ) {
+				$graphies = function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $t->term_id ) : array();
+				WP_CLI::log( 'PERS ' . $t->slug . "\t" . html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' ) . "\t" . $t->count . "\t" . implode( ' | ', $graphies ) );
+			}
+		}
+	);
+
+	/**
 	 * Les miroirs des personnes : wp er personnes verifier [reparer]. Un miroir dont le nom diverge reprend celui de la
 	 * personne ; un miroir sans personne passe, avec ses livres, à la personne de ce nom s'il y en a une.
 	 *
