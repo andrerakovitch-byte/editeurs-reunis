@@ -1,6 +1,6 @@
 Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
   170 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-179 personnes (185 graphies), dont 16 qui ne sont pas encore des auteurs :
+174 personnes (180 graphies), dont 11 qui ne sont pas encore des auteurs :
   Sophie Benech (12)
   Georges Nivat (9)
   Christian Mouze (8)
@@ -90,7 +90,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Gilles Barbedette (1)
   Veronika Dorman (1)
   Laëtitia Decourt (1)
-  Michel Lafon (1) · nouveau
   Elena Ponomareva (1)
   Natalino Valentini (1)
   Claire Hauchard (1) · nouveau
@@ -146,7 +145,6 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Laurence Dyèvre (1)
   Véronique Schiltz (1)
   Jacques Catteau (1)
-  Suivi de Le (1) · nouveau
   Michel Pétris (1)
   Marie Leymarie (1)
   Ekaterina Cherezova (1)
@@ -163,12 +161,9 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Mireille Rovere-Tsivikis (1)
   C. Andronikof (1)
   A. de Couriss (1)
-  Pavillons Poche (1) · nouveau
-  Robert Laffont (1) · nouveau
   Pierre Pascal (1)
   Michel Sollogoub (1)
   Lucette Marçais (1)
-  Collection Que (1) · nouveau
   André Gide (1)
   Jacques Schiffrin (1)
   Nina Kchayan (1)
@@ -240,7 +235,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Éditions de la Présentation (1)
   Perrin (1)
   Bleu nuit éditeur (1)
-60 mentions mises de côté, à revoir dans la fiche du livre :
+65 mentions mises de côté, à revoir dans la fiche du livre :
   Rilke · un seul mot · Palimpsestes (palimpsestes)
   Goethe · un seul mot · Palimpsestes (palimpsestes)
   Martin de Tours · dans le titre · La Vie de St Martin de Tours (la-vie-de-st-martin-de-tours)
@@ -262,6 +257,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Iouri · un seul mot · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
   Dans Méditations · pas un nom · Méditations spirituelles (meditations-spirituelles)
   Préface · autre rôle · Récits de la Perdition (recits-de-la-perdition)
+  Michel Lafon · pas une personne · Moi, Marat, ex-commandant de l’armée Wagner (moi-marat-ex-commandant-de-larmee-wagner)
   La Veilleuse · pas un nom · La Veilleuse des Solovki (la-veilleuse-des-solovki)
   Cet · un seul mot · Nouvelles (nouvelles)
   Boulgakov · un seul mot · La Fuite – Pièces et nouvelles (la-fuite-pieces-et-nouvelles)
@@ -285,6 +281,7 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Actes-Sud · un seul mot · Les dieux de la steppe (les-dieux-de-la-steppe)
   Né · un seul mot · Pérégrinations (1723-1747) (peregrinations-1723-1747)
   Février · un seul mot · Les jours (les-jours)
+  Suivi de Le · pas une personne · Pétersbourg (petersbourg)
   Préface de Jacques Catteau · autre rôle · L’histoire de ma sœur (lhistoire-de-ma-soeur)
   L’histoire · un seul mot · L’histoire de ma sœur (lhistoire-de-ma-soeur)
   Un · un seul mot · Volia volnaïa (volia-volnaia)
@@ -299,5 +296,8 @@ Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 li
   Introduction de Nikita Struve · autre rôle · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
   Traçant · un seul mot · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
   G · un seul mot · L’Idiot (lidiot)
+  Pavillons Poche · pas une personne · Le Maître et Marguerite (le-maitre-et-marguerite)
+  Robert Laffont · pas une personne · Le Maître et Marguerite (le-maitre-et-marguerite)
   Editions · autre rôle · Les Fondements de la Culture russe (les-fondements-de-la-culture-russe)
+  Collection Que · pas une personne · Le mariage dans la perspective orthodoxe (le-mariage-dans-la-perspective-orthodoxe)
   Préface · autre rôle · La dame de pique (la-dame-de-pique)
