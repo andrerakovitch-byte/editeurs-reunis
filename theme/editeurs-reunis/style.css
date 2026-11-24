@@ -6,7 +6,7 @@ Description: Le site de la librairie des Éditeurs réunis, de la maison d'édit
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 0.9.2
+Version: 0.9.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: editeurs-reunis
@@ -225,6 +225,62 @@ sup { font-size: 0.62em; line-height: 0; }
 .er-panier .wc-block-mini-cart__button:focus-visible { outline: 2px solid var(--wp--preset--color--base); outline-offset: 2px; }
 .er-loupe[aria-expanded="true"],
 .er-compte[aria-current] { background: var(--wp--preset--color--base); color: var(--wp--preset--color--noir) !important; }
+
+/* Les interrupteurs (24 nov. 2026 : « les boutons fermer se trouvent au même endroit exact que ceux qui ouvrent,
+   comme un interrupteur on off », André). La loupe, le panier et le menu (≡) ouvrent leur panneau sous la barre (ou
+   sous la ligne accrochée) ; eux restent à leur place, passent au rond blanc, et leur picto devient une croix : on
+   referme en touchant au même endroit (entete.js, recherche.js). Les boutons « Fermer » des panneaux ne servent plus
+   qu'au clavier : on ne les voit que lorsqu'ils ont la main. */
+:root { --er-croix: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.er-menu .wp-block-navigation__responsive-container-open {
+	position: relative;
+	display: inline-grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border-radius: 50%;
+	transition: background var(--er-transition), color var(--er-transition);
+}
+.er-menu .wp-block-navigation__responsive-container-open:hover { background: rgba(255, 255, 255, 0.2); }
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__button,
+html.er-panier-ouvert .er-ligne-panier { background: var(--wp--preset--color--base); color: var(--wp--preset--color--noir) !important; }
+.er-loupe[aria-expanded="true"] svg,
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open svg,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__quantity-badge,
+html.er-panier-ouvert .er-ligne-panier > :not(.screen-reader-text) { visibility: hidden; }
+.er-loupe[aria-expanded="true"]::after,
+.er-menu:has(.is-menu-open) .wp-block-navigation__responsive-container-open::after,
+html.er-panier-ouvert .er-panier .wc-block-mini-cart__button::after,
+html.er-panier-ouvert .er-ligne-panier::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 20px;
+	height: 20px;
+	background: currentColor;
+	-webkit-mask: var(--er-croix) center / contain no-repeat;
+	mask: var(--er-croix) center / contain no-repeat;
+}
+/* Le menu du téléphone : sous la barre, qui reste là avec son interrupteur ; la croix de WordPress, pour le clavier. */
+.er-menu .wp-block-navigation__responsive-container.is-menu-open { top: var(--er-menu-haut, 0px) !important; }
+.er-menu .is-menu-open .wp-block-navigation__responsive-dialog { margin-top: 0 !important; }
+/* Le panier de WooCommerce : son volet et son voile sous la barre (ou la ligne) d'où on l'a ouvert. */
+html.er-panier-ouvert .wc-block-components-drawer__screen-overlay { top: var(--er-dessous, 0px) !important; }
+html.er-panier-ouvert .wc-block-components-drawer { top: var(--er-dessous, 0px) !important; height: calc(100% - var(--er-dessous, 0px)) !important; margin-top: 0 !important; }
+.er-menu .wp-block-navigation__responsive-container-close:not(:focus-visible),
+.wc-block-components-drawer__close:not(:focus-visible),
+.er-recherche-fermer:not(:focus-visible) {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+}
 .er-barre .er-compte, .er-barre .er-panier { margin-inline-start: calc(0.5rem - var(--er-ecart)); }
 @media (min-width: 1280px) {
 	.er-barre .er-loupe { margin-inline-start: var(--er-ecart); }
@@ -2487,7 +2543,7 @@ body.drawer-open { overflow: visible !important; }
 	gap: clamp(2rem, 6vw, 6rem);
 	align-items: start;
 }
-.er-evt-affiche-colonne { position: sticky; top: 2rem; }
+.er-evt-affiche-colonne { position: sticky; top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--er-ligne, 48px) + 2rem); } /* sous la ligne accrochée */
 .er-evt-affiche-grande { margin: 0; }
 .er-evt-affiche-grande img { display: block; width: 100%; height: auto; background: var(--wp--preset--color--doux); }
 .er-evt-colonne { max-width: 42rem; }
@@ -2561,6 +2617,12 @@ body.drawer-open { overflow: visible !important; }
 .er-evt-etat-annule { color: var(--wp--preset--color--reliure); }
 
 .er-evt-texte-long { font-size: 1rem; line-height: 1.7; }
+/* Un mot trop long pour la ligne (une adresse collée telle quelle dans un texte) se coupe au lieu d'élargir la page :
+   au téléphone, il la faisait glisser de côté, en-tête compris (24 nov. 2026). */
+.wp-block-post-content, .er-evt-texte-long, .er-texte { overflow-wrap: break-word; }
+.wp-block-post-content :is(p, li, blockquote, figcaption, td) a { overflow-wrap: anywhere; }
+/* Et si un jour quelque chose dépasse quand même, la page ne glisse pas de côté (clip garde l'en-tête accroché). */
+html { overflow-x: clip; }
 .er-evt-texte-long > * { max-width: 40rem; }
 
 /* « Revoir, réécouter », « À la librairie » : un filet noir, un petit titre en capitales. */

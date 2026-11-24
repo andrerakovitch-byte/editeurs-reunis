@@ -210,33 +210,123 @@
 		}
 	}
 
-	/* Le panier au bout de la ligne accrochée : il ouvre le volet du panier de la barre noire (le bloc de WooCommerce),
-	   sans quitter la page ni la faire remonter, et se referme comme lui (la croix, un clic à côté, Échap). Sa pastille
-	   recopie celle de la barre. Sans le volet, c'est un lien vers la page du panier. */
-	var lignePanier = document.querySelector( '.er-ligne-panier' );
-	if ( lignePanier ) {
-		var miniPanier = function () {
-			return document.querySelector( '.er-barre .wc-block-mini-cart__button' );
-		};
-		if ( miniPanier() ) {
-			lignePanier.setAttribute( 'aria-haspopup', 'dialog' );
-		}
-		lignePanier.addEventListener( 'click', function ( e ) {
-			var bouton = miniPanier();
-			if ( ! bouton || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ) {
+	/* Les interrupteurs : la loupe, le panier et le menu (≡) referment ce qu'ils ont ouvert, à la même place (24 nov.).
+	   Leur panneau s'ouvre sous la barre ou la ligne où ils sont ; eux restent visibles et deviennent une croix
+	   (style.css). La loupe est un interrupteur d'elle-même (recherche.js) ; le menu de WordPress et le volet du panier
+	   de WooCommerce n'ouvrent qu'à leur clic : on retient, au moment où le doigt se pose, s'ils étaient ouverts, et
+	   le clic referme alors au lieu de rouvrir (un panneau peut s'être refermé de lui-même entre-temps, quand la main
+	   l'a quitté). */
+	var racine = document.documentElement;
+	var dessousDe = function ( el ) {
+		var bande = el && el.closest( '.er-barre, .er-ligne' );
+		return bande ? Math.max( 0, Math.round( bande.getBoundingClientRect().bottom ) ) : 0;
+	};
+
+	// Le menu (≡) jusqu'à 1 280 px.
+	var menu = document.querySelector( '.er-barre .er-menu' );
+	var menuOuvre = menu && menu.querySelector( '.wp-block-navigation__responsive-container-open' );
+	var menuCalque = menu && menu.querySelector( '.wp-block-navigation__responsive-container' );
+	var menuEtaitOuvert = false;
+	if ( menuOuvre && menuCalque ) {
+		window.addEventListener( 'pointerdown', function ( e ) {
+			if ( menuOuvre.contains( e.target ) ) {
+				menuEtaitOuvert = menuCalque.classList.contains( 'is-menu-open' );
+			}
+		}, true );
+		window.addEventListener( 'click', function ( e ) {
+			if ( ! menuOuvre.contains( e.target ) ) {
 				return;
 			}
+			var ouvert = menuCalque.classList.contains( 'is-menu-open' );
+			if ( ouvert || menuEtaitOuvert ) {
+				e.preventDefault();
+				e.stopPropagation();
+				menuEtaitOuvert = false;
+				var croix = menuCalque.querySelector( '.wp-block-navigation__responsive-container-close' );
+				if ( ouvert && croix ) {
+					croix.click();
+				}
+				return;
+			}
+			racine.style.setProperty( '--er-menu-haut', dessousDe( menuOuvre ) + 'px' );
+		}, true );
+	}
+
+	// Le panier : celui de la barre noire (le bloc de WooCommerce) et celui de la ligne accrochée, qui ouvre le même
+	// volet, sans quitter la page ; sa pastille recopie celle de la barre. Sans le volet, c'est un lien vers le panier.
+	var lignesPanier = Array.prototype.slice.call( document.querySelectorAll( '.er-ligne-panier' ) ); // un par maison
+	var miniPanier = function () {
+		return document.querySelector( '.er-barre .wc-block-mini-cart__button' );
+	};
+	var panierOuvert = function () {
+		return !! document.querySelector( '.wc-block-components-drawer__screen-overlay:not(.wc-block-components-drawer__screen-overlay--is-hidden)' ) || document.body.classList.contains( 'drawer-open' );
+	};
+	var fermerPanier = function () {
+		var croix = document.querySelector( '.wc-block-components-drawer__close' );
+		if ( croix ) {
+			croix.click();
+		}
+	};
+	var estPanier = function ( el ) {
+		return el && el.closest ? el.closest( '.er-ligne-panier, .er-barre .wc-block-mini-cart__button' ) : null;
+	};
+	var panierEtaitOuvert = false;
+	var relais = false; // le clic que la ligne passe au bouton de la barre
+	window.addEventListener( 'pointerdown', function ( e ) {
+		if ( estPanier( e.target ) ) {
+			panierEtaitOuvert = panierOuvert();
+			if ( panierEtaitOuvert ) {
+				e.preventDefault(); // la main reste dans le volet : il ne se referme pas avant le clic
+			}
+		}
+	}, true );
+	window.addEventListener( 'click', function ( e ) {
+		var ouvreur = estPanier( e.target );
+		if ( ! ouvreur || relais ) {
+			return;
+		}
+		if ( panierOuvert() || panierEtaitOuvert ) {
 			e.preventDefault();
+			e.stopPropagation();
+			panierEtaitOuvert = false;
+			if ( panierOuvert() ) {
+				fermerPanier();
+			}
+			return;
+		}
+		racine.style.setProperty( '--er-dessous', dessousDe( ouvreur ) + 'px' );
+		var bouton = miniPanier();
+		if ( ouvreur.classList.contains( 'er-ligne-panier' ) && bouton && ! ( e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ) ) {
+			e.preventDefault();
+			e.stopPropagation();
+			relais = true;
 			bouton.click();
+			relais = false;
+		}
+	}, true );
+	// L'état du volet, sur <html> : les deux paniers passent à la croix, le volet se cale sous la barre.
+	var suivrePanier = function () {
+		racine.classList.toggle( 'er-panier-ouvert', panierOuvert() );
+	};
+	if ( window.MutationObserver ) {
+		new MutationObserver( suivrePanier ).observe( document.body, { subtree: true, childList: true, attributes: true, attributeFilter: [ 'class' ] } );
+	}
+	if ( lignesPanier.length ) {
+		lignesPanier.forEach( function ( l ) {
+			if ( miniPanier() ) {
+				l.setAttribute( 'aria-haspopup', 'dialog' );
+			}
 		} );
-		var pastille = lignePanier.querySelector( '.er-ligne-badge' );
 		var recopier = function () {
 			var b = document.querySelector( '.er-barre .wc-block-mini-cart__badge' );
 			var n = b && ! b.hidden && 'none' !== window.getComputedStyle( b ).display ? b.textContent.trim() : '';
-			if ( pastille ) {
-				pastille.textContent = n;
-				pastille.hidden = ! n || '0' === n;
-			}
+			lignesPanier.forEach( function ( l ) {
+				var pastille = l.querySelector( '.er-ligne-badge' );
+				if ( pastille ) {
+					pastille.textContent = n;
+					pastille.hidden = ! n || '0' === n;
+				}
+			} );
 		};
 		recopier();
 		var cadrePanier = document.querySelector( '.er-barre .er-panier' );

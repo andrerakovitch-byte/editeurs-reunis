@@ -72,9 +72,15 @@ maisons attendent, cachées.
 **En défilant** (la manière 2 du canevas, choisie le 24 nov.) : la barre d'informations et la barre noire s'en vont,
 la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe et le panier. La loupe ouvre la recherche
 sur place, sous la ligne, sans faire remonter la page ; le panier ouvre le volet du panier de WooCommerce, avec la même
-pastille que celui de la barre noire. L'un et l'autre se referment comme ils se sont ouverts (la loupe, la croix, un
-clic à côté, Échap). Le troisième niveau d'une rubrique, comme les genres du journal (À la une, Chroniques,
-Critiques…), s'accroche juste dessous. Tout est en CSS
+pastille que celui de la barre noire. Le troisième niveau d'une rubrique, comme les genres du journal (À la une,
+Chroniques, Critiques…), s'accroche juste dessous.
+
+**Les interrupteurs** (24 nov. : « *les boutons fermer se trouvent au même endroit exact que ceux qui ouvrent, comme un
+interrupteur on off* ») : la loupe, le panier et le menu du téléphone (≡) ouvrent leur panneau sous la barre (ou sous
+la ligne accrochée) d'où on les a touchés ; eux restent à leur place, passent au rond blanc, et leur picto devient une
+croix : on referme en touchant au même endroit (`entete.js`, `recherche.js`). Un clic à côté et Échap referment aussi.
+Les boutons « Fermer » des panneaux (la croix du menu de WordPress, celle du volet de WooCommerce, celle de la
+recherche) ne servent plus qu'au clavier : on ne les voit que lorsqu'ils ont la main. Tout est en CSS
 (`position: sticky`) ; `entete.js` ne fait que mesurer les hauteurs et dire quand l'en-tête est accroché.
 
 La maison d'une page se déduit d'elle-même (`er_maison()` dans `functions.php`) : la boutique, les rayons, les livres,
