@@ -381,6 +381,8 @@ foreach ( array(
 	'plugin/er-librairie/inc/bascule.php',
 	'plugin/er-librairie/inc/donnees-structurees.php',
 	'plugin/er-librairie/inc/personnes.php',
+	'plugin/er-librairie/inc/epoques.php',
+	'plugin/er-bascule/inc/etiquettes.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',
 ) as $fichier ) {

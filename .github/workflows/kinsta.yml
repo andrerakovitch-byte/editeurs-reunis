@@ -234,7 +234,7 @@ jobs:
       # (private/, hors du site public). Rien de tout cela ne va dans le dépôt ; le journal ne garde que des comptes et
       # les livres à revoir.
       - name: Les notices des livres
-        if: inputs.notices != 'non'
+        if: inputs.notices == 'chercher' || inputs.notices == 'chercher et poser'
         env:
           QUOI: ${{ inputs.notices }}
         run: |

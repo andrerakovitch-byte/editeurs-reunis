@@ -1,0 +1,862 @@
+# Les étiquettes des livres, relues fiche par fiche (24 nov. 2026). Une ligne par livre, séparée par des tabulations :
+# identifiant · langue · rayons (les sous-rayons, la liste entière) · sujets · époque d'écriture · époques traitées ·
+# autour de (des personnes, « ; ») · auteur à ajouter s'il manque (« ; »). « - » : rien. Les codes : inc/etiquettes.php.
+34	fr	romans,contemporains	enf,cau,pay	pou	rev	-	-
+36	ru	cinema	cin	pou	pou	Andreï Zviaguintsev	Andreï Zviaguintsev
+38	fr	goulag	gou,mai	pou	2030,deg,sta	Alexandre Soljenitsyne	-
+40	ru	cinema	cin	pou	pou	Andreï Zviaguintsev	-
+42	fr	romans,periode-sovietique	pay,pol,fan	2030	rev,2030	-	-
+44	fr	romans,periode-sovietique	amo,gue,poe	deg	ar,rev,2030	-	-
+46	fr	goulag	gou	pou	2030,ww2,deg	-	-
+48	bi	poesie,age-d-argent	poe,spb	rev	rev	-	-
+50	fr	theatre,age-d-argent	the,fem	ar	ar	-	-
+52	fr	romans,contemporains	enf,pay	pou	rev,2030	-	-
+54	bi	poesie,age-d-argent	poe	ar	ar,rev	-	-
+56	ru	poesie,classiques	poe	or	-	-	-
+58	fr	essais,classiques	cri	2030	gr	Fiodor Dostoïevski	-
+60	fr	biographies,musique	mus	2030	gr	Modeste Moussorgski	-
+62	fr	nouvelles-et-recits,age-d-argent	-	ar	gr,ar	-	-
+78	fr	theologie-orthodoxe	ort,emi	pou	-	-	-
+80	fr	theologie-orthodoxe	ort	pou	rev	-	-
+82	fr	biographies,emigration	emi,cri	2030	or,gr	Ivan Tourguéniev	-
+84	bi	nouvelles-et-recits,periode-sovietique	-	2030	rev	-	-
+86	bi	goulag	gou,mai	pou	sta	Alexandre Soljenitsyne	-
+89	bi	poesie,periode-sovietique	poe	deg	-	-	-
+92	bi	poesie,contemporains	poe	pou	pou	-	-
+94	bi	nouvelles-et-recits,classiques	fan,hum,spb	or	or	-	-
+96	bi	romans,classiques	cau	or	or	-	-
+98	bi	nouvelles-et-recits,classiques	amo,enf	or	or	-	-
+100	bi	nouvelles-et-recits,periode-sovietique	pay	2030	rev	-	-
+102	bi	romans,classiques	-	or	x18	-	-
+104	bi	nouvelles-et-recits,classiques	fan,spb	or	or	-	-
+106	bi	nouvelles-et-recits,classiques	amo	ar	ar	-	-
+108	bi	nouvelles-et-recits,classiques	amo,mus	gr	gr	-	-
+110	bi	nouvelles-et-recits,classiques	enf	gr	or	-	-
+112	fr	theologie-orthodoxe	ort	pou	rev	-	-
+114	fr	theologie-orthodoxe	ort	pou	-	-	-
+116	fr	theologie-orthodoxe	ort,mai	pou	-	Nikita Struve	-
+118	fr	theologie-orthodoxe	ort	pou	-	-	-
+120	fr	theologie-orthodoxe	ort,emi	pou	-	Père Serge Boulgakov	-
+122	fr	theologie-orthodoxe	ort	pou	-	-	-
+124	fr	theologie-orthodoxe	ort	pou	-	-	-
+126	fr	theologie-orthodoxe	ort	pou	-	-	-
+128	fr	theologie-orthodoxe	ort	pou	-	-	-
+130	ru	poesie,age-d-argent	poe,fem	ar	-	-	-
+132	fr	theologie-orthodoxe	ort,enf	sta	-	-	-
+134	fr	theologie-orthodoxe	ort,emi	deg	-	-	-
+136	bi	emigration-russe,photographie	emi,art	pou	rev,2030,ww2	-	-
+138	fr	revolution-1917	gue,pol	pou	rev	-	-
+140	fr	emigration-russe	emi	90	2030,ww2,deg,sta,per	-	-
+142	fr	emigration-russe	emi,ort	pou	2030,deg,sta	-	-
+144	fr	contes-russes,des-6-ans	con	gr	-	-	-
+146	fr	theologie-orthodoxe	ort	deg	-	-	-
+148	fr	theologie-orthodoxe,civilisation	ort,emi	sta	ra,or	-	-
+150	fr	theologie-orthodoxe,liturgie	ort	sta	-	-	-
+153	fr	cinema	cin	pou	pou	-	-
+155	fr	theologie-orthodoxe	ort,sai	pou	ar	-	-
+157	fr	theologie-orthodoxe	ort,eur	pou	-	-	-
+159	fr	romans,periode-sovietique	fan,hum,mos	2030	2030	-	-
+161	fr	romans,classiques	spb	gr	gr	-	-
+163	fr	romans,classiques	spb,amo	gr	gr	-	-
+165	fr	romans,classiques	eur	gr	gr	-	-
+167	fr	romans,classiques	pol	gr	gr	-	-
+169	fr	romans,nouvelles-et-recits,classiques	spb	or	or	-	Fiodor Dostoïevski
+171	fr	cinema,memoires	cin	sta	sta,per	Andreï Tarkovski	-
+173	fr	memoires,theologie-orthodoxe	ort,emi	ww2	ar,rev,2030	-	-
+175	fr	theologie-orthodoxe	ort,emi	2030	-	-	-
+177	fr	philosophie-russe,theologie-orthodoxe	phi,ort,emi	2030	-	-	Nicolas Berdiaev
+179	ru	memoires,theologie-orthodoxe	ort,emi	ww2	ar,rev,2030	-	-
+181	ru	theologie-orthodoxe	ort,jui,emi	2030	2030,ww2	-	-
+183	fr	vies-de-saints	sai	pc	pc	-	-
+185	ru	poesie,age-d-argent	poe,fem,emi	ar	-	-	-
+187	ru	poesie,periode-sovietique	poe,pay	2030	-	-	-
+189	ru	poesie,age-d-argent	poe	ar	-	-	-
+191	fr	biographies	fem,emi,poe	pou	ar,rev,2030	Zinaïda Hippius	-
+193	fr	romans,periode-sovietique	fan,pol	rev	-	-	-
+195	fr	goulag	gou	sta	rev,2030,ww2,deg	-	-
+197	fr	nouvelles-et-recits,periode-sovietique	gou	deg	deg	-	-
+199	fr	recit-de-voyage,emigration	sai,ort,emi	2030	2030	-	-
+201	fr	theologie-orthodoxe	ort	deg	pc,ra	-	-
+203	fr	spiritualite-et-priere	ort	deg	-	-	-
+205	fr	theologie-orthodoxe,spiritualite-et-priere	ort,sai	pc	-	-	-
+207	fr	icones	ort,art	ar	ra	-	-
+209	cu	liturgie	ort	-	-	-	-
+211	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+213	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+215	ru	theologie-orthodoxe	ort,emi	pou	rev	-	-
+217	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+219	fr	architecture,photographie	mos,art	pou	gr,ar,2030	-	-
+221	bi	lectures-bilingues	hum,lan	pou	-	-	-
+223	fr	empire	pol	sta	ra,x18,or,gr	-	-
+225	fr	albums,contes-russes,des-3-ans	con	-	-	-	-
+227	fr	albums,contes-russes,des-3-ans	con	-	-	-	-
+229	ru	memoires,periode-sovietique	cri	sta	ww2	Boris Pasternak	-
+231	ru	poesie,periode-sovietique	poe	2030	-	-	-
+271	ru	philosophie-russe,theologie-orthodoxe	phi,ort,emi	2030	gr,ar	-	-
+273	ru	biographies,vies-de-saints	sai,emi,fem	sta	2030,ww2	Mère Marie Skobtsova	-
+275	ru	theologie-orthodoxe	ort,emi	2030	-	-	-
+277	ru	spiritualite-et-priere	ort,emi	2030	-	-	-
+279	ru	vies-de-saints	sai,gou	2030	2030	-	-
+281	ru	vies-de-saints	sai,gou	2030	2030	-	-
+283	ru	philosophie-russe,histoire-des-idees	phi	deg	x18,or,gr,ar	-	-
+285	ru	philosophie-russe,histoire-des-idees	phi	deg	x18,or,gr,ar	-	-
+287	ru	theologie-orthodoxe,histoire-des-idees	ort,phi,emi	sta	ar,2030	-	-
+289	fr	theologie-orthodoxe	ort,sai	sta	-	-	-
+291	fr	theologie-orthodoxe	ort,sai	per	pc	-	-
+293	fr	theologie-orthodoxe	ort,eur	per	-	-	-
+295	fr	theologie-orthodoxe	ort,sai	per	-	-	-
+297	fr	theologie-orthodoxe	ort	per	ra	-	-
+299	fr	theologie-orthodoxe	ort	per	ra	Alexandre Soljenitsyne	-
+301	fr	theologie-orthodoxe	ort,emi	per	-	Pavel Florensky	-
+303	fr	theologie-orthodoxe	ort,sai,poe	per	-	Anna Akhmatova	-
+305	fr	theologie-orthodoxe	ort,pol	per	rev	-	-
+307	fr	theologie-orthodoxe	ort	per	pc	-	-
+309	fr	theologie-orthodoxe	ort,pol	per	per	-	-
+311	fr	theologie-orthodoxe	ort	per	-	-	-
+313	fr	theologie-orthodoxe	ort,sai	per	ra	-	-
+315	fr	theologie-orthodoxe	ort	90	-	P. Jean Meyendorff	-
+317	fr	theologie-orthodoxe	ort,pol	90	90	-	-
+319	fr	theologie-orthodoxe	ort,eur	90	-	-	-
+321	fr	theologie-orthodoxe	ort,sai	90	2030	-	-
+323	fr	theologie-orthodoxe	ort,emi	90	-	Père Serge Boulgakov	-
+325	ru	empire	gue	pou	x18,or,gr,ar	-	-
+327	fr	theologie-orthodoxe	ort	90	-	-	-
+329	fr	theologie-orthodoxe	ort,sai	pou	-	-	-
+331	fr	theologie-orthodoxe	ort,sai	pou	-	Père Serge Boulgakov	-
+333	fr	theologie-orthodoxe	ort,emi	pou	-	-	-
+335	fr	theologie-orthodoxe	ort	pou	-	Léon Tolstoï	-
+337	fr	theologie-orthodoxe	ort,emi	pou	-	-	-
+339	fr	theologie-orthodoxe	ort,sai	pou	-	-	-
+341	fr	theologie-orthodoxe	ort,emi	pou	-	Mère Marie Skobtsova	-
+343	fr	theologie-orthodoxe	ort,sai	pou	-	-	-
+345	fr	theologie-orthodoxe	ort,emi	pou	-	-	-
+347	fr	theologie-orthodoxe	ort	pou	-	-	-
+349	fr	theologie-orthodoxe	ort,eur	pou	-	Monseigneur Antoine Bloom	-
+351	fr	theologie-orthodoxe	ort	pou	-	-	-
+353	fr	theologie-orthodoxe	ort,sai,emi	pou	ww2	Mère Marie Skobtsova	-
+355	fr	theologie-orthodoxe	ort,sai	pou	ra	-	-
+357	fr	theologie-orthodoxe	ort	pou	-	-	-
+359	fr	theologie-orthodoxe	ort,art	pou	-	-	-
+361	fr	theologie-orthodoxe	ort,sai,jui	pou	-	-	-
+363	fr	theologie-orthodoxe	ort	pou	-	-	-
+365	fr	theologie-orthodoxe	ort,sai	90	-	-	-
+367	fr	theologie-orthodoxe	ort,sai,emi	90	2030,ww2	Mère Marie Skobtsova	-
+369	fr	theologie-orthodoxe	ort,pol	90	90	-	-
+371	fr	theologie-orthodoxe	ort,eur	90	-	-	-
+373	fr	theologie-orthodoxe	ort,eur	90	-	-	-
+375	fr	theologie-orthodoxe	ort,emi	90	2030	-	-
+377	ru	theologie-orthodoxe	ort,emi,mai	pou	-	Nikita Struve	-
+379	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+381	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+383	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+385	ru	theologie-orthodoxe	ort,sai	pou	-	-	-
+387	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+389	ru	theologie-orthodoxe	ort,emi	pou	-	Mère Marie Skobtsova	-
+391	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+393	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+395	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+397	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+399	ru	theologie-orthodoxe	ort,emi	pou	-	-	-
+401	ru	urss,memoires	pol,mos	2030	2030	-	-
+403	ru	poesie,emigration	poe,emi	2030	-	-	-
+405	fr	essais	cri,ort	pou	gr,ar,2030	-	-
+407	ru	liturgie	ort	2030	-	-	-
+409	ru	spiritualite-et-priere	ort,sai	gr	-	-	-
+411	ru	theologie-orthodoxe	ort	2030	-	-	-
+413	ru	theologie-orthodoxe	ort	deg	pc	-	-
+415	ru	theologie-orthodoxe,russie-ancienne	ort	sta	ra,pc	-	-
+417	ru	vies-de-saints	sai,mos	2030	2030	-	-
+419	ru	spiritualite-et-priere	ort	deg	-	-	-
+421	ru	biographies,histoire-des-idees	phi	2030	gr	-	-
+423	ru	spiritualite-et-priere	ort,sai	gr	gr	-	-
+425	ru	vies-de-saints	sai	deg	gr,ar	-	-
+427	ru	theologie-orthodoxe,memoires	ort,emi,fem	2030	2030	-	-
+429	ru	spiritualite-et-priere	ort,sai	per	-	-	-
+431	ru	theologie-orthodoxe	ort,enf	-	-	-	-
+433	ru	vies-de-saints,russie-ancienne	sai,ort	2030	ra	-	-
+435	ru	essais-politiques,histoire-des-idees	phi,pol,emi	2030	rev,2030	-	-
+437	ru	theologie-orthodoxe,philosophie-russe	ort,phi	sta	-	-	-
+439	ru	essais-politiques	pol,emi	2030	2030	-	-
+441	ru	theologie-orthodoxe,philosophie-russe	ort,phi	ar	-	-	-
+443	ru	theologie-orthodoxe,histoire-des-idees	ort,phi,emi	2030	ra,x18,or,gr,ar	-	-
+445	ru	theologie-orthodoxe	ort	2030	pc	-	-
+447	ru	theologie-orthodoxe	ort	2030	pc	-	-
+449	ru	vies-de-saints	sai,ort	2030	or,gr	-	-
+451	ru	theologie-orthodoxe	ort	deg	pc,ra	-	-
+453	ru	essais-politiques,philosophie-russe	phi,pol,emi	2030	rev	-	-
+455	ru	theologie-orthodoxe,russie-ancienne	ort	per	pc,ra	-	-
+457	ru	romans,periode-sovietique	gou	sta	2030,deg	-	-
+459	ru	poesie,age-d-argent	poe,fem	deg	-	-	-
+461	ru	memoires,age-d-argent	fem,cri	2030	ar	-	-
+233	fr	theologie-orthodoxe,russie-ancienne	ort	per	ra	-	-
+235	fr	emigration-russe	emi,pol	pou	2030	-	-
+237	fr	spiritualite-et-priere,liturgie	ort	pou	-	-	-
+239	fr	memoires,theologie-orthodoxe	ort,emi	sta	sta,per	-	-
+241	fr	theologie-orthodoxe,liturgie	ort,eur	sta	-	-	-
+243	fr	philosophie-russe,histoire-des-idees	phi,emi	deg	or,gr,ar	-	-
+245	fr	romans,classiques	amo,phi	gr	or	-	-
+247	fr	nouvelles-et-recits,classiques	eur	gr	gr	-	-
+249	fr	romans,classiques	amo,eur	gr	gr	-	-
+251	fr	nouvelles-et-recits,classiques	amo,mos	ar	ar	-	-
+253	fr	poesie,classiques	poe	or	or	-	-
+255	fr	poesie,age-d-argent	poe	ar	ar	-	-
+257	ru	poesie,contemporains	poe,emi	pou	-	-	-
+259	ru	memoires,age-d-argent	poe,fem,cri	2030	2030	Anna Akhmatova	-
+261	ru	biographies	sai,eur	per	pc	-	-
+263	ru	poesie,romans,classiques	poe	or	or	-	-
+265	ru	essais-politiques,philosophie-russe	phi,pol	rev	rev	-	-
+267	ru	philosophie-russe	phi	ar	-	-	-
+269	fr	theologie-orthodoxe	ort,emi	pou	-	Alexandre Schmemann	-
+463	ru	romans,periode-sovietique	pay,gue	2030	ar	-	-
+465	ru	romans,periode-sovietique	pay,fan	2030	ar	-	-
+467	ru	philosophie-russe	phi,emi	2030	2030	Léon Chestov	-
+469	ru	essais-politiques,revolution-1917	pol,phi	rev	ar,rev	-	-
+471	ru	nouvelles-et-recits,memoires,emigration	emi,fem	90	2030,ww2	-	-
+473	ru	poesie,emigration	poe,emi	per	-	-	-
+475	ru	poesie,emigration	poe,emi	sta	-	-	-
+477	ru	memoires,emigration	emi,fem	per	rev,2030,ww2	-	-
+479	ru	memoires,emigration	emi,fem,poe	2030	2030	-	-
+481	ru	memoires,emigration-russe	emi,pol	2030	2030	-	-
+483	ru	emigration-russe	emi,ort	90	2030	-	-
+485	fr	memoires	pol,mos	pou	per	-	-
+487	fr	ecriture-et-prononciation	lan	-	-	-	-
+489	fr	russie-ancienne,empire	ukr,pol	pou	ra,x18,or,gr	-	-
+491	fr	essais	lan,poe	deg	-	-	-
+493	fr	essais,age-d-argent	poe,fem,cri,eur	pou	ar,2030,ww2,deg	Anna Akhmatova	-
+495	fr	biographies	poe,cri	pou	ar,rev,2030,deg	Boris Pasternak	-
+497	ru	debutant,des-3-ans	lan,enf	pou	-	-	-
+499	fr	theologie-orthodoxe,albums	ort,enf	pou	-	-	-
+501	fr	civilisation	cri	pou	-	-	-
+503	fr	theologie-orthodoxe	ort,eur,fem	sta	-	-	-
+505	fr	memoires,emigration	emi,hum,fem	2030	rev	-	-
+507	fr	romans,contemporains	fem	pou	90,pou	-	-
+509	bi	poesie,age-d-argent	poe,amo,fem	ar	ar	-	-
+511	bi	poesie,periode-sovietique	poe,gue,fem,spb	ww2	ww2	-	-
+513	fr	philosophie-russe,histoire-des-idees	phi,eur	pou	or,gr,ar,2030	-	-
+515	fr	romans,contemporains	sib,pol	pou	pou	-	-
+517	ru	memoires	spb	90	ar,rev,2030	-	-
+519	ru	memoires,revolution-1917	mos,pol	rev	rev,2030	-	-
+521	ru	memoires,urss	pol	deg	2030	-	-
+523	ru	romans,nouvelles-et-recits,emigration	emi	2030	2030	-	-
+525	ru	urss,civilisation	gue,pol	per	sta,per	-	-
+527	ru	romans,contemporains	mos,pol	pou	ar	-	-
+529	ru	romans,contemporains	mos	90	gr	-	-
+531	ru	romans,contemporains	mos,pol	90	ar	-	-
+533	ru	biographies,theatre-et-ballet	the	pou	gr,ar,2030	Constantin Stanislavski	-
+535	ru	poesie,contemporains	poe,ort	sta	-	-	-
+537	ru	theologie-orthodoxe,biographies	ort,phi,gou	sta	ar,2030	Pavel Florensky	-
+539	ru	essais,emigration,classiques	cri,poe	deg	or	Alexandre Pouchkine	-
+541	ru	memoires,periode-sovietique,goulag	gou,poe,fem	deg	deg	Boris Pasternak	-
+543	ru	biographies,emigration	poe,cri	2030	x18	Gavrila Derjavine	-
+545	ru	nouvelles-et-recits,periode-sovietique,goulag	gou,sib	sta	2030,ww2,deg	-	-
+547	ru	memoires,periode-sovietique	poe,fem,spb,gou	2030	2030	Anna Akhmatova	-
+549	ru	poesie,nouvelles-et-recits,theatre,age-d-argent	poe,the,fem	ar	ar,rev	-	-
+551	ru	revolution-1917	pol,gue	sta	rev	-	-
+553	ru	revolution-1917	pol,spb	sta	rev	-	-
+555	ru	memoires,goulag	gue,gou,pol	sta	ww2,deg	-	-
+557	ru	memoires,urss	gue	deg	ww2	-	-
+559	ru	revolution-1917	pol	sta	rev	-	-
+561	ru	urss	gue,pol,emi	sta	ww2	-	-
+563	ru	theologie-orthodoxe,emigration-russe,biographies	ort,emi	2030	2030	Alexandre Eltchaninoff	-
+565	ru	romans,periode-sovietique	gue,pol	sta	ar	-	-
+567	ru	romans,periode-sovietique	gue,pol	sta	ar	-	Alexandre Soljenitsyne
+569	ru	romans,periode-sovietique	pol,spb	sta	rev	-	-
+571	ru	romans,periode-sovietique	pol,spb	sta	rev	-	-
+573	ru	romans,periode-sovietique	pol,spb	sta	rev	-	-
+575	ru	romans,periode-sovietique	pol,spb	per	rev	-	-
+577	fr	romans,emigration	amo,fem,enf	2030	ar	-	-
+579	bi	theologie-orthodoxe,liturgie,dictionnaires	ort,lan	sta	-	-	-
+581	bi	poesie,age-d-argent	poe,pay	ar,rev,2030	-	-	-
+583	bi	poesie,age-d-argent	poe	ar,rev	-	-	-
+585	bi	poesie,recit-de-voyage,periode-sovietique	poe,cau	2030	2030	-	Ossip Mandelstam
+587	bi	emigration-russe,photographie	emi,art	pou	rev,2030,ww2	-	-
+589	fr	theologie-orthodoxe,memoires	ort,eur	pou	-	-	-
+591	fr	theologie-orthodoxe,spiritualite-et-priere	ort,emi	2030	-	-	-
+593	fr	theologie-orthodoxe,liturgie	ort	pou	-	-	-
+595	fr	vies-de-saints,emigration-russe	sai,ort,emi	pou	2030,ww2,deg	Jean de Changhaï	-
+597	fr	theologie-orthodoxe,histoire-des-idees	ort	deg	pc	-	-
+599	fr	theologie-orthodoxe	ort	pou	pc	-	-
+601	fr	theologie-orthodoxe,spiritualite-et-priere	ort,sai	pc	pc	-	-
+603	fr	vies-de-saints,spiritualite-et-priere	ort,sai	-	2030,deg,sta	-	-
+605	fr	theologie-orthodoxe,spiritualite-et-priere	ort	sta	-	-	-
+607	fr	theologie-orthodoxe,memoires	ort,fem	pou	-	-	-
+609	fr	romans,emigration	emi,amo,fem	2030	2030	-	-
+611	fr	romans,periode-sovietique	gue,ukr	2030	rev	-	-
+613	fr	nouvelles-et-recits,emigration	amo,fem,emi	2030,ww2	gr,ar	-	-
+615	fr	romans,periode-sovietique	the,eur	2030	-	Molière	-
+617	fr	romans,age-d-argent	spb,pol	ar	ar	-	-
+619	fr	nouvelles-et-recits,emigration	emi	deg	ww2	-	-
+621	fr	memoires,emigration	emi,pol	deg	deg	-	-
+623	fr	essais,emigration	poe,cri,eur,spb	sta	-	-	-
+625	fr	poesie,emigration	poe,eur	per	-	-	-
+627	fr	poesie,periode-sovietique,emigration	poe	deg,sta	-	-	-
+629	fr	memoires,revolution-1917	pol,spb	2030	ar,rev	-	-
+631	fr	memoires,goulag	gou,cri	deg,sta	deg,sta	Alexandre Soljenitsyne ; Nadejda Mandelstam	-
+633	fr	recit-de-voyage	ort,sai,ukr	x18	x18	-	-
+635	fr	romans,contemporains	jui,amo	pou	90,pou	-	-
+637	fr	romans,contemporains	sib,gue,enf	pou	ww2	-	-
+639	fr	romans,contemporains	pol,gou	pou	per,90	-	-
+641	fr	biographies,emigration-russe	emi,pol,gue	pou	rev,2030	-	-
+643	fr	romans,emigration	gue,pol,emi	rev	ar,rev	-	-
+645	fr	memoires,empire,revolution-1917	ort,gue,pol	2030	ar,rev	-	-
+647	fr	theologie-orthodoxe,spiritualite-et-priere	ort,enf	pou	-	-	-
+649	fr	memoires,emigration	cri,pol	sta,per	sta	-	-
+651	fr	memoires,emigration,arts	art,poe,emi	sta	ar,rev,2030	-	-
+653	fr	poesie,age-d-argent	poe,fem,amo	ar,rev,2030	-	-	-
+655	fr	romans,classiques	spb,phi	gr	gr	-	-
+657	fr	romans,periode-sovietique,goulag	gou,pol,mos	deg	deg	-	-
+659	fr	biographies	gue,eur	pou	ar,rev,2030,ww2	Maxime Gorki	-
+661	bi	debutant,des-3-ans	lan,enf	pou	-	-	-
+663	fr	memoires,periode-sovietique	poe,fem,spb,gou	2030,deg	2030,deg,sta	Anna Akhmatova	-
+665	fr	memoires,classiques	cri	gr,ar	gr,ar	-	-
+667	bi	nouvelles-et-recits,periode-sovietique	jui,ukr,hum	2030	ar,rev	-	-
+669	bi	nouvelles-et-recits,classiques	phi,spb	gr	gr	-	-
+671	bi	nouvelles-et-recits,contemporains	fem,amo	90	2030,ww2,deg	-	-
+673	fr	nouvelles-et-recits,emigration	amo	2030	ar	-	-
+675	bi	nouvelles-et-recits,classiques	amo,cau	ar	ar	-	-
+677	bi	nouvelles-et-recits,classiques	fan,pay	ar	ar	-	-
+679	fr	essais,classiques	cri,phi	pou	gr	Fiodor Dostoïevski	-
+681	fr	theatre,age-d-argent	the,phi	ar	-	-	-
+683	fr	nouvelles-et-recits,poesie,periode-sovietique	hum,poe,fan	2030	2030	-	-
+685	fr	musique,biographies	mus	pou	gr	Alexandre Borodine	-
+687	ru	philosophie-russe	phi,ort,emi	2030	-	-	-
+689	ru	philosophie-russe	phi,eur,emi	2030	-	Søren Kierkegaard	-
+691	ru	nouvelles-et-recits,poesie,emigration	emi,poe	deg	-	-	-
+693	ru	nouvelles-et-recits,poesie,classiques	poe	or	or	-	-
+695	fr	debutant,guides-de-voyage	lan	pou	-	-	-
+697	fr	debutant,grammaire-et-exercices	lan	pou	-	-	-
+699	bi	dictionnaires	lan	pou	-	-	-
+701	fr	debutant,ecriture-et-prononciation	lan	pou	-	-	-
+703	fr	intermediaire,grammaire-et-exercices	lan	pou	-	-	-
+706	ru	debutant,grammaire-et-exercices	lan	pou	-	-	-
+708	bi	theatre,emigration	the,fem,amo	2030	-	-	-
+710	bi	poesie,age-d-argent	poe	ar	-	-	-
+712	fr	recit-de-voyage,urss	sib	pou	2030	-	-
+714	bi	theologie-orthodoxe,liturgie	ort	pc	-	-	-
+716	fr	romans,contemporains	mus,ukr	pou	sta,per,pou	-	-
+718	fr	romans,contemporains	gou,spb	pou	ar,rev,2030,90	-	-
+720	fr	romans,contemporains	ort,sai	pou	ra	-	-
+722	fr	urss,russie-aujourdhui	pol	pou	2030,ww2,deg,sta,per,pou	-	-
+724	fr	memoires,urss	gue,emi	-	ww2	-	-
+726	bi	poesie,emigration,age-d-argent	poe,cau,art	ar,rev,2030	-	-	-
+728	fr	memoires,biographies	jui,pol,emi	pou	ar,rev,2030	-	-
+730	bi	lectures-bilingues,intermediaire	hum,lan	pou	-	-	-
+732	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+734	fr	recit-de-voyage,age-d-argent	poe,eur	ar	-	-	-
+737	bi	poesie,periode-sovietique	poe,ort,amo	deg	-	-	-
+739	fr	nouvelles-et-recits,emigration	amo	ar,2030	ar	-	-
+741	bi	poesie,periode-sovietique	poe,fem	2030	-	-	-
+743	fr	theatre-et-ballet,biographies	the,fem	pou	2030,ww2,deg,sta	Maria Knebel	-
+745	fr	icones,spiritualite-et-priere	ort,art,sai	pou	-	-	-
+748	bi	poesie,age-d-argent	poe,tra	ar,rev,2030	-	-	-
+751	bi	poesie,classiques	poe,tra	or,gr	-	-	-
+753	ru	poesie,romans,classiques	poe,cau	or	or	-	Mikhaïl Lermontov
+755	ru	nouvelles-et-recits,emigration	ort,con,sai	2030	-	-	-
+757	ru	poesie,classiques	poe	or	or	-	Alexandre Pouchkine
+759	ru	essais-politiques,histoire-des-idees	pol,phi,ort,emi	2030	rev,2030	-	-
+761	bi	emigration-russe,photographie	emi,gue	pou	rev,2030	-	-
+763	fr	civilisation	cau,ukr	pou	-	-	-
+765	fr	romans,periode-sovietique	mos,fan,hum,pol	2030	2030	-	-
+767	fr	russie-ancienne,empire,urss,russie-aujourdhui	pol	pou	ra,x18,or,gr,ar,rev,2030,ww2,deg,sta,per,90,pou	-	-
+769	fr	urss	cau,pol,gue	pou	ar,rev,2030,ww2,deg,sta,per	-	-
+771	bi	empire,revolution-1917,photographie	gue,eur	pou	ar,rev	-	André Korliakov ; Gérard Gorokhoff
+773	bi	emigration-russe,photographie	emi	pou	2030,ww2	-	André Korliakov
+776	ru	emigration-russe	emi,ort	pou	2030,ww2,deg,sta	-	-
+778	fr	des-3-ans,albums,contes-russes	con,enf	-	-	Alexandre Pouchkine	-
+780	ru	des-3-ans,albums	con,enf,poe,hum	2030	-	-	-
+782	ru	icones,theologie-orthodoxe	ort,art,emi	deg	-	-	-
+784	ru	des-6-ans,contes-russes	con,enf	-	-	-	-
+786	ru	des-6-ans,albums,contes-russes	con,enf,emi	2030	-	-	-
+788	fr	des-6-ans,albums,contes-russes	con,enf,poe	or	-	-	-
+790	fr	liturgie,des-9-ans	ort,enf	pou	-	-	-
+792	fr	biographies,urss,recit-de-voyage	cau,gou,pol	pou	2030,ww2,deg	-	-
+794	fr	romans,periode-sovietique	hum	2030	2030	-	-
+796	fr	romans,contemporains	emi,amo	pou	-	-	-
+798	fr	liturgie	ort,emi,enf	pou	-	-	-
+800	fr	memoires,russie-aujourdhui	pol,eur	pou	sta,per,90,pou	-	-
+802	ru	theologie-orthodoxe,histoire-des-idees,emigration-russe	ort,emi,fem,sai	2030	-	-	-
+804	ru	memoires,emigration-russe	emi,ort	pou	2030,ww2,deg,sta,per,90,pou	-	Vladimir Iagello
+806	fr	revolution-1917	gue,pol	pou	rev	-	-
+808	bi	poesie,periode-sovietique	poe	rev,2030	-	-	-
+810	fr	urss	pol,sib	pou	2030,deg,sta	-	-
+812	fr	romans	cau,phi	2030	ar	-	-
+814	ru	philosophie-russe,histoire-des-idees	phi,ort	ar	-	-	-
+816	ru	essais-politiques,histoire-des-idees	pol,eur	or	or	-	-
+818	ru	histoire-des-idees,theologie-orthodoxe,essais-politiques	ort,pol,emi	deg	-	-	-
+820	ru	des-3-ans,albums,contes-russes	con,enf	-	-	-	-
+822	ru	theatre,emigration	the,hum,emi	2030	-	-	-
+824	ru	poesie,emigration,age-d-argent	poe	2030,ww2	-	-	-
+826	ru	nouvelles-et-recits,emigration	emi	2030	-	-	-
+828	ru	theatre,periode-sovietique	hum,fan,pol	2030	2030,sta	-	-
+830	fr	biographies,goulag	gou,pol,cri	pou	2030,ww2,deg,sta,per,90	Alexandre Soljenitsyne	-
+832	fr	essais,classiques,histoire-des-idees	phi,ort	gr	gr	-	-
+834	fr	nouvelles-et-recits,classiques	amo,pay,ukr	ar	ar	-	-
+836	ru	romans,contemporains	mos,pol,gue	pou	rev	-	-
+838	ru	romans,contemporains	mos	pou	ar	-	-
+840	ru	nouvelles-et-recits,theatre,periode-sovietique	hum,the,fan	2030	rev,2030	-	-
+842	ru	biographies,goulag	gou,pol,emi	pou	deg,sta,per	Alexandre Guinzbourg	Vladimir Orlov
+844	ru	essais,classiques	cri,eur	pou	gr	Fiodor Dostoïevski	-
+846	ru	essais-politiques,emigration-russe	pol,emi	2030	2030	-	-
+848	fr	musique,biographies	mus,emi	pou	ar,rev,2030,ww2	Sergueï Rachmaninov	-
+851	fr	recit-de-voyage,periode-sovietique	cau	deg	deg	-	-
+853	fr	romans,periode-sovietique	hum	2030	2030	-	Ilf et Pétrov
+855	fr	urss,biographies	gue,pol	pou	2030,ww2,deg	-	-
+857	fr	urss,biographies	pol	pou	deg,sta	Léonid Brejnev	-
+859	fr	memoires,periode-sovietique	gou,poe,mos,fem	90	deg	Boris Pasternak ; Olga Ivinskaïa	-
+861	fr	emigration-russe,urss	emi,gue,pol	pou	ww2	-	-
+863	fr	theologie-orthodoxe	ort	pou	pou	-	-
+865	fr	romans,contemporains	gue,ukr,pol	pou	pou	-	-
+867	fr	essais	cri,eur,gou	pou	-	Alexandre Soljenitsyne	-
+869	fr	romans,contemporains	eur,hum	pou	pou	-	-
+871	fr	romans,emigration	eur	2030	pc	-	-
+873	fr	recit-de-voyage	sib,pay	ar	ar	-	-
+875	fr	romans,contemporains	pol,gue,cau	pou	90,pou	-	-
+877	fr	emigration-russe,revolution-1917	emi,gue	pou	rev	-	-
+879	fr	theologie-orthodoxe,biographies	ort,emi	pou	2030,ww2,deg,sta	Basile Krivochéine	-
+881	fr	biographies,goulag	gou,fem,ort	pou	ar,rev,2030	Julia Danzas	-
+883	fr	memoires	emi,fem	pou	-	-	-
+886	fr	essais,philosophie-russe,classiques	cri,poe,phi	deg	or	Alexandre Pouchkine	-
+888	ru	memoires,emigration-russe,biographies	emi,gue	pou	rev,2030,ww2	Alexandre Koltchak	-
+890	bi	lectures-bilingues,intermediaire	hum,mos,lan	pou	-	-	-
+892	fr,cu	grammaire-et-exercices,liturgie	lan,ort	pou	-	-	Jean-Paul Deschler
+894	fr,cu	dictionnaires,liturgie	lan,ort	pou	-	-	Jean-Paul Deschler ; Pierre Gonneau
+896	fr	romans	emi,gue	pou	2030,ww2	Alexandre Alekhine	-
+898	fr	philosophie-russe,essais-politiques	phi,pol	gr	-	-	-
+900	fr	essais,periode-sovietique	poe,cri,eur	2030	-	Dante	-
+902	fr	nouvelles-et-recits,classiques	spb,fan,hum	or	or	-	-
+904	ru	revolution-1917,biographies	gue,pol	pou	rev	Piotr Wrangel	-
+906	fr	empire,biographies	pol,fem,eur	pou	x18	Catherine II	-
+909	fr	romans,age-d-argent	enf	ar	gr	-	-
+912	ru	empire	eur,pol	rev	ar	-	-
+915	ru	histoire-des-idees	eur	or	-	-	-
+917	ru	biographies,emigration-russe	emi,art	pou	ar,2030,ww2,deg,sta,per,90	-	-
+919	fr	dictionnaires,essais,classiques	cri	pou	gr	Fiodor Dostoïevski	-
+921	fr	nouvelles-et-recits,periode-sovietique	gue	ww2	ww2	-	-
+923	fr	nouvelles-et-recits,contemporains	mos,pol	sta	2030	-	-
+925	fr	russie-ancienne,empire,urss,russie-aujourdhui	ukr,pol	pou	ra,x18,ar,rev,2030,ww2,per,90,pou	-	-
+930	ru	poesie,classiques	poe,ort,phi	or	-	-	Alexeï Khomiakov
+933	fr	empire	eur,pol	ar	gr,ar	-	Ernest Daudet
+935	fr	photographie,urss	pol,mos	pou	per	-	-
+939	fr	biographies	poe	pou	ar,rev,2030	Sergueï Essénine	-
+942	bi	poesie,age-d-argent	poe,pol,spb	rev	rev	-	-
+945	fr	theologie-orthodoxe	ort,emi	pou	-	-	-
+948	fr	essais,classiques	cri,phi	pou	gr	Fiodor Dostoïevski	-
+950	fr	nouvelles-et-recits,memoires,goulag	gou,hum	90	2030,ww2,deg	-	-
+952	bi	poesie,periode-sovietique,goulag	poe,gou,fem,spb	2030	2030	-	-
+955	fr	dictionnaires,goulag	gou,lan	per	2030,ww2,deg	-	-
+957	fr	nouvelles-et-recits,periode-sovietique	gou,fem,spb	2030	2030	-	-
+959	fr	memoires,periode-sovietique	cri,gou	sta	2030	-	-
+961	bi	poesie,classiques	poe	or,gr	-	-	-
+964	fr	nouvelles-et-recits,periode-sovietique	hum,mos	2030	rev,2030	-	-
+967	fr	theologie-orthodoxe,icones	ort,art,sai	pou	pc	-	-
+970	fr	nouvelles-et-recits,classiques,periode-sovietique	-	-	-	-	-
+973	fr	nouvelles-et-recits,periode-sovietique	hum,mos	2030	2030	-	-
+975	it	icones	ort,art	pou	pc,ra	-	-
+978	fr	des-3-ans,albums,livres-audio,musique	con,mus,enf	2030	-	-	-
+981	fr	theologie-orthodoxe,spiritualite-et-priere	ort,sai,gou	ww2	-	-	-
+984	fr	essais,classiques	cri,phi	pou	gr	Fiodor Dostoïevski	-
+986	fr	romans,emigration	cau,amo	2030	-	-	Iliazd
+988	fr	memoires,philosophie-russe	phi,ort	gr,ar	gr,ar	-	-
+990	fr	philosophie-russe	phi,ort,fan	gr,ar	-	-	-
+992	fr	histoire-des-idees,theologie-orthodoxe	ort,gou,phi	pou	ar,rev,2030	-	-
+995	ru	des-3-ans,albums,contes-russes	con,enf	-	-	-	-
+997	fr	peinture,biographies	art,eur	pou	gr,ar	Vassili Polenov	Tatiana Mojenok
+999	fr	biographies,revolution-1917	fem,pol	pou	ar,rev,2030,ww2	Alexandra Kollontaï	Hélène Carrère d'Encausse
+1002	fr	arts	spb,phi	pou	gr	-	-
+1004	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+1006	fr	arts,adolescents	mos,enf	pou	pou	-	-
+1009	bi	livres-bilingues,albums	ort,mos,enf	2030	ar	-	-
+1011	fr	philosophie-russe	phi,pol,emi	2030	-	-	-
+1014	fr	empire,urss,russie-aujourdhui	eur,pol	pou	x18,or,gr,ar,2030,deg,pou	-	-
+1016	fr	memoires,emigration-russe	emi,enf,gue	pou	ww2	-	-
+1018	fr	romans,emigration	emi,gue	deg	ww2	-	-
+1021	ru	liturgie	ort	pou	-	-	-
+1024	fr	contes-russes,des-9-ans	con,ukr	gr	-	-	-
+1027	fr	arts	mos,fan	pou	2030	-	-
+1030	fr	romans,contemporains	cau,gue	pou	90,pou	-	-
+1033	fr	arts,recit-de-voyage	gue,eur	pou	or,pou	-	-
+1035	fr	architecture	art,mos,pol	pou	2030	-	-
+1038	fr	romans,periode-sovietique	mos,fan,hum,pol	2030	2030	-	-
+1040	fr	romans	pol,hum,gou	pou	deg	Andreï Siniavski	-
+1042	fr	nouvelles-et-recits	tra,gou,poe,fem	sta	ww2,deg	-	-
+1045	ru	essais,age-d-argent	cri,poe	pou	2030	Andreï Biely	-
+1049	ru	memoires,age-d-argent	mos,cri	2030	gr,ar	-	-
+1051	ru	romans,periode-sovietique	pol	deg	2030,deg	-	-
+1053	fr	musique	mus	pou	ra,x18,or,gr,ar	-	-
+1055	fr	musique,theatre-et-ballet	mus,the	pou	x18,or,gr,ar,2030,deg	-	-
+1057	fr	civilisation	ort	pou	-	-	-
+1059	fr	essais,classiques	ort,cri,phi	pou	gr	Fiodor Dostoïevski	-
+1062	fr	biographies,theatre-et-ballet	the,art,emi,fem	pou	ar,rev,2030	Tamara Karsavina	-
+1065	fr	romans,contemporains	sib,eur	pou	or,gr	-	-
+1068	fr	romans	gue,fem	pou	ar	-	-
+1071	fr	nouvelles-et-recits,age-d-argent	eur	ar	ar	-	-
+1074	fr	memoires,philosophie-russe	fem,emi,phi	2030,ww2	2030,ww2	Nicolas Berdiaev	-
+1076	fr	romans,age-d-argent	art,eur,ort	ar	-	Léonard de Vinci	-
+1078	fr	romans,emigration	eur,ort	2030	-	-	-
+1080	fr	nouvelles-et-recits,classiques	fan,phi	gr,ar	gr,ar	-	-
+1083	fr	romans,theatre,periode-sovietique,biographies	the,eur	2030	-	Molière	-
+1085	ru	romans,theatre,periode-sovietique,biographies	the,eur	2030	-	Molière	-
+1089	fr	arts,contes-russes	con,fan	pou	-	-	-
+1093	fr	arts,contes-russes	con,fan	pou	-	-	-
+1096	fr	histoire-des-idees,philosophie-russe	phi,fan,pol	pou	ar,rev,2030	-	-
+1098	fr	romans,contemporains	enf,pay	pou	sta,per	-	-
+1100	fr	romans,contemporains	mos,hum	pou	90	-	-
+1102	fr	romans,emigration	art,ort,pay	rev	or	-	-
+1104	fr	romans,classiques	hum,amo,spb	or	or	-	-
+1106	fr	nouvelles-et-recits,classiques	pay	gr	or,gr	-	-
+1108	fr	memoires,goulag	gou,sib,gue	2030	rev,2030	-	-
+1110	ru	memoires,emigration-russe	emi,ort,gou	pou	sta,per,90	-	-
+1112	fr	theatre,classiques	the	or	ra,or	-	-
+1114	fr	russie-ancienne,empire,urss,recit-de-voyage	sib	pou	ra,x18,or,gr,ar,2030	-	-
+1116	fr	biographies,empire	gue,eur,sib	pou	or	-	-
+1118	fr	recit-de-voyage,classiques	sib	rev,2030	ar	-	-
+1120	fr	memoires,classiques	amo,the	ar	ar	-	-
+1123	fr	debutant,livres-audio	lan	pou	-	-	-
+1125	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1129	fr	urss	eur,pol	pou	ar,2030,ww2,deg	Charles de Gaulle	-
+1131	fr	biographies,revolution-1917	pol	pou	ar,rev	Lénine	-
+1133	fr	romans,contemporains	ukr,gue	pou	pou	-	-
+1136	bi	contes-russes,livres-bilingues,albums	con,enf	-	-	-	-
+1138	bi,de	lectures-bilingues,intermediaire	lan	pou	-	-	-
+1141	fr	theologie-orthodoxe	ort,emi	pou	pou	-	-
+1144	bi	livres-bilingues,des-3-ans	poe,con,enf	-	-	-	-
+1147	fr	arts	spb,phi	pou	gr	Fiodor Dostoïevski	-
+1150	fr	arts	phi,ort	pou	gr	Fiodor Dostoïevski	-
+1152	fr	russie-aujourdhui	pol	pou	pou	-	-
+1154	fr	russie-aujourdhui,essais-politiques	pol,gue	pou	ww2,pou	-	-
+1157	fr	romans	ukr,gue	pou	pou	-	-
+1160	fr	romans,contemporains	ort,hum,fan	90	90	-	-
+1162	fr	histoire-des-idees,theologie-orthodoxe	ort,gou,phi	pou	ar,rev,2030,pou	-	-
+1165	fr	nouvelles-et-recits,contemporains	fem,phi	pou	-	-	-
+1167	fr	russie-aujourdhui,biographies	pol,gou	pou	pou	-	-
+1170	fr	theatre,nouvelles-et-recits,periode-sovietique	emi,gue,the	2030	rev	-	-
+1172	fr	biographies,urss	pay,gou	pou	2030,ww2	Nikolaï Vavilov	-
+1175	fr	philosophie-russe,theologie-orthodoxe	lan,phi,ort	rev	-	-	-
+1177	bi	poesie,periode-sovietique	poe,spb,gou	sta	-	-	-
+1179	fr	goulag,memoires	gou,ort,sai	deg	2030	-	-
+1181	fr	nouvelles-et-recits,emigration	amo	ar,2030	ar	-	-
+1183	fr	nouvelles-et-recits,periode-sovietique	amo,poe	sta	-	-	-
+1186	fr	philosophie-russe	phi,ort	ar	-	-	-
+1188	fr	memoires,russie-aujourdhui	gue,pol	pou	pou	-	-
+1191	fr	romans,emigration	amo,cin	2030	2030	-	-
+1193	fr	memoires,musique	mus,emi	ar,2030	ar,rev,2030	-	-
+1195	fr	memoires,revolution-1917,emigration	pol,gue,mos	rev	rev	-	-
+1197	fr	dictionnaires,civilisation,russie-aujourdhui	ukr	pou	ra,x18,ar,rev,2030,ww2,per,pou	-	-
+1200	fr	emigration-russe,histoire-des-idees	emi,art,cri	pou	2030,ww2	-	-
+1202	ru	theologie-orthodoxe,histoire-des-idees,emigration-russe	ort,emi,fem,phi	2030	-	-	-
+1205	fr	memoires,philosophie-russe	phi,ort,eur,emi	2030,ww2,deg	2030,ww2,deg	Nicolas Berdiaev	-
+1208	ru	romans,contemporains	ukr,gue	pou	pou	-	-
+1210	fr	romans	cau,hum	2030	ar,rev	-	-
+1212	fr	nouvelles-et-recits,classiques	amo	ar	ar	-	-
+1214	fr	romans,contemporains	pol	pou	90,pou	-	-
+1216	fr	nouvelles-et-recits,age-d-argent	sib,gou	ar	gr,ar	-	-
+1218	fr	romans,contemporains	mos,hum	pou	sta,per,90,pou	-	-
+1220	fr	nouvelles-et-recits,contemporains	fem,phi	pou	-	-	-
+1222	fr	romans	cau,pol	pou	sta	-	-
+1224	fr	spiritualite-et-priere,theologie-orthodoxe	ort,sai	or,gr	-	-	-
+1226	fr	memoires,urss	gue,spb,enf	ww2	ww2	-	-
+1228	fr	romans,contemporains	jui,enf,cri	pou	ar,rev,2030,ww2,deg,sta	-	-
+1230	fr	nouvelles-et-recits,periode-sovietique	fan,hum,mos	2030	2030	-	-
+1232	fr	romans,emigration	emi,phi	2030	2030	-	-
+1234	fr	essais,russie-aujourdhui	pol,ukr,gue	pou	pou	-	-
+1237	fr,uk	poesie	poe,ukr,gou	deg,sta	-	-	-
+1240	fr	cinema	cin	pou	pou	Andreï Zviaguintsev	-
+1243	fr	romans,contemporains	pol	pou	pou	-	-
+1245	bi	livres-bilingues,des-3-ans	poe,enf	pou	-	-	-
+1247	ru	memoires,goulag	gou,enf	pou	2030,ww2,deg	-	-
+1249	ru	memoires,urss	hum	pou	sta,per	-	-
+1251	fr	russie-aujourdhui,essais-politiques	ukr,pol,gue	pou	pou	-	-
+1253	fr	russie-aujourdhui,essais-politiques	pol,gue	pou	pou	Vladimir Poutine	-
+1255	fr	memoires,classiques	fem,amo,eur	gr	gr	Fiodor Dostoïevski	-
+1257	ru	apprendre-le-russe	enf,lan	pou	-	-	-
+1259	ru	memoires	enf	pou	sta,per	-	-
+1261	fr	nouvelles-et-recits,contemporains,russie-aujourdhui	ukr,gue	pou	pou	-	-
+1263	fr	theologie-orthodoxe	ort	pou	-	-	-
+1265	fr	civilisation	fem,amo,eur	pou	pou	-	-
+1267	fr	russie-aujourdhui,essais-politiques	pol	pou	pou	Vladimir Poutine	-
+1269	fr	memoires,russie-aujourdhui	ukr,gue	pou	pou	-	-
+1271	fr	contes-russes,des-9-ans	con,ukr	gr	-	-	-
+1273	fr	civilisation	ukr	pou	-	-	-
+1275	fr	theologie-orthodoxe	ort,emi	pou	-	Boris Bobrinskoy	-
+1277	ru	cinema	cin	pou	pou	Andreï Zviaguintsev	-
+1279	ru	nouvelles-et-recits,contemporains	fan	pou	-	-	-
+1281	fr	romans,contemporains	mus,mos	pou	90,pou	-	-
+1283	fr	nouvelles-et-recits,contemporains	mos,pol	sta	2030	-	-
+1285	fr	theatre,classiques	the,fem	gr	gr	-	-
+1288	fr	biographies,musique	mus,emi,the	pou	gr,ar,rev,2030	Fédor Chaliapine	-
+1290	fr	russie-aujourdhui,essais-politiques	ukr,gue,pol	pou	pou	-	-
+1292	fr	theologie-orthodoxe	ort	pou	-	-	-
+1294	fr	des-6-ans,albums	poe,enf	2030	-	-	-
+1296	fr	russie-ancienne,empire,urss,russie-aujourdhui	gue	pou	ra,or,ww2,pou	-	François Malye
+1298	fr	romans,contemporains	pol	pou	sta,per,90,pou	-	-
+1300	fr	contes-russes,des-6-ans	con,enf	gr	-	-	Léon Tolstoï
+1302	fr	recit-de-voyage,classiques	eur	x18	x18	-	-
+1306	ru	goulag,urss	gou,pol	sta	rev,2030,ww2,deg	-	-
+1308	fr	contes-russes,des-6-ans	con,poe,enf	or	-	-	-
+1310	fr	nouvelles-et-recits	eur,gue	deg	ww2	-	-
+1313	fr	empire,civilisation	eur	or	ra,x18,or	-	Jean-Marie Chopin
+1315	fr	russie-aujourdhui,essais-politiques	ukr,pol	pou	per,90,pou	-	-
+1317	fr	emigration-russe,urss	emi,pol	pou	deg,sta	-	-
+1319	fr	theologie-orthodoxe,liturgie	ort,sai	pc	-	-	-
+1321	fr	nouvelles-et-recits,poesie,age-d-argent	poe	ar	-	-	-
+1323	fr	romans,contemporains,goulag	gou,sib	pou	deg	-	-
+1325	fr	memoires,russie-aujourdhui	gue,pol	pou	pou	-	-
+1327	fr	russie-aujourdhui,civilisation	ukr	pou	ra,x18,ar,rev,2030,ww2,per,90,pou	-	-
+1329	fr	recit-de-voyage,urss	sib,ort	sta,per	2030,deg,sta,per	-	-
+1331	fr	russie-ancienne,empire,urss,russie-aujourdhui	eur,pol	pou	ra,x18,or,gr,ar,2030,ww2,deg,pou	-	-
+1333	fr	russie-aujourdhui,essais-politiques	ukr,gue,pol	pou	pou	-	-
+1335	fr	russie-ancienne,empire,urss,russie-aujourdhui	ukr	pou	pc,ra,x18,or,gr,ar,rev,2030,ww2,deg,sta,per,90,pou	-	Serhii Plokhy
+1337	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1339	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1341	fr	emigration-russe	emi	pou	rev,2030	-	-
+1343	fr	emigration-russe	emi	pou	rev,2030,ww2	-	-
+1345	fr	nouvelles-et-recits	eur,gue	-	ww2	-	-
+1347	fr	romans	eur,enf	deg	2030	-	-
+1351	ru	cinema	cin	pou	pou	Andreï Zviaguintsev	-
+1353	fr	vies-de-saints,emigration-russe	sai,emi,fem,ort	sta	ar,rev,2030,ww2	Mère Marie Skobtsova	-
+1356	ru	nouvelles-et-recits,contemporains	enf	pou	-	-	-
+1359	ru	adolescents,emigration	emi,enf	2030	-	-	-
+1361	fr	urss,theologie-orthodoxe	ort,gou,sai	pou	rev,2030,ww2,deg,sta	-	-
+1363	fr	theologie-orthodoxe	ort,eur	pou	-	-	-
+1366	ru	peinture,biographies	art	2030	gr,ar	Ilya Répine	Igor Grabar
+1368	fr	theologie-orthodoxe	ort,emi	sta	-	-	-
+1370	ru	histoire-des-idees,essais-politiques	phi,pol	pou	rev	-	-
+1372	fr	nouvelles-et-recits,poesie	poe,pol	pou	rev	-	-
+1375	ru	romans,contemporains	mos	pou	ar	-	-
+1377	fr	memoires,russie-aujourdhui	ukr,gue	pou	pou	-	-
+1380	fr	essais,russie-aujourdhui	pol,eur,emi	pou	pou	-	-
+1382	fr	biographies,revolution-1917	fem,pol	pou	ar,rev,2030	-	-
+1384	fr	biographies,histoire-des-idees	phi,ort,gou	pou	sta,per	Sergueï Averintsev	-
+1386	fr	romans,age-d-argent	pay	ar	ar	-	-
+1388	fr	romans,emigration	amo,emi	2030	2030	Elsa Triolet	-
+1390	fr	memoires	amo,emi	2030	2030	Elsa Triolet	-
+1393	fr	nouvelles-et-recits,contemporains	hum,phi	pou	-	-	-
+1395	fr	memoires,classiques	pay,phi	2030	gr	-	-
+1397	fr	memoires,urss	gue	ww2	ww2	-	-
+1399	fr	romans,periode-sovietique	gue	deg	ww2	-	-
+1401	fr	romans,periode-sovietique,goulag	gou,pol,ukr	deg	deg	-	-
+1403	fr	romans,periode-sovietique	gue,gou,jui	deg	ww2	-	-
+1405	fr	philosophie-russe,histoire-des-idees	phi,ort,cri	sta,per	-	-	-
+1407	fr	biographies,philosophie-russe	phi,ort	pou	gr,ar	Léon Tolstoï	-
+1409	fr	nouvelles-et-recits,periode-sovietique,goulag	gou,hum	sta	deg	-	-
+1411	fr	nouvelles-et-recits,emigration	emi,hum,amo	per	per	-	-
+1413	fr	nouvelles-et-recits,emigration	hum,emi,spb	per	deg,sta	-	-
+1415	fr	nouvelles-et-recits,emigration	hum,poe	sta	sta	Alexandre Pouchkine	-
+1417	fr	nouvelles-et-recits,emigration	hum,pol	sta	sta	-	-
+1419	fr	russie-aujourdhui,urss	pol	pou	rev,2030,deg,sta,per,90,pou	-	Vladimir Popov ; Yuri Felshtinsky
+1421	fr	nouvelles-et-recits,periode-sovietique,goulag	gou,sib	deg,sta	2030,ww2,deg	-	-
+1423	fr	memoires,goulag	gou,cri	deg,sta	deg,sta	Alexandre Soljenitsyne ; Nadejda Mandelstam	-
+1425	fr	memoires,periode-sovietique	mos,art,cri	sta	2030	-	-
+1427	fr	memoires,goulag	gou,sib	sta	2030,ww2,deg	-	-
+1429	fr	nouvelles-et-recits,periode-sovietique,goulag	gou,sib	deg,sta	2030,ww2,deg	-	-
+1431	fr	memoires,periode-sovietique	enf,ort,pol	sta	ar,rev	-	-
+1433	fr	essais,goulag	gou,cri	pou	2030,ww2,deg	Varlam Chalamov	-
+1435	fr	poesie,periode-sovietique,goulag	poe,gou,sib	deg	deg	-	-
+1437	fr	essais,goulag	gou	deg	2030,ww2,deg	-	-
+1439	fr	essais,periode-sovietique	cri	deg,sta	-	-	-
+1441	fr	nouvelles-et-recits,memoires,emigration	hum,emi,spb	sta,per	sta,per	-	-
+1443	fr	nouvelles-et-recits,periode-sovietique	cau,phi	2030	2030	-	-
+1445	fr	nouvelles-et-recits,periode-sovietique	pay,fan,hum	2030	2030	-	-
+1448	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1451	ru	liturgie,musique	ort,mus,emi	pou	-	-	-
+1453	cu	liturgie	ort	-	-	-	-
+1455	ru	nouvelles-et-recits,periode-sovietique	mos,hum	sta	sta	-	-
+1457	ru	theologie-orthodoxe,spiritualite-et-priere	ort,gou	sta	sta	-	-
+1459	ru	spiritualite-et-priere	ort,enf,emi	deg	-	-	-
+1461	ru	spiritualite-et-priere	hum	ww2	-	-	-
+1463	ru	vies-de-saints	sai,fem,ort	-	ra	-	-
+1465	ru	nouvelles-et-recits,emigration	emi,gue	sta	2030,ww2	-	-
+1467	ru	poesie,age-d-argent	poe	ar	-	-	-
+1469	ru	poesie,age-d-argent	poe,enf	ar	-	-	-
+1471	ru	biographies,philosophie-russe	phi,cri	rev	ar	Vassili Rozanov	-
+1473	ru	essais,periode-sovietique	cri	sta	2030	Andreï Platonov	-
+1475	ru	poesie,memoires,age-d-argent	poe	ar	ar	-	-
+1477	ru	nouvelles-et-recits,classiques	hum	gr	gr	-	-
+1479	ru	philosophie-russe,histoire-des-idees	phi,pol	deg	or,gr,ar	-	-
+1481	ru	essais-politiques,urss	pol,cau	sta	sta	-	-
+1483	ru	musique	mus,emi	2030	-	-	-
+1485	ru	romans,periode-sovietique	pol,spb	per	rev	-	-
+1487	ru	romans,periode-sovietique	pol,spb	per	rev	-	-
+1489	ru	memoires,revolution-1917	gue	-	rev	-	-
+1491	ru	nouvelles-et-recits,emigration	emi,ort	2030	-	-	-
+1493	ru	essais,biographies,emigration	poe,cri	deg	or	Vassili Joukovski	-
+1495	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
+1497	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
+1499	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	Serge Boulgakov	-
+1501	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
+1503	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
+1505	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
+1507	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	sta	-	-	-
+1509	ru	vies-de-saints,urss	sai,gou,ort	sta	rev,2030	-	-
+1511	ru	architecture,photographie	ort,mos,art	per	ra,x18,or,gr,ar	-	-
+1513	ru	essais,emigration	cri,ort	deg	or	Nicolas Gogol	-
+1515	ru	nouvelles-et-recits,emigration	ort	2030	ra	-	-
+1517	ru	essais-politiques,histoire-des-idees	pol,ort,gou	sta	sta	-	-
+1519	ru	nouvelles-et-recits,emigration	emi,fem	deg	-	-	-
+1521	ru	romans,emigration	ort,pay	-	ar	-	-
+1523	ru	memoires,goulag	gou,jui,pol	sta	sta	-	-
+1525	ru	nouvelles-et-recits,emigration	-	2030	-	-	-
+1527	ru	memoires,periode-sovietique,goulag	gou,poe,fem	sta	2030	Ossip Mandelstam	-
+1530	ru	urss,goulag	gou,pol	sta	rev,2030	-	-
+1532	ru	urss,revolution-1917	gou,pol	sta	rev,2030	-	-
+1535	ru	urss	pay,pol	90	deg	-	-
+1537	ru	romans,periode-sovietique	ort,mos	sta	sta	-	-
+1539	ru	essais-politiques	pol	per	per	-	-
+1541	ru	romans,classiques	pol	gr	ra	-	-
+1543	ru	essais-politiques	pol,gou	sta	sta	-	-
+1545	ru	memoires,emigration	pol,cri	sta	sta	-	-
+1547	ru	urss,emigration-russe	gue,emi	sta	ww2	-	-
+1549	ru	biographies,revolution-1917	pol	deg	ar,rev	Lénine	-
+1551	ru	poesie,age-d-argent	poe,pay	ar,rev,2030	-	-	-
+1553	ru	romans	gue,poe	deg	or	Denis Davydov	-
+1555	ru	biographies,memoires	fem,poe,cri	or,gr	or	Nicolas Gogol	-
+1558	fr	memoires,emigration	emi,cri	deg	deg	Vladimir Nabokov	-
+1560	fr	romans,contemporains	mos,ort	pou	90	-	-
+1562	fr	urss	gue,pol	pou	2030,ww2	-	-
+1564	ru	memoires	ukr	deg	-	-	-
+1566	ru	romans,emigration	emi	-	-	-	-
+1568	fr	romans,contemporains	ukr,hum	pou	rev	-	-
+1570	fr	romans,contemporains	ukr,hum	pou	rev	-	-
+1572	fr	histoire-des-idees,urss	pol,eur,cri	pou	deg,sta	Jean-Paul Sartre	-
+1574	fr	romans,contemporains	gou,mos,pol	pou	2030,ww2	-	-
+1576	fr	theatre,age-d-argent	the,pol	ar	-	-	-
+1578	fr	poesie,memoires,age-d-argent	poe	ar,rev,2030	-	-	-
+1580	fr	poesie,periode-sovietique	poe,spb,fem	ww2,deg	-	-	-
+1582	fr	nouvelles-et-recits,periode-sovietique	spb	rev	rev	-	-
+1584	fr	romans,contemporains	pol,mos,hum	pou	pou	-	-
+1586	ru	nouvelles-et-recits,periode-sovietique,goulag	gou	deg	deg	-	-
+1588	fr	romans,contemporains	fan,pol,ort	pou	-	-	-
+1590	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1592	fr	spiritualite-et-priere,theologie-orthodoxe	ort,emi	sta	-	-	-
+1594	fr	nouvelles-et-recits,biographies	emi,fem,poe	pou	2030,ww2	Larissa Andersen	-
+1596	fr	essais,memoires,russie-aujourdhui	pol,ukr,fem	pou	pou	-	-
+1598	fr	essais,urss	pol,gou	pou	deg	-	-
+1601	fr	poesie,classiques	poe,tra	x18	-	-	-
+1603	fr	memoires,goulag	gou,fem,sib	deg,sta	ww2,deg	-	-
+1605	ru	des-3-ans,albums	con,poe,enf	2030	-	-	-
+1607	fr	essais,russie-aujourdhui	ukr,gue	pou	pou	-	-
+1610	fr	arts,urss	art,enf	pou	rev,2030	-	-
+1612	fr	nouvelles-et-recits,periode-sovietique	hum,fan	2030	2030	-	-
+1614	fr	romans,contemporains	hum,pol	pou	pou	-	-
+1616	fr	theologie-orthodoxe,spiritualite-et-priere	ort,sai	pc	-	-	-
+1619	fr	vies-de-saints,emigration-russe	sai,emi,fem	pou	ar,rev,2030,ww2	Mère Marie Skobtsova	-
+1621	ru	romans,periode-sovietique,goulag	gou,pol,mos	deg	deg	-	-
+1623	fr	theologie-orthodoxe,liturgie	ort	pou	-	-	-
+1625	bi	vies-de-saints	sai,eur	pc	pc	-	-
+1627	ru	emigration-russe,histoire-des-idees	cri,emi	pou	2030	-	-
+1629	fr	romans,emigration	mos	2030	rev	-	-
+1631	fr	romans,emigration	amo,fem,enf	2030	ar	-	-
+1633	fr	romans,classiques	enf,fem,mus	or	or	-	-
+1635	fr	biographies,theologie-orthodoxe	ort	pou	deg,sta,per	Cyrille Argenti	-
+1637	ru	essais,age-d-argent	cri,poe	90	-	Marina Tsvétaïéva	-
+1639	fr	romans,classiques	gue	ar	ar	-	-
+1641	fr	nouvelles-et-recits,classiques	fan,ukr,hum	or	or	-	-
+1643	fr	grammaire-et-exercices	lan	ar	-	-	Paul Boyer ; Nicolas Spéranski
+1645	fr	emigration-russe,musique	emi,mus	pou	2030,ww2,deg,sta,per,90,pou	-	-
+1650	ru	memoires,emigration-russe	emi	pou	2030,ww2,deg	-	-
+1652	fr	debutant,grammaire-et-exercices	lan	pou	-	-	-
+1655	fr	romans,periode-sovietique	gue	ww2	ww2	-	-
+1657	fr	nouvelles-et-recits,emigration	emi,phi	2030	-	-	-
+1659	fr	memoires,essais	lan,tra	pou	sta,per,pou	-	-
+1662	fr	romans,musique	mus	pou	deg,sta	-	-
+1664	fr	romans,contemporains	fem,enf	pou	pou	-	-
+1666	fr	memoires	pol,gou,eur	sta	ar,rev,2030,ww2	-	-
+1668	ru	poesie,contemporains	poe	per,90,pou	-	-	-
+1671	ru	nouvelles-et-recits,contemporains	enf	pou	-	-	-
+1673	bi	nouvelles-et-recits,classiques	amo	ar	ar	-	-
+1675	fr	memoires,russie-aujourdhui	pol,gou	pou	sta,per,90,pou	-	-
+1677	fr	philosophie-russe,essais	phi,ort,cri	2030	gr	Fiodor Dostoïevski	-
+1679	fr	poesie,age-d-argent,periode-sovietique	poe,eur	2030	-	-	-
+1681	fr	memoires	emi,pol	pou	-	-	-
+1683	ru	romans,contemporains	ukr,hum	90	90	-	-
+1685	ru	romans,contemporains	ukr,mus,hum	pou	pou	-	-
+1687	ru	romans,contemporains	gou,gue	pou	2030,ww2,pou	-	-
+1689	ru	romans,contemporains	pol	pou	pou	-	-
+1691	ru	romans,contemporains	enf,pol	pou	90,pou	-	-
+1693	ru	romans,contemporains	gou,mos,pol	pou	2030,ww2	-	-
+1695	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+1697	ru	romans,classiques	amo,fem	gr	gr	-	-
+1699	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	Vladimir Lossky	-
+1702	ru	romans,contemporains	mos,pol	pou	2030	-	-
+1704	ru	romans,contemporains	cri,hum	pou	-	-	-
+1707	ru	empire	pol	pou	or,gr	-	-
+1709	ru	memoires,russie-aujourdhui	pol,gou	pou	sta,per,90,pou	-	-
+1712	ru	russie-aujourdhui,urss	gou,pol	pou	per,90,pou	-	-
+1714	ru	cinema,essais	cin,pol	pou	pou	-	-
+1716	ru	romans,contemporains	emi,gue	pou	pou	-	-
+1718	ru	essais-politiques,russie-aujourdhui	ukr,pol,gue	pou	ra,x18,ar,rev,2030,per,90,pou	-	-
+1720	fr	romans,periode-sovietique	pay,gue	rev	rev	-	-
+1722	ru	poesie,emigration	poe,emi	2030	-	-	-
+1724	ru	poesie,emigration	poe,emi	2030	-	-	-
+1726	ru	poesie,emigration	poe,emi	2030	-	-	-
+1729	ru	poesie,age-d-argent	poe	ar	-	-	-
+1732	ru	poesie,age-d-argent	poe,pay,ort	ar,rev,2030	-	-	-
+1734	fr	nouvelles-et-recits,memoires,recit-de-voyage,periode-sovietique	-	2030	2030	-	-
+1736	fr	romans,age-d-argent	art,eur	ar	-	Léonard de Vinci	-
+1738	bi	poesie,emigration	poe,emi	2030	-	-	-
+1740	fr	nouvelles-et-recits,periode-sovietique	cri,tra,pol	2030	2030	-	-
+1742	fr	theatre,periode-sovietique	emi,gue,the	2030	rev	-	-
+1744	fr	essais,russie-aujourdhui	ukr,gue,pol	pou	pou	-	-
+1747	fr	des-6-ans,albums	poe,hum,enf	2030	-	-	-
+1749	fr	russie-aujourdhui,arts	pol,fem	pou	pou	-	-
+1751	fr	romans,contemporains	pol,gue	pou	pou	-	-
+1753	fr	arts	art,phi	pou	-	-	-
+1755	fr	emigration-russe	emi	pou	2030	-	-
+1757	fr	recit-de-voyage,theologie-orthodoxe	ort,cau,sai	2030	2030	-	-
+1759	fr	dictionnaires,essais,classiques	poe,tra,cri	pou	or	Alexandre Pouchkine	-
+1761	fr	theologie-orthodoxe	ort	pou	-	-	-
+1766	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+1768	fr	nouvelles-et-recits,emigration	emi,gue	ww2	ww2	-	-
+1770	fr	biographies	tra,fem,emi	pou	ar,2030,ww2	Ludmila Savitzky	-
+1772	fr	vies-de-saints,des-6-ans	sai,enf	pou	or	Séraphin de Sarov	-
+1775	ru	essais	phi	-	-	-	-
+1777	fr	nouvelles-et-recits,contemporains	fan	pou	-	-	-
+1779	fr	nouvelles-et-recits,contemporains	fem	pou	-	-	-
+1781	fr	romans	hum	pou	-	-	-
+1783	fr	urss,goulag	gou,pol	pou	rev,2030,ww2,deg	-	-
+1785	fr	vies-de-saints,spiritualite-et-priere	ort,sai,fem	pou	-	-	-
+1787	fr	romans,classiques	fem,eur	or	x18,or	-	-
+1789	fr	russie-aujourdhui,essais-politiques	pol,eur	pou	per,90,pou	-	-
+1791	fr	essais,russie-aujourdhui	cri,pol,eur	pou	pou	Alexandre Pouchkine	-
+1793	ru	romans,contemporains	fan,pol	pou	pou	-	-
+1795	fr	russie-aujourdhui,dictionnaires	pol,lan	pou	per,90,pou	Vladimir Poutine	-
+1797	fr	nouvelles-et-recits,classiques	cau,gue	gr	or,gr	-	-
+1799	fr	romans	amo,pol	pou	pc	-	-
+1801	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+1803	ru	guides-de-voyage,emigration-russe	emi,eur	pou	2030,ww2	-	Anastasia Kopřivová ; Lukáš Babka
+1805	fr	cinema	cin	pou	pou	Andreï Zviaguintsev	-
+1807	fr	memoires,goulag,theologie-orthodoxe	gou,ort,sib,enf	2030	2030	-	-
+1809	fr	essais	cri,gou,phi	pou	ww2,deg	Vassili Grossman	-
+1811	ru	urss,biographies	pol	pou	2030	Vladimir Bekhterev	-
+1813	ru	essais,classiques	cri	pou	or,gr,ar	-	-
+1815	ru	essais,classiques	poe,cri	pou	or	Alexandre Pouchkine	-
+1817	ru	biographies,periode-sovietique	poe,gou,spb	pou	deg,sta	Joseph Brodsky	-
+1820	ru	poesie,contemporains	poe,gue	pou	-	-	-
+1822	ru	memoires,emigration-russe,arts	emi,art,the	pou	2030,ww2,deg,sta,per	Rostislav Doboujinsky	-
+1824	bi	poesie,contemporains	poe,gue,ukr	pou	pou	-	-
+1827	ru	icones,biographies,emigration-russe	ort,art,emi,fem	pou	2030,ww2,deg,sta,per,90	Maria Struve	-
+1829	ru	essais,urss	pol	pou	per	-	-
+1831	fr	theologie-orthodoxe,spiritualite-et-priere	ort,emi	deg,sta	-	-	-
+1833	fr	poesie,goulag	poe,ukr,gou	sta	sta	-	-
+1835	fr	romans,contemporains	mos,pol	pou	pou	-	-
+1837	fr	grammaire-et-exercices	lan	-	-	-	Natalie Stepanoff-Kontchalovski
+1839	ru	memoires,theologie-orthodoxe	ort	pou	sta,per,90,pou	-	-
+1842	ru	poesie,contemporains	poe,mus	pou	-	-	-
+1847	ru	poesie,contemporains	poe,emi	pou	-	-	-
+1852	ru	theologie-orthodoxe,histoire-des-idees	ort,phi	pou	-	-	-
+1854	ru	empire	pol	pou	gr	-	Andreï Zoubov
+1856	ru	poesie,contemporains	poe	pou	-	-	-
+1858	fr	poesie,periode-sovietique,emigration	poe	deg,sta,per	-	-	-
+1860	ru	memoires,russie-aujourdhui	cau,gue,fem,enf	pou	90,pou	Natalia Estemirova	-
+1862	ru	romans,contemporains	cin	pou	2030	Sergueï Eisenstein	-
+1864	ru	empire,revolution-1917	pol	pou	ar,rev	-	-
+1866	fr	romans,contemporains	emi,gue	pou	pou	-	-
+1868	fr	biographies,memoires	emi,pol	pou	ar,rev,2030,ww2,deg,sta	Alexander Werth	-
+1870	ru	poesie,contemporains	poe	per,90,pou	-	-	-
+1872	ru	memoires,periode-sovietique	poe,cri	sta	deg	Anna Akhmatova	-
+1874	ru	memoires	cri	pou	-	-	-
+1876	fr	essais,age-d-argent	poe,cri	sta	-	Ossip Mandelstam	-
+1878	fr	memoires,periode-sovietique	poe,gou,fem	sta	ar,rev,2030	-	-
+1880	bi	poesie,periode-sovietique	poe,gou	2030	-	-	-
+1882	fr	romans,periode-sovietique	gue,pol	sta,per	ar,rev	-	-
+1885	ru	romans,contemporains	gue,pol	pou	pou	-	-

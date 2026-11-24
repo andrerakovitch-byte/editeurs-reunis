@@ -22,6 +22,7 @@ require __DIR__ . '/inc/recherche.php';
 require __DIR__ . '/inc/algolia.php';
 require __DIR__ . '/inc/import.php';
 require __DIR__ . '/inc/fiche.php';
+require __DIR__ . '/inc/epoques.php';
 require __DIR__ . '/inc/couvertures.php';
 require __DIR__ . '/inc/catalogue.php';
 require __DIR__ . '/inc/librairie.php';

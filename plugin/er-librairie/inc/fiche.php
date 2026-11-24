@@ -175,10 +175,12 @@ add_action(
 						}
 						$lignes .= '<p class="er-fiche-champ"><span class="er-fiche-champ__libelle">' . esc_html( $libelle ) . '</span>' . wp_kses_post( $valeur ) . '</p>';
 					}
-					// Les personnes dont parle le livre, et ses sujets : des liens vers leur page.
+					// Les personnes dont parle le livre, ses sujets et ses époques : des liens vers leur page.
 					$liees = array(
-						_x( 'Autour de', 'fiche d’un livre', 'er-librairie' ) => function_exists( 'er_autour_de' ) ? er_autour_de( $id ) : array(),
-						_x( 'Sujets', 'fiche d’un livre', 'er-librairie' )    => wp_get_post_terms( $id, 'er_sujet' ),
+						_x( 'Autour de', 'fiche d’un livre', 'er-librairie' )         => function_exists( 'er_autour_de' ) ? er_autour_de( $id ) : array(),
+						_x( 'Sujets', 'fiche d’un livre', 'er-librairie' )            => wp_get_post_terms( $id, 'er_sujet' ),
+						_x( 'Époque d’écriture', 'fiche d’un livre', 'er-librairie' ) => er_epoques_du_livre( $id, 'er_ecriture' ),
+						_x( 'Époque traitée', 'fiche d’un livre', 'er-librairie' )    => er_epoques_du_livre( $id, 'er_periode' ),
 					);
 					foreach ( $liees as $libelle => $termes ) {
 						if ( ! $termes || is_wp_error( $termes ) ) {

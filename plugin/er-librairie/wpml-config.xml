@@ -4,7 +4,7 @@
 	Les rencontres et les expositions du centre se traduisent comme les pages ; leurs cycles, leurs intervenants et
 	les techniques des expositions aussi.
 	Les auteurs ont un nom par langue (Солженицын, Soljenitsyne, Solzhenitsyn) ; les langues des livres aussi
-	(russe, русский, Russian). Les livres, les rayons et les mentions sont réglés par Polylang pour WooCommerce.
+	(russe, русский, Russian), et les époques (L’Âge d’argent, Серебряный век, The Silver Age). Les livres, les rayons et les mentions sont réglés par Polylang pour WooCommerce.
 -->
 <wpml-config>
 	<custom-types>
@@ -19,5 +19,7 @@
 		<taxonomy translate="1">er_technique</taxonomy>
 		<taxonomy translate="1">auteur</taxonomy>
 		<taxonomy translate="1">langue</taxonomy>
+		<taxonomy translate="1">er_ecriture</taxonomy>
+		<taxonomy translate="1">er_periode</taxonomy>
 	</taxonomies>
 </wpml-config>
