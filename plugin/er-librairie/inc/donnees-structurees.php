@@ -419,3 +419,52 @@ add_action(
 		}
 	}
 );
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	/**
+	 * Les données structurées de quelques pages telles que le site les sert : wp er ld. Pour chaque page, les types
+	 * trouvés et, pour un livre, son prix et sa disponibilité ; un JSON illisible est signalé.
+	 */
+	WP_CLI::add_command(
+		'er ld',
+		function () {
+			$pages   = array( home_url( '/' ) );
+			$livre   = get_posts( array( 'post_type' => 'product', 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => 'er_wix_slug' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+			$evt     = get_posts( array( 'post_type' => 'er_evenement', 'numberposts' => 1, 'fields' => 'ids' ) );
+			$auteur  = get_terms( array( 'taxonomy' => 'auteur', 'number' => 1, 'orderby' => 'count', 'order' => 'DESC' ) );
+			$pages[] = $livre ? get_permalink( $livre[0] ) : '';
+			$pages[] = $evt ? get_permalink( $evt[0] ) : '';
+			$pages[] = $auteur && ! is_wp_error( $auteur ) ? get_term_link( $auteur[0] ) : '';
+			$pages[] = home_url( '/centre-culturel/evenements/' );
+			foreach ( array_filter( $pages, 'is_string' ) as $url ) {
+				$r = wp_remote_get( $url, array( 'timeout' => 30, 'sslverify' => false ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- en ligne de commande seulement.
+				if ( is_wp_error( $r ) ) {
+					WP_CLI::log( wp_make_link_relative( $url ) . ' : ' . $r->get_error_message() );
+					continue;
+				}
+				preg_match_all( '#<script type="application/ld\+json">(.*?)</script>#s', wp_remote_retrieve_body( $r ), $m );
+				$types = array();
+				foreach ( $m[1] as $json ) {
+					$d = json_decode( $json, true );
+					if ( null === $d ) {
+						$types[] = 'JSON ILLISIBLE';
+						continue;
+					}
+					foreach ( isset( $d['@graph'] ) ? $d['@graph'] : array( $d ) as $e ) {
+						$type    = implode( '+', (array) ( $e['@type'] ?? '?' ) );
+						$detail  = isset( $e['offers']['price'] ) ? ' (' . $e['offers']['price'] . ' ' . ( $e['offers']['priceCurrency'] ?? '' ) . ', ' . basename( (string) ( $e['offers']['availability'] ?? '' ) ) . ')' : '';
+						$detail .= isset( $e['startDate'] ) ? ' (' . $e['startDate'] . ')' : '';
+						$detail .= isset( $e['itemListElement'] ) ? ' (' . count( $e['itemListElement'] ) . ' étapes)' : '';
+						$types[] = $type . $detail;
+					}
+				}
+				WP_CLI::log( wp_make_link_relative( $url ) . ' · ' . wp_remote_retrieve_response_code( $r ) . ' · ' . ( $types ? implode( ', ', $types ) : 'aucune' ) );
+			}
+			// Les anciennes adresses de Wix.
+			foreach ( array( 'product-page/dieu-et-l-etat-bakounine', 'product-page/la-sonate-%C3%A0-kreutzner-l%C3%A9on-tolsto%C3%AF', 'product-page/un-livre-qui-n-existe-pas', 'expo', 'notre-histoire' ) as $ancien ) {
+				$r = wp_remote_get( home_url( '/' . $ancien ), array( 'timeout' => 30, 'sslverify' => false, 'redirection' => 0 ) );
+				WP_CLI::log( '/' . urldecode( $ancien ) . ' → ' . ( is_wp_error( $r ) ? $r->get_error_message() : wp_remote_retrieve_response_code( $r ) . ' ' . urldecode( wp_make_link_relative( (string) wp_remote_retrieve_header( $r, 'location' ) ) ) ) );
+			}
+		}
+	);
+}
