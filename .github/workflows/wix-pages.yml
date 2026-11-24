@@ -24,7 +24,7 @@ jobs:
   lire:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: yt-dlp (la liste des vidéos des chaînes citées, sans rien télécharger)
         if: inputs.quoi == 'medias'
         run: pip install --quiet yt-dlp

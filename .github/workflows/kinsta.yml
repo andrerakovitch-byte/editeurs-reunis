@@ -1,4 +1,4 @@
-# Met le thème et l'extension en ligne chez Kinsta, à chaque poussée sur main qui les touche.
+# Met le thème et l'extension en ligne chez Kinsta, à chaque poussée sur main qui les touche, une fois le code vérifié.
 # Chaque passage installe et active les extensions dont le site a besoin (WooCommerce, Stripe, la nôtre).
 # À la main (Actions → « Déployer chez Kinsta » → Run workflow), avec « installer » coché : le premier passage, qui
 # active le thème, télécharge les langues et sème le contenu de l'ébauche (semer.php).
@@ -47,7 +47,12 @@ permissions:
   contents: write
 
 jobs:
+  # Rien ne part chez Kinsta si le contrôle échoue : syntaxe, tests, style et règles de sécurité (verifier.yml).
+  verifier:
+    uses: ./.github/workflows/verifier.yml
+
   deployer:
+    needs: verifier
     if: vars.KINSTA_HOTE != ''
     runs-on: ubuntu-latest
     env:
@@ -55,7 +60,7 @@ jobs:
       PORT: ${{ vars.KINSTA_PORT }}
       QUI: ${{ vars.KINSTA_UTILISATEUR }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: La clé SSH
         env:

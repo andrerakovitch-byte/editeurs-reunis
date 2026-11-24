@@ -26,6 +26,8 @@ n'est gardé quand on ferme l'onglet.
     les quinze livres et leurs couvertures, le communiqué). Relancé, il ne crée rien en double.
 - `blueprint.json` : le plan de l'aperçu Playground.
 - `apercu/` : les deux archives que l'aperçu installe. `outils/construire.sh` les refait.
+- `tests/`, `outils/verifier.sh`, `phpcs.xml.dist`, `ruff.toml` : le contrôle qui précède chaque déploiement
+  (« Vérifier le code »).
 
 ## La direction artistique est provisoire
 
@@ -650,6 +652,22 @@ Pour brancher le dépôt sur Kinsta, une fois :
 Tant que les variables ne sont pas posées, le déploiement ne fait rien. La bêta est fermée aux moteurs de recherche
 (`blog_public` à 0) : le jour de la mise en ligne, Réglages → Lecture, décocher « Demander aux moteurs de recherche
 de ne pas indexer ce site ».
+
+## Vérifier le code
+
+Rien ne part chez Kinsta sans être vérifié : le déploiement attend le contrôle (`.github/workflows/verifier.yml`), et
+s'arrête s'il échoue. Le même contrôle se lance sur un poste avec `bash outils/verifier.sh` :
+
+1. la syntaxe de chaque fichier PHP et JavaScript ;
+2. les tests PHP (`tests/php`, `php tests/php/lancer.php`), sans WordPress ni rien à installer : les fonctions de
+   WordPress dont le code a besoin sont doublées dans `tests/php/amorce.php` ;
+3. les outils Python : ruff (`ruff.toml`) et les tests de `tests/python` (pytest) ;
+4. PHPCS, avec les règles de sécurité de WordPress et une hygiène de base des fichiers, pas toute la mise en forme
+   (`phpcs.xml.dist`) ; sur un poste, après `composer install`.
+
+Une règle : chaque bogue corrigé arrive avec le test qui l'aurait vu ; chaque mauvais nom trouvé dans le catalogue
+devient un cas dans `tests/php/roles-test.php`. Une fonction qui rend du HTML ou une adresse déjà échappés se déclare
+dans `phpcs.xml.dist` plutôt qu'avec un « phpcs:ignore » à chaque `echo`.
 
 ## Travailler à deux
 
