@@ -1,6 +1,6 @@
-Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
+Posé sur 840 livres en vente :
   170 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
-174 personnes (180 graphies), dont 11 qui ne sont pas encore des auteurs :
+174 personnes (180 graphies), dont 11 qui ne sont pas encore des auteurs (créées) :
   Sophie Benech (12)
   Georges Nivat (9)
   Christian Mouze (8)
