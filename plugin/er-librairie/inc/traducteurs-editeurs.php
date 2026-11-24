@@ -492,7 +492,7 @@ function er_roles_releves( $id ) {
 	}
 	$post  = get_post( $id );
 	$texte = $titre . "\n" . wp_strip_all_tags( $post ? $post->post_excerpt . "\n" . $post->post_content : '' );
-	$nom   = '\p{Lu}[\p{L}’\'\-]+(?:\s+(?:de\s+|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3}';
+	$nom   = '\p{Lu}[\p{L}’\'\-]+(?:\s+(?:de\s+|du\s+|d[’\']|von\s+|van\s+)?\p{Lu}[\p{L}’\'\-]+){1,3}';
 	if ( preg_match_all( '/tradu(?:it|ite|its|ction)\s+(?:(?:du|de l[’\']|de)\s+\p{Ll}+\s+)?(?:par|de)\s+(' . $nom . '(?:\s*(?:,|et)\s*' . $nom . ')*)/u', $texte, $mm ) ) {
 		foreach ( $mm[1] as $trouve ) {
 			foreach ( er_roles_noms( $trouve, $titre_seul, $releve['ecart'] ) as $n ) {
@@ -516,9 +516,17 @@ function er_roles_releves( $id ) {
 		}
 		foreach ( $mm[1] as $trouve ) {
 			$ecart = array();
+			// Le texte de Wix a perdu ses retours à la ligne : « Actes Sud BDMisha Zaslavsky » se coupe aussi entre deux
+			// majuscules dont la seconde ouvre un mot.
+			$trouve = preg_replace( '/(?<=\p{Lu})(?=\p{Lu}\p{Ll})/u', "\n", $trouve );
 			foreach ( er_roles_noms( $trouve, $titre_seul, $ecart ) as $n ) {
-				// Un mot du texte collé au nom (« Collection Folio », « UN RÔLE ») n'est pas une personne.
-				if ( preg_match( '/^(?:collection|aujourd|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman)\b/iu', $n ) || preg_match( '/\b\p{Lu}{2,}\b/u', $n ) ) {
+				// Ce qui n'est pas une personne : un mot du texte collé au nom (« Collection Folio », « UN RÔLE »,
+				// « Bibliothèque Rivages »), un mot trop long pour un nom (« Pascalbibliographie »), un mot qui mêle
+				// l'alphabet latin et le cyrillique (« Pasquierь »).
+				if ( preg_match( '/^(?:collection|biblioth\p{L}*|aujourd\S*|le|la|les|un|une|des|du|de|[ée]ditions?|traduction|tome|volume|livre|roman)\b/iu', $n )
+					|| preg_match( '/\b\p{Lu}{2,}\b/u', $n )
+					|| preg_match( '/[\p{L}’\']{15,}/u', $n )
+					|| preg_match( '/(?=[\p{L}]*\p{Latin})(?=[\p{L}]*\p{Cyrillic})[\p{L}]+/u', $n ) ) {
 					continue;
 				}
 				$releve[ $role ][ $n ] = 'texte';
