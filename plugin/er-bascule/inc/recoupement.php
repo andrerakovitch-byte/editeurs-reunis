@@ -9,7 +9,9 @@
  *   bougent pas ;
  * - donnees/corrections-fiches.tsv (identifiant, champ, avant, après) : les noms mal écrits dans la présentation et le
  *   résumé (« Kchayan » pour Kehayan), les titres qui portent un nom de personne, les auteurs qui manquent (posés
- *   seulement sur un livre qui n'en a pas).
+ *   seulement sur un livre qui n'en a pas, plusieurs lignes pour plusieurs auteurs), les éditeurs mal écrits dans le
+ *   classement (editeur-nom), l'éditeur, l'année et le nombre de pages que le texte donne et que la fiche n'a pas (ou
+ *   qui sont faux : « avant » dit alors la valeur à remplacer, et rien d'autre n'est touché).
  * Sans « appliquer », la commande dit ce qu'elle ferait : les changements de rôles, les personnes nouvelles, les
  * corrections introuvables (déjà faites, ou un texte qui a changé).
  *
@@ -96,6 +98,48 @@ function er_recoupement_remplacer( $texte, $avant, $apres, &$n = 0 ) {
 	return $garde ? str_replace( $garde, $apres, $texte ) : $texte;
 }
 
+/**
+ * L'éditeur du classement qui porte ce nom ou une de ses variantes (er_editeur_cle : « Ginkgo » pour « Ginkgo éditeur »,
+ * « Cerf » pour « Éditions du Cerf ») : son identifiant, sinon le nom, que wp_set_object_terms() créera.
+ *
+ * @param string $nom Le nom.
+ * @return int|string
+ */
+function er_recoupement_editeur( $nom ) {
+	static $cles = null;
+	if ( null === $cles ) {
+		$cles   = array();
+		$termes = get_terms(
+			array(
+				'taxonomy'   => 'er_editeur',
+				'hide_empty' => false,
+				'orderby'    => 'count',
+				'order'      => 'DESC',
+			)
+		);
+		foreach ( is_array( $termes ) ? $termes : array() as $t ) {
+			$cle = er_editeur_cle( html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' ) );
+			if ( '' !== $cle && ! isset( $cles[ $cle ] ) ) {
+				$cles[ $cle ] = (int) $t->term_id;
+			}
+		}
+	}
+	$cle = er_editeur_cle( $nom );
+	return isset( $cles[ $cle ] ) ? $cles[ $cle ] : $nom;
+}
+
+/**
+ * Une valeur de la fiche peut-elle recevoir celle du relevé ? Si « avant » est vide, seulement quand la fiche n'a rien ;
+ * sinon, seulement quand elle porte cette valeur-là (une date ou un éditeur faux, et rien d'autre).
+ *
+ * @param string $actuel Ce que la fiche porte.
+ * @param string $avant  La valeur fausse, ou rien.
+ * @param bool   $vide   La fiche est-elle sans valeur (une année sans quatre chiffres, des pages à zéro) ?
+ */
+function er_recoupement_peut_poser( $actuel, $avant, $vide ) {
+	return '' === $avant ? $vide : trim( (string) $actuel ) === trim( $avant );
+}
+
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
 	 * Le relevé des rôles recoupé : wp er recoupement [appliquer].
@@ -138,6 +182,50 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					wp_update_term( $t->term_id, 'auteur', array( 'name' => $apres ) );
 					if ( function_exists( 'er_personnes_cles_perimer' ) ) {
 						er_personnes_cles_perimer();
+					}
+				}
+			}
+
+			// Les éditeurs mal écrits dans le classement (« Masha Publishing », « Barthillat ») : renommés, ou réunis à
+			// celui qui porte déjà le bon nom ; la méta des livres suit, pour qu'un relevé futur ne les recrée pas.
+			foreach ( $corrections as list( $id, $champ, $avant, $apres ) ) {
+				if ( 'editeur-nom' !== $champ ) {
+					continue;
+				}
+				$t = get_term_by( 'name', $avant, 'er_editeur' );
+				if ( ! $t ) {
+					$t = get_term_by( 'name', esc_html( $avant ), 'er_editeur' );
+				}
+				if ( ! $t ) {
+					WP_CLI::log( '  éditeur : « ' . $avant . ' » introuvable (déjà renommé ?)' );
+					continue;
+				}
+				$chef = get_term_by( 'name', $apres, 'er_editeur' );
+				WP_CLI::log( '  éditeur : « ' . $avant . ' » → « ' . $apres . ' »' . ( $chef ? ' (réuni à l’éditeur qui existe)' : '' ) );
+				if ( ! $appliquer ) {
+					continue;
+				}
+				$objets = get_objects_in_term( $t->term_id, 'er_editeur' );
+				$objets = is_array( $objets ) ? array_map( 'intval', $objets ) : array();
+				if ( $chef ) {
+					foreach ( $objets as $o ) {
+						wp_set_object_terms( $o, array( (int) $chef->term_id ), 'er_editeur', true );
+					}
+					wp_delete_term( $t->term_id, 'er_editeur' );
+				} else {
+					wp_update_term(
+						$t->term_id,
+						'er_editeur',
+						array(
+							'name' => $apres,
+							'slug' => sanitize_title( $apres ),
+						)
+					);
+				}
+				foreach ( $objets as $o ) {
+					$meta = (string) get_post_meta( $o, 'er_editeur', true );
+					if ( '' !== $meta ) {
+						update_post_meta( $o, 'er_editeur', er_recoupement_remplacer( $meta, $avant, $apres ) );
 					}
 				}
 			}
@@ -209,11 +297,12 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 			}
 
-			// 3. Les fiches : textes, titres, auteurs.
+			// 3. Les fiches : textes, titres, auteurs, éditeurs, années, pages.
 			$faits       = 0;
 			$introuvable = array();
+			$auteurs     = array(); // Livre → les auteurs posés par ce passage : un deuxième auteur s'y ajoute.
 			foreach ( $corrections as list( $id, $champ, $avant, $apres ) ) {
-				if ( 'personne' === $champ ) {
+				if ( 'personne' === $champ || 'editeur-nom' === $champ ) {
 					continue;
 				}
 				$post = get_post( $id );
@@ -223,7 +312,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 				if ( 'auteur' === $champ ) {
 					$deja = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) );
-					if ( $deja && ! is_wp_error( $deja ) ) {
+					$deja = is_wp_error( $deja ) ? array() : $deja;
+					if ( $deja && ( ! isset( $auteurs[ $id ] ) || array_diff( $deja, $auteurs[ $id ] ) ) ) {
 						$introuvable[] = $id . ' auteur (déjà : ' . implode( ', ', $deja ) . ')';
 						continue;
 					}
@@ -232,7 +322,43 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					if ( $appliquer ) {
 						$t = er_personne_par_nom( $apres, true );
 						if ( $t ) {
-							wp_set_object_terms( $id, array( (int) $t->term_id ), 'auteur' );
+							wp_set_object_terms( $id, array( (int) $t->term_id ), 'auteur', (bool) $deja );
+							$auteurs[ $id ][] = $t->name;
+						}
+					}
+					++$faits;
+					continue;
+				}
+				if ( 'editeur' === $champ ) {
+					$ed     = er_editeur_du_livre( $id );
+					$noms   = array_map( fn( $t ) => html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' ), $ed['termes'] );
+					$actuel = $noms ? implode( ' / ', $noms ) : trim( wp_strip_all_tags( html_entity_decode( $ed['texte'], ENT_QUOTES, 'UTF-8' ) ) );
+					if ( ! er_recoupement_peut_poser( '' === $avant ? $actuel : er_editeur_cle( $actuel ), '' === $avant ? '' : er_editeur_cle( $avant ), '' === $actuel ) ) {
+						$introuvable[] = $id . ' éditeur (déjà : ' . $actuel . ')';
+						continue;
+					}
+					WP_CLI::log( '  ' . $id . ' éditeur : ' . ( '' === $actuel ? '—' : $actuel ) . ' → ' . $apres );
+					if ( $appliquer ) {
+						$termes = array_map( 'er_recoupement_editeur', preg_split( '/\s+\/\s+/u', $apres ) );
+						wp_set_object_terms( $id, $termes, 'er_editeur', false );
+						update_post_meta( $id, 'er_editeur', $apres );
+					}
+					++$faits;
+					continue;
+				}
+				if ( 'annee' === $champ || 'pages' === $champ ) {
+					$meta   = 'annee' === $champ ? 'er_annee' : 'er_pages';
+					$actuel = trim( (string) get_post_meta( $id, $meta, true ) );
+					$vide   = 'annee' === $champ ? ! preg_match( '/\d{4}/', $actuel ) : ! (int) $actuel;
+					if ( ! er_recoupement_peut_poser( $actuel, $avant, $vide ) ) {
+						$introuvable[] = $id . ' ' . $champ . ' (déjà : ' . $actuel . ')';
+						continue;
+					}
+					WP_CLI::log( '  ' . $id . ' ' . $champ . ' : ' . ( '' === $actuel ? '—' : $actuel ) . ' → ' . $apres );
+					if ( $appliquer ) {
+						update_post_meta( $id, $meta, 'pages' === $champ ? (int) $apres : sanitize_text_field( $apres ) );
+						if ( function_exists( 'wc_delete_product_transients' ) ) {
+							wc_delete_product_transients( $id );
 						}
 					}
 					++$faits;

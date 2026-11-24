@@ -20,11 +20,25 @@ function test_recoupement_roles_tous_connus_et_par_livre() {
 }
 
 function test_recoupement_corrections_lisibles() {
-	$champs = array( 'texte', 'titre', 'auteur', 'personne' );
+	$champs = array( 'texte', 'titre', 'auteur', 'personne', 'editeur-nom', 'editeur', 'annee', 'pages' );
+	$poses  = array( 'auteur', 'editeur', 'annee', 'pages' );
 	foreach ( er_recoupement_lire( ER_RACINE . '/plugin/er-bascule/donnees/corrections-fiches.tsv', 4 ) as list( $id, $champ, $avant, $apres ) ) {
 		vrai( in_array( $champ, $champs, true ), $id . ' : champ « ' . $champ . ' »' );
-		vrai( 'auteur' === $champ ? '' !== $apres : '' !== $avant, $id . ' : de quoi corriger' );
+		vrai( in_array( $champ, $poses, true ) ? '' !== $apres : '' !== $avant, $id . ' : de quoi corriger' );
+		if ( 'annee' === $champ ) {
+			vrai( (bool) preg_match( '/^\d{4}(?:-\d{2,4})?$/', $apres ), $id . ' : une année, « ' . $apres . ' »' );
+		}
+		if ( 'pages' === $champ ) {
+			vrai( (bool) preg_match( '/^[1-9]\d*$/', $apres ), $id . ' : un nombre de pages, « ' . $apres . ' »' );
+		}
 	}
+}
+
+function test_recoupement_ne_pose_que_sur_du_vide_ou_le_faux() {
+	vrai( er_recoupement_peut_poser( '', '', true ), 'rien sur la fiche : posé' );
+	vrai( ! er_recoupement_peut_poser( '1998', '', false ), 'une année déjà là : laissée' );
+	vrai( er_recoupement_peut_poser( '1939', '1939', false ), 'la valeur fausse : remplacée' );
+	vrai( ! er_recoupement_peut_poser( '1940', '1939', false ), 'une autre valeur : laissée' );
 }
 
 function test_recoupement_remplace_sans_redoubler() {

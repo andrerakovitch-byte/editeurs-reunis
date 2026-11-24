@@ -1,7 +1,10 @@
 # Les corrections des fiches tirées du relevé des rôles (24 nov. 2026) : identifiant, champ, avant, après.
 # texte : remplace dans la présentation et le résumé du livre ; titre : dans son titre (un « après » vide retire le
-# morceau) ; auteur : pose l'auteur d'un livre qui n'en a pas ; personne : renomme une personne déjà sur le site (le
-# premier livre où elle paraît en tête), avant la pose des rôles. « wp er recoupement [appliquer] » les applique.
+# morceau) ; auteur : pose l'auteur d'un livre qui n'en a pas (plusieurs lignes pour plusieurs auteurs) ; personne :
+# renomme une personne déjà sur le site (le premier livre où elle paraît en tête), avant la pose des rôles ;
+# editeur-nom : renomme un éditeur du classement (ou le réunit à celui qui porte déjà le bon nom) ; editeur, annee,
+# pages : posés sur un livre qui n'en a pas, ou, si « avant » est donné, seulement à la place de cette valeur fausse.
+# « wp er recoupement [appliquer] » les applique.
 104	personne	Nina Kchayan	Nina Kehayan
 110	personne	Edith Sherrer	Édith Scherrer
 195	personne	Natalia Soljénistyne	Natalia Soljénitsyne
@@ -44,3 +47,367 @@
 1335	auteur		Serhii Plokhy
 1605	auteur		Корней Чуковский
 177	auteur		Nicolas Berdiaev
+
+# Ajouts du 24 nov. au soir : le texte des fiches lu en entier (éditeur, année, pages, auteurs qu'il nomme et que la
+# fiche n'a pas), les graphies d'éditeurs et les dates fausses vérifiées en ligne (BnF, La Procure, Poezibao).
+507	editeur-nom	Masha Publishing	Macha Publishing
+925	editeur-nom	Barthillat	Bartillat
+708	editeur-nom	Vibratrion éditions	Vibration éditions
+647	editeur-nom	Éditions Paroles et Silence	Parole et Silence
+881	editeur	Bagne rouge	Éditions des Syrtes
+1078	editeur	s	Calmann-Lévy
+881	annee	1935	2020
+923	annee	1939	2021
+1071	annee	1921	2022
+44	editeur		Gallimard
+50	editeur		Editions Mesures
+56	annee		1892
+84	annee		2019
+94	editeur		Gallimard
+100	annee		2012
+112	annee		2017
+114	annee		2016
+132	editeur		Apostolia
+134	editeur		Cerf
+140	editeur		Fayard
+161	editeur		Flammarion
+163	editeur		LGF
+165	editeur		LGF
+177	annee		2009
+177	editeur		Editions du Cerf
+187	pages		180
+189	pages		191
+195	editeur		Fayard
+211	annee		2018
+223	editeur		Perrin
+225	annee		2018
+225	editeur		Flammarion
+227	editeur		Flammarion
+249	editeur		Éditions Sillage
+253	editeur		Gallimard
+283	annee		1989
+285	annee		1989
+289	annee		1985
+293	annee		1986
+295	annee		1987
+297	annee		1988
+299	annee		1988
+301	annee		1988
+303	annee		1989
+305	annee		1989
+307	annee		1990
+309	annee		1990
+311	annee		1991
+313	annee		1991
+315	annee		1992
+317	annee		1992
+319	annee		1993
+321	annee		1993
+323	annee		1994-95
+327	annee		1994-95
+329	annee		2012
+331	annee		2012
+335	annee		2010-2011
+337	annee		2009
+339	annee		2009
+341	annee		2008
+343	annee		2007
+343	pages		99
+345	annee		2006-2007
+347	annee		2005
+349	annee		2005
+353	annee		2004
+355	annee		2003
+357	annee		2003
+359	annee		2001
+361	annee		2000
+363	annee		2000
+367	annee		1998-99
+369	annee		1998-99
+371	annee		1997
+373	annee		1997
+375	annee		1996
+377	annee		2016
+399	annee		2009
+399	pages		303
+403	pages		148
+457	annee		1977
+467	pages		176
+485	editeur		François-Xavier de Guibert
+501	editeur		Fayard
+511	editeur		Harpo &
+523	editeur		Азбука-Аттикус
+525	editeur		Время
+533	editeur		Молодая гвардия
+579	editeur		Institut d’études slaves
+587	annee		2020
+587	editeur		YMCA-Press
+591	annee		1979
+591	editeur		Abbaye de Bellefontaine
+595	annee		2011
+595	pages		388
+595	editeur		L’Âge d’Homme
+599	editeur		Cerf
+601	editeur		Cerf
+607	editeur		Cerf
+615	annee		1993
+615	editeur		Gallimard
+623	editeur		Fayard
+625	annee		1993
+625	editeur		Gallimard
+627	annee		1987
+627	editeur		Gallimard
+631	pages		224
+631	editeur		Verdier
+635	annee		2010
+635	pages		384
+635	editeur		Actes Sud
+637	annee		2016
+637	pages		352
+637	editeur		Actes Sud
+639	editeur		Verdier
+645	annee		2011
+645	editeur		Éditions Singulières
+649	pages		704
+649	editeur		Fayard
+651	annee		2016
+653	annee		1999
+653	editeur		Gallimard
+655	annee		2019
+655	editeur		Gallimard
+657	annee		2018
+657	editeur		Robert Laffont
+659	annee		2019
+659	pages		600
+659	editeur		Allary éditions
+661	editeur		Usborne
+665	pages		1120
+665	editeur		Robert Laffont
+667	editeur		Gallimard
+669	annee		1995
+669	editeur		Gallimard
+671	editeur		Gallimard
+673	pages		130
+673	editeur		Ginkgo éditeur
+679	editeur		Buchet-Chastel
+681	annee		2020
+681	pages		160
+681	editeur		Éditions Mesures
+683	annee		2020
+683	pages		264
+683	editeur		Éditions Mesures
+685	editeur		Bleu nuit éditeur
+687	editeur		Современные записки
+689	editeur		Дом книги / Современные записки
+701	annee		2014
+701	pages		64
+701	editeur		Larousse
+703	editeur		Assimil
+706	annee		2019
+706	editeur		Златоуст
+714	annee		2018
+714	editeur		Éditions de la paroisse Notre-Dame du Signe
+722	editeur		Perrin
+726	editeur		Éditions Mesures
+728	editeur		Temps Présent
+732	annee		2020
+741	annee		2020
+741	editeur		Harpo &
+748	annee		2020
+751	annee		2020
+755	editeur		YMCA-Press
+759	annee		1932
+759	pages		216
+759	editeur		Новый град
+761	annee		2009
+761	editeur		YMCA-Press
+765	editeur		Inculte
+767	editeur		Perrin
+773	annee		2005
+773	editeur		YMCA-Press
+776	editeur		Les Amis de l’Histoire de Sainte-Geneviève-des-Bois et de ses environs
+778	editeur		Flammarion
+782	annee		2019
+782	pages		108
+788	editeur		BnF / Albin Michel
+798	annee		2024
+804	editeur		Издание общества любителей церковной истории
+806	editeur		Perrin
+808	annee		2020
+808	editeur		Harpo &
+822	annee		1931
+828	editeur		Librairie des Cinq Continents
+834	editeur		Ginkgo éditeur
+842	annee		2017
+842	editeur		Русский путь
+844	annee		2017
+844	editeur		Научная библиотека
+846	pages		872
+851	editeur		Ginkgo éditeur
+853	editeur		Ginkgo éditeur
+857	editeur		Perrin
+869	editeur		Liana Levi
+871	editeur		Noir sur Blanc
+873	editeur		Le Temps retrouvé
+875	editeur		Gallimard
+881	pages		382
+890	editeur		Éditions Natania
+898	editeur		Fayard
+900	editeur		La Barque
+902	editeur		La Barque
+904	annee		2020
+904	editeur		Белый крест
+906	editeur		Perrin
+909	editeur		Éditions des Syrtes
+912	editeur		Народный комиссариат по иностранным делам
+915	annee		1852
+921	editeur		Autrement
+923	pages		144
+923	editeur		Gallimard
+930	annee		1864
+930	editeur		Типография Бахметова
+933	annee		1894
+933	editeur		Paul Ollendorff
+935	pages		120
+942	editeur		Éditions Mesures
+945	editeur		ACER-MJO
+952	editeur		Interférences
+955	editeur		Le Cherche Midi
+957	editeur		Interférences
+961	editeur		Interférences
+964	editeur		Ginkgo éditeur
+975	annee		2022
+975	editeur		Casa di Matriona
+981	editeur		Éditions du monastère Sretenski
+1004	annee		2020
+1016	annee		2005
+1018	editeur		Le Local
+1021	annee		2022
+1027	editeur		Actes Sud BD
+1030	annee		2021
+1030	pages		588
+1030	editeur		Belfond
+1033	annee		2021
+1033	editeur		Casterman
+1035	editeur		Éditions Parenthèses
+1049	annee		1990
+1049	editeur		Художественная литература
+1051	annee		1988
+1059	editeur		Éditions Première partie
+1074	editeur		Parole et Silence
+1076	annee		1926
+1076	editeur		Librairie académique Perrin
+1096	editeur		Actes Sud
+1136	editeur		Éditions Natania
+1138	editeur		Éditions Natania
+1160	annee		2022
+1160	pages		282
+1160	editeur		Ginkgo
+1175	editeur		Rivages
+1177	editeur		Éditions Mesures
+1183	annee		2022
+1183	editeur		La Barque
+1186	annee		2012
+1188	annee		2022
+1188	editeur		Michel Lafon
+1191	annee		2022
+1191	editeur		Grasset
+1193	annee		2022
+1193	editeur		Buchet-Chastel
+1195	editeur		Éditions Bartillat
+1210	editeur		Ginkgo
+1212	editeur		Ginkgo
+1214	editeur		Noir sur Blanc
+1216	editeur		Éditions des Syrtes
+1218	editeur		Éditions des Syrtes
+1220	editeur		Gallimard
+1222	editeur		Robert Laffont
+1224	editeur		Éditions des Syrtes
+1228	editeur		Stock
+1234	editeur		P.O.L
+1237	editeur		Dukh i Litera
+1263	editeur		Éditions des Syrtes
+1279	annee		2022
+1279	editeur		Babel
+1308	editeur		Ginkgo
+1313	annee		1838
+1313	editeur		Firmin Didot frères
+1319	editeur		Lis & Parle
+1321	editeur		La Barque
+1323	editeur		Noir sur Blanc
+1327	editeur		FYP
+1329	annee		1992
+1329	editeur		Actes Sud
+1331	editeur		Éditions Mareuil
+1333	editeur		Éditions de l’Observatoire / Institut Montaigne
+1335	editeur		Gallimard
+1359	annee		1928
+1359	pages		101
+1359	editeur		YMCA-Press
+1361	editeur		Saint-Léger Éditions
+1363	editeur		Saint-Léger Éditions
+1368	annee		1979
+1382	editeur		Perrin
+1384	editeur		Presses universitaires de Rennes
+1386	editeur		Ginkgo
+1390	editeur		Ginkgo
+1393	editeur		Ginkgo
+1397	editeur		Calmann-Lévy
+1399	editeur		Calmann-Lévy
+1401	editeur		Calmann-Lévy
+1405	editeur		UGA Éditions
+1576	annee		2024
+1576	pages		176
+1576	editeur		Éditions Mesures
+1732	pages		192
+1749	annee		2018
+1852	annee		2025
+46	auteur		Anna Artemeva
+46	auteur		Elena Ratcheva
+146	auteur		Mgr Semenoff-Tian-Chansky
+153	auteur		Daniil Dondureï
+153	auteur		Lev Karakhan
+153	auteur		Andreï Plakhov
+225	auteur		Robert Giraud
+695	auteur		Serafima Gettys
+695	auteur		Cécile Giroldi
+695	auteur		Andrew Kaufman
+697	auteur		Serafima Gettys
+697	auteur		Cécile Giroldi
+697	auteur		Andrew Kaufman
+703	auteur		Victoria Melnikova-Suchet
+706	auteur		Станислав Чернышов
+706	auteur		Алла Чернышова
+771	auteur		Gérard Gorokhoff
+771	auteur		André Korliakov
+933	auteur		Ernest Daudet
+975	auteur		Michele Bacci
+997	auteur		Tatiana Mojenok-Ninin
+1033	auteur		Virgile Dureuil
+1245	auteur		Alexandra Zelenskaïa
+1249	auteur		Сони Вестерхольт
+1271	auteur		Alexandre Afanassiev
+1271	auteur		Marko Vovtchok
+1273	auteur		Marina et Natacha
+1296	auteur		François Malye
+1419	auteur		Vladimir Popov
+1419	auteur		Iouri Felchtinski
+1643	auteur		Paul Boyer
+1643	auteur		Nicolas Spéranski
+1645	auteur		Erwan Barillot
+1645	auteur		Arnaud Frilley
+1652	auteur		Svetlana Le Fleming
+1652	auteur		Susan E. Kay
+1673	auteur		Vikenti Veressaïev
+1673	auteur		Mikhaïl Kouzmine
+1673	auteur		Zinaïda Hippius
+1785	auteur		Jean Liamine
+1803	auteur		Anastasia Koprilova
+1803	auteur		Lukáš Babka
+1805	auteur		Céline Gailleurd
+1805	auteur		Damien Marguet
+1805	auteur		Eugénie Zvonkine
+1837	auteur		Natalie Stepanoff-Kontchalovski
+1854	auteur		Андрей Зубов
+1033	texte	Virgil Dubreuil	Virgile Dureuil
+706	texte	Черниршов	Чернышов
