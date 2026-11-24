@@ -14,7 +14,7 @@
 	}
 
 	var PARAMS = [ 'rayons', 'langues', 'genres', 'auteurs', 'maisons', 'decennies', 'dispo', 'epoques', 'ecriture', 'sujets' ];
-	var GARDES = [ 'orderby', 's', 'post_type' ];
+	var GARDES = [ 'orderby', 's', 'post_type', 'vue' ];
 	var etroit = window.matchMedia( '(max-width: 781px)' );
 	var mode = null;
 	var requete = null;
@@ -131,6 +131,8 @@
 				}
 				c.replaceWith( neuve );
 				ici.replaceWith( livres );
+				// La grille a changé : la vue choisie (couvertures ou liste) s'y applique (rayonnage.js).
+				document.dispatchEvent( new CustomEvent( 'er:livres' ) );
 				preparer( neuve, garde );
 				if ( ouvert ) {
 					neuve.classList.add( 'is-ouvert' );

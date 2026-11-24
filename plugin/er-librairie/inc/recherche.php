@@ -263,7 +263,7 @@ function er_index_contenu( $id ) {
 		foreach ( is_wp_error( $auteurs ) ? array() : $auteurs as $auteur ) {
 			$cle .= ' ' . $auteur->name . ' ' . implode( ' ', er_autres_graphies( $auteur->term_id ) );
 		}
-		foreach ( array( 'er_traducteur', 'er_editeur', 'er_collection', '_sku', '_global_unique_id' ) as $champ ) {
+		foreach ( array( 'er_titre_fr', 'er_traducteur', 'er_editeur', 'er_collection', '_sku', '_global_unique_id' ) as $champ ) {
 			$cle .= ' ' . get_post_meta( $id, $champ, true );
 		}
 		$poids = 'instock' === get_post_meta( $id, '_stock_status', true ) ? 1 : 0;
@@ -1098,6 +1098,7 @@ foreach ( array( 'created_auteur', 'edited_auteur' ) as $er_crochet ) {
  */
 function er_champs_livre() {
 	return array(
+		'er_titre_fr'   => __( 'Le titre en français (sous un titre russe, dans les grilles)', 'er-librairie' ),
 		'er_traducteur' => __( 'Traducteur, préfacier', 'er-librairie' ),
 		'er_editeur'    => __( 'Éditeur', 'er-librairie' ),
 		'er_collection' => __( 'Collection', 'er-librairie' ),

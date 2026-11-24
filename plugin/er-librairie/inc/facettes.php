@@ -730,9 +730,9 @@ function er_facettes_colonne( $etat ) {
 		}
 	}
 
-	// Les paramètres qui ne sont pas des filtres (le tri, la recherche) suivent le formulaire.
+	// Les paramètres qui ne sont pas des filtres (le tri, la recherche, la vue) suivent le formulaire.
 	$garder = '';
-	foreach ( array( 'orderby', 's', 'post_type' ) as $p ) {
+	foreach ( array( 'orderby', 's', 'post_type', 'vue' ) as $p ) {
 		if ( isset( $_GET[ $p ] ) && is_string( $_GET[ $p ] ) ) { // phpcs:ignore WordPress.Security
 			$garder .= '<input type="hidden" name="' . esc_attr( $p ) . '" value="' . esc_attr( sanitize_text_field( wp_unslash( $_GET[ $p ] ) ) ) . '">'; // phpcs:ignore WordPress.Security
 		}

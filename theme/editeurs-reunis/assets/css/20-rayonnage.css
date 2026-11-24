@@ -1,0 +1,323 @@
+/* --------------------------------------------------------------------------
+   La grille des livres (er-librairie/inc/rayonnage.php, assets/js/rayonnage.js) : la carte d'un livre, la vue en
+   liste, les modules du fil du libraire, les chapitres par époque, « Voir 24 livres de plus ». Canevas « Librairie —
+   la grille des livres », 24 novembre 2026.
+   -------------------------------------------------------------------------- */
+
+/* La grille : des colonnes d'au moins 12,5 rem (quatre à côté de la colonne de filtres, cinq sur toute la largeur),
+   deux au téléphone ; les modules du fil remplissent les trous. */
+.er-livres {
+	grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)) !important;
+	gap: 3.5rem 2rem !important;
+	grid-auto-flow: dense;
+	align-items: stretch;
+}
+@media (max-width: 781px) { .er-livres { gap: 3rem 1.5rem !important; } }
+@media (max-width: 600px) { .er-livres { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 2.25rem 1rem !important; } }
+.er-livres > li { min-width: 0; margin: 0; }
+
+/* La barre du tri : le nombre à gauche, le tri et la vue à droite. */
+.er-tri { justify-content: flex-start !important; gap: 0.75rem 1rem !important; }
+.er-tri > :first-child { margin-right: auto; }
+.er-vue { display: inline-flex; padding: 3px; border: var(--er-filet); border-radius: 999px; }
+.er-vue__choix {
+	display: inline-flex;
+	align-items: center;
+	height: 2rem;
+	padding: 0 0.875rem;
+	border-radius: 999px;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--encre-2);
+	text-decoration: none;
+}
+.er-vue__choix[aria-pressed="true"] { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+
+/* La carte. */
+.er-carte { display: flex; flex-direction: column; height: 100%; }
+.er-carte__couv { display: flex; align-items: flex-end; aspect-ratio: 2 / 3; text-decoration: none; }
+.er-carte__couv img {
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	box-shadow: var(--er-ombre-livre);
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.er-carte__couv .er-couverture-typo { width: 100%; }
+.er-livres > li:hover .er-carte__couv img,
+.er-livres > li:hover .er-carte__couv .er-couverture-typo { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 18px 30px -10px rgba(0, 0, 0, 0.32); }
+.er-carte__corps { display: flex; flex-direction: column; flex: 1; }
+.er-carte__mentions { display: flex; flex-wrap: wrap; gap: 0.375rem; min-height: 1.5rem; margin-top: 1rem; }
+.er-pastille {
+	display: inline-flex;
+	align-items: center;
+	min-height: 1.5rem;
+	box-sizing: border-box;
+	padding: 0.25rem 0.625rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.25;
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--contrast);
+}
+.er-pastille--nouvelle-edition,
+.er-pastille--nouvelle-traduction { background: var(--wp--preset--color--accent-pale); }
+.er-pastille--tres-rare { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-pastille--occasion { background: var(--wp--preset--color--doux); box-shadow: inset 0 0 0 1px var(--wp--preset--color--filet); }
+.er-pastille--epuise { background: var(--wp--preset--color--pierre); }
+.er-carte__titre { margin: 0.625rem 0 0; font-size: 1.125rem; line-height: 1.28; font-weight: 600; letter-spacing: -0.005em; overflow-wrap: anywhere; }
+.er-carte__titre a { color: inherit; text-decoration: none; }
+.er-carte__titre a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.er-carte__glose { margin: 0.125rem 0 0; font-size: 0.8125rem; line-height: 1.4; font-style: italic; color: var(--wp--preset--color--discret); }
+.er-carte__auteur { margin: 0.25rem 0 0; font-size: 0.875rem; line-height: 1.45; color: var(--wp--preset--color--encre-2); }
+.er-carte__auteur:empty { display: none; }
+.er-carte__auteur a { color: inherit; text-decoration: none; }
+.er-carte__auteur a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.er-carte__translit { color: var(--wp--preset--color--discret); }
+.er-carte__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+.er-carte__faits > span:empty { display: none; }
+.er-carte__faits > span:not(:empty):has(~ span:not(:empty))::after { content: " · "; }
+/* En couvertures, pas de pages : le point ne s'arrête pas devant elles. */
+.er-livres:not(.er-livres--liste) .er-carte__pages { display: none; }
+.er-livres:not(.er-livres--liste) .er-carte__faits > span::after { content: none; }
+.er-livres:not(.er-livres--liste) .er-carte__faits > span:not(:empty):has(~ span:not(:empty):not(.er-carte__pages))::after { content: " · "; }
+.er-carte__maison--ymca::before {
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin-right: 5px;
+	border-radius: 50%;
+	vertical-align: 1px;
+	background: var(--wp--preset--color--point-ymca);
+}
+.er-carte__presse { margin: 0.5rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--encre-2); }
+.er-carte__presse a { color: inherit; text-underline-offset: 0.2em; }
+.er-carte__achat { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: auto; padding-top: 0.75rem; }
+.er-carte__prix { font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.er-carte__prix del { font-size: 0.8125rem; font-weight: 400; color: var(--wp--preset--color--discret); }
+.er-carte__prix ins { text-decoration: none; }
+.er-carte__ajouter {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.125rem;
+	padding: 0 0.875rem;
+	box-sizing: border-box;
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 999px;
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background 150ms ease, color 150ms ease;
+}
+.er-carte__ajouter:hover,
+.er-carte__ajouter.is-ajoute { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-carte__ajouter.is-charge { opacity: 0.6; cursor: progress; }
+.er-carte__prevenir { font-size: 0.8125rem; font-weight: 600; color: var(--wp--preset--color--accent-texte); text-underline-offset: 0.2em; }
+@media (max-width: 600px) {
+	.er-carte__titre { font-size: 0.9375rem; }
+	.er-carte__translit { display: none; }
+	.er-carte__faits { font-size: 0.75rem; }
+	.er-carte__ajouter { width: 2.75rem; height: 2.75rem; padding: 0; font-size: 0; }
+	.er-carte__ajouter::before { content: "+"; font-size: 1.375rem; font-weight: 400; line-height: 1; }
+	.er-carte__ajouter.is-ajoute::before { content: "✓"; font-size: 1rem; }
+}
+
+/* La vue en liste : une ligne par livre, des colonnes alignées sous leurs intitulés. */
+.er-liste-tete { display: none; }
+.er-livres--liste { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-livres--liste > li { border-bottom: var(--er-filet); }
+.er-livres--liste .er-module { display: none; }
+.er-livres--liste .er-carte__couv { aspect-ratio: auto; height: 4.25rem; }
+.er-livres--liste .er-carte__mentions { min-height: 0; margin: 0 0 0.25rem; }
+.er-livres--liste .er-carte__mentions:empty { display: none; }
+.er-livres--liste .er-carte__titre { margin: 0; font-size: 0.9375rem; line-height: 1.35; }
+.er-livres--liste .er-carte__presse { display: none; }
+@media (min-width: 782px) {
+	.er-livres--liste > .er-liste-tete,
+	.er-livres--liste .er-carte {
+		display: grid;
+		grid-template-columns: 3.5rem minmax(0, 2.4fr) minmax(0, 1.5fr) minmax(0, 1.2fr) 3.25rem 3.75rem 6rem 5.5rem 6.5rem;
+		align-items: center;
+		column-gap: 1.25rem;
+		height: auto;
+	}
+	.er-livres--liste .er-carte { padding: 0.875rem 0; }
+	.er-livres--liste > .er-liste-tete { padding: 0.75rem 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+	.er-livres--liste .er-carte__corps,
+	.er-livres--liste .er-carte__faits,
+	.er-livres--liste .er-carte__achat { display: contents; }
+	.er-livres--liste .er-carte__couv { grid-column: 1; grid-row: 1; }
+	.er-livres--liste .er-carte__tete { grid-column: 2; grid-row: 1; }
+	.er-livres--liste .er-carte__auteur { grid-column: 3; grid-row: 1; margin: 0; }
+	.er-livres--liste .er-carte__maison { grid-column: 4; grid-row: 1; }
+	.er-livres--liste .er-carte__annee { grid-column: 5; grid-row: 1; }
+	.er-livres--liste .er-carte__pages { grid-column: 6; grid-row: 1; }
+	.er-livres--liste .er-carte__langue { grid-column: 7; grid-row: 1; }
+	.er-livres--liste .er-carte__faits > span { font-size: 0.875rem; color: var(--wp--preset--color--encre-2); font-variant-numeric: tabular-nums; }
+	.er-livres--liste .er-carte__faits > span::after { content: none !important; }
+	.er-livres--liste .er-carte__prix { grid-column: 8; grid-row: 1; text-align: right; }
+	.er-livres--liste .er-carte__ajouter,
+	.er-livres--liste .er-carte__prevenir { grid-column: 9; grid-row: 1; justify-self: end; }
+	.er-liste-tete__prix { text-align: right; }
+}
+@media (max-width: 781px) {
+	.er-livres--liste .er-carte { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; align-items: start; column-gap: 0.875rem; padding: 1rem 0; height: auto; }
+	.er-livres--liste .er-carte__couv { grid-column: 1; grid-row: 1; height: 5rem; }
+	.er-livres--liste .er-carte__corps { grid-column: 2; grid-row: 1; }
+	.er-livres--liste .er-carte__achat { grid-column: 3; grid-row: 1; flex-direction: column; align-items: flex-end; gap: 0.625rem; margin: 0; padding: 0; }
+	.er-livres--liste .er-carte__translit { display: inline; }
+}
+
+/* Les modules du fil du libraire. */
+.er-module { position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; min-width: 0; padding: 1.75rem 1.5rem; }
+.er-module > :not(.er-module__lettre) { position: relative; }
+.er-module--large { grid-column: span 2; }
+.er-module--bande { grid-column: 1 / -1; }
+@media (max-width: 600px) { .er-module--large, .er-module--epoque, .er-module--auteur { grid-column: 1 / -1; } }
+.er-module__surtitre { margin: 0; display: flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; line-height: 1.4; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-module__surtitre--librairie::before,
+.er-module__surtitre--ymca::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--wp--preset--color--point-librairie); }
+.er-module__surtitre--ymca::before { background: var(--wp--preset--color--point-ymca); }
+.er-module__titre { margin: 0.75rem 0 0; font-size: 1.5rem; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; }
+.er-module__titre a { color: inherit; text-decoration: none; }
+.er-module__titre--auteur { font-size: 1.625rem; line-height: 1.1; }
+.er-module__autre { margin: 0.375rem 0 0; font-size: 0.9375rem; color: var(--wp--preset--color--encre-2); }
+.er-module__texte { margin: 0.5rem 0 0; font-size: 0.875rem; line-height: 1.55; color: var(--wp--preset--color--encre-2); }
+.er-module__annees { margin: 1.125rem 0 0; font-size: 1.375rem; line-height: 1.1; font-weight: 600; font-variant-numeric: tabular-nums; }
+.er-module__liens { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: auto; padding-top: 1.25rem; }
+.er-module__pilule {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.5rem;
+	padding: 0 1.125rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.er-module__pilule--contour { background: transparent; color: var(--wp--preset--color--contrast); box-shadow: inset 0 0 0 1px var(--wp--preset--color--contrast); }
+.er-module__lien { font-size: 0.8125rem; color: inherit; text-underline-offset: 0.2em; }
+.er-module__lettre {
+	position: absolute;
+	right: -0.75rem;
+	bottom: -1.75rem;
+	font-size: 7.5rem;
+	font-weight: 600;
+	letter-spacing: -0.03em;
+	line-height: 1;
+	white-space: nowrap;
+	color: rgba(255, 255, 255, 0.07);
+	pointer-events: none;
+}
+.er-point { display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; vertical-align: 1px; }
+.er-point--ymca { background: var(--wp--preset--color--point-ymca); }
+
+/* Sur les aplats : le vert de la librairie, le brun d'YMCA-Press. */
+.er-moment,
+.er-module--epoque { background: var(--wp--preset--color--maison-librairie); color: var(--wp--preset--color--base); }
+.er-ymca { background: var(--wp--preset--color--maison-ymca); color: var(--wp--preset--color--base); }
+:is(.er-moment, .er-module--epoque, .er-ymca) .er-module__surtitre { color: rgba(255, 255, 255, 0.64); }
+:is(.er-moment, .er-module--epoque, .er-ymca) .er-module__texte { color: rgba(255, 255, 255, 0.78); }
+:is(.er-moment, .er-module--epoque, .er-ymca) .er-module__pilule { background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); }
+:is(.er-moment, .er-module--epoque, .er-ymca) a:not(.er-module__pilule):not(.er-carte__ajouter) { color: var(--wp--preset--color--base); }
+.er-langues,
+.er-module--auteur { background: var(--wp--preset--color--doux); }
+
+/* Le livre du moment. */
+.er-moment__haut { display: grid; grid-template-columns: 8.25rem minmax(0, 1fr); gap: 1.5rem; align-items: end; }
+.er-moment__couv { display: block; }
+.er-moment__couv img { display: block; width: 100%; height: auto; box-shadow: var(--er-ombre-livre); }
+.er-moment__titre { margin: 0.75rem 0 0; font-size: 1.75rem; line-height: 1.1; font-weight: 600; letter-spacing: -0.015em; }
+.er-moment__titre a { text-decoration: none; }
+.er-moment__qui { margin: 0.375rem 0 0; font-size: 0.875rem; line-height: 1.5; color: rgba(255, 255, 255, 0.78); }
+.er-moment__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: rgba(255, 255, 255, 0.64); }
+.er-moment__prix-litteraire { margin: 1.25rem 0 0; }
+.er-moment__mot { margin: 0.875rem 0 0; font-size: 0.9375rem; line-height: 1.55; }
+.er-moment__autres { margin: 0.625rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
+.er-moment__autres a { text-underline-offset: 0.2em; }
+.er-moment__achat { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.125rem; margin-top: auto; padding-top: 1.25rem; }
+.er-moment__prix { font-size: 1.125rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.er-moment__prix del { font-size: 0.875rem; font-weight: 400; opacity: 0.7; }
+.er-moment__prix ins { text-decoration: none; }
+.er-moment .er-carte__ajouter { height: 2.5rem; width: auto; padding: 0 1.25rem; border-color: var(--wp--preset--color--base); background: var(--wp--preset--color--base); color: var(--wp--preset--color--contrast); font-size: 0.875rem; }
+.er-moment .er-carte__ajouter::before { content: none; }
+@media (max-width: 600px) { .er-moment__haut { grid-template-columns: 6.75rem minmax(0, 1fr); gap: 1rem; } .er-moment__titre { font-size: 1.5rem; } }
+
+/* Une époque : sa petite frise. */
+.er-mini-frise { position: relative; display: flex; justify-content: space-between; align-items: center; height: 0.875rem; margin-top: 1.25rem; }
+.er-mini-frise::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(255, 255, 255, 0.4); }
+.er-mini-frise__point { position: relative; width: 0.4375rem; height: 0.4375rem; box-sizing: border-box; border: 1.5px solid var(--wp--preset--color--base); border-radius: 50%; background: var(--wp--preset--color--maison-librairie); }
+.er-mini-frise__point.is-actif { width: 0.6875rem; height: 0.6875rem; background: var(--wp--preset--color--base); }
+
+/* La bande d'YMCA-Press. */
+.er-ymca { padding: 2.5rem; }
+.er-ymca__tete { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1rem 2rem; }
+.er-ymca__tete > div { flex: 1 1 22rem; min-width: 0; }
+.er-ymca__livres { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.er-ymca__couv { display: flex; align-items: flex-end; aspect-ratio: 2 / 3; }
+.er-ymca__couv img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; box-shadow: var(--er-ombre-livre); }
+.er-ymca__couv .er-couverture-typo { width: 100%; }
+.er-ymca__titre { margin: 0.875rem 0 0; font-size: 0.9375rem; line-height: 1.3; font-weight: 600; overflow-wrap: anywhere; }
+.er-ymca__titre a { text-decoration: none; }
+.er-ymca__glose { margin: 0.125rem 0 0; font-size: 0.75rem; line-height: 1.4; font-style: italic; color: rgba(255, 255, 255, 0.64); }
+.er-ymca__auteur { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
+.er-ymca__prix { margin: 0.5rem 0 0; font-size: 0.9375rem; font-weight: 600; }
+.er-ymca__prix ins { text-decoration: none; }
+@media (max-width: 781px) {
+	.er-ymca { padding: 1.5rem 1.25rem; }
+	.er-ymca__livres { display: flex; overflow-x: auto; gap: 1rem; padding-bottom: 0.25rem; }
+	.er-ymca__livre { flex: 0 0 8rem; }
+}
+
+/* Le même livre en deux langues. */
+.er-langues { padding: 2rem; }
+.er-langues__paire { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.25rem; }
+.er-langues__couv { display: flex; align-items: flex-end; height: 12.5rem; }
+.er-langues__couv img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; box-shadow: var(--er-ombre-livre); }
+.er-langues__couv .er-couverture-typo { height: 100%; width: auto; }
+.er-langues__langue { margin: 0.875rem 0 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wp--preset--color--discret); }
+.er-langues__titre { margin: 0.25rem 0 0; font-size: 1rem; line-height: 1.3; font-weight: 600; overflow-wrap: anywhere; }
+.er-langues__titre a { color: inherit; text-decoration: none; }
+.er-langues__faits { margin: 0.25rem 0 0; font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
+@media (max-width: 600px) { .er-langues { padding: 1.25rem; } .er-langues__couv { height: 10.5rem; } }
+
+/* Par époque : le titre de chaque chapitre, sur toute la largeur. */
+.er-chapitre { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--wp--preset--color--contrast); }
+.er-chapitre__annees { flex-basis: 100%; margin: 0; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.02em; color: var(--wp--preset--color--discret); font-variant-numeric: tabular-nums; }
+.er-chapitre__nom { margin: 0; font-size: 1.75rem; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; }
+.er-chapitre__compte { margin: 0; font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-livres--liste .er-chapitre { margin: 0; padding: 2rem 0 0.75rem; border-top: 0; }
+@media (max-width: 600px) { .er-chapitre__nom { font-size: 1.375rem; } }
+
+/* « Voir 24 livres de plus » : avec le script, elle remplace les numéros de page. */
+.er-suite { display: none; flex-direction: column; align-items: center; gap: 0.875rem; padding-top: 4rem; }
+.er-rayonnage-js .er-suite { display: flex; }
+.er-rayonnage-js .er-rayonnage__livres .wp-block-query-pagination { display: none; }
+.er-suite__compte { margin: 0; font-size: 0.8125rem; color: var(--wp--preset--color--discret); font-variant-numeric: tabular-nums; }
+.er-suite__barre { display: block; width: 12.5rem; height: 2px; background: var(--wp--preset--color--filet); }
+.er-suite__barre > span { display: block; height: 2px; background: var(--wp--preset--color--contrast); }
+.er-suite__plus {
+	min-height: 3rem;
+	padding: 0 1.625rem;
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 999px;
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+.er-suite__plus:hover { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-suite__plus.is-charge { opacity: 0.6; cursor: progress; }

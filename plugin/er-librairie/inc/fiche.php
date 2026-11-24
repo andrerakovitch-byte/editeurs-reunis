@@ -64,7 +64,9 @@ function er_fiche_champs( $produit ) {
 			$autres_roles[ $role['fiche'] ] = $liens( er_personnes_du_livre( $id, $taxonomie ) );
 		}
 	}
+	$glose = trim( (string) $produit->get_meta( 'er_titre_fr' ), ' «»"' );
 	return array(
+		_x( 'Le titre en français', 'fiche d’un livre', 'er-librairie' ) => '' !== $glose ? '« ' . $texte( $glose ) . ' »' : '',
 		_x( 'Traduction', 'fiche d’un livre', 'er-librairie' )           => $traduction ? $liens( $traduction ) : $texte( $produit->get_meta( 'er_traducteur' ) ),
 		_x( 'Sous la direction de', 'fiche d’un livre', 'er-librairie' ) => $liens( $direction ),
 	) + $autres_roles + array(

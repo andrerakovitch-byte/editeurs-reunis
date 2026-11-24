@@ -84,6 +84,18 @@ add_action(
 				)
 			);
 		}
+		// La grille des livres (er-librairie/inc/rayonnage.php) : « Ajouter » sans quitter la page, couvertures ou
+		// liste, « Voir 24 livres de plus ».
+		wp_enqueue_script(
+			'editeurs-reunis-rayonnage',
+			get_theme_file_uri( 'assets/js/rayonnage.js' ),
+			array(),
+			$version . '.' . filemtime( get_theme_file_path( 'assets/js/rayonnage.js' ) ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
 		// L'en-tête plein écran : un clic sur une maison montre son menu, l'en-tête accroché, la barre d'informations.
 		wp_enqueue_script(
 			'editeurs-reunis-entete',
@@ -670,13 +682,18 @@ add_filter(
  * d'un auteur ou d'une langue, et « Du même rayon ».
  */
 function er_fiche_livre() {
-	return '<!-- wp:woocommerce/product-template {"className":"er-livres"} -->
+	if ( ! WP_Block_Type_Registry::get_instance()->is_registered( 'er/carte-livre' ) ) {
+		// Sans l'extension : les blocs de WooCommerce.
+		return '<!-- wp:woocommerce/product-template {"className":"er-livres"} -->
 <!-- wp:woocommerce/product-image {"showSaleBadge":false,"imageSizing":"thumbnail","aspectRatio":"2/3","scale":"cover","className":"er-couverture"} /-->
-<!-- wp:post-terms {"term":"product_tag","className":"er-mentions"} /-->
 <!-- wp:post-title {"level":3,"isLink":true,"className":"er-livre-titre","__woocommerceNamespace":"woocommerce/product-collection/product-title"} /-->
-<!-- wp:post-terms {"term":"auteur","className":"er-livre-auteur"} /-->
 <!-- wp:woocommerce/product-price {"className":"er-livre-prix"} /-->
-<!-- wp:woocommerce/product-stock-indicator {"className":"er-livre-stock"} /-->
+<!-- /wp:woocommerce/product-template -->';
+	}
+	// La carte d'un livre (er-librairie/inc/rayonnage.php) : la couverture entière, les mentions, le titre et sa
+	// traduction, l'auteur, la langue, l'année, la maison, qui en parle, le prix et « Ajouter ».
+	return '<!-- wp:woocommerce/product-template {"className":"er-livres"} -->
+<!-- wp:er/carte-livre /-->
 <!-- /wp:woocommerce/product-template -->';
 }
 

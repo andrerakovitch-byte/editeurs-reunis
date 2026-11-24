@@ -383,6 +383,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/personnes.php',
 	'plugin/er-librairie/inc/epoques.php',
 	'plugin/er-librairie/inc/facettes.php',
+	'plugin/er-librairie/inc/rayonnage.php',
 	'plugin/er-bascule/inc/etiquettes.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',

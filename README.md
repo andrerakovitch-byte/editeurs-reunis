@@ -486,6 +486,33 @@ remplace la colonne et les livres sans recharger la page ; au téléphone, la co
 Sans JavaScript, le formulaire s'envoie par son bouton. `wp er facettes essayer litterature langues=francais` l'essaie
 sur un rayon (case « er » du workflow). La maquette : le canevas « Librairie — le module « Filtrer par » ».
 
+### La grille des livres : la table, le fil du libraire, par époque, la liste
+
+Toutes les grilles de livres (la librairie, l'accueil) montrent la carte d'un livre, le bloc `er/carte-livre`
+(`er-librairie/inc/rayonnage.php`, que `er_fiche_livre()` place dans le modèle de produit) : la couverture entière,
+posée sur la même ligne que ses voisines ; les mentions en pastilles et « Épuisé » ; le titre et, sous un titre
+russe, sa traduction (le champ « Le titre en français » de la fiche, méta `er_titre_fr`, aussi cherchée par la
+recherche) ; l'auteur et, sous un nom en cyrillique, sa transcription (ses autres graphies) ; la langue, l'année, la
+maison (le point brun d'YMCA-Press) ; « Ils en parlent » ; le prix et « Ajouter », qui met au panier sans quitter la
+page (`assets/js/rayonnage.js`), ou « Me prévenir ». Le style : `assets/css/20-rayonnage.css`.
+
+Sur les pages de la librairie :
+
+- **Couvertures ou liste** : deux boutons à côté du tri. La liste aligne une ligne par livre (titre, auteur, maison,
+  année, pages, langue, prix) ; elle est la vue par défaut sur la page d'une maison et sur « Très rare ». Le choix se
+  garde dans le navigateur et dans l'adresse (`?vue=liste`).
+- **Par époque** : deux tris de plus, « L'époque dont parle le livre » et « L'époque d'écriture » ; la grille se range
+  dans l'ordre du temps, en chapitres.
+- **Le fil du libraire** : sur la page d'un rayon, à sa première page, sans filtre ni tri, des modules s'intercalent
+  entre les livres : le livre du moment (choisi dans la fiche du rayon : Produits → Catégories, « Le livre du moment »
+  et « Le mot du libraire » ; ou `wp er moment <rayon> <numéro>`), une époque du rayon, la bande d'YMCA-Press, le même
+  livre en français et en russe (reconnu par la traduction du titre russe), un auteur. Ils changent chaque semaine.
+- **Voir 24 livres de plus** remplace les numéros de page (sans JavaScript, la pagination reste).
+
+Les traductions des titres russes : `wp er titres lister` (les titres sans traduction), puis
+`er-bascule/donnees/titres-fr.tsv` et `wp er titres poser appliquer`. La maquette : le canevas « Librairie — la
+grille des livres ».
+
 ## Les vidéos et les podcasts
 
 Un contenu à part, « Vidéos et podcasts » dans l'administration (`inc/medias.php`), à l'adresse
