@@ -155,10 +155,10 @@ def simples(t):
     return [m for m in re.sub(r'[^a-z0-9]+', ' ', sans_accents(translit(t or '')).lower()).split() if m not in VIDES]
 
 
-def bnf_requete(requete):
+def bnf_requete(requete, maximum=8):
     url = 'https://catalogue.bnf.fr/api/SRU?' + urllib.parse.urlencode({
         'version': '1.2', 'operation': 'searchRetrieve', 'query': requete,
-        'recordSchema': 'dublincore', 'maximumRecords': '8'})
+        'recordSchema': 'dublincore', 'maximumRecords': str(maximum)})
     xml = lire(url)
     try:
         return ET.fromstring(xml) if xml else None
@@ -166,15 +166,15 @@ def bnf_requete(requete):
         return None
 
 
-def bnf(titre, auteur):
+def bnf(titre, auteur, maximum=8):
     """Les notices de la BnF (Dublin Core) pour ce titre et cet auteur ; sans résultat, pour ce titre seul."""
     t = ' '.join(simples(titre_court(titre))[:6])
     a = (simples(auteur) or [''])[-1] if auteur else ''
     if not t:
         return []
-    racine = bnf_requete(f'bib.title all "{t}"' + (f' and bib.author all "{a}"' if a else ''))
+    racine = bnf_requete(f'bib.title all "{t}"' + (f' and bib.author all "{a}"' if a else ''), maximum)
     if a and (racine is None or not list(racine.iter('{http://www.loc.gov/zing/srw/}recordData'))):
-        racine = bnf_requete(f'bib.title all "{t}"')
+        racine = bnf_requete(f'bib.title all "{t}"', maximum)
     if racine is None:
         return []
     dc = '{http://purl.org/dc/elements/1.1/}'
@@ -208,9 +208,10 @@ def bnf(titre, auteur):
     return notices
 
 
-def google(titre, auteur):
+def google(titre, auteur, max_google=8):
     q = f'intitle:{titre_court(titre)}' + (f' inauthor:{auteur.split()[-1]}' if auteur else '')
-    url = 'https://www.googleapis.com/books/v1/volumes?' + urllib.parse.urlencode({'q': q, 'maxResults': '8'})
+    url = 'https://www.googleapis.com/books/v1/volumes?' + urllib.parse.urlencode({'q': q, 'maxResults': str(max_google),
+                                                                                   'country': 'FR'})
     texte = lire(url)
     try:
         items = json.loads(texte).get('items', []) if texte else []
@@ -219,6 +220,8 @@ def google(titre, auteur):
     notices = []
     for it in items:
         v = it.get('volumeInfo', {})
+        vente = it.get('saleInfo', {})
+        prix = (vente.get('listPrice') or vente.get('retailPrice') or {}).get('amount', '')
         isbns = [isbn13(i.get('identifier', '')) for i in v.get('industryIdentifiers', [])]
         notices.append({
             'source': 'google', 'lien': v.get('infoLink', ''),
@@ -230,6 +233,7 @@ def google(titre, auteur):
             'isbn': sorted({i for i in isbns if i}),
             'langues': [LANGUES.get(v.get('language', ''), v.get('language', ''))] if v.get('language') else [],
             'sujets': v.get('categories', []),
+            'prix': prix,
         })
     return notices
 
@@ -365,6 +369,46 @@ def chercher(livre):
     return resultat
 
 
+def nettoyer_titre(titre, auteurs):
+    """Le titre sans le nom de l'auteur collé à la fin (« Smolensk - François Malye ») ni les mentions du libraire."""
+    t = titre
+    for a in auteurs:
+        nom = nom_de_famille(a)
+        if nom:
+            m = re.search(r'\s*[-–—,/]\s*[^-–—,/]*$', t)
+            if m and nom in cle(m.group(0)).split():
+                t = t[:m.start()]
+    return t.strip(' -–—,/') or titre
+
+
+def noyau(livre):
+    """Pour une fiche sans éditeur, ni année, ni pages : toutes les éditions que la BnF et Google connaissent de ce
+    titre (et de cet auteur), avec le prix que Google donne, pour reconnaître l'édition vendue à la main."""
+    titre = nettoyer_titre(livre['titre'], livre['auteurs'])
+    auteur = livre['auteurs'][0] if livre['auteurs'] else ''
+    trouvees = []
+    for fn, kw in ((bnf, {'maximum': 20}), (google, {'max_google': 20})):
+        try:
+            trouvees += fn(titre, auteur, **kw)
+            if auteur:
+                trouvees += fn(titre, '', **kw)
+        except Exception:
+            pass
+    lignes, vues = [], set()
+    fiche = dict(livre, titre=titre)
+    for n in trouvees:
+        s = note(fiche, n)
+        if s['titre'] < 0.6 or (auteur and s['auteur'] == 0.0 and s['titre'] < 0.9):
+            continue
+        cle_n = (n['source'], cle_editeur(n['editeur']), n['annee'], tuple(n['isbn'][:1]))
+        if cle_n in vues:
+            continue
+        vues.add(cle_n)
+        lignes.append(f"{n['source']}|{n['editeur']}|{n['annee']}|{n['pages']}p|{','.join(n['isbn'][:1])}|"
+                      f"{n.get('prix', '')}€|{','.join(n['langues'])}|{n['titre'][:70]}|{', '.join(n.get('auteurs', []))[:60]}|{n['lien']}")
+    return livre['id'], lignes
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('livres')
@@ -401,6 +445,14 @@ def main():
             lignes.append(f'- {hote} a refusé les demandes (quota ?) : laissé de côté en cours de route')
     texte = '\n'.join(lignes) + '\n'
     print(texte)
+    # Le noyau dur : les fiches sans éditeur, ni année, ni pages ; leurs éditions candidates, dans le journal seulement.
+    durs = [x for x in livres if not x.get('editeur') and not re.search(r'\d{4}', str(x.get('annee') or ''))
+            and not x.get('pages')]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
+        for ident, candidates in ex.map(noyau, durs):
+            print(f'NOYAU #{ident} : {len(candidates)}')
+            for c in candidates[:14]:
+                print(f'NOYAU #{ident} || {c}')
     if args.rapport:
         open(args.rapport, 'w', encoding='utf-8').write(texte)
 
