@@ -74,7 +74,8 @@ function er_collection_propre( $nom ) {
 	$nom = trim( wp_strip_all_tags( html_entity_decode( (string) $nom, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
 	$nom = preg_split( '/\.\s+|\s+:\s+/u', $nom )[0];
 	$nom = preg_replace( '/\s*\([^)]*\)?|\s*(?:n°|№|no\.?)\s*\d+.*$/iu', '', $nom );
-	$nom = trim( $nom, " \t\n\r\0\x0B\"'«»“”„()-–—,;" );
+	// Pas trim() : il compte en octets, et rognait la fin des lettres russes (le « Д » de « Вестник РХД »).
+	$nom = preg_replace( '/^[\s"\'«»“”„()\-–—,;]+|[\s"\'«»“”„()\-–—,;]+$/u', '', $nom );
 	$nom = trim( preg_replace( '/\s+/u', ' ', $nom ) );
 	if ( '' === $nom || mb_strlen( $nom ) > 40 || ! preg_match( '/^[\p{Lu}\p{N}]/u', $nom ) ) {
 		return '';
