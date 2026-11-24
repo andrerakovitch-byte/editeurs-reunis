@@ -377,6 +377,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/recherche.php',
 	'plugin/er-librairie/inc/collections.php',
 	'plugin/er-librairie/inc/traducteurs-editeurs.php',
+	'plugin/er-librairie/inc/oeuvres-collectives.php',
 	'plugin/er-librairie/inc/prix-du-livre.php',
 	'plugin/er-librairie/inc/bascule.php',
 	'plugin/er-librairie/inc/donnees-structurees.php',

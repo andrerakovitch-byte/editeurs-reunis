@@ -163,6 +163,7 @@ function er_ld_livre( $produit ) {
 		'translator'  => 'er_traduction',
 		'editor'      => 'er_direction',
 		'illustrator' => 'er_illustration',
+		'contributor' => 'er_contribution',
 	);
 	$livre    = array(
 		'@type'         => array( 'Book', 'Product' ),

@@ -89,6 +89,7 @@ function er_librairie_fiche( $id ) {
 		'ecriture'   => er_librairie_slugs( $id, 'er_ecriture' ),
 		'periode'    => er_librairie_slugs( $id, 'er_periode' ),
 		'texte'      => trim( preg_replace( '/\s+/u', ' ', html_entity_decode( wp_strip_all_tags( $texte ), ENT_QUOTES, 'UTF-8' ) ) ),
+		'nature'     => function_exists( 'er_nature_du_livre' ) ? er_nature_du_livre( $id ) : '',
 	);
 }
 

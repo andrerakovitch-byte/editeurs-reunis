@@ -20,13 +20,16 @@ function test_recoupement_roles_tous_connus_et_par_livre() {
 }
 
 function test_recoupement_corrections_lisibles() {
-	$champs = array( 'texte', 'titre', 'auteur', 'personne', 'editeur-nom', 'editeur', 'annee', 'pages' );
-	$poses  = array( 'auteur', 'editeur', 'annee', 'pages' );
+	$champs = array( 'texte', 'titre', 'auteur', 'personne', 'editeur-nom', 'editeur', 'annee', 'pages', 'nature' );
+	$poses  = array( 'auteur', 'editeur', 'annee', 'pages', 'nature' );
 	foreach ( er_recoupement_lire( ER_RACINE . '/plugin/er-bascule/donnees/corrections-fiches.tsv', 4 ) as list( $id, $champ, $avant, $apres ) ) {
 		vrai( in_array( $champ, $champs, true ), $id . ' : champ « ' . $champ . ' »' );
 		vrai( in_array( $champ, $poses, true ) ? '' !== $apres : '' !== $avant, $id . ' : de quoi corriger' );
 		if ( 'annee' === $champ ) {
 			vrai( (bool) preg_match( '/^\d{4}(?:-\d{2,4})?$/', $apres ), $id . ' : une année, « ' . $apres . ' »' );
+		}
+		if ( 'nature' === $champ ) {
+			vrai( isset( er_natures()[ $apres ] ), $id . ' : une nature connue, « ' . $apres . ' »' );
 		}
 		if ( 'pages' === $champ ) {
 			vrai( (bool) preg_match( '/^[1-9]\d*$/', $apres ), $id . ' : un nombre de pages, « ' . $apres . ' »' );

@@ -71,6 +71,15 @@ function er_roles_personnes() {
 			'meta'  => '',
 			'cle'   => 'revision',
 		),
+		// Les œuvres collectives (25 nov. 2026, oeuvres-collectives.php) : les auteurs des articles d'une revue, des textes
+		// d'un recueil ou d'actes de colloque, et ceux qui y traduisent ou publient un texte.
+		'er_contribution' => array(
+			'fiche' => _x( 'Avec des contributions de', 'fiche d’un livre', 'er-librairie' ),
+			'boite' => __( 'Contributions (revue, ouvrage collectif)', 'er-librairie' ),
+			'aide'  => __( 'Pour une revue ou un ouvrage collectif : les auteurs des articles ou des textes, séparés par des virgules. Le livre paraît sur leur page, dans leurs contributions.', 'er-librairie' ),
+			'meta'  => '',
+			'cle'   => 'contribution',
+		),
 	);
 }
 
@@ -328,6 +337,7 @@ function er_personne_livres( $auteur ) {
 		'edition'      => array(),
 		'illustration' => array(),
 		'revision'     => array(),
+		'contribution' => array(),
 		'autour'       => array(),
 		'tous'         => array(),
 	);

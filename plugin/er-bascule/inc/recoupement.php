@@ -11,7 +11,8 @@
  *   résumé (« Kchayan » pour Kehayan), les titres qui portent un nom de personne, les auteurs qui manquent (posés
  *   seulement sur un livre qui n'en a pas, plusieurs lignes pour plusieurs auteurs), les éditeurs mal écrits dans le
  *   classement (editeur-nom), l'éditeur, l'année et le nombre de pages que le texte donne et que la fiche n'a pas (ou
- *   qui sont faux : « avant » dit alors la valeur à remplacer, et rien d'autre n'est touché).
+ *   qui sont faux : « avant » dit alors la valeur à remplacer, et rien d'autre n'est touché), la nature d'une œuvre
+ *   collective (« revue », « collectif » : oeuvres-collectives.php, dans l'extension de la librairie).
  * Sans « appliquer », la commande dit ce qu'elle ferait : les changements de rôles, les personnes nouvelles, les
  * corrections introuvables (déjà faites, ou un texte qui a changé).
  *
@@ -31,6 +32,7 @@ function er_recoupement_roles() {
 		'Préface, présentation'         => 'er_preface',
 		'Édition établie, notes, choix' => 'er_edition',
 		'Illustrations'                 => 'er_illustration',
+		'Contributions'                 => 'er_contribution',
 	);
 }
 
@@ -342,6 +344,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 						$termes = array_map( 'er_recoupement_editeur', preg_split( '/\s+\/\s+/u', $apres ) );
 						wp_set_object_terms( $id, $termes, 'er_editeur', false );
 						update_post_meta( $id, 'er_editeur', $apres );
+					}
+					++$faits;
+					continue;
+				}
+				if ( 'nature' === $champ ) {
+					$actuel = (string) get_post_meta( $id, 'er_nature', true );
+					if ( ! er_recoupement_peut_poser( $actuel, $avant, '' === $actuel ) || $actuel === $apres ) {
+						$introuvable[] = $id . ' nature (déjà : ' . $actuel . ')';
+						continue;
+					}
+					WP_CLI::log( '  ' . $id . ' nature : ' . ( '' === $actuel ? '—' : $actuel ) . ' → ' . $apres );
+					if ( $appliquer ) {
+						update_post_meta( $id, 'er_nature', sanitize_key( $apres ) );
 					}
 					++$faits;
 					continue;

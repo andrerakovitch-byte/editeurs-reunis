@@ -226,6 +226,10 @@ function er_carte_html( $produit ) {
 		$auteurs[] = '<a href="' . esc_url( get_term_link( $t ) ) . '"' . ( er_carte_cyrillique( $t->name ) ? ' lang="ru"' : '' ) . '>' . esc_html( $t->name ) . '</a>'
 			. ( '' !== $autre ? '<span class="er-carte__translit"> · ' . esc_html( $autre ) . '</span>' : '' );
 	}
+	// Une revue ou un ouvrage collectif sans auteur : sa nature et qui l'a faite (oeuvres-collectives.php).
+	if ( ! $auteurs && function_exists( 'er_collectif_en_tete' ) ) {
+		$auteurs[] = er_collectif_en_tete( $id, false );
+	}
 	list( $maison, $ymca ) = er_carte_maison( $id );
 	$annee                 = er_carte_annee( $produit->get_meta( 'er_annee' ) );
 	$pages                 = (int) $produit->get_meta( 'er_pages' );

@@ -4,6 +4,7 @@
 # renomme une personne déjà sur le site (le premier livre où elle paraît en tête), avant la pose des rôles ;
 # editeur-nom : renomme un éditeur du classement (ou le réunit à celui qui porte déjà le bon nom) ; editeur, annee,
 # pages : posés sur un livre qui n'en a pas, ou, si « avant » est donné, seulement à la place de cette valeur fausse.
+# nature : « revue » ou « collectif », une œuvre collective sans auteur seul (oeuvres-collectives.php).
 # « wp er recoupement [appliquer] » les applique.
 104	personne	Nina Kchayan	Nina Kehayan
 110	personne	Edith Sherrer	Édith Scherrer
@@ -410,3 +411,55 @@
 1854	auteur		Андрей Зубов
 1033	texte	Virgil Dubreuil	Virgile Dureuil
 706	texte	Черниршов	Чернышов
+
+# Les œuvres collectives (25 nov.) : leur nature, les auteurs des livres qui en ont (correspondances, études à plusieurs
+# mains) et les noms retirés des titres.
+56	nature		collectif
+86	nature		collectif
+92	nature		collectif
+142	nature		collectif
+233	nature		collectif
+269	nature		collectif
+499	nature		collectif
+501	nature		collectif
+513	nature		collectif
+563	nature		collectif
+691	nature		collectif
+699	nature		collectif
+748	nature		collectif
+751	nature		collectif
+776	nature		collectif
+830	nature		collectif
+844	nature		collectif
+867	nature		collectif
+915	nature		collectif
+970	nature		collectif
+1024	nature		collectif
+1045	nature		collectif
+1141	nature		collectif
+1144	nature		collectif
+1152	nature		collectif
+1240	nature		collectif
+1253	nature		collectif
+1261	nature		collectif
+1277	nature		collectif
+1359	nature		collectif
+1517	nature		collectif
+1738	nature		collectif
+1820	nature		collectif
+1824	nature		collectif
+1530	nature		revue
+1532	nature		revue
+144	auteur		Alexandre Afanassiev
+227	auteur		Natha Caputo
+241	auteur		André Benoît
+241	auteur		Boris Bobrinskoy
+241	auteur		François Coudreau
+467	auteur		Лев Шестов
+467	auteur		Boris de Schlœzer
+1511	auteur		Пётр Паламарчук
+1770	auteur		Patrick Hersant
+1770	auteur		Leonid Livak
+241	titre	 - André Benoit, B. Bobrinskoy, F. Coudreau	
+1296	titre	- François Malye	
+1419	titre	 - Vladimir Popov , Yuri Felshtinsky	
