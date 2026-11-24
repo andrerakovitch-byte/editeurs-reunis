@@ -1,7 +1,7 @@
 <?php
 /**
  * Les notices des livres, venues des catalogues des bibliothèques (outils/catalogue/notices.py, le workflow
- * « Déployer chez Kinsta », « notices ») : wp er notices importer <fichier> [appliquer].
+ * « Déployer chez Kinsta », « notices ») : wp er notices importer [<fichier>] [appliquer].
  *
  * Ce qui est sûr se pose, sans jamais remplacer ce qu'on a saisi : l'ISBN (le champ GTIN de WooCommerce, ou la méta
  * er_isbn quand un autre livre a déjà ce numéro), le nombre de pages, l'année, l'éditeur. L'œuvre se garde à part :
@@ -97,18 +97,22 @@ function er_notice_poser( $n, $appliquer ) {
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
-	 * Les notices : wp er notices importer <fichier> [appliquer].
+	 * Les notices : wp er notices importer [<fichier>] [appliquer].
 	 *
 	 * @param array $args Le fichier, et « appliquer ».
 	 */
 	WP_CLI::add_command(
 		'er notices importer',
 		function ( $args ) {
-			$liste = json_decode( (string) file_get_contents( $args[0] ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			// Sans fichier, celui que le workflow a déposé hors du site (private/notices.json) : la commande peut
+			// alors se lancer depuis « Une commande de l'extension », qui refuse les chemins.
+			$appliquer = in_array( 'appliquer', $args, true );
+			$args      = array_values( array_diff( $args, array( 'appliquer' ) ) );
+			$fichier   = $args[0] ?? dirname( untrailingslashit( ABSPATH ) ) . '/private/notices.json';
+			$liste     = json_decode( (string) file_get_contents( $fichier ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 			if ( ! is_array( $liste ) ) {
-				WP_CLI::error( 'Fichier illisible : ' . $args[0] );
+				WP_CLI::error( 'Fichier illisible : ' . $fichier );
 			}
-			$appliquer = isset( $args[1] ) && 'appliquer' === $args[1];
 			$comptes   = array();
 			$revoir    = array();
 			foreach ( $liste as $n ) {
