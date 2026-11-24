@@ -1,51 +1,303 @@
-centre-culturel/evenements/ · 200 · 1 tête, 1 bande
-  tête [er-tete-centre] Le centre culturel | 169 rencontres depuis 2018 — « Nos événements » · Встречи
-    chapô : Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-G
-  [er-bande-centre] Nos événements : À venir • · | · PASSéES · 2026 · 2025 · 2024 · 2023 · Plus anciennes ▾ · | · Avec une vidéo · Les cycles ▾
-  dans <div class="entry-content alignwide wp-block-post-content has-global-padding is-content-justification-left is-layout-constrained wp-container-core-post-content-is-layout-94d391da wp-block-post-content-is-layout-constrained">
-centre-culturel/expositions/ · 200 · 1 tête, 1 bande
-  tête [er-tete-centre] Le centre culturel | 8 expositions depuis 2020 — « Nos expositions » · Выставки
-    chapô : Peintures, gravures, images et archives, accrochées au 11, rue de la Montagne-Sainte-Geneviève.
-  [er-bande-centre] Nos expositions : PASSéES · Toutes • · 2023 · 2022 · 2021 · 2020 · Les techniques ▾
-journal/ · 200 · 1 tête, 1 bande
-  tête [er-tete-centre] Le centre culturel | Depuis 2020 · 68 textes — « Le journal du centre » · Журнал
-    chapô : Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la
-  [er-bande-centre] Le journal du centre : À la une • · Chroniques · Critiques · Essais · Récits · Entretiens · Hommages · Archives · Documents · | · En russe
-ymca-press/histoire/ · 200 · 0 tête, 1 bande
-  [er-bande-ymca er-bande-sommaire] Un siècle d’histoire : 1921 La naissance • · 1925 L’essor · 1940 La résistance · 1955 Le renouveau · 1971 La dissidence · L’Archipel · 1975 L’association · 1991 Le retour en Russie · 1995 L’avenir · L’héritage
-  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
-librairie/encyclopedie/age-d-argent/ · 200 · 0 tête, 1 bande
-  [er-bande-librairie er-bande-sommaire] L’Âge d’argent : 1.Un âge nommé après coup • · 2.Le symbolisme · 3.L’acméisme · 4.Le futurisme · 5.Hors des écoles · 6.La fin d’un monde · Les œuvres clés · Les livres de ce chapitre · Bibliographie · Notes
-  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
-nous-trouver/ · 200 · 1 tête, 0 bande
-  tête [er-tete-centre er-tete-sans-chapo] Le centre culturel — « Nous trouver » · Адрес
-centre-culturel/videos/ · 200 · 0 tête, 0 bande
-centre-culturel/ · 200 · 1 tête, 0 bande
-  tête [er-tete-centre] Le centre culturel — « Le centre culturel » · Центр
-    chapô : Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts e
-ymca-press/ · 200 · 1 tête, 0 bande
-  tête [er-tete-ymca] Maison d’édition YMCA-Press — « Maison d’édition YMCA-Press » · ИМКА-Пресс
-    chapô : Depuis un siècle, YMCA-Press publie la littérature et la pensée russes en exil.
-ymca-press/catalogue/ · 200 · 1 tête, 0 bande
-  tête [er-tete-ymca er-tete-sans-chapo] Maison d’édition YMCA-Press — « Le catalogue » · Каталог
-librairie/ · 200 · 1 tête, 0 bande
-  tête [er-tete-librairie] Librairie | 840 livres — « Librairie » · Магазин
-    chapô : Les Éditeurs réunis, librairie de référence depuis 1925
-mentions-legales/ · 200 · 1 tête, 0 bande
-  tête [er-tete-aucune er-tete-sans-chapo] Les Éditeurs réunis — « Mentions légales »
-/rayon/litterature/ · 200 · 1 tête, 1 bande
-  tête [er-tete-librairie] Librairie | 378 livres — « Littérature » · Литература
-    chapô : Les classiques et les contemporains, en français et en russe.
-  [er-bande-librairie] Littérature : Tout le rayon • · | · PAR GENRE · Romans · Nouvelles et récits · Poésie · Théâtre · Mémoires et témoignages · Récits de voyage · Essais · | · Par époque ▾
-/rayon/litterature/romans/ · 200 · 1 tête, 1 bande
-  tête [er-tete-librairie er-tete-sans-chapo] Librairie / Littérature | 120 livres — « Romans »
-  [er-bande-librairie] Littérature : Tout le rayon · | · PAR GENRE · Romans • · Nouvelles et récits · Poésie · Théâtre · Mémoires et témoignages · Récits de voyage · Essais · | · Par époque ▾
-/auteur/georges-nivat/ · 200 · 1 tête, 1 bande
-  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 8 livres en rayon — « Georges Nivat »
-  [er-bande-librairie er-bande-sommaire] Georges Nivat : Ses traductions • · Sous sa direction · Ses préfaces · Au centre · Dans le journal
-/auteur/alexandre-soljenitsyne/ · 200 · 1 tête, 1 bande
-  tête [er-tete-librairie er-tete-sans-chapo] Librairie | 19 livres en rayon — « Alexandre Soljenitsyne » (Александр Солженицын · Aleksandr Solzhenitsyn) · Солженицын
-  [er-bande-librairie er-bande-sommaire] Alexandre Soljenitsyne : Ses livres • · Au centre · Dans le journal · À lire sur le site
-/sujet/histoire/ · 200 · 1 tête, 1 bande
-  tête [er-tete-aucune er-tete-sans-chapo] Sujet | 46 rencontres · 19 textes — « Histoire »
-  [er-bande-aucune er-bande-sommaire] Histoire : Prochainement au centre • · Les rencontres · Dans le journal
+Relevé (rien n’est posé ; « wp er roles appliquer » pour poser) sur 840 livres en vente :
+  170 livres avec une traduction, 3 sous la direction de quelqu’un, 46 avec une préface ou une présentation, 22 avec une édition établie ou des notes, 5 illustrés, 313 avec un éditeur.
+179 personnes (185 graphies), dont 16 qui ne sont pas encore des auteurs :
+  Sophie Benech (12)
+  Georges Nivat (9)
+  Christian Mouze (8)
+  André Markowicz (8)
+  Hélène Henry (7)
+  Jean-Louis Chavarot (5)
+  Paul Lequesne (5) ← Paul Lesquesne
+  Anne Davidenkoff (4)
+  Maïa Varsimashvili-Raphael (4)
+  Henri Mongault (4)
+  Gustave Aucouturier (4)
+  Christine Zeytounian-Beloüs (3)
+  Anne Kichilov (3)
+  Nicolas Struve (3)
+  Anne-Marie Tatsis-Botton (3)
+  Pierre Léon (3)
+  Luba Jurgenson (4) ← Liouba Jurgenson
+  Olga Lossky (2)
+  Lucile Nivat (2)
+  Jean-Noël Benoit (2)
+  Anne Coldefy-Faucard (2)
+  Henri de Lubac (2)
+  Françoise Lhoest (2)
+  Olga Lossky-Laham (2)
+  Maud Mabillard (2)
+  Jérôme Cler (3) ← Jérôme Clerc
+  Raphaëlle Pache (2)
+  Gabriel Arout (3) ← G. Arout
+  Bernard Hubert (2)
+  Carine Masutti (2)
+  Jean Laury (2)
+  Laure Troubetzkoy (2)
+  Tatiana Nikishina (2)
+  Olivier Gallon (2)
+  Boris de Schlœzer (3) ← Boris de Schloezer
+  Joëlle Dublanchet (2)
+  Rambert Nicolas (2)
+  Cédric Gras (2)
+  Nicolas Werth (2)
+  Gérard Abensour (2)
+  Alain Préchac (2)
+  Ludmila Savitzky (2)
+  Louis Martinez (2)
+  Michel Aucouturier (2)
+  Mahaut de Cordon-Prache (2)
+  Claude Ligny (2)
+  Nicolas Molinier (2)
+  Michel Niqueux (2)
+  Céline Marangé (2)
+  Nikita Struve (2)
+  Sylvie Luneau (2)
+  Edith Sherrer (2)
+  Lily Denis (2)
+  Elena Balzamo (2) ← Elena Balzano
+  Catherine Géry (1)
+  Asya Marakulina (1)
+  Léon Bernstein (1)
+  Louise Desormonts (1)
+  Dany Savelli (1)
+  Nikolaï Lugansky (1)
+  Jacqueline Lafond (1)
+  Alexis Berelowitch (1) · nouveau
+  Antony Beevor (1)
+  Liouba Vinogradova (1)
+  Konstantin Batynkov (1)
+  Valérie Pozner (1)
+  Maurice Parijanine (1)
+  Georges Kassai (1)
+  Georges Spitzer (1) · nouveau
+  Ladislas Gara (1) · nouveau
+  Andrée Lück-Gaye (1)
+  Claude Vincenot (1)
+  Manuela Boublil-Friedrich (1)
+  Franck Manara (1)
+  Yves Gauthier (1)
+  Alain Cappon (1)
+  Hélène Vivier-Kousnetzoff (1)
+  Rodolphe Baudin (1)
+  Michel Cadot (1)
+  Jean-Claude Lanne (1)
+  Colette Stoïanov (1)
+  Christine Zeytounian (1)
+  Marina Bobrova (1)
+  Philie Arnoux (1)
+  Marine Le Berre Semenov (1)
+  Christine Bouvart (1)
+  Gilles Barbedette (1)
+  Veronika Dorman (1)
+  Laëtitia Decourt (1)
+  Michel Lafon (1) · nouveau
+  Elena Ponomareva (1)
+  Natalino Valentini (1)
+  Claire Hauchard (1) · nouveau
+  Madeleine Lejeune (1) · nouveau
+  Johann Bihr (1)
+  Andreï Vieru (1)
+  E. Semenoff (1)
+  Léandre Lucas (1)
+  Julie Bouvard (1)
+  Andreï Kovrine (1)
+  M. Dumesnil' de Gramont (1)
+  Hélène Arjakovsky (1)
+  Michel Parfenov (1)
+  Misha Zaslavsky (1)
+  Askold Akishine (1)
+  Jean Bodiou (1)
+  Odile Belkeddar (1)
+  Renata Lesnik (1)
+  Jean-Louis Panné (1)
+  Mathias Enard (1)
+  Éveline Amoursky (1)
+  Ludmila Oulitskaïa (1)
+  Claude Levenson (1)
+  Jean-Christophe Peuch (1)
+  Nilima Changkakoti (1)
+  Stefan Zweig (1)
+  Grégory Dufaud (1)
+  Hélène Carrère d'Encausse (1)
+  Ivan Bilibine (1)
+  Françoise Morvan (1)
+  Anita Davidenkoff (1) ← Anna Davidenkoff
+  Anna Lushenkova-Foscolo (1) · nouveau
+  Hélène Péras (1)
+  Leonid Livak (1)
+  Alice Devaux (1)
+  Innokenti Platonov (1)
+  Valentina Chepiga (1)
+  Florian Voutev (1)
+  Adèle Bloch (1)
+  Robert André (1)
+  Geneviève Leibrich (1) · nouveau
+  Ève Malleret (1)
+  Zéno Bianu (1)
+  Marianne Gourg-Antuszewic (1)
+  Odile Melnik-Ardin (1) · nouveau
+  Irène Sokologorsky (1) · nouveau
+  André Donzeau (1)
+  Michèle Kahn (1) · nouveau
+  Francine Andreieff (1)
+  Myriam Odayski (1)
+  Elisabeth Mouravieff (1)
+  Irène Markowicz (1)
+  Laurence Dyèvre (1)
+  Véronique Schiltz (1)
+  Jacques Catteau (1)
+  Suivi de Le (1) · nouveau
+  Michel Pétris (1)
+  Marie Leymarie (1)
+  Ekaterina Cherezova (1)
+  Lydia Ouspensky (1)
+  Denis Roche (1)
+  Louis Viardot (1)
+  Bernard Le Caro (1)
+  René Marichal (1) · nouveau
+  Anne Buguet (1)
+  Natalia Soljénistyne (1)
+  J. Cathala (1)
+  Henri Léonard-Bordier (1)
+  Irène Rovere-Sova (1)
+  Mireille Rovere-Tsivikis (1)
+  C. Andronikof (1)
+  A. de Couriss (1)
+  Pavillons Poche (1) · nouveau
+  Robert Laffont (1) · nouveau
+  Pierre Pascal (1)
+  Michel Sollogoub (1)
+  Lucette Marçais (1)
+  Collection Que (1) · nouveau
+  André Gide (1)
+  Jacques Schiffrin (1)
+  Nina Kchayan (1)
+  Edouard Parayre (1)
+  Roger Grenier (1)
+  Tatiana Victoroff (1)
+  Boris Zaïtsev (1)
+  Geneviève Johannet (1)
+  Cécile Odartchenko (1)
+  Bertrand Jeuffrain (1)
+  Henri Bloch (1)
+59 éditeurs (68 graphies) :
+  YMCA-Press (175) ← Éditions YMCA-Press
+  Éditions des Syrtes (38)
+  Gallimard (9)
+  Ginkgo éditeur (10) ← Gingko éditions, Ginkco éditeurs
+  Sandermoen Publishing (5)
+  La Barque (3)
+  Institut d’études slaves (4) ← Institut dEtudes Slaves
+  Masha Publishing (3)
+  Robert Laffont (3)
+  Захаров (3)
+  Éditions Sillage (3)
+  Éditions Tourgueneff (2)
+  Fayard (3) ← Éditions Fayard
+  Русский путь (2)
+  Нигма (2)
+  Actes Sud (2)
+  Desclée de Brouwer (2)
+  Harpo (2)
+  Sibérie (1)
+  The Faith of a Mushroom (1)
+  Bouquins (1)
+  Noir sur Blanc (2) ← Éditions Noir sur blanc
+  Kiev (1)
+  Les Bas-fonds (1)
+  Éditions Nouvel Attila (1)
+  Saint Leger éditions (1)
+  Éditions de l’EHESS (2) ← Éditions EHESS
+  Folio (1)
+  Éditions de Minuit (1)
+  Éditions Circé (1)
+  Éditions La Coopérative (1)
+  Éditions Ca et là (1)
+  Mediaspaul éditions (1)
+  Éditions Interférences (1)
+  Barthillat (2) ← Bartillat
+  Bagne rouge (1)
+  Cerf Patrimoine (1)
+  Buchet-Chastel (1)
+  Reprint (1)
+  Stock (1)
+  André Korliakov (1)
+  Éditions du Panthéon (1)
+  Éditions Natania (2) ← Natania
+  Éditions Jourdan (1)
+  Vibratrion éditions (1)
+  Éditions Paroles et Silence (1)
+  Éditions du Fallois (1)
+  Belfond (1)
+  Éditions du Cerf (1)
+  Fraternité orthodoxe en Europe occidentale (1)
+  Librairie des Cinq Continents (1)
+  Éditions Infoli (1)
+  Éditions Mame (1)
+  Imprimerie Nationale (1)
+  L’Œil (1)
+  Éditions ROD (1)
+  Éditions de la Présentation (1)
+  Perrin (1)
+  Bleu nuit éditeur (1)
+60 mentions mises de côté, à revoir dans la fiche du livre :
+  Rilke · un seul mot · Palimpsestes (palimpsestes)
+  Goethe · un seul mot · Palimpsestes (palimpsestes)
+  Martin de Tours · dans le titre · La Vie de St Martin de Tours (la-vie-de-st-martin-de-tours)
+  Djann · un seul mot · Djann (djann)
+  Illustrations de Konstantin Batynkov · autre rôle · Les préceptes du philosophe Yakov (les-preceptes-du-philosophe-yakov)
+  Exilé · un seul mot · Zoo (zoo)
+  Exilé · un seul mot · Lettres à Elsa Triolet (lettres-a-elsa-triolet)
+  Enfant · autre rôle · Sainte marie Skobtsova (sainte-marie-skobtsova)
+  Editions · autre rôle · Une école à la frontière (une-ecole-a-la-frontiere)
+  Préface Dominique Dussidour · autre rôle · Arrêt sur le Ponte Vecchio (arret-sur-le-ponte-vecchio)
+  Editions · autre rôle · Arrêt sur le Ponte Vecchio (arret-sur-le-ponte-vecchio)
+  Postface Olivier Gallon · autre rôle · Les songes de Tchang. Poèmes (les-songes-de-tchang-poemes)
+  Paru · un seul mot · La Chronique de Belgrade (la-chronique-de-belgrade)
+  Illustré · autre rôle · Contes (contes)
+  Purextase · un seul mot · Purextase (purextase)
+  Le Journal d’Anna · pas un nom · Journal (1867) (journal-1867)
+  À · un seul mot · En mémoire de la mémoire (en-memoire-de-la-memoire)
+  Préface de Sarah Gruszka · autre rôle · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
+  Iouri · un seul mot · Le Siège de Leningrad, Journal d’un adolescent (le-siege-de-leningrad-journal-dun-adolescent)
+  Dans Méditations · pas un nom · Méditations spirituelles (meditations-spirituelles)
+  Préface · autre rôle · Récits de la Perdition (recits-de-la-perdition)
+  La Veilleuse · pas un nom · La Veilleuse des Solovki (la-veilleuse-des-solovki)
+  Cet · un seul mot · Nouvelles (nouvelles)
+  Boulgakov · un seul mot · La Fuite – Pièces et nouvelles (la-fuite-pieces-et-nouvelles)
+  Si · un seul mot · Le corps et l’âme (le-corps-et-lame)
+  Ginkgoéditeur · un seul mot · Le second Avènement N° 1 (le-second-avenement-n-1)
+  Russie · un seul mot · Le Visiteur de marbre et autres oeuvres théâtrales (le-visiteur-de-marbre-et-autres-oeuvres-theatrales)
+  Les · un seul mot · Un Roi Lear des steppes (un-roi-lear-des-steppes)
+  Ine · un seul mot · Portrait de Monsieur Podjabrine (portrait-de-monsieur-podjabrine)
+  Troisième · un seul mot · Purgatoire (purgatoire)
+  s · éditeur douteux · Naissance des Dieux (naissance-des-dieux)
+  Tandis · un seul mot · La rose des vents (la-rose-des-vents)
+  Ce · un seul mot · La traductrice (la-traductrice)
+  Ce · un seul mot · Sofia Pétrovna (sofia-petrovna)
+  Le Fléau de Dieu · pas un nom · Le Fléau de Dieu (le-fleau-de-dieu)
+  Si Ceux du Donbass · pas un nom · Certains n’iront pas en enfer (certains-niront-pas-en-enfer)
+  @Acer-mjo · éditeur douteux · La liturgie expliquée aux jeunes (la-liturgie-expliquee-aux-jeunes)
+  Découvrez · un seul mot · Vivre pleinement (vivre-pleinement)
+  Dans · un seul mot · Les quatre vies d’Arseni (les-quatre-vies-darseni)
+  A · un seul mot · Brisbane (brisbane)
+  Editions · autre rôle · Journal des mes rencontres (journal-des-mes-rencontres)
+  Actes-Sud · un seul mot · Les dieux de la steppe (les-dieux-de-la-steppe)
+  Né · un seul mot · Pérégrinations (1723-1747) (peregrinations-1723-1747)
+  Février · un seul mot · Les jours (les-jours)
+  Préface de Jacques Catteau · autre rôle · L’histoire de ma sœur (lhistoire-de-ma-soeur)
+  L’histoire · un seul mot · L’histoire de ma sœur (lhistoire-de-ma-soeur)
+  Un · un seul mot · Volia volnaïa (volia-volnaia)
+  Rédaction · un seul mot · Le Poisson (le-poisson)
+  Archim · un seul mot · Le Messager orthodoxe, n° 100 (le-messager-orthodoxe-n-100)
+  Editions Sillage · autre rôle · Trois Années (trois-annees)
+  Publié · un seul mot · Journal (1973-1983) (journal-1973-1983)
+  Editions · autre rôle · Le Mont Athos et Valaam (le-mont-athos-et-valaam)
+  L · un seul mot · Une journée d’Ivan Denissovitch (une-journee-divan-denissovitch)
+  Préface de Nikita Struve · autre rôle · Judas Iscarioth, l’apôtre félon (judas-iscarioth-lapotre-felon)
+  Dans · un seul mot · Judas Iscarioth, l’apôtre félon (judas-iscarioth-lapotre-felon)
+  Introduction de Nikita Struve · autre rôle · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
+  Traçant · un seul mot · Ma vie dans l’Orthodoxie (ma-vie-dans-lorthodoxie)
+  G · un seul mot · L’Idiot (lidiot)
+  Editions · autre rôle · Les Fondements de la Culture russe (les-fondements-de-la-culture-russe)
+  Préface · autre rôle · La dame de pique (la-dame-de-pique)
