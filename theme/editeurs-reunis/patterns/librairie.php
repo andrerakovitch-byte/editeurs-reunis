@@ -7,7 +7,8 @@
  *
  * Toute la librairie, un rayon, un auteur, une langue ou une recherche : la tête de page (inc/tete.php : le fil, le
  * titre, le chapô ; pour une personne, son portrait, ses graphies et ses dates), la bande de page (les sous-rayons
- * d'un rayon, le sommaire d'une personne), puis les livres en grand, sur toute la largeur. Pour une personne, sa
+ * d'un rayon, le sommaire d'une personne), puis la colonne « Filtrer par » (le bloc er/facettes de l'extension) et les
+ * livres à côté, les filtres en cours au-dessus d'eux. Pour une personne, sa
  * biographie, ses livres, ses rôles et ce qui l'entoure (er/autour).
  *
  * @package editeurs-reunis
@@ -101,24 +102,26 @@ if ( $er_bande ) :
 <?php endif; ?>
 <?php if ( $er_ecrivain ) : ?>
 
-	<!-- wp:group {"align":"wide","className":"er-filtres","layout":{"type":"default"}} -->
-	<div class="wp-block-group alignwide er-filtres">
-		<!-- wp:categories {"taxonomy":"langue","showPostCounts":false,"showEmpty":false,"className":"er-pilules er-pilules-langues"} /-->
-	</div>
-	<!-- /wp:group -->
+	<!-- wp:group {"align":"wide","className":"er-rayonnage","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide er-rayonnage">
+	<!-- wp:er/facettes /-->
 
+	<!-- wp:group {"className":"er-rayonnage__livres","layout":{"type":"default"}} -->
+	<div class="wp-block-group er-rayonnage__livres">
 	<!-- wp:woocommerce/store-notices /-->
 
-	<!-- wp:group {"align":"wide","className":"er-tri","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group alignwide er-tri">
+	<!-- wp:group {"className":"er-tri","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group er-tri">
 		<!-- wp:woocommerce/product-results-count /-->
 
 		<!-- wp:woocommerce/catalog-sorting /-->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:woocommerce/product-collection {"queryId":31,"query":{"woocommerceAttributes":[],"woocommerceStockStatus":["instock","outofstock","onbackorder"],"taxQuery":{},"isProductCollectionBlock":true,"perPage":24,"pages":0,"offset":0,"postType":"product","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"tagName":"div","dimensions":{"widthType":"fill"},"displayLayout":{"type":"flex","columns":5,"shrinkColumns":true},"queryContextIncludes":["collection"],"align":"wide"} -->
-	<div class="wp-block-woocommerce-product-collection alignwide">
+	<!-- wp:er/facettes {"partie":"puces"} /-->
+
+	<!-- wp:woocommerce/product-collection {"queryId":31,"query":{"woocommerceAttributes":[],"woocommerceStockStatus":["instock","outofstock","onbackorder"],"taxQuery":{},"isProductCollectionBlock":true,"perPage":24,"pages":0,"offset":0,"postType":"product","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"tagName":"div","dimensions":{"widthType":"fill"},"displayLayout":{"type":"flex","columns":5,"shrinkColumns":true},"queryContextIncludes":["collection"]} -->
+	<div class="wp-block-woocommerce-product-collection">
 		<?php echo er_fiche_livre(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 
 		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
@@ -139,6 +142,10 @@ if ( $er_bande ) :
 		<!-- /wp:woocommerce/product-collection-no-results -->
 	</div>
 	<!-- /wp:woocommerce/product-collection -->
+	</div>
+	<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
 <?php endif; ?>
 <?php
 $er_rang = 0;

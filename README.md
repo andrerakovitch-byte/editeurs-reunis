@@ -465,6 +465,23 @@ L'audit de la librairie (24 novembre 2026) a relu les 859 fiches une à une ; ce
 - Les notices des bibliothèques (BnF, Open Library ; Google Books refuse les machines de GitHub) : case « notices »
   du workflow, « chercher » puis `notices importer appliquer`, qui reprend le fichier déposé hors du site.
 
+### « Filtrer par » : la colonne de filtres de la librairie
+
+Toutes les pages de la librairie (un rayon, un auteur, une langue, une maison, une collection, une mention, la
+recherche) ont à gauche des livres la colonne « Filtrer par » (`er-librairie/inc/facettes.php`, blocs `er/facettes`
+et `er/facettes` `{"partie":"puces"}` posés par `patterns/librairie.php`) : la langue, l'époque (« Parle de » ou
+« Écrit pendant », sur la frise des quatorze périodes), le genre (les sous-rayons de genre d'un rayon) ou le rayon, le
+sujet, l'auteur, la maison d'édition, l'année de publication par décennie, la disponibilité. Chaque option dit combien
+de livres resteraient si on la cochait ; dans une facette les options s'additionnent, d'une facette à l'autre elles
+se cumulent. Une facette qui ne partage pas la page n'y est pas (pas d'« Auteur » sur la page d'un auteur) ; moins de
+six livres, pas de colonne.
+
+Le filtre est dans l'adresse (`?langue=francais&epoque=annees-1920-et-1930&sans-date=non`) ; le calcul se fait en PHP
+sur les livres de la page, et la requête principale reçoit la liste des livres retenus. `assets/js/facettes.js`
+remplace la colonne et les livres sans recharger la page ; au téléphone, la colonne s'ouvre en panneau plein écran.
+Sans JavaScript, le formulaire s'envoie par son bouton. `wp er facettes essayer litterature langue=francais` l'essaie
+sur un rayon (case « er » du workflow). La maquette : le canevas « Librairie — le module « Filtrer par » ».
+
 ## Les vidéos et les podcasts
 
 Un contenu à part, « Vidéos et podcasts » dans l'administration (`inc/medias.php`), à l'adresse

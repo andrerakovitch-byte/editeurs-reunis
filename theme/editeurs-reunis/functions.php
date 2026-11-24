@@ -71,6 +71,19 @@ add_action(
 				'in_footer' => true,
 			)
 		);
+		// « Filtrer par » : la colonne de filtres des pages de la librairie (er-librairie/inc/facettes.php).
+		if ( function_exists( 'er_facettes_page' ) && er_facettes_page() ) {
+			wp_enqueue_script(
+				'editeurs-reunis-facettes',
+				get_theme_file_uri( 'assets/js/facettes.js' ),
+				array(),
+				$version . '.' . filemtime( get_theme_file_path( 'assets/js/facettes.js' ) ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
 		// L'en-tête plein écran : un clic sur une maison montre son menu, l'en-tête accroché, la barre d'informations.
 		wp_enqueue_script(
 			'editeurs-reunis-entete',
