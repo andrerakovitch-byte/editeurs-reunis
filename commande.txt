@@ -1,8 +1,34 @@
-Audit des recoupements — 24 novembre 2026, 07:06
+Audit des recoupements — 24 novembre 2026, 07:10
 840 livres, 68 articles, 169 rencontres, 19 vidéos et podcasts, 8 expositions, 39 pages, 601 personnes.
 
 ## 1. Les personnes en double (même nom à l’accent ou à la transcription près, ou par une autre graphie)
   0 groupes.
+  Doublons probables (même nom de famille et même initiale, ou un nom au début d’un autre) : 26 groupes, à vérifier un par un.
+    A. Tolstoï [1] ~ А. К. Толстой [1]
+    Alexandre Soljenitsyne [13] ~ А. Солженицын [5] ~ А.И Солженицын [1]
+    Anita Davidenkoff [2] ~ Anne Davidenkoff [0]
+    Fedor Dostoïevski [6] ~ Fiodor Dostoïevski [2]
+    Léon Tolstoï [3] ~ Лев Толстой [1]
+    Mahaut de Cordon-Prache [0] ~ Marie-Astrid Prache [1]
+    Mère Marie Skobtsova [0] ~ Мать Мария Скобцова [1]
+    Métropolite Antoine Bloom [1] ~ Monseigneur Antoine Bloom [5]
+    Michel Ossorguine [2] ~ Mikhaïl Ossorguine [2]
+    Nadejda Teffi [2] ~ Н.А. Тэффи [1]
+    Nicolas Berdiaev [1] ~ Николай Бердяев [3]
+    Nicolas Ross [5] ~ Николай Росс [1]
+    Nicolas Struve [0] ~ Nikita Struve [3]
+    Nicolas Zernov [0] ~ Николай Зернов [1]
+    P. Jean Meyendorff [1] ~ Прот. Иоанн Мейендорф [1]
+    Paul Florensky [1] ~ Pavel Florenski [2]
+    Père Serge Boulgakov [2] ~ прот. Сергей Булгаков [1] ~ прот. Сергий Булгаков [2]
+    Pierre Struve [0] ~ П.Б. Струве [1]
+    Simon Frank [1] ~ Семен Франк [1]
+    Véra Nabokov [1] ~ Vladimir Nabokov [1]
+    Yuri Felshtinsky [1] ~ Ю. Фельштинский [1]
+    Г. Федотов [1] ~ Георгий Фeдотов [3]
+    Anton Tchekhov [7] ~ Anton Tchekhov et Lydia Mizinova [1]
+    Christine Zeytounian [0] ~ Christine Zeytounian-Beloüs [0]
+    Marina Tsvétaïéva [5] ~ Marina Tsvétaïeva et Maximilian Volochine [1]
 
 ## 2. Les signatures du journal
   22 signatures (11 articles sans signature) : 20 reliées à une page, 2 qui ont une page sous une autre graphie (le lien manque), 0 sans page.
@@ -15,13 +41,13 @@ Audit des recoupements — 24 novembre 2026, 07:06
   27 intervenants reliés à leur page, 0 qui ont une page sous une autre graphie (le lien manque : ni lien, ni rencontre sur leur page), 0 sans page.
 
 ## 4. Les personnes nommées dans un texte sans y être rattachées (prénom et nom en toutes lettres)
-  articles : 55 sur 68 nomment au moins une personne sans y être rattachés (113 rattachements qui manquent).
-  rencontres : 63 sur 169 nomment au moins une personne sans y être rattachés (111 rattachements qui manquent).
+  articles : 54 sur 68 nomment au moins une personne sans y être rattachés (111 rattachements qui manquent).
+  rencontres : 63 sur 169 nomment au moins une personne sans y être rattachés (109 rattachements qui manquent).
   vidéos et podcasts : 0 sur 19 nomment au moins une personne sans y être rattachés (0 rattachements qui manquent).
-  expositions : 2 sur 8 nomment au moins une personne sans y être rattachés (5 rattachements qui manquent).
-  pages : 9 sur 39 nomment au moins une personne sans y être rattachés (45 rattachements qui manquent).
+  expositions : 1 sur 8 nomment au moins une personne sans y être rattachés (4 rattachements qui manquent).
+  pages : 8 sur 39 nomment au moins une personne sans y être rattachés (44 rattachements qui manquent).
   Les personnes les plus nommées sans rattachement :
-    Alexandre Soljenitsyne (41)
+    Alexandre Soljenitsyne (36)
     Nikita Struve (8)
     Tatiana Victoroff (8)
     Anna Akhmatova (8)
@@ -29,12 +55,12 @@ Audit des recoupements — 24 novembre 2026, 07:06
     André Lischke (6)
     Léon Tolstoï (6)
     Дмитрий Макаров (6)
-    Andreï Biely (5)
     Alexandre Blok (5)
     Nikolaï Fiodorov (5)
     Efim Etkind (4)
     Nicolas Berdiaev (4)
     Pierre Struve (4)
+    Andreï Biely (4)
     Christine Zeytounian (4)
     Fiodor Dostoïevski (4)
     Mikhaïl Boulgakov (3)
@@ -107,12 +133,39 @@ Jérôme Cler (1)
 
 ## 6. Les livres cités par référence (« Livres liés » des rencontres, des articles, des expositions)
   53 références, 0 qui ne mènent à aucun livre.
+  Citations à sens unique : 12 livres cités sur 53 ne montrent pas, sur leur fiche, le contenu qui les cite (rien en commun pour la fiche : ni auteur, ni personne, ni sujet).
+    Ossip Mandelstam ← articles · Quand un chardonneret s’échappe dans le métro
+    L’Archipel du Goulag, un séisme littéraire – Catalogue d’exposition ← articles · 50 ans de l’Archipel du Goulag : « Aux millions de tués pour rien, Soljenitsyne donne un contour, une vie, un visage »
+    Архипелаг ГУЛаг ← articles · Boris Akounine : « L’époque de l’Archipel du Goulag vivra tant que la Russie restera un empire »
+    La Joie éternelle ← articles · Pavel Florensky, par le père Alexandre Men
+    Soljénitsyne et la France – sous la direction de Georges Nivat ← articles · Souvenirs de la soirée de présentation des Actes du colloque « Soljenitsyne et la France »
+    Anna Akhmatova, requiem pour l’Europe ← articles · Rencontres avec Anna Akhmatova en 1964-65
+    Entretiens avec Anna Akhmatova ← articles · Rencontres avec Anna Akhmatova en 1964-65
+    Ossip Mandelstam ← articles · Mandelstam à Voronej : « Je mange de l’air mort »
+    Иосиф Бродский: годы в СССР ← articles · Dans les plis du marbre : la poésie de Brodski
+    Boris Pasternak, un poète dans son temps ← articles · « 2 Juin 1960 », à l’occasion du 60ème anniversaire du décès de Boris Pasternak
+    Anthologie de la poésie russe du début du XXIe siècle ← articles · Nouveauté : Anthologie de la poésie russe du début du XXIe siècle
+    Chroniques cannoises, dialogues ← articles · Publication Mai 2019 : Chroniques Cannoises
+  Livres dont le traducteur ou le directeur a des rencontres, des articles ou des vidéos que la fiche ne montre pas : 18
+    Ermites dans la taïga ← Présentation de la traduction du roman Nostalgie russe de Ksenia Kirillova, par Marie Barbier, éditrice et Yves Gauthier
+    Poésies choisies ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
+    La Russie l’été ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+    La Fuite – Pièces et nouvelles ← Laure Troubetzkoy : L’œuvre de théâtre de Boulgakov est d’une « extraordinaire diversité de formes et de registres »
+    Les Douze ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+    Kotik Letaïev ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
+    Soljénitsyne et la France – sous la direction de Georges Nivat ← Soirée consacrée au poète, critique littéraire et dissident ukrainien Vasyl Stus (1938-1985)
+    Le Maître et Marguerite ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+    Art sacré au Skite Sainte Foy ← Découverte de la Russie par une petite étudiante de la Sorbonne
+    Les Hommes d’août ← L’Archipel du Goulag sur la Montagne Sainte Geneviève
+    L’Affaire Kravtchenko ← Soirée- poésie avec Christian Olivier, chanteur, compositeur et graphiste
+    Le mal noir ← L’Archipel du Goulag sur la Montagne Sainte Geneviève
 
 ## 7. Les vidéos des rencontres et la médiathèque
   44 vidéos de rencontres : 0 sont aussi dans « Vidéos et podcasts », 44 n’y sont pas (on ne les trouve que sur la page de la rencontre).
 
 ## 8. L’encyclopédie et les pages des personnes
   0 articles de l’encyclopédie, 0 reliés à la page d’une personne ; 0 portent le nom d’une personne qui a sa page, sans lien entre les deux.
+  Les pages du site, par rubrique : centre-culturel (7), librairie (6), promos (1), accueil (3), mentions-legales (1), faq (1), livraison-et-retours (1), conditions-generales-de-vente (1), nous-trouver (1), ymca-press (4), journal (1), my-account (2), checkout (2), cart (1), shop (1), basket-2 (1), basket (1), mon-compte (1), commande (1), panier (1), politique-de-confidentialite (1)
 
 ## 9. Les contenus isolés (ni personne, ni sujet : aucune page ne les montre en dehors de leur rubrique)
   articles : 1 sur 68.
