@@ -71,7 +71,7 @@
 185	ru	poesie,age-d-argent	poe,fem,emi	ar	-	-	-
 187	ru	poesie,periode-sovietique	poe,pay	2030	-	-	-
 189	ru	poesie,age-d-argent	poe	ar	-	-	-
-191	fr	biographies	fem,emi,poe	pou	ar,rev,2030	Zinaïda Hippius	-
+191	fr	biographies	fem,emi,poe	pou	ar,rev,2030	Зинаида Гиппиус	-
 193	fr	romans,periode-sovietique	fan,pol	rev	-	-	-
 195	fr	goulag	gou	sta	rev,2030,ww2,deg	-	-
 197	fr	nouvelles-et-recits,periode-sovietique	gou	deg	deg	-	-
@@ -209,7 +209,7 @@
 269	fr	theologie-orthodoxe	ort,emi	pou	-	Alexandre Schmemann	-
 463	ru	romans,periode-sovietique	pay,gue	2030	ar	-	-
 465	ru	romans,periode-sovietique	pay,fan	2030	ar	-	-
-467	ru	philosophie-russe	phi,emi	2030	2030	Léon Chestov	-
+467	ru	philosophie-russe	phi,emi	2030	2030	Лев Шестов	-
 469	ru	essais-politiques,revolution-1917	pol,phi	rev	ar,rev	-	-
 471	ru	nouvelles-et-recits,memoires,emigration	emi,fem	90	2030,ww2	-	-
 473	ru	poesie,emigration	poe,emi	per	-	-	-
@@ -257,7 +257,7 @@
 557	ru	memoires,urss	gue	deg	ww2	-	-
 559	ru	revolution-1917	pol	sta	rev	-	-
 561	ru	urss	gue,pol,emi	sta	ww2	-	-
-563	ru	theologie-orthodoxe,emigration-russe,biographies	ort,emi	2030	2030	Alexandre Eltchaninoff	-
+563	ru	theologie-orthodoxe,emigration-russe,biographies	ort,emi	2030	2030	père Alexandre Eltchaninoff	-
 565	ru	romans,periode-sovietique	gue,pol	sta	ar	-	-
 567	ru	romans,periode-sovietique	gue,pol	sta	ar	-	Alexandre Soljenitsyne
 569	ru	romans,periode-sovietique	pol,spb	sta	rev	-	-
@@ -350,7 +350,7 @@
 745	fr	icones,spiritualite-et-priere	ort,art,sai	pou	-	-	-
 748	bi	poesie,age-d-argent	poe,tra	ar,rev,2030	-	-	-
 751	bi	poesie,classiques	poe,tra	or,gr	-	-	-
-753	ru	poesie,romans,classiques	poe,cau	or	or	-	Mikhaïl Lermontov
+753	ru	poesie,romans,classiques	poe,cau	or	or	-	Michel Lermontov
 755	ru	nouvelles-et-recits,emigration	ort,con,sai	2030	-	-	-
 757	ru	poesie,classiques	poe	or	or	-	Alexandre Pouchkine
 759	ru	essais-politiques,histoire-des-idees	pol,phi,ort,emi	2030	rev,2030	-	-
@@ -422,7 +422,7 @@
 894	fr,cu	dictionnaires,liturgie	lan,ort	pou	-	-	Jean-Paul Deschler ; Pierre Gonneau
 896	fr	romans	emi,gue	pou	2030,ww2	Alexandre Alekhine	-
 898	fr	philosophie-russe,essais-politiques	phi,pol	gr	-	-	-
-900	fr	essais,periode-sovietique	poe,cri,eur	2030	-	Dante	-
+900	fr	essais,periode-sovietique	poe,cri,eur	2030	-	Dante Alighieri	-
 902	fr	nouvelles-et-recits,classiques	spb,fan,hum	or	or	-	-
 904	ru	revolution-1917,biographies	gue,pol	pou	rev	Piotr Wrangel	-
 906	fr	empire,biographies	pol,fem,eur	pou	x18	Catherine II	-
@@ -682,7 +682,7 @@
 1493	ru	essais,biographies,emigration	poe,cri	deg	or	Vassili Joukovski	-
 1495	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
 1497	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
-1499	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	Serge Boulgakov	-
+1499	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	Père Serge Boulgakov	-
 1501	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
 1503	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
 1505	ru	theologie-orthodoxe,histoire-des-idees	ort,emi	deg	-	-	-
