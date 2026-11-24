@@ -107,6 +107,9 @@ function sanitize_title( $t ) {
 function wp_parse_args( $a, $defauts = array() ) {
 	return array_merge( $defauts, (array) $a );
 }
+function wp_json_encode( $v, $options = 0 ) {
+	return json_encode( $v, $options );
+}
 function absint( $n ) {
 	return abs( (int) $n );
 }
@@ -308,6 +311,8 @@ foreach ( array(
 	'plugin/er-librairie/inc/collections.php',
 	'plugin/er-librairie/inc/traducteurs-editeurs.php',
 	'plugin/er-librairie/inc/prix-du-livre.php',
+	'plugin/er-librairie/inc/bascule.php',
+	'plugin/er-librairie/inc/donnees-structurees.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',
 ) as $fichier ) {

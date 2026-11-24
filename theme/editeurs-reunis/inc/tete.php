@@ -102,7 +102,38 @@ function er_tete_page( $a ) {
 	$classes = 'er-tete er-tete-' . $maison . ( $image ? ' er-tete-avec-image' : '' ) . ( $chapo ? '' : ' er-tete-sans-chapo' );
 	return '<section class="' . esc_attr( $classes ) . '">'
 		. ( '' !== $mot ? '<span class="er-tete-lettre" lang="ru" aria-hidden="true">' . esc_html( $mot ) . '</span>' : '' )
-		. $fil . '<div class="er-tete-corps">' . $image . $titre . $chapo . '</div></section>';
+		. $fil . '<div class="er-tete-corps">' . $image . $titre . $chapo . '</div></section>'
+		. er_tete_fil_ld( $chemin, $a['titre'] );
+}
+
+/**
+ * Le fil d'Ariane de la tête, pour les moteurs de recherche (BreadcrumbList, en JSON-LD) : le chemin, puis la page.
+ *
+ * @param array  $chemin Les étapes : array( 'texte', 'lien' ).
+ * @param string $titre  Le titre de la page.
+ */
+function er_tete_fil_ld( $chemin, $titre ) {
+	$elements = array();
+	foreach ( array_merge( $chemin, array( array( 'texte' => $titre ) ) ) as $i => $c ) {
+		$element = array(
+			'@type'    => 'ListItem',
+			'position' => $i + 1,
+			'name'     => wp_strip_all_tags( (string) $c['texte'] ),
+		);
+		if ( ! empty( $c['lien'] ) ) {
+			$element['item'] = html_entity_decode( (string) $c['lien'], ENT_QUOTES, 'UTF-8' );
+		}
+		$elements[] = $element;
+	}
+	if ( count( $elements ) < 2 ) {
+		return '';
+	}
+	$ld = array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $elements,
+	);
+	return '<script type="application/ld+json">' . wp_json_encode( $ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG ) . '</script>';
 }
 
 /**

@@ -627,6 +627,25 @@ la fiche du livre, le panier et la page Commande. WooPayments, qui ferait doublo
 est retiré par le workflow. Les billets des rencontres se paient comme les livres ; virtuels, ils n'ont jamais de
 livraison.
 
+## Les règles du livre
+
+La boutique applique elle-même les lois du livre (`plugin/er-librairie/inc/prix-du-livre.php`, qui les cite) :
+
+- **Le prix unique.** Un livre neuf expédié se vend au prix de l'éditeur : une remise saisie est ignorée (la fiche du
+  livre dit pourquoi, sous les prix), un code promo ne le touche pas. Les 5 % de la loi Lang ne valent qu'au retrait
+  en librairie, que la boutique en ligne ne remise pas.
+- **Les soldes.** Permises sur un livre édité depuis plus de deux ans (l'année d'édition à trois ans d'écart, faute de
+  mois) et dont le dernier approvisionnement remonte à plus de six mois. Ce dernier approvisionnement se note tout seul
+  quand on augmente le stock dans la fiche (onglet Inventaire), et se corrige à la main.
+- **Les titres de la maison.** Jamais soldés (loi Darcos, 2021). Si YMCA-Press veut vendre un titre moins cher, elle
+  baisse son prix d'éditeur : `wp er prix maison appliquer` fait du prix remisé le nouveau prix.
+- **L'occasion** (la mention « Occasion ») garde un prix libre.
+- **La livraison** d'une commande qui contient des livres neufs coûte au moins 3 € TTC sous 35 € de livres neufs,
+  0,01 € au-delà ; le retrait à la librairie reste gratuit.
+- **La TVA** à 5,5 %, livraison comprise, prix saisis TTC : `wp er tva appliquer`.
+
+`wp er prix` relève les remises : permises, ignorées, et pourquoi.
+
 ## Déployer chez Kinsta
 
 Le site est hébergé chez Kinsta (formule Single 20GB, centre de données de Paris). Chaque poussée sur `main` qui
