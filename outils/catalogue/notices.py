@@ -1,0 +1,389 @@
+"""Les notices des livres : ce que les catalogues des bibliothèques savent de chaque livre de la librairie.
+
+    python3 outils/catalogue/notices.py <livres.json> <notices.json> [--rapport rapport.md] [--limite N]
+
+<livres.json> vient de `wp er librairie exporter` (le workflow « Déployer chez Kinsta », « notices ») ; il ne va
+jamais dans le dépôt. Pour chaque livre, trois catalogues sont interrogés : la BnF (SRU, Dublin Core), Google Books et
+Open Library. Chaque réponse est notée contre la fiche : le titre, l'auteur, l'éditeur, l'année, la langue.
+
+Deux niveaux, parce qu'un classique a cent éditions :
+- l'édition (ISBN, pages, année, éditeur) : posée seulement quand l'éditeur de la fiche concorde avec celui de la
+  notice, ou quand la fiche n'en dit rien mais qu'une seule édition de ce titre, de cet auteur, dans cette langue, est
+  connue ; sinon, la notice est « à revoir » ;
+- l'œuvre (première parution, sujets Rameau de la BnF, sujets d'Open Library) : dès que le titre et l'auteur
+  concordent.
+
+Écrit <notices.json> (identifiant du livre → ce qui est sûr, ce qui est à revoir, les sources) et un rapport en comptes.
+"""
+import argparse
+import concurrent.futures
+import json
+import re
+import sys
+import time
+import unicodedata
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+
+AGENT = 'EditeursReunis-Notices/1.0 (librairie des Editeurs reunis, Paris ; contact via le site)'
+
+CYR = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'z', 'з': 'z', 'и': 'i', 'й': 'i',
+    'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f',
+    'х': 'h', 'ц': 'c', 'ч': 'c', 'ш': 's', 'щ': 's', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'u', 'я': 'a',
+    'і': 'i', 'ї': 'i', 'є': 'e', 'ґ': 'g',
+}
+
+
+# --- les clés ------------------------------------------------------------------------------------------------------
+
+
+def sans_accents(t):
+    t = unicodedata.normalize('NFKD', t)
+    return ''.join(c for c in t if not unicodedata.combining(c))
+
+
+def translit(t):
+    """Le cyrillique en lettres latines sans signes (à peu près l'ISO 9 de la BnF, signes ôtés)."""
+    sortie = []
+    for c in t:
+        if c in CYR:
+            sortie.append(CYR[c])
+        elif c.lower() in CYR:
+            sortie.append(CYR[c.lower()].capitalize())
+        else:
+            sortie.append(c)
+    return ''.join(sortie)
+
+
+def cle(t):
+    """Une clé de comparaison : minuscules, sans accents ni ponctuation, le cyrillique translittéré, les graphies
+    française et anglaise rapprochées (tch, ch, sh → c ; ou → u ; y → i ; ie → e ; lettres doublées)."""
+    t = sans_accents(translit((t or '').lower())).lower()
+    t = re.sub(r'[^a-z0-9]+', ' ', t)
+    for a, b in (('shch', 'c'), ('chtch', 'c'), ('tch', 'c'), ('sch', 'c'), ('sh', 'c'), ('ch', 'c'), ('zh', 'z'),
+                 ('kh', 'h'), ('ou', 'u'), ('y', 'i'), ('ie', 'e'), ('ii', 'i'), ('w', 'v'), ('ph', 'f')):
+        t = t.replace(a, b)
+    # Le « j » français et le « ž » de la BnF disent le même ж ; « ts » et « c » le même ц.
+    t = t.replace('j', 'z').replace('ts', 'c').replace('tz', 'c')
+    t = re.sub(r'([a-z])\1+', r'\1', t)
+    t = re.sub(r'e\b', '', t)
+    return ' '.join(t.split())
+
+
+VIDES = {'le', 'la', 'les', 'l', 'un', 'une', 'des', 'de', 'du', 'd', 'et', 'en', 'a', 'au', 'aux', 'the', 'of',
+         'i', 'v', 'na', 'o', 's', 'k', 'tome', 'vol', 'volume', 't'}
+
+
+def mots(t):
+    return [m for m in cle(t).split() if m not in VIDES and len(m) > 1]
+
+
+def titre_court(t):
+    """Le titre sans sous-titre ni tome : ce qui précède « : », « . », « - », « ( »."""
+    t = re.split(r'\s[:\-–—]\s|\.\s|\(|,\s*(?:tome|т\.|vol)', t)[0]
+    return t.strip()
+
+
+def ressemblance(a, b):
+    """La part des mots de a qu'on retrouve dans b, et l'inverse : la plus petite des deux."""
+    ma, mb = set(mots(a)), set(mots(b))
+    if not ma or not mb:
+        return 0.0
+    commun = len(ma & mb)
+    return min(commun / len(ma), commun / len(mb))
+
+
+def nom_de_famille(nom):
+    m = mots(nom)
+    return m[-1] if m else ''
+
+
+def isbn13(valeur):
+    """Un ISBN valable, en 13 chiffres ; '' sinon."""
+    t = re.sub(r'[^0-9Xx]', '', valeur or '').upper()
+    if len(t) == 10 and re.fullmatch(r'\d{9}[\dX]', t):
+        r = (11 - sum(int(c) * (10 - i) for i, c in enumerate(t[:9])) % 11) % 11
+        if ('X' if r == 10 else str(r)) != t[9]:
+            return ''
+        t = '978' + t[:9]
+        return t + str((10 - sum(int(c) * (3 if i % 2 else 1) for i, c in enumerate(t)) % 10) % 10)
+    if len(t) == 13 and t.isdigit() and t.startswith(('978', '979')):
+        if str((10 - sum(int(c) * (3 if i % 2 else 1) for i, c in enumerate(t[:12])) % 10) % 10) == t[12]:
+            return t
+    return ''
+
+
+LANGUES = {'fre': 'fr', 'fra': 'fr', 'fr': 'fr', 'rus': 'ru', 'ru': 'ru', 'eng': 'en', 'en': 'en', 'ger': 'de',
+           'deu': 'de', 'de': 'de', 'ukr': 'uk', 'uk': 'uk', 'ita': 'it', 'it': 'it', 'chu': 'cu'}
+
+
+# --- les catalogues ------------------------------------------------------------------------------------------------
+
+
+def lire(url, essais=4):
+    for essai in range(essais):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr'})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return r.read().decode('utf-8', 'replace')
+        except Exception:
+            time.sleep(2 + 4 * essai)
+    return ''
+
+
+def simples(t):
+    """Les mots d'un texte comme le catalogue de la BnF les cherche : sans accents, le cyrillique translittéré."""
+    return [m for m in re.sub(r'[^a-z0-9]+', ' ', sans_accents(translit(t or '')).lower()).split() if m not in VIDES]
+
+
+def bnf_requete(requete):
+    url = 'https://catalogue.bnf.fr/api/SRU?' + urllib.parse.urlencode({
+        'version': '1.2', 'operation': 'searchRetrieve', 'query': requete,
+        'recordSchema': 'dublincore', 'maximumRecords': '8'})
+    xml = lire(url)
+    try:
+        return ET.fromstring(xml) if xml else None
+    except ET.ParseError:
+        return None
+
+
+def bnf(titre, auteur):
+    """Les notices de la BnF (Dublin Core) pour ce titre et cet auteur ; sans résultat, pour ce titre seul."""
+    t = ' '.join(simples(titre_court(titre))[:6])
+    a = (simples(auteur) or [''])[-1] if auteur else ''
+    if not t:
+        return []
+    racine = bnf_requete(f'bib.title all "{t}"' + (f' and bib.author all "{a}"' if a else ''))
+    if a and (racine is None or not list(racine.iter('{http://www.loc.gov/zing/srw/}recordData'))):
+        racine = bnf_requete(f'bib.title all "{t}"')
+    if racine is None:
+        return []
+    dc = '{http://purl.org/dc/elements/1.1/}'
+    notices = []
+    for rec in racine.iter('{http://www.loc.gov/zing/srw/}recordData'):
+        champs = {}
+        for e in rec.iter():
+            if e.tag.startswith(dc) and e.text:
+                champs.setdefault(e.tag[len(dc):], []).append(e.text.strip())
+        if not champs.get('title'):
+            continue
+        ids = champs.get('identifier', [])
+        isbns = [isbn13(re.sub(r'^ISBN\s*', '', i)) for i in ids if i.upper().startswith('ISBN')]
+        ark = next((i for i in ids if 'ark:' in i), '')
+        pages = 0
+        for f in champs.get('format', []):
+            m = re.search(r'(\d{2,4})\s*(?:p\.|с\.|pages)', f)
+            if m:
+                pages = int(m.group(1))
+                break
+        annee = next((m.group(0) for d in champs.get('date', []) for m in [re.search(r'1[4-9]\d\d|20[0-2]\d', d)] if m), '')
+        notices.append({
+            'source': 'bnf', 'lien': ark,
+            'titre': champs['title'][0].split(' / ')[0],
+            'auteurs': champs.get('creator', []),
+            'editeur': (champs.get('publisher') or [''])[0],
+            'annee': annee, 'pages': pages, 'isbn': [i for i in isbns if i],
+            'langues': sorted({LANGUES.get(lang, lang) for lang in champs.get('language', [])}),
+            'sujets': champs.get('subject', []),
+        })
+    return notices
+
+
+def google(titre, auteur):
+    q = f'intitle:{titre_court(titre)}' + (f' inauthor:{auteur.split()[-1]}' if auteur else '')
+    url = 'https://www.googleapis.com/books/v1/volumes?' + urllib.parse.urlencode({'q': q, 'maxResults': '8'})
+    texte = lire(url)
+    try:
+        items = json.loads(texte).get('items', []) if texte else []
+    except json.JSONDecodeError:
+        return []
+    notices = []
+    for it in items:
+        v = it.get('volumeInfo', {})
+        isbns = [isbn13(i.get('identifier', '')) for i in v.get('industryIdentifiers', [])]
+        notices.append({
+            'source': 'google', 'lien': v.get('infoLink', ''),
+            'titre': v.get('title', '') + (' : ' + v['subtitle'] if v.get('subtitle') else ''),
+            'auteurs': v.get('authors', []),
+            'editeur': v.get('publisher', ''),
+            'annee': (v.get('publishedDate') or '')[:4],
+            'pages': int(v.get('pageCount') or 0),
+            'isbn': sorted({i for i in isbns if i}),
+            'langues': [LANGUES.get(v.get('language', ''), v.get('language', ''))] if v.get('language') else [],
+            'sujets': v.get('categories', []),
+        })
+    return notices
+
+
+def open_library(titre, auteur):
+    params = {'title': titre_court(titre), 'limit': '5',
+              'fields': 'key,title,author_name,first_publish_year,isbn,number_of_pages_median,language,subject,publisher,edition_count'}
+    if auteur:
+        params['author'] = auteur
+    texte = lire('https://openlibrary.org/search.json?' + urllib.parse.urlencode(params))
+    try:
+        docs = json.loads(texte).get('docs', []) if texte else []
+    except json.JSONDecodeError:
+        return []
+    return [{
+        'source': 'openlibrary', 'lien': 'https://openlibrary.org' + d.get('key', ''),
+        'titre': d.get('title', ''), 'auteurs': d.get('author_name', []),
+        'premiere_parution': d.get('first_publish_year') or 0,
+        'editions': d.get('edition_count') or 0,
+        'editeurs': (d.get('publisher') or [])[:30],
+        'pages': d.get('number_of_pages_median') or 0,
+        'isbn': [i for i in (isbn13(x) for x in (d.get('isbn') or [])[:60]) if i],
+        'langues': sorted({LANGUES.get(lang, lang) for lang in d.get('language', [])}),
+        'sujets': (d.get('subject') or [])[:25],
+    } for d in docs]
+
+
+# --- la correspondance --------------------------------------------------------------------------------------------
+
+
+def cle_editeur(e):
+    k = cle(e)
+    k = re.sub(r'\b(editions?|editeurs?|publishing|publications?|publisher|izdatelstvo|izd|press)\b', ' ', k)
+    return ''.join(k.split())
+
+
+def concorde_editeur(a, b):
+    ka, kb = cle_editeur(a), cle_editeur(b)
+    if not ka or not kb:
+        return False
+    return ka in kb or kb in ka or ('ymca' in ka and 'ymca' in kb)
+
+
+def note(livre, n):
+    """La note d'une notice contre la fiche : titre (0 à 1), auteur (0 ou 1), éditeur, année."""
+    titre = ressemblance(titre_court(livre['titre']), titre_court(n['titre']))
+    titre = max(titre, ressemblance(livre['titre'], n['titre']))
+    noms = {nom_de_famille(a) for a in livre['auteurs']} - {''}
+    leurs = ' '.join(cle(a) for a in n.get('auteurs', []))
+    auteur = 1.0 if noms and any(nm in leurs.split() for nm in noms) else (0.5 if not noms else 0.0)
+    editeur = concorde_editeur(livre.get('editeur', ''), n.get('editeur', '')) if n.get('editeur') else False
+    la_sienne = re.search(r'\d{4}', livre.get('annee', '') or '')
+    la_leur = re.search(r'\d{4}', str(n.get('annee', '') or ''))
+    annee = bool(la_sienne and la_leur and abs(int(la_sienne.group(0)) - int(la_leur.group(0))) <= 1)
+    return {'titre': round(titre, 2), 'auteur': auteur, 'editeur': editeur, 'annee': annee}
+
+
+def langues_du_livre(livre):
+    codes = {'francais': 'fr', 'russe': 'ru', 'anglais': 'en', 'bilingue-russe-francais': None}
+    out = set()
+    for s in livre.get('langues', []):
+        if s.startswith('bilingue'):
+            out |= {'fr', 'ru'}
+        elif codes.get(s):
+            out.add(codes[s])
+    return out
+
+
+def chercher(livre):
+    auteur = livre['auteurs'][0] if livre['auteurs'] else ''
+    resultat = {'id': livre['id'], 'sur': {}, 'oeuvre': {}, 'a_revoir': [], 'sources': []}
+    trouvees = []
+    for fn in (bnf, google, open_library):
+        try:
+            trouvees += fn(livre['titre'], auteur)
+        except Exception as erreur:  # un catalogue qui flanche n'arrête pas les autres
+            resultat.setdefault('erreurs', []).append(f'{fn.__name__} : {erreur}')
+    notees = []
+    for n in trouvees:
+        s = note(livre, n)
+        if s['titre'] >= 0.8 and s['auteur'] >= 0.5:
+            notees.append((s, n))
+    if not notees:
+        return resultat
+    # L'œuvre : la première parution (Open Library), les sujets (BnF d'abord).
+    ol = [n for s, n in notees if n['source'] == 'openlibrary' and n.get('premiere_parution')]
+    if ol:
+        resultat['oeuvre']['premiere_parution'] = min(n['premiere_parution'] for n in ol)
+        resultat['oeuvre']['sujets_ol'] = ol[0]['sujets'][:15]
+    rameau = []
+    for _s, n in notees:
+        if n['source'] == 'bnf':
+            rameau += [x for x in n['sujets'] if x not in rameau]
+    if rameau:
+        resultat['oeuvre']['rameau'] = rameau[:20]
+    resultat['sources'] = sorted({n['lien'] for s, n in notees if n.get('lien')})[:6]
+    # L'édition.
+    editions = [(s, n) for s, n in notees if n['source'] in ('bnf', 'google')]
+    langues = langues_du_livre(livre)
+    if livre.get('editeur'):
+        sures = [(s, n) for s, n in editions if s['editeur'] and s['titre'] >= 0.85 and s['auteur'] >= 0.5]
+    else:
+        # Sans éditeur sur la fiche : une seule édition de ce titre, de cet auteur, dans cette langue.
+        dans_la_langue = [(s, n) for s, n in editions if s['titre'] >= 0.9 and s['auteur'] == 1.0
+                          and (not langues or not n['langues'] or set(n['langues']) & langues)]
+        distinctes = {(cle_editeur(n['editeur']), n['annee']) for s, n in dans_la_langue}
+        sures = dans_la_langue if len(distinctes) == 1 else []
+        if len(distinctes) > 1:
+            resultat['a_revoir'] = [{'source': n['source'], 'titre': n['titre'], 'editeur': n['editeur'],
+                                     'annee': n['annee'], 'pages': n['pages'], 'isbn': n['isbn'][:1], 'lien': n['lien']}
+                                    for s, n in dans_la_langue[:5]]
+    if sures:
+        # La BnF d'abord, puis Google ; une année qui concorde d'abord.
+        sures.sort(key=lambda x: (x[1]['source'] != 'bnf', not x[0]['annee']))
+        s, n = sures[0]
+        sur = {'source': n['source'], 'lien': n['lien']}
+        if n['isbn']:
+            sur['isbn'] = n['isbn'][0]
+        pages = next((m['pages'] for _, m in sures if m['pages']), 0)
+        if pages:
+            sur['pages'] = pages
+        if n['annee'] and not re.search(r'\d{4}', livre.get('annee', '')):
+            sur['annee'] = n['annee']
+        if not livre.get('editeur') and n.get('editeur'):
+            sur['editeur'] = n['editeur']
+        if n['langues']:
+            sur['langues'] = n['langues']
+        resultat['sur'] = sur
+    elif not resultat['a_revoir'] and livre.get('editeur'):
+        autres = [(s, n) for s, n in editions if s['titre'] >= 0.9 and s['auteur'] == 1.0]
+        resultat['a_revoir'] = [{'source': n['source'], 'titre': n['titre'], 'editeur': n['editeur'], 'annee': n['annee'],
+                                 'pages': n['pages'], 'isbn': n['isbn'][:1], 'lien': n['lien']} for s, n in autres[:5]]
+    return resultat
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('livres')
+    ap.add_argument('sortie')
+    ap.add_argument('--rapport', default='')
+    ap.add_argument('--limite', type=int, default=0)
+    args = ap.parse_args()
+    livres = [x for x in json.load(open(args.livres, encoding='utf-8')) if x.get('titre')]
+    if args.limite:
+        livres = livres[:args.limite]
+    resultats = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
+        for i, r in enumerate(ex.map(chercher, livres)):
+            resultats.append(r)
+            if i % 50 == 0:
+                print(f'{i} / {len(livres)}', file=sys.stderr, flush=True)
+    json.dump(resultats, open(args.sortie, 'w', encoding='utf-8'), ensure_ascii=False)
+    n = len(resultats)
+    sur = sum(1 for r in resultats if r['sur'])
+    lignes = [
+        f'# Les notices : {n} livres', '',
+        f'- une édition sûre : {sur} (ISBN : {sum(1 for r in resultats if r["sur"].get("isbn"))}, '
+        f'pages : {sum(1 for r in resultats if r["sur"].get("pages"))}, année : {sum(1 for r in resultats if r["sur"].get("annee"))}, '
+        f'éditeur : {sum(1 for r in resultats if r["sur"].get("editeur"))})',
+        f'- à revoir (plusieurs éditions possibles) : {sum(1 for r in resultats if r["a_revoir"])}',
+        f'- l\'œuvre retrouvée : {sum(1 for r in resultats if r["oeuvre"])} (première parution : '
+        f'{sum(1 for r in resultats if r["oeuvre"].get("premiere_parution"))}, sujets Rameau : '
+        f'{sum(1 for r in resultats if r["oeuvre"].get("rameau"))})',
+        f'- rien trouvé : {sum(1 for r in resultats if not r["sur"] and not r["oeuvre"] and not r["a_revoir"])}',
+        f'- erreurs de catalogue : {sum(1 for r in resultats if r.get("erreurs"))}',
+    ]
+    texte = '\n'.join(lignes) + '\n'
+    print(texte)
+    if args.rapport:
+        open(args.rapport, 'w', encoding='utf-8').write(texte)
+
+
+if __name__ == '__main__':
+    main()

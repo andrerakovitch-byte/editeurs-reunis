@@ -12,7 +12,7 @@
 # vont sur la branche « wix-pages ». Si Wix refuse trop de demandes (429), « importer les fichiers de la branche
 # wix-pages » importe des fichiers déjà convertis. Avec « er » : une commande de l'extension (« sujets deviner »).
 # Avec « boutique » : une commande de la boutique (« catalogue », « couvertures »), dont le rapport va sur la branche
-# « boutique ».
+# « boutique ». Avec « notices » : les notices des livres dans les catalogues des bibliothèques (outils/catalogue/notices.py).
 name: Déployer chez Kinsta
 
 on:
@@ -40,6 +40,11 @@ on:
       boutique:
         description: "Une commande de la boutique, sans « wp er » (catalogue, couvertures…) : son rapport va sur la branche « boutique »"
         default: ''
+      notices:
+        description: "Les notices des livres (BnF, Google Books, Open Library) : les chercher, ou les chercher et poser ce qui est sûr"
+        type: choice
+        options: ['non', 'chercher', 'chercher et poser']
+        default: 'non'
 
 concurrency: kinsta
 
@@ -224,6 +229,24 @@ jobs:
           git add --ignore-removal .
           git commit -q -m "La boutique : wp er $COMMANDE" || exit 0
           git push -q origin HEAD:boutique
+
+      # Les notices : les fiches des livres sortent du site, les catalogues sont interrogés ici, le résultat y retourne
+      # (private/, hors du site public). Rien de tout cela ne va dans le dépôt ; le journal ne garde que des comptes et
+      # les livres à revoir.
+      - name: Les notices des livres
+        if: inputs.notices != 'non'
+        env:
+          QUOI: ${{ inputs.notices }}
+        run: |
+          set -o pipefail
+          mkdir -p notices
+          $SSH "$QUI@$HOTE" 'cd public && wp er librairie exporter' | sed -n '/^\[/,$p' > notices/livres.json
+          python3 outils/catalogue/notices.py notices/livres.json notices/notices.json --rapport notices/rapport.md
+          cat notices/rapport.md >> "$GITHUB_STEP_SUMMARY"
+          $SSH "$QUI@$HOTE" 'mkdir -p private'
+          rsync -z -e "$SSH" notices/notices.json "$QUI@$HOTE:private/notices.json"
+          if [ "$QUOI" = 'chercher et poser' ]; then POSER=appliquer; else POSER=''; fi
+          $SSH "$QUI@$HOTE" "cd public && wp er notices importer ../private/notices.json $POSER"
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

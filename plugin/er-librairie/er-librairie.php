@@ -25,6 +25,7 @@ require __DIR__ . '/inc/fiche.php';
 require __DIR__ . '/inc/couvertures.php';
 require __DIR__ . '/inc/catalogue.php';
 require __DIR__ . '/inc/librairie.php';
+require __DIR__ . '/inc/notices.php';
 require __DIR__ . '/inc/recommandations.php';
 require __DIR__ . '/inc/traducteurs-editeurs.php';
 require __DIR__ . '/inc/prix-du-livre.php';
