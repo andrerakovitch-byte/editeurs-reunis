@@ -1,1 +1,263 @@
-Posé : 840 phrases ; 0 déjà en place ; 0 corrigées à la main, laissées.
+  46 « Voix et visages du Goulag », Édition établie, notes, choix : — → Anna Artemeva, Elena Ratcheva
+  48 « Les Douze », Illustrations : — → Arthur Molev
+  48 « Les Douze », Traduction : — → Georges Nivat
+  56 « Русская поэзия », Édition établie, notes, choix : — → Аркадий Сосницкий
+  82 « La vie de Tourgueniev », Préface, présentation : Boris Zaïtsev, Tatiana Victoroff → Tatiana Victoroff
+  84 « Morphine », Édition établie, notes, choix : — → Jean-Louis Chavarot
+  89 « Études & Miniatures », Préface, présentation : — → Georges Nivat
+  96 « Un héros de notre temps », Préface, présentation : — → Jean-Claude Roberti
+  96 « Un héros de notre temps », Révision de la traduction : — → Jean-Claude Roberti, Simone Sentz-Michel
+  98 « Un petit héros », Révision de la traduction : — → Simone Sentz-Michel
+  102 « Le nègre de Pierre le Grand », Révision de la traduction : — → Simone Sentz-Michel
+  104 « La dame de pique », Préface, présentation : — → Nina Kehayan
+  104 « La dame de pique », Édition établie, notes, choix : Nina Kchayan → Nina Kehayan
+  108 « La sonate à Kreutzer », Préface, présentation : — → Nina Kehayan
+  116 « Le Messager orthodoxe, n° 160 », Sous la direction de : — → Nikita Struve
+  118 « Le Messager orthodoxe, n° 159 », Sous la direction de : — → Nikita Struve
+  120 « Le Messager orthodoxe, n° 158 », Sous la direction de : — → Nikita Struve
+  122 « Le Messager orthodoxe, n° 157 », Sous la direction de : — → Nikita Struve
+  124 « Le Messager orthodoxe, n° 156 », Sous la direction de : — → Nikita Struve
+  126 « Le Messager orthodoxe, n° 155 », Sous la direction de : — → Nikita Struve
+  128 « Le Messager orthodoxe, n° 154 », Sous la direction de : — → Nikita Struve
+  134 « Théologie dogmatique », Édition établie, notes, choix : — → Michel Stavrou, Olivier Clément
+  144 « Contes russes d’Afanassiev – L’Oiseau de feu, contes choisis », Illustrations : — → Michel Gay
+  144 « Contes russes d’Afanassiev – L’Oiseau de feu, contes choisis », Traduction : — → Anne-Marie Passaret
+  144 « Contes russes d’Afanassiev – L’Oiseau de feu, contes choisis », Édition établie, notes, choix : — → Anne-Marie Passaret
+  150 « D’eau et d’Esprit », Traduction : — → Françoise Lhoest, Michel Sollogoub, Paul Toutchkov
+  159 « Le Maître et Marguerite », Préface, présentation : — → Sergueï Ermolinski
+  161 « Crime et Châtiment », Préface, présentation : — → Pierre Pascal
+  161 « Crime et Châtiment », Édition établie, notes, choix : — → Victoire Feuillebois
+  163 « L’Idiot », Traduction : Gabriel Arout → Gabriel Arout, Georges Arout
+  163 « L’Idiot », Édition établie, notes, choix : — → Louis Martinez
+  165 « Le Joueur », Préface, présentation : — → Pierre Sipriot
+  165 « Le Joueur », Traduction : A. de Couriss, C. Andronikof → Alexandre de Couriss, Constantin Andronikof
+  165 « Le Joueur », Édition établie, notes, choix : — → Georges Philippenko
+  167 « Œuvres romanesques 1869-1874 », Préface, présentation : — → André Markowicz
+  167 « Œuvres romanesques 1869-1874 », Traduction : — → André Markowicz
+  167 « Œuvres romanesques 1869-1874 », Édition établie, notes, choix : — → André Markowicz
+  169 « Œuvres romanesques 1846-1849 », Préface, présentation : — → André Markowicz
+  169 « Œuvres romanesques 1846-1849 », Traduction : — → André Markowicz
+  169 « Œuvres romanesques 1846-1849 », Édition établie, notes, choix : — → André Markowicz
+  173 « Ma vie dans l’Orthodoxie », Préface, présentation : — → Nikita Struve
+  175 « Judas Iscarioth, l’apôtre félon », Préface, présentation : — → Nikita Struve
+  177 « Pour un christianisme de création et de liberté Nicolas Berdiaev », Édition établie, notes, choix : — → Céline Marangé
+  179 « Автобиографические заметки », Édition établie, notes, choix : — → Лев Зандер
+  183 « Vie des pères », Préface, présentation : — → Pierre Pasquier
+  183 « Vie des pères », Édition établie, notes, choix : — → Pierre Pasquier
+  185 « Избранная поэзия », Édition établie, notes, choix : — → Temira Pachmuss
+  187 « Избранная поэзия », Édition établie, notes, choix : — → Michel Niqueux
+  189 « Избранная поэзия », Édition établie, notes, choix : — → Nikita Struve
+  195 « L’Archipel du Goulag », Préface, présentation : — → Natalia Soljénitsyne
+  197 « Une journée d’Ivan Denissovitch », Traduction : J. Cathala → Jean Cathala, Lucia Cathala
+  201 « Le chemin historique de l’Orthodoxie », Traduction : Françoise Lhoest → Daniel Struve, Françoise Lhoest
+  203 « Le pasteur de nos âmes », Préface, présentation : — → Jean Roberti
+  205 « Homélies », Préface, présentation : — → Jérôme Cler
+  219 « Moscou, mémoire d’une ville », Illustrations : — → Alexandre Rozanov, Alexandre Viktorov, Ekaterina Chorban
+  225 « Macha et l’ours », Édition établie, notes, choix : — → Robert Giraud
+  231 « Избранная поэзия », Édition établie, notes, choix : — → Lazar Fleishman
+  237 « lectures orthodoxes pour chaque jour », Édition établie, notes, choix : Bernard Le Caro → Bernard Le Caro, Mathieu Malinine
+  239 « Journal (1973-1983) », Sous la direction de : — → Nikita Struve
+  243 « L’idée russe », Traduction : — → Hélène Arjakovsky
+  243 « L’idée russe », Édition établie, notes, choix : — → Hélène Arjakovsky
+  253 « Poésies », Édition établie, notes, choix : — → Louis Martinez
+  289 « Le Messager orthodoxe, n° 100 », Sous la direction de : — → Nikita Struve
+  291 « Le Messager orthodoxe, n° 101 », Sous la direction de : — → Nikita Struve
+  293 « Le Messager orthodoxe, n° 103 », Sous la direction de : — → Nikita Struve
+  295 « Le Messager orthodoxe, n° 106 », Sous la direction de : — → Nikita Struve
+  297 « Le Messager orthodoxe, n° 107 », Sous la direction de : — → Nikita Struve
+  299 « Le Messager orthodoxe, n° 108 », Sous la direction de : — → Nikita Struve
+  301 « Le Messager orthodoxe, n° 109 », Sous la direction de : — → Nikita Struve
+  303 « Le Messager orthodoxe, n° 110 », Sous la direction de : — → Nikita Struve
+  305 « Le Messager orthodoxe, n° 111 », Sous la direction de : — → Nikita Struve
+  307 « Le Messager orthodoxe, n° 113 », Sous la direction de : — → Nikita Struve
+  309 « Le Messager orthodoxe, n° 115 », Sous la direction de : — → Nikita Struve
+  311 « Le Messager orthodoxe, n° 116 », Sous la direction de : — → Nikita Struve
+  313 « Le Messager orthodoxe, n° 117-118 », Sous la direction de : — → Nikita Struve
+  315 « Le Messager orthodoxe, n° 119-120 », Sous la direction de : — → Nikita Struve
+  317 « Le Messager orthodoxe, n° 121 », Sous la direction de : — → Nikita Struve
+  319 « Le Messager orthodoxe, n° 122 », Sous la direction de : — → Nikita Struve
+  321 « Le Messager orthodoxe, n° 123 », Sous la direction de : — → Nikita Struve
+  323 « Le Messager orthodoxe, n° 124 », Sous la direction de : — → Nikita Struve
+  327 « Le Messager orthodoxe, n° 125 », Sous la direction de : — → Nikita Struve
+  329 « Le Messager orthodoxe, n° 153 », Sous la direction de : — → Nikita Struve
+  331 « Le Messager orthodoxe, n° 152 », Sous la direction de : — → Nikita Struve
+  333 « Le Messager orthodoxe, n° 151 », Sous la direction de : — → Nikita Struve
+  335 « Le Messager orthodoxe, n° 150 », Sous la direction de : — → Nikita Struve
+  337 « Le Messager orthodoxe, n° 149 », Sous la direction de : — → Nikita Struve
+  339 « Le Messager orthodoxe, n° 148 », Sous la direction de : — → Nikita Struve
+  341 « Le Messager orthodoxe, n° 146 », Sous la direction de : — → Nikita Struve
+  343 « Le Messager orthodoxe, n° 145 », Sous la direction de : — → Nikita Struve
+  347 « Le Messager orthodoxe, n° 143 », Sous la direction de : — → Nikita Struve
+  349 « Le Messager orthodoxe, n° 142 », Sous la direction de : — → Nikita Struve
+  355 « Le Messager orthodoxe, n° 139 », Sous la direction de : — → Nikita Struve
+  357 « Le Messager orthodoxe, n° 138 », Sous la direction de : — → Nikita Struve
+  359 « Le Messager orthodoxe, n° 136 », Sous la direction de : — → Nikita Struve
+  361 « Le Messager orthodoxe, n° 135 », Sous la direction de : — → Nikita Struve
+  363 « Le Messager orthodoxe, n° 134 », Sous la direction de : — → Nikita Struve
+  365 « Le Messager orthodoxe, n° 133 », Sous la direction de : — → Nikita Struve
+  367 « Le Messager orthodoxe, n° 132 », Sous la direction de : — → Nikita Struve
+  369 « Le Messager orthodoxe, n° 131 », Sous la direction de : — → Nikita Struve
+  371 « Le Messager orthodoxe, n° 129 », Sous la direction de : — → Nikita Struve
+  373 « Le Messager orthodoxe, n° 128 », Sous la direction de : — → Nikita Struve
+  375 « Le Messager orthodoxe, n° 127 », Sous la direction de : — → Nikita Struve
+  403 « Избранная поэзия », Édition établie, notes, choix : — → Юрий Кублановский
+  407 « Запечатанный Гроб. Пасха Нетленная », Illustrations : — → Dmitri Stelletsky
+  415 « Византия И Московская Русь », Édition établie, notes, choix : — → Н. Б. Артамонова
+  423 « Откровенные рассказы странника духовному своему отцу », Préface, présentation : — → Kiprian Kern, Василий Гролимунд
+  431 « Христос и его церковь », Illustrations : — → Julia Reitlinger
+  443 « Пути русского богословия », Préface, présentation : — → Jean Meyendorff
+  463 « Сахарный Немец », Préface, présentation : — → Michel Niqueux
+  463 « Сахарный Немец », Édition établie, notes, choix : — → Michel Niqueux
+  467 « Переписка Льва Шестова c Борисом Шлёцером », Édition établie, notes, choix : — → Ольга Табашникова
+  469 « Черный Огонь », Préface, présentation : — → А. Н. Богословский
+  469 « Черный Огонь », Édition établie, notes, choix : — → А. Н. Богословский
+  479 « Письма к Ариадне Берг », Traduction : — → Nikita Struve
+  479 « Письма к Ариадне Берг », Édition établie, notes, choix : — → Nikita Struve
+  507 « Le Poisson », Révision de la traduction : — → Sophie Lafaille, Stéphanie Scudiero
+  513 « L’occident vu de Russie – Anthologie de la pensée russe de Karamzine à Poutine », Préface, présentation : — → Georges Nivat, Michel Niqueux
+  513 « L’occident vu de Russie – Anthologie de la pensée russe de Karamzine à Poutine », Édition établie, notes, choix : — → Michel Niqueux
+  555 « Воспоминания », Édition établie, notes, choix : — → Gabriel Superfin
+  577 « L’histoire de ma sœur », Préface, présentation : — → Jacques Catteau
+  581 « Poèmes 1910-1925 », Préface, présentation : — → Christian Mouze
+  583 « Tristia », Traduction : — → Christian Mouze
+  593 « Le Typikon décrypté, manuel de liturgie byzantine », Préface, présentation : — → Macaire de Simonos Pétra
+  595 « Saint Jean de Changhaï et son temps », Préface, présentation : — → Jean-Claude Larchet
+  601 « Trois homélies », Préface, présentation : — → Nicolas Molinier
+  605 « N’aie pas peur », Préface, présentation : — → Olivier Clément
+  609 « Un roman d’aventures », Préface, présentation : — → Mahaut de Cordon-Prache
+  617 « Pétersbourg », Préface, présentation : — → Georges Nivat
+  625 « Vertumne et autres poèmes », Traduction : Hélène Henry → André Markowicz, Hélène Henry, Véronique Schiltz
+  627 « Poèmes (1961-1987) », Traduction : Michel Aucouturier → André Markowicz, Claude Ernoult, Georges Nivat, Hélène Henry, Jean-Marc Bordier, Jean-Paul Sémon, Léon Robel, Michel Aucouturier, Véronique Schiltz, Ève Malleret
+  635 « Rachel », Traduction : — → Joëlle Dublanchet
+  651 « Journal des mes rencontres », Traduction : Irène Sokologorsky, Marianne Gourg-Antuszewic, Odile Melnik-Ardin → Irène Sokologorsky, Marianne Gourg-Antuszewicz, Odile Melnik-Ardin
+  655 « Crime et châtiment suivi de Journal de Raskolnikov », Traduction : — → Doussia Ergaz, Vladimir Pozner
+  661 « Les mille premiers mots en russe », Illustrations : — → Stephen Cartwright
+  665 « Vivre de mes rêves », Préface, présentation : — → Antoine Audouard
+  665 « Vivre de mes rêves », Traduction : — → Nadine Dubourvieux
+  667 « Contes d’Odessa », Révision de la traduction : — → Simone Sentz-Michel
+  669 « Carnets du sous-sol », Édition établie, notes, choix : — → Michelle-Irène Brudny-de Launay
+  671 « Sonietchka », Édition établie, notes, choix : — → Sophie Benech
+  673 « Trois roubles », Préface, présentation : — → Andreï Makine
+  681 « La Vie de l’Homme », Traduction : — → André Markowicz
+  683 « Poèmes et Proses », Traduction : — → André Markowicz
+  691 « Орион », Sous la direction de : — → Анатолий Шайкевич, Владимир Смоленский, Юрий Одарченко
+  718 « L’aviateur », Traduction : Innokenti Platonov, Joëlle Dublanchet → Joëlle Dublanchet
+  726 « Œuvres poétiques », Préface, présentation : — → André Markowicz
+  726 « Œuvres poétiques », Traduction : — → André Markowicz
+  737 « Poèmes de Iouri Jivago », Illustrations : — → Paul Kichilov
+  751 « Anthologie de la poésie russe – XIXe siècle », Édition établie, notes, choix : — → Nikita Struve
+  753 « Сочинения М.Ю. Лермонтова », Illustrations : — → Mikhaïl Malychev
+  753 « Сочинения М.Ю. Лермонтова », Édition établie, notes, choix : — → Alexandre Skabitchevski
+  757 « Сочинения Александра Пушкина », Édition établie, notes, choix : — → Modeste Hofmann
+  778 « Le petit poisson d’Or », Illustrations : — → Pierre Belvès
+  786 « Баба-Яга », Illustrations : — → Nathalie Parain
+  794 « Les 12 chaises », Préface, présentation : — → Alain Préchac
+  794 « Les 12 chaises », Édition établie, notes, choix : — → Alain Préchac
+  812 « La Mue du serpent », Traduction : Maïa Varsimashvili-Raphael → Isabelle Ribadeau Dumas, Maïa Varsimashvili-Raphael
+  820 « Терем-теремок Сказки для малышей », Illustrations : — → Evgueni Ratchev
+  830 « Alexandre Soljénitsyne, un écrivain en lutte avec son siècle », Sous la direction de : — → Georges Nivat
+  830 « Alexandre Soljénitsyne, un écrivain en lutte avec son siècle », Traduction : — → Geneviève Johannet, José Johannet
+  842 « Александр Гинзбург: русский роман », Édition établie, notes, choix : — → Vladimir Orlov
+  859 « Légendes de la rue Potapov », Préface, présentation : — → Georges Nivat
+  881 « Julie Dansas », Préface, présentation : — → Étienne Fouilloux
+  898 « Dieu et l’Etat », Préface, présentation : — → Joël Gayraud
+  898 « Dieu et l’Etat », Édition établie, notes, choix : — → Joël Gayraud
+  902 « Pages du Journal d’un fou », Illustrations : — → Anne Gorouben
+  902 « Pages du Journal d’un fou », Édition établie, notes, choix : — → Éveline Amoursky
+  909 « Kotik Letaïev », Préface, présentation : — → Georges Nivat
+  909 « Kotik Letaïev », Édition établie, notes, choix : — → Georges Nivat
+  942 « Les Douze », Illustrations : — → Christian Olivier
+  955 « Le Manuel du Goulag », Traduction : — → Sophie Benech, Véronique Patte
+  978 « Pierre & le loup », Illustrations : — → Lili la Baleine
+  981 « L’Esprit, l’âme et le corps », Préface, présentation : — → Jean Becchio, Jean Breck
+  1002 « Crime et Châtiment », Illustrations : — → Bastien Loukia
+  1024 « Contes populaires slaves », Traduction : — → Louis Léger
+  1024 « Contes populaires slaves », Édition établie, notes, choix : — → Louis Léger
+  1027 « Le Maître & Marguerite », Illustrations : — → Askold Akishine, Misha Zaslavsky
+  1027 « Le Maître & Marguerite », Préface, présentation : Askold Akishine, Michel Parfenov, Misha Zaslavsky → Michel Parfenov
+  1078 « Naissance des Dieux », Traduction : M. Dumesnil' de Gramont → Michel Dumesnil de Gramont
+  1080 « Le Moine noir, suivi de Volodia et Une morne histoire », Préface, présentation : Andreï Kovrine → Daniel-Rops
+  1125 « Etapes de la vie spirituelle », Préface, présentation : — → Olga Lossky-Laham
+  1183 « Théorie du monologue », Édition établie, notes, choix : — → Olivier Gallon, Tatiana Nikishina
+  1216 « Récits de la Perdition », Préface, présentation : — → Jil Silberstein
+  1220 « Le corps de l’âme », Traduction : — → Sophie Benech
+  1226 « Le Siège de Leningrad, Journal d’un adolescent », Préface, présentation : — → Sarah Gruszka
+  1232 « Apollon Bezobrazov », Préface, présentation : — → Hélène Menegaldo
+  1253 « Le livre noir de Vladimir Poutine », Sous la direction de : — → Galia Ackerman, Stéphane Courtois
+  1261 « Hommage à l’Ukraine », Sous la direction de : — → Emmanuel Ruben, Iryna Dmytrychyn
+  1273 « Le livre de cuisine de Baba Yaga », Illustrations : — → Arnaud Cochet
+  1294 « Le cheval de feu », Illustrations : — → Lidia Popova
+  1302 « Lettres d’un voyageur russe », Préface, présentation : — → Rodolphe Baudin
+  1302 « Lettres d’un voyageur russe », Traduction : — → Rodolphe Baudin
+  1308 « Contes », Illustrations : — → Mikhaïl Nesterov
+  1319 « Homélies – Le cycle des douze fêtes majeures », Préface, présentation : — → Jérôme Cler
+  1321 « Les songes de Tchang. Poèmes », Préface, présentation : — → Olivier Gallon
+  1335 « Aux portes de l’Europe, Histoire de l’Ukraine, Serhii Plokhy », Traduction : — → Jacques Dalarun
+  1345 « Arrêt sur le Ponte Vecchio », Préface, présentation : — → Dominique Dussidour
+  1359 « Русская земля. Альманах для юношества », Illustrations : — → Feodor Rojankovsky, А. Гефтер
+  1359 « Русская земля. Альманах для юношества », Sous la direction de : — → Basile Zenkovsky, А. М. Черный
+  1361 « Une église sous la torture – Martyre Mémoire Prophétie », Préface, présentation : — → Antoine Arjakovsky
+  1363 « Semences de l’unité – Voix orthodoxes et fraternelles », Préface, présentation : — → Patrice Mahieu
+  1370 « Перед лицом катастрофы », Préface, présentation : — → Николай Плотников
+  1370 « Перед лицом катастрофы », Sous la direction de : — → Николай Плотников
+  1372 « La Révolution au cœur », Illustrations : — → Les Chats Pelés
+  1372 « La Révolution au cœur », Préface, présentation : — → André Markowicz
+  1395 « Mes universités », Préface, présentation : — → Dominique Fernandez
+  1397 « Carnets de guerre », Édition établie, notes, choix : — → Antony Beevor, Liouba Vinogradova
+  1405 « Ma liberté secrète », Édition établie, notes, choix : — → Jean-Noël Benoit
+  1448 « Vers la paix intérieure », Préface, présentation : — → Michel Fortounatto
+  1475 « Неизданные стихи и письма », Édition établie, notes, choix : — → Gleb Struve
+  1525 « Со старинной полки », Préface, présentation : — → А. Н. Богословский
+  1525 « Со старинной полки », Édition établie, notes, choix : — → А. Н. Богословский
+  1551 « Избранная Поэзия », Édition établie, notes, choix : — → Michel Niqueux
+  1576 « Le roi famine », Illustrations : — → Evgueni Lanceray, Sergueï Eisenstein
+  1605 « Сказки К.Чуковского », Illustrations : — → Vladimir Souteïev
+  1637 « Песнь жизни », Sous la direction de : — → Efim Etkind, Véronique Lossky
+  1729 « Избранная поэзия », Préface, présentation : — → Nikita Struve
+  1729 « Избранная поэзия », Édition établie, notes, choix : — → Nikita Struve
+  1732 « Избранная поэзия », Préface, présentation : — → Boris Filippov
+  1732 « Избранная поэзия », Édition établie, notes, choix : — → Michel Niqueux
+  1736 « Le roman de Léonard de Vinci », Traduction : — → Michel Dumesnil de Gramont
+  1738 « Un rôle à jouer / Обречённые на роль любую », Traduction : — → Paul Lequesne
+  1738 « Un rôle à jouer / Обречённые на роль любую », Édition établie, notes, choix : — → Roma Liberov
+  1787 « Elisabeth de S*** ou l’histoire d’une russe », Préface, présentation : Catherine Géry → Catherine Géry, Galina Subbotina
+  1820 « Поэт и время – Поэтический сборник », Édition établie, notes, choix : — → Дмитрий Макаров
+  1822 « Прогулки по памяти », Édition établie, notes, choix : — → Андрей Корляков, Дмитрий Северюхин, Николай Эндегор
+  1824 « Examen de conscience – Poésie russe en temps de guerre », Sous la direction de : — → Elena Balzamo
+  1858 « Comme un flambeau, dans ces ténèbres noires », Édition établie, notes, choix : — → André Markowicz
+  1882 « La Roue rouge, chapitres choisis », Préface, présentation : — → Georges Nivat
+  1882 « La Roue rouge, chapitres choisis », Édition établie, notes, choix : — → Georges Nivat
+Rôles à poser : 229 changements ; 213 déjà justes.
+104 personnes nouvelles, à créer : Anna Artemeva, Elena Ratcheva, Arthur Molev, Аркадий Сосницкий, Jean-Claude Roberti, Simone Sentz-Michel, Nina Kehayan, Michel Stavrou, Michel Gay, Anne-Marie Passaret, Paul Toutchkov, Sergueï Ermolinski, Georges Arout, Pierre Sipriot, Alexandre de Couriss, Constantin Andronikof, Georges Philippenko, Лев Зандер, Pierre Pasquier, Temira Pachmuss, Natalia Soljénitsyne, Jean Cathala, Lucia Cathala, Jean Roberti, Alexandre Rozanov, Alexandre Viktorov, Ekaterina Chorban, Robert Giraud, Lazar Fleishman, Mathieu Malinine, Dmitri Stelletsky, Н. Б. Артамонова, Kiprian Kern, Василий Гролимунд, Julia Reitlinger, Jean Meyendorff, Ольга Табашникова, А. Н. Богословский, Sophie Lafaille, Stéphanie Scudiero, Gabriel Superfin, Macaire de Simonos Pétra, Claude Ernoult, Jean-Marc Bordier, Jean-Paul Sémon, Léon Robel, Marianne Gourg-Antuszewicz, Doussia Ergaz, Vladimir Pozner, Stephen Cartwright, Antoine Audouard, Nadine Dubourvieux, Michelle-Irène Brudny-de Launay, Andreï Makine, Анатолий Шайкевич, Владимир Смоленский, Юрий Одарченко, Mikhaïl Malychev, Alexandre Skabitchevski, Modeste Hofmann, Pierre Belvès, Nathalie Parain, Isabelle Ribadeau Dumas, Evgueni Ratchev, José Johannet, Étienne Fouilloux, Joël Gayraud, Anne Gorouben, Véronique Patte, Lili la Baleine, Jean Becchio, Jean Breck, Bastien Loukia, Louis Léger, Michel Dumesnil de Gramont, Daniel-Rops, Sarah Gruszka, Hélène Menegaldo, Emmanuel Ruben, Iryna Dmytrychyn, Arnaud Cochet, Lidia Popova, Mikhaïl Nesterov, Jacques Dalarun, Dominique Dussidour, Feodor Rojankovsky, А. Гефтер, Basile Zenkovsky, А. М. Черный, Antoine Arjakovsky, Patrice Mahieu, Les Chats Pelés, Dominique Fernandez, Michel Fortounatto, Gleb Struve, Evgueni Lanceray, Vladimir Souteïev, Véronique Lossky, Boris Filippov, Roma Liberov, Galina Subbotina, Андрей Корляков, Дмитрий Северюхин, Николай Эндегор
+  104 texte : « Kchayan » → « Kehayan » (1)
+  110 texte : « Sherrer » → « Scherrer » (1)
+  159 texte : « S. Ermolonski » → « S. Ermolinski » (1)
+  183 texte : « Pasquierь » → « Pasquier » (1)
+  195 texte : « Soljénistyne » → « Soljénitsyne » (1)
+  205 texte : « tradution » → « traduction » (1)
+  205 texte : « Jérôme Clerc » → « Jérôme Cler » (1)
+  635 texte : « Traduit du Joëlle Dublanchet » → « Traduit du russe par Joëlle Dublanchet » (1)
+  651 texte : « Antuszewic » → « Antuszewicz » (1)
+  681 texte : « traduit du russe pas » → « traduit du russe par » (1)
+  691 texte : « Одраченко » → « Одарченко » (1)
+  786 texte : « Parrain » → « Parain » (2)
+  869 texte : « Lesquesne » → « Lequesne » (1)
+  1078 texte : « Dumesnil' de Gramont » → « Dumesnil de Gramont » (1)
+  1220 texte : « Taduit » → « Traduit » (1)
+  1232 texte : « Christine Zeytounian » → « Christine Zeytounian-Beloüs » (1)
+  1399 texte : « Liouba Jurgenson » → « Luba Jurgenson » (1)
+  1824 texte : « Balzano » → « Balzamo » (1)
+  1882 texte : « convain cu » → « convaincu » (1)
+  1866 titre : « dispraître » → « disparaître » (1)
+  501 titre : «  – sous la direction de Georges Nivat » → «  » (1)
+  867 titre : «  - sous la direction de Georges Nivat » → «  » (1)
+  1152 titre : «  - Sous la direction de Johann Bihr » → «  » (1)
+  853 titre : «  - Ilf & Petrov » → «  » (1)
+  1335 titre : « , Serhii Plokhy » → «  » (1)
+  730 titre : «  / Nathalie Gigounova-Komarova » → «  » (1)
+  177 titre : «  Nicolas Berdiaev » → «  » (1)
+  661 auteur : Heather Amery (personne nouvelle)
+  730 auteur : Nathalie Gigounova-Komarova
+  1605 auteur : Корней Чуковский
+Corrections à faire (« wp er recoupement appliquer » pour tout poser) : 30.
+4 laissées (introuvables ou déjà faites) : 1866 texte « dispraître » ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 177 auteur (déjà : Nicolas Berdiaev)
