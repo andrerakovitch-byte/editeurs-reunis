@@ -286,3 +286,26 @@ add_filter(
 	},
 	20
 );
+
+/*
+ * Une personne fusionnée dans une autre (wp er personnes fusionner) laisse son identifiant dans er_anciens : son
+ * ancienne adresse (/auteur/a-solzhenitsyn/) mène, pour toujours, à la page gardée.
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! is_404() ) {
+			return;
+		}
+		$chemin = trim( (string) wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( ! preg_match( '#(?:^|/)auteur/([^/]+)$#', $chemin, $m ) ) {
+			return;
+		}
+		$personne = function_exists( 'er_personne_trouver' ) ? er_personne_trouver( rawurldecode( $m[1] ) ) : null;
+		$lien     = $personne ? get_term_link( $personne ) : '';
+		if ( $lien && ! is_wp_error( $lien ) ) {
+			wp_safe_redirect( $lien, 301 );
+			exit;
+		}
+	}
+);

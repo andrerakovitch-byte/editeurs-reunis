@@ -69,6 +69,44 @@ function er_reco_termes( $id, $taxonomie ) {
 }
 
 /**
+ * Les articles, rencontres et vidéos qui citent un livre dans leurs « Livres liés » (er_livres : des références ou des
+ * identifiants, séparés par des virgules).
+ *
+ * @param int $id Le livre.
+ * @return int[]
+ */
+function er_reco_citants( $id ) {
+	$refs = array_values( array_filter( array( trim( (string) get_post_meta( $id, '_sku', true ) ), (string) $id ) ) );
+	$ou   = array( 'relation' => 'OR' );
+	foreach ( $refs as $ref ) {
+		$ou[] = array(
+			'key'     => 'er_livres',
+			'value'   => $ref,
+			'compare' => 'LIKE',
+		);
+	}
+	$trouves = get_posts(
+		array(
+			'post_type'   => array_values( array_filter( array( 'post', 'er_evenement', 'er_media' ), 'post_type_exists' ) ),
+			'post_status' => 'publish',
+			'numberposts' => 20,
+			'fields'      => 'ids',
+			'meta_query'  => $ou, // phpcs:ignore WordPress.DB.SlowDBQuery
+			'lang'        => function_exists( 'pll_current_language' ) && pll_current_language() ? pll_current_language() : '',
+		)
+	);
+	// « LIKE » trouve aussi 123 dans 1234 : on garde ceux dont la liste porte vraiment la référence.
+	return array_values(
+		array_filter(
+			array_map( 'intval', $trouves ),
+			function ( $c ) use ( $refs ) {
+				return (bool) array_intersect( $refs, array_map( 'trim', explode( ',', (string) get_post_meta( $c, 'er_livres', true ) ) ) );
+			}
+		)
+	);
+}
+
+/**
  * Les trois rangées d'un livre.
  *
  * @param int $id Le livre.
@@ -112,10 +150,21 @@ function er_recommandations( $id, $n = 8 ) {
 	$autour_livres = array_slice( array_keys( $scores ), 0, $n );
 	$deja          = array_merge( $deja, $autour_livres );
 
-	// Les articles, rencontres, vidéos qui portent ses auteurs, ceux dont il parle, ou ses sujets.
-	$tax = array( 'relation' => 'OR' );
-	if ( $auteurs || $autour ) {
-		$tax[] = array( 'taxonomy' => 'auteur', 'terms' => array_merge( $auteurs, $autour ) );
+	// Les articles, rencontres, vidéos qui portent ses auteurs, ceux dont il parle, ses traducteurs (et les autres
+	// personnes du livre : direction, préface…), ou ses sujets ; et ceux qui le citent dans leurs « Livres liés »
+	// (24 nov. 2026, l'audit : la rencontre d'Yves Gauthier manquait sur « Ermites dans la taïga », qu'il a traduit, et
+	// l'article qui cite les « Entretiens avec Anna Akhmatova » manquait sur leur fiche).
+	$gens = array();
+	if ( function_exists( 'er_roles_personnes' ) && function_exists( 'er_personnes_du_livre' ) ) {
+		foreach ( array_keys( er_roles_personnes() ) as $role ) {
+			$gens = array_merge( $gens, wp_list_pluck( er_personnes_du_livre( $id, $role ), 'term_id' ) );
+		}
+	}
+	$gens     = array_values( array_diff( array_unique( array_map( 'intval', $gens ) ), $auteurs, $autour ) );
+	$citants  = er_reco_citants( $id );
+	$tax      = array( 'relation' => 'OR' );
+	if ( $auteurs || $autour || $gens ) {
+		$tax[] = array( 'taxonomy' => 'auteur', 'terms' => array_merge( $auteurs, $autour, $gens ) );
 	}
 	if ( $sujets ) {
 		$tax[] = array( 'taxonomy' => 'er_sujet', 'terms' => $sujets );
@@ -130,15 +179,19 @@ function er_recommandations( $id, $n = 8 ) {
 			'lang'           => function_exists( 'pll_current_language' ) && pll_current_language() ? pll_current_language() : '',
 		)
 	) : array();
-	// Les plus proches d'abord : un auteur du livre compte 3, une personne dont il parle 2, un sujet 2 ; puis les plus
-	// récents. Une rencontre et un article (ou une vidéo) plutôt que deux du même genre.
+	$candidats = array_values( array_unique( array_merge( $citants, $candidats ) ) );
+	// Les plus proches d'abord : un contenu qui cite le livre compte 8, un auteur du livre 3, une personne dont il parle
+	// 2, un traducteur 2, un sujet 2 ; puis les plus récents. Une rencontre et un article (ou une vidéo) plutôt que deux
+	// du même genre.
 	// Un titre qui nomme le livre (l'un de ses mots de cinq lettres ou plus : « doctur », « jivago ») compte 4 de plus.
 	// Une rencontre se date par son début, pas par le jour de son import.
 	$mots   = array_filter( explode( ' ', function_exists( 'er_cle_recherche' ) ? er_cle_recherche( get_the_title( $id ) ) : '' ), fn( $m ) => strlen( $m ) >= 5 );
 	$scores = array();
 	foreach ( $candidats as $c ) {
-		$score = 3 * count( array_intersect( $auteurs, er_reco_termes( $c, 'auteur' ) ) )
+		$score = ( in_array( $c, $citants, true ) ? 8 : 0 )
+			+ 3 * count( array_intersect( $auteurs, er_reco_termes( $c, 'auteur' ) ) )
 			+ 2 * count( array_intersect( $autour, er_reco_termes( $c, 'auteur' ) ) )
+			+ 2 * count( array_intersect( $gens, er_reco_termes( $c, 'auteur' ) ) )
 			+ 2 * count( array_intersect( $sujets, er_reco_termes( $c, 'er_sujet' ) ) )
 			+ ( $mots && array_intersect( $mots, explode( ' ', er_cle_recherche( get_the_title( $c ) ) ) ) ? 4 : 0 );
 		$debut        = 'er_evenement' === get_post_type( $c ) ? strtotime( (string) get_post_meta( $c, 'er_debut', true ) ) : false;

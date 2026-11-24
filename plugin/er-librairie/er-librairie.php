@@ -36,6 +36,7 @@ require __DIR__ . '/inc/auteurs.php';
 require __DIR__ . '/inc/journal.php';
 require __DIR__ . '/inc/journal-une.php';
 require __DIR__ . '/inc/expositions.php';
+require __DIR__ . '/inc/personnes.php';
 require __DIR__ . '/inc/audit.php';
 
 /* Les langues --------------------------------------------------------------------------------------------------

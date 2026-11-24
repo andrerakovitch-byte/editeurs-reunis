@@ -127,11 +127,7 @@ function er_autour_de( $id ) {
 function er_poser_autour_de( $id, $auteurs ) {
 	$slugs = array();
 	foreach ( $auteurs as $a ) {
-		$t = is_numeric( $a ) ? get_term( (int) $a, 'auteur' ) : get_term_by( 'name', trim( $a ), 'auteur' );
-		if ( ! $t && ! is_numeric( $a ) && '' !== trim( $a ) ) {
-			$cree = wp_insert_term( trim( $a ), 'auteur' );
-			$t    = is_wp_error( $cree ) ? null : get_term( $cree['term_id'], 'auteur' );
-		}
+		$t = is_numeric( $a ) ? get_term( (int) $a, 'auteur' ) : er_personne_par_nom( (string) $a, true );
 		if ( $t && ! is_wp_error( $t ) ) {
 			if ( ! term_exists( $t->slug, 'er_autour' ) ) {
 				wp_insert_term( $t->name, 'er_autour', array( 'slug' => $t->slug ) );
@@ -547,10 +543,17 @@ function er_bloc_autour() {
 	}
 	// Les rencontres : la personne y est liée ou y intervient.
 	$tax_rencontres = $sienne;
-	if ( ! $sujet ) {
-		$intervenant = get_term_by( 'slug', $terme->slug, 'er_intervenant' );
-		if ( $intervenant ) {
-			$tax_rencontres = array( 'relation' => 'OR', $sienne[0], array( 'taxonomy' => 'er_intervenant', 'terms' => $intervenant->term_id ) );
+	if ( ! $sujet && taxonomy_exists( 'er_intervenant' ) ) {
+		// L'intervenant qui est cette personne : même identifiant, ou son nom sous l'une de ses graphies (er_evt_personne).
+		$siens = array();
+		foreach ( get_terms( array( 'taxonomy' => 'er_intervenant', 'hide_empty' => true ) ) as $it ) {
+			$p = function_exists( 'er_evt_personne' ) ? er_evt_personne( $it ) : get_term_by( 'slug', $it->slug, 'auteur' );
+			if ( $p && (int) $p->term_id === (int) $terme->term_id ) {
+				$siens[] = (int) $it->term_id;
+			}
+		}
+		if ( $siens ) {
+			$tax_rencontres = array( 'relation' => 'OR', $sienne[0], array( 'taxonomy' => 'er_intervenant', 'terms' => $siens ) );
 		}
 	}
 	$rencontres = er_contenus_etiquetes( ER_EVT, $tax_rencontres, $sujet ? 60 : 24, array( 'meta_key' => 'er_debut', 'orderby' => 'meta_value', 'order' => 'DESC' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery

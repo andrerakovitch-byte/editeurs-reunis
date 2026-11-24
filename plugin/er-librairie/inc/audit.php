@@ -484,14 +484,14 @@ function er_audit() {
 					continue;
 				}
 				++$cites;
-				$autour = array_map( fn( $t ) => $t->term_id, function_exists( 'er_autour_de' ) ? er_autour_de( $livre ) : array() );
-				if ( ! array_intersect( $siens, array_merge( $termes_de( $livre, 'auteur' ), $autour ) ) && ! array_intersect( $sujets_c, $termes_de( $livre, 'er_sujet' ) ) ) {
+				$montres = function_exists( 'er_recommandations' ) ? er_recommandations( $livre )['contenus'] : array();
+				if ( ! in_array( (int) $id, array_map( 'intval', $montres ), true ) ) {
 					$sens_unique[] = '    ' . $titre_de( $livre ) . ' ← ' . $sorte . ' · ' . $titre_de( $id );
 				}
 			}
 		}
 	}
-	$ln( sprintf( '  Citations à sens unique : %d livres cités sur %d ne montrent pas, sur leur fiche, le contenu qui les cite (rien en commun pour la fiche : ni auteur, ni personne, ni sujet).', count( $sens_unique ), $cites ) );
+	$ln( sprintf( '  Citations à sens unique : %d livres cités sur %d ne montrent pas, sur leur fiche, le contenu qui les cite.', count( $sens_unique ), $cites ) );
 	foreach ( array_slice( $sens_unique, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
@@ -522,7 +522,8 @@ function er_audit() {
 				'tax_query'   => array( array( 'taxonomy' => 'auteur', 'terms' => $gens ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
 			)
 		);
-		if ( $leurs ) {
+		$montres = function_exists( 'er_recommandations' ) ? array_map( 'intval', er_recommandations( $id )['contenus'] ) : array();
+		if ( $leurs && ! array_intersect( array_map( 'intval', $leurs ), $montres ) ) {
 			++$par_trad;
 			if ( count( $exemples ) < 12 ) {
 				$exemples[] = '    ' . $titre_de( $id ) . ' ← ' . $titre_de( $leurs[0] );

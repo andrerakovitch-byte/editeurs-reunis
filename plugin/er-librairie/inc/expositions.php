@@ -1047,9 +1047,9 @@ function er_expo_importer_un( $x ) {
 		set_post_thumbnail( $id, get_post_thumbnail_id( $premiere ) );
 	}
 	foreach ( array_merge( isset( $x['artistes'] ) ? $x['artistes'] : array(), isset( $x['personnes'] ) ? $x['personnes'] : array() ) as $nom ) {
-		$t = term_exists( $nom, 'auteur' ) ? term_exists( $nom, 'auteur' ) : wp_insert_term( $nom, 'auteur' );
-		if ( ! is_wp_error( $t ) ) {
-			wp_set_object_terms( $id, (int) $t['term_id'], 'auteur', true );
+		$t = er_personne_par_nom( $nom, true );
+		if ( $t ) {
+			wp_set_object_terms( $id, (int) $t->term_id, 'auteur', true );
 		}
 	}
 	if ( ! empty( $x['techniques'] ) ) {

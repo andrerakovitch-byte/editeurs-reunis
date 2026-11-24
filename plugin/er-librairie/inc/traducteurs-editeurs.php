@@ -107,8 +107,102 @@ function er_personnes_du_livre( $id, $taxonomie ) {
 }
 
 /**
- * Une personne par son nom : l'auteur qui le porte (sans tenir compte des majuscules ni des accents), sinon un auteur
- * nouveau quand $creer est vrai.
+ * Les clés de toutes les personnes : la clé de recherche de leur nom et de leurs « Autres graphies » → les auteurs qui
+ * la portent. Gardée un jour, refaite dès qu'une personne change.
+ *
+ * @return array<string,int[]>
+ */
+function er_personnes_cles() {
+	static $cles = null;
+	if ( null !== $cles ) {
+		return $cles;
+	}
+	$cles = get_transient( 'er_personnes_cles' );
+	if ( is_array( $cles ) ) {
+		return $cles;
+	}
+	$cles = array();
+	foreach ( get_terms( array( 'taxonomy' => 'auteur', 'hide_empty' => false, 'update_term_meta_cache' => true ) ) as $t ) {
+		$graphies = function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $t->term_id ) : array();
+		foreach ( array_merge( array( $t->name ), $graphies ) as $nom ) {
+			$cle = er_cle_recherche( $nom );
+			if ( '' !== $cle ) {
+				$cles[ $cle ][] = (int) $t->term_id;
+			}
+		}
+	}
+	$cles = array_map( 'array_values', array_map( 'array_unique', $cles ) );
+	set_transient( 'er_personnes_cles', $cles, DAY_IN_SECONDS );
+	return $cles;
+}
+foreach ( array( 'created_auteur', 'edited_auteur', 'delete_auteur' ) as $er_crochet ) {
+	add_action(
+		$er_crochet,
+		function () {
+			delete_transient( 'er_personnes_cles' );
+		}
+	);
+}
+add_action(
+	'updated_term_meta',
+	function ( $meta_id, $terme, $cle ) {
+		if ( in_array( $cle, array( 'er_graphies', 'er_anciens' ), true ) ) {
+			delete_transient( 'er_personnes_cles' );
+		}
+	},
+	10,
+	3
+);
+
+/**
+ * Retrouve une personne, quelle que soit la façon dont on l'écrit (24 nov. 2026, l'audit : « А. Солженицын » et
+ * « Alexandre Soljenitsyne » étaient deux pages). Dans l'ordre : le nom exact ; l'identifiant (le nom passé par
+ * sanitize_title) ; un ancien identifiant, laissé par une fusion (er_anciens) ; la clé de recherche du nom (sans
+ * accents, transcriptions du russe ramenées à une forme commune) parmi les noms et les « Autres graphies » des
+ * personnes, si elle n'en désigne qu'une. Rien, sinon : ni création, ni devinette.
+ *
+ * @param string $nom Le nom, ou l'identifiant.
+ * @return WP_Term|null
+ */
+function er_personne_trouver( $nom ) {
+	$nom = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( html_entity_decode( (string) $nom, ENT_QUOTES, 'UTF-8' ) ) ) );
+	if ( '' === $nom ) {
+		return null;
+	}
+	$t = get_term_by( 'name', $nom, 'auteur' );
+	if ( ! $t ) {
+		$t = get_term_by( 'slug', sanitize_title( $nom ), 'auteur' );
+	}
+	if ( ! $t ) {
+		$anciens = get_terms(
+			array(
+				'taxonomy'   => 'auteur',
+				'hide_empty' => false,
+				'number'     => 1,
+				'meta_query' => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+					array(
+						'key'     => 'er_anciens',
+						'value'   => ',' . sanitize_title( $nom ) . ',',
+						'compare' => 'LIKE',
+					),
+				),
+			)
+		);
+		$t = $anciens && ! is_wp_error( $anciens ) ? $anciens[0] : null;
+	}
+	if ( ! $t && function_exists( 'er_cle_recherche' ) ) {
+		$cles = er_personnes_cles();
+		$cle  = er_cle_recherche( $nom );
+		if ( isset( $cles[ $cle ] ) && 1 === count( $cles[ $cle ] ) ) {
+			$t = get_term( $cles[ $cle ][0], 'auteur' );
+		}
+	}
+	return $t && ! is_wp_error( $t ) ? $t : null;
+}
+
+/**
+ * Une personne par son nom, retrouvée sous toutes ses graphies (er_personne_trouver), sinon un auteur nouveau quand
+ * $creer est vrai.
  *
  * @param string $nom   Le nom.
  * @param bool   $creer Créer l'auteur s'il n'existe pas.
@@ -119,10 +213,7 @@ function er_personne_par_nom( $nom, $creer = false ) {
 	if ( '' === $nom ) {
 		return null;
 	}
-	$t = get_term_by( 'name', $nom, 'auteur' );
-	if ( ! $t ) {
-		$t = get_term_by( 'slug', sanitize_title( $nom ), 'auteur' );
-	}
+	$t = er_personne_trouver( $nom );
 	if ( ! $t && $creer ) {
 		$cree = wp_insert_term( $nom, 'auteur' );
 		$t    = is_wp_error( $cree ) ? null : get_term( $cree['term_id'], 'auteur' );

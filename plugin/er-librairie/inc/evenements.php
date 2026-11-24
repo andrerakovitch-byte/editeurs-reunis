@@ -659,6 +659,21 @@ function er_evt_bloc_surtitre( $id ) {
 }
 
 /**
+ * La page de personne d'un intervenant : le même identifiant, sinon son nom retrouvé sous toutes ses graphies
+ * (er_personne_trouver).
+ *
+ * @param WP_Term $t L'intervenant.
+ * @return WP_Term|null
+ */
+function er_evt_personne( $t ) {
+	$auteur = get_term_by( 'slug', $t->slug, 'auteur' );
+	if ( ! $auteur && function_exists( 'er_personne_trouver' ) ) {
+		$auteur = er_personne_trouver( $t->name );
+	}
+	return $auteur ? $auteur : null;
+}
+
+/**
  * Les intervenants, liés à leur page d'auteur quand ils en ont une.
  *
  * @param int $id La rencontre.
@@ -666,7 +681,7 @@ function er_evt_bloc_surtitre( $id ) {
 function er_evt_intervenants( $id ) {
 	$noms = array();
 	foreach ( wp_get_post_terms( $id, 'er_intervenant' ) as $t ) {
-		$auteur = get_term_by( 'slug', $t->slug, 'auteur' );
+		$auteur = er_evt_personne( $t );
 		$lien   = $auteur ? get_term_link( $auteur ) : '';
 		$noms[] = $lien && ! is_wp_error( $lien ) ? '<a href="' . esc_url( $lien ) . '">' . esc_html( $t->name ) . '</a>' : esc_html( $t->name );
 	}
@@ -830,7 +845,7 @@ function er_evt_bloc_livres( $id ) {
 	}
 	$auteurs = array();
 	foreach ( wp_get_post_terms( $id, 'er_intervenant' ) as $t ) {
-		$auteur = get_term_by( 'slug', $t->slug, 'auteur' );
+		$auteur = er_evt_personne( $t );
 		if ( $auteur ) {
 			$auteurs[] = $auteur->term_id;
 		}

@@ -73,7 +73,7 @@ function er_bloc_signature( $id ) {
 	if ( '' === $signature ) {
 		return '<p class="er-article-date">' . esc_html( $date ) . '</p>';
 	}
-	$auteur = get_term_by( 'name', $signature, 'auteur' );
+	$auteur = function_exists( 'er_personne_trouver' ) ? er_personne_trouver( $signature ) : get_term_by( 'name', $signature, 'auteur' );
 	$lien   = $auteur ? get_term_link( $auteur ) : '';
 	$nom    = $lien && ! is_wp_error( $lien ) ? '<a href="' . esc_url( $lien ) . '">' . esc_html( $signature ) . '</a>' : esc_html( $signature );
 	/* translators: %s: le nom de celui qui signe l'article */
@@ -289,8 +289,7 @@ function er_journal_importer_un( $a, $auteurs, $images = true ) {
 			break;
 		}
 		if ( ! $trouve ) {
-			$cree   = term_exists( $nom, 'auteur' ) ? term_exists( $nom, 'auteur' ) : wp_insert_term( $nom, 'auteur' );
-			$trouve = is_wp_error( $cree ) ? null : get_term( (int) $cree['term_id'], 'auteur' );
+			$trouve = er_personne_par_nom( $nom, true );
 		}
 		if ( $trouve ) {
 			wp_set_object_terms( $id, $trouve->term_id, 'auteur', true );

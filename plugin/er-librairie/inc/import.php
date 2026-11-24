@@ -163,7 +163,16 @@ add_action(
 			return;
 		}
 		if ( isset( $donnees['er_auteurs'] ) ) {
-			wp_set_object_terms( $id, er_import_liste( $donnees['er_auteurs'] ), 'auteur' );
+			// Chaque nom retrouvé sous toutes ses graphies (er_personne_par_nom) avant d'en créer un : un nouvel import ne
+			// refait pas « А. Солженицын » à côté d'« Alexandre Soljenitsyne » (24 nov. 2026).
+			$personnes = array();
+			foreach ( er_import_liste( $donnees['er_auteurs'] ) as $nom ) {
+				$t = function_exists( 'er_personne_par_nom' ) ? er_personne_par_nom( $nom, true ) : null;
+				if ( $t ) {
+					$personnes[] = (int) $t->term_id;
+				}
+			}
+			wp_set_object_terms( $id, array_values( array_unique( $personnes ) ), 'auteur' );
 		}
 		$par_slug = function ( $slugs, $taxonomie ) {
 			$ids = array();
