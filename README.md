@@ -78,6 +78,28 @@ la ligne de la maison reste en haut de l'écran, et prend à son bout la loupe e
 sur place, sous la ligne, sans faire remonter la page ; le panier ouvre le volet du panier de WooCommerce, avec la même
 pastille que celui de la barre noire. La bande de page (le troisième niveau, ci-dessous) s'accroche juste dessous.
 
+**La tête de page** (retenue le 24 nov. 2026 ; le canevas, page « La tête de page ») : la même partout, entre la
+ligne de la maison et la bande de page, sur la même teinte que la bande, qui la ferme ; un filet les sépare. En
+haut, le fil (le point de la maison, le chemin en petites capitales : « Librairie / Littérature ») et, en face, les
+faits (« 169 rencontres depuis 2018 », « 378 livres », « Depuis 2020 · 68 textes ») ; puis le titre sur 7 colonnes et le
+chapô sur 5, alignés par le bas (sans chapô, le titre prend la largeur) ; pour une personne, son portrait sur 2
+colonnes, ses graphies et ses dates sous son nom. La page dit son nom en russe, en très grand, à 7 % de la couleur de
+la maison, coupé par le bas : la méta `er_nom_russe` d'une page ou d'un terme, sinon sa traduction russe (Polylang),
+sinon le nom de famille cyrillique d'une personne, sinon celui des pages et des rayons de la maquette ; rien s'il n'y
+en a pas. Une page sans maison (un sujet, les pages communes) : le fond doux, les trois points. En défilant, la tête
+s'en va et la bande s'accroche.
+
+- Le composant : `er_tete_page()` et le bloc `editeurs-reunis/tete` (`inc/tete.php`, la section « La tête de page »
+  de `style.css`), dans les gabarits Page, Page large, Promos, les archives et la recherche, la composition de la
+  librairie (boutique, rayons, personnes, éditeurs, collections, langues, mentions) et celle d'un sujet ; le journal
+  (`er_journal_tete()`) et Nos expositions (`er_expo_bloc_liste()`) l'appellent eux-mêmes.
+- Le chapô d'une page est son résumé (le champ « Extrait » de l'éditeur, ouvert aux pages). `wp er tetes [appliquer]`
+  y déplace le premier paragraphe d'une page qui n'en a pas (s'il est court et n'est pas celui d'une ébauche) ; fait
+  le 24 nov. sur la bêta pour Nos événements, Le centre culturel, YMCA-Press et Les Amis d'YMCA-Press. Les faits d'une
+  page passent par le filtre `er_tete_faits` (Nos événements les compte).
+- Pas de tête sur l'accueil, la fiche d'un livre, un article, une rencontre, une exposition, une vidéo ni les pages
+  d'exemple, qui ont leur ouverture à elles.
+
 **La bande de page, le troisième niveau** (retenue le 24 nov. 2026 ; le canevas, page « Le troisième niveau ») : la
 même sur toutes les pages qui ont au moins trois parties. Sous le titre de la page, une bande de 48 px dans la teinte
 pâle de la maison (`theme.json`, « Teinte · ») : un ton plus bas à chaque niveau, le noir de la barre, la couleur de la
@@ -456,9 +478,9 @@ Le journal se lit comme un journal en ligne (la piste D du canevas « Le journal
 entretien, hommage, archive, document), relu avec ses étiquettes (`genre` dans `journal-etiquettes.json`) ; le genre
 et le sujet principal (le premier relu) font son surtitre, « Critique · Goulag et dissidence ».
 
-- **L'en-tête du journal** (`er/journal-tete`, « le bandeau », choisi le 23 nov. parmi quatre) : sur l'aplat du
-  centre, sous son menu, le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque effacé, puis les
-  genres dans la bande de page (et « En russe », les textes en russe ou bilingues, d'après `er_langues`), qui
+- **L'en-tête du journal** (`er/journal-tete`) : la tête de page du site (le 24 nov., le bandeau bleu nuit du 23 a
+  laissé la place à la teinte du centre), le nombre de textes, le titre et sa phrase, *Журнал* en grand et presque
+  effacé, puis les genres dans la bande de page (et « En russe », les textes en russe ou bilingues, d'après `er_langues`), qui
   s'accroche sous la ligne du centre en défilant, comme sur toute page qui a ses parties.
 - **La ligne de repères**, sous le bandeau, sur une seule ligne (ce qui dépasse défile de côté), selon l'onglet : à
   la une, le prochain rendez-vous au centre et le dernier épisode du podcast ; les plumes des chroniques, les
@@ -494,8 +516,8 @@ deux côtés : la fiche de l'exposition montre ce qui s'y rattache, chaque conte
 dans la page de la rencontre ou de la vidéo, dans la bande « Autour de ce livre » de la fiche d'un livre). Une
 exposition paraît aussi sur la page de ses auteurs et de ses sujets, et dans la recherche (avec le centre).
 
-- **La page « Nos expositions »** (`er/expositions`, posé sur la page par l'import, gabarit en modules) : le titre et
-  sa phrase ; la bande de page (en ce moment, à venir, les expositions passées par année, les techniques repliées :
+- **La page « Nos expositions »** (`er/expositions`, posé sur la page par l'import, gabarit en modules) : la tête de
+  page (le titre, sa phrase, combien d'expositions depuis quand) ; la bande de page (en ce moment, à venir, les expositions passées par année, les techniques repliées :
   `?annee=2023`, `?technique=peinture` ; à droite, les horaires) ; ce qui est accroché, ou annoncé, sur l'aplat du centre, *Выставка* en décor ; les
   expositions passées, une par une, comme des cartels (l'année, la technique, le titre, les artistes, les dates, ce
   qui s'y rattache en pastilles) ; trois entrées pour finir (la prochaine rencontre, le journal, venir).

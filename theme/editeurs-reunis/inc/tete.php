@@ -130,12 +130,14 @@ function er_tete_mot_russe() {
 			return $saisi;
 		}
 		if ( 'auteur' === $objet->taxonomy ) {
+			// Une personne : son nom de famille en cyrillique (« Солженицын »), d'après son nom ou ses autres graphies.
+			$nom = fn( $g ) => preg_replace( '/^.*\s/u', '', trim( $g ) );
 			if ( $cyr( $objet->name ) ) {
-				return $objet->name;
+				return $nom( $objet->name );
 			}
 			foreach ( function_exists( 'er_autres_graphies' ) ? er_autres_graphies( $objet->term_id ) : array() as $g ) {
 				if ( $cyr( $g ) ) {
-					return $g;
+					return $nom( $g );
 				}
 			}
 			return '';
