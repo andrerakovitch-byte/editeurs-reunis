@@ -118,8 +118,10 @@
 			var accrochee = repere ? repere.getBoundingClientRect().top < haut - 0.5 : bande.getBoundingClientRect().top <= haut + 0.5;
 			if ( accrochee !== bande.classList.contains( 'est-accrochee' ) ) {
 				// Le nom ne se glisse que s'il y a la place : les entrées passent avant.
-				if ( accrochee && nom && liste ) {
-					bande.classList.toggle( 'est-sans-nom', liste.scrollWidth + nom.scrollWidth + 49 > liste.clientWidth + 1 );
+				if ( accrochee && nom && liste && liste.firstElementChild ) {
+					var dernier = liste.lastElementChild;
+					var contenu = dernier.offsetLeft + dernier.offsetWidth - liste.firstElementChild.offsetLeft;
+					bande.classList.toggle( 'est-sans-nom', contenu + nom.scrollWidth + 49 > liste.clientWidth + 1 );
 				}
 				bande.classList.toggle( 'est-accrochee', accrochee );
 				window.setTimeout( fondus, 320 ); // le nom qui entre prend de la place
