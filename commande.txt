@@ -1,11 +1,2 @@
-  personne : « Nina Kchayan » introuvable (déjà renommée ?)
-  personne : « Edith Sherrer » introuvable (déjà renommée ?)
-  personne : « Natalia Soljénistyne » introuvable (déjà renommée ?)
-  personne : « A. de Couriss » introuvable (déjà renommée ?)
-  personne : « C. Andronikof » introuvable (déjà renommée ?)
-  personne : « J. Cathala » introuvable (déjà renommée ?)
-  personne : « Marianne Gourg-Antuszewic » introuvable (déjà renommée ?)
-  personne : « M. Dumesnil' de Gramont » introuvable (déjà renommée ?)
-Rôles à poser : 0 changements ; 442 déjà justes.
-Corrections à faire (« wp er recoupement appliquer » pour tout poser) : 0.
-34 laissées (introuvables ou déjà faites) : 104 texte « Kchayan » ; 110 texte « Sherrer » ; 159 texte « S. Ermolonski » ; 183 texte « Pasquierь » ; 195 texte « Soljénistyne » ; 205 texte « tradution » ; 205 texte « Jérôme Clerc » ; 635 texte « Traduit du Joëlle Dublanchet » ; 651 texte « Antuszewic » ; 681 texte « traduit du russe pas » ; 691 texte « Одраченко » ; 786 texte « Parrain » ; 869 texte « Lesquesne » ; 1078 texte « Dumesnil' de Gramont » ; 1220 texte « Taduit » ; 1232 texte « Christine Zeytounian » ; 1399 texte « Liouba Jurgenson » ; 1824 texte « Balzano » ; 1882 texte « convain cu » ; 1866 titre « dispraître » ; 1866 texte « dispraître » ; 501 titre «  – sous la direction de Georges Nivat » ; 867 titre «  - sous la direction de Georges Nivat » ; 1152 titre «  - Sous la direction de Johann Bihr » ; 853 titre «  - Ilf & Petrov » ; 1335 titre « , Serhii Plokhy » ; 730 titre «  / Nathalie Gigounova-Komarova » ; 177 titre «  Nicolas Berdiaev » ; 661 auteur (déjà : Heather Amery) ; 730 auteur (déjà : Nathalie Gigounova-Komarova) ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 1605 auteur (déjà : Корней Чуковский) ; 177 auteur (déjà : Nicolas Berdiaev)
+  Innokenti Platonov : supprimée, avec 1 miroirs
+  Andreï Kovrine : supprimée, avec 1 miroirs
