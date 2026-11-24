@@ -103,18 +103,157 @@ function er_personnes_remplacer( $ancien, $nouveaux, $taxonomie ) {
 }
 
 /**
- * Le terme miroir d'une personne dans un classement (même identifiant), créé au besoin.
+ * Le terme miroir d'une personne dans un classement (même identifiant), créé au besoin. Le seul endroit qui crée un
+ * miroir : les rôles d'un livre, « Autour de », les intervenants d'une rencontre passent tous par ici.
  *
  * @param WP_Term $personne  La personne.
  * @param string  $taxonomie Le classement.
+ * @param string  $nom       Le nom affiché, s'il diffère (un intervenant nommé dans l'écriture du titre).
  */
-function er_personnes_miroir( $personne, $taxonomie ) {
+function er_personnes_miroir( $personne, $taxonomie, $nom = '' ) {
 	$m = get_term_by( 'slug', $personne->slug, $taxonomie );
 	if ( ! $m ) {
-		$cree = wp_insert_term( $personne->name, $taxonomie, array( 'slug' => $personne->slug ) );
+		$cree = wp_insert_term( '' !== $nom ? $nom : $personne->name, $taxonomie, array( 'slug' => $personne->slug ) );
 		$m    = is_wp_error( $cree ) ? null : get_term( (int) $cree['term_id'], $taxonomie );
 	}
 	return $m && ! is_wp_error( $m ) ? $m : null;
+}
+
+/* Les miroirs suivent la personne ------------------------------------------------------------------------------
+ *
+ * Une personne vit dans plusieurs classements reliés par son identifiant (le slug) : l'auteur, ses rôles sur les
+ * livres, « Autour de », les intervenants des rencontres. Renommer une personne renomme ses miroirs, et son ancien
+ * identifiant rejoint ses anciens (l'ancienne adresse mène à la nouvelle) ; la supprimer supprime ses miroirs.
+ * `wp er personnes verifier` cherche ce qui aurait échappé (un miroir sans personne, un nom qui diverge), et le
+ * répare avec « reparer ». Les miroirs n'ont pas d'écran à eux (show_ui à false) : on ne les renomme pas à part.
+ */
+
+/**
+ * L'identifiant d'une personne avant sa modification, retenu le temps de l'enregistrement.
+ *
+ * @param int         $id   La personne.
+ * @param string|null $slug L'identifiant à retenir, ou null pour le lire.
+ */
+function er_personnes_avant( $id, $slug = null ) {
+	static $avant = array();
+	if ( null !== $slug ) {
+		$avant[ $id ] = $slug;
+	}
+	return $avant[ $id ] ?? '';
+}
+
+add_action(
+	'edit_terms',
+	function ( $id, $taxonomie ) {
+		if ( 'auteur' === $taxonomie ) {
+			$t = get_term( $id, 'auteur' );
+			if ( $t instanceof WP_Term ) {
+				er_personnes_avant( $id, $t->slug );
+			}
+		}
+	},
+	10,
+	2
+);
+
+add_action(
+	'edited_auteur',
+	function ( $id ) {
+		$personne = get_term( $id, 'auteur' );
+		$ancien   = er_personnes_avant( $id );
+		if ( ! $personne instanceof WP_Term || '' === $ancien ) {
+			return;
+		}
+		foreach ( array_merge( er_personnes_miroirs(), array( 'er_intervenant' ) ) as $taxonomie ) {
+			$m = taxonomy_exists( $taxonomie ) ? get_term_by( 'slug', $ancien, $taxonomie ) : null;
+			if ( ! $m ) {
+				continue;
+			}
+			$champs = array( 'slug' => $personne->slug );
+			// Un intervenant garde son nom affiché, sauf s'il était celui de la personne.
+			if ( 'er_intervenant' !== $taxonomie || $m->name === $m->slug || er_cle_recherche( $m->name ) === er_cle_recherche( $personne->name ) ) {
+				$champs['name'] = $personne->name;
+			}
+			wp_update_term( $m->term_id, $taxonomie, $champs );
+		}
+		if ( $ancien !== $personne->slug ) {
+			er_personnes_retenir( $personne, array(), array( $ancien ) );
+		}
+		wp_cache_delete( 'er_personnes_livres', 'er' );
+		if ( function_exists( 'er_personnes_cles_perimer' ) ) {
+			er_personnes_cles_perimer();
+		}
+	}
+);
+
+add_action(
+	'delete_term',
+	function ( $id, $tt, $taxonomie, $supprime ) {
+		if ( 'auteur' !== $taxonomie || ! $supprime instanceof WP_Term ) {
+			return;
+		}
+		foreach ( er_personnes_miroirs() as $miroir ) {
+			$m = get_term_by( 'slug', $supprime->slug, $miroir );
+			if ( $m ) {
+				wp_delete_term( $m->term_id, $miroir );
+			}
+		}
+		wp_cache_delete( 'er_personnes_livres', 'er' );
+	},
+	10,
+	4
+);
+
+/**
+ * Ce qui ne va pas entre les personnes et leurs miroirs : un miroir sans personne au même identifiant, un miroir dont
+ * le nom n'est plus celui de la personne.
+ *
+ * @param array<string,string> $personnes Identifiant → nom, des personnes.
+ * @param array<string,array>  $miroirs   Classement → (identifiant → nom), des miroirs.
+ * @return array[] Chaque écart : taxonomie, slug, nom, probleme (« sans personne » ou « nom différent »), attendu.
+ */
+function er_personnes_ecarts( $personnes, $miroirs ) {
+	$ecarts = array();
+	foreach ( $miroirs as $taxonomie => $termes ) {
+		foreach ( $termes as $slug => $nom ) {
+			if ( ! isset( $personnes[ $slug ] ) ) {
+				$ecarts[] = array(
+					'taxonomie' => $taxonomie,
+					'slug'      => (string) $slug,
+					'nom'       => $nom,
+					'probleme'  => 'sans personne',
+					'attendu'   => '',
+				);
+			} elseif ( $nom !== $personnes[ $slug ] ) {
+				$ecarts[] = array(
+					'taxonomie' => $taxonomie,
+					'slug'      => (string) $slug,
+					'nom'       => $nom,
+					'probleme'  => 'nom différent',
+					'attendu'   => $personnes[ $slug ],
+				);
+			}
+		}
+	}
+	return $ecarts;
+}
+
+/**
+ * Les écarts du site (er_personnes_ecarts sur les termes en base).
+ */
+function er_personnes_ecarts_du_site() {
+	$personnes = array();
+	foreach ( get_terms( array( 'taxonomy' => 'auteur', 'hide_empty' => false ) ) as $t ) {
+		$personnes[ $t->slug ] = html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' );
+	}
+	$miroirs = array();
+	foreach ( er_personnes_miroirs() as $taxonomie ) {
+		$miroirs[ $taxonomie ] = array();
+		foreach ( get_terms( array( 'taxonomy' => $taxonomie, 'hide_empty' => false ) ) as $t ) {
+			$miroirs[ $taxonomie ][ $t->slug ] = html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' );
+		}
+	}
+	return er_personnes_ecarts( $personnes, $miroirs );
 }
 
 /**
@@ -339,6 +478,46 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	 *
 	 * @param array $args « appliquer », ou rien pour seulement montrer.
 	 */
+	/**
+	 * Les miroirs des personnes : wp er personnes verifier [reparer]. Un miroir dont le nom diverge reprend celui de la
+	 * personne ; un miroir sans personne passe, avec ses livres, à la personne de ce nom s'il y en a une.
+	 *
+	 * @param array $args « reparer », ou rien pour seulement montrer.
+	 */
+	WP_CLI::add_command(
+		'er personnes verifier',
+		function ( $args ) {
+			$reparer = isset( $args[0] ) && 'reparer' === $args[0];
+			$ecarts  = er_personnes_ecarts_du_site();
+			if ( ! $ecarts ) {
+				WP_CLI::log( 'Les miroirs des personnes sont en ordre : chacun a sa personne, sous le même nom.' );
+				return;
+			}
+			$restent = 0;
+			foreach ( $ecarts as $e ) {
+				$m    = get_term_by( 'slug', $e['slug'], $e['taxonomie'] );
+				$fait = '';
+				if ( $reparer && $m && 'nom différent' === $e['probleme'] ) {
+					wp_update_term( $m->term_id, $e['taxonomie'], array( 'name' => $e['attendu'] ) );
+					$fait = ' → renommé';
+				} elseif ( $reparer && $m ) {
+					$personne = er_personne_exacte( $e['nom'] );
+					$personne = $personne ? $personne : ( function_exists( 'er_personne_trouver' ) ? er_personne_trouver( $e['nom'] ) : null );
+					$miroir   = $personne ? er_personnes_miroir( $personne, $e['taxonomie'] ) : null;
+					if ( $miroir && (int) $miroir->term_id !== (int) $m->term_id ) {
+						$n = er_personnes_remplacer( $m->term_id, array( $miroir->term_id ), $e['taxonomie'] );
+						wp_delete_term( $m->term_id, $e['taxonomie'] );
+						$fait = sprintf( ' → rattaché à %s (%d livres)', $personne->name, $n );
+					}
+				}
+				$restent += '' === $fait ? 1 : 0;
+				WP_CLI::log( sprintf( '  %s · %s (%s) · %s%s%s', $e['taxonomie'], $e['nom'], $e['slug'], $e['probleme'], '' !== $e['attendu'] ? ' : « ' . $e['attendu'] . ' »' : '', $fait ) );
+			}
+			WP_CLI::log( sprintf( '%d écarts%s.', count( $ecarts ), $reparer ? sprintf( ', %d restent à voir à la main', $restent ) : ' ; « wp er personnes verifier reparer » les répare' ) );
+			wp_cache_delete( 'er_personnes_livres', 'er' );
+		}
+	);
+
 	WP_CLI::add_command(
 		'er personnes rattacher',
 		function ( $args ) {

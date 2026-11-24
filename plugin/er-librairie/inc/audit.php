@@ -704,6 +704,15 @@ function er_audit() {
 		$ln( sprintf( '  %s : %d sur %d.', $sorte, $seuls, count( $ids ) ) );
 	}
 
+	/* 10. Les miroirs des personnes ----------------------------------------------------------------------------- */
+	$ln();
+	$ln( '## 10. Les miroirs des personnes (rôles, « Autour de » : même identifiant, même nom que la personne)' );
+	$ecarts = er_personnes_ecarts_du_site();
+	$ln( '  ' . ( $ecarts ? count( $ecarts ) . ' écarts ; « wp er personnes verifier reparer » les répare.' : 'Aucun écart.' ) );
+	foreach ( array_slice( $ecarts, 0, 20 ) as $e ) {
+		$ln( sprintf( '    %s · %s · %s%s', $e['taxonomie'], $e['nom'], $e['probleme'], '' !== $e['attendu'] ? ' : « ' . $e['attendu'] . ' »' : '' ) );
+	}
+
 	$ln();
 	$ln( sprintf( 'Fait en %.1f s. Rien n’a été modifié.', microtime( true ) - $t0 ) );
 }

@@ -1279,17 +1279,15 @@ function er_evt_importer_un( $e, $auteurs, $images = true ) {
 		if ( ! $intervient ) {
 			continue;
 		}
-		if ( ! term_exists( $t->slug, 'er_intervenant' ) ) {
-			// Le nom dans l'écriture du titre : « Andreï Zviaguintsev » dans un titre en français.
-			$affiche = $t->name;
-			foreach ( $noms as $n ) {
-				if ( (bool) preg_match( '/\p{Cyrillic}/u', $n ) === $cyrillique ) {
-					$affiche = $n;
-					break;
-				}
+		// Le nom dans l'écriture du titre : « Andreï Zviaguintsev » dans un titre en français.
+		$affiche = $t->name;
+		foreach ( $noms as $n ) {
+			if ( (bool) preg_match( '/\p{Cyrillic}/u', $n ) === $cyrillique ) {
+				$affiche = $n;
+				break;
 			}
-			wp_insert_term( $affiche, 'er_intervenant', array( 'slug' => $t->slug ) );
 		}
+		er_personnes_miroir( $t, 'er_intervenant', $affiche );
 		wp_set_object_terms( $id, $t->slug, 'er_intervenant', true );
 	}
 	er_etiqueter( $id, $e['titre'] . ' ' . $e['chapo'], $auteurs );

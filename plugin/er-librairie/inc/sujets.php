@@ -129,9 +129,7 @@ function er_poser_autour_de( $id, $auteurs ) {
 	foreach ( $auteurs as $a ) {
 		$t = is_numeric( $a ) ? get_term( (int) $a, 'auteur' ) : er_personne_par_nom( (string) $a, true );
 		if ( $t && ! is_wp_error( $t ) ) {
-			if ( ! term_exists( $t->slug, 'er_autour' ) ) {
-				wp_insert_term( $t->name, 'er_autour', array( 'slug' => $t->slug ) );
-			}
+			er_personnes_miroir( $t, 'er_autour' );
 			$slugs[] = $t->slug;
 		}
 	}

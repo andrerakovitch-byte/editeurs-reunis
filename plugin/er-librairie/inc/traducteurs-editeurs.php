@@ -268,9 +268,7 @@ function er_poser_personnes( $id, $taxonomie, $noms, $ajouter = false ) {
 		if ( ! $t || is_wp_error( $t ) ) {
 			continue;
 		}
-		if ( ! term_exists( $t->slug, $taxonomie ) ) {
-			wp_insert_term( $t->name, $taxonomie, array( 'slug' => $t->slug ) );
-		}
+		er_personnes_miroir( $t, $taxonomie );
 		$slugs[] = $t->slug;
 	}
 	wp_set_object_terms( $id, $slugs, $taxonomie, $ajouter );

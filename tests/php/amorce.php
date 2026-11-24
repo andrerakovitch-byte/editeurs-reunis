@@ -35,6 +35,18 @@ function apply_filters( $crochet, $valeur, ...$autres ) {
 }
 
 function do_action( ...$a ) {}
+
+/**
+ * Lance les rappels d'une action retenue, comme do_action().
+ *
+ * @param string $crochet L'action.
+ * @param mixed  ...$args Ses arguments.
+ */
+function er_test_action( $crochet, ...$args ) {
+	foreach ( $GLOBALS['er_test_crochets'][ $crochet ] ?? array() as list( $rappel, $n ) ) {
+		$rappel( ...array_slice( $args, 0, $n ) );
+	}
+}
 function register_block_type( ...$a ) {}
 function add_post_type_support( ...$a ) {}
 function add_shortcode( ...$a ) {}
@@ -186,10 +198,65 @@ function get_post_meta( $id, $cle = '', $seul = false ) {
 	return $GLOBALS['er_test_articles'][ $id ]['metas'][ $cle ] ?? '';
 }
 function get_term_meta( $id, $cle = '', $seul = false ) {
-	return '';
+	return $GLOBALS['er_test_metas_termes'][ $id ][ $cle ] ?? '';
+}
+function update_term_meta( $id, $cle, $valeur ) {
+	$GLOBALS['er_test_metas_termes'][ $id ][ $cle ] = $valeur;
+	return true;
 }
 function get_terms( $a ) {
 	return $GLOBALS['er_test_termes'][ $a['taxonomy'] ] ?? array();
+}
+
+/* Une petite base de termes, pour les personnes et leurs miroirs (er_test_terme). */
+
+$GLOBALS['er_test_base'] = array();
+
+/**
+ * Un terme dans la base du test.
+ *
+ * @param int    $id        L'identifiant.
+ * @param string $taxonomie Le classement.
+ * @param string $slug      L'identifiant texte.
+ * @param string $nom       Le nom.
+ */
+function er_test_terme( $id, $taxonomie, $slug, $nom ) {
+	$GLOBALS['er_test_base'][ $taxonomie ][ $id ] = new WP_Term(
+		array(
+			'term_id'  => $id,
+			'taxonomy' => $taxonomie,
+			'slug'     => $slug,
+			'name'     => $nom,
+		)
+	);
+	return $GLOBALS['er_test_base'][ $taxonomie ][ $id ];
+}
+function get_term( $id, $taxonomie = '' ) {
+	return $GLOBALS['er_test_base'][ $taxonomie ][ $id ] ?? null;
+}
+function get_term_by( $champ, $valeur, $taxonomie ) {
+	foreach ( $GLOBALS['er_test_base'][ $taxonomie ] ?? array() as $t ) {
+		if ( ( 'slug' === $champ ? $t->slug : $t->name ) === $valeur ) {
+			return $t;
+		}
+	}
+	return false;
+}
+function wp_update_term( $id, $taxonomie, $champs ) {
+	foreach ( $champs as $k => $v ) {
+		$GLOBALS['er_test_base'][ $taxonomie ][ $id ]->$k = $v;
+	}
+	return array( 'term_id' => $id );
+}
+function wp_delete_term( $id, $taxonomie ) {
+	unset( $GLOBALS['er_test_base'][ $taxonomie ][ $id ] );
+	return true;
+}
+function wp_cache_delete( ...$a ) {
+	return true;
+}
+function delete_transient( $cle ) {
+	return true;
 }
 
 /* La page qu'on regarde ---------------------------------------------------------------------------------------- */
@@ -216,7 +283,7 @@ function wp_date( $format, $quand = null ) {
 	return $GLOBALS['er_test_aujourdhui'] ?? gmdate( $format );
 }
 function taxonomy_exists( $t ) {
-	return isset( $GLOBALS['er_test_termes_de'] );
+	return true;
 }
 function wp_get_post_terms( $id, $taxonomie, $a = array() ) {
 	return $GLOBALS['er_test_termes_de'][ $id ][ $taxonomie ] ?? array();
@@ -313,6 +380,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/prix-du-livre.php',
 	'plugin/er-librairie/inc/bascule.php',
 	'plugin/er-librairie/inc/donnees-structurees.php',
+	'plugin/er-librairie/inc/personnes.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',
 ) as $fichier ) {
