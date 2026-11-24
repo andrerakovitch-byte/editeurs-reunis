@@ -1,22 +1,5 @@
-centre-culturel/evenements/ · 200 · 1 bande
-  [er-bande-centre] Nos événements : À venir • · | · PASSéES · 2026 · 2025 · 2024 · 2023 · Plus anciennes ▾ · | · Avec une vidéo · Les cycles ▾
-centre-culturel/expositions/ · 200 · 1 bande
-  [er-bande-centre] Nos expositions : PASSéES · Toutes • · 2023 · 2022 · 2021 · 2020 · Les techniques ▾
-journal/ · 200 · 1 bande
-  [er-bande-centre] Le journal du centre : À la une • · Chroniques · Critiques · Essais · Récits · Entretiens · Hommages · Archives · Documents · | · En russe
-ymca-press/histoire/ · 200 · 1 bande
-  [er-bande-ymca er-bande-sommaire] Un siècle d’histoire : 1921 La naissance • · 1925 L’essor · 1940 La résistance · 1955 Le renouveau · 1971 La dissidence · L’Archipel · 1975 L’association · 1991 Le retour en Russie · 1995 L’avenir · L’héritage
-  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
-librairie/encyclopedie/age-d-argent/ · 200 · 1 bande
-  [er-bande-librairie er-bande-sommaire] L’Âge d’argent : 1.Un âge nommé après coup • · 2.Le symbolisme · 3.L’acméisme · 4.Le futurisme · 5.Hors des écoles · 6.La fin d’un monde · Les œuvres clés · Les livres de ce chapitre · Bibliographie · Notes
-  dans <div class="entry-content wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
-nous-trouver/ · 200 · 0 bande
-centre-culturel/videos/ · 200 · 0 bande
-/rayon/litterature/ · 200 · 1 bande
-  [er-bande-librairie] Littérature : Tout le rayon • · | · PAR GENRE · Romans · Nouvelles et récits · Poésie · Théâtre · Mémoires et témoignages · Récits de voyage · Essais · | · Par époque ▾
-/auteur/georges-nivat/ · 200 · 1 bande
-  [er-bande-librairie er-bande-sommaire] Georges Nivat : Ses traductions • · Sous sa direction · Ses préfaces · Au centre · Dans le journal
-/auteur/alexandre-soljenitsyne/ · 200 · 1 bande
-  [er-bande-librairie er-bande-sommaire] Alexandre Soljenitsyne : Ses livres • · Au centre · Dans le journal · À lire sur le site
-/sujet/histoire/ · 200 · 1 bande
-  [er-bande-aucune er-bande-sommaire] Histoire : Prochainement au centre • · Les rencontres · Dans le journal
+  centre-culturel/evenements : « Les rencontres, les conférences, les lectures et les expositions du centre, au 11, rue de la Montagne-Sainte-Geneviève. »
+  centre-culturel : « Le Centre culturel Alexandre Soljenitsyne organise des rencontres et des expositions, et publie des podcasts et des vidéos autour de la littérature et de l’histoire russes. »
+  ymca-press/amis-ymca-press : « Notre équipe est uniquement composée de bénévoles. Rejoignez l’Association des Amis d’YMCA-Press pour nous aider à faire vivre la librairie, la maison d’édition et le centre. »
+  ymca-press : « Depuis un siècle, YMCA-Press publie la littérature et la pensée russes en exil. »
+Success: 4 chapôs à poser. Avec « appliquer », c’est fait.
