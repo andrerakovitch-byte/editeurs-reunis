@@ -269,6 +269,12 @@ l'auteur, le prix ; au clavier aussi ; au toucher, le lien suffit). `plugin/…/
 - Un éditeur est un classement public, `er_editeur`, avec sa page, `/editeur/<slug>/` (sa présentation, ses livres ;
   le gabarit `taxonomy-er_editeur`). Les métas `er_traducteur` et `er_editeur` reprises de Wix ne servent plus que de
   secours.
+- `wp er audit` (24 nov. 2026), en lecture seule : ce qui devrait se répondre et ne se répond pas, compté dans les
+  données — personnes en double ou probablement en double, signatures et intervenants sous une autre graphie, personnes
+  nommées dans un texte sans y être rattachées, rôles que la fiche ignore (préface, notes…), collections sans page,
+  même livre en plusieurs fiches, citations à sens unique, vidéos des rencontres absentes de la médiathèque, contenus
+  isolés. Le lancer par le déploiement (champ « Une commande de l'extension » : `audit`) ; le rapport va sur la branche
+  `wix-pages` (`commande.txt`).
 - `wp er roles` relève dans le catalogue les traducteurs (la méta, « traduit du russe par … » dans le titre ou la
   présentation), les directeurs (« sous la direction de … » dans le titre) et les éditeurs ; `wp er roles appliquer`
   les pose (un nom inconnu devient un auteur).
