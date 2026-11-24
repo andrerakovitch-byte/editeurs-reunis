@@ -79,9 +79,16 @@ def capturer(page, url, largeur, css_avant, css_apres):
     page.unroute('**/*')
     page.route('**/*', router)
     page.set_viewport_size({'width': largeur, 'height': 900})
-    page.goto(url, wait_until='networkidle', timeout=90000)
+    # « load », pas « networkidle » : la fiche d'un livre garde une connexion ouverte (le paiement) et n'est jamais
+    # au repos. Les images paresseuses chargées tout de suite, et attendues : sinon elles arrivent entre les deux images.
+    page.goto(url, wait_until='load', timeout=90000)
+    page.evaluate("document.querySelectorAll('img').forEach(i => { i.loading = 'eager'; i.decoding = 'sync'; })")
     page.add_style_tag(content=CALME)
-    page.wait_for_timeout(400)
+    try:
+        page.wait_for_function('[...document.images].every(i => i.complete)', timeout=30000)
+    except Exception:  # une image qui ne vient pas : on compare quand même
+        pass
+    page.wait_for_timeout(600)
     avant = cliche(page)
     page.evaluate("""(css) => {
         const liens = [...document.querySelectorAll('link[rel="stylesheet"]')].filter(l => l.href.includes('/themes/editeurs-reunis/'));
