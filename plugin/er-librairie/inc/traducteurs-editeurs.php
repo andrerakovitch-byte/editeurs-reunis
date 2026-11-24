@@ -724,6 +724,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 						wp_set_object_terms( $id, array_values( array_unique( array_map( fn( $e ) => $regroupes[ $e ], $r['editeurs'] ) ) ), 'er_editeur', false );
 					}
 				}
+				// La graphie corrigée (« Paul Lesquesne » → Paul Lequesne) rejoint les « Autres graphies » de la personne :
+				// er_personne_trouver() la reconnaîtra partout, et l'audit ne la croira plus oubliée.
+				foreach ( $memes as $nom => $chef ) {
+					$qui = $nom !== $chef ? er_personne_par_nom( $chef ) : null;
+					if ( ! $qui || ! function_exists( 'er_autres_graphies' ) ) {
+						continue;
+					}
+					$graphies = er_autres_graphies( $qui->term_id );
+					if ( $nom !== $qui->name && ! in_array( $nom, $graphies, true ) ) {
+						$graphies[] = $nom;
+						update_term_meta( $qui->term_id, 'er_graphies', implode( "\n", $graphies ) );
+					}
+				}
 			}
 			WP_CLI::log( ( $appliquer ? 'Posé' : 'Relevé (rien n’est posé ; « wp er roles appliquer » pour poser)' ) . ' sur ' . count( $ids ) . ' livres en vente :' );
 			WP_CLI::log( '  ' . $comptes['traduction'] . ' livres avec une traduction, ' . $comptes['direction'] . ' sous la direction de quelqu’un, ' . $comptes['preface'] . ' avec une préface ou une présentation, ' . $comptes['edition'] . ' avec une édition établie ou des notes, ' . $comptes['illustration'] . ' illustrés, ' . $comptes['editeur'] . ' avec un éditeur.' );
