@@ -1534,6 +1534,15 @@ T = {
     (None, 'Collection'): ('Series', 'Серия'),
     (None, 'Reprendre'): ('Resume', 'Продолжить'),
     (None, 'Les sujets de la une'): ('Front-page stories', 'Темы на первой полосе'),
+    # La tête de page (inc/tete.php et ses usages).
+    (None, 'La tête de page'): ('Page heading', 'Заголовок страницы'),
+    (None, 'Fil d’Ariane'): ('Breadcrumb', 'Навигационная цепочка'),
+    (None, 'Recherche : « %s »'): ('Search: “%s”', 'Поиск: «%s»'),
+    (None, '%d résultat'): (('%d result', '%d results'), ('%d результат', '%d результата', '%d результатов')),
+    (None, '%d livre'): (('%d book', '%d books'), ('%d книга', '%d книги', '%d книг')),
+    (None, '%s en rayon'): ('%s in stock', '%s в продаже'),
+    (None, '%1$d expositions depuis %2$d'): ('%1$d exhibitions since %2$d', '%1$d выставок с %2$d года'),
+    (None, '%1$s depuis %2$s'): ('%1$s since %2$s', '%1$s с %2$s года'),
     # La bande de page (inc/bande.php et ses usages).
     (None, 'Dans cette page'): ('On this page', 'На этой странице'),
     ('bande de page, un groupe replié et son entrée choisie', '%1$s : %2$s'): ('%1$s: %2$s', '%1$s: %2$s'),

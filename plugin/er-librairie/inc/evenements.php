@@ -1372,3 +1372,27 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 	);
 }
+
+/**
+ * En face du fil de la tête de page « Nos événements » (le thème, er_tete_page()) : combien de rencontres, depuis
+ * quand.
+ */
+add_filter(
+	'er_tete_faits',
+	function ( $faits, $page ) {
+		if ( '' !== $faits || ! $page instanceof WP_Post || ! has_block( 'er/evenements', $page ) ) {
+			return $faits;
+		}
+		$n      = (int) wp_count_posts( ER_EVT )->publish;
+		$annees = er_evt_annees();
+		if ( ! $n ) {
+			return $faits;
+		}
+		/* translators: %d: un nombre de rencontres */
+		$texte = sprintf( _n( '%d rencontre', '%d rencontres', $n, 'er-librairie' ), $n );
+		/* translators: 1: un nombre de rencontres (« 169 rencontres »), 2: une année */
+		return $annees ? sprintf( __( '%1$s depuis %2$s', 'er-librairie' ), $texte, end( $annees ) ) : $texte;
+	},
+	10,
+	2
+);

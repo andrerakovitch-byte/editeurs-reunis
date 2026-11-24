@@ -215,6 +215,13 @@ function er_auteur_bloc_fiche( $attributs = array() ) {
 		return '<div class="er-auteur-fiche er-auteur-fiche-tete">' . $tete . '</div>';
 	}
 	$html = 'suite' === $partie ? '' : $tete;
+	// La tête de page (le thème) montre le premier paragraphe de la présentation, en chapô : la suite vient ici.
+	if ( 'suite' === $partie && '' !== trim( $t->description ) ) {
+		$paragraphes = preg_split( '/\R\s*\R|(?<=<\/p>)/u', trim( $t->description ), 2 );
+		if ( isset( $paragraphes[1] ) && '' !== trim( wp_strip_all_tags( $paragraphes[1] ) ) ) {
+			$html .= '<div class="er-auteur-presentation">' . wpautop( wp_kses_post( $paragraphes[1] ) ) . '</div>';
+		}
+	}
 
 	// La biographie : les deux premiers paragraphes, la suite à déplier.
 	$bio = trim( $meta( 'er_biographie' ) );

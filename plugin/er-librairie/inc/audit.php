@@ -725,10 +725,14 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		function ( $args ) {
 			$chemins = $args;
 			if ( ! $chemins ) {
-				$chemins = array( 'centre-culturel/evenements/', 'centre-culturel/expositions/', 'journal/', 'ymca-press/histoire/', 'librairie/encyclopedie/age-d-argent/', 'nous-trouver/', 'centre-culturel/videos/' );
+				$chemins = array( 'centre-culturel/evenements/', 'centre-culturel/expositions/', 'journal/', 'ymca-press/histoire/', 'librairie/encyclopedie/age-d-argent/', 'nous-trouver/', 'centre-culturel/videos/', 'centre-culturel/', 'ymca-press/', 'ymca-press/catalogue/', 'librairie/', 'mentions-legales/' );
 				$rayon   = get_term_by( 'slug', 'litterature', 'product_cat' );
 				if ( $rayon ) {
 					$chemins[] = wp_make_link_relative( get_term_link( $rayon ) );
+					$sous = get_terms( array( 'taxonomy' => 'product_cat', 'parent' => $rayon->term_id, 'number' => 1, 'hide_empty' => false ) );
+					if ( $sous && ! is_wp_error( $sous ) ) {
+						$chemins[] = wp_make_link_relative( get_term_link( $sous[0] ) );
+					}
 				}
 				foreach ( array( 'georges-nivat', 'alexandre-soljenitsyne' ) as $slug ) {
 					$t = get_term_by( 'slug', $slug, 'auteur' );
@@ -750,7 +754,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 				$html = wp_remote_retrieve_body( $r );
 				$n    = preg_match_all( '#<nav class="er-bande ([^"]*)"[^>]*>(.*?)</nav>#s', $html, $m, PREG_SET_ORDER );
-				WP_CLI::log( $chemin . ' · ' . wp_remote_retrieve_response_code( $r ) . ' · ' . $n . ' bande' . ( $n > 1 ? 's' : '' ) );
+				$t    = preg_match_all( '#<section class="er-tete ([^"]*)">(.*?)</section>#s', $html, $tm, PREG_SET_ORDER );
+				WP_CLI::log( $chemin . ' · ' . wp_remote_retrieve_response_code( $r ) . ' · ' . $t . ' tête' . ( $t > 1 ? 's' : '' ) . ', ' . $n . ' bande' . ( $n > 1 ? 's' : '' ) );
+				// La tête : le fil, les faits, le titre, le chapô, le mot russe.
+				foreach ( $tm as $x ) {
+					$val = function ( $classe ) use ( $x ) {
+						$fin = 'er-tete-fil' === $classe ? 'nav' : ( 'er-tete-lettre' === $classe ? 'span' : '(?:p|h1)' );
+						return preg_match( '#class="' . $classe . '"[^>]*>(.*?)</' . $fin . '>#s', $x[2], $v ) ? trim( html_entity_decode( wp_strip_all_tags( preg_replace( '#<span class="er-tete-sep"[^>]*>/</span>#', ' / ', $v[1] ) ), ENT_QUOTES, 'UTF-8' ) ) : '';
+					};
+					WP_CLI::log( '  tête [' . trim( $x[1] ) . '] ' . $val( 'er-tete-fil' ) . ( $val( 'er-tete-faits' ) ? ' | ' . $val( 'er-tete-faits' ) : '' ) . ' — « ' . $val( 'er-tete-titre' ) . ' »' . ( $val( 'er-tete-sous-titre' ) ? ' (' . $val( 'er-tete-sous-titre' ) . ')' : '' ) . ( $val( 'er-tete-lettre' ) ? ' · ' . $val( 'er-tete-lettre' ) : '' ) . ( false !== strpos( $x[2], 'er-tete-image' ) ? ' · portrait' : '' ) );
+					if ( $val( 'er-tete-chapo' ) ) {
+						WP_CLI::log( '    chapô : ' . mb_substr( $val( 'er-tete-chapo' ), 0, 110 ) );
+					}
+				}
 				foreach ( $m as $x ) {
 					preg_match( '#er-bande-nom-texte">([^<]*)<#', $x[2], $nom );
 					preg_match_all( '#<li class="er-bande-(groupe|sep)"[^>]*>([^<]*)</li>|<a class="er-bande-lien"[^>]*?(aria-current="[^"]*")?>(?:<span class="er-bande-avant">([^<]*)</span>)?<span>([^<]*)</span>|<button[^>]*class="er-bande-lien[^"]*"[^>]*><span>([^<]*)</span>#', $x[2], $e, PREG_SET_ORDER );
@@ -771,6 +787,59 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					WP_CLI::log( '  dans <' . $p[1] . ( preg_match( '#class="([^"]*)"#', $p[2], $c ) ? ' class="' . $c[1] . '"' : '' ) . '>' );
 				}
 			}
+		}
+	);
+}
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	/**
+	 * Le chapô des pages dans leur tête de page (le thème) : le résumé de la page. wp er tetes [appliquer] déplace le
+	 * premier paragraphe d'une page sans résumé, s'il est court (20 à 400 signes) et n'est pas celui d'une ébauche,
+	 * du texte vers le résumé ; sans « appliquer », montre seulement ce qui serait fait.
+	 *
+	 * @param array $args « appliquer », ou rien.
+	 */
+	WP_CLI::add_command(
+		'er tetes',
+		function ( $args ) {
+			$appliquer = isset( $args[0] ) && 'appliquer' === $args[0];
+			$n         = 0;
+			foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => -1, 'lang' => '' ) ) as $p ) {
+				$gabarit = (string) get_post_meta( $p->ID, '_wp_page_template', true );
+				if ( '' !== trim( $p->post_excerpt ) || 0 === strpos( $gabarit, 'page-exemple' ) ) {
+					continue;
+				}
+				$blocs = parse_blocks( $p->post_content );
+				foreach ( $blocs as $i => $b ) {
+					if ( null === $b['blockName'] && '' === trim( $b['innerHTML'] ) ) {
+						continue;
+					}
+					if ( 'core/paragraph' !== $b['blockName'] ) {
+						break;
+					}
+					$texte = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( html_entity_decode( $b['innerHTML'], ENT_QUOTES, 'UTF-8' ) ) ) );
+					$long  = mb_strlen( $texte );
+					if ( $long < 20 || $long > 400 || false !== mb_stripos( $texte, 'ébauche' ) ) {
+						break;
+					}
+					WP_CLI::log( '  ' . get_page_uri( $p ) . ' : « ' . $texte . ' »' );
+					++$n;
+					if ( $appliquer ) {
+						unset( $blocs[ $i ] );
+						wp_update_post(
+							wp_slash(
+								array(
+									'ID'           => $p->ID,
+									'post_excerpt' => $texte,
+									'post_content' => trim( serialize_blocks( array_values( $blocs ) ) ),
+								)
+							)
+						);
+					}
+					break;
+				}
+			}
+			WP_CLI::success( $appliquer ? $n . ' chapôs posés.' : $n . ' chapôs à poser. Avec « appliquer », c’est fait.' );
 		}
 	);
 }

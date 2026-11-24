@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 require get_template_directory() . '/inc/recherche.php';
 require get_template_directory() . '/inc/entete.php';
 require get_template_directory() . '/inc/bande.php';
+require get_template_directory() . '/inc/tete.php';
 
 add_action(
 	'after_setup_theme',

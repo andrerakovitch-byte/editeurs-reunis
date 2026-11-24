@@ -393,31 +393,40 @@ function er_journal_tete() {
 		);
 	}
 
-	// « Le centre culturel · Depuis 2020 · 67 textes »
+	// « Depuis 2020 · 67 textes », en face du fil.
 	$premier = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids', 'order' => 'ASC', 'ignore_sticky_posts' => true ) );
 	$total   = (int) wp_count_posts( 'post' )->publish;
-	$faits   = array( __( 'Le centre culturel', 'er-librairie' ) );
+	$faits   = array();
 	if ( $premier ) {
 		/* translators: %s: une année */
 		$faits[] = sprintf( __( 'Depuis %s', 'er-librairie' ), get_the_date( 'Y', $premier[0] ) );
 	}
 	/* translators: %d: un nombre de textes */
 	$faits[] = sprintf( _n( '%d texte', '%d textes', $total, 'er-librairie' ), $total );
+	$nom     = html_entity_decode( $page ? get_the_title( $page ) : __( 'Le journal du centre', 'er-librairie' ), ENT_QUOTES, 'UTF-8' );
+	$chapo   = __( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' );
 
-	// Le bandeau : sur l'aplat du centre, comme le menu du centre au-dessus ; « Журнал » en grand, presque effacé, en
-	// décor. Les sujets sont sous le fil, à la une. Les genres à son pied, dans la bande de page (le troisième niveau,
-	// le même sur tout le site : er_bande_page(), dans le thème), sœur du bandeau, qui s'accroche sous la ligne du
-	// centre quand on fait défiler.
-	return '<section class="er-j-tete alignfull"><span class="er-j-lettre" lang="ru" aria-hidden="true">Журнал</span><div class="er-j-g">'
-		. '<p class="er-j-faits"><span class="er-j-point" aria-hidden="true"></span>' . esc_html( implode( ' · ', $faits ) ) . '</p>'
-		. ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' )
-		. '<p class="er-j-chapo">' . esc_html__( 'Chroniques, critiques, essais et archives : la littérature russe et son histoire, par ceux qui la lisent et la traduisent.', 'er-librairie' ) . '</p>'
-		. '</div></section>'
+	// La tête de page, la même sur tout le site (er_tete_page(), dans le thème : sur la teinte du centre, « Журнал » en
+	// grand, presque effacé, en décor), puis les genres dans la bande de page qui la ferme et s'accroche sous la ligne
+	// du centre quand on fait défiler. Les sujets sont sous le fil, à la une.
+	$tete = function_exists( 'er_tete_page' )
+		? er_tete_page(
+			array(
+				'maison' => 'centre',
+				'faits'  => implode( ' · ', $faits ),
+				'titre'  => $nom,
+				'h1'     => 'une' === $vue,
+				'chapo'  => $chapo,
+				'mot'    => 'Журнал',
+			)
+		)
+		: '<section class="er-j-tete alignfull"><div class="er-j-g">' . ( 'une' === $vue ? '<h1 class="er-j-titre">' . $titre . '</h1>' : '<p class="er-j-titre">' . $titre . '</p>' ) . '</div></section>';
+	return $tete
 		. ( function_exists( 'er_bande_page' )
 			? er_bande_page(
 				array(
 					'maison'  => 'centre',
-					'nom'     => html_entity_decode( $page ? get_the_title( $page ) : __( 'Le journal du centre', 'er-librairie' ), ENT_QUOTES, 'UTF-8' ),
+					'nom'     => $nom,
 					'entrees' => $entrees,
 					'libelle' => __( 'Les genres du journal', 'er-librairie' ),
 				)

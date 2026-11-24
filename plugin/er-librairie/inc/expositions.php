@@ -789,19 +789,28 @@ function er_expo_bloc_liste() {
 		);
 	}
 	$trouver = get_page_by_path( 'nous-trouver' );
-	// La tête, 7 | 5 : le titre de la page, sa phrase (le résumé de la page, sinon ce qu'on accroche et depuis quand).
+	// La tête de page (er_tete_page(), dans le thème) : le titre, sa phrase (le résumé de la page, sinon ce qu'on
+	// accroche), et en face du fil, combien d'expositions depuis quand.
 	$page   = get_post();
 	$phrase = $page && 'page' === $page->post_type ? trim( $page->post_excerpt ) : '';
 	if ( '' === $phrase ) {
-		$premiere = $annees ? (int) min( array_keys( $annees ) ) : 0;
-		$phrase   = __( 'Peintures, gravures, images et archives, accrochées au 11, rue de la Montagne-Sainte-Geneviève.', 'er-librairie' );
-		if ( count( $toutes ) > 1 && $premiere ) {
-			/* translators: 1: le nombre d'expositions, en lettres, 2: une année */
-			$phrase .= ' ' . sprintf( __( '%1$s expositions depuis %2$d.', 'er-librairie' ), er_expo_en_lettres( count( $toutes ), true ), $premiere );
-		}
+		$phrase = __( 'Peintures, gravures, images et archives, accrochées au 11, rue de la Montagne-Sainte-Geneviève.', 'er-librairie' );
 	}
-	$html = '<div class="er-x-liste alignfull">'
-		. '<section class="er-x-tete"><div class="er-j-g"><h1 class="er-x-page-titre">' . esc_html( $page ? get_the_title( $page ) : __( 'Nos expositions', 'er-librairie' ) ) . '</h1><p class="er-x-page-phrase">' . esc_html( $phrase ) . '</p></div></section>'
+	$premiere = $annees ? (int) min( array_keys( $annees ) ) : 0;
+	/* translators: 1: un nombre d'expositions, 2: une année */
+	$faits = count( $toutes ) > 1 && $premiere ? sprintf( __( '%1$d expositions depuis %2$d', 'er-librairie' ), count( $toutes ), $premiere ) : '';
+	$titre = $page ? html_entity_decode( get_the_title( $page ), ENT_QUOTES, 'UTF-8' ) : __( 'Nos expositions', 'er-librairie' );
+	$html  = '<div class="er-x-liste alignfull">'
+		. ( function_exists( 'er_tete_page' )
+			? er_tete_page(
+				array(
+					'maison' => 'centre',
+					'faits'  => $faits,
+					'titre'  => $titre,
+					'chapo'  => $phrase,
+				)
+			)
+			: '<section class="er-x-tete"><div class="er-j-g"><h1 class="er-x-page-titre">' . esc_html( $titre ) . '</h1><p class="er-x-page-phrase">' . esc_html( $phrase ) . '</p></div></section>' )
 		. ( function_exists( 'er_bande_page' )
 			? er_bande_page(
 				array(

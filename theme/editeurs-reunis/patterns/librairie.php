@@ -5,10 +5,10 @@
  * Categories: editeurs-reunis
  * Inserter: no
  *
- * Toute la librairie, un rayon, un auteur, une langue ou une recherche : le titre, les rayons et les langues en
- * pilules, puis les livres en grand, sur toute la largeur. Pour un auteur, sa fiche (er/auteur-fiche : portrait,
- * dates, présentation) remplace le titre ; la bande de page (son sommaire) vient dessous, puis sa biographie, ses
- * livres, ses rôles et ce qui l'entoure (er/autour). Un rayon a sa bande : ses sous-rayons.
+ * Toute la librairie, un rayon, un auteur, une langue ou une recherche : la tête de page (inc/tete.php : le fil, le
+ * titre, le chapô ; pour une personne, son portrait, ses graphies et ses dates), la bande de page (les sous-rayons
+ * d'un rayon, le sommaire d'une personne), puis les livres en grand, sur toute la largeur. Pour une personne, sa
+ * biographie, ses livres, ses rôles et ce qui l'entoure (er/autour).
  *
  * @package editeurs-reunis
  */
@@ -34,30 +34,9 @@ if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
 	$er_ecrivain = ! empty( $er_livres['auteur'] ) || ! $er_roles;
 }
 ?>
-<!-- wp:group {"tagName":"main","className":"er-librairie","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group er-librairie" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:group {"align":"wide","className":"er-librairie-tete","layout":{"type":"default"}} -->
-	<div class="wp-block-group alignwide er-librairie-tete">
-		<!-- wp:woocommerce/breadcrumbs {"fontSize":"x-small"} /-->
-
-<?php if ( is_tax( 'auteur' ) ) : ?>
-		<!-- wp:er/auteur-fiche {"partie":"tete"} /-->
-<?php elseif ( is_search() ) : ?>
-		<!-- wp:query-title {"type":"search"} /-->
-<?php else : ?>
-		<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
-<?php endif; ?>
-<?php if ( function_exists( 'is_shop' ) && is_shop() && ! is_search() ) : ?>
-		<!-- wp:paragraph {"className":"er-devise"} -->
-		<p class="er-devise"><?php esc_html_e( 'Les Éditeurs réunis, librairie de référence depuis 1925', 'editeurs-reunis' ); ?></p>
-		<!-- /wp:paragraph -->
-<?php endif; ?>
-
-<?php if ( ! is_tax( 'auteur' ) ) : // La présentation d'un auteur est dans sa fiche. ?>
-		<!-- wp:term-description /-->
-<?php endif; ?>
-	</div>
-	<!-- /wp:group -->
+<!-- wp:group {"tagName":"main","className":"er-librairie","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group er-librairie" style="padding-bottom:var(--wp--preset--spacing--60)">
+	<!-- wp:editeurs-reunis/tete /-->
 <?php
 // La bande de page, sous la tête : le sommaire d'une personne (sa biographie, ses livres, ses traductions…, ce qui
 // l'entoure au centre et au journal), ou les sous-rayons d'un rayon (inc/bande.php).
