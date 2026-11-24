@@ -1,10 +1,117 @@
-/ · 200 · BookStore, WebSite
-/livre/%d1%80%d0%b5%d0%b3%d0%b8%d1%81%d1%82%d1%80%d0%b0%d1%86%d0%b8%d1%8f/ · 200 · Book+Product (16.00 EUR, InStock), BreadcrumbList (4 étapes)
-/centre-culturel/evenements/presentation-du-livre-mikhail-mikhailovitche-fedorov-1858-1949-une-vie-au-service-dune-russie-libre-et-democratique/ · 200 · Event
-/auteur/alexandre-soljenitsyne/ · 200 · Person, BreadcrumbList (2 étapes)
-/centre-culturel/evenements/ · 200 · BreadcrumbList (2 étapes)
-/product-page/dieu-et-l-etat-bakounine → 301 /livre/dieu-et-letat/
-/product-page/la-sonate-à-kreutzner-léon-tolstoï → 301 /livre/la-sonate-a-kreutzer/
-/product-page/un-livre-qui-n-existe-pas → 302 /?s=un livre qui n existe pas&post_type=product
-/expo → 301 /centre-culturel/expositions/
-/notre-histoire → 301 /ymca-press/histoire/
+859 livres (840 publiés, 717 en stock).
+Les rayons (livres publiés ; entre parenthèses, ceux qui ne sont que dans le rayon, sans sous-rayon)
+  Sans rayon [sans-rayon]                             79 (79)
+  Uncategorized [uncategorized-en]                    0 (0)
+  Uncategorized [uncategorized-ru]                    0 (0)
+  Littérature [litterature]                           378 (0)
+      Par genre
+          Romans [romans]                             120
+          Nouvelles et récits [nouvelles-et-recits]   100
+          Poésie [poesie]                             70
+          Théâtre [theatre]                           15
+          Mémoires et témoignages [memoires]          56
+          Récits de voyage [recit-de-voyage]          8
+          Essais [essais]                             26
+      Par époque
+          Les classiques [classiques]                 36
+          L’Âge d’argent [age-d-argent]               39
+          La période soviétique [periode-sovietique]  59
+          L’émigration [emigration]                   27
+          Les contemporains [contemporains]           42
+  Histoire [histoire]                                 140 (65)
+      Par période
+          La Russie ancienne [russie-ancienne]        0
+          L’Empire [empire]                           0
+          1917 [revolution-1917]                      0
+          L’URSS [urss]                               1
+          La Russie d’aujourd’hui [russie-aujourdhui] 27
+      Par thème
+          Le Goulag [goulag]                          6
+          L’émigration russe [emigration-russe]       9
+          Biographies [biographies]                   30
+          Civilisation [civilisation]                 3
+  Pensée et religion [pensee-et-religion]             212 (31)
+      Pensée
+          Philosophie russe [philosophie-russe]       13
+          Histoire des idées [histoire-des-idees]     0
+          Essais politiques [essais-politiques]       0
+      Religion
+          Théologie orthodoxe [theologie-orthodoxe]   167
+          Spiritualité et prière [spiritualite-et-priere] 2
+          Vies de saints [vies-de-saints]             0
+          Icônes [icones]                             2
+          Liturgie [liturgie]                         0
+  Apprendre le russe [apprendre-le-russe]             20 (15)
+      Méthodes
+          Débutant (A1–A2) [debutant]                 0
+          Intermédiaire (B1–B2) [intermediaire]       0
+          Avancé (C1–C2) [avance]                     0
+          Grammaire et exercices [grammaire-et-exercices] 0
+          Écriture et prononciation [ecriture-et-prononciation] 0
+      Outils
+          Dictionnaires [dictionnaires]               4
+          Lectures bilingues [lectures-bilingues]     0
+          Livres audio [livres-audio]                 0
+          Guides de voyage [guides-de-voyage]         1
+  Arts [arts]                                         34 (20)
+      Arts
+          Cinéma [cinema]                             6
+          Musique [musique]                           6
+          Peinture [peinture]                         0
+          Théâtre et ballet [theatre-et-ballet]       1
+          Architecture [architecture]                 0
+          Photographie [photographie]                 1
+  Jeunesse [jeunesse]                                 24 (24)
+      Par âge
+          Dès 3 ans [des-3-ans]                       0
+          Dès 6 ans [des-6-ans]                       0
+          Dès 9 ans [des-9-ans]                       0
+          Adolescents [adolescents]                   0
+      Par genre
+          Albums [albums]                             0
+          Contes russes [contes-russes]               0
+          Romans [romans-jeunesse]                    0
+          Livres bilingues [livres-bilingues]         0
+  Sans rayon                                          79
+  Dans plus d’un rayon et sous-rayon                  20
+Les langues
+    francais                                          557
+    russe                                             340
+Les sujets
+    (aucun)                                           840
+Les mentions
+    (aucun)                                           680
+    nouveaute                                         118
+    occasion                                          18
+    nouvelle-edition                                  15
+    tres-rare                                         9
+    nouvelle-traduction                               5
+L’époque d’écriture
+    (aucun)                                           840
+L’époque traitée
+    (aucun)                                           840
+Par livre publié
+  Rayons et sous-rayons, en moyenne                   1.41
+  Sujets, en moyenne                                  0
+  Avec un ISBN                                        0
+  Avec le nombre de pages                             268
+  Avec l’année d’édition                              268
+  Avec un éditeur                                     315
+  Avec une présentation de plus de 200 signes         703
+  Sans auteur                                         193
+Les décennies d’édition
+    (inconnue)                                        572
+    1890                                              1
+    1900                                              1
+    1910                                              1
+    1920                                              5
+    1930                                              6
+    1940                                              2
+    1950                                              4
+    1960                                              1
+    1970                                              13
+    1980                                              52
+    1990                                              41
+    2000                                              20
+    2010                                              79
+    2020                                              42
