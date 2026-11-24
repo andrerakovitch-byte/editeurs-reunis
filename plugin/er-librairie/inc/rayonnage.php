@@ -37,6 +37,15 @@ function er_carte_cyrillique( $s ) {
 }
 
 /**
+ * Le titre d'un livre, en texte (sans balises ni entités : « – » plutôt que « &#8211; »).
+ *
+ * @param WC_Product $produit Le livre.
+ */
+function er_carte_titre( $produit ) {
+	return html_entity_decode( wp_strip_all_tags( $produit->get_name() ), ENT_QUOTES, 'UTF-8' );
+}
+
+/**
  * L'année d'une parution écrite à la main (« 1980 », « Paris, 1972 », « 2024-2025 ») : la première année plausible.
  *
  * @param string $texte La parution.
@@ -131,7 +140,7 @@ function er_carte_presse( $id ) {
  * @param string     $tailles L'attribut sizes de l'image.
  */
 function er_carte_couverture( $produit, $tailles = '(max-width: 600px) 46vw, 240px' ) {
-	$titre = wp_strip_all_tags( $produit->get_name() );
+	$titre = er_carte_titre( $produit );
 	if ( function_exists( 'er_couverture_a_remplacer' ) && er_couverture_a_remplacer( $produit ) && function_exists( 'er_couverture_typo' ) ) {
 		return er_couverture_typo( $produit );
 	}
@@ -160,7 +169,7 @@ function er_carte_couverture( $produit, $tailles = '(max-width: 600px) 46vw, 240
  * @param string     $texte   Le texte du bouton.
  */
 function er_carte_bouton( $produit, $texte = '' ) {
-	$titre = wp_strip_all_tags( $produit->get_name() );
+	$titre = er_carte_titre( $produit );
 	if ( $produit->is_type( 'simple' ) && $produit->is_purchasable() && $produit->is_in_stock() ) {
 		// Sans script, le lien ajoute au panier en rechargeant la page ; avec, assets/js/rayonnage.js l'ajoute sur place
 		// (wc-ajax=add_to_cart) et prévient le panier de l'en-tête.
@@ -200,7 +209,7 @@ function er_carte_pastilles( $produit ) {
 function er_carte_html( $produit ) {
 	$id     = $produit->get_id();
 	$lien   = esc_url( $produit->get_permalink() );
-	$titre  = wp_strip_all_tags( $produit->get_name() );
+	$titre  = er_carte_titre( $produit );
 	$glose  = trim( (string) $produit->get_meta( 'er_titre_fr' ) );
 	$langue = '';
 	$sa     = wp_get_post_terms( $id, 'langue' );
@@ -636,7 +645,7 @@ function er_rayonnage_module_moment( $rayon ) {
 		return '';
 	}
 	$lien    = esc_url( $p->get_permalink() );
-	$titre   = wp_strip_all_tags( $p->get_name() );
+	$titre   = er_carte_titre( $p );
 	$auteurs = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) );
 	$trad    = function_exists( 'er_personnes_du_livre' ) ? wp_list_pluck( er_personnes_du_livre( $id, 'er_traduction' ), 'name' ) : array();
 	if ( ! $trad && '' !== trim( (string) $p->get_meta( 'er_traducteur' ) ) ) {
@@ -658,9 +667,9 @@ function er_rayonnage_module_moment( $rayon ) {
 	if ( $autre ) {
 		$ap       = wc_get_product( $autre );
 		$langue   = er_carte_cyrillique( $ap->get_name() ) ? __( 'Aussi en russe :', 'er-librairie' ) : __( 'Aussi en français :', 'er-librairie' );
-		$autres[] = esc_html( $langue ) . ' <a href="' . esc_url( $ap->get_permalink() ) . '">' . esc_html( wp_strip_all_tags( $ap->get_name() ) ) . '</a>' . ( $ap->is_in_stock() ? '' : esc_html__( ', épuisé', 'er-librairie' ) );
+		$autres[] = esc_html( $langue ) . ' <a href="' . esc_url( $ap->get_permalink() ) . '">' . esc_html( er_carte_titre( $ap ) ) . '</a>' . ( $ap->is_in_stock() ? '' : esc_html__( ', épuisé', 'er-librairie' ) );
 		if ( er_carte_cyrillique( $ap->get_name() ) ) {
-			$decor = '<span class="er-module__lettre" aria-hidden="true">' . esc_html( preg_split( '/\s*[.,:(]/u', wp_strip_all_tags( $ap->get_name() ) )[0] ) . '</span>';
+			$decor = '<span class="er-module__lettre" aria-hidden="true">' . esc_html( preg_split( '/\s*[.,:(]/u', er_carte_titre( $ap ) )[0] ) . '</span>';
 		}
 	}
 	return '<li class="er-module er-module--large er-moment">'
@@ -766,7 +775,7 @@ function er_rayonnage_module_ymca( $etat ) {
 		$auteur = wp_get_post_terms( $id, 'auteur' );
 		$auteur = $auteur && ! is_wp_error( $auteur ) ? ( er_carte_cyrillique( $auteur[0]->name ) && er_carte_autre_ecriture( $auteur[0] ) ? er_carte_autre_ecriture( $auteur[0] ) : $auteur[0]->name ) : '';
 		$items .= '<div class="er-ymca__livre"><a class="er-ymca__couv" href="' . esc_url( $p->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . er_carte_couverture( $p, '160px' ) . '</a>'
-			. '<h3 class="er-ymca__titre"><a href="' . esc_url( $p->get_permalink() ) . '" lang="ru">' . esc_html( wp_strip_all_tags( $p->get_name() ) ) . '</a></h3>'
+			. '<h3 class="er-ymca__titre"><a href="' . esc_url( $p->get_permalink() ) . '" lang="ru">' . esc_html( er_carte_titre( $p ) ) . '</a></h3>'
 			. ( '' !== $glose ? '<p class="er-ymca__glose">« ' . esc_html( $glose ) . ' »</p>' : '' )
 			. ( '' !== $auteur ? '<p class="er-ymca__auteur">' . esc_html( $auteur ) . '</p>' : '' )
 			. '<p class="er-ymca__prix">' . $p->get_price_html() . '</p></div>';
@@ -808,10 +817,10 @@ function er_rayonnage_module_langues( $etat ) {
 		if ( ! $p ) {
 			return '';
 		}
-		$titres[] = wp_strip_all_tags( $p->get_name() );
+		$titres[] = er_carte_titre( $p );
 		$cotes   .= '<div class="er-langues__cote"><a class="er-langues__couv" href="' . esc_url( $p->get_permalink() ) . '" tabindex="-1" aria-hidden="true">' . er_carte_couverture( $p, '200px' ) . '</a>'
 			. '<p class="er-langues__langue">' . esc_html( 0 === $k ? __( 'En français', 'er-librairie' ) : __( 'En russe', 'er-librairie' ) ) . '</p>'
-			. '<h3 class="er-langues__titre"><a href="' . esc_url( $p->get_permalink() ) . '"' . ( 1 === $k ? ' lang="ru"' : '' ) . '>' . esc_html( wp_strip_all_tags( $p->get_name() ) ) . '</a></h3>'
+			. '<h3 class="er-langues__titre"><a href="' . esc_url( $p->get_permalink() ) . '"' . ( 1 === $k ? ' lang="ru"' : '' ) . '>' . esc_html( er_carte_titre( $p ) ) . '</a></h3>'
 			. '<p class="er-langues__faits">' . er_rayonnage_faits( $p ) . '</p>'
 			. '<div class="er-carte__achat"><span class="er-carte__prix">' . $p->get_price_html() . '</span>' . er_carte_bouton( $p ) . '</div></div>';
 	}
