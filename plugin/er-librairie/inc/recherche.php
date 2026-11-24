@@ -113,8 +113,10 @@ function er_index_installer() {
 		return;
 	}
 	$table = er_index_table();
-	$wpdb->query( "DROP TABLE IF EXISTS {$table}" ); // phpcs:ignore WordPress.DB
-	$wpdb->query( // phpcs:ignore WordPress.DB
+	// Le nom de la table vient de $wpdb->prefix, pas d'une saisie : rien à préparer.
+	// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery, WordPress.DB.SchemaChange
+	$wpdb->query( "DROP TABLE IF EXISTS {$table}" );
+	$wpdb->query(
 		"CREATE TABLE {$table} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			genre varchar(20) NOT NULL,
@@ -130,6 +132,7 @@ function er_index_installer() {
 			KEY objet (objet)
 		) {$wpdb->get_charset_collate()}"
 	);
+	// phpcs:enable
 	update_option( 'er_index_version', ER_INDEX_VERSION );
 	er_index_reconstruire();
 }

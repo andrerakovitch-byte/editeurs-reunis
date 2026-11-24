@@ -67,8 +67,8 @@ add_action(
 				case 'page':
 					wp_dropdown_pages(
 						array(
-							'name'              => $cle,
-							'id'                => $cle,
+							'name'              => esc_attr( $cle ),
+							'id'                => esc_attr( $cle ),
 							'selected'          => (int) $valeur,
 							'show_option_none'  => '—',
 							'option_none_value' => '',

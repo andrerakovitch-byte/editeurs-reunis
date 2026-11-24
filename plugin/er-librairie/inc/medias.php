@@ -144,8 +144,10 @@ add_action(
 			return;
 		}
 		update_post_meta( $id, 'er_lien', sanitize_textarea_field( wp_unslash( $_POST['er_lien'] ?? '' ) ) );
-		update_post_meta( $id, 'er_genre', 'podcast' === ( $_POST['er_genre'] ?? '' ) ? 'podcast' : 'video' );
-		update_post_meta( $id, 'er_duree', '' === trim( (string) ( $_POST['er_duree'] ?? '' ) ) ? '' : (string) absint( $_POST['er_duree'] ) );
+		$genre = sanitize_key( wp_unslash( $_POST['er_genre'] ?? '' ) );
+		$duree = trim( sanitize_text_field( wp_unslash( $_POST['er_duree'] ?? '' ) ) );
+		update_post_meta( $id, 'er_genre', 'podcast' === $genre ? 'podcast' : 'video' );
+		update_post_meta( $id, 'er_duree', '' === $duree ? '' : (string) absint( $duree ) );
 	}
 );
 

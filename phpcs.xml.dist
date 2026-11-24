@@ -50,17 +50,27 @@
 	<rule ref="Generic.CodeAnalysis.EmptyStatement"/>
 	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
 
-	<!-- Les fonctions du site qui rendent du HTML déjà échappé. -->
+	<!--
+		Les fonctions du site qui rendent une sortie déjà échappée : les adresses (esc_url) et les composants (la bande,
+		la tête, la fiche). er_attr échappe un texte pour le JSON d'un commentaire de bloc, le seul endroit où il sert.
+	-->
 	<rule ref="WordPress.Security.EscapeOutput">
 		<properties>
 			<property name="customAutoEscapedFunctions" type="array">
+				<element value="er_lien"/>
+				<element value="er_image"/>
+				<element value="er_livre"/>
+				<element value="er_article"/>
+				<element value="er_rayon"/>
+				<element value="er_ajout_panier"/>
 				<element value="er_bande_page"/>
 				<element value="er_bande_rayon"/>
 				<element value="er_tete_page"/>
 				<element value="er_tete_de_la_page"/>
 				<element value="er_fiche_livre"/>
-				<element value="er_image"/>
-				<element value="er_lien"/>
+			</property>
+			<property name="customEscapingFunctions" type="array">
+				<element value="er_attr"/>
 			</property>
 		</properties>
 	</rule>
