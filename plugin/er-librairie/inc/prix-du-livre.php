@@ -285,15 +285,32 @@ add_action(
 
 /* Les commandes ---------------------------------------------------------------------------------------------- */
 
+/**
+ * Un libellé de relevé, complété d'espaces jusqu'à la colonne des valeurs (compte les lettres, pas les octets).
+ *
+ * @param string $texte Le libellé.
+ */
+function er_prix_colonne( $texte ) {
+	return $texte . str_repeat( ' ', max( 1, 46 - mb_strlen( $texte ) ) );
+}
+
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/**
 	 * Le relevé des prix : les remises des livres neufs, permises ou ignorées, et pourquoi. wp er prix [tout]
 	 *
-	 * @param array $args « tout » : la liste entière des remises ignorées, sinon les quarante premières.
+	 * wp er prix maison [appliquer] : les titres de la maison qui portent une remise, que la loi ignore. L'éditeur fixe
+	 * le prix de ses livres : s'il veut ce prix-là, c'est un nouveau prix de l'éditeur. Avec « appliquer », le prix
+	 * remisé devient le prix du livre, sans remise affichée.
+	 *
+	 * @param array $args « tout » : la liste entière des remises ignorées, sinon les quarante premières ; « maison ».
 	 */
 	WP_CLI::add_command(
 		'er prix',
 		function ( $args ) {
+			if ( isset( $args[0] ) && 'maison' === $args[0] ) {
+				er_prix_maison( isset( $args[1] ) && 'appliquer' === $args[1] );
+				return;
+			}
 			$ids      = get_posts(
 				array(
 					'post_type'   => 'product',
@@ -323,7 +340,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			WP_CLI::log( sprintf( 'Les remises saisies : %d livres.', array_sum( $raisons ) ) );
 			arsort( $raisons );
 			foreach ( $raisons as $raison => $n ) {
-				WP_CLI::log( sprintf( '  %-48s %4d', $raison, $n ) );
+				WP_CLI::log( '  ' . er_prix_colonne( $raison ) . $n );
 			}
 			WP_CLI::log( sprintf( 'Soldes permises : %d, dont %d sans date de dernier approvisionnement (à noter dans la fiche, onglet Inventaire).', $soldes, $sans_ap ) );
 			WP_CLI::log( sprintf( 'Remises ignorées (le livre se vend au prix de l’éditeur) : %d', count( $ignorees ) ) );
@@ -335,6 +352,36 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			}
 		}
 	);
+
+	/**
+	 * Les titres de la maison remisés : leur prix remisé comme nouveau prix de l'éditeur (wp er prix maison).
+	 *
+	 * @param bool $appliquer Poser les nouveaux prix, sinon seulement les montrer.
+	 */
+	function er_prix_maison( $appliquer ) {
+		$n = 0;
+		foreach ( get_posts(
+			array(
+				'post_type'   => 'product',
+				'post_status' => array( 'publish', 'draft', 'private' ),
+				'numberposts' => -1,
+				'fields'      => 'ids',
+			)
+		) as $id ) {
+			$p = wc_get_product( $id );
+			if ( ! $p || '' === $p->get_sale_price( 'edit' ) || 'titre de la maison' !== er_prix_regle_du_produit( $p )[1] ) {
+				continue;
+			}
+			++$n;
+			WP_CLI::log( sprintf( '  %s · %s € → %s €', html_entity_decode( $p->get_name(), ENT_QUOTES, 'UTF-8' ), $p->get_regular_price( 'edit' ), $p->get_sale_price( 'edit' ) ) );
+			if ( $appliquer ) {
+				$p->set_regular_price( $p->get_sale_price( 'edit' ) );
+				$p->set_sale_price( '' );
+				$p->save();
+			}
+		}
+		WP_CLI::log( sprintf( $appliquer ? '%d titres de la maison à leur nouveau prix.' : '%d titres de la maison remisés ; « wp er prix maison appliquer » fait du prix remisé leur nouveau prix.', $n ) );
+	}
 
 	/**
 	 * La TVA du livre : wp er tva [appliquer]. Montre les réglages ; avec « appliquer », les pose : taxes calculées,
@@ -360,7 +407,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				if ( $appliquer && $avant !== $voulu ) {
 					update_option( $option, $voulu );
 				}
-				WP_CLI::log( sprintf( '  %-44s %s%s', $libelle, $appliquer ? $voulu : $avant, $avant === $voulu ? '' : ( $appliquer ? ' (était : ' . $avant . ')' : ' (attendu : ' . $voulu . ')' ) ) );
+				WP_CLI::log( '  ' . er_prix_colonne( $libelle ) . ( $appliquer ? $voulu : $avant ) . ( $avant === $voulu ? '' : ( $appliquer ? ' (était : ' . $avant . ')' : ' (attendu : ' . $voulu . ')' ) ) );
 			}
 			$taux = null;
 			foreach ( WC_Tax::get_rates_for_tax_class( '' ) as $t ) {
@@ -380,16 +427,16 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				'tax_rate_class'    => '',
 			);
 			if ( $taux && 5.5 === (float) $taux->tax_rate && (int) $taux->tax_rate_shipping ) {
-				WP_CLI::log( '  Taux pour la France                           5,5 %, livraison comprise' );
+				WP_CLI::log( '  ' . er_prix_colonne( 'Taux pour la France' ) . '5,5 %, livraison comprise' );
 			} elseif ( $appliquer ) {
 				if ( $taux ) {
 					WC_Tax::_update_tax_rate( (int) $taux->tax_rate_id, $voulu );
 				} else {
 					WC_Tax::_insert_tax_rate( $voulu );
 				}
-				WP_CLI::log( '  Taux pour la France                           5,5 %, livraison comprise (posé)' );
+				WP_CLI::log( '  ' . er_prix_colonne( 'Taux pour la France' ) . '5,5 %, livraison comprise (posé)' );
 			} else {
-				WP_CLI::log( '  Taux pour la France                           ' . ( $taux ? $taux->tax_rate . ' % (attendu : 5,5 %, livraison comprise)' : 'aucun (attendu : 5,5 %, livraison comprise)' ) );
+				WP_CLI::log( '  ' . er_prix_colonne( 'Taux pour la France' ) . ( $taux ? $taux->tax_rate . ' % (attendu : 5,5 %, livraison comprise)' : 'aucun (attendu : 5,5 %, livraison comprise)' ) );
 			}
 			if ( ! $appliquer ) {
 				WP_CLI::log( '« wp er tva appliquer » pour poser ces réglages.' );
