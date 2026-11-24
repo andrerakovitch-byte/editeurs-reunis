@@ -14,3 +14,4 @@ require __DIR__ . '/inc/exemples.php';
 require __DIR__ . '/inc/etiquettes.php';
 require __DIR__ . '/inc/titres.php';
 require __DIR__ . '/inc/phrases.php';
+require __DIR__ . '/inc/recoupement.php';

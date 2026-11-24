@@ -63,6 +63,14 @@ function er_roles_personnes() {
 			'meta'  => '',
 			'cle'   => 'illustration',
 		),
+		// La traduction revue (24 nov. 2026, le relevé des rôles : Simone Sentz-Michel dans les Folio, par exemple).
+		'er_revision'     => array(
+			'fiche' => _x( 'Traduction revue par', 'fiche d’un livre', 'er-librairie' ),
+			'boite' => __( 'Révision de la traduction', 'er-librairie' ),
+			'aide'  => __( 'Qui a revu la traduction, séparés par des virgules : des auteurs. Le livre paraît sur leur page.', 'er-librairie' ),
+			'meta'  => '',
+			'cle'   => 'revision',
+		),
 	);
 }
 
@@ -319,6 +327,7 @@ function er_personne_livres( $auteur ) {
 		'preface'      => array(),
 		'edition'      => array(),
 		'illustration' => array(),
+		'revision'     => array(),
 		'autour'       => array(),
 		'tous'         => array(),
 	);

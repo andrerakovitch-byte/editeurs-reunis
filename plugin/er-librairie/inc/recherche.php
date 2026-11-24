@@ -657,6 +657,7 @@ function er_api_chercher( $requete ) {
 					'preface'    => count( $roles['preface'] ),
 					'edition'    => count( $roles['edition'] ),
 					'illustration' => count( $roles['illustration'] ),
+					'revision'   => count( $roles['revision'] ),
 					'autour'     => count( $roles['autour'] ),
 				) : null,
 				'graphies' => $graphies,

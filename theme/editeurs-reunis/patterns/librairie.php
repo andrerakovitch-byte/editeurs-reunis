@@ -30,6 +30,7 @@ if ( is_tax( 'auteur' ) && function_exists( 'er_personne_livres' ) ) {
 			__( 'Ses préfaces', 'editeurs-reunis' )       => isset( $er_livres['preface'] ) ? $er_livres['preface'] : array(),
 			__( 'Éditions établies', 'editeurs-reunis' )  => isset( $er_livres['edition'] ) ? $er_livres['edition'] : array(),
 			__( 'Ses illustrations', 'editeurs-reunis' )  => isset( $er_livres['illustration'] ) ? $er_livres['illustration'] : array(),
+			__( 'Traductions revues', 'editeurs-reunis' ) => isset( $er_livres['revision'] ) ? $er_livres['revision'] : array(),
 		)
 	);
 	$er_ecrivain = ! empty( $er_livres['auteur'] ) || ! $er_roles;
