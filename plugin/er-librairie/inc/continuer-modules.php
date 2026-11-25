@@ -1189,7 +1189,8 @@ function er_continuer_des( $ids, $ix ) {
 	arsort( $compte );
 	$sorte = (string) key( $compte );
 	// Une sorte qui fait tout le module, ou tout sauf un livre sur trois ou quatre.
-	if ( $compte && ! in_array( $sorte, array( 'livre', 'revue', 'theatre', 'oeuvres' ), true ) && ( 1 === count( $compte ) || ( count( $ids ) >= 3 && reset( $compte ) >= count( $ids ) - 1 ) ) ) {
+	// « des livres sur la musique sur Moscou » ne se dit pas : une sorte qui porte déjà son « sur » laisse « des livres ».
+	if ( $compte && ! in_array( $sorte, array( 'livre', 'revue', 'theatre', 'oeuvres' ), true ) && false === strpos( er_continuer_sortes()[ $sorte ][1], ' sur ' ) && ( 1 === count( $compte ) || ( count( $ids ) >= 3 && reset( $compte ) >= count( $ids ) - 1 ) ) ) {
 		list( , $plusieurs, $feminin, $seul ) = er_continuer_sortes()[ $sorte ];
 		return array( 0 === strpos( $seul, 'des ' ) ? $seul : 'des ' . $plusieurs, $feminin, $sorte );
 	}
