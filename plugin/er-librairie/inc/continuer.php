@@ -475,3 +475,374 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 	);
 }
+
+/* Le choix d'un livre ------------------------------------------------------------------------------------------- */
+
+/**
+ * Les modules d'un livre (er_continuer_choisir), gardés un jour, refaits quand l'index l'est. Sur une page qui
+ * n'est pas en français, les lignes (des phrases françaises) se taisent.
+ *
+ * @param int $id Le livre.
+ * @return array ouverture, modules.
+ */
+function er_continuer( $id ) {
+	static $faits = array();
+	$id = (int) $id;
+	if ( isset( $faits[ $id ] ) ) {
+		return $faits[ $id ];
+	}
+	$index  = er_continuer_index();
+	$langue = function_exists( 'er_langue' ) ? er_langue() : 'fr';
+	$cle    = 'er_continuer_' . $id . '_' . $langue . '_' . ( isset( $index['quand'] ) ? (int) $index['quand'] : 0 );
+	$garde  = get_transient( $cle );
+	if ( is_array( $garde ) && isset( $garde['modules'] ) ) {
+		$faits[ $id ] = $garde;
+		return $garde;
+	}
+	$choix = er_continuer_choisir(
+		$id,
+		$index,
+		array(
+			'notice'     => er_continuer_notice( $id ),
+			'cites'      => er_continuer_cites( $id ),
+			'langue'     => $langue,
+			'maintenant' => time(),
+		)
+	);
+	if ( 'fr' !== $langue ) {
+		$choix['ouverture'] = '';
+		foreach ( $choix['modules'] as $k => $m ) {
+			$choix['modules'][ $k ]['ligne'] = '';
+		}
+	}
+	set_transient( $cle, $choix, DAY_IN_SECONDS );
+	$faits[ $id ] = $choix;
+	return $choix;
+}
+
+/**
+ * Les livres que montrent les modules d'un livre (« Du même auteur », dans la colonne, ne les redit pas).
+ *
+ * @param int $id Le livre.
+ * @return int[]
+ */
+function er_continuer_livres_montres( $id ) {
+	$ids = array();
+	foreach ( er_continuer( $id )['modules'] as $m ) {
+		$ids = array_merge( $ids, array_map( 'intval', $m['livres'] ) );
+	}
+	return array_values( array_unique( $ids ) );
+}
+
+/* L'affichage --------------------------------------------------------------------------------------------------- */
+
+/**
+ * Un texte du choix en HTML : échappé, les titres d'œuvre ({{…}}) et les citations ([[…]]) en italique, le
+ * cyrillique dans sa langue.
+ *
+ * @param string $texte Le texte.
+ */
+function er_continuer_html( $texte ) {
+	$html = str_replace( array( '{{', '}}', '[[', ']]' ), array( '<em>', '</em>', '<em>', '</em>' ), esc_html( (string) $texte ) );
+	return er_continuer_cyrillique( $html );
+}
+
+/**
+ * Le cyrillique d'un texte déjà échappé, dans une balise de langue (pour la lecture à voix haute et la césure).
+ *
+ * @param string $html Le texte.
+ */
+function er_continuer_cyrillique( $html ) {
+	return (string) preg_replace( '/(\p{Cyrillic}(?:[\p{Cyrillic}0-9 .,:;!?«»()\x{2013}\x{2014}\x{2019}-]*\p{Cyrillic})?)/u', '<span lang="ru">$1</span>', (string) $html );
+}
+
+/**
+ * Le prix d'un livre et, s'il est en stock, « Ajouter » (au panier sans quitter la page, assets/js/rayonnage.js) ;
+ * rien pour un livre épuisé, que son prix dit déjà.
+ *
+ * @param WC_Product $p     Le livre.
+ * @param string     $texte Le texte du bouton.
+ */
+function er_continuer_achat( $p, $texte = '' ) {
+	$bouton = $p->is_in_stock() && $p->is_purchasable() && $p->is_type( 'simple' ) && function_exists( 'er_carte_bouton' ) ? er_carte_bouton( $p, $texte ) : '';
+	return er_reco_prix( $p ) . $bouton;
+}
+
+/**
+ * Les mots d'un livre dans une carte : la mention, le titre (et sa traduction sous un titre russe), l'auteur, la
+ * phrase.
+ *
+ * @param WC_Product $p     Le livre.
+ * @param string     $bloc  La classe de base (er-vignette, er-vedette, er-ligne-livre).
+ * @param bool       $titre Montrer le titre (la vedette d'un module dont le titre est déjà celui du livre ne le
+ *                          redit pas).
+ */
+function er_continuer_mots_livre( $p, $bloc, $titre = true ) {
+	$id       = $p->get_id();
+	$lien     = get_permalink( $id );
+	$mentions = wp_get_post_terms( $id, 'product_tag' );
+	$mention  = $mentions && ! is_wp_error( $mentions ) ? '<span class="er-reco-mention' . ( 'tres-rare' === $mentions[0]->slug ? ' er-reco-mention--rare' : '' ) . '">' . esc_html( html_entity_decode( $mentions[0]->name, ENT_QUOTES, 'UTF-8' ) ) . '</span>' : '';
+	$nom      = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
+	$glose    = preg_match( '/\p{Cyrillic}/u', $nom ) && ( ! function_exists( 'er_langue' ) || 'ru' !== er_langue() ) ? trim( (string) $p->get_meta( 'er_titre_fr' ), ' «»"' ) : '';
+	$auteurs  = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) );
+	$auteurs  = $auteurs && ! is_wp_error( $auteurs ) ? implode( ', ', array_map( fn( $a ) => html_entity_decode( $a, ENT_QUOTES, 'UTF-8' ), $auteurs ) ) : '';
+	$phrase   = function_exists( 'er_reco_phrase' ) ? er_reco_phrase( $id ) : '';
+	return $mention
+		. ( $titre ? '<a class="' . $bloc . '__titre" href="' . esc_url( $lien ) . '">' . er_continuer_cyrillique( esc_html( wptexturize( $nom ) ) ) . '</a>' : '' )
+		. ( '' !== $glose ? '<span class="' . $bloc . '__glose">« ' . esc_html( $glose ) . ' »</span>' : '' )
+		. ( '' !== $auteurs ? '<span class="' . $bloc . '__auteur">' . er_continuer_cyrillique( esc_html( $auteurs ) ) . '</span>' : '' )
+		. ( '' !== $phrase ? '<span class="' . $bloc . '__phrase">' . esc_html( $phrase ) . '</span>' : '' );
+}
+
+/**
+ * La case d'un livre : sa couverture entière (jamais recadrée), posée sur le fond doux (ou blanc sur un module en fond
+ * doux). Le lien de la couverture double celui du titre : on ne le lit qu'une fois, sauf quand le titre n'est pas
+ * montré.
+ *
+ * @param WC_Product $p       Le livre.
+ * @param string     $classe  La classe.
+ * @param bool       $seul    Le seul lien vers le livre.
+ * @param string     $tailles L'attribut sizes de l'image.
+ */
+function er_continuer_case( $p, $classe, $seul = false, $tailles = '(max-width: 781px) 40vw, 220px' ) {
+	$titre = html_entity_decode( get_the_title( $p->get_id() ), ENT_QUOTES, 'UTF-8' );
+	$image = function_exists( 'er_carte_couverture' ) ? er_carte_couverture( $p, $tailles ) : er_reco_couverture( $p );
+	return '<a class="' . $classe . '" href="' . esc_url( get_permalink( $p->get_id() ) ) . '"' . ( $seul ? ' aria-label="' . esc_attr( $titre ) . '"' : ' tabindex="-1" aria-hidden="true"' ) . '>' . $image . '</a>';
+}
+
+/**
+ * Un livre en vignette posée : la case, puis les mots, le prix et « Ajouter ».
+ *
+ * @param int $pid Le livre.
+ */
+function er_continuer_vignette( $pid ) {
+	$p = wc_get_product( $pid );
+	if ( ! $p ) {
+		return '';
+	}
+	return '<li class="er-vignette">' . er_continuer_case( $p, 'er-vignette__case' )
+		. '<div class="er-vignette__texte">' . er_continuer_mots_livre( $p, 'er-vignette' ) . '<span class="er-vignette__achat">' . er_continuer_achat( $p ) . '</span></div></li>';
+}
+
+/**
+ * Un seul livre en grand : la case à gauche, la phrase en grand à droite, le prix et « Ajouter au panier ».
+ *
+ * @param int  $pid   Le livre.
+ * @param bool $titre Montrer le titre.
+ */
+function er_continuer_vedette( $pid, $titre = true ) {
+	$p = wc_get_product( $pid );
+	if ( ! $p ) {
+		return '';
+	}
+	return '<div class="er-vedette">' . er_continuer_case( $p, 'er-vedette__case', ! $titre, '(max-width: 781px) 60vw, 380px' )
+		. '<div class="er-vedette__texte">' . er_continuer_mots_livre( $p, 'er-vedette', $titre )
+		. '<div class="er-vedette__achat">' . er_continuer_achat( $p, __( 'Ajouter au panier', 'er-librairie' ) ) . '</div></div></div>';
+}
+
+/**
+ * Un livre en ligne : la couverture, les mots, le prix et « Ajouter » à droite (les modules discrets).
+ *
+ * @param int $pid Le livre.
+ */
+function er_continuer_ligne_livre( $pid ) {
+	$p = wc_get_product( $pid );
+	if ( ! $p ) {
+		return '';
+	}
+	return '<li class="er-ligne-livre">' . er_continuer_case( $p, 'er-ligne-livre__case', false, '90px' )
+		. '<div class="er-ligne-livre__texte">' . er_continuer_mots_livre( $p, 'er-ligne-livre' ) . '</div>'
+		. '<div class="er-ligne-livre__achat">' . er_continuer_achat( $p ) . '</div></li>';
+}
+
+/**
+ * Un article, une rencontre, une vidéo ou une exposition du centre, en carte sur le bleu nuit du centre : la sorte, la
+ * grande initiale en cyrillique, le titre, la date et où aller.
+ *
+ * @param int $cid Le contenu.
+ */
+function er_continuer_carte_centre( $cid ) {
+	$type  = (string) get_post_type( $cid );
+	$titre = html_entity_decode( get_the_title( $cid ), ENT_QUOTES, 'UTF-8' );
+	if ( 'er_evenement' === $type ) {
+		$passee = function_exists( 'er_evt_passee' ) && er_evt_passee( $cid );
+		$genre  = __( 'Rencontre au centre', 'er-librairie' );
+		$quand  = function_exists( 'er_evt_quand' ) ? er_evt_quand( $cid, false ) : get_the_date( 'j F Y', $cid );
+		$suite  = $passee ? ( get_post_meta( $cid, 'er_videos', true ) ? __( 'Revoir la rencontre', 'er-librairie' ) : __( 'La rencontre', 'er-librairie' ) ) : __( 'Venir à la rencontre', 'er-librairie' );
+	} elseif ( 'er_media' === $type ) {
+		$podcast = 'podcast' === get_post_meta( $cid, 'er_genre', true );
+		$genre   = $podcast ? __( 'Podcast du centre', 'er-librairie' ) : __( 'Vidéo du centre', 'er-librairie' );
+		$quand   = get_the_date( 'j F Y', $cid );
+		$suite   = $podcast ? __( 'Écouter', 'er-librairie' ) : __( 'Voir la vidéo', 'er-librairie' );
+	} elseif ( defined( 'ER_EXPO' ) && ER_EXPO === $type ) {
+		$genre = __( 'Exposition au centre', 'er-librairie' );
+		$quand = function_exists( 'er_expo_quand' ) ? er_expo_quand( $cid ) : '';
+		$suite = function_exists( 'er_expo_etat' ) && 'passee' === er_expo_etat( $cid ) ? __( 'Revoir l’exposition', 'er-librairie' ) : __( 'Voir l’exposition', 'er-librairie' );
+	} else {
+		$genre = __( 'Le journal du centre', 'er-librairie' );
+		$quand = get_the_date( 'j F Y', $cid );
+		$suite = __( 'Lire l’article', 'er-librairie' );
+	}
+	$gens   = wp_get_post_terms( $cid, 'auteur' );
+	$lettre = $gens && ! is_wp_error( $gens ) && function_exists( 'er_reco_initiale' ) ? er_reco_initiale( $gens[0] ) : ( function_exists( 'er_initiale_cyrillique' ) ? er_initiale_cyrillique( $titre, array(), false ) : '' );
+	$quand  = trim( (string) $quand );
+	return '<li class="er-carte-centre er-carte-centre--' . esc_attr( $type ) . '"><a href="' . esc_url( get_permalink( $cid ) ) . '">'
+		. '<span class="er-carte-centre__genre"><span class="er-reco-point" aria-hidden="true"></span>' . esc_html( $genre ) . '</span>'
+		. ( '' !== $lettre ? '<span class="er-carte-centre__lettre" lang="ru" aria-hidden="true">' . esc_html( $lettre ) . '</span>' : '' )
+		. '<span class="er-carte-centre__titre">' . er_continuer_cyrillique( esc_html( $titre ) ) . '</span>'
+		. '<span class="er-carte-centre__meta">' . esc_html( ( '' !== $quand ? $quand . ' · ' : '' ) . $suite ) . ' →</span></a></li>';
+}
+
+/**
+ * Le lien d'un module vers la page où aller plus loin encore : la personne, l'époque, le sujet, le rayon.
+ *
+ * @param array $m Le module.
+ */
+function er_continuer_lien( $m ) {
+	if ( empty( $m['lien'] ) || count( $m['lien'] ) < 2 ) {
+		return '';
+	}
+	list( $taxonomie, $terme ) = $m['lien'];
+	if ( ! taxonomy_exists( $taxonomie ) ) {
+		return '';
+	}
+	$t = is_numeric( $terme ) ? get_term( (int) $terme, $taxonomie ) : get_term_by( 'slug', (string) $terme, $taxonomie );
+	if ( ! $t || is_wp_error( $t ) ) {
+		return '';
+	}
+	$url = get_term_link( $t );
+	if ( is_wp_error( $url ) ) {
+		return '';
+	}
+	$mots = array(
+		'auteur'      => __( 'Sa page', 'er-librairie' ),
+		'er_periode'  => __( 'Toute l’époque', 'er-librairie' ),
+		'er_ecriture' => __( 'Toute l’époque', 'er-librairie' ),
+		'er_sujet'    => __( 'Tout le thème', 'er-librairie' ),
+		'product_cat' => __( 'Tout le rayon', 'er-librairie' ),
+	);
+	return '<p class="er-lien-fleche er-module__lien"><a href="' . esc_url( $url ) . '">' . esc_html( isset( $mots[ $taxonomie ] ) ? $mots[ $taxonomie ] : __( 'Voir tout', 'er-librairie' ) ) . '</a></p>';
+}
+
+/**
+ * Le corps d'un module, selon sa forme.
+ *
+ * @param array $m Le module.
+ */
+function er_continuer_corps( $m ) {
+	$livres = array_map( 'intval', $m['livres'] );
+	$cartes = '';
+	foreach ( array_map( 'intval', $m['contenus'] ) as $cid ) {
+		$cartes .= er_continuer_carte_centre( $cid );
+	}
+	switch ( $m['forme'] ) {
+		case 'vedette':
+			return ( $livres ? er_continuer_vedette( $livres[0], empty( $m['sans_titre'] ) ) : '' ) . ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+		case 'deux-langues':
+			$fr = '';
+			$ru = '';
+			foreach ( $livres as $pid ) {
+				if ( has_term( 'russe', 'langue', $pid ) ) {
+					$ru .= er_continuer_vignette( $pid );
+				} else {
+					$fr .= er_continuer_vignette( $pid );
+				}
+			}
+			return '<div class="er-deux-langues"><div class="er-deux-langues__fr"><h4 class="er-deux-langues__titre">' . esc_html__( 'En français', 'er-librairie' ) . '</h4><ul class="er-vignettes">' . $fr . '</ul></div>'
+				. '<div class="er-deux-langues__ru"><h4 class="er-deux-langues__titre" lang="ru">По-русски</h4><ul class="er-vignettes">' . $ru . '</ul></div></div>'
+				. ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+		case 'ligne':
+			$lignes = '';
+			foreach ( $livres as $pid ) {
+				$lignes .= er_continuer_ligne_livre( $pid );
+			}
+			return ( $lignes ? '<ul class="er-lignes">' . $lignes . '</ul>' : '' ) . ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+		case 'contenus':
+			return '<ul class="er-cartes-centre">' . $cartes . '</ul>';
+		default:
+			$vignettes = '';
+			foreach ( $livres as $pid ) {
+				$vignettes .= er_continuer_vignette( $pid );
+			}
+			return '<ul class="er-vignettes">' . $vignettes . $cartes . '</ul>';
+	}
+}
+
+/**
+ * « Pour aller plus loin » sous la fiche d'un livre : l'ouverture, puis les modules, puis la mention des phrases.
+ * Un livre sans module n'a pas de section.
+ *
+ * @param int $id Le livre.
+ */
+function er_continuer_bloc( $id ) {
+	$choix   = er_continuer( $id );
+	$modules = $choix['modules'];
+	// L'exposition du centre à laquelle le livre est rattaché (expositions.php), en module à part, après le premier.
+	if ( function_exists( 'er_expos_de' ) ) {
+		$expos = er_expos_de( $id );
+		if ( $expos ) {
+			$expo = array(
+				'type'       => 'exposition',
+				'sur'        => __( 'Au centre culturel', 'er-librairie' ),
+				'titre'      => _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ),
+				'ligne'      => '',
+				'livres'     => array(),
+				'contenus'   => array_map( fn( $e ) => (int) $e->ID, $expos ),
+				'forme'      => 'contenus',
+				'secondaire' => true,
+				'fond'       => ! $modules,
+				'lien'       => array(),
+				'sans_titre' => false,
+			);
+			array_splice( $modules, $modules ? 1 : 0, 0, array( $expo ) );
+		}
+	}
+	if ( ! $modules ) {
+		return '';
+	}
+	$html    = '';
+	$phrases = array();
+	foreach ( $modules as $k => $m ) {
+		$classes = array( 'er-module', 'er-module--' . $m['forme'], 'er-module--' . $m['type'] );
+		if ( ! empty( $m['fond'] ) ) {
+			$classes[] = 'er-module--fond';
+		}
+		if ( ! empty( $m['secondaire'] ) ) {
+			$classes[] = 'er-module--secondaire';
+		}
+		$titre_id = 'er-module-' . ( $k + 1 );
+		$html    .= '<section class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-labelledby="' . esc_attr( $titre_id ) . '"><div class="er-module__g">'
+			. '<div class="er-module__tete"><p class="er-module__sur">' . er_continuer_html( $m['sur'] ) . '</p>'
+			. '<h3 class="er-module__titre" id="' . esc_attr( $titre_id ) . '">' . er_continuer_html( $m['titre'] ) . '</h3>'
+			. ( '' !== $m['ligne'] ? '<p class="er-module__ligne">' . er_continuer_html( $m['ligne'] ) . '</p>' : '' )
+			. er_continuer_lien( $m ) . '</div>'
+			. '<div class="er-module__corps">' . er_continuer_corps( $m ) . '</div></div></section>';
+		$phrases = array_merge( $phrases, array_map( 'intval', $m['livres'] ) );
+	}
+	$mention = function_exists( 'er_reco_mention_phrases' ) ? er_reco_mention_phrases( $phrases ) : '';
+	return '<section class="er-plus-loin alignfull" aria-labelledby="er-plus-loin-titre">'
+		. '<div class="er-plus-loin__ouverture"><p class="er-plus-loin__sur">' . esc_html__( 'Pour aller plus loin', 'er-librairie' ) . '</p>'
+		. '<h2 class="er-plus-loin__titre" id="er-plus-loin-titre">' . esc_html__( 'D’un livre à l’autre', 'er-librairie' ) . '</h2>'
+		. ( '' !== $choix['ouverture'] ? '<p class="er-plus-loin__resume">' . er_continuer_html( $choix['ouverture'] ) . '</p>' : '' ) . '</div>'
+		. $html
+		. ( '' !== $mention ? '<div class="er-plus-loin__mention">' . $mention . '</div>' : '' )
+		. '</section>';
+}
+
+add_action(
+	'init',
+	function () {
+		register_block_type(
+			'er/fiche-continuer',
+			array(
+				'api_version'     => 3,
+				'uses_context'    => array( 'postId' ),
+				'render_callback' => function ( $attributs, $contenu, $bloc ) {
+					unset( $attributs, $contenu );
+					$id = isset( $bloc->context['postId'] ) ? (int) $bloc->context['postId'] : get_the_ID();
+					return $id && 'product' === get_post_type( $id ) && function_exists( 'wc_get_product' ) ? er_continuer_bloc( $id ) : '';
+				},
+			)
+		);
+	}
+);

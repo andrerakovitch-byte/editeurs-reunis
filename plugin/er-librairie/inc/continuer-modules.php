@@ -1798,7 +1798,8 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			}
 			$redit = false;
 			foreach ( $principaux as $m ) {
-				if ( 'epoque' === $m['type'] && false !== mb_strpos( $m['fragment'], $mots[1] ) ) {
+				// « La guerre » redit « La guerre, 1941-1945 ».
+				if ( 'epoque' === $m['type'] && ( false !== mb_strpos( $m['fragment'], $mots[1] ) || 0 === mb_strpos( $m['titre'], $mots[0] ) ) ) {
 					$redit = true;
 				}
 			}
