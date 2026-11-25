@@ -1907,12 +1907,20 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			} else {
 				$objet = 'd’autres traductions';
 			}
+			// « Traduit avec X » laissait deviner qui avait traduit quoi : le livre de la fiche, nommé, et ses mains.
+			$a_plusieurs = '';
+			if ( $co ) {
+				$a_plusieurs = count( $co ) <= 3
+					? 'une traduction à ' . er_continuer_nombre( 2 * ( count( $co ) + 1 ) ) . ' mains, avec ' . er_continuer_liste( array_map( $nom, $co ) )
+					: 'une traduction collective, avec ' . er_continuer_nombre( count( $co ), true ) . ' autres plumes';
+				$a_plusieurs = er_continuer_phrase( $titre_l( $id ) . ' : ' . $a_plusieurs ) . ' ';
+			}
 			$ajouter(
 				array(
 					'type'     => 'traduction',
 					'sur'      => 'De la même main',
 					'titre'    => $nom( $t ),
-					'ligne'    => ( $co ? er_continuer_phrase( 'traduit avec ' . er_continuer_liste( array_map( $nom, $co ) ) ) . ' ' : '' ) . er_continuer_phrase( 'on lui doit aussi ' . $objet ),
+					'ligne'    => $a_plusieurs . er_continuer_phrase( 'on lui doit aussi ' . $objet ),
 					'fragment' => ( 1 === count( $siens ) ? 'une autre traduction ' : 'd’autres traductions ' ) . er_continuer_de( $nom_t ),
 					'livres'   => $siens,
 					'contenus' => $cs,
