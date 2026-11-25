@@ -15,6 +15,7 @@ require get_template_directory() . '/inc/recherche.php';
 require get_template_directory() . '/inc/entete.php';
 require get_template_directory() . '/inc/bande.php';
 require get_template_directory() . '/inc/tete.php';
+require get_template_directory() . '/inc/index.php';
 
 add_action(
 	'after_setup_theme',
@@ -150,27 +151,17 @@ add_action(
 				)
 			);
 		}
-		// L'accueil, la une écran par écran : les sujets défilent (patterns/une-ecrans.php).
+		// L'accueil, l'index : la colonne de droite montre la ligne en cours (patterns/une-index.php).
 		if ( is_front_page() ) {
 			wp_enqueue_script(
-				'editeurs-reunis-une-ecrans',
-				get_theme_file_uri( 'assets/js/une-ecrans.js' ),
+				'editeurs-reunis-une-index',
+				get_theme_file_uri( 'assets/js/une-index.js' ),
 				array(),
-				$version . '.' . filemtime( get_theme_file_path( 'assets/js/une-ecrans.js' ) ),
+				$version . '.' . filemtime( get_theme_file_path( 'assets/js/une-index.js' ) ),
 				array(
 					'strategy'  => 'defer',
 					'in_footer' => true,
 				)
-			);
-			wp_add_inline_script(
-				'editeurs-reunis-une-ecrans',
-				'window.erUneEcransTextes = ' . wp_json_encode(
-					array(
-						'pause'     => __( 'Pause', 'editeurs-reunis' ),
-						'reprendre' => __( 'Reprendre', 'editeurs-reunis' ),
-					)
-				) . ';',
-				'before'
 			);
 		}
 		// L'accueil, à la une : au téléphone, « Voir plus » sous l'essentiel de chaque module.
@@ -687,7 +678,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 
