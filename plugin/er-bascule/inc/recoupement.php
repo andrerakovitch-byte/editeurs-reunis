@@ -12,7 +12,8 @@
  *   seulement sur un livre qui n'en a pas, plusieurs lignes pour plusieurs auteurs), les éditeurs mal écrits dans le
  *   classement (editeur-nom), l'éditeur, l'année et le nombre de pages que le texte donne et que la fiche n'a pas (ou
  *   qui sont faux : « avant » dit alors la valeur à remplacer, et rien d'autre n'est touché), la nature d'une œuvre
- *   collective (« revue », « collectif » : oeuvres-collectives.php, dans l'extension de la librairie).
+ *   collective (« revue », « collectif » : oeuvres-collectives.php, dans l'extension de la librairie), l'ISBN d'une
+ *   fiche qui n'en a pas (isbn : treize chiffres à la clé juste, ou dix, convertis).
  * Sans « appliquer », la commande dit ce qu'elle ferait : les changements de rôles, les personnes nouvelles, les
  * corrections introuvables (déjà faites, ou un texte qui a changé).
  *
@@ -140,6 +141,44 @@ function er_recoupement_editeur( $nom ) {
  */
 function er_recoupement_peut_poser( $actuel, $avant, $vide ) {
 	return '' === $avant ? $vide : trim( (string) $actuel ) === trim( $avant );
+}
+
+/**
+ * Un ISBN valable, en treize chiffres (un ISBN à dix chiffres est converti) ; '' si la clé est fausse.
+ *
+ * @param string $valeur L'ISBN, avec ou sans tirets.
+ */
+function er_recoupement_isbn13( $valeur ) {
+	$t = strtoupper( preg_replace( '/[^0-9Xx]/', '', (string) $valeur ) );
+	if ( preg_match( '/^\d{9}[\dX]$/', $t ) ) {
+		$somme = 0;
+		for ( $i = 0; $i < 9; $i++ ) {
+			$somme += (int) $t[ $i ] * ( 10 - $i );
+		}
+		$r = ( 11 - $somme % 11 ) % 11;
+		if ( ( 10 === $r ? 'X' : (string) $r ) !== $t[9] ) {
+			return '';
+		}
+		$t = '978' . substr( $t, 0, 9 );
+		$t = $t . er_recoupement_cle13( $t );
+	}
+	if ( ! preg_match( '/^97[89]\d{10}$/', $t ) || er_recoupement_cle13( $t ) !== $t[12] ) {
+		return '';
+	}
+	return $t;
+}
+
+/**
+ * La clé d'un EAN-13, d'après ses douze premiers chiffres.
+ *
+ * @param string $t Au moins douze chiffres.
+ */
+function er_recoupement_cle13( $t ) {
+	$somme = 0;
+	for ( $i = 0; $i < 12; $i++ ) {
+		$somme += (int) $t[ $i ] * ( $i % 2 ? 3 : 1 );
+	}
+	return (string) ( ( 10 - $somme % 10 ) % 10 );
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -357,6 +396,26 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					WP_CLI::log( '  ' . $id . ' nature : ' . ( '' === $actuel ? '—' : $actuel ) . ' → ' . $apres );
 					if ( $appliquer ) {
 						update_post_meta( $id, 'er_nature', sanitize_key( $apres ) );
+					}
+					++$faits;
+					continue;
+				}
+				if ( 'isbn' === $champ ) {
+					$p      = wc_get_product( $id );
+					$actuel = $p ? er_isbn( $p ) : '';
+					$isbn   = er_recoupement_isbn13( $apres );
+					if ( ! $p || '' === $isbn || ! er_recoupement_peut_poser( $actuel, '' === $avant ? '' : er_recoupement_isbn13( $avant ), '' === $actuel ) ) {
+						$introuvable[] = $id . ' isbn (' . ( '' === $isbn ? 'clé fausse : ' . $apres : 'déjà : ' . $actuel ) . ')';
+						continue;
+					}
+					WP_CLI::log( '  ' . $id . ' isbn : ' . ( '' === $actuel ? '—' : $actuel ) . ' → ' . $isbn );
+					if ( $appliquer ) {
+						try {
+							$p->set_global_unique_id( $isbn );
+						} catch ( Exception $e ) {
+							$p->update_meta_data( 'er_isbn', $isbn ); // Un autre livre a ce numéro : même édition, deux fiches.
+						}
+						$p->save();
 					}
 					++$faits;
 					continue;

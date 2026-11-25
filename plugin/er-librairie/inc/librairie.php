@@ -292,6 +292,38 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	);
 
 	/**
+	 * Les fiches sans ISBN, une par ligne : année, éditeur, pages, nature, stock, langues, prix, titre, auteurs et
+	 * traducteurs, de quoi chercher leur ISBN : wp er librairie sans-isbn.
+	 */
+	WP_CLI::add_command(
+		'er librairie sans-isbn',
+		function () {
+			foreach ( er_librairie_ids() as $id ) {
+				$f = er_librairie_fiche( $id );
+				if ( '' !== $f['isbn'] ) {
+					continue;
+				}
+				WP_CLI::log(
+					sprintf(
+						'SANS #%d | %s | %s | %d | %s | %s | %s | %s | %s | %s | %s',
+						$id,
+						$f['annee'],
+						$f['editeur'],
+						$f['pages'],
+						$f['nature'],
+						$f['en_stock'] ? 'stock' : 'épuisé',
+						implode( ',', $f['langues'] ),
+						wc_get_product( $id )->get_regular_price(),
+						$f['titre'],
+						implode( ', ', $f['auteurs'] ),
+						implode( ', ', $f['roles']['traduction'] ?? array() )
+					)
+				);
+			}
+		}
+	);
+
+	/**
 	 * Les fiches en JSON, sur la sortie : wp er librairie exporter.
 	 */
 	WP_CLI::add_command(

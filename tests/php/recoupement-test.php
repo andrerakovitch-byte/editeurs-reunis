@@ -20,8 +20,8 @@ function test_recoupement_roles_tous_connus_et_par_livre() {
 }
 
 function test_recoupement_corrections_lisibles() {
-	$champs = array( 'texte', 'titre', 'auteur', 'personne', 'editeur-nom', 'editeur', 'annee', 'pages', 'nature' );
-	$poses  = array( 'auteur', 'editeur', 'annee', 'pages', 'nature' );
+	$champs = array( 'texte', 'titre', 'auteur', 'personne', 'editeur-nom', 'editeur', 'annee', 'pages', 'nature', 'isbn' );
+	$poses  = array( 'auteur', 'editeur', 'annee', 'pages', 'nature', 'isbn' );
 	foreach ( er_recoupement_lire( ER_RACINE . '/plugin/er-bascule/donnees/corrections-fiches.tsv', 4 ) as list( $id, $champ, $avant, $apres ) ) {
 		vrai( in_array( $champ, $champs, true ), $id . ' : champ « ' . $champ . ' »' );
 		vrai( in_array( $champ, $poses, true ) ? '' !== $apres : '' !== $avant, $id . ' : de quoi corriger' );
@@ -34,7 +34,17 @@ function test_recoupement_corrections_lisibles() {
 		if ( 'pages' === $champ ) {
 			vrai( (bool) preg_match( '/^[1-9]\d*$/', $apres ), $id . ' : un nombre de pages, « ' . $apres . ' »' );
 		}
+		if ( 'isbn' === $champ ) {
+			vrai( '' !== er_recoupement_isbn13( $apres ), $id . ' : un ISBN à la clé juste, « ' . $apres . ' »' );
+		}
 	}
+}
+
+function test_recoupement_isbn() {
+	egal( '9782846795159', er_recoupement_isbn13( '978-2-84679-515-9' ), 'treize chiffres, tirets ôtés' );
+	egal( '9782850651595', er_recoupement_isbn13( '2-85065-159-1' ), 'dix chiffres, convertis' );
+	egal( '', er_recoupement_isbn13( '9782846795158' ), 'clé fausse' );
+	egal( '', er_recoupement_isbn13( '2-85065-159-5' ), 'clé fausse à dix chiffres' );
 }
 
 function test_recoupement_ne_pose_que_sur_du_vide_ou_le_faux() {

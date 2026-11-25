@@ -445,14 +445,22 @@ def main():
             lignes.append(f'- {hote} a refusé les demandes (quota ?) : laissé de côté en cours de route')
     texte = '\n'.join(lignes) + '\n'
     print(texte)
-    # Le noyau dur : les fiches sans éditeur, ni année, ni pages ; leurs éditions candidates, dans le journal seulement.
-    durs = [x for x in livres if not x.get('editeur') and not re.search(r'\d{4}', str(x.get('annee') or ''))
-            and not x.get('pages')]
+    # Les livres sans ISBN parus depuis 1970 (ou sans année), hors revues : leurs éditions candidates, dans le journal
+    # seulement, celles du même éditeur d'abord, pour retrouver l'ISBN à la main.
+    def sans_isbn(x):
+        annee = re.search(r'\d{4}', str(x.get('annee') or ''))
+        return not x.get('isbn') and x.get('nature') != 'revue' and (not annee or int(annee.group(0)) >= 1970)
+
+    durs = [x for x in livres if sans_isbn(x)]
+    print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970')
+    par_id = {x['id']: x for x in durs}
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
         for ident, candidates in ex.map(noyau, durs):
-            print(f'NOYAU #{ident} : {len(candidates)}')
+            ed = par_id[ident].get('editeur') or ''
+            candidates.sort(key=lambda c: not (ed and concorde_editeur(ed, c.split('|')[1])))
+            print(f'CAND #{ident} : {len(candidates)} | {ed} | {par_id[ident].get("annee") or ""}')
             for c in candidates[:14]:
-                print(f'NOYAU #{ident} || {c}')
+                print(f'CAND #{ident} || {c}')
     if args.rapport:
         open(args.rapport, 'w', encoding='utf-8').write(texte)
 
