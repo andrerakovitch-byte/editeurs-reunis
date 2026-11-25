@@ -126,12 +126,14 @@ function er_expo_du_moment_html() {
 	) : '';
 	$legende = $image ? wp_get_attachment_caption( $image ) : '';
 	$ru      = fn( $t ) => preg_match( '/\p{Cyrillic}/u', $t ) ? ' lang="ru"' : '';
+	// Les coupures de la planche : le nom se lie au premier mot du titre (« Victoria / Ivleva Je »), les deux derniers
+	// mots du titre restent ensemble (« m’appelle / la guerre ») ; la largeur du titre, en em, fait le reste (CSS).
 
 	return '<section class="er-expo-moment' . ( $photo ? '' : ' est-sans-photo' ) . '" aria-labelledby="er-expo-moment-titre">'
 		. '<div class="er-expo-moment-texte">'
 		. '<h2 id="er-expo-moment-titre" class="er-expo-moment-titre">'
-		. ( $artistes ? '<span class="er-expo-moment-artiste"' . $ru( $artistes ) . '>' . esc_html( $artistes ) . '</span> ' : '' )
-		. '<span' . $ru( $titre ) . '>' . esc_html( $titre ) . '</span></h2>'
+		. ( $artistes ? '<span class="er-expo-moment-artiste"' . $ru( $artistes ) . '>' . esc_html( $artistes ) . '</span>&nbsp;' : '' )
+		. '<span' . $ru( $titre ) . '>' . preg_replace( '/ (\S+)$/u', '&nbsp;$1', esc_html( $titre ) ) . '</span></h2>'
 		. ( $lignes ? '<p class="er-expo-moment-quand">' . implode( '<br>', array_map( 'esc_html', $lignes ) ) . '</p>' : '' )
 		. '<p class="er-expo-moment-action"><a class="er-expo-moment-bouton" href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html__( 'Voir l’exposition', 'editeurs-reunis' ) . '</a></p>'
 		. '</div>'

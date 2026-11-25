@@ -13,7 +13,7 @@
 	display: grid;
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	column-gap: 24px;
-	min-height: clamp(40rem, calc(100svh - var(--er-ligne, 48px)), 53.75rem);
+	min-height: clamp(40rem, 59.72vw, 62rem); /* Les proportions de la planche (1440 × 860), à toutes les largeurs. */
 	background: var(--er-expo-fond);
 	color: var(--wp--preset--color--base);
 }
@@ -40,7 +40,7 @@
 	font-weight: 500;
 	line-height: 0.9;
 	letter-spacing: -0.04em;
-	text-wrap: pretty;
+	max-width: 6.05em; /* La largeur de la colonne de la planche, rapportée à la taille du titre : mêmes coupures partout. */
 }
 .er-expo-moment-artiste { color: var(--er-expo-accent); }
 
