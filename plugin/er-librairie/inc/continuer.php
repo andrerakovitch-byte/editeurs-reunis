@@ -579,7 +579,7 @@ function er_continuer_achat( $p, $texte = '' ) {
  * phrase.
  *
  * @param WC_Product $p     Le livre.
- * @param string     $bloc  La classe de base (er-vignette, er-vedette, er-ligne-livre).
+ * @param string     $bloc  La classe de base (er-pl-vignette, er-pl-vedette, er-pl-ligne).
  * @param bool       $titre Montrer le titre (la vedette d'un module dont le titre est déjà celui du livre ne le
  *                          redit pas).
  */
@@ -626,8 +626,8 @@ function er_continuer_vignette( $pid ) {
 	if ( ! $p ) {
 		return '';
 	}
-	return '<li class="er-vignette">' . er_continuer_case( $p, 'er-vignette__case' )
-		. '<div class="er-vignette__texte">' . er_continuer_mots_livre( $p, 'er-vignette' ) . '<span class="er-vignette__achat">' . er_continuer_achat( $p ) . '</span></div></li>';
+	return '<li class="er-pl-vignette">' . er_continuer_case( $p, 'er-pl-vignette__case' )
+		. '<div class="er-pl-vignette__texte">' . er_continuer_mots_livre( $p, 'er-pl-vignette' ) . '<span class="er-pl-vignette__achat">' . er_continuer_achat( $p ) . '</span></div></li>';
 }
 
 /**
@@ -641,9 +641,9 @@ function er_continuer_vedette( $pid, $titre = true ) {
 	if ( ! $p ) {
 		return '';
 	}
-	return '<div class="er-vedette">' . er_continuer_case( $p, 'er-vedette__case', ! $titre, '(max-width: 781px) 60vw, 380px' )
-		. '<div class="er-vedette__texte">' . er_continuer_mots_livre( $p, 'er-vedette', $titre )
-		. '<div class="er-vedette__achat">' . er_continuer_achat( $p, __( 'Ajouter au panier', 'er-librairie' ) ) . '</div></div></div>';
+	return '<div class="er-pl-vedette">' . er_continuer_case( $p, 'er-pl-vedette__case', ! $titre, '(max-width: 781px) 60vw, 380px' )
+		. '<div class="er-pl-vedette__texte">' . er_continuer_mots_livre( $p, 'er-pl-vedette', $titre )
+		. '<div class="er-pl-vedette__achat">' . er_continuer_achat( $p, __( 'Ajouter au panier', 'er-librairie' ) ) . '</div></div></div>';
 }
 
 /**
@@ -656,9 +656,9 @@ function er_continuer_ligne_livre( $pid ) {
 	if ( ! $p ) {
 		return '';
 	}
-	return '<li class="er-ligne-livre">' . er_continuer_case( $p, 'er-ligne-livre__case', false, '90px' )
-		. '<div class="er-ligne-livre__texte">' . er_continuer_mots_livre( $p, 'er-ligne-livre' ) . '</div>'
-		. '<div class="er-ligne-livre__achat">' . er_continuer_achat( $p ) . '</div></li>';
+	return '<li class="er-pl-ligne">' . er_continuer_case( $p, 'er-pl-ligne__case', false, '90px' )
+		. '<div class="er-pl-ligne__texte">' . er_continuer_mots_livre( $p, 'er-pl-ligne' ) . '</div>'
+		. '<div class="er-pl-ligne__achat">' . er_continuer_achat( $p ) . '</div></li>';
 }
 
 /**
@@ -692,11 +692,11 @@ function er_continuer_carte_centre( $cid ) {
 	$gens   = wp_get_post_terms( $cid, 'auteur' );
 	$lettre = $gens && ! is_wp_error( $gens ) && function_exists( 'er_reco_initiale' ) ? er_reco_initiale( $gens[0] ) : ( function_exists( 'er_initiale_cyrillique' ) ? er_initiale_cyrillique( $titre, array(), false ) : '' );
 	$quand  = trim( (string) $quand );
-	return '<li class="er-carte-centre er-carte-centre--' . esc_attr( $type ) . '"><a href="' . esc_url( get_permalink( $cid ) ) . '">'
-		. '<span class="er-carte-centre__genre"><span class="er-reco-point" aria-hidden="true"></span>' . esc_html( $genre ) . '</span>'
-		. ( '' !== $lettre ? '<span class="er-carte-centre__lettre" lang="ru" aria-hidden="true">' . esc_html( $lettre ) . '</span>' : '' )
-		. '<span class="er-carte-centre__titre">' . er_continuer_cyrillique( esc_html( $titre ) ) . '</span>'
-		. '<span class="er-carte-centre__meta">' . esc_html( ( '' !== $quand ? $quand . ' · ' : '' ) . $suite ) . ' →</span></a></li>';
+	return '<li class="er-pl-carte er-pl-carte--' . esc_attr( $type ) . '"><a href="' . esc_url( get_permalink( $cid ) ) . '">'
+		. '<span class="er-pl-carte__genre"><span class="er-reco-point" aria-hidden="true"></span>' . esc_html( $genre ) . '</span>'
+		. ( '' !== $lettre ? '<span class="er-pl-carte__lettre" lang="ru" aria-hidden="true">' . esc_html( $lettre ) . '</span>' : '' )
+		. '<span class="er-pl-carte__titre">' . er_continuer_cyrillique( esc_html( $titre ) ) . '</span>'
+		. '<span class="er-pl-carte__meta">' . esc_html( ( '' !== $quand ? $quand . ' · ' : '' ) . $suite ) . ' →</span></a></li>';
 }
 
 /**
@@ -743,7 +743,7 @@ function er_continuer_corps( $m ) {
 	}
 	switch ( $m['forme'] ) {
 		case 'vedette':
-			return ( $livres ? er_continuer_vedette( $livres[0], empty( $m['sans_titre'] ) ) : '' ) . ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+			return ( $livres ? er_continuer_vedette( $livres[0], empty( $m['sans_titre'] ) ) : '' ) . ( $cartes ? '<ul class="er-pl-cartes">' . $cartes . '</ul>' : '' );
 		case 'deux-langues':
 			$fr = '';
 			$ru = '';
@@ -754,23 +754,23 @@ function er_continuer_corps( $m ) {
 					$fr .= er_continuer_vignette( $pid );
 				}
 			}
-			return '<div class="er-deux-langues"><div class="er-deux-langues__fr"><h4 class="er-deux-langues__titre">' . esc_html__( 'En français', 'er-librairie' ) . '</h4><ul class="er-vignettes">' . $fr . '</ul></div>'
-				. '<div class="er-deux-langues__ru"><h4 class="er-deux-langues__titre" lang="ru">По-русски</h4><ul class="er-vignettes">' . $ru . '</ul></div></div>'
-				. ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+			return '<div class="er-pl-langues"><div class="er-pl-langues__fr"><h4 class="er-pl-langues__titre">' . esc_html__( 'En français', 'er-librairie' ) . '</h4><ul class="er-pl-vignettes">' . $fr . '</ul></div>'
+				. '<div class="er-pl-langues__ru"><h4 class="er-pl-langues__titre" lang="ru">По-русски</h4><ul class="er-pl-vignettes">' . $ru . '</ul></div></div>'
+				. ( $cartes ? '<ul class="er-pl-cartes">' . $cartes . '</ul>' : '' );
 		case 'ligne':
 			$lignes = '';
 			foreach ( $livres as $pid ) {
 				$lignes .= er_continuer_ligne_livre( $pid );
 			}
-			return ( $lignes ? '<ul class="er-lignes">' . $lignes . '</ul>' : '' ) . ( $cartes ? '<ul class="er-cartes-centre">' . $cartes . '</ul>' : '' );
+			return ( $lignes ? '<ul class="er-pl-lignes">' . $lignes . '</ul>' : '' ) . ( $cartes ? '<ul class="er-pl-cartes">' . $cartes . '</ul>' : '' );
 		case 'contenus':
-			return '<ul class="er-cartes-centre">' . $cartes . '</ul>';
+			return '<ul class="er-pl-cartes">' . $cartes . '</ul>';
 		default:
 			$vignettes = '';
 			foreach ( $livres as $pid ) {
 				$vignettes .= er_continuer_vignette( $pid );
 			}
-			return '<ul class="er-vignettes">' . $vignettes . $cartes . '</ul>';
+			return '<ul class="er-pl-vignettes">' . $vignettes . $cartes . '</ul>';
 	}
 }
 

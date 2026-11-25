@@ -90,10 +90,10 @@
 
 /* Les livres posés dans leur case : la couverture entière, centrée, sur le fond doux (blanc sur un module en fond
    doux), puis la mention, le titre en italique, l'auteur, la phrase, le prix et « Ajouter ». */
-.er-vignettes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 1.75rem; row-gap: 2.5rem; }
-.er-vignette { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
-.er-vignette__case,
-.er-vedette__case {
+.er-pl-vignettes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 1.75rem; row-gap: 2.5rem; }
+.er-pl-vignette { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.er-pl-vignette__case,
+.er-pl-vedette__case {
 	box-sizing: border-box;
 	aspect-ratio: 4 / 5;
 	display: flex;
@@ -101,12 +101,12 @@
 	justify-content: center;
 	background: var(--wp--preset--color--doux);
 }
-.er-vignette__case { padding: 1.625rem 1.875rem; }
-.er-module--fond .er-vignette__case,
-.er-module--fond .er-vedette__case { background: var(--wp--preset--color--base); }
-.er-vignette__case img,
-.er-vedette__case img,
-.er-ligne-livre__case img {
+.er-pl-vignette__case { padding: 1.625rem 1.875rem; }
+.er-module--fond .er-pl-vignette__case,
+.er-module--fond .er-pl-vedette__case { background: var(--wp--preset--color--base); }
+.er-pl-vignette__case img,
+.er-pl-vedette__case img,
+.er-pl-ligne__case img {
 	display: block;
 	width: auto;
 	height: auto;
@@ -116,71 +116,71 @@
 	border-radius: 1px;
 	transition: transform 220ms ease, box-shadow 220ms ease;
 }
-.er-vignette__case .er-couverture-typo,
-.er-vedette__case .er-couverture-typo { height: 100%; width: auto; max-width: 100%; }
-.er-vignette:hover .er-vignette__case img,
-.er-vignette:hover .er-couverture-typo,
-.er-vedette:hover .er-vedette__case img { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
-.er-vignette__texte,
-.er-vedette__texte,
-.er-ligne-livre__texte { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
-.er-vignette__texte { margin-top: 0.4rem; }
-.er-vignette__titre,
-.er-vedette__titre,
-.er-ligne-livre__titre { font-weight: 600; font-style: italic; line-height: 1.25; color: var(--wp--preset--color--contrast); text-decoration: none; }
-.er-vignette__titre:hover,
-.er-vedette__titre:hover,
-.er-ligne-livre__titre:hover { text-decoration: underline; text-underline-offset: 0.15em; }
-.er-vignette__titre { font-size: 1rem; }
-.er-vignette__glose,
-.er-vedette__glose,
-.er-ligne-livre__glose { font-size: 0.8125rem; font-weight: 500; color: var(--wp--preset--color--encre-2); }
-.er-vignette__auteur,
-.er-vedette__auteur,
-.er-ligne-livre__auteur { font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
-.er-module--fond .er-vignette__auteur,
-.er-module--fond .er-vedette__auteur { color: var(--wp--preset--color--encre-2); }
-.er-vignette__phrase,
-.er-ligne-livre__phrase { font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
-.er-vignette__achat,
-.er-vedette__achat,
-.er-ligne-livre__achat { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.15rem; }
-.er-vignette__achat .er-reco-prix,
-.er-ligne-livre__achat .er-reco-prix { font-size: 0.875rem; font-weight: 600; }
+.er-pl-vignette__case .er-couverture-typo,
+.er-pl-vedette__case .er-couverture-typo { height: 100%; width: auto; max-width: 100%; }
+.er-pl-vignette:hover .er-pl-vignette__case img,
+.er-pl-vignette:hover .er-couverture-typo,
+.er-pl-vedette:hover .er-pl-vedette__case img { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 18px 30px -10px rgba(0,0,0,.32); }
+.er-pl-vignette__texte,
+.er-pl-vedette__texte,
+.er-pl-ligne__texte { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.er-pl-vignette__texte { margin-top: 0.4rem; }
+.er-pl-vignette__titre,
+.er-pl-vedette__titre,
+.er-pl-ligne__titre { font-weight: 600; font-style: italic; line-height: 1.25; color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-pl-vignette__titre:hover,
+.er-pl-vedette__titre:hover,
+.er-pl-ligne__titre:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+.er-pl-vignette__titre { font-size: 1rem; }
+.er-pl-vignette__glose,
+.er-pl-vedette__glose,
+.er-pl-ligne__glose { font-size: 0.8125rem; font-weight: 500; color: var(--wp--preset--color--encre-2); }
+.er-pl-vignette__auteur,
+.er-pl-vedette__auteur,
+.er-pl-ligne__auteur { font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-module--fond .er-pl-vignette__auteur,
+.er-module--fond .er-pl-vedette__auteur { color: var(--wp--preset--color--encre-2); }
+.er-pl-vignette__phrase,
+.er-pl-ligne__phrase { font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
+.er-pl-vignette__achat,
+.er-pl-vedette__achat,
+.er-pl-ligne__achat { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.15rem; }
+.er-pl-vignette__achat .er-reco-prix,
+.er-pl-ligne__achat .er-reco-prix { font-size: 0.875rem; font-weight: 600; }
 
 /* Un seul livre en grand : la case à gauche, la phrase en grand à droite. */
-.er-vedette { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: 3rem; align-items: center; }
-.er-vedette__case { padding: 2.5rem 3rem; }
-.er-vedette__texte { gap: 0.6rem; }
-.er-vedette__titre { font-size: 1.875rem; }
-.er-vedette__auteur { font-size: 0.9375rem; }
-.er-vedette__phrase { margin-top: 0.4rem; font-size: 1.5rem; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; }
-.er-vedette__achat { margin-top: 0.75rem; gap: 1.125rem; }
-.er-vedette__achat .er-reco-prix { font-size: 1.25rem; font-weight: 600; }
-.er-vedette .er-carte__ajouter { height: 2.75rem; padding: 0 1.5rem; font-size: 0.875rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
-.er-vedette .er-carte__ajouter:hover { background: var(--wp--preset--color--encre-2); }
+.er-pl-vedette { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: 3rem; align-items: center; }
+.er-pl-vedette__case { padding: 2.5rem 3rem; }
+.er-pl-vedette__texte { gap: 0.6rem; }
+.er-pl-vedette__titre { font-size: 1.875rem; }
+.er-pl-vedette__auteur { font-size: 0.9375rem; }
+.er-pl-vedette__phrase { margin-top: 0.4rem; font-size: 1.5rem; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; }
+.er-pl-vedette__achat { margin-top: 0.75rem; gap: 1.125rem; }
+.er-pl-vedette__achat .er-reco-prix { font-size: 1.25rem; font-weight: 600; }
+.er-pl-vedette .er-carte__ajouter { height: 2.75rem; padding: 0 1.5rem; font-size: 0.875rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-pl-vedette .er-carte__ajouter:hover { background: var(--wp--preset--color--encre-2); }
 
 /* Les livres en ligne (les modules discrets : le traducteur, les autres éditions). */
-.er-lignes { list-style: none; margin: 0; padding: 0; }
-.er-ligne-livre { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: 1.5rem; align-items: center; padding: 1.125rem 0; border-top: var(--er-filet); }
-.er-ligne-livre:last-child { border-bottom: var(--er-filet); }
-.er-ligne-livre__case { display: flex; justify-content: center; }
-.er-ligne-livre__case img { max-height: 126px; }
-.er-ligne-livre__case .er-couverture-typo { width: 84px; }
-.er-ligne-livre__titre { font-size: 1.0625rem; }
-.er-ligne-livre__achat { align-self: start; flex-direction: column; align-items: flex-end; gap: 0.625rem; margin: 0; }
+.er-pl-lignes { list-style: none; margin: 0; padding: 0; }
+.er-pl-ligne { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: 1.5rem; align-items: center; padding: 1.125rem 0; border-top: var(--er-filet); }
+.er-pl-ligne:last-child { border-bottom: var(--er-filet); }
+.er-pl-ligne__case { display: flex; justify-content: center; }
+.er-pl-ligne__case img { max-height: 126px; }
+.er-pl-ligne__case .er-couverture-typo { width: 84px; }
+.er-pl-ligne__titre { font-size: 1.0625rem; }
+.er-pl-ligne__achat { align-self: start; flex-direction: column; align-items: flex-end; gap: 0.625rem; margin: 0; }
 
 /* La personne dont parle le livre : les livres en français, et ceux en russe à côté. */
-.er-deux-langues { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr); gap: 1.75rem; }
-.er-deux-langues__ru .er-vignettes { grid-template-columns: minmax(0, 1fr); }
-.er-deux-langues__titre { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; }
+.er-pl-langues { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr); gap: 1.75rem; }
+.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: minmax(0, 1fr); }
+.er-pl-langues__titre { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; }
 
 /* Les cartes du centre (une rencontre, un article, une vidéo, une exposition) : sur le bleu nuit du centre culturel,
    la grande initiale en cyrillique. Parmi des vignettes, une carte prend deux places. */
-.er-cartes-centre { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
-* + .er-cartes-centre { margin-top: 1.75rem; }
-.er-vignettes > .er-carte-centre { grid-column: span 2; }
-.er-carte-centre a {
+.er-pl-cartes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
+* + .er-pl-cartes { margin-top: 1.75rem; }
+.er-pl-vignettes > .er-pl-carte { grid-column: span 2; }
+.er-pl-carte a {
 	box-sizing: border-box;
 	height: 100%;
 	min-height: 15rem;
@@ -192,12 +192,12 @@
 	color: var(--wp--preset--color--base);
 	text-decoration: none;
 }
-.er-carte-centre__genre { display: flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
-.er-carte-centre__lettre { margin-top: auto; font-size: 5.5rem; font-weight: 600; line-height: 0.9; color: rgba(255, 255, 255, 0.24); }
-.er-carte-centre__titre { font-size: 1.375rem; font-weight: 600; line-height: 1.25; }
-.er-carte-centre--er_exposition .er-carte-centre__titre { font-style: italic; }
-.er-carte-centre__meta { font-size: 0.875rem; color: rgba(255, 255, 255, 0.78); }
-.er-carte-centre a:hover .er-carte-centre__titre { text-decoration: underline; text-underline-offset: 0.15em; }
+.er-pl-carte__genre { display: flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+.er-pl-carte__lettre { margin-top: auto; font-size: 5.5rem; font-weight: 600; line-height: 0.9; color: rgba(255, 255, 255, 0.24); }
+.er-pl-carte__titre { font-size: 1.375rem; font-weight: 600; line-height: 1.25; }
+.er-pl-carte--er_exposition .er-pl-carte__titre { font-style: italic; }
+.er-pl-carte__meta { font-size: 0.875rem; color: rgba(255, 255, 255, 0.78); }
+.er-pl-carte a:hover .er-pl-carte__titre { text-decoration: underline; text-underline-offset: 0.15em; }
 .er-reco-point { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--point-centre); }
 
 /* La mention des phrases, en bas de la section (er-librairie/inc/phrases.php). */
@@ -208,9 +208,9 @@
 	.er-module__tete { max-width: 46rem; }
 }
 @media (max-width: 900px) {
-	.er-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-	.er-deux-langues { grid-template-columns: minmax(0, 1fr); }
-	.er-deux-langues__ru .er-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.er-pl-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.er-pl-langues { grid-template-columns: minmax(0, 1fr); }
+	.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 781px) {
 	.er-reco-courts { grid-template-columns: minmax(0, 1fr); }
@@ -223,8 +223,8 @@
 	.er-module__g { gap: 1.375rem; }
 	.er-module__titre { font-size: 1.5rem; }
 	/* Les vignettes se font glisser de côté, la suivante dépasse un peu. */
-	.er-vignettes,
-	.er-deux-langues__ru .er-vignettes {
+	.er-pl-vignettes,
+	.er-pl-langues__ru .er-pl-vignettes {
 		display: flex;
 		gap: 1rem;
 		overflow-x: auto;
@@ -234,20 +234,20 @@
 		padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
 		scroll-padding-inline: var(--wp--style--root--padding-left);
 	}
-	.er-vignettes > li { flex: 0 0 46%; scroll-snap-align: start; }
-	.er-vignettes > .er-carte-centre { flex-basis: 80%; }
-	.er-vignette__case { padding: 1.125rem 1.25rem; }
-	.er-vedette { grid-template-columns: minmax(0, 1fr); gap: 0.875rem; }
-	.er-vedette__case { aspect-ratio: auto; justify-self: start; padding: 1.375rem 1.75rem; }
-	.er-vedette__case img { max-height: 200px; }
-	.er-vedette__case .er-couverture-typo { height: 200px; }
-	.er-vedette__titre { font-size: 1.375rem; }
-	.er-vedette__phrase { font-size: 1.0625rem; line-height: 1.4; }
-	.er-ligne-livre { grid-template-columns: 72px minmax(0, 1fr); column-gap: 1rem; }
-	.er-ligne-livre__case img { max-height: 104px; }
-	.er-ligne-livre__achat { grid-column: 2; flex-direction: row; align-items: center; margin-top: 0.5rem; }
-	.er-cartes-centre { grid-template-columns: minmax(0, 1fr); }
-	.er-carte-centre a { min-height: 0; padding: 1.5rem; }
-	.er-carte-centre__lettre { font-size: 3.5rem; }
-	.er-carte-centre__titre { font-size: 1.1875rem; }
+	.er-pl-vignettes > li { flex: 0 0 46%; scroll-snap-align: start; }
+	.er-pl-vignettes > .er-pl-carte { flex-basis: 80%; }
+	.er-pl-vignette__case { padding: 1.125rem 1.25rem; }
+	.er-pl-vedette { grid-template-columns: minmax(0, 1fr); gap: 0.875rem; }
+	.er-pl-vedette__case { aspect-ratio: auto; justify-self: start; padding: 1.375rem 1.75rem; }
+	.er-pl-vedette__case img { max-height: 200px; }
+	.er-pl-vedette__case .er-couverture-typo { height: 200px; }
+	.er-pl-vedette__titre { font-size: 1.375rem; }
+	.er-pl-vedette__phrase { font-size: 1.0625rem; line-height: 1.4; }
+	.er-pl-ligne { grid-template-columns: 72px minmax(0, 1fr); column-gap: 1rem; }
+	.er-pl-ligne__case img { max-height: 104px; }
+	.er-pl-ligne__achat { grid-column: 2; flex-direction: row; align-items: center; margin-top: 0.5rem; }
+	.er-pl-cartes { grid-template-columns: minmax(0, 1fr); }
+	.er-pl-carte a { min-height: 0; padding: 1.5rem; }
+	.er-pl-carte__lettre { font-size: 3.5rem; }
+	.er-pl-carte__titre { font-size: 1.1875rem; }
 }
