@@ -379,6 +379,9 @@ html.er-panier-ouvert .wc-block-components-drawer__content { height: 100% !impor
 	/* Au téléphone (B3, 25 nov. 2026), le nom et le menu seuls : la recherche et le panier en tête du menu, la langue
 	   et le compte au bas. */
 	.er-barre .er-loupe, .er-barre .er-panier { display: none !important; }
+	/* Le nom espacé tient avec le menu : moins d'écart, et le rond du menu mord sur la marge (son picto reste dedans). */
+	.er-barre-dedans { --er-ecart: 0.5rem; }
+	.er-barre .er-menu { margin-inline-end: -7px; }
 	.er-logo a { font-size: 0.66rem; letter-spacing: 0.3em; }
 }
 
