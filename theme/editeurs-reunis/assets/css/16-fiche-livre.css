@@ -91,7 +91,9 @@
 /* Les livres posés dans leur case : la couverture entière, centrée, sur le fond doux (blanc sur un module en fond
    doux), puis la mention, le titre en italique, l'auteur, la phrase, le prix et « Ajouter ». */
 .er-pl-vignettes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 1.75rem; row-gap: 2.5rem; }
-.er-pl-vignette { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.er-pl-vignette { position: relative; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+/* « Nouveauté » se pose sur le coin de la case : les titres d'une rangée restent alignés. */
+.er-pl-vignette__texte .er-reco-mention { position: absolute; top: 0.625rem; left: 0.625rem; z-index: 1; pointer-events: none; }
 .er-pl-vignette__case,
 .er-pl-vedette__case {
 	box-sizing: border-box;
@@ -102,6 +104,9 @@
 	justify-content: center;
 	background: var(--wp--preset--color--doux);
 }
+.er-pl-vignette__case,
+.er-pl-vedette__case,
+.er-pl-ligne__case { color: inherit; text-decoration: none; } /* La couverture typographique n'est pas un lien souligné. */
 .er-pl-vignette__case { padding: 1.625rem 1.875rem; }
 .er-pl-module--fond .er-pl-vignette__case,
 .er-pl-module--fond .er-pl-vedette__case { background: var(--wp--preset--color--base); }
