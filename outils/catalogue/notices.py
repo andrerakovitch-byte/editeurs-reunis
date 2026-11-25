@@ -238,6 +238,66 @@ def google(titre, auteur, max_google=8):
     return notices
 
 
+def sudoc(titre, auteur, maximum=15):
+    """Les notices du Sudoc (UNIMARC), riche en livres russes et de l'émigration (la BULAC) : mots du titre, et nom
+    de l'auteur s'il est donné."""
+    t = [m for m in simples(titre_court(titre)) if len(m) > 2][:4]
+    if not t:
+        return []
+    requete = ' and '.join(f'mti={m}' for m in t)
+    a = (simples(auteur) or [''])[-1] if auteur else ''
+    if a:
+        requete += f' and aut={a}'
+    url = 'https://www.sudoc.abes.fr/cbs/sru/?' + urllib.parse.urlencode({
+        'operation': 'searchRetrieve', 'version': '1.1', 'query': requete, 'recordSchema': 'unimarc',
+        'maximumRecords': str(maximum)})
+    xml = lire(url)
+    try:
+        racine = ET.fromstring(xml) if xml else None
+    except ET.ParseError:
+        return []
+    if racine is None:
+        return []
+    notices = []
+    for rec in racine.iter():
+        if not rec.tag.endswith('}record') and rec.tag != 'record':
+            continue
+        champs = {}
+        ppn = ''
+        for e in rec:
+            nom = e.tag.split('}')[-1]
+            if nom == 'controlfield' and e.get('tag') == '001':
+                ppn = (e.text or '').strip()
+            if nom != 'datafield':
+                continue
+            sous = {}
+            for sf in e:
+                if sf.text:
+                    sous.setdefault(sf.get('code'), []).append(sf.text.strip())
+            champs.setdefault(e.get('tag'), []).append(sous)
+        if '200' not in champs:
+            continue
+        def premier(tag, code, champs=champs):
+            return next((v[0] for f in champs.get(tag, []) for v in [f.get(code)] if v), '')
+        isbns = [isbn13(v) for f in champs.get('010', []) for v in f.get('a', [])]
+        pages = 0
+        m = re.search(r'(\d{2,4})\s*(?:p\.|с\.|pages)', premier('215', 'a'))
+        if m:
+            pages = int(m.group(1))
+        date = premier('210', 'd') or premier('214', 'd')
+        annee = (re.search(r'1[4-9]\d\d|20[0-2]\d', date) or [''])[0]
+        auteurs = [', '.join(f.get('a', []) + f.get('b', [])) for tag in ('700', '701') for f in champs.get(tag, [])]
+        notices.append({
+            'source': 'sudoc', 'lien': f'https://www.sudoc.fr/{ppn}' if ppn else '',
+            'titre': premier('200', 'a') + (' : ' + premier('200', 'e') if premier('200', 'e') else ''),
+            'auteurs': auteurs,
+            'editeur': premier('210', 'c') or premier('214', 'c'),
+            'annee': annee, 'pages': pages, 'isbn': [i for i in isbns if i],
+            'langues': [], 'sujets': [],
+        })
+    return notices
+
+
 def open_library(titre, auteur):
     params = {'title': titre_court(titre), 'limit': '5',
               'fields': 'key,title,author_name,first_publish_year,isbn,number_of_pages_median,language,subject,publisher,edition_count'}
@@ -387,7 +447,7 @@ def noyau(livre):
     titre = nettoyer_titre(livre['titre'], livre['auteurs'])
     auteur = livre['auteurs'][0] if livre['auteurs'] else ''
     trouvees = []
-    for fn, kw in ((bnf, {'maximum': 20}), (google, {'max_google': 20})):
+    for fn, kw in ((bnf, {'maximum': 20}), (sudoc, {'maximum': 15}), (google, {'max_google': 20})):
         try:
             trouvees += fn(titre, auteur, **kw)
             if auteur:
@@ -453,6 +513,9 @@ def main():
 
     durs = [x for x in livres if sans_isbn(x)]
     print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970')
+    essai = sudoc('Docteur Jivago', 'Boris Pasternak', 5)
+    print(f'SUDOC : {len(essai)} notices pour « Docteur Jivago » ; ' + ' / '.join(
+        f"{n['editeur']} {n['annee']} {','.join(n['isbn'])}" for n in essai[:3]))
     par_id = {x['id']: x for x in durs}
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
         for ident, candidates in ex.map(noyau, durs):
