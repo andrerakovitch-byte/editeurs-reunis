@@ -477,7 +477,7 @@ def noyau(livre):
     return livre['id'], lignes
 
 
-def releve_candidates(livres):
+def releve_candidates(livres, seulement=None):
     """Les livres sans ISBN parus depuis 1970 (ou sans année), hors revues : leurs éditions candidates au Sudoc, dans
     le journal seulement, celles du même éditeur d'abord, pour retrouver l'ISBN à la main (un quart d'heure au plus)."""
     global FIN_CANDIDATES
@@ -486,11 +486,11 @@ def releve_candidates(livres):
         annee = re.search(r'\d{4}', str(x.get('annee') or ''))
         return not x.get('isbn') and x.get('nature') != 'revue' and (not annee or int(annee.group(0)) >= 1970)
 
-    durs = [x for x in livres if sans_isbn(x)]
+    durs = [x for x in livres if sans_isbn(x) and (not seulement or x['id'] in seulement)]
     print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970', flush=True)
-    FIN_CANDIDATES = time.monotonic() + 15 * 60
+    FIN_CANDIDATES = time.monotonic() + (25 if seulement else 15) * 60
     par_id = {x['id']: x for x in durs}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as ex:
         for ident, candidates in ex.map(noyau, durs):
             if candidates is None:
                 print(f'CAND #{ident} : temps écoulé', flush=True)
@@ -510,10 +510,12 @@ def main():
     ap.add_argument('--limite', type=int, default=0)
     args = ap.parse_args()
     livres = [x for x in json.load(open(args.livres, encoding='utf-8')) if x.get('titre')]
-    if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'candidates.seules')):
-        # Le fichier témoin candidates.seules : le relevé des candidates seul, en quelques minutes. Rien n'est écrit, et
-        # la sortie en erreur arrête l'étape avant l'envoi : les notices déjà sur le serveur restent telles quelles.
-        releve_candidates(livres)
+    temoin = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'candidates.seules')
+    if os.path.exists(temoin):
+        # Le fichier témoin candidates.seules : le relevé des candidates seul (des livres qu'il nomme par leur
+        # identifiant, s'il en nomme). Rien n'est écrit, et la sortie en erreur arrête l'étape avant l'envoi : les
+        # notices déjà sur le serveur restent telles quelles.
+        releve_candidates(livres, {int(n) for n in re.findall(r'\b\d+\b', open(temoin, encoding='utf-8').read())})
         sys.exit('Relevé des candidates seul (candidates.seules) : aucune notice écrite.')
     if args.limite:
         livres = livres[:args.limite]
