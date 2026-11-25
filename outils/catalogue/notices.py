@@ -18,6 +18,7 @@ Deux niveaux, parce qu'un classique a cent éditions :
 import argparse
 import concurrent.futures
 import json
+import os
 import re
 import sys
 import time
@@ -295,6 +296,8 @@ def sudoc(titre, auteur, maximum=15):
             'annee': annee, 'pages': pages, 'isbn': [i for i in isbns if i],
             'langues': [], 'sujets': [],
         })
+    if a and not notices:
+        return sudoc(titre, '', maximum)
     return notices
 
 
@@ -474,6 +477,31 @@ def noyau(livre):
     return livre['id'], lignes
 
 
+def releve_candidates(livres):
+    """Les livres sans ISBN parus depuis 1970 (ou sans année), hors revues : leurs éditions candidates au Sudoc, dans
+    le journal seulement, celles du même éditeur d'abord, pour retrouver l'ISBN à la main (un quart d'heure au plus)."""
+    global FIN_CANDIDATES
+
+    def sans_isbn(x):
+        annee = re.search(r'\d{4}', str(x.get('annee') or ''))
+        return not x.get('isbn') and x.get('nature') != 'revue' and (not annee or int(annee.group(0)) >= 1970)
+
+    durs = [x for x in livres if sans_isbn(x)]
+    print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970', flush=True)
+    FIN_CANDIDATES = time.monotonic() + 15 * 60
+    par_id = {x['id']: x for x in durs}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
+        for ident, candidates in ex.map(noyau, durs):
+            if candidates is None:
+                print(f'CAND #{ident} : temps écoulé', flush=True)
+                continue
+            ed = par_id[ident].get('editeur') or ''
+            candidates.sort(key=lambda c: not (ed and concorde_editeur(ed, c.split('|')[1])))
+            print(f'CAND #{ident} : {len(candidates)} | {ed} | {par_id[ident].get("annee") or ""}', flush=True)
+            for c in candidates[:14]:
+                print(f'CAND #{ident} || {c}', flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('livres')
@@ -482,6 +510,11 @@ def main():
     ap.add_argument('--limite', type=int, default=0)
     args = ap.parse_args()
     livres = [x for x in json.load(open(args.livres, encoding='utf-8')) if x.get('titre')]
+    if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'candidates.seules')):
+        # Le fichier témoin candidates.seules : le relevé des candidates seul, en quelques minutes. Rien n'est écrit, et
+        # la sortie en erreur arrête l'étape avant l'envoi : les notices déjà sur le serveur restent telles quelles.
+        releve_candidates(livres)
+        sys.exit('Relevé des candidates seul (candidates.seules) : aucune notice écrite.')
     if args.limite:
         livres = livres[:args.limite]
     resultats = []
@@ -510,30 +543,7 @@ def main():
             lignes.append(f'- {hote} a refusé les demandes (quota ?) : laissé de côté en cours de route')
     texte = '\n'.join(lignes) + '\n'
     print(texte)
-    # Les livres sans ISBN parus depuis 1970 (ou sans année), hors revues : leurs éditions candidates, dans le journal
-    # seulement, celles du même éditeur d'abord, pour retrouver l'ISBN à la main.
-    def sans_isbn(x):
-        annee = re.search(r'\d{4}', str(x.get('annee') or ''))
-        return not x.get('isbn') and x.get('nature') != 'revue' and (not annee or int(annee.group(0)) >= 1970)
-
-    durs = [x for x in livres if sans_isbn(x)]
-    print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970')
-    essai = sudoc('Docteur Jivago', 'Boris Pasternak', 5)
-    print(f'SUDOC : {len(essai)} notices pour « Docteur Jivago » ; ' + ' / '.join(
-        f"{n['editeur']} {n['annee']} {','.join(n['isbn'])}" for n in essai[:3]), flush=True)
-    global FIN_CANDIDATES
-    FIN_CANDIDATES = time.monotonic() + 15 * 60
-    par_id = {x['id']: x for x in durs}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
-        for ident, candidates in ex.map(noyau, durs):
-            if candidates is None:
-                print(f'CAND #{ident} : temps écoulé', flush=True)
-                continue
-            ed = par_id[ident].get('editeur') or ''
-            candidates.sort(key=lambda c: not (ed and concorde_editeur(ed, c.split('|')[1])))
-            print(f'CAND #{ident} : {len(candidates)} | {ed} | {par_id[ident].get("annee") or ""}', flush=True)
-            for c in candidates[:14]:
-                print(f'CAND #{ident} || {c}', flush=True)
+    releve_candidates(livres)
     if args.rapport:
         open(args.rapport, 'w', encoding='utf-8').write(texte)
 
