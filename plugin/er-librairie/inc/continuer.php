@@ -499,7 +499,8 @@ function er_continuer( $id ) {
 	}
 	$index  = er_continuer_index();
 	$langue = function_exists( 'er_langue' ) ? er_langue() : 'fr';
-	$cle    = 'er_continuer_' . $id . '_' . $langue . '_' . ( isset( $index['quand'] ) ? (int) $index['quand'] : 0 );
+	// La clé suit l'index et le moteur : un déploiement qui change les mots ne laisse pas les anciens en place un jour.
+	$cle    = 'er_continuer_' . $id . '_' . $langue . '_' . ( isset( $index['quand'] ) ? (int) $index['quand'] : 0 ) . '_' . (int) filemtime( __DIR__ . '/continuer-modules.php' );
 	$garde  = get_transient( $cle );
 	if ( is_array( $garde ) && isset( $garde['modules'] ) ) {
 		$faits[ $id ] = $garde;
