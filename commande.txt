@@ -35,12 +35,13 @@
   С. Фудель : introuvable (déjà réuni ?)
   отец Александр Ельчанинов : introuvable (déjà réuni ?)
   Еп. Александр Семенов-Тян-Шанский : introuvable (déjà réuni ?)
-  Звягинцев → Андрей Звягинцев : 1 livres
+  Звягинцев → Андрей Звягинцев : 1 contenus
   Андрей Звягинцев s’écrit désormais Andreï Zviaguintsev
-  Nicolas Berdiaeff → Nicolas Berdiaev : 1 livres
-  Hogenhuis Anne → Anne Hogenhuis : 1 livres
+  Nicolas Berdiaeff → Nicolas Berdiaev : 2 contenus
+  Hogenhuis Anne → Anne Hogenhuis : 1 contenus
   Anton Tchekhov et Lydia Mizinova : introuvable (déjà séparé ?)
   Marina Tsvétaïeva et Maximilian Volochine : introuvable (déjà séparé ?)
   Antoine Garcia et Yves Gauthier : introuvable (déjà séparé ?)
-  Воспоминания Ростислава Добужинского → Rostislav Doboujinsky : 1 livres
-Success: 4 à réunir ou séparer. Avec « appliquer », c’est fait.
+  Воспоминания Ростислава Добужинского → Rostislav Doboujinsky : 1 contenus, à Rostislav Doboujinsky
+  L’index de la recherche est refait.
+Success: 4 personnes réunies ou séparées.
