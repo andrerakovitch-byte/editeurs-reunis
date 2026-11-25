@@ -412,48 +412,63 @@ header.er-haut {
 	.er-info-adresse { display: none !important; }
 }
 @media (max-width: 781px) {
-	/* Au téléphone, « Ouvert en ce moment » seul, tant que le volet n'est pas en marche. */
+	/* Au téléphone, « Ouvert en ce moment » seul, tant que le relais n'est pas en marche. */
 	.er-info-plus { display: none !important; }
 	.er-infos-dedans { min-height: 31px; }
-	/* Le relais (entete.js) : les informations l'une sur l'autre ; celle du moment à sa place, les suivantes à droite,
-	   celle qui s'en va à gauche. Le trait gris, au pied, avance en quatre secondes ; au bout, la suivante entre. */
-	.er-infos.est-relais .er-infos-dedans { position: relative; display: block; height: 31px; min-height: 0; padding: 0; }
-	.er-infos.est-relais .er-info {
-		position: absolute;
-		inset: 0 0 auto;
-		display: block !important;
-		height: 31px;
-		box-sizing: border-box;
-		padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
-		line-height: 31px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		transform: translateX(100%);
-		transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-	}
-	.er-infos.est-relais .er-info[hidden] { display: none !important; }
-	.er-infos.est-relais .er-info.est-ici { transform: none; }
-	.er-infos.est-relais .er-info.est-avant { transform: translateX(-100%); }
-	.er-infos.est-relais .er-info.sans-glisse { transition: none; }
-	.er-infos.est-relais .er-info-point { display: inline-block; margin-inline-end: 0.6rem; vertical-align: 1px; }
-	/* L'adresse : si la place manque, c'est le nom de la rue qui se raccourcit ; « Nous trouver → » reste entier. */
-	.er-infos.est-relais .er-info-adresse { display: flex !important; gap: 0.3em; }
-	.er-infos.est-relais .er-info-rue { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-	.er-infos.est-relais .er-info-adresse strong { flex: none; }
-	.er-infos.est-relais .er-infos-dedans::after {
-		content: "";
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 1px;
-		background: rgba(255, 255, 255, 0.4); /* gris : une barre secondaire, qui ne doit pas tirer l'œil (24 nov.) */
-		transform: scaleX(0);
-		transform-origin: left center;
-	}
-	.er-infos.est-relais.est-en-route .er-infos-dedans::after { animation: er-infos-trait 4s linear forwards; }
-	.er-infos.est-relais:focus-within .er-infos-dedans::after { animation-play-state: paused; }
+}
+
+/* Le relais (entete.js), à toutes les largeurs depuis le 25 nov. : la barre montre une information à la fois, qui
+   défile de bas en haut. Celle du moment à sa place, les suivantes en dessous, celle qui s'en va au-dessus. Le trait
+   gris, au pied, avance en cinq secondes ; au bout, la suivante monte. Sur ordinateur la ligne est centrée ; au
+   téléphone, elle part de la marge, comme avant. */
+.er-infos.est-relais { --er-infos-h: 39px; }
+.er-infos.est-relais .er-infos-dedans { position: relative; display: block; height: var(--er-infos-h); min-height: 0; padding: 0; }
+.er-infos.est-relais .er-info {
+	position: absolute;
+	inset: 0 0 auto;
+	display: block !important;
+	height: var(--er-infos-h);
+	box-sizing: border-box;
+	margin: 0;
+	padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
+	line-height: var(--er-infos-h);
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	transform: translateY(100%);
+	transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.er-infos.est-relais .er-info[hidden] { display: none !important; }
+.er-infos.est-relais .er-info.est-ici { transform: none; }
+.er-infos.est-relais .er-info.est-avant { transform: translateY(-100%); }
+.er-infos.est-relais .er-info.sans-glisse { transition: none; }
+.er-infos.est-relais .er-info-point { display: inline-block; margin-inline-end: 0.6rem; vertical-align: 1px; }
+/* L'adresse : si la place manque, c'est le nom de la rue qui se raccourcit ; « Nous trouver → » reste entier. */
+.er-infos.est-relais .er-info-adresse { display: flex !important; justify-content: center; gap: 0.3em; }
+.er-infos.est-relais .er-info-rue { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.er-infos.est-relais .er-info-adresse strong { flex: none; }
+.er-infos.est-relais .er-infos-dedans::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.4); /* gris : une barre secondaire, qui ne doit pas tirer l'œil (24 nov.) */
+	transform: scaleX(0);
+	transform-origin: left center;
+}
+.er-infos.est-relais.est-en-route .er-infos-dedans::after { animation: er-infos-trait 5s linear forwards; }
+/* Le trait attend pendant qu'on parcourt la barre au clavier, ou que la souris est dessus. */
+.er-infos.est-relais:focus-within .er-infos-dedans::after { animation-play-state: paused; }
+@media (hover: hover) {
+	.er-infos.est-relais:hover .er-infos-dedans::after { animation-play-state: paused; }
+}
+@media (max-width: 781px) {
+	.er-infos.est-relais { --er-infos-h: 31px; }
+	.er-infos.est-relais .er-info { text-align: start; }
+	.er-infos.est-relais .er-info-adresse { justify-content: flex-start; }
 }
 
 @keyframes er-infos-trait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
