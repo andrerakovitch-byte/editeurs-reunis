@@ -1734,7 +1734,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$m['sur']        = $un ? 'Cité dans la notice' : 'Cités dans la notice';
 			$m['titre']      = er_continuer_liste( $titres );
 			$m['sans_titre'] = $un;
-			$m['fragment']   = $un ? $titre_l( $trouves[0] ) : 'les livres que cite la notice';
+			$m['fragment']   = $un ? $titre_c( $trouves[0] ) : 'les livres que cite la notice';
 		}
 		$ajouter( $m );
 	}
@@ -2111,7 +2111,9 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 				$a_plusieurs = count( $co ) <= 3
 					? 'une traduction à ' . er_continuer_nombre( 2 * ( count( $co ) + 1 ) ) . ' mains, avec ' . er_continuer_liste( array_map( fn( $p ) => er_continuer_nom_dans_phrase( $nom( $p ) ), $co ) )
 					: 'une traduction collective, avec ' . er_continuer_nombre( count( $co ), true ) . ' autres plumes';
-				$a_plusieurs = er_continuer_phrase( $titre_l( $id ) . ' : ' . $a_plusieurs ) . ' ';
+				// Le titre de la fiche, court ; trop long, « ce livre ».
+				$ce          = er_continuer_titre_court( $ix['livres'][ $id ]['t'], 40 );
+				$a_plusieurs = er_continuer_phrase( ( '' !== $ce ? er_continuer_titre( $ce ) . ' : ' : 'ce livre est ' ) . $a_plusieurs ) . ' ';
 			}
 			$ajouter(
 				array(
@@ -2249,7 +2251,7 @@ function er_continuer_fusionner( $fragments ) {
 		// « de » ne réunit que deux époques (« de la révolution et de la guerre civile ») : devant un nom sans article,
 		// c'est la sorte qui continue (« des ouvrages de philosophie »), et rien ne se réunit.
 		$motif = '/^((?:des|d’autres) [^ ]+(?: de poèmes)?) (sur|de (?=la |le |l’)|d’|écrits|écrites) (.+)$/u';
-		if ( $k >= 0 && preg_match( $motif, $sortie[ $k ], $a ) && preg_match( $motif, $f, $b ) && preg_replace( '/^d’autres /u', 'des ', $a[1] ) === preg_replace( '/^d’autres /u', 'des ', $b[1] ) && preg_replace( '/^d’$/u', 'de', $a[2] ) === preg_replace( '/^d’$/u', 'de', $b[2] ) && false === strpos( $sortie[ $k ], ' et ' ) ) {
+		if ( $k >= 0 && preg_match( $motif, $sortie[ $k ], $a ) && preg_match( $motif, $f, $b ) && preg_replace( '/^d’autres /u', 'des ', $a[1] ) === preg_replace( '/^d’autres /u', 'des ', $b[1] ) && preg_replace( '/^d’$/u', 'de', $a[2] ) === preg_replace( '/^d’$/u', 'de', $b[2] ) && false === strpos( $sortie[ $k ], ' et ' ) && false === strpos( $b[3], ' et ' ) ) {
 			$sortie[ $k ] .= ' et ' . $b[2] . ( 'd’' === $b[2] ? '' : ' ' ) . $b[3];
 			continue;
 		}
