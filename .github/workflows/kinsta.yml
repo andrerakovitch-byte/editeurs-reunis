@@ -13,6 +13,8 @@
 # wix-pages » importe des fichiers déjà convertis. Avec « er » : une commande de l'extension (« sujets deviner »).
 # Avec « boutique » : une commande de la boutique (« catalogue », « couvertures »), dont le rapport va sur la branche
 # « boutique ». Avec « notices » : les notices des livres dans les catalogues des bibliothèques (outils/catalogue/notices.py).
+# Avec « proches » : les livres proches par le sens, lus par un modèle multilingue (bge-m3) qui tourne ici, gratuitement
+# (outils/proches.py) ; « Pour aller plus loin » s'en sert pour choisir les livres de ses modules (inc/proches.php).
 name: Déployer chez Kinsta
 
 on:
@@ -45,6 +47,10 @@ on:
         type: choice
         options: ['non', 'chercher', 'chercher et poser']
         default: 'non'
+      proches:
+        description: "Les livres proches par le sens (IA, bge-m3) : les calculer et les poser"
+        type: boolean
+        default: false
 
 concurrency: kinsta
 
@@ -247,6 +253,29 @@ jobs:
           rsync -z -e "$SSH" notices/notices.json "$QUI@$HOTE:private/notices.json"
           if [ "$QUOI" = 'chercher et poser' ]; then POSER=appliquer; else POSER=''; fi
           $SSH "$QUI@$HOTE" "cd public && wp er notices importer ../private/notices.json $POSER"
+
+      # Le modèle (2 Go) se garde d'un passage à l'autre.
+      - name: Le modèle des livres proches
+        if: inputs.proches
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: proches-bge-m3
+
+      - name: Les livres proches (IA)
+        if: inputs.proches
+        run: |
+          set -o pipefail
+          mkdir -p proches
+          $SSH "$QUI@$HOTE" 'cd public && wp er proches exporter' | grep '^{"id"' > proches/livres.jsonl
+          echo "$(wc -l < proches/livres.jsonl) livres exportés"
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet sentence-transformers
+          python3 outils/proches.py proches/livres.jsonl proches/proches.json --rapport proches/rapport.md
+          cat proches/rapport.md >> "$GITHUB_STEP_SUMMARY"
+          $SSH "$QUI@$HOTE" 'mkdir -p private'
+          rsync -z -e "$SSH" proches/proches.json "$QUI@$HOTE:private/proches.json"
+          $SSH "$QUI@$HOTE" 'cd public && wp er proches importer ../private/proches.json'
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

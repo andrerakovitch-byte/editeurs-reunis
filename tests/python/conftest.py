@@ -3,5 +3,5 @@ import pathlib
 import sys
 
 RACINE = pathlib.Path(__file__).resolve().parents[2]
-for dossier in ('outils/catalogue', 'outils/wix'):
+for dossier in ('outils', 'outils/catalogue', 'outils/wix'):
     sys.path.insert(0, str(RACINE / dossier))

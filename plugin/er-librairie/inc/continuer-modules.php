@@ -654,6 +654,12 @@ function er_continuer_epoques_mots() {
 function er_continuer_ranger( $ids, $ix, $courant, $bonus = array(), $stock = 6 ) {
 	$langue = er_continuer_langue_du_livre( $ix['livres'][ $courant ] );
 	$scores = array();
+	// La proximité par le sens (inc/proches.php) : de 0 pour le dernier des voisins gardés à $poids pour le plus proche,
+	// rien pour un livre qui n'en est pas. Elle départage les livres d'un même module.
+	$proches = isset( $ix['proches'][ $courant ] ) ? (array) $ix['proches'][ $courant ] : array();
+	$poids   = isset( $ix['proches_poids'] ) ? (float) $ix['proches_poids'] : 15.0;
+	$haut    = $proches ? max( $proches ) : 0;
+	$bas     = $proches ? min( $proches ) : 0;
 	foreach ( array_unique( $ids ) as $i ) {
 		if ( ! isset( $ix['livres'][ $i ] ) ) {
 			continue;
@@ -664,7 +670,8 @@ function er_continuer_ranger( $ids, $ix, $courant, $bonus = array(), $stock = 6 
 			+ ( ! empty( $l['ph'] ) ? 2 : 0 )
 			+ ( ! empty( $l['img'] ) ? 2 : 0 )
 			+ ( er_continuer_langue_du_livre( $l ) === $langue ? 1 : 0 )
-			+ ( in_array( 'nouveaute', er_continuer_champ( $l, 'm' ), true ) ? 1 : 0 );
+			+ ( in_array( 'nouveaute', er_continuer_champ( $l, 'm' ), true ) ? 1 : 0 )
+			+ ( isset( $proches[ $i ] ) ? (int) round( $poids * ( $proches[ $i ] - $bas ) / max( 0.01, $haut - $bas ) ) : 0 );
 		// À égalité, un ordre propre à chaque fiche : un même livre ne revient pas en tête de toutes les fiches qui
 		// pourraient le proposer, et la même fiche garde le même ordre d'une visite à l'autre.
 		$scores[ $i ] = array( $s, crc32( $courant . ':' . $i ), $i );

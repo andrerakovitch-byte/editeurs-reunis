@@ -147,6 +147,15 @@ function test_continuer_vie_et_destin() {
 	}
 }
 
+function test_continuer_proches_par_le_sens() {
+	$ix = er_test_continuer_index();
+	// Sans voisins, l'ordre propre à la fiche ; avec, le plus proche par le sens passe devant à score égal.
+	$ix['proches'][100] = array( 107 => 0.81, 104 => 0.62, 106 => 0.55 );
+	$r                  = er_continuer_ranger( array( 104, 106, 107 ), $ix, 100 );
+	egal( 107, $r[0], 'le plus proche d’abord' );
+	egal( array( 107, 104, 106 ), $r, 'puis dans l’ordre de la proximité' );
+}
+
 function test_continuer_trois_editions_d_un_livre_cite() {
 	$ix                         = er_test_continuer_index();
 	$ix['personnes'][10]        = array( 'n' => 'Mikhaïl Boulgakov', 'nb' => 15 );

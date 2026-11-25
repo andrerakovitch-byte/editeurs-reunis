@@ -267,6 +267,8 @@ function er_continuer_construire() {
 			}
 		}
 	}
+	// Les livres proches par le sens (inc/proches.php), calculés hors du site : livre → [ voisin → proximité ].
+	$index['proches'] = function_exists( 'er_proches_tous' ) ? er_proches_tous() : array();
 	return $index;
 }
 
