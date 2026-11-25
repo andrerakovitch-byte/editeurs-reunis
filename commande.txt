@@ -1,19 +1,160 @@
-Vie et Destin
-  Après Vie et Destin : le premier volume du diptyque, un essai sur Grossman, une autre traduction d’Anne Coldefy-Faucard et des romans de la guerre.
-  [cite] Le diptyque / Commencer par le premier volume
-      Pour une juste cause ouvre le diptyque ; Vie et Destin en est la suite.
-      · Pour une juste cause
-  [sur-auteur] Sur Vassili Grossman / Pour mieux lire Grossman
-      Un essai d’Anne-Marie Pelletier et un article du journal du centre.
-      · Résister avec Vassili Grossman
-      ◦ Anne-Marie Pelletier – Résister avec Vassily Grossman
-  [traduction] De la même main / Anne Coldefy-Faucard
-      Traduit avec Alexis Berelowitch. On lui doit aussi la traduction d’En mémoire de la mémoire, de Maria Stepanova.
-      · En mémoire de la mémoire
+
+Cahiers de Voronej (1880)
+  Après Cahiers de Voronej : des livres sur Mandelstam, des poèmes écrits dans les années 1920 et 1930 et d’autres poèmes sur le Goulag et la dissidence.
+  [sur-auteur] Sur Ossip Mandelstam / Ce qu’on a écrit sur Mandelstam
+      Des souvenirs en russe, un essai de Nikita Struve et une rencontre au centre.
+      · Воспоминания Книга первая
+      · Ossip Mandelstam
+      ◦ Présentation des traductions des Cahiers de Voronej d’Ossip Mandelstam et du Troisième Livre de Nadejda Mandelstam
+  [epoque] Écrits à la même époque / Les années 1920 et 1930
+      Trois recueils de poèmes, dont Requiem d’Akhmatova, et un témoignage de Lydia Tchoukovskaïa sur Akhmatova en russe.
+      · Requiem
+      · Un rôle à jouer / Обречённые на роль любую
+      · Œuvres poétiques
+      · Записки об Анне Ахматовой
+  [sujet] Sur le même thème / Le Goulag et la dissidence
+      Trois recueils de poèmes, de Vasyl Stus, de Kari Unksova et de Varlam Chalamov, et un témoignage d’Irina Emelianova.
+      · Palimpsestes
+      · La Russie l’été
+      · Cahiers de la Kolyma
+      · Légendes de la rue Potapov
+Rendu : 19895 octets, 10 « Ajouter » ; colonne « Du même auteur » : 4 livres.
+
+Пушкин. книга про всё (1815)
+  Après Пушкин. книга про всё : d’autres regards sur Pouchkine, ses propres livres et des livres sur l’Âge d’or.
+  [autour] Autour d’Alexandre Pouchkine / D’autres regards sur Pouchkine
+      Un dictionnaire d’André Markowicz, trois essais, un récit de Dovlatov et un article du journal du centre.
+      · Dictionnaire amoureux de Pouchkine
+      · Faut-il brûler Pouchkine?
+      · Le domaine Pouchkine
+      · Cinq essais sur Pouchkine
+      · Этюды О Пушкине
+      ◦ « Les grands poètes puritains anglais, l’Apocalypse, et Pouchkine »
+  [oeuvre] Et l’œuvre elle-même / Lire Pouchkine
+      Ses poèmes, ses contes, un roman et un volume de ses œuvres.
+      · Собрание cочинений
+      · Le nègre de Pierre le Grand
+      · Poésies
+      · Contes
+  [epoque] Les mêmes années / L’Âge d’or, 1800-1855
+      Deux essais et deux biographies.
+      · Н.В. Гоголь
+      · Жуковский
+      · Le « Cher ami » de Gogol
+      · Политические статьи
+Rendu : 27598 octets, 13 « Ajouter » ; colonne « Du même auteur » : 1 livres.
+
+Le Messager orthodoxe, n° 168-169 (1275)
+  Après ce numéro : d’autres numéros de la revue, l’œuvre de Bobrinskoy et d’autres livres sur l’émigration.
+  [numeros] La même revue / D’autres numéros
+      Les numéros 161, 162, 163 et 164-165.
+      · Le Messager orthodoxe, n° 161
+      · Le Messager orthodoxe, n° 162
+      · Le Messager orthodoxe, n° 163
+      · Le Messager orthodoxe, n° 164-165
+  [oeuvre] L’œuvre de Boris Bobrinskoy / Lire Bobrinskoy
+      Deux livres liturgiques.
+      · Viens, Esprit de vérité !
+      · Baptême, sacrement d’unité
+  [sujet] Sur le même thème / L’émigration russe
+      Un numéro de Вестник Русского христианского движения en russe, un livre liturgique et deux ouvrages de théologie.
+      · Вестник Русского христианского движения, № 206
+      · Calendrier orthodoxe des scouts russes 2024
+      · Les Cahiers du Vicariat 2020-2021
+      · La joie du Royaume – Colloque père Alexandre Schmemann
+Rendu : 20586 octets, 10 « Ajouter » ; colonne « Du même auteur » : 0 livres.
+
+Вестник Русского христианского движения, № 219 (1852)
+  Après ce numéro : d’autres numéros de la revue et d’autres livres de philosophie.
+  [numeros] La même revue / D’autres numéros
+      Les numéros 215, 216, 217 et 218.
+      · Вестник Русского христианского движения, № 215
+      · Вестник Русского христианского движения, № 216
+      · Вестник Русского христианского движения, № 217
+      · Вестник Русского христианского движения, № 218
+  [sujet] Sur le même thème / La philosophie
+      Un essai de Marguerite Souchon sur Dostoïevski, un livre d’art d’Iwashita sur Dostoïevski, un ouvrage de théologie et des souvenirs.
+      · Le Dieu de Dostoïevski
+      · Les Frères Karamazov – Dostoïevski
+      · Мысли перед рассветом
+      · Воспоминания, Статьи, Очерки, Том 2
+Rendu : 17126 octets, 8 « Ajouter » ; colonne « Du même auteur » : 0 livres.
+
+Le Kaléidoscope des animaux. Звериный калейдоскоп (1245)
+  Après ce livre : d’autres livres pour enfants et d’autres livres de poésie.
+  [rayon] Dans le même rayon / Dès 3 ans
+      Trois livres pour enfants et des contes.
+      · Corbeau-pie, Dame tartine et joyeuse compagnie -Recueil bilingue
+      · Les mille premiers mots en russe
+      · Pierre & le loup
+      · Le petit poisson d’Or
+  [sujet] Sur le même thème / La poésie
+      Trois livres pour enfants et des contes de Pouchkine.
+      · Le cheval de feu
+      · J’ai oublié comment ça s’appelle
+      · Сказки
+      · Contes
+Rendu : 13630 octets, 7 « Ajouter » ; colonne « Du même auteur » : 0 livres.
+
+Красное Колесо – Апрель Семнадцатого т. 2 (1487)
+  Après Красное Колесо : les autres tomes, des correspondances sur Soljenitsyne et des livres sur la révolution et la guerre civile.
+  [volumes] Le même ouvrage / Les autres tomes
+      · Красное Колесо – Апрель Семнадцатого т. 1
+      · Красное Колесо – Март Семнадцатого том 1
+      · Красное Колесо – Март Семнадцатого том 2
+      · Красное Колесо – Март Семнадцатого том 3
+  [sur-auteur] Sur Alexandre Soljenitsyne / Ce qu’on a écrit sur Soljenitsyne
+      Une biographie, deux correspondances de Chalamov et une rencontre au centre, à revoir en vidéo.
+      · Alexandre Soljénitsyne, un écrivain en lutte avec son siècle
+      · Correspondance
+      · Correspondance avec Alexandre Soljenitsyne et Nadejda Mandelstam
+      ◦ Rencontre avec Stig Fredrikson, journaliste suédois
+  [epoque] Les mêmes années / La révolution et la guerre civile, 1917-1922
+      Un livre d’histoire, deux romans, d’Andreï Platonov et de Piotr Krasnov, et des poèmes d’Alexandre Blok.
+      · Февральская Революция
+      · Tchevengour
+      · Les Douze
+      · De l’aigle impérial au drapeau rouge
+Rendu : 21123 octets, 10 « Ajouter » ; colonne « Du même auteur » : 4 livres.
+
+Champ sauvage, L’île d’Oléron sous l’Occupation (1018)
+  Après Champ sauvage, L’île d’Oléron sous l’Occupation : des romans de la guerre et d’autres romans sur l’émigration.
   [epoque] Les mêmes années / La guerre, 1941-1945
-      Trois romans, de Vadim Andreyev, d’Andreï Guelassimov et de Sacha Filipenko, et un récit d’Ivo Andrić.
-      · Champ sauvage, L’île d’Oléron sous l’Occupation
+      Trois romans, d’Arthur Larrue, de Vassili Grossman et d’Andreï Guelassimov, et un récit de Mikhaïl Ossorguine.
+      · La diagonale Alekhine
+      · Pour une juste cause
       · Les dieux de la steppe
-      · Kremulator
-      · La Chronique de Belgrade
-Rendu : 13032 octets ; colonne « Du même auteur » : 4 livres.
+      · Dans une bourgade paisible de France
+  [sujet] Sur le même thème / L’émigration russe
+      Trois romans, de Maria Stepanova, de Piotr Krasnov et de Victor Chklovski, et un livre d’histoire de Ross.
+      · L’Art de disparaître
+      · De l’aigle impérial au drapeau rouge
+      · Zoo
+      · Entre Hitler et Staline
+Rendu : 14242 octets, 8 « Ajouter » ; colonne « Du même auteur » : 0 livres.
+
+Carnets du sous-sol (669)
+  Après Carnets du sous-sol : des livres sur Dostoïevski, des récits du temps du grand roman, d’autres traductions de Boris de Schlœzer et d’autres récits sur Saint-Pétersbourg.
+  [sur-auteur] Sur Fiodor Dostoïevski / Ce qu’on a écrit sur Dostoïevski
+      Un livre d’art d’Iwashita, un journal d’Anna Dostoïevski, un essai de Marguerite Souchon et un article du journal du centre.
+      · Les Frères Karamazov – Dostoïevski
+      · Journal (1867)
+      · Le Dieu de Dostoïevski
+      ◦ Dostoïevski et la logique, est-ce compatible ?
+  [epoque] Les mêmes années / La Russie des grandes réformes, 1855-1890
+      Trois récits, d’Anton Tchekhov, de Léon Tolstoï et d’Ivan Tourguéniev, et un essai de Julia Kristeva sur Dostoïevski.
+      · Le Moine noir, suivi de Volodia et Une morne histoire
+      · La sonate à Kreutzer
+      · L’exécution de Troppmann
+      · Dostoïevski face à la mort, ou le sexe hanté du langage
+  [traduction] De la même main / Boris de Schlœzer
+      On lui doit aussi des traductions de Michel Lermontov et de Bounine.
+      · Un héros de notre temps
+      · Nouvelles
+  [sujet] Les mêmes lieux / Saint-Pétersbourg
+      Trois récits, d’Evgueni Zamiatine, de Nicolas Gogol et de Lydia Tchoukovskaïa, et un livre d’art d’Iwashita sur Dostoïevski.
+      · La caverne
+      · Pages du Journal d’un fou
+      · Sofia Pétrovna
+      · Crime et Châtiment – Fiodor Dostoïevski
+Rendu : 22992 octets, 12 « Ajouter » ; colonne « Du même auteur » : 4 livres.
