@@ -419,8 +419,8 @@ header.er-haut {
 
 /* Le relais (entete.js), à toutes les largeurs depuis le 25 nov. : la barre montre une information à la fois, qui
    défile de bas en haut. Celle du moment à sa place, les suivantes en dessous, celle qui s'en va au-dessus. Le trait
-   gris, au pied, avance en cinq secondes ; au bout, la suivante monte. Sur ordinateur la ligne est centrée ; au
-   téléphone, elle part de la marge, comme avant. */
+   gris, au pied, avance en cinq secondes ; au bout, la suivante monte. La ligne part de la marge de gauche, à toutes
+   les largeurs (25 nov.). */
 .er-infos.est-relais { --er-infos-h: 39px; }
 .er-infos.est-relais .er-infos-dedans { position: relative; display: block; height: var(--er-infos-h); min-height: 0; padding: 0; }
 .er-infos.est-relais .er-info {
@@ -432,7 +432,6 @@ header.er-haut {
 	margin: 0;
 	padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right);
 	line-height: var(--er-infos-h);
-	text-align: center;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -445,7 +444,7 @@ header.er-haut {
 .er-infos.est-relais .er-info.sans-glisse { transition: none; }
 .er-infos.est-relais .er-info-point { display: inline-block; margin-inline-end: 0.6rem; vertical-align: 1px; }
 /* L'adresse : si la place manque, c'est le nom de la rue qui se raccourcit ; « Nous trouver → » reste entier. */
-.er-infos.est-relais .er-info-adresse { display: flex !important; justify-content: center; gap: 0.3em; }
+.er-infos.est-relais .er-info-adresse { display: flex !important; gap: 0.3em; }
 .er-infos.est-relais .er-info-rue { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .er-infos.est-relais .er-info-adresse strong { flex: none; }
 .er-infos.est-relais .er-infos-dedans::after {
@@ -467,8 +466,6 @@ header.er-haut {
 }
 @media (max-width: 781px) {
 	.er-infos.est-relais { --er-infos-h: 31px; }
-	.er-infos.est-relais .er-info { text-align: start; }
-	.er-infos.est-relais .er-info-adresse { justify-content: flex-start; }
 }
 
 @keyframes er-infos-trait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
