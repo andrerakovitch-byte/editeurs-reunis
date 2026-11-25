@@ -3,8 +3,9 @@
  *
  * La ligne en cours est celle qui passe sous le repère, aux trois dixièmes de l'écran sous l'en-tête, pendant qu'on
  * fait défiler la page ; la souris, ou le clavier, la choisit aussi. La colonne reste accrochée sous l'en-tête
- * (position: sticky) : ce script lui donne la hauteur qui reste jusqu'au bas de l'écran, pour que sa bande (le prix,
- * le bouton) y soit toujours. Au téléphone, la colonne est cachée : le script ne fait rien et les titres restent noirs.
+ * (position: sticky) : ce script l'accroche au bas de l'en-tête tel qu'il est (sa ligne verte peut passer sur deux
+ * lignes) et lui donne la hauteur qui reste jusqu'au bas de l'écran, pour que sa bande (le prix, le bouton) y soit
+ * toujours. Au téléphone, la colonne est cachée : le script ne fait rien et les titres restent noirs.
  */
 ( function () {
 	'use strict';
@@ -19,6 +20,7 @@
 	if ( ! colonne || ! lignes.length || lignes.length !== panneaux.length ) {
 		return;
 	}
+	var entete = document.querySelector( 'header.er-haut' );
 	var actif = 0;
 	var attente = false;
 
@@ -37,8 +39,11 @@
 		panneaux[ actif ].classList.add( 'est-actif' );
 	}
 
-	// Le haut de la colonne quand elle est accrochée : sous l'en-tête qui reste.
+	// Le haut de la colonne quand elle est accrochée : le bas de l'en-tête, tel qu'il est à l'écran.
 	function accroche() {
+		if ( entete ) {
+			return Math.max( 0, Math.round( entete.getBoundingClientRect().bottom ) );
+		}
 		return parseFloat( window.getComputedStyle( colonne ).top ) || 0;
 	}
 
@@ -50,6 +55,7 @@
 			return;
 		}
 		var haut = accroche();
+		colonne.style.top = haut + 'px';
 		var dessus = Math.max( colonne.getBoundingClientRect().top, haut );
 		colonne.style.setProperty( '--er-index-h', Math.max( 360, window.innerHeight - dessus ) + 'px' );
 
