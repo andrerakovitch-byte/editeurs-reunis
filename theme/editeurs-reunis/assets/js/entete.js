@@ -8,11 +8,11 @@
  *   haut de l'écran (style.css). Ce script mesure ce qui part (--er-haut-cache) et ce qui reste (--er-ligne), et marque
  *   l'en-tête « est-accroche » quand la barre noire est sortie de l'écran : la loupe et le panier se montrent alors au
  *   bout de la ligne ;
- * - la barre d'informations : « Ouvert en ce moment » ou « Fermé en ce moment » d'après les horaires, et la prochaine
- *   rencontre de la semaine (« Ce soir au centre », « Demain au centre », « Jeudi au centre »), à l'heure de Paris.
+ * - la barre d'informations : « Ouvert en ce moment » ou « Fermé en ce moment » d'après les horaires (quand ils sont
+ *   posés), et le prochain événement : la première rencontre qui n'est pas passée.
  *
  * Sans ce script : les maisons mènent à leur page, l'en-tête s'accroche à la hauteur prévue, la barre d'informations
- * dit les jours d'ouverture.
+ * dit les jours et les heures d'ouverture.
  */
 ( function () {
 	'use strict';
@@ -140,10 +140,6 @@
 		} );
 	}
 
-	function majuscule( texte ) {
-		return texte.charAt( 0 ).toUpperCase() + texte.slice( 1 );
-	}
-
 	var ouvert = document.querySelector( '.er-info-ouvert' );
 	if ( ouvert && T.ouvert ) {
 		var horaires = {};
@@ -188,26 +184,16 @@
 		}
 	}
 
-	// La prochaine rencontre : la première qui n'est pas passée (deux heures après son début).
+	// Le prochain événement : la première rencontre qui n'est pas passée (deux heures après son début). Son jour et son
+	// heure sont écrits par la page ; le navigateur choisit seulement laquelle montrer, la page pouvant dater un peu.
 	var rencontres = document.querySelectorAll( '.er-info-rencontre' );
-	if ( rencontres.length && T.cesoir ) {
-		var ici = paris( new Date() );
-		var demain = paris( new Date( Date.now() + 864e5 ) );
-		for ( var r = 0; r < rencontres.length; r++ ) {
-			var debut = new Date( rencontres[ r ].getAttribute( 'data-debut' ) );
-			if ( isNaN( debut.getTime() ) || debut.getTime() + 2 * 36e5 < Date.now() ) {
-				continue;
-			}
-			var p = paris( debut );
-			var libelle = p.date === ici.date ? ( p.heure >= 17 ? T.cesoir : T.aujcentre ) : p.date === demain.date ? T.demaincentre : format( T.jourcentre, majuscule( T.jours[ p.jour ] ) );
-			rencontres[ r ].querySelector( '.er-info-quand' ).textContent = libelle;
-			if ( p.minutes ) {
-				var hh = String( Math.floor( p.minutes / 60 ) ).padStart( 2, '0' ) + ':' + String( p.minutes % 60 ).padStart( 2, '0' );
-				rencontres[ r ].querySelector( '.er-info-heure' ).textContent = ', ' + heure( hh );
-			}
-			rencontres[ r ].hidden = false;
-			break;
+	for ( var r = 0; r < rencontres.length; r++ ) {
+		var debut = new Date( rencontres[ r ].getAttribute( 'data-debut' ) );
+		if ( isNaN( debut.getTime() ) || debut.getTime() + 2 * 36e5 < Date.now() ) {
+			continue;
 		}
+		rencontres[ r ].hidden = false;
+		break;
 	}
 
 	/* Au téléphone, le relais (24 nov., la façon 4 du canevas « Les informations au téléphone ») : la barre montre une

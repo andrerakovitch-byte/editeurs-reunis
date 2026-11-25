@@ -133,8 +133,8 @@ function er_info_exposition() {
 }
 
 /**
- * Les rencontres des sept jours qui viennent (au plus trois) : le navigateur garde la première qui n'est pas passée et
- * la dit « Ce soir », « Demain » ou par son jour.
+ * Les rencontres des six semaines qui viennent (au plus trois) : le navigateur garde la première qui n'est pas passée,
+ * « Prochain événement », avec son jour et son heure.
  *
  * @return WP_Post[]
  */
@@ -155,7 +155,7 @@ function er_info_rencontres() {
 				'relation' => 'AND',
 				array(
 					'key'     => 'er_debut',
-					'value'   => array( wp_date( 'Y-m-d 00:00' ), wp_date( 'Y-m-d 23:59', time() + 7 * DAY_IN_SECONDS ) ),
+					'value'   => array( wp_date( 'Y-m-d 00:00' ), wp_date( 'Y-m-d 23:59', time() + 42 * DAY_IN_SECONDS ) ),
 					'compare' => 'BETWEEN',
 				),
 				array(
@@ -191,6 +191,32 @@ function er_info_iso( $id, $cle ) {
 }
 
 /**
+ * Le jour et l'heure d'une rencontre, pour la barre d'informations : « lundi 30 novembre à 19 h », « mardi
+ * 1er décembre à 18 h 30 » (le jour seul quand l'heure n'est pas dite).
+ *
+ * @param int $id La rencontre.
+ * @return string
+ */
+function er_info_quand( $id ) {
+	$valeur = (string) get_post_meta( $id, 'er_debut', true );
+	if ( ! preg_match( '/^(\d{4}-\d{2}-\d{2})(?: (\d{2}):(\d{2}))?$/', $valeur, $m ) ) {
+		return '';
+	}
+	$fuseau = new DateTimeZone( 'Europe/Paris' );
+	$date   = new DateTimeImmutable( $m[1], $fuseau );
+	$fr     = 'fr' === substr( determine_locale(), 0, 2 );
+	// « 1er décembre » : le premier du mois s'écrit en ordinal.
+	$modele = $fr && '1' === $date->format( 'j' ) ? 'l \\1\\e\\r F' : _x( 'l j F', 'jour d’une rencontre dans la barre d’informations', 'editeurs-reunis' );
+	$jour   = wp_date( $modele, $date->getTimestamp(), $fuseau );
+	if ( empty( $m[2] ) || '00:00' === $m[2] . ':' . $m[3] ) {
+		return $jour;
+	}
+	$heure = $fr ? (int) $m[2] . ' h' . ( '00' === $m[3] ? '' : ' ' . $m[3] ) : $m[2] . ':' . $m[3];
+	/* translators: 1: le jour (« lundi 30 novembre »), 2: l'heure (« 19 h »). */
+	return sprintf( __( '%1$s à %2$s', 'editeurs-reunis' ), $jour, $heure );
+}
+
+/**
  * La barre d'informations, en haut du site.
  */
 function er_infos() {
@@ -198,12 +224,13 @@ function er_infos() {
 	$horaires     = er_horaires();
 	$items        = array();
 
-	// Ouvert ou fermé : le navigateur l'écrit d'après les horaires ; sans eux, ou sans JavaScript, les jours d'ouverture.
+	// Les jours et les heures d'ouverture (25 nov. 2026). Avec des horaires posés (réglage er_horaires), le navigateur
+	// dit plutôt s'il est ouvert ou fermé en ce moment.
 	$items[] = sprintf(
 		'<a class="er-info er-info-ouvert" href="%1$s" data-horaires="%2$s"><span class="er-info-point" aria-hidden="true"></span><span class="er-info-texte">%3$s</span></a>',
 		$nous_trouver,
 		esc_attr( wp_json_encode( (object) $horaires ) ),
-		esc_html__( 'La librairie, du mardi au samedi', 'editeurs-reunis' )
+		esc_html__( 'Ouvert du mardi au samedi de 10 h à 18 h 30', 'editeurs-reunis' )
 	);
 
 	$expo = er_info_exposition();
@@ -227,11 +254,14 @@ function er_infos() {
 			if ( ! $debut ) {
 				continue;
 			}
+			$quand  = er_info_quand( $r->ID );
 			$liste .= sprintf(
-				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden><span class="er-info-quand"></span> · <strong>%3$s</strong><span class="er-info-heure"></span></a>',
+				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden>%3$s · <strong>%4$s</strong>%5$s</a>',
 				esc_url( get_permalink( er_traduction( $r->ID ) ) ),
 				esc_attr( $debut ),
-				esc_html( get_the_title( er_traduction( $r->ID ) ) )
+				esc_html__( 'Prochain événement', 'editeurs-reunis' ),
+				esc_html( get_the_title( er_traduction( $r->ID ) ) ),
+				'' !== $quand ? ', ' . esc_html( $quand ) : ''
 			);
 		}
 		$items[] = $liste;
@@ -240,7 +270,7 @@ function er_infos() {
 	$items[] = sprintf(
 		'<a class="er-info er-info-adresse er-info-plus" href="%1$s"><span class="er-info-rue">%2$s</span> · <strong>%3$s</strong></a>',
 		$nous_trouver,
-		esc_html__( '11, rue de la Montagne-Sainte-Geneviève', 'editeurs-reunis' ),
+		esc_html__( '11, rue de la Montagne-Sainte-Geneviève, 75005 Paris', 'editeurs-reunis' ),
 		esc_html__( 'Nous trouver →', 'editeurs-reunis' )
 	);
 

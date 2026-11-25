@@ -124,20 +124,15 @@ add_action(
 			'editeurs-reunis-entete',
 			'window.erEnteteTextes = ' . wp_json_encode(
 				array(
-					'ouvert'       => __( 'Ouvert en ce moment', 'editeurs-reunis' ),
+					'ouvert'  => __( 'Ouvert en ce moment', 'editeurs-reunis' ),
 					/* translators: %s: l'heure de fermeture (« 19 h »). */
-					'jusqua'       => __( 'la librairie, jusqu’à %s', 'editeurs-reunis' ),
-					'ferme'        => __( 'Fermé en ce moment', 'editeurs-reunis' ),
+					'jusqua'  => __( 'la librairie, jusqu’à %s', 'editeurs-reunis' ),
+					'ferme'   => __( 'Fermé en ce moment', 'editeurs-reunis' ),
 					/* translators: 1: le jour de la réouverture (« mardi », « demain »), 2: l'heure (« 10 h »). */
-					'reouvre'      => __( 'réouverture %1$s à %2$s', 'editeurs-reunis' ),
-					'demain'       => __( 'demain', 'editeurs-reunis' ),
-					'cesoir'       => __( 'Ce soir au centre', 'editeurs-reunis' ),
-					'aujcentre'    => __( 'Aujourd’hui au centre', 'editeurs-reunis' ),
-					'demaincentre' => __( 'Demain au centre', 'editeurs-reunis' ),
-					/* translators: %s: un jour de la semaine (« Jeudi »). */
-					'jourcentre'   => __( '%s au centre', 'editeurs-reunis' ),
-					'jours'        => array( __( 'dimanche', 'editeurs-reunis' ), __( 'lundi', 'editeurs-reunis' ), __( 'mardi', 'editeurs-reunis' ), __( 'mercredi', 'editeurs-reunis' ), __( 'jeudi', 'editeurs-reunis' ), __( 'vendredi', 'editeurs-reunis' ), __( 'samedi', 'editeurs-reunis' ) ),
-					'heureFr'      => 'fr' === substr( determine_locale(), 0, 2 ),
+					'reouvre' => __( 'réouverture %1$s à %2$s', 'editeurs-reunis' ),
+					'demain'  => __( 'demain', 'editeurs-reunis' ),
+					'jours'   => array( __( 'dimanche', 'editeurs-reunis' ), __( 'lundi', 'editeurs-reunis' ), __( 'mardi', 'editeurs-reunis' ), __( 'mercredi', 'editeurs-reunis' ), __( 'jeudi', 'editeurs-reunis' ), __( 'vendredi', 'editeurs-reunis' ), __( 'samedi', 'editeurs-reunis' ) ),
+					'heureFr' => 'fr' === substr( determine_locale(), 0, 2 ),
 				)
 			) . ';',
 			'before'
