@@ -63,11 +63,16 @@ function er_personnes_fusions() {
 		array( 'garder' => 'Serge Foudel', 'fondre' => array( 'С. Фудель' ) ),
 		array( 'garder' => 'père Alexandre Eltchaninoff', 'nom' => 'Père Alexandre Eltchaninoff', 'fondre' => array( 'отец Александр Ельчанинов' ) ),
 		array( 'garder' => 'Mgr Semenoff-Tian-Chansky', 'nom' => 'Mgr Alexandre Semenoff-Tian-Chansky', 'fondre' => array( 'Еп. Александр Семенов-Тян-Шанский' ) ),
+		// Relevés par le recoupement des rencontres (25 nov. 2026) : un nom sans prénom, une graphie ancienne, le nom
+		// à l'envers. Zviaguintsev s'écrit comme on le connaît en France ; le russe reste parmi ses graphies.
+		array( 'garder' => 'Андрей Звягинцев', 'nom' => 'Andreï Zviaguintsev', 'fondre' => array( 'Звягинцев' ) ),
+		array( 'garder' => 'Nicolas Berdiaev', 'fondre' => array( 'Nicolas Berdiaeff' ) ),
+		array( 'garder' => 'Anne Hogenhuis', 'fondre' => array( 'Hogenhuis Anne' ) ),
 	);
 }
 
 /**
- * Les noms qui sont deux personnes : le nom, puis les personnes.
+ * Les noms qui sont deux personnes, ou qui n'en sont pas une : le nom, puis les personnes.
  *
  * @return array<string,string[]>
  */
@@ -76,7 +81,10 @@ function er_personnes_separations() {
 		'Anton Tchekhov et Lydia Mizinova'           => array( 'Anton Tchekhov', 'Lydia Mizinova' ),
 		'Marina Tsvétaïeva et Maximilian Volochine' => array( 'Marina Tsvétaïéva', 'Maximilian Volochine' ),
 		'Antoine Garcia et Yves Gauthier'           => array( 'Antoine Garcia', 'Yves Gauthier' ),
-	);
+	)
+	// Le titre d'un livre (Прогулки по памяти) pris pour son auteur : il revient à l'auteur, sans devenir une de ses
+	// graphies.
+	+ array( 'Воспоминания Ростислава Добужинского' => array( 'Rostislav Doboujinsky' ) );
 }
 
 /**
