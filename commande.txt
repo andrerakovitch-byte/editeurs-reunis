@@ -1,46 +1,144 @@
-  А. Солженицын : introuvable (déjà réuni ?)
-  А.И Солженицын : introuvable (déjà réuni ?)
-  Fedor Dostoïevski : introuvable (déjà réuni ?)
-  Dostoïevski → Fiodor Dostoïevski : 2 contenus
-  Лев Толстой : introuvable (déjà réuni ?)
-  Николай Бердяев : introuvable (déjà réuni ?)
-  Paul Florensky : introuvable (déjà réuni ?)
-  прот. Сергей Булгаков : introuvable (déjà réuni ?)
-  прот. Сергий Булгаков : introuvable (déjà réuni ?)
-  Métropolite Antoine Bloom : introuvable (déjà réuni ?)
-  Michel Ossorguine : introuvable (déjà réuni ?)
-  Н.А. Тэффи : introuvable (déjà réuni ?)
-  Николай Росс : introuvable (déjà réuni ?)
-  П.Б. Струве : introuvable (déjà réuni ?)
-  Николай Зернов : introuvable (déjà réuni ?)
-  Прот. Иоанн Мейендорф : introuvable (déjà réuni ?)
-  Семен Франк : introuvable (déjà réuni ?)
-  Ю. Фельштинский : introuvable (déjà réuni ?)
-  Г. Федотов : introuvable (déjà réuni ?)
-  Мать Мария Скобцова : introuvable (déjà réuni ?)
-  Christine Zeytounian : introuvable (déjà réuni ?)
-  Chalamov → Varlam Chalamov : 1 contenus
-  Dmitri Merejkowcky → Dmitri Merejkovski : 1 contenus
-  Зинаида Гиппиус → Zinaïda Hippius : 1 contenus, 1 en er_autour
-  Сергей Есенин → Essénine Sergueï : 3 contenus, 1 en er_autour
-  Essénine Sergueï s’écrit désormais Sergueï Essénine
-  Василий Розанов s’écrit désormais Vassili Rozanov
-  Harms → Daniil Harms : 1 contenus
-  Lénine → Vladimir Lénine : 0 contenus, 2 en er_autour
-  Saint Grégoire Palamas → Grégoire Palamas : 2 contenus
-  P. Vladimir Zélinsky → Vladimir Zelinsky : 1 contenus, 12 en er_contribution
-  P. Vladimir Zé → Vladimir Zelinsky : 1 contenus
-  André Siniavski → Andreï Siniavski : 1 contenus
-  Георгий Флоровский → Georges Florovsky : 3 contenus
-  Свящ. Павел Флоренский → Pavel Florensky : 1 contenus
-  Федор Тютчев → Fiodor Tiouttchev : 1 contenus
-  С. Фудель → Serge Foudel : 1 contenus
-  отец Александр Ельчанинов → père Alexandre Eltchaninoff : 1 contenus
-  père Alexandre Eltchaninoff s’écrit désormais Père Alexandre Eltchaninoff
-  Еп. Александр Семенов-Тян-Шанский → Mgr Semenoff-Tian-Chansky : 1 contenus
-  Mgr Semenoff-Tian-Chansky s’écrit désormais Mgr Alexandre Semenoff-Tian-Chansky
-  Anton Tchekhov et Lydia Mizinova : introuvable (déjà séparé ?)
-  Marina Tsvétaïeva et Maximilian Volochine : introuvable (déjà séparé ?)
-  Antoine Garcia et Yves Gauthier → Antoine Garcia + Yves Gauthier : 1 contenus, à Antoine Garcia et Yves Gauthier
-  L’index de la recherche est refait.
-Success: 18 personnes réunies ou séparées.
+  personne : « Nina Kchayan » introuvable (déjà renommée ?)
+  personne : « Edith Sherrer » introuvable (déjà renommée ?)
+  personne : « Natalia Soljénistyne » introuvable (déjà renommée ?)
+  personne : « A. de Couriss » introuvable (déjà renommée ?)
+  personne : « C. Andronikof » introuvable (déjà renommée ?)
+  personne : « J. Cathala » introuvable (déjà renommée ?)
+  personne : « Marianne Gourg-Antuszewic » introuvable (déjà renommée ?)
+  personne : « M. Dumesnil' de Gramont » introuvable (déjà renommée ?)
+  éditeur : « Masha Publishing » introuvable (déjà renommé ?)
+  éditeur : « Barthillat » introuvable (déjà renommé ?)
+  éditeur : « Vibratrion éditions » introuvable (déjà renommé ?)
+  éditeur : « Éditions Paroles et Silence » introuvable (déjà renommé ?)
+Rôles posés : 0 changements ; 570 déjà justes.
+  34 isbn : — → 9782882508607
+  46 isbn : — → 9791095087106
+  52 isbn : — → 9782882506948
+  84 isbn : — → 9782072826962
+  98 isbn : — → 9782070792351
+  102 isbn : — → 9782070345410
+  148 isbn : — → 9782940628407
+  153 isbn : — → 9782850652899
+  177 isbn : — → 9782204089500
+  183 isbn : — → 9782868390424
+  199 isbn : — → 9782940523559
+  201 isbn : — → 9782850652301
+  219 isbn : — → 9782743304355
+  239 isbn : — → 9782845451445
+  253 isbn : — → 9782070327928
+  267 isbn : — → 9782850650666
+  277 isbn : — → 9782850651854
+  279 isbn : — → 9782850650499
+  409 isbn : — → 9782850651915
+  447 isbn : — → 9782850651816
+  473 isbn : — → 9782850651632
+  475 isbn : — → 9782850650611
+  507 isbn : — → 9782374370323
+  517 isbn : — → 9782850652363
+  543 isbn : — → 9782850650918
+  545 isbn : — → 9782850650710
+  555 isbn : — → 9782850651458
+  563 isbn : — → 9782850651991
+  581 isbn : — → 9782917504130
+  585 isbn : — → 9782917504178
+  591 isbn : — → 9782855890296
+  609 isbn : — → 9782877067911
+  613 isbn : — → 9782253052463
+  633 isbn : — → 9782940628131
+  635 isbn : — → 9782742782734
+  637 isbn : — → 9782330064570
+  655 isbn : — → 9782072843235
+  663 isbn : — → 9782358731379
+  677 isbn : — → 9782374370460
+  679 isbn : — → 9782283030400
+  681 isbn : — → 9782490982073
+  710 isbn : — → 9782490091317
+  734 isbn : — → 9782846794503
+  745 isbn : — → 9782956611721
+  748 isbn : — → 9782850652080
+  810 isbn : — → 9782713228513
+  832 isbn : — → 9782846794619
+  859 isbn : — → 9782940628612
+  873 isbn : — → 9782715255692
+  875 isbn : — → 9782070178483
+  879 isbn : — → 9782204142243
+  888 isbn : — → 9785984540513
+  890 isbn : — → 9791093328126
+  959 isbn : — → 9782909589008
+  961 isbn : — → 9782909589381
+  978 isbn : — → 9782330036171
+  988 isbn : — → 9782940701032
+  999 isbn : — → 9782818506912
+  1002 isbn : — → 9782848767376
+  1011 isbn : — → 9782355970481
+  1018 isbn : — → 9782905685278
+  1040 isbn : — → 9782072936395
+  1065 isbn : — → 9782940628957
+  1071 isbn : — → 9782917504543
+  1100 isbn : — → 9782072880162
+  1102 isbn : — → 9782381410180
+  1112 isbn : — → 9782363583581
+  1118 isbn : — → 9782361573041
+  1123 isbn : — → 9782700508758
+  1125 isbn : — → 9782940701100
+  1144 isbn : — → 9782958151409
+  1160 isbn : — → 9782846794657
+  1175 isbn : — → 9782743655730
+  1186 isbn : — → 9782743623968
+  1200 isbn : — → 9791096982219
+  1205 isbn : — → 9782850653001
+  1222 isbn : — → 9782221258217
+  1224 isbn : — → 9782940701292
+  1232 isbn : — → 9782842424879
+  1271 isbn : — → 9782012355262
+  1281 isbn : — → 9782940701469
+  1283 isbn : — → 9782073002068
+  1298 isbn : — → 9782072968600
+  1300 isbn : — → 9782322412846
+  1308 isbn : — → 9782846794985
+  1333 isbn : — → 9791032926970
+  1335 isbn : — → 9782072999536
+  1337 isbn : — → 9782940701445
+  1339 isbn : — → 9782940701438
+  1341 isbn : — → 9782350774251
+  1343 isbn : — → 9782350774268
+  1353 isbn : — → 9782364529144
+  1380 isbn : — → 9782882508515
+  1388 isbn : — → 9782846795302
+  1390 isbn : — → 9782846795296
+  1393 isbn : — → 9782846795234
+  1403 isbn : — → 9782702180365
+  1427 isbn : — → 9782378560768
+  1429 isbn : — → 9782864323525
+  1431 isbn : — → 9782864325536
+  1437 isbn : — → 9782070729876
+  1439 isbn : — → 9782864321835
+  1448 isbn : — → 9791095087076
+  1560 isbn : — → 9782377460106
+  1562 isbn : — → 9791021054202
+  1584 isbn : — → 9782846795159
+  1590 isbn : — → 9782940701780
+  1592 isbn : — → 9782940701773
+  1598 isbn : — → 9782227501249
+  1603 isbn : — → 9782267044690
+  1614 isbn : — → 9782846795593
+  1616 isbn : — → 9782953796438
+  1629 isbn : — → 9782889830121
+  1633 isbn : — → 9782846795807
+  1709 isbn : — → 9786098347005
+  1712 isbn : — → 9788097468392
+  1714 isbn : — → 9789934921643
+  1718 isbn : — → 9789934239465
+  1720 isbn : — → 9782846795852
+  1726 isbn : — → 9785879872637
+  1736 isbn : — → 9782846795692
+  1768 isbn : — → 9782378562199
+  1772 isbn : — → 9782490337019
+  1817 isbn : — → 9785444827024
+  1822 isbn : — → 9782850653063
+  1837 isbn : — → 9782850650819
+  1862 isbn : — → 9785171731731
+  1709 éditeur : — → One Book Publishing
+  1712 pages : — → 304
+Fiches corrigées : 129.
+787 laissées (introuvables ou déjà faites) : 104 texte « Kchayan » ; 110 texte « Sherrer » ; 159 texte « S. Ermolonski » ; 183 texte « Pasquierь » ; 195 texte « Soljénistyne » ; 205 texte « tradution » ; 205 texte « Jérôme Clerc » ; 635 texte « Traduit du Joëlle Dublanchet » ; 651 texte « Antuszewic » ; 681 texte « traduit du russe pas » ; 691 texte « Одраченко » ; 786 texte « Parrain » ; 869 texte « Lesquesne » ; 1078 texte « Dumesnil' de Gramont » ; 1220 texte « Taduit » ; 1232 texte « Christine Zeytounian » ; 1399 texte « Liouba Jurgenson » ; 1824 texte « Balzano » ; 1882 texte « convain cu » ; 1866 titre « dispraître » ; 1866 texte « dispraître » ; 501 titre «  – sous la direction de Georges Nivat » ; 867 titre «  - sous la direction de Georges Nivat » ; 1152 titre «  - Sous la direction de Johann Bihr » ; 853 titre «  - Ilf & Petrov » ; 1335 titre « , Serhii Plokhy » ; 730 titre «  / Nathalie Gigounova-Komarova » ; 177 titre «  Nicolas Berdiaev » ; 661 auteur (déjà : Heather Amery) ; 730 auteur (déjà : Nathalie Gigounova-Komarova) ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 1605 auteur (déjà : Корней Чуковский) ; 177 auteur (déjà : Nicolas Berdiaev) ; 881 éditeur (déjà : Éditions des Syrtes) ; 1078 éditeur (déjà : Calmann-Lévy) ; 881 annee (déjà : 2020) ; 923 annee (déjà : 2021) ; 1071 annee (déjà : 2022) ; 44 éditeur (déjà : Gallimard) ; 50 éditeur (déjà : Éditions Mesures) ; 56 annee (déjà : 1892) ; 84 annee (déjà : 2019) ; 94 éditeur (déjà : Gallimard) ; 100 annee (déjà : 2012) ; 112 annee (déjà : 2017) ; 114 annee (déjà : 2016) ; 132 éditeur (déjà : Apostolia) ; 134 éditeur (déjà : Éditions du Cerf) ; 140 éditeur (déjà : Fayard) ; 161 éditeur (déjà : Flammarion) ; 163 éditeur (déjà : LGF) ; 165 éditeur (déjà : LGF) ; 177 annee (déjà : 2009) ; 177 éditeur (déjà : Éditions du Cerf) ; 187 pages (déjà : 180) ; 189 pages (déjà : 191) ; 195 éditeur (déjà : Fayard) ; 211 annee (déjà : 2018) ; 223 éditeur (déjà : Perrin) ; 225 annee (déjà : 2018) ; 225 éditeur (déjà : Flammarion) ; 227 éditeur (déjà : Flammarion) ; 249 éditeur (déjà : Éditions Sillage) ; 253 éditeur (déjà : Gallimard) ; 283 annee (déjà : 1989) ; 285 annee (déjà : 1989) ; 289 annee (déjà : 1985) ; 293 annee (déjà : 1986) ; 295 annee (déjà : 1987) ; 297 annee (déjà : 1988) ; 299 annee (déjà : 1988) ; 301 annee (déjà : 1988) ; 303 annee (déjà : 1989) ; 305 annee (déjà : 1989) ; 307 annee (déjà : 1990) ; 309 annee (déjà : 1990) ; 311 annee (déjà : 1991) ; 313 annee (déjà : 1991) ; 315 annee (déjà : 1992) ; 317 annee (déjà : 1992) ; 319 annee (déjà : 1993) ; 321 annee (déjà : 1993) ; 323 annee (déjà : 1994-95) ; 327 annee (déjà : 1994-95) ; 329 annee (déjà : 2012) ; 331 annee (déjà : 2012) ; 335 annee (déjà : 2010-2011) ; 337 annee (déjà : 2009) ; 339 annee (déjà : 2009) ; 341 annee (déjà : 2008) ; 343 annee (déjà : 2007) ; 343 pages (déjà : 99) ; 345 annee (déjà : 2006-2007) ; 347 annee (déjà : 2005) ; 349 annee (déjà : 2005) ; 353 annee (déjà : 2004) ; 355 annee (déjà : 2003) ; 357 annee (déjà : 2003) ; 359 annee (déjà : 2001) ; 361 annee (déjà : 2000) ; 363 annee (déjà : 2000) ; 367 annee (déjà : 1998-99) ; 369 annee (déjà : 1998-99) ; 371 annee (déjà : 1997) ; 373 annee (déjà : 1997) ; 375 annee (déjà : 1996) ; 377 annee (déjà : 2016) ; 399 annee (déjà : 2009) ; 399 pages (déjà : 303) ; 403 pages (déjà : 148) ; 457 annee (déjà : 1977) ; 467 pages (déjà : 176) ; 485 éditeur (déjà : F.-X. de Guibert) ; 501 éditeur (déjà : Fayard) ; 511 éditeur (déjà : Harpo) ; 523 éditeur (déjà : Азбука-Аттикус) ; 525 éditeur (déjà : Время) ; 533 éditeur (déjà : Молодая гвардия) ; 579 éditeur (déjà : Institut d’études slaves) ; 587 annee (déjà : 2020) ; 587 éditeur (déjà : YMCA-Press) ; 591 annee (déjà : 1979) ; 591 éditeur (déjà : Abbaye de Bellefontaine) ; 595 annee (déjà : 2011) ; 595 pages (déjà : 388) ; 595 éditeur (déjà : L’Âge d’Homme) ; 599 éditeur (déjà : Éditions du Cerf) ; 601 éditeur (déjà : Éditions du Cerf) ; 607 éditeur (déjà : Éditions du Cerf) ; 615 annee (déjà : 1993) ; 615 éditeur (déjà : Gallimard) ; 623 éditeur (déjà : Fayard) ; 625 annee (déjà : 1993) ; 625 éditeur (déjà : Gallimard) ; 627 annee (déjà : 1987) ; 627 éditeur (déjà : Gallimard) ; 631 pages (déjà : 224) ; 631 éditeur (déjà : Verdier) ; 635 annee (déjà : 2010) ; 635 pages (déjà : 384) ; 635 éditeur (déjà : Actes Sud) ; 637 annee (déjà : 2016) ; 637 pages (déjà : 352) ; 637 éditeur (déjà : Actes Sud) ; 639 éditeur (déjà : Verdier) ; 645 annee (déjà : 2011) ; 645 éditeur (déjà : Éditions Singulières) ; 649 pages (déjà : 701) ; 649 éditeur (déjà : Fayard) ; 651 annee (déjà : 2016) ; 653 annee (déjà : 1999) ; 653 éditeur (déjà : Gallimard) ; 655 annee (déjà : 2019) ; 655 éditeur (déjà : Gallimard) ; 657 annee (déjà : 2018) ; 657 éditeur (déjà : Robert Laffont) ; 659 annee (déjà : 2019) ; 659 pages (déjà : 600) ; 659 éditeur (déjà : Allary éditions) ; 661 éditeur (déjà : Usborne) ; 665 pages (déjà : 1053) ; 665 éditeur (déjà : Robert Laffont) ; 667 éditeur (déjà : Gallimard) ; 669 annee (déjà : 1995) ; 669 éditeur (déjà : Gallimard) ; 671 éditeur (déjà : Gallimard) ; 673 pages (déjà : 126) ; 673 éditeur (déjà : Ginkgo éditeur) ; 679 éditeur (déjà : Buchet-Chastel) ; 681 annee (déjà : 2020) ; 681 pages (déjà : 160) ; 681 éditeur (déjà : Éditions Mesures) ; 683 annee (déjà : 2020) ; 683 pages (déjà : 257) ; 683 éditeur (déjà : Éditions Mesures) ; 685 éditeur (déjà : Bleu nuit éditeur) ; 687 éditeur (déjà : YMCA-Press) ; 689 éditeur (déjà : Дом книги / Современные записки) ; 701 annee (déjà : 2014) ; 701 pages (déjà : 64) ; 701 éditeur (déjà : Larousse) ; 703 éditeur (déjà : Assimil) ; 706 annee (déjà : 2019) ; 706 éditeur (déjà : Златоуст) ; 714 annee (déjà : 2018) ; 714 éditeur (déjà : Éditions de la paroisse Notre-Dame du Signe) ; 722 éditeur (déjà : Perrin) ; 726 éditeur (déjà : Éditions Mesures) ; 728 éditeur (déjà : Temps présent) ; 732 annee (déjà : 2020) ; 741 annee (déjà : 2007) ; 741 éditeur (déjà : Harpo) ; 748 annee (déjà : 2020) ; 751 annee (déjà : 1994) ; 755 éditeur (déjà : Rostok) ; 759 annee (déjà : 1932) ; 759 pages (déjà : 216) ; 759 éditeur (déjà : Новый град) ; 761 annee (déjà : 2009) ; 761 éditeur (déjà : YMCA-Press) ; 765 éditeur (déjà : Inculte) ; 767 éditeur (déjà : Perrin) ; 773 annee (déjà : 2005) ; 773 éditeur (déjà : YMCA-Press) ; 776 éditeur (déjà : Les Amis de l’Histoire de Sainte-Geneviève-des-Bois et de ses environs) ; 778 éditeur (déjà : Flammarion) ; 782 annee (déjà : 2019) ; 782 pages (déjà : 108) ; 788 éditeur (déjà : Albin Michel / BnF) ; 798 annee (déjà : 2024) ; 804 éditeur (déjà : Издание общества любителей церковной истории) ; 806 éditeur (déjà : Perrin) ; 808 annee (déjà : 2020) ; 808 éditeur (déjà : Harpo) ; 822 annee (déjà : 1931) ; 828 éditeur (déjà : Librairie des Cinq Continents) ; 834 éditeur (déjà : Ginkgo éditeur) ; 842 annee (déjà : 2017) ; 842 éditeur (déjà : Русский путь) ; 844 annee (déjà : 2017) ; 844 éditeur (déjà : Научная библиотека) ; 846 pages (déjà : 872) ; 851 éditeur (déjà : Ginkgo éditeur) ; 853 éditeur (déjà : Ginkgo éditeur) ; 857 éditeur (déjà : Perrin) ; 869 éditeur (déjà : Liana Levi) ; 871 éditeur (déjà : L’Âge d’Homme) ; 873 éditeur (déjà : Le Temps retrouvé) ; 875 éditeur (déjà : Gallimard) ; 881 pages (déjà : 382) ; 890 éditeur (déjà : Éditions Natania) ; 898 éditeur (déjà : Fayard) ; 900 éditeur (déjà : La Barque) ; 902 éditeur (déjà : La Barque) ; 904 annee (déjà : 2020) ; 904 éditeur (déjà : Белый крест) ; 906 éditeur (déjà : Perrin) ; 909 éditeur (déjà : Éditions des Syrtes) ; 912 éditeur (déjà : Народный комиссариат по иностранным делам) ; 915 annee (déjà : 1852) ; 921 éditeur (déjà : Autrement) ; 923 pages (déjà : 144) ; 923 éditeur (déjà : Gallimard) ; 930 annee (déjà : 1864) ; 930 éditeur (déjà : Типография Бахметова) ; 933 annee (déjà : 1894) ; 933 éditeur (déjà : Paul Ollendorff) ; 935 pages (déjà : 115) ; 942 éditeur (déjà : Éditions Mesures) ; 945 éditeur (déjà : ACER-MJO) ; 952 éditeur (déjà : Éditions Interférences) ; 955 éditeur (déjà : Le Cherche midi éd.) ; 957 éditeur (déjà : Éditions Interférences) ; 961 éditeur (déjà : Éditions Interférences) ; 964 éditeur (déjà : Ginkgo éditeur) ; 975 annee (déjà : 2022) ; 975 éditeur (déjà : Casa di Matriona) ; 981 éditeur (déjà : Éditions du monastère Sretenski) ; 1004 annee (déjà : 2020) ; 1016 annee (déjà : 2005) ; 1018 éditeur (déjà : Le Local) ; 1021 annee (déjà : 2022) ; 1027 éditeur (déjà : Actes Sud BD) ; 1030 annee (déjà : 2021) ; 1030 pages (déjà : 588) ; 1030 éditeur (déjà : Belfond) ; 1033 annee (déjà : 2021) ; 1033 éditeur (déjà : Casterman) ; 1035 éditeur (déjà : Parenthèses) ; 1049 annee (déjà : 1990) ; 1049 éditeur (déjà : Художественная литература) ; 1051 annee (déjà : 1988) ; 1059 éditeur (déjà : Éditions Première partie) ; 1074 éditeur (déjà : Parole et Silence) ; 1076 annee (déjà : 1926) ; 1076 éditeur (déjà : Librairie académique Perrin) ; 1096 éditeur (déjà : Solin-Actes Sud) ; 1136 éditeur (déjà : Éditions Natania) ; 1138 éditeur (déjà : Éditions Natania) ; 1160 annee (déjà : 2022) ; 1160 pages (déjà : 282) ; 1160 éditeur (déjà : Ginkgo éditeur) ; 1175 éditeur (déjà : Rivages) ; 1177 éditeur (déjà : Éditions Mesures) ; 1183 annee (déjà : 2022) ; 1183 éditeur (déjà : La Barque) ; 1186 annee (déjà : 2012) ; 1188 annee (déjà : 2022) ; 1188 éditeur (déjà : Michel Lafon) ; 1191 annee (déjà : 2022) ; 1191 éditeur (déjà : Grasset) ; 1193 annee (déjà : 2022) ; 1193 éditeur (déjà : Buchet-Chastel) ; 1195 éditeur (déjà : Bartillat) ; 1210 éditeur (déjà : Ginkgo éditeur) ; 1212 éditeur (déjà : Ginkgo éditeur) ; 1214 éditeur (déjà : Noir sur Blanc) ; 1216 éditeur (déjà : Éditions des Syrtes) ; 1218 éditeur (déjà : Éditions des Syrtes) ; 1220 éditeur (déjà : Gallimard) ; 1222 éditeur (déjà : Robert Laffont) ; 1224 éditeur (déjà : Éditions des Syrtes) ; 1228 éditeur (déjà : Stock) ; 1234 éditeur (déjà : P.O.L) ; 1237 éditeur (déjà : Dukh i Litera) ; 1263 éditeur (déjà : Éditions des Syrtes) ; 1279 annee (déjà : 2022) ; 1279 éditeur (déjà : Babel) ; 1308 éditeur (déjà : Ginkgo éditeur) ; 1313 annee (déjà : 1838) ; 1313 éditeur (déjà : Firmin Didot frères) ; 1319 éditeur (déjà : Lis & parle éditions) ; 1321 éditeur (déjà : La Barque) ; 1323 éditeur (déjà : Noir sur Blanc) ; 1327 éditeur (déjà : FYP) ; 1329 annee (déjà : 1992) ; 1329 éditeur (déjà : Actes Sud) ; 1331 éditeur (déjà : Éditions Mareuil) ; 1333 éditeur (déjà : Éditions de l’Observatoire / Institut Montaigne) ; 1335 éditeur (déjà : Gallimard) ; 1359 annee (déjà : 1928) ; 1359 pages (déjà : 101) ; 1359 éditeur (déjà : YMCA-Press) ; 1361 éditeur (déjà : Saint Leger éditions) ; 1363 éditeur (déjà : Saint Leger éditions) ; 1368 annee (déjà : 1979) ; 1382 éditeur (déjà : Perrin) ; 1384 éditeur (déjà : Presses universitaires de Rennes) ; 1386 éditeur (déjà : Ginkgo éditeur) ; 1390 éditeur (déjà : Ginkgo éditeur) ; 1393 éditeur (déjà : Ginkgo éditeur) ; 1397 éditeur (déjà : Calmann-Lévy) ; 1399 éditeur (déjà : Calmann-Lévy) ; 1401 éditeur (déjà : Calmann-Lévy) ; 1405 éditeur (déjà : UGA éditions) ; 1576 annee (déjà : 2023) ; 1576 pages (déjà : 192) ; 1576 éditeur (déjà : Éditions Mesures) ; 1732 pages (déjà : 192) ; 1749 annee (déjà : 2018) ; 1852 annee (déjà : 2025) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 146 auteur (déjà : Mgr Alexandre Semenoff-Tian-Chansky) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 225 auteur (déjà : Robert Giraud) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 703 auteur (déjà : Victoria Melnikova-Suchet) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 933 auteur (déjà : Ernest Daudet) ; 975 auteur (déjà : Michele Bacci) ; 997 auteur (déjà : Tatiana Mojenok) ; 1033 auteur (déjà : Virgile Dureuil) ; 1245 auteur (déjà : Alexandra Zelenskaïa) ; 1249 auteur (déjà : Сони Вестерхольт) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1296 auteur (déjà : François Malye) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1785 auteur (déjà : Jean Liamine) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1837 auteur (déjà : Natalie Stepanoff-Kontchalovski) ; 1854 auteur (déjà : Андрей Зубов) ; 1033 texte « Virgil Dubreuil » ; 706 texte « Черниршов » ; 56 nature (déjà : collectif) ; 86 nature (déjà : collectif) ; 92 nature (déjà : collectif) ; 142 nature (déjà : collectif) ; 233 nature (déjà : collectif) ; 269 nature (déjà : collectif) ; 499 nature (déjà : collectif) ; 501 nature (déjà : collectif) ; 513 nature (déjà : collectif) ; 563 nature (déjà : collectif) ; 691 nature (déjà : collectif) ; 699 nature (déjà : collectif) ; 748 nature (déjà : collectif) ; 751 nature (déjà : collectif) ; 776 nature (déjà : collectif) ; 830 nature (déjà : collectif) ; 844 nature (déjà : collectif) ; 867 nature (déjà : collectif) ; 915 nature (déjà : collectif) ; 970 nature (déjà : collectif) ; 1024 nature (déjà : collectif) ; 1045 nature (déjà : collectif) ; 1141 nature (déjà : collectif) ; 1144 nature (déjà : collectif) ; 1152 nature (déjà : collectif) ; 1240 nature (déjà : collectif) ; 1253 nature (déjà : collectif) ; 1261 nature (déjà : collectif) ; 1277 nature (déjà : collectif) ; 1359 nature (déjà : collectif) ; 1517 nature (déjà : collectif) ; 1738 nature (déjà : collectif) ; 1820 nature (déjà : collectif) ; 1824 nature (déjà : collectif) ; 1530 nature (déjà : revue) ; 1532 nature (déjà : revue) ; 144 auteur (déjà : Alexandre Afanassiev) ; 227 auteur (déjà : Natha Caputo) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 1511 auteur (déjà : Пётр Паламарчук) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 241 titre «  - André Benoit, B. Bobrinskoy, F. Coudreau » ; 1296 titre « - François Malye » ; 1419 titre «  - Vladimir Popov , Yuri Felshtinsky » ; 34 annee (déjà : 2023) ; 34 éditeur (déjà : Noir sur Blanc) ; 42 annee (déjà : 2023) ; 42 éditeur (déjà : Ginkgo éditeur) ; 42 pages (déjà : 584) ; 46 annee (déjà : 2021) ; 46 éditeur (déjà : Éditions des Quatre vivants) ; 46 pages (déjà : 430) ; 58 annee (déjà : 2021) ; 58 éditeur (déjà : Ginkgo éditeur) ; 58 pages (déjà : 158) ; 62 annee (déjà : 2024) ; 62 éditeur (déjà : Noir sur Blanc) ; 62 pages (déjà : 261) ; 78 éditeur (déjà : ACER-MJO) ; 80 éditeur (déjà : ACER-MJO) ; 112 éditeur (déjà : ACER-MJO) ; 114 éditeur (déjà : ACER-MJO) ; 116 éditeur (déjà : ACER-MJO) ; 118 éditeur (déjà : ACER-MJO) ; 120 éditeur (déjà : ACER-MJO) ; 122 éditeur (déjà : ACER-MJO) ; 124 éditeur (déjà : ACER-MJO) ; 126 éditeur (déjà : ACER-MJO) ; 128 éditeur (déjà : ACER-MJO) ; 211 éditeur (déjà : YMCA-Press) ; 217 éditeur (déjà : YMCA-Press) ; 289 éditeur (déjà : ACER-MJO) ; 291 éditeur (déjà : ACER-MJO) ; 293 éditeur (déjà : ACER-MJO) ; 295 éditeur (déjà : ACER-MJO) ; 297 éditeur (déjà : ACER-MJO) ; 299 éditeur (déjà : ACER-MJO) ; 301 éditeur (déjà : ACER-MJO) ; 303 éditeur (déjà : ACER-MJO) ; 305 éditeur (déjà : ACER-MJO) ; 307 éditeur (déjà : ACER-MJO) ; 309 éditeur (déjà : ACER-MJO) ; 311 éditeur (déjà : ACER-MJO) ; 313 éditeur (déjà : ACER-MJO) ; 315 éditeur (déjà : ACER-MJO) ; 317 éditeur (déjà : ACER-MJO) ; 319 éditeur (déjà : ACER-MJO) ; 321 éditeur (déjà : ACER-MJO) ; 323 éditeur (déjà : ACER-MJO) ; 327 éditeur (déjà : ACER-MJO) ; 329 éditeur (déjà : ACER-MJO) ; 331 éditeur (déjà : ACER-MJO) ; 333 éditeur (déjà : ACER-MJO) ; 335 éditeur (déjà : ACER-MJO) ; 337 éditeur (déjà : ACER-MJO) ; 339 éditeur (déjà : ACER-MJO) ; 341 éditeur (déjà : ACER-MJO) ; 343 éditeur (déjà : ACER-MJO) ; 345 éditeur (déjà : ACER-MJO) ; 347 éditeur (déjà : ACER-MJO) ; 349 éditeur (déjà : ACER-MJO) ; 351 éditeur (déjà : ACER-MJO) ; 353 éditeur (déjà : ACER-MJO) ; 355 éditeur (déjà : ACER-MJO) ; 357 éditeur (déjà : ACER-MJO) ; 359 éditeur (déjà : ACER-MJO) ; 361 éditeur (déjà : ACER-MJO) ; 363 éditeur (déjà : ACER-MJO) ; 365 éditeur (déjà : ACER-MJO) ; 367 éditeur (déjà : ACER-MJO) ; 369 éditeur (déjà : ACER-MJO) ; 371 éditeur (déjà : ACER-MJO) ; 373 éditeur (déjà : ACER-MJO) ; 375 éditeur (déjà : ACER-MJO) ; 377 éditeur (déjà : YMCA-Press) ; 379 éditeur (déjà : YMCA-Press) ; 381 éditeur (déjà : YMCA-Press) ; 383 éditeur (déjà : YMCA-Press) ; 385 éditeur (déjà : YMCA-Press) ; 387 éditeur (déjà : YMCA-Press) ; 389 éditeur (déjà : YMCA-Press) ; 391 éditeur (déjà : YMCA-Press) ; 393 éditeur (déjà : YMCA-Press) ; 395 éditeur (déjà : YMCA-Press) ; 397 éditeur (déjà : YMCA-Press) ; 399 éditeur (déjà : YMCA-Press) ; 613 éditeur (déjà : LGF) ; 613 pages (déjà : 377) ; 663 annee (déjà : 2019) ; 663 éditeur (déjà : Le Bruit du temps) ; 663 pages (déjà : 1244) ; 697 éditeur (déjà : First éditions) ; 710 annee (déjà : 2020) ; 710 éditeur (déjà : Vibration éditions) ; 710 pages (déjà : 137) ; 712 annee (déjà : 2020) ; 712 éditeur (déjà : Éditions Transboréal) ; 712 pages (déjà : 276) ; 732 éditeur (déjà : YMCA-Press) ; 745 annee (déjà : 2020) ; 745 éditeur (déjà : Éditions Art sacré) ; 745 pages (déjà : 156) ; 757 annee (déjà : 1937) ; 757 éditeur (déjà : Speer & Schmidt) ; 757 pages (déjà : 1098) ; 855 annee (déjà : 2021) ; 855 éditeur (déjà : Perrin) ; 855 pages (déjà : 534) ; 867 annee (déjà : 2021) ; 867 éditeur (déjà : Fayard) ; 867 pages (déjà : 417) ; 888 annee (déjà : 2020) ; 888 éditeur (déjà : Викмо-М) ; 888 pages (déjà : 411) ; 959 annee (déjà : 1992) ; 959 éditeur (déjà : Éditions Interférences) ; 973 annee (déjà : 2005) ; 973 éditeur (déjà : Ginkgo éditeur) ; 973 pages (déjà : 191) ; 978 annee (déjà : 2014) ; 978 éditeur (déjà : Hélium) ; 986 annee (déjà : 2021) ; 986 éditeur (déjà : Ginkgo éditeur) ; 986 pages (déjà : 271) ; 992 annee (déjà : 2021) ; 992 éditeur (déjà : Éditions du Cerf) ; 992 pages (déjà : 353) ; 999 annee (déjà : 2022) ; 999 éditeur (déjà : Pluriel) ; 999 pages (déjà : 306) ; 1002 annee (déjà : 2019) ; 1002 éditeur (déjà : Philippe Rey) ; 1002 pages (déjà : 156) ; 1040 annee (déjà : 2021) ; 1040 éditeur (déjà : Folio) ; 1040 pages (déjà : 273) ; 1065 éditeur (déjà : Éditions des Syrtes) ; 1100 annee (déjà : 2021) ; 1100 éditeur (déjà : Gallimard) ; 1100 pages (déjà : 449) ; 1102 annee (déjà : 2021) ; 1102 éditeur (déjà : Éditions Sillage) ; 1102 pages (déjà : 100) ; 1112 annee (déjà : 2021) ; 1112 éditeur (déjà : Vendémiaire) ; 1112 pages (déjà : 355) ; 1114 éditeur (déjà : Éditions Transboréal) ; 1116 éditeur (déjà : Éditions Transboréal) ; 1118 annee (déjà : 2021) ; 1118 éditeur (déjà : Éditions Transboréal) ; 1118 pages (déjà : 761) ; 1131 annee (déjà : 2017) ; 1131 éditeur (déjà : Perrin) ; 1131 pages (déjà : 498) ; 1133 annee (déjà : 2022) ; 1133 éditeur (déjà : Liana Levi) ; 1144 annee (déjà : 2022) ; 1144 éditeur (déjà : Boukovki) ; 1144 pages (déjà : 43) ; 1152 annee (déjà : 2021) ; 1152 éditeur (déjà : Les Petits matins) ; 1152 pages (déjà : 124) ; 1154 éditeur (déjà : Premier Parallèle) ; 1157 annee (déjà : 2020) ; 1157 éditeur (déjà : Les Arènes) ; 1157 pages (déjà : 282) ; 1165 annee (déjà : 2022) ; 1165 éditeur (déjà : Gallimard) ; 1165 pages (déjà : 204) ; 1172 éditeur (déjà : Nevicata) ; 1179 éditeur (déjà : Éditions des Syrtes) ; 1181 annee (déjà : 2022) ; 1181 éditeur (déjà : Éditions des Syrtes) ; 1181 pages (déjà : 601) ; 1200 annee (déjà : 2022) ; 1200 éditeur (déjà : Eur’Orbem) ; 1243 annee (déjà : 2022) ; 1243 éditeur (déjà : Noir sur Blanc) ; 1243 pages (déjà : 218) ; 1253 annee (déjà : 2022) ; 1253 éditeur (déjà : Robert Laffont) ; 1253 pages (déjà : 451) ; 1261 annee (déjà : 2022) ; 1261 éditeur (déjà : Stock) ; 1261 pages (déjà : 288) ; 1271 annee (déjà : 1999) ; 1271 éditeur (déjà : Hachette Littératures) ; 1271 pages (déjà : 203) ; 1275 éditeur (déjà : ACER-MJO) ; 1281 annee (déjà : 2023) ; 1281 éditeur (déjà : Éditions des Syrtes) ; 1281 pages (déjà : 331) ; 1292 éditeur (déjà : Eyrolles) ; 1296 annee (déjà : 2023) ; 1296 éditeur (déjà : Perrin) ; 1296 pages (déjà : 314) ; 1298 annee (déjà : 2023) ; 1298 éditeur (déjà : Gallimard) ; 1298 pages (déjà : 167) ; 1300 annee (déjà : 2022) ; 1300 éditeur (déjà : BoD – Books on Demand) ; 1300 pages (déjà : 210) ; 1302 annee (déjà : 2022) ; 1302 éditeur (déjà : Institut d’études slaves) ; 1302 pages (déjà : 780) ; 1377 annee (déjà : 2023) ; 1377 éditeur (déjà : Noir sur Blanc) ; 1377 pages (déjà : 254) ; 1380 annee (déjà : 2023) ; 1380 éditeur (déjà : Noir sur Blanc) ; 1380 pages (déjà : 204) ; 1403 annee (déjà : 2023) ; 1403 éditeur (déjà : Calmann-Lévy) ; 1421 éditeur (déjà : Verdier) ; 1423 éditeur (déjà : Verdier) ; 1425 éditeur (déjà : Verdier) ; 1427 éditeur (déjà : Verdier) ; 1429 éditeur (déjà : Verdier) ; 1431 éditeur (déjà : Verdier) ; 1435 annee (déjà : 1991) ; 1435 éditeur (déjà : Maurice Nadeau) ; 1437 annee (déjà : 1993) ; 1437 éditeur (déjà : Gallimard) ; 1439 éditeur (déjà : Verdier) ; 1443 annee (déjà : 2023) ; 1443 éditeur (déjà : Ginkgo éditeur) ; 1443 pages (déjà : 238) ; 1448 annee (déjà : 2020) ; 1448 éditeur (déjà : Éditions des Quatre vivants) ; 1448 pages (déjà : 141) ; 1453 éditeur (déjà : YMCA-Press) ; 1453 pages (déjà : 415) ; 1560 annee (déjà : 2023) ; 1560 éditeur (déjà : Les Carnets de l’aléatoire) ; 1562 annee (déjà : 2023) ; 1562 éditeur (déjà : Tallandier) ; 1562 pages (déjà : 349) ; 1580 annee (déjà : 2023) ; 1580 éditeur (déjà : Éditions Mesures) ; 1580 pages (déjà : 120) ; 1582 annee (déjà : 2017) ; 1582 éditeur (déjà : Éditions Interférences) ; 1582 pages (déjà : 63) ; 1584 annee (déjà : 2023) ; 1584 éditeur (déjà : Ginkgo éditeur) ; 1584 pages (déjà : 188) ; 1590 annee (déjà : 2024) ; 1590 éditeur (déjà : Éditions des Syrtes) ; 1590 pages (déjà : 221) ; 1592 annee (déjà : 2024) ; 1592 éditeur (déjà : Éditions des Syrtes) ; 1592 pages (déjà : 248) ; 1598 annee (déjà : 2024) ; 1598 éditeur (déjà : Bayard) ; 1598 pages (déjà : 216) ; 1603 annee (déjà : 2021) ; 1603 éditeur (déjà : Christian Bourgois) ; 1603 pages (déjà : 618) ; 1614 annee (déjà : 2024) ; 1614 éditeur (déjà : Ginkgo éditeur) ; 1614 pages (déjà : 141) ; 1616 annee (déjà : 2024) ; 1616 éditeur (déjà : Monastère Saint-Silouane) ; 1616 pages (déjà : 60) ; 1621 éditeur (déjà : YMCA-Press) ; 1633 annee (déjà : 2024) ; 1633 éditeur (déjà : Ginkgo éditeur) ; 1633 pages (déjà : 255) ; 1643 annee (déjà : 2024) ; 1643 éditeur (déjà : Armand Colin) ; 1643 pages (déjà : 410) ; 1652 annee (déjà : 2023) ; 1652 éditeur (déjà : Armand Colin) ; 1652 pages (déjà : 397) ; 1655 annee (déjà : 2024) ; 1655 éditeur (déjà : Calmann-Lévy) ; 1655 pages (déjà : 349) ; 1666 annee (déjà : 2024) ; 1666 éditeur (déjà : Noir sur Blanc) ; 1666 pages (déjà : 944) ; 1673 annee (déjà : 2020) ; 1673 éditeur (déjà : Pocket) ; 1673 pages (déjà : 120) ; 1675 annee (déjà : 2024) ; 1675 éditeur (déjà : Robert Laffont) ; 1675 pages (déjà : 520) ; 1679 annee (déjà : 2024) ; 1679 éditeur (déjà : Les Belles lettres) ; 1679 pages (déjà : 402) ; 1695 éditeur (déjà : YMCA-Press) ; 1699 éditeur (déjà : YMCA-Press) ; 1702 éditeur (déjà : BAbook) ; 1709 annee (déjà : 2024) ; 1709 pages (déjà : 398) ; 1712 annee (déjà : 2024) ; 1712 éditeur (déjà : Vidim Books) ; 1714 annee (déjà : 2024) ; 1714 éditeur (déjà : Meduza) ; 1714 pages (déjà : 428) ; 1716 annee (déjà : 2024) ; 1718 annee (déjà : 2023) ; 1718 éditeur (déjà : Meduza) ; 1718 pages (déjà : 470) ; 1720 annee (déjà : 2024) ; 1720 éditeur (déjà : Ginkgo éditeur) ; 1720 pages (déjà : 299) ; 1726 annee (déjà : 2023) ; 1726 éditeur (déjà : Гилея) ; 1726 pages (déjà : 499) ; 1736 annee (déjà : 2024) ; 1736 éditeur (déjà : Ginkgo éditeur) ; 1736 pages (déjà : 797) ; 1740 annee (déjà : 2025) ; 1740 éditeur (déjà : Éditions Mesures) ; 1740 pages (déjà : 200) ; 1755 éditeur (déjà : CNRS éditions) ; 1766 éditeur (déjà : YMCA-Press) ; 1768 annee (déjà : 2025) ; 1768 éditeur (déjà : Verdier) ; 1768 pages (déjà : 279) ; 1770 annee (déjà : 2025) ; 1770 éditeur (déjà : Sorbonne Université Presses) ; 1770 pages (déjà : 396) ; 1772 annee (déjà : 2018) ; 1772 éditeur (déjà : Éditions Sofia) ; 1772 pages (déjà : 46) ; 1793 annee (déjà : 2025) ; 1793 éditeur (déjà : Время) ; 1801 éditeur (déjà : YMCA-Press) ; 1805 annee (déjà : 2025) ; 1805 éditeur (déjà : Éditions Mimésis) ; 1805 pages (déjà : 253) ; 1811 annee (déjà : 2025) ; 1811 éditeur (déjà : Überbau) ; 1817 annee (déjà : 2025) ; 1817 éditeur (déjà : Новое литературное обозрение) ; 1817 pages (déjà : 416) ; 1837 éditeur (déjà : Les Éditeurs réunis) ; 1837 pages (déjà : 210) ; 1839 annee (déjà : 2026) ; 1839 éditeur (déjà : Vidim Books) ; 1852 éditeur (déjà : YMCA-Press) ; 1854 éditeur (déjà : Vidim Books) ; 1860 annee (déjà : 2026) ; 1860 éditeur (déjà : Meduza) ; 1862 annee (déjà : 2025) ; 1862 éditeur (déjà : Редакция Елены Шубиной) ; 1862 pages (déjà : 544) ; 1866 annee (déjà : 2026) ; 1866 éditeur (déjà : Stock) ; 1866 pages (déjà : 201) ; 1885 annee (déjà : 2026)
