@@ -160,6 +160,12 @@ function test_continuer_trois_editions_d_un_livre_cite() {
 	egal( 1, count( $cite ), 'un module des livres cités' );
 	egal( '{{Le Maître et Marguerite}}', $cite[0]['titre'], 'le titre une seule fois' );
 	egal( 'En trois éditions : chez Barnum en 2020, chez Inculte en 2012 et chez Robert Laffont en 1997.', $cite[0]['ligne'] );
+	foreach ( array( 110 => 2, 111 => 3, 112 => 4 ) as $livre => $traducteur ) {
+		$ix['livres'][ $livre ]['r'] = array( 'traduction' => array( $traducteur ) );
+	}
+	$r    = er_continuer_choisir( 113, $ix, array( 'notice' => array( array( 'Écrit en même temps que Le Maître et Marguerite.', 'ecrit en mem temp que l metr et margerit' ) ) ) );
+	$cite = array_values( array_filter( $r['modules'], fn( $m ) => 'cite' === $m['type'] ) );
+	egal( 'En trois éditions, trois traductions.', $cite[0]['ligne'], 'trois traducteurs' );
 }
 
 function test_continuer_volumes_et_nom_en_cyrillique() {

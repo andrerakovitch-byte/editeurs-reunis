@@ -1681,9 +1681,14 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		$premier = ! $second && preg_match( '/\bpremi(er|ère) (partie|volume|tome|volet)\b/u', $texte );
 		$un      = 1 === count( $trouves );
 		// Les titres, chacun une fois : trois éditions du même livre ne font pas « A, A et A ».
+		// L'intitulé prend le titre court (« La Fuite », pas « La Fuite – Pièces et nouvelles »).
+		$titre_c = function ( $o ) use ( $ix ) {
+			$court = er_continuer_titre_court( $ix['livres'][ $o ]['t'] );
+			return er_continuer_titre( '' !== $court ? $court : $ix['livres'][ $o ]['t'] );
+		};
 		$titres = array();
 		foreach ( $trouves as $o ) {
-			$titres[ mb_strtolower( er_continuer_nu( $titre_l( $o ) ), 'UTF-8' ) ] = $titre_l( $o );
+			$titres[ mb_strtolower( er_continuer_nu( $titre_c( $o ) ), 'UTF-8' ) ] = $titre_c( $o );
 		}
 		$titres = array_values( $titres );
 		$m       = array(
@@ -1712,11 +1717,18 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			}
 		} elseif ( ! $un && 1 === count( $titres ) ) {
 			// Un seul livre cité, que la librairie a en plusieurs éditions : le titre une fois, les éditions dans la ligne.
-			$chez            = array_values( array_filter( array_map( $parution, $trouves ) ) );
-			$n               = er_continuer_nombre( count( $trouves ), true );
+			$chez = array_values( array_filter( array_map( $parution, $trouves ) ) );
+			$n    = er_continuer_nombre( count( $trouves ), true );
+			// Trois traducteurs différents : « trois éditions, trois traductions » ; sinon l'éditeur et l'année de chacune.
+			$trads = array_map( fn( $o ) => isset( $ix['livres'][ $o ]['r']['traduction'] ) ? implode( ',', array_map( 'intval', $ix['livres'][ $o ]['r']['traduction'] ) ) : '', $trouves );
+			if ( ! in_array( '', $trads, true ) && count( array_unique( $trads ) ) === count( $trouves ) ) {
+				$suite = ', ' . er_continuer_nombre( count( $trouves ), true ) . ' traductions';
+			} else {
+				$suite = count( $chez ) === count( $trouves ) ? ' : ' . er_continuer_liste( $chez ) : '';
+			}
 			$m['sur']        = 'Cité dans la notice';
 			$m['titre']      = $titres[0];
-			$m['ligne']      = er_continuer_phrase( 'en ' . $n . ' éditions' . ( count( $chez ) === count( $trouves ) ? ' : ' . er_continuer_liste( $chez ) : '' ) );
+			$m['ligne']      = er_continuer_phrase( 'en ' . $n . ' éditions' . $suite );
 			$m['fragment']   = $n . ' éditions ' . er_continuer_de( $titres[0] );
 		} else {
 			$m['sur']        = $un ? 'Cité dans la notice' : 'Cités dans la notice';
