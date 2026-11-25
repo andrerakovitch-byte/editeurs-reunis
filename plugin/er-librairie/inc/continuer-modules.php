@@ -577,7 +577,38 @@ function er_continuer_noms_ligne( $personnes, $ix, $langue = 'fr' ) {
 			$courts = false;
 		}
 	}
-	return array_map( fn( $p ) => $courts ? er_continuer_nom_court( er_continuer_nom( $p, $ix, $langue ) ) : er_continuer_nom( $p, $ix, $langue ), array_values( $personnes ) );
+	return array_map( fn( $p ) => $courts ? er_continuer_court( $p, $ix, $langue ) : er_continuer_nom( $p, $ix, $langue ), array_values( $personnes ) );
+}
+
+/**
+ * Le nom court d'une personne, sauf quand il en désigne une autre aussi : « Struve » est Nikita ou Pierre, « Lossky »
+ * Vladimir ou Olga ; le nom entier alors, au fil de la phrase (« le père Serge Boulgakov »). Le plus connu de deux
+ * homonymes garde son nom court quand il l'est nettement plus (Mikhaïl Boulgakov, Fiodor Dostoïevski).
+ *
+ * @param int    $p      La personne.
+ * @param array  $ix     L'index.
+ * @param string $langue La langue de la page.
+ */
+function er_continuer_court( $p, $ix, $langue = 'fr' ) {
+	static $homonymes = array();
+	$cle = ( isset( $ix['quand'] ) ? $ix['quand'] : 0 ) . ':' . count( $ix['personnes'] ) . ':' . $langue;
+	if ( ! isset( $homonymes[ $cle ] ) ) {
+		$homonymes[ $cle ] = array();
+		foreach ( $ix['personnes'] as $q => $fiche ) {
+			if ( ! empty( $fiche['nb'] ) ) {
+				$homonymes[ $cle ][ mb_strtolower( er_continuer_nom_court( er_continuer_nom( $q, $ix, $langue ) ), 'UTF-8' ) ][ (int) $q ] = (int) $fiche['nb'];
+			}
+		}
+	}
+	$court = er_continuer_nom_court( er_continuer_nom( $p, $ix, $langue ) );
+	$nb    = isset( $ix['personnes'][ $p ]['nb'] ) ? (int) $ix['personnes'][ $p ]['nb'] : 0;
+	$k     = mb_strtolower( $court, 'UTF-8' );
+	foreach ( isset( $homonymes[ $cle ][ $k ] ) ? $homonymes[ $cle ][ $k ] : array() as $q => $nb_q ) {
+		if ( (int) $p !== $q && ! ( $nb >= 5 && $nb >= 2 * $nb_q ) ) {
+			return er_continuer_nom_dans_phrase( er_continuer_nom( $p, $ix, $langue ) );
+		}
+	}
+	return $court;
 }
 
 /* Les époques --------------------------------------------------------------------------------------------------- */
@@ -1003,7 +1034,7 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 	$langue_fiche = 'ru' === $o['langue'] ? 'ru' : 'fr';
 	$connu        = fn( $p ) => ( isset( $ix['personnes'][ $p ]['nb'] ) ? (int) $ix['personnes'][ $p ]['nb'] : 0 ) >= 5;
 	$dicible      = fn( $p ) => $p && er_continuer_nom_dicible( $p, $ix, $o['page'] );
-	$court        = fn( $p ) => er_continuer_nom_court( er_continuer_nom( $p, $ix, $o['page'] ) );
+	$court        = fn( $p ) => er_continuer_court( $p, $ix, $o['page'] );
 	// Le sujet d'un livre : court s'il est connu (« sur Dostoïevski »), entier sinon (« une biographie de Larissa
 	// Andersen », qu'on ne prenne pas pour celui des contes). Connu comme sujet : auteur de cinq livres, ou sujet de
 	// trois (Poutine, Koltchak).
@@ -1391,7 +1422,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 	}
 	$du_meme  = array_values( array_unique( $du_meme ) );
 	$nom      = fn( $p ) => er_continuer_nom( $p, $ix, $page );
-	$court    = fn( $p ) => er_continuer_nom_court( er_continuer_nom( $p, $ix, $page ) );
+	$court    = fn( $p ) => er_continuer_court( $p, $ix, $page );
 	$titre_l  = fn( $i ) => er_continuer_titre( $ix['livres'][ $i ]['t'] );
 	$de_carte = fn( $cle, $k ) => isset( $carte[ $cle ][ $k ] ) ? $carte[ $cle ][ $k ] : array();
 	$restants = function ( $ids ) use ( &$pris ) {
