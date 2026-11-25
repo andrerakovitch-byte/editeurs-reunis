@@ -1485,6 +1485,9 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$memes[] = $o;
 		}
 	}
+	// Les autres éditions du livre ne vont que dans leurs modules (« En russe », « Dans une autre édition ») : pas de
+	// « Le Roman de Monsieur de Molière » parmi « D'autres regards sur Molière » de sa propre fiche.
+	$pris = array_merge( $pris, $ed['editions'] );
 	$parution = function ( $o ) use ( $ix, $page ) {
 		$lo = $ix['livres'][ $o ];
 		$ed = isset( $lo['ed'] ) ? str_replace( "'", '’', trim( (string) $lo['ed'] ) ) : '';
@@ -2024,7 +2027,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 	}
 
 	// Secondaires : les autres éditions dans la même langue.
-	$memes = array_slice( er_continuer_ranger( $restants( $memes ), $ix, $id ), 0, 2 );
+	$memes = array_slice( er_continuer_ranger( $memes, $ix, $id ), 0, 2 );
 	if ( $memes ) {
 		$chez = array_values( array_filter( array_map( $parution, $memes ) ) );
 		$ajouter(
