@@ -16,6 +16,7 @@ require get_template_directory() . '/inc/entete.php';
 require get_template_directory() . '/inc/bande.php';
 require get_template_directory() . '/inc/tete.php';
 require get_template_directory() . '/inc/index.php';
+require get_template_directory() . '/inc/expo-du-moment.php';
 
 add_action(
 	'after_setup_theme',
@@ -678,7 +679,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index|expo_du_moment)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 

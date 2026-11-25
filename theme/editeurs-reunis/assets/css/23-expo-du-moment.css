@@ -1,0 +1,132 @@
+/* --------------------------------------------------------------------------
+   L'exposition du moment (26 nov. 2026, planche « Aux couleurs du centre ») : le second module de l'accueil, en
+   rupture avec le blanc de l'index. L'aplat bleu nuit du centre, de bord à bord ; le nom de l'artiste en bleu
+   pervenche et le titre en blanc, d'une traite, en très grand ; deux lignes, un bouton ; la photo posée dans le bleu,
+   avec une marge, qui glisse un peu moins vite que la page. Le contenu : inc/expo-du-moment.php.
+   -------------------------------------------------------------------------- */
+
+.er-accueil > .er-expo-moment { margin-block: 0 !important; }
+
+.er-expo-moment {
+	--er-expo-fond: var(--wp--preset--color--maison-centre);
+	--er-expo-accent: var(--wp--preset--color--accent);
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 24px;
+	min-height: clamp(40rem, calc(100svh - var(--er-ligne, 48px)), 53.75rem);
+	background: var(--er-expo-fond);
+	color: var(--wp--preset--color--base);
+}
+
+.er-expo-moment-texte {
+	grid-column: 1 / span 7;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 2.5rem;
+	min-width: 0;
+	padding: 3.5rem 0 3.5rem var(--wp--style--root--padding-left);
+}
+.er-expo-moment.est-sans-photo .er-expo-moment-texte {
+	grid-column: 1 / -1;
+	padding-right: var(--wp--style--root--padding-right);
+}
+
+/* Le nom et le titre, d'une traite : même taille, même graisse ; le nom en pervenche. */
+.er-expo-moment-titre {
+	margin: 0;
+	color: var(--wp--preset--color--base);
+	font-size: clamp(3.5rem, 8.6vw, 7.75rem);
+	font-weight: 500;
+	line-height: 0.9;
+	letter-spacing: -0.04em;
+	text-wrap: pretty;
+}
+.er-expo-moment-artiste { color: var(--er-expo-accent); }
+
+.er-expo-moment-quand {
+	margin: 0;
+	font-size: 1.875rem;
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+.er-expo-moment-action { margin: 0; }
+.er-expo-moment-bouton {
+	display: inline-flex;
+	align-items: center;
+	min-height: 48px;
+	padding: 0 1.625rem;
+	border-radius: 999px;
+	background: var(--er-expo-accent);
+	color: var(--er-expo-fond);
+	font-size: 0.9375rem;
+	font-weight: 600;
+	white-space: nowrap;
+	text-decoration: none;
+	transition: background-color 0.2s ease;
+}
+.er-expo-moment-bouton:hover,
+.er-expo-moment-bouton:focus-visible { background: var(--wp--preset--color--base); color: var(--er-expo-fond); }
+.er-expo-moment-bouton:focus-visible { outline: 2px solid var(--wp--preset--color--base); outline-offset: 3px; }
+
+/* La photo, posée dans le bleu avec une marge. */
+.er-expo-moment-photo {
+	grid-column: 8 / -1;
+	position: relative;
+	min-height: 32.5rem;
+	margin: 3.5rem var(--wp--style--root--padding-right) 3.5rem 0;
+}
+.er-expo-moment-cadre { position: absolute; inset: 0; overflow: hidden; }
+.er-expo-moment-image {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 38%;
+}
+.er-expo-moment-photo figcaption {
+	position: absolute;
+	right: 1.5rem;
+	bottom: 1.25rem;
+	left: 1.5rem;
+	font-size: 0.75rem;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.86);
+}
+
+/* La photo glisse un peu moins vite que la page, là où le navigateur sait animer au défilement ; ailleurs, et quand
+   on a demandé moins d'animations, elle reste fixe. */
+@keyframes er-expo-glisse {
+	from { transform: translateY(-7%) scale(1.16); }
+	to { transform: translateY(7%) scale(1.16); }
+}
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.er-expo-moment-image {
+			animation: er-expo-glisse linear both;
+			animation-timeline: view();
+			animation-range: cover 0% cover 100%;
+		}
+	}
+}
+
+/* Au téléphone : le texte, puis la photo. */
+@media (max-width: 781px) {
+	.er-expo-moment { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+	.er-expo-moment-texte,
+	.er-expo-moment.est-sans-photo .er-expo-moment-texte {
+		grid-column: 1;
+		gap: 1.5rem;
+		padding: 2.5rem var(--wp--style--root--padding-right) 2rem var(--wp--style--root--padding-left);
+	}
+	.er-expo-moment-titre { font-size: clamp(2.75rem, 13vw, 3.75rem); }
+	.er-expo-moment-quand { font-size: 1.5rem; }
+	.er-expo-moment-photo {
+		grid-column: 1;
+		min-height: 0;
+		aspect-ratio: 4 / 5;
+		margin: 0 var(--wp--style--root--padding-right) 2.5rem var(--wp--style--root--padding-left);
+	}
+}

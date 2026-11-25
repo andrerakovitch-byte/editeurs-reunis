@@ -1,5 +1,13 @@
 [
  {
+  "cle": "je-m-appelle-la-guerre",
+  "titre": "Je m’appelle la guerre",
+  "ligne": "Victoria Ivleva",
+  "debut": "",
+  "fin": "2026-11-30",
+  "entree": "Libre"
+ },
+ {
   "cle": "trois-generations",
   "titre": "Trois générations",
   "artistes": ["Leonid Rakov", "Olga Rakova", "Irina Rakova", "Anna Rakova", "Anna Rkv.", "Roman Saoulski", "Vassilissa Tatokhina"],

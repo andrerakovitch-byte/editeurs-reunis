@@ -627,7 +627,7 @@ function er_expo_importer_un( $x ) {
 	if ( empty( $x['ligne'] ) && ! empty( $x['artistes'] ) ) {
 		$x['ligne'] = implode( ', ', $x['artistes'] );
 	}
-	foreach ( array( 'er_debut' => 'debut', 'er_fin' => 'fin', 'er_artistes' => 'ligne' ) as $cle => $champ ) {
+	foreach ( array( 'er_debut' => 'debut', 'er_fin' => 'fin', 'er_artistes' => 'ligne', 'er_entree' => 'entree', 'er_lieu' => 'lieu' ) as $cle => $champ ) {
 		if ( ! empty( $x[ $champ ] ) && '' === (string) get_post_meta( $id, $cle, true ) ) {
 			update_post_meta( $id, $cle, $x[ $champ ] );
 		}
