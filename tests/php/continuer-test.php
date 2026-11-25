@@ -72,6 +72,9 @@ function test_continuer_noms_courts() {
 	egal( 'saint Séraphin de Sarov', er_continuer_nom_court( 'Saint Séraphin de Sarov' ), 'un saint garde tout son nom' );
 	egal( 'Dante', er_continuer_nom_court( 'Dante Alighieri' ) );
 	egal( 'Ilf et Pétrov', er_continuer_nom_court( 'Ilf et Pétrov' ), 'un duo' );
+	$ix = er_test_continuer_index();
+	egal( array( 'Grossman', 'Akhmatova' ), er_continuer_noms_ligne( array( 1, 8 ), $ix ), 'toutes connues : tous courts' );
+	egal( array( 'Maria Stepanova', 'Anna Akhmatova' ), er_continuer_noms_ligne( array( 3, 8 ), $ix ), 'une inconnue : tous entiers' );
 }
 
 function test_continuer_listes_phrases_et_titres() {
@@ -142,6 +145,21 @@ function test_continuer_vie_et_destin() {
 			vrai( ! in_array( 101, $m['livres'], true ), 'pas les livres de l’auteur, que la colonne montre' );
 		}
 	}
+}
+
+function test_continuer_trois_editions_d_un_livre_cite() {
+	$ix                         = er_test_continuer_index();
+	$ix['personnes'][10]        = array( 'n' => 'Mikhaïl Boulgakov', 'nb' => 15 );
+	$maitre                     = array( 't' => 'Le Maître et Marguerite', 'k' => 'l metr et margerit', 'kt' => 'l metr et margerit', 'a' => array( 10 ), 'c' => array( 18 ), 'l' => array( 'francais' ), 'st' => 1 );
+	$ix['livres'][110]          = $maitre + array( 'ed' => 'Barnum', 'an' => '2020' );
+	$ix['livres'][111]          = $maitre + array( 'ed' => 'Inculte', 'an' => '2012' );
+	$ix['livres'][112]          = $maitre + array( 'ed' => 'Robert Laffont', 'an' => '1997' );
+	$ix['livres'][113]          = array( 't' => 'Le Roman de monsieur de Molière', 'k' => 'l roman d monseur d moler', 'kt' => 'l roman d monseur d moler', 'a' => array( 10 ), 'c' => array( 18 ), 'l' => array( 'francais' ), 'st' => 1 );
+	$r                          = er_continuer_choisir( 113, $ix, array( 'notice' => array( array( 'Écrit en même temps que Le Maître et Marguerite.', 'ecrit en mem temp que l metr et margerit' ) ) ) );
+	$cite                       = array_values( array_filter( $r['modules'], fn( $m ) => 'cite' === $m['type'] ) );
+	egal( 1, count( $cite ), 'un module des livres cités' );
+	egal( '{{Le Maître et Marguerite}}', $cite[0]['titre'], 'le titre une seule fois' );
+	egal( 'En trois éditions : chez Barnum en 2020, chez Inculte en 2012 et chez Robert Laffont en 1997.', $cite[0]['ligne'] );
 }
 
 function test_continuer_volumes_et_nom_en_cyrillique() {

@@ -34,8 +34,19 @@ function er_continuer_liste( $elements ) {
 	if ( count( $elements ) < 2 ) {
 		return $elements ? $elements[0] : '';
 	}
+	// Un élément qui porte déjà son « et » (« sur la Russie et sur le pouvoir », « d'Ilf et Pétrov ») : seul, il passe
+	// en dernier ; à plusieurs, une virgule avant le dernier, pour qu'on ne confonde pas les « et ».
+	$a_et = fn( $e ) => false !== strpos( (string) preg_replace( '/\{\{.*?\}\}/u', '', $e ), ' et ' );
+	$avec = array_keys( array_filter( $elements, $a_et ) );
+	if ( 1 === count( $avec ) && count( $elements ) - 1 !== $avec[0] ) {
+		$e = $elements[ $avec[0] ];
+		unset( $elements[ $avec[0] ] );
+		$elements[] = $e;
+		$elements   = array_values( $elements );
+	}
 	$dernier = array_pop( $elements );
-	return implode( ', ', $elements ) . ' et ' . $dernier;
+	$ambigu  = (bool) array_filter( $elements, $a_et );
+	return implode( ', ', $elements ) . ( $ambigu ? ', et ' : ' et ' ) . $dernier;
 }
 
 /**
@@ -58,6 +69,10 @@ function er_continuer_voyelle( $texte ) {
 	if ( '' === $t ) {
 		return false;
 	}
+	// Les prénoms à h muet : « d'Hélène Carrère d'Encausse », « d'Henri Troyat » (les noms de famille gardent « de »).
+	if ( preg_match( '/^(Hélène|Héléna|Henri|Henriette|Henry|Hervé|Hubert|Hugues|Honoré|Hortense|Hippolyte|Héloïse)\b/u', $t ) ) {
+		return true;
+	}
 	$debut = mb_strtolower( mb_substr( $t, 0, 2 ), 'UTF-8' );
 	$un    = mb_substr( $debut, 0, 1 );
 	$deux  = mb_substr( $debut, 1, 1 );
@@ -77,6 +92,39 @@ function er_continuer_voyelle( $texte ) {
 }
 
 /**
+ * Un nom de religieux au fil d'une phrase : le titre en minuscule, avec l'article que le français lui donne (« le père
+ * Serge Boulgakov », « l'abbé Pierre », « mère Marie Skobtsova ») ; « de » le contracte ensuite (« du père »). Les
+ * autres noms ne changent pas.
+ *
+ * @param string $nom Le nom.
+ */
+function er_continuer_nom_dans_phrase( $nom ) {
+	$titres = array(
+		'père'          => 'le père',
+		'p.'            => 'le père',
+		'frère'         => 'le frère',
+		'mère'          => 'mère',
+		'sœur'          => 'sœur',
+		'soeur'         => 'sœur',
+		'abbé'          => 'l’abbé',
+		'métropolite'   => 'le métropolite',
+		'archimandrite' => 'l’archimandrite',
+		'archevêque'    => 'l’archevêque',
+		'évêque'        => 'l’évêque',
+		'hiéromoine'    => 'le hiéromoine',
+		'higoumène'     => 'l’higoumène',
+		'archiprêtre'   => 'l’archiprêtre',
+	);
+	if ( preg_match( '/^(\S+)\s+(.+)$/u', trim( (string) $nom ), $m ) ) {
+		$t = mb_strtolower( $m[1], 'UTF-8' );
+		if ( isset( $titres[ $t ] ) ) {
+			return $titres[ $t ] . ' ' . $m[2];
+		}
+	}
+	return (string) $nom;
+}
+
+/**
  * « de » devant un nom ou un titre : « de Grossman », « d'Akhmatova », « du {{Docteur Jivago}} », « des {{Frères
  * Karamazov}} », « de {{La Garde blanche}} », « d'{{En mémoire de la mémoire}} ».
  *
@@ -85,6 +133,9 @@ function er_continuer_voyelle( $texte ) {
 function er_continuer_de( $texte ) {
 	$texte = (string) $texte;
 	$titre = 0 === strpos( $texte, '{{' );
+	if ( ! $titre ) {
+		$texte = er_continuer_nom_dans_phrase( $texte );
+	}
 	$corps = $titre ? substr( $texte, 2 ) : $texte;
 	// L'article d'un titre se contracte et sort de l'italique : du {{Docteur Jivago}}, des {{Frères Karamazov}}.
 	if ( preg_match( '/^(Le|Les) (.+)$/su', $corps, $m ) && $titre ) {
@@ -160,6 +211,10 @@ function er_continuer_nom_court( $nom ) {
 		return $nom;
 	}
 	$mots = explode( ' ', $nom );
+	// Un souverain se nomme avec son numéro : « Catherine II », pas « II ».
+	if ( count( $mots ) >= 2 && preg_match( '/^(?:[IVX]+|Ier|Ire|1er|1re)$/u', (string) end( $mots ) ) ) {
+		return implode( ' ', array_slice( $mots, -2 ) );
+	}
 	return (string) end( $mots );
 }
 
@@ -481,7 +536,7 @@ function er_continuer_nom( $p, $ix, $langue = 'fr' ) {
 	if ( ! isset( $ix['personnes'][ $p ] ) ) {
 		return '';
 	}
-	$nom = trim( (string) $ix['personnes'][ $p ]['n'] );
+	$nom = str_replace( "'", '’', trim( (string) $ix['personnes'][ $p ]['n'] ) );
 	if ( 'ru' !== $langue && preg_match( '/\p{Cyrillic}/u', $nom ) ) {
 		foreach ( isset( $ix['personnes'][ $p ]['g'] ) ? (array) $ix['personnes'][ $p ]['g'] : array() as $g ) {
 			if ( '' !== trim( $g ) && ! preg_match( '/\p{Cyrillic}/u', $g ) && substr_count( trim( $g ), ' ' ) >= 1 ) {
@@ -504,6 +559,25 @@ function er_continuer_nom_ligne( $p, $ix, $langue = 'fr' ) {
 	$nom = er_continuer_nom( $p, $ix, $langue );
 	$nb  = isset( $ix['personnes'][ $p ]['nb'] ) ? (int) $ix['personnes'][ $p ]['nb'] : 0;
 	return $nb >= 5 ? er_continuer_nom_court( $nom ) : $nom;
+}
+
+/**
+ * Les noms de plusieurs personnes dans une même énumération, de même forme : tous courts quand toutes sont connues,
+ * sinon tous entiers (« de Léonid Andréïev et de Marina Tsvétaïéva », pas « de Léonid Andréïev et de Tsvétaïéva »).
+ *
+ * @param int[]  $personnes Les personnes.
+ * @param array  $ix        L'index.
+ * @param string $langue    La langue de la page.
+ * @return string[]
+ */
+function er_continuer_noms_ligne( $personnes, $ix, $langue = 'fr' ) {
+	$courts = true;
+	foreach ( $personnes as $p ) {
+		if ( ( isset( $ix['personnes'][ $p ]['nb'] ) ? (int) $ix['personnes'][ $p ]['nb'] : 0 ) < 5 ) {
+			$courts = false;
+		}
+	}
+	return array_map( fn( $p ) => $courts ? er_continuer_nom_court( er_continuer_nom( $p, $ix, $langue ) ) : er_continuer_nom( $p, $ix, $langue ), array_values( $personnes ) );
 }
 
 /* Les époques --------------------------------------------------------------------------------------------------- */
@@ -590,10 +664,8 @@ function er_continuer_divers( $ranges, $ix, $n ) {
 		$a0 = $a ? (int) $a[0] : 0;
 		$so = er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] );
 		// Deux éditions d'une même œuvre (« Crime et châtiment », « Crime et châtiment suivi de… ») : une seule.
-		$k = ' ' . ( isset( $ix['livres'][ $i ]['k'] ) ? $ix['livres'][ $i ]['k'] : '' ) . ' ';
 		foreach ( $choisis as $c ) {
-			$kc = ' ' . ( isset( $ix['livres'][ $c ]['k'] ) ? $ix['livres'][ $c ]['k'] : '' ) . ' ';
-			if ( strlen( trim( $k ) ) >= 4 && strlen( trim( $kc ) ) >= 4 && ( 0 === strpos( $k, $kc ) || 0 === strpos( $kc, $k ) ) ) {
+			if ( er_continuer_meme_oeuvre( $i, $c, $ix ) ) {
 				continue 2;
 			}
 		}
@@ -614,9 +686,54 @@ function er_continuer_divers( $ranges, $ix, $n ) {
 		if ( 'revue' === er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] ) && ! empty( $sortes['revue'] ) ) {
 			continue;
 		}
+		foreach ( $choisis as $c ) {
+			if ( er_continuer_meme_oeuvre( $i, $c, $ix ) ) {
+				continue 2;
+			}
+		}
 		$choisis[] = $i;
 	}
 	return $choisis;
+}
+
+/**
+ * Deux livres sont-ils deux éditions d'une même œuvre ? Le même titre, ou l'un qui commence par l'autre (« Crime et
+ * châtiment suivi de… »). Les numéros d'une revue et les tomes d'une suite restent distincts.
+ *
+ * @param int   $a  Un livre.
+ * @param int   $b  L'autre.
+ * @param array $ix L'index.
+ */
+function er_continuer_meme_oeuvre( $a, $b, $ix ) {
+	$ta = isset( $ix['livres'][ $a ]['t'] ) ? (string) $ix['livres'][ $a ]['t'] : '';
+	$tb = isset( $ix['livres'][ $b ]['t'] ) ? (string) $ix['livres'][ $b ]['t'] : '';
+	$numerote = fn( $t ) => er_continuer_numero( $t )[0] || er_continuer_revue( $t ) !== trim( $t );
+	if ( $numerote( $ta ) || $numerote( $tb ) ) {
+		return false;
+	}
+	$k  = ' ' . ( isset( $ix['livres'][ $a ]['k'] ) ? $ix['livres'][ $a ]['k'] : '' ) . ' ';
+	$kc = ' ' . ( isset( $ix['livres'][ $b ]['k'] ) ? $ix['livres'][ $b ]['k'] : '' ) . ' ';
+	return strlen( trim( $k ) ) >= 4 && strlen( trim( $kc ) ) >= 4 && ( 0 === strpos( $k, $kc ) || 0 === strpos( $kc, $k ) );
+}
+
+/**
+ * Des livres rangés, une seule édition de chaque œuvre (la mieux rangée).
+ *
+ * @param int[] $ranges Les livres, les plus proches d'abord.
+ * @param array $ix     L'index.
+ * @return int[]
+ */
+function er_continuer_une_edition( $ranges, $ix ) {
+	$gardes = array();
+	foreach ( $ranges as $i ) {
+		foreach ( $gardes as $g ) {
+			if ( er_continuer_meme_oeuvre( $i, $g, $ix ) ) {
+				continue 2;
+			}
+		}
+		$gardes[] = $i;
+	}
+	return $gardes;
 }
 
 /**
@@ -887,6 +1004,11 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 	$connu        = fn( $p ) => ( isset( $ix['personnes'][ $p ]['nb'] ) ? (int) $ix['personnes'][ $p ]['nb'] : 0 ) >= 5;
 	$dicible      = fn( $p ) => $p && er_continuer_nom_dicible( $p, $ix, $o['page'] );
 	$court        = fn( $p ) => er_continuer_nom_court( er_continuer_nom( $p, $ix, $o['page'] ) );
+	// Le sujet d'un livre : court s'il est connu (« sur Dostoïevski »), entier sinon (« une biographie de Larissa
+	// Andersen », qu'on ne prenne pas pour celui des contes). Connu comme sujet : auteur de cinq livres, ou sujet de
+	// trois (Poutine, Koltchak).
+	$carte_s      = er_continuer_carte( $ix );
+	$sujet_nom    = fn( $p ) => ( $connu( $p ) || count( isset( $carte_s['autour'][ $p ] ) ? $carte_s['autour'][ $p ] : array() ) >= 3 ) ? $court( $p ) : er_continuer_nom( $p, $ix, $o['page'] );
 	$nom_de       = function ( $personnes ) use ( $ix, $o, $connu, $court ) {
 		// Une même personne enregistrée deux fois (« Chalamov », « Varlam Chalamov ») ne se nomme qu'une fois.
 		$vus        = array();
@@ -924,7 +1046,8 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 		array( false, 'connus', false, false ),
 		array( false, 'non', false, false ),
 	);
-	$rendre = function ( $niveau ) use ( $groupes, $sortes, $o, $ix, $moi, $connu, $dicible, $court, $nom_de, $avec_auteur, $langue_fiche, $tous_sur, $dernier_sur ) {
+	$rendre = function ( $niveau ) use ( $groupes, $sortes, $o, $ix, $moi, $connu, $dicible, $court, $sujet_nom, $nom_de, $avec_auteur, $langue_fiche, $tous_sur, $dernier_sur ) {
+		$sujets_dits = array(); // « sur Dostoïevski » se dit une fois par phrase.
 		list( $auteurs_groupes, $auteurs_seuls, $de_quoi, $dont_ok ) = $niveau;
 		$morceaux = array();
 		$autres   = count( $groupes ) > 1;
@@ -979,7 +1102,7 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 			$sujets = array_values( array_unique( $g['sujets'] ) );
 			if ( in_array( $sorte, array( 'biographie', 'vie-de-saint' ), true ) && ! $sur_lui ) {
 				if ( 1 === count( $sujets ) && $dicible( $sujets[0] ) && $moi !== $sujets[0] ) {
-					$texte .= ' ' . er_continuer_de( $court( $sujets[0] ) );
+					$texte .= ' ' . er_continuer_de( $sujet_nom( $sujets[0] ) );
 					$par    = true;
 					$precis = true;
 				} else {
@@ -1012,7 +1135,7 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 			}
 			$coupe = '' !== $dont;
 			if ( $noms && $par ) {
-				$texte .= ' par ' . er_continuer_liste( array_map( fn( $p ) => er_continuer_nom( $p, $ix, $o['page'] ), $noms ) );
+				$texte .= ' par ' . er_continuer_liste( array_map( fn( $p ) => er_continuer_nom_dans_phrase( er_continuer_nom( $p, $ix, $o['page'] ) ), $noms ) );
 				$coupe  = count( $noms ) > 1;
 			} elseif ( $noms && count( $noms ) > 1 ) {
 				// Plusieurs auteurs : entre virgules, pour que le « et » de leur liste ne se confonde pas avec celui
@@ -1023,8 +1146,15 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 				$texte = $avec_auteur( $texte, $nom_de( $noms ) );
 			}
 			// Ce dont parle un livre seul : « un essai de Stefan Zweig sur Dostoïevski ».
-			if ( $de_quoi && 1 === $n && ! $par && ! $sur_lui && in_array( $sorte, array( 'essai', 'etude', 'temoignage', 'memoires', 'entretiens', 'histoire', 'livre', 'dictionnaire', 'art', 'photographie', 'theologie', 'philosophie', 'spiritualite', 'actualite' ), true ) && false === strpos( $texte, ' sur ' ) && $sujets[0] && $dicible( $sujets[0] ) && $moi !== $sujets[0] && ! in_array( $sujets[0], $g['auteurs'], true ) ) {
-				$texte .= ' sur ' . $court( $sujets[0] );
+			if ( $de_quoi && 1 === $n && ! $par && ! $sur_lui && in_array( $sorte, array( 'essai', 'etude', 'temoignage', 'memoires', 'entretiens', 'histoire', 'livre', 'dictionnaire', 'art', 'photographie', 'theologie', 'philosophie', 'spiritualite', 'actualite' ), true ) && false === strpos( $texte, ' sur ' ) && $sujets[0] && $dicible( $sujets[0] ) && $moi !== $sujets[0] && ! in_array( $sujets[0], $g['auteurs'], true ) && ! in_array( $sujets[0], $sujets_dits, true ) ) {
+				// « un témoignage de Véra Nabokov sur Vladimir Nabokov », pas « … sur Nabokov » : le nom court se
+				// confondrait avec celui de l'auteur.
+				$sujet = $sujet_nom( $sujets[0] );
+				if ( $noms && false !== mb_strpos( er_continuer_nu( $texte ), $sujet ) ) {
+					$sujet = er_continuer_nom( $sujets[0], $ix, $o['page'] );
+				}
+				$texte        .= ' sur ' . $sujet;
+				$sujets_dits[] = $sujets[0];
 			}
 			if ( $sur_lui && 'vie-de-saint' === $sorte ) {
 				$texte   = 1 === $n ? 'un récit de sa vie' : er_continuer_nombre( $n ) . ' récits de sa vie';
@@ -1171,10 +1301,12 @@ function er_continuer_titre_court( $titre, $max = 48 ) {
 	$t = trim( (string) $titre );
 	// « Les songes de Tchang. Poèmes » : un mot générique après un point tombe.
 	$t = (string) preg_replace( '/\.\s+(po[èe]mes|poésies|nouvelles|récits|roman|essais?|contes|стихи|стихотворения|рассказы|повесть|роман)\s*$/iu', '', $t );
-	foreach ( array( '/\s[:—–-]\s/u', '/\s*\/\s*/u', '/\ssuivi(e|s|es)? (de\s|d’\s?)/iu', '/,\s/u', '/:\s/u' ) as $coupe ) {
+	foreach ( array( '/\s[:—–-]\s/u', '/\s-(?=\p{Lu})/u', '/\s*\/\s*/u', '/\ssuivi(e|s|es)? (de\s|d’\s?)/iu', '/,\s/u', '/:\s/u', '/\s\(/u' ) as $coupe ) {
 		$morceaux = preg_split( $coupe, $t, 2 );
-		// Avant une virgule, au moins trois mots : « Anna Akhmatova, requiem pour l'Europe » garde son titre entier.
-		if ( count( $morceaux ) > 1 && mb_strlen( trim( $morceaux[0] ) ) >= 3 && ( '/,\s/u' !== $coupe || substr_count( trim( $morceaux[0] ), ' ' ) >= 2 ) ) {
+		// Avant une virgule ou une parenthèse, au moins trois mots, deux : « Anna Akhmatova, requiem pour l'Europe »
+		// garde son titre entier, « Poèmes (1961-1987) » aussi.
+		$mots_avant = substr_count( trim( $morceaux[0] ), ' ' ) + 1;
+		if ( count( $morceaux ) > 1 && mb_strlen( trim( $morceaux[0] ) ) >= 3 && ( '/,\s/u' !== $coupe || $mots_avant >= 3 ) && ( '/\s\(/u' !== $coupe || $mots_avant >= 2 ) ) {
 			$t = trim( $morceaux[0] );
 		}
 	}
@@ -1322,10 +1454,14 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$memes[] = $o;
 		}
 	}
-	$parution = function ( $o ) use ( $ix ) {
+	$parution = function ( $o ) use ( $ix, $page ) {
 		$lo = $ix['livres'][ $o ];
-		$ed = isset( $lo['ed'] ) ? trim( (string) $lo['ed'] ) : '';
+		$ed = isset( $lo['ed'] ) ? str_replace( "'", '’', trim( (string) $lo['ed'] ) ) : '';
 		$an = isset( $lo['an'] ) && preg_match( '/\b(1[5-9]\d\d|20\d\d)\b/', (string) $lo['an'], $m ) ? $m[1] : '';
+		// Un éditeur resté en cyrillique (« Русский путь ») ne se dit pas dans une phrase française : l'année seule.
+		if ( 'ru' !== $page && preg_match( '/\p{Cyrillic}/u', $ed ) ) {
+			$ed = '';
+		}
 		// « aux éditions des Syrtes », « chez Gallimard ».
 		$chez = preg_match( '/^(les )?éditions\s+(.+)$/iu', $ed, $me ) ? 'aux éditions ' . $me[2] : ( '' !== $ed ? 'chez ' . $ed : '' );
 		return trim( $chez . ( '' !== $an ? ' en ' . $an : '' ) );
@@ -1510,6 +1646,12 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		$second  = (bool) preg_match( '/\b(deuxième|seconde?|dernière|dernier) (partie|volume|tome|volet)|\bfait suite\b|\bla suite (de|du|des)\b/u', $texte );
 		$premier = ! $second && preg_match( '/\bpremi(er|ère) (partie|volume|tome|volet)\b/u', $texte );
 		$un      = 1 === count( $trouves );
+		// Les titres, chacun une fois : trois éditions du même livre ne font pas « A, A et A ».
+		$titres = array();
+		foreach ( $trouves as $o ) {
+			$titres[ mb_strtolower( er_continuer_nu( $titre_l( $o ) ), 'UTF-8' ) ] = $titre_l( $o );
+		}
+		$titres = array_values( $titres );
 		$m       = array(
 			'type'       => 'cite',
 			'livres'     => $trouves,
@@ -1529,14 +1671,22 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 				$m['fragment'] = 'la suite du diptyque';
 			} else {
 				$tout            = ( 'diptyque' === $ensemble ? 'du ' : 'de la ' ) . $ensemble;
-				$m['titre']      = er_continuer_liste( array_map( $titre_l, $trouves ) );
+				$m['titre']      = er_continuer_liste( $titres );
 				$m['sans_titre'] = $un;
 				$m['ligne']      = er_continuer_phrase( ( $un ? 'l’autre volet ' : 'les autres volets ' ) . $tout );
 				$m['fragment']   = ( $un ? 'l’autre volet ' : 'les autres volets ' ) . $tout;
 			}
+		} elseif ( ! $un && 1 === count( $titres ) ) {
+			// Un seul livre cité, que la librairie a en plusieurs éditions : le titre une fois, les éditions dans la ligne.
+			$chez            = array_values( array_filter( array_map( $parution, $trouves ) ) );
+			$n               = er_continuer_nombre( count( $trouves ), true );
+			$m['sur']        = 'Cité dans la notice';
+			$m['titre']      = $titres[0];
+			$m['ligne']      = er_continuer_phrase( 'en ' . $n . ' éditions' . ( count( $chez ) === count( $trouves ) ? ' : ' . er_continuer_liste( $chez ) : '' ) );
+			$m['fragment']   = $n . ' éditions ' . er_continuer_de( $titres[0] );
 		} else {
 			$m['sur']        = $un ? 'Cité dans la notice' : 'Cités dans la notice';
-			$m['titre']      = er_continuer_liste( array_map( $titre_l, $trouves ) );
+			$m['titre']      = er_continuer_liste( $titres );
 			$m['sans_titre'] = $un;
 			$m['fragment']   = $un ? $titre_l( $trouves[0] ) : 'les livres que cite la notice';
 		}
@@ -1550,7 +1700,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			continue;
 		}
 		$cs     = $contenus_de( array( $a ) );
-		$sur    = array_slice( er_continuer_ranger( $sur, $ix, $id ), 0, $cs ? 3 : 4 );
+		$sur    = array_slice( er_continuer_une_edition( er_continuer_ranger( $sur, $ix, $id ), $ix ), 0, $cs ? 3 : 4 );
 		$sortes = array_values( array_unique( array_map( fn( $i ) => er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] ), $sur ) ) );
 		// Un nom resté en cyrillique ne se met pas dans une phrase française : on dit « l'auteur ».
 		$dit = er_continuer_nom_dicible( $a, $ix, $page );
@@ -1575,7 +1725,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		$ajouter(
 			array(
 				'type'     => 'sur-auteur',
-				'sur'      => $dit ? 'Sur ' . $nom( $a ) : 'Sur l’auteur',
+				'sur'      => $dit ? 'Sur ' . er_continuer_nom_dans_phrase( $nom( $a ) ) : 'Sur l’auteur',
 				'titre'    => $titre,
 				'ligne'    => $inv( $sur, array( 'personne' => $a, 'contenus' => $cs ) ),
 				'fragment' => $fragment,
@@ -1603,7 +1753,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			foreach ( $sur as $i ) {
 				$bonus[ $i ] = 2 * count( array_intersect( $autour, array_map( 'intval', er_continuer_champ( $ix['livres'][ $i ], 'ab' ) ) ) );
 			}
-			$ranges = er_continuer_ranger( $sur, $ix, $id, $bonus );
+			$ranges = er_continuer_une_edition( er_continuer_ranger( $sur, $ix, $id, $bonus ), $ix );
 			$fr     = array_values( array_filter( $ranges, fn( $i ) => 'ru' !== er_continuer_langue_du_livre( $ix['livres'][ $i ] ) ) );
 			$ru     = array_values( array_filter( $ranges, fn( $i ) => 'ru' === er_continuer_langue_du_livre( $ix['livres'][ $i ] ) ) );
 			$forme  = 'vignettes';
@@ -1883,6 +2033,8 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		$siens             = array_slice( er_continuer_ranger( $siens, $ix, $id ), 0, 2 );
 		$cs                = $contenus_de( array( $t ) );
 		$nom_t             = er_continuer_nom_ligne( $t, $ix, $page );
+		// La rencontre, l'article ou la vidéo montrés avec ses livres : la ligne les dit aussi.
+		$au_centre = $cs ? ' ' . er_continuer_phrase( 'à retrouver aussi : ' . er_continuer_liste( array_map( fn( $c ) => er_continuer_mots_contenu( $ix['contenus'][ $c ], $ctx['maintenant'] ), $cs ) ) ) : '';
 		if ( 'traduction' === $role ) {
 			$co    = array_values( array_filter( array_diff( array_map( 'intval', $roles['traduction'] ), array( $t ) ), fn( $p ) => er_continuer_nom_dicible( $p, $ix, $page ) ) );
 			$leurs = array();
@@ -1903,7 +2055,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			} elseif ( $leurs && ! array_diff( $leurs, $auteurs ) ) {
 				$objet = 'd’autres traductions ' . er_continuer_de( er_continuer_nom_ligne( $leurs[0], $ix, $page ) );
 			} elseif ( $dits && count( $dits ) === count( $leurs ) ) {
-				$objet = 'des traductions ' . er_continuer_liste( array_map( fn( $p ) => er_continuer_de( er_continuer_nom_ligne( $p, $ix, $page ) ), $dits ) );
+				$objet = 'des traductions ' . er_continuer_liste( array_map( 'er_continuer_de', er_continuer_noms_ligne( $dits, $ix, $page ) ) );
 			} else {
 				$objet = 'd’autres traductions';
 			}
@@ -1911,7 +2063,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$a_plusieurs = '';
 			if ( $co ) {
 				$a_plusieurs = count( $co ) <= 3
-					? 'une traduction à ' . er_continuer_nombre( 2 * ( count( $co ) + 1 ) ) . ' mains, avec ' . er_continuer_liste( array_map( $nom, $co ) )
+					? 'une traduction à ' . er_continuer_nombre( 2 * ( count( $co ) + 1 ) ) . ' mains, avec ' . er_continuer_liste( array_map( fn( $p ) => er_continuer_nom_dans_phrase( $nom( $p ) ), $co ) )
 					: 'une traduction collective, avec ' . er_continuer_nombre( count( $co ), true ) . ' autres plumes';
 				$a_plusieurs = er_continuer_phrase( $titre_l( $id ) . ' : ' . $a_plusieurs ) . ' ';
 			}
@@ -1920,7 +2072,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 					'type'     => 'traduction',
 					'sur'      => 'De la même main',
 					'titre'    => $nom( $t ),
-					'ligne'    => $a_plusieurs . er_continuer_phrase( 'on lui doit aussi ' . $objet ),
+					'ligne'    => $a_plusieurs . er_continuer_phrase( 'on lui doit aussi ' . $objet ) . $au_centre,
 					'fragment' => ( 1 === count( $siens ) ? 'une autre traduction ' : 'd’autres traductions ' ) . er_continuer_de( $nom_t ),
 					'livres'   => $siens,
 					'contenus' => $cs,
@@ -1943,7 +2095,7 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 					'type'     => $role,
 					'sur'      => $sur,
 					'titre'    => $nom( $t ),
-					'ligne'    => '' !== $quoi ? er_continuer_phrase( 'on lui doit aussi ' . mb_strtolower( mb_substr( $quoi, 0, 1 ) ) . mb_substr( $quoi, 1 ) ) : '',
+					'ligne'    => ( '' !== $quoi ? er_continuer_phrase( 'on lui doit aussi ' . mb_strtolower( mb_substr( $quoi, 0, 1 ) ) . mb_substr( $quoi, 1 ) ) : '' ) . $au_centre,
 					'fragment' => 'les livres ' . er_continuer_de( $nom_t ),
 					'livres'   => $siens,
 					'contenus' => $cs,
@@ -1984,9 +2136,10 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		);
 	}
 
-	// À défaut d'autre chose : le même rayon.
+	// À défaut d'autre chose : le même rayon (sans son époque si un module la montre déjà : pas de « Poésie de l'Âge
+	// d'argent » sous « L'Âge d'argent »).
 	if ( count( $principaux ) < 2 && ! $enfance ) {
-		$m = er_continuer_module_rayon( $id, $ix, $loin, $meilleurs, $inv );
+		$m = er_continuer_module_rayon( $id, $ix, $loin, $meilleurs, $inv, (bool) array_filter( $principaux, fn( $p ) => 'epoque' === $p['type'] ) );
 		if ( $m ) {
 			$ajouter( $m );
 		}
@@ -2047,7 +2200,10 @@ function er_continuer_fusionner( $fragments ) {
 	$sortie = array();
 	foreach ( $fragments as $f ) {
 		$k = count( $sortie ) - 1;
-		if ( $k >= 0 && preg_match( '/^((?:des|d’autres) [^ ]+(?: de poèmes)?) (sur|de|d’|écrits|écrites) (.+)$/u', $sortie[ $k ], $a ) && preg_match( '/^((?:des|d’autres) [^ ]+(?: de poèmes)?) (sur|de|d’|écrits|écrites) (.+)$/u', $f, $b ) && preg_replace( '/^d’autres /u', 'des ', $a[1] ) === preg_replace( '/^d’autres /u', 'des ', $b[1] ) && preg_replace( '/^d’$/u', 'de', $a[2] ) === preg_replace( '/^d’$/u', 'de', $b[2] ) && false === strpos( $sortie[ $k ], ' et ' ) ) {
+		// « de » ne réunit que deux époques (« de la révolution et de la guerre civile ») : devant un nom sans article,
+		// c'est la sorte qui continue (« des ouvrages de philosophie »), et rien ne se réunit.
+		$motif = '/^((?:des|d’autres) [^ ]+(?: de poèmes)?) (sur|de (?=la |le |l’)|d’|écrits|écrites) (.+)$/u';
+		if ( $k >= 0 && preg_match( $motif, $sortie[ $k ], $a ) && preg_match( $motif, $f, $b ) && preg_replace( '/^d’autres /u', 'des ', $a[1] ) === preg_replace( '/^d’autres /u', 'des ', $b[1] ) && preg_replace( '/^d’$/u', 'de', $a[2] ) === preg_replace( '/^d’$/u', 'de', $b[2] ) && false === strpos( $sortie[ $k ], ' et ' ) ) {
 			$sortie[ $k ] .= ' et ' . $b[2] . ( 'd’' === $b[2] ? '' : ' ' ) . $b[3];
 			continue;
 		}
@@ -2079,9 +2235,10 @@ function er_continuer_inventaire_court( $ids, $ix ) {
  * @param callable $loin      Les livres pas encore pris, hors de l'auteur.
  * @param callable $meilleurs Les meilleurs livres parmi des candidats, et leur proximité.
  * @param callable $inv       L'inventaire.
+ * @param bool     $sans_epoque Le genre seul, l'époque ayant déjà son module.
  * @return array|null
  */
-function er_continuer_module_rayon( $id, $ix, $loin, $meilleurs, $inv ) {
+function er_continuer_module_rayon( $id, $ix, $loin, $meilleurs, $inv, $sans_epoque = false ) {
 	$carte   = er_continuer_carte( $ix );
 	$genres  = array();
 	$epoques = array();
@@ -2098,6 +2255,9 @@ function er_continuer_module_rayon( $id, $ix, $loin, $meilleurs, $inv ) {
 	}
 	if ( ! $genres ) {
 		return null;
+	}
+	if ( $sans_epoque ) {
+		$epoques = array();
 	}
 	$dans  = fn( $c ) => isset( $carte['rayon'][ $c ] ) ? $carte['rayon'][ $c ] : array();
 	$cands = $epoques ? $loin( array_intersect( $dans( $genres[0] ), $dans( $epoques[0] ) ) ) : array();

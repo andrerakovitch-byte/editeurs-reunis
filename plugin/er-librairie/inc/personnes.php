@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 function er_personnes_fusions() {
 	return array(
 		array( 'garder' => 'Alexandre Soljenitsyne', 'fondre' => array( 'А. Солженицын', 'А.И Солженицын' ) ),
-		array( 'garder' => 'Fiodor Dostoïevski', 'fondre' => array( 'Fedor Dostoïevski' ) ),
+		array( 'garder' => 'Fiodor Dostoïevski', 'fondre' => array( 'Fedor Dostoïevski', 'Dostoïevski' ) ),
 		array( 'garder' => 'Léon Tolstoï', 'fondre' => array( 'Лев Толстой' ) ),
 		array( 'garder' => 'Nicolas Berdiaev', 'fondre' => array( 'Николай Бердяев' ) ),
 		array( 'garder' => 'Pavel Florenski', 'nom' => 'Pavel Florensky', 'fondre' => array( 'Paul Florensky' ) ),
@@ -45,6 +45,24 @@ function er_personnes_fusions() {
 		array( 'garder' => 'Георгий Фeдотов', 'nom' => 'Георгий Федотов', 'fondre' => array( 'Г. Федотов' ) ),
 		array( 'garder' => 'Mère Marie Skobtsova', 'fondre' => array( 'Мать Мария Скобцова' ) ),
 		array( 'garder' => 'Christine Zeytounian-Beloüs', 'fondre' => array( 'Christine Zeytounian' ) ),
+		// Relevés par « Pour aller plus loin » (25 nov. 2026) : un nom sans prénom, une faute, le russe à part.
+		array( 'garder' => 'Varlam Chalamov', 'fondre' => array( 'Chalamov' ) ),
+		array( 'garder' => 'Dmitri Merejkovski', 'fondre' => array( 'Dmitri Merejkowcky' ) ),
+		array( 'garder' => 'Zinaïda Hippius', 'fondre' => array( 'Зинаида Гиппиус' ) ),
+		array( 'garder' => 'Essénine Sergueï', 'nom' => 'Sergueï Essénine', 'fondre' => array( 'Сергей Есенин' ) ),
+		// Le nom russe reste une autre graphie (sa page, la recherche) ; les phrases françaises peuvent le dire.
+		array( 'garder' => 'Василий Розанов', 'nom' => 'Vassili Rozanov', 'fondre' => array() ),
+		array( 'garder' => 'Daniil Harms', 'fondre' => array( 'Harms' ) ),
+		array( 'garder' => 'Vladimir Lénine', 'fondre' => array( 'Lénine' ) ),
+		array( 'garder' => 'Grégoire Palamas', 'fondre' => array( 'Saint Grégoire Palamas' ) ),
+		array( 'garder' => 'Vladimir Zelinsky', 'fondre' => array( 'P. Vladimir Zélinsky', 'P. Vladimir Zé' ) ),
+		array( 'garder' => 'Andreï Siniavski', 'fondre' => array( 'André Siniavski' ) ),
+		array( 'garder' => 'Georges Florovsky', 'fondre' => array( 'Георгий Флоровский' ) ),
+		array( 'garder' => 'Pavel Florensky', 'fondre' => array( 'Свящ. Павел Флоренский' ) ),
+		array( 'garder' => 'Fiodor Tiouttchev', 'fondre' => array( 'Федор Тютчев' ) ),
+		array( 'garder' => 'Serge Foudel', 'fondre' => array( 'С. Фудель' ) ),
+		array( 'garder' => 'père Alexandre Eltchaninoff', 'nom' => 'Père Alexandre Eltchaninoff', 'fondre' => array( 'отец Александр Ельчанинов' ) ),
+		array( 'garder' => 'Mgr Semenoff-Tian-Chansky', 'nom' => 'Mgr Alexandre Semenoff-Tian-Chansky', 'fondre' => array( 'Еп. Александр Семенов-Тян-Шанский' ) ),
 	);
 }
 
@@ -57,6 +75,7 @@ function er_personnes_separations() {
 	return array(
 		'Anton Tchekhov et Lydia Mizinova'           => array( 'Anton Tchekhov', 'Lydia Mizinova' ),
 		'Marina Tsvétaïeva et Maximilian Volochine' => array( 'Marina Tsvétaïéva', 'Maximilian Volochine' ),
+		'Antoine Garcia et Yves Gauthier'           => array( 'Antoine Garcia', 'Yves Gauthier' ),
 	);
 }
 

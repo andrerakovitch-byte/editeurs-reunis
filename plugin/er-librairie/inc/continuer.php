@@ -823,8 +823,8 @@ function er_continuer_bloc( $id ) {
 		}
 		$titre_id = 'er-module-' . ( $k + 1 );
 		$html    .= '<section class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-labelledby="' . esc_attr( $titre_id ) . '"><div class="er-pl-module__g">'
-			. '<div class="er-pl-module__tete"><p class="er-pl-module__sur">' . er_continuer_html( $m['sur'] ) . '</p>'
-			. '<h3 class="er-pl-module__titre" id="' . esc_attr( $titre_id ) . '">' . er_continuer_html( $m['titre'] ) . '</h3>'
+			. '<div class="er-pl-module__tete"><p class="er-pl-module__sur">' . er_continuer_html( er_continuer_maj( $m['sur'] ) ) . '</p>'
+			. '<h3 class="er-pl-module__titre" id="' . esc_attr( $titre_id ) . '">' . er_continuer_html( er_continuer_maj( $m['titre'] ) ) . '</h3>'
 			. ( '' !== $m['ligne'] ? '<p class="er-pl-module__ligne">' . er_continuer_html( $m['ligne'] ) . '</p>' : '' )
 			. er_continuer_lien( $m ) . '</div>'
 			. '<div class="er-pl-module__corps">' . er_continuer_corps( $m ) . '</div></div></section>';
