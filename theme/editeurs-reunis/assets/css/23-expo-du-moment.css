@@ -10,10 +10,12 @@
 .er-expo-moment {
 	--er-expo-fond: var(--wp--preset--color--maison-centre);
 	--er-expo-accent: var(--wp--preset--color--accent);
+	--er-expo-air: 7rem; /* L'air en haut et en bas (26 nov. : « agrandir en haut et en bas le module pour aérer »). */
 	display: grid;
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	column-gap: 24px;
-	min-height: clamp(40rem, 59.72vw, 62rem); /* Les proportions de la planche (1440 × 860), à toutes les largeurs. */
+	/* Les proportions de la planche (1440 × 860), à toutes les largeurs, plus l'air en haut et en bas. */
+	min-height: calc(clamp(40rem, 59.72vw, 62rem) + 2 * var(--er-expo-air) - 7rem);
 	background: var(--er-expo-fond);
 	color: var(--wp--preset--color--base);
 }
@@ -25,7 +27,7 @@
 	justify-content: flex-end;
 	gap: 2.5rem;
 	min-width: 0;
-	padding: 3.5rem 0 3.5rem var(--wp--style--root--padding-left);
+	padding: var(--er-expo-air) 0 var(--er-expo-air) var(--wp--style--root--padding-left);
 }
 .er-expo-moment.est-sans-photo .er-expo-moment-texte {
 	grid-column: 1 / -1;
@@ -75,7 +77,7 @@
 	grid-column: 8 / -1;
 	position: relative;
 	min-height: 32.5rem;
-	margin: 3.5rem var(--wp--style--root--padding-right) 3.5rem 0;
+	margin: var(--er-expo-air) var(--wp--style--root--padding-right) var(--er-expo-air) 0;
 }
 .er-expo-moment-cadre { position: absolute; inset: 0; overflow: hidden; }
 .er-expo-moment-image {
@@ -114,12 +116,12 @@
 
 /* Au téléphone : le texte, puis la photo. */
 @media (max-width: 781px) {
-	.er-expo-moment { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+	.er-expo-moment { --er-expo-air: 4rem; grid-template-columns: minmax(0, 1fr); min-height: 0; }
 	.er-expo-moment-texte,
 	.er-expo-moment.est-sans-photo .er-expo-moment-texte {
 		grid-column: 1;
 		gap: 1.5rem;
-		padding: 2.5rem var(--wp--style--root--padding-right) 2rem var(--wp--style--root--padding-left);
+		padding: var(--er-expo-air) var(--wp--style--root--padding-right) 2rem var(--wp--style--root--padding-left);
 	}
 	.er-expo-moment-titre { font-size: clamp(2.75rem, 13vw, 3.75rem); }
 	.er-expo-moment-quand { font-size: 1.5rem; }
@@ -127,6 +129,6 @@
 		grid-column: 1;
 		min-height: 0;
 		aspect-ratio: 4 / 5;
-		margin: 0 var(--wp--style--root--padding-right) 2.5rem var(--wp--style--root--padding-left);
+		margin: 0 var(--wp--style--root--padding-right) var(--er-expo-air) var(--wp--style--root--padding-left);
 	}
 }
