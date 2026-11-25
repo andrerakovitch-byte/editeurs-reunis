@@ -244,3 +244,9 @@ add_action(
 	},
 	20
 );
+
+/*
+ * Pas de boutons de paiement express (Apple Pay, Google Pay, Amazon Pay, Link) sous « Ajouter au panier » : la fiche
+ * garde un seul geste d'achat (25 nov. 2026). Stripe les propose encore au moment de payer.
+ */
+add_filter( 'wc_stripe_hide_payment_request_on_product_page', '__return_true' );
