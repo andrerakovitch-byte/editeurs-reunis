@@ -108,7 +108,6 @@
 .er-x-carte-artistes { font-size: 0.875rem; line-height: 1.45; color: var(--wp--preset--color--encre-2); }
 
 /* Sur la fiche d'un livre, dans la bande « Autour de ce livre » : l'exposition, son titre en italique */
-.er-reco-exposition .er-reco-contenu-titre { font-style: italic; }
 
 /* Sur un article, une rencontre, une vidéo : l'exposition */
 .er-x-liee ul { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }

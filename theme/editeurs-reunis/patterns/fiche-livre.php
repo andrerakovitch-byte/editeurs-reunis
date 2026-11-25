@@ -8,9 +8,9 @@
  * En deux moitiés (la page C du canevas « Les Éditeurs réunis — plein écran », retenue le 24 nov. 2026) : à gauche,
  * sur le fond doux et collée au bord de l'écran, la couverture, qui reste à l'écran pendant qu'on lit ; à droite,
  * tout le reste qui défile : le fil d'Ariane, les mentions, le titre, l'auteur, le prix, le panier, la présentation,
- * la fiche (rayon, langue, auteur, référence) et « Du même auteur ». Dessous, de marge à marge, la bande « Autour de
- * ce livre » et l'étagère « Du même rayon, de la même époque » (la piste B, retenue le 23 nov. 2026 ; les blocs
- * er/fiche-* de l'extension, inc/recommandations.php).
+ * la fiche (rayon, langue, auteur, référence) et « Du même auteur » (er/fiche-auteur). Dessous, de marge à marge,
+ * « Pour aller plus loin » : les modules choisis pour ce livre (er/fiche-continuer, inc/continuer.php de l'extension ;
+ * la cinquième page du canevas des fiches, 25 nov. 2026).
  *
  * @package editeurs-reunis
  */
@@ -74,8 +74,6 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:er/fiche-autour /-->
-
-	<!-- wp:er/fiche-rayon /-->
+	<!-- wp:er/fiche-continuer /-->
 </main>
 <!-- /wp:group -->

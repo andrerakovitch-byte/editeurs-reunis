@@ -385,6 +385,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/epoques.php',
 	'plugin/er-librairie/inc/facettes.php',
 	'plugin/er-librairie/inc/rayonnage.php',
+	'plugin/er-librairie/inc/continuer-modules.php',
 	'plugin/er-bascule/inc/etiquettes.php',
 	'plugin/er-bascule/inc/phrases.php',
 	'plugin/er-bascule/inc/recoupement.php',

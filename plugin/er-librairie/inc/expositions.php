@@ -687,38 +687,8 @@ function er_expo_bloc_liee( $id ) {
 	return '<section class="er-x-liee"><h2 class="er-evt-section">' . esc_html( _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ) ) . '</h2><ul>' . $html . '</ul></section>';
 }
 
-// Sur la fiche d'un livre : l'exposition, dans la bande « Autour de ce livre », en tête de ses rencontres et de ses
-// articles (la fiche des livres est à la boutique, inc/recommandations.php : on n'y touche pas, on ajoute).
-add_filter(
-	'render_block_er/fiche-autour',
-	function ( $html, $bloc, $instance = null ) {
-		$id    = $instance && isset( $instance->context['postId'] ) ? (int) $instance->context['postId'] : (int) get_queried_object_id();
-		$expos = $id ? er_expos_de( $id ) : array();
-		if ( ! $expos ) {
-			return $html;
-		}
-		$lis = '';
-		foreach ( $expos as $e ) {
-			$suite = 'passee' === er_expo_etat( $e->ID ) ? __( 'Revoir l’exposition', 'er-librairie' ) : __( 'Voir l’exposition', 'er-librairie' );
-			$lis  .= '<li class="er-reco-rencontre er-reco-exposition"><a href="' . esc_url( get_permalink( $e ) ) . '"><span class="er-reco-genre"><span class="er-reco-point" aria-hidden="true"></span>' . esc_html__( 'Exposition au centre', 'er-librairie' ) . '</span>'
-				. '<span class="er-reco-contenu-titre">' . esc_html( html_entity_decode( get_the_title( $e ), ENT_QUOTES, 'UTF-8' ) ) . '</span><span class="er-reco-meta">' . esc_html( er_expo_quand( $e->ID ) ) . ' · ' . esc_html( $suite ) . ' →</span></a></li>';
-		}
-		if ( false !== strpos( $html, '<ul class="er-reco-contenus">' ) ) {
-			return str_replace( '<ul class="er-reco-contenus">', '<ul class="er-reco-contenus">' . $lis, $html );
-		}
-		if ( false !== strpos( $html, '</div></div></section>' ) ) {
-			$i = strrpos( $html, '</div></div></section>' );
-			return substr( $html, 0, $i ) . '<ul class="er-reco-contenus">' . $lis . '</ul>' . substr( $html, $i );
-		}
-		// La bande n'avait rien à dire : elle ne porte que l'exposition.
-		return '<section class="er-reco-autour alignfull" aria-labelledby="er-reco-autour-titre"><div class="er-reco-autour-g">'
-			. '<div class="er-reco-autour-tete"><p class="er-petit-titre">' . esc_html__( 'Autour de ce livre', 'er-librairie' ) . '</p>'
-			. '<h2 id="er-reco-autour-titre">' . esc_html( _n( 'L’exposition', 'Les expositions', count( $expos ), 'er-librairie' ) ) . '</h2></div>'
-			. '<div class="er-reco-autour-corps er-reco-autour-corps--sans-livres"><ul class="er-reco-contenus">' . $lis . '</ul></div></div></section>';
-	},
-	10,
-	3
-);
+// Sur la fiche d'un livre, l'exposition à laquelle il est rattaché est un module de « Pour aller plus loin »
+// (continuer.php, er_continuer_bloc), en carte du centre.
 
 /* La page « Nos expositions » ------------------------------------------------------------------------------------- */
 

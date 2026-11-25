@@ -140,7 +140,7 @@ function er_continuer_construire() {
 			}
 		}
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders
-		$metas = $wpdb->get_results( $wpdb->prepare( "SELECT post_id AS id, meta_key AS cle, meta_value AS val FROM {$wpdb->postmeta} WHERE post_id IN ($trous) AND meta_key IN ('_stock_status', '_sku', 'er_titre_fr', 'er_phrase', 'er_annee', 'er_editeur', '_thumbnail_id')", $lot ) );
+		$metas = $wpdb->get_results( $wpdb->prepare( "SELECT post_id AS id, meta_key AS cle, meta_value AS val FROM {$wpdb->postmeta} WHERE post_id IN ($trous) AND meta_key IN ('_stock_status', '_sku', 'er_titre_fr', 'er_phrase', 'er_annee', 'er_editeur', '_thumbnail_id', 'er_nature')", $lot ) );
 		foreach ( $metas as $m ) {
 			$id  = (int) $m->id;
 			$val = trim( (string) $m->val );
@@ -150,6 +150,9 @@ function er_continuer_construire() {
 				$index['livres'][ $id ]['sku'] = $val;
 			} elseif ( 'er_titre_fr' === $m->cle && '' !== $val ) {
 				$index['livres'][ $id ]['fr'] = trim( html_entity_decode( $val, ENT_QUOTES, 'UTF-8' ), ' «»"' );
+				$index['livres'][ $id ]['kf'] = function_exists( 'er_cle_recherche' ) ? er_cle_recherche( preg_split( '/\s[:—–-]\s|[:(]/u', $index['livres'][ $id ]['fr'] )[0] ) : '';
+			} elseif ( 'er_nature' === $m->cle && '' !== $val ) {
+				$index['livres'][ $id ]['na'] = $val;
 			} elseif ( 'er_phrase' === $m->cle && '' !== $val ) {
 				$index['livres'][ $id ]['ph'] = 1;
 			} elseif ( 'er_annee' === $m->cle && '' !== $val ) {
@@ -163,6 +166,12 @@ function er_continuer_construire() {
 	}
 	foreach ( $editeurs as $id => $nom ) {
 		$index['livres'][ $id ]['ed'] = $nom;
+	}
+	// Une revue se reconnaît aussi à son titre (oeuvres-collectives.php), pour les numéros pas encore rangés.
+	foreach ( $index['livres'] as $id => $l ) {
+		if ( ! isset( $l['na'] ) && function_exists( 'er_titre_de_revue' ) && er_titre_de_revue( $l['t'] ) ) {
+			$index['livres'][ $id ]['na'] = 'revue';
+		}
 	}
 
 	// Les rayons et les sujets.
@@ -391,6 +400,42 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	 * des noms, des rayons, en stock ou non, les notices). Le JSON est compressé puis écrit en base64, en lignes
 	 * courtes qui commencent par « J » : le journal du workflow ne coupe pas une ligne longue de cette façon.
 	 */
+	WP_CLI::add_command(
+		'er continuer voir',
+		/**
+		 * Les modules d'un livre, en texte : wp er continuer voir <slug> [--refaire] (--refaire : sans le choix gardé).
+		 *
+		 * @param array $args  Le slug.
+		 * @param array $assoc refaire.
+		 */
+		function ( $args, $assoc ) {
+			$livre = isset( $args[0] ) ? get_page_by_path( sanitize_title( $args[0] ), OBJECT, 'product' ) : null;
+			if ( ! $livre ) {
+				WP_CLI::error( 'Livre introuvable : ' . ( isset( $args[0] ) ? $args[0] : '' ) );
+			}
+			if ( isset( $assoc['refaire'] ) ) {
+				delete_transient( er_continuer_cle_index() );
+			}
+			$index = er_continuer_index();
+			delete_transient( 'er_continuer_' . $livre->ID . '_' . ( function_exists( 'er_langue' ) ? er_langue() : 'fr' ) . '_' . (int) $index['quand'] );
+			$choix = er_continuer( $livre->ID );
+			WP_CLI::log( html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' ) );
+			WP_CLI::log( '  ' . er_continuer_nu( $choix['ouverture'] ) );
+			foreach ( $choix['modules'] as $m ) {
+				WP_CLI::log( '  [' . $m['type'] . '] ' . er_continuer_nu( $m['sur'] ) . ' / ' . er_continuer_nu( $m['titre'] ) );
+				if ( '' !== $m['ligne'] ) {
+					WP_CLI::log( '      ' . er_continuer_nu( $m['ligne'] ) );
+				}
+				foreach ( $m['livres'] as $pid ) {
+					WP_CLI::log( '      · ' . html_entity_decode( get_the_title( $pid ), ENT_QUOTES, 'UTF-8' ) );
+				}
+				foreach ( $m['contenus'] as $cid ) {
+					WP_CLI::log( '      ◦ ' . html_entity_decode( get_the_title( $cid ), ENT_QUOTES, 'UTF-8' ) );
+				}
+			}
+			WP_CLI::log( 'Rendu : ' . strlen( er_continuer_bloc( $livre->ID ) ) . ' octets ; colonne « Du même auteur » : ' . substr_count( er_reco_bloc_auteur( $livre->ID ), '<li' ) . ' livres.' );
+		}
+	);
 	WP_CLI::add_command(
 		'er continuer exporter',
 		function () {

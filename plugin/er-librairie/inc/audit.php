@@ -544,12 +544,16 @@ function er_audit() {
 	foreach ( array_slice( $cassees, 0, 15 ) as $l ) {
 		$ln( $l );
 	}
-	// La fiche d'un livre montre deux contenus dans « Autour de ce livre » (er_reco_bloc_autour) : la meilleure rencontre
-	// et le meilleur article ou vidéo, choisis par les citations d'abord (er_reco_citants), puis les auteurs, les
-	// personnes et les sujets qu'ils partagent avec lui. Un contenu qui cite le livre n'y manque que si la place de sa
-	// sorte est prise par un autre qui le cite aussi ; sinon, la citation est à sens unique.
+	// La fiche d'un livre montre, dans « Pour aller plus loin » (continuer.php), les rencontres, articles et vidéos qui
+	// la citent ou qui portent ses personnes : une rencontre ou un article par module, et une rencontre qui la cite à
+	// la fin. Un contenu qui cite le livre n'y manque que si la place est prise par un autre qui le cite aussi ; sinon,
+	// la citation est à sens unique.
 	$montres_de  = function ( $livre ) {
-		return function_exists( 'er_recommandations' ) ? array_slice( array_map( 'intval', er_recommandations( $livre )['contenus'] ), 0, 2 ) : array();
+		$ids = array();
+		foreach ( function_exists( 'er_continuer' ) ? er_continuer( $livre )['modules'] : array() as $m ) {
+			$ids = array_merge( $ids, array_map( 'intval', $m['contenus'] ) );
+		}
+		return $ids;
 	};
 	$place_prise = array();
 	$termes_de = function ( $id, $tax ) {
