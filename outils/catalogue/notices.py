@@ -129,14 +129,14 @@ REFUS = {}
 REFUS_MAX = 10
 
 
-def lire(url, essais=3):
+def lire(url, essais=3, delai=20):
     hote = urllib.parse.urlsplit(url).hostname or ''
     if REFUS.get(hote, 0) >= REFUS_MAX:
         return ''
     for essai in range(essais):
         try:
             req = urllib.request.Request(url, headers={'User-Agent': AGENT, 'Accept-Language': 'fr'})
-            with urllib.request.urlopen(req, timeout=20) as r:
+            with urllib.request.urlopen(req, timeout=delai) as r:
                 REFUS[hote] = 0
                 return r.read().decode('utf-8', 'replace')
         except urllib.error.HTTPError as e:
@@ -251,7 +251,7 @@ def sudoc(titre, auteur, maximum=15):
     url = 'https://www.sudoc.abes.fr/cbs/sru/?' + urllib.parse.urlencode({
         'operation': 'searchRetrieve', 'version': '1.1', 'query': requete, 'recordSchema': 'unimarc',
         'maximumRecords': str(maximum)})
-    xml = lire(url)
+    xml = lire(url, essais=1, delai=10)
     try:
         racine = ET.fromstring(xml) if xml else None
     except ET.ParseError:
@@ -441,13 +441,18 @@ def nettoyer_titre(titre, auteurs):
     return t.strip(' -–—,/') or titre
 
 
+FIN_CANDIDATES = float('inf')
+
+
 def noyau(livre):
     """Pour une fiche sans éditeur, ni année, ni pages : toutes les éditions que la BnF et Google connaissent de ce
     titre (et de cet auteur), avec le prix que Google donne, pour reconnaître l'édition vendue à la main."""
     titre = nettoyer_titre(livre['titre'], livre['auteurs'])
     auteur = livre['auteurs'][0] if livre['auteurs'] else ''
     trouvees = []
-    for fn, kw in ((bnf, {'maximum': 20}), (sudoc, {'maximum': 15}), (google, {'max_google': 20})):
+    if time.monotonic() > FIN_CANDIDATES:
+        return livre['id'], None
+    for fn, kw in ((sudoc, {'maximum': 15}),):
         try:
             trouvees += fn(titre, auteur, **kw)
             if auteur:
@@ -515,15 +520,20 @@ def main():
     print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970')
     essai = sudoc('Docteur Jivago', 'Boris Pasternak', 5)
     print(f'SUDOC : {len(essai)} notices pour « Docteur Jivago » ; ' + ' / '.join(
-        f"{n['editeur']} {n['annee']} {','.join(n['isbn'])}" for n in essai[:3]))
+        f"{n['editeur']} {n['annee']} {','.join(n['isbn'])}" for n in essai[:3]), flush=True)
+    global FIN_CANDIDATES
+    FIN_CANDIDATES = time.monotonic() + 15 * 60
     par_id = {x['id']: x for x in durs}
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
         for ident, candidates in ex.map(noyau, durs):
+            if candidates is None:
+                print(f'CAND #{ident} : temps écoulé', flush=True)
+                continue
             ed = par_id[ident].get('editeur') or ''
             candidates.sort(key=lambda c: not (ed and concorde_editeur(ed, c.split('|')[1])))
-            print(f'CAND #{ident} : {len(candidates)} | {ed} | {par_id[ident].get("annee") or ""}')
+            print(f'CAND #{ident} : {len(candidates)} | {ed} | {par_id[ident].get("annee") or ""}', flush=True)
             for c in candidates[:14]:
-                print(f'CAND #{ident} || {c}')
+                print(f'CAND #{ident} || {c}', flush=True)
     if args.rapport:
         open(args.rapport, 'w', encoding='utf-8').write(texte)
 
