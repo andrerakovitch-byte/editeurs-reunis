@@ -1,144 +1,417 @@
-  personne : « Nina Kchayan » introuvable (déjà renommée ?)
-  personne : « Edith Sherrer » introuvable (déjà renommée ?)
-  personne : « Natalia Soljénistyne » introuvable (déjà renommée ?)
-  personne : « A. de Couriss » introuvable (déjà renommée ?)
-  personne : « C. Andronikof » introuvable (déjà renommée ?)
-  personne : « J. Cathala » introuvable (déjà renommée ?)
-  personne : « Marianne Gourg-Antuszewic » introuvable (déjà renommée ?)
-  personne : « M. Dumesnil' de Gramont » introuvable (déjà renommée ?)
-  éditeur : « Masha Publishing » introuvable (déjà renommé ?)
-  éditeur : « Barthillat » introuvable (déjà renommé ?)
-  éditeur : « Vibratrion éditions » introuvable (déjà renommé ?)
-  éditeur : « Éditions Paroles et Silence » introuvable (déjà renommé ?)
-Rôles posés : 0 changements ; 570 déjà justes.
-  34 isbn : — → 9782882508607
-  46 isbn : — → 9791095087106
-  52 isbn : — → 9782882506948
-  84 isbn : — → 9782072826962
-  98 isbn : — → 9782070792351
-  102 isbn : — → 9782070345410
-  148 isbn : — → 9782940628407
-  153 isbn : — → 9782850652899
-  177 isbn : — → 9782204089500
-  183 isbn : — → 9782868390424
-  199 isbn : — → 9782940523559
-  201 isbn : — → 9782850652301
-  219 isbn : — → 9782743304355
-  239 isbn : — → 9782845451445
-  253 isbn : — → 9782070327928
-  267 isbn : — → 9782850650666
-  277 isbn : — → 9782850651854
-  279 isbn : — → 9782850650499
-  409 isbn : — → 9782850651915
-  447 isbn : — → 9782850651816
-  473 isbn : — → 9782850651632
-  475 isbn : — → 9782850650611
-  507 isbn : — → 9782374370323
-  517 isbn : — → 9782850652363
-  543 isbn : — → 9782850650918
-  545 isbn : — → 9782850650710
-  555 isbn : — → 9782850651458
-  563 isbn : — → 9782850651991
-  581 isbn : — → 9782917504130
-  585 isbn : — → 9782917504178
-  591 isbn : — → 9782855890296
-  609 isbn : — → 9782877067911
-  613 isbn : — → 9782253052463
-  633 isbn : — → 9782940628131
-  635 isbn : — → 9782742782734
-  637 isbn : — → 9782330064570
-  655 isbn : — → 9782072843235
-  663 isbn : — → 9782358731379
-  677 isbn : — → 9782374370460
-  679 isbn : — → 9782283030400
-  681 isbn : — → 9782490982073
-  710 isbn : — → 9782490091317
-  734 isbn : — → 9782846794503
-  745 isbn : — → 9782956611721
-  748 isbn : — → 9782850652080
-  810 isbn : — → 9782713228513
-  832 isbn : — → 9782846794619
-  859 isbn : — → 9782940628612
-  873 isbn : — → 9782715255692
-  875 isbn : — → 9782070178483
-  879 isbn : — → 9782204142243
-  888 isbn : — → 9785984540513
-  890 isbn : — → 9791093328126
-  959 isbn : — → 9782909589008
-  961 isbn : — → 9782909589381
-  978 isbn : — → 9782330036171
-  988 isbn : — → 9782940701032
-  999 isbn : — → 9782818506912
-  1002 isbn : — → 9782848767376
-  1011 isbn : — → 9782355970481
-  1018 isbn : — → 9782905685278
-  1040 isbn : — → 9782072936395
-  1065 isbn : — → 9782940628957
-  1071 isbn : — → 9782917504543
-  1100 isbn : — → 9782072880162
-  1102 isbn : — → 9782381410180
-  1112 isbn : — → 9782363583581
-  1118 isbn : — → 9782361573041
-  1123 isbn : — → 9782700508758
-  1125 isbn : — → 9782940701100
-  1144 isbn : — → 9782958151409
-  1160 isbn : — → 9782846794657
-  1175 isbn : — → 9782743655730
-  1186 isbn : — → 9782743623968
-  1200 isbn : — → 9791096982219
-  1205 isbn : — → 9782850653001
-  1222 isbn : — → 9782221258217
-  1224 isbn : — → 9782940701292
-  1232 isbn : — → 9782842424879
-  1271 isbn : — → 9782012355262
-  1281 isbn : — → 9782940701469
-  1283 isbn : — → 9782073002068
-  1298 isbn : — → 9782072968600
-  1300 isbn : — → 9782322412846
-  1308 isbn : — → 9782846794985
-  1333 isbn : — → 9791032926970
-  1335 isbn : — → 9782072999536
-  1337 isbn : — → 9782940701445
-  1339 isbn : — → 9782940701438
-  1341 isbn : — → 9782350774251
-  1343 isbn : — → 9782350774268
-  1353 isbn : — → 9782364529144
-  1380 isbn : — → 9782882508515
-  1388 isbn : — → 9782846795302
-  1390 isbn : — → 9782846795296
-  1393 isbn : — → 9782846795234
-  1403 isbn : — → 9782702180365
-  1427 isbn : — → 9782378560768
-  1429 isbn : — → 9782864323525
-  1431 isbn : — → 9782864325536
-  1437 isbn : — → 9782070729876
-  1439 isbn : — → 9782864321835
-  1448 isbn : — → 9791095087076
-  1560 isbn : — → 9782377460106
-  1562 isbn : — → 9791021054202
-  1584 isbn : — → 9782846795159
-  1590 isbn : — → 9782940701780
-  1592 isbn : — → 9782940701773
-  1598 isbn : — → 9782227501249
-  1603 isbn : — → 9782267044690
-  1614 isbn : — → 9782846795593
-  1616 isbn : — → 9782953796438
-  1629 isbn : — → 9782889830121
-  1633 isbn : — → 9782846795807
-  1709 isbn : — → 9786098347005
-  1712 isbn : — → 9788097468392
-  1714 isbn : — → 9789934921643
-  1718 isbn : — → 9789934239465
-  1720 isbn : — → 9782846795852
-  1726 isbn : — → 9785879872637
-  1736 isbn : — → 9782846795692
-  1768 isbn : — → 9782378562199
-  1772 isbn : — → 9782490337019
-  1817 isbn : — → 9785444827024
-  1822 isbn : — → 9782850653063
-  1837 isbn : — → 9782850650819
-  1862 isbn : — → 9785171731731
-  1709 éditeur : — → One Book Publishing
-  1712 pages : — → 304
-Fiches corrigées : 129.
-787 laissées (introuvables ou déjà faites) : 104 texte « Kchayan » ; 110 texte « Sherrer » ; 159 texte « S. Ermolonski » ; 183 texte « Pasquierь » ; 195 texte « Soljénistyne » ; 205 texte « tradution » ; 205 texte « Jérôme Clerc » ; 635 texte « Traduit du Joëlle Dublanchet » ; 651 texte « Antuszewic » ; 681 texte « traduit du russe pas » ; 691 texte « Одраченко » ; 786 texte « Parrain » ; 869 texte « Lesquesne » ; 1078 texte « Dumesnil' de Gramont » ; 1220 texte « Taduit » ; 1232 texte « Christine Zeytounian » ; 1399 texte « Liouba Jurgenson » ; 1824 texte « Balzano » ; 1882 texte « convain cu » ; 1866 titre « dispraître » ; 1866 texte « dispraître » ; 501 titre «  – sous la direction de Georges Nivat » ; 867 titre «  - sous la direction de Georges Nivat » ; 1152 titre «  - Sous la direction de Johann Bihr » ; 853 titre «  - Ilf & Petrov » ; 1335 titre « , Serhii Plokhy » ; 730 titre «  / Nathalie Gigounova-Komarova » ; 177 titre «  Nicolas Berdiaev » ; 661 auteur (déjà : Heather Amery) ; 730 auteur (déjà : Nathalie Gigounova-Komarova) ; 853 auteur (déjà : Ilf et Pétrov) ; 1335 auteur (déjà : Serhii Plokhy) ; 1605 auteur (déjà : Корней Чуковский) ; 177 auteur (déjà : Nicolas Berdiaev) ; 881 éditeur (déjà : Éditions des Syrtes) ; 1078 éditeur (déjà : Calmann-Lévy) ; 881 annee (déjà : 2020) ; 923 annee (déjà : 2021) ; 1071 annee (déjà : 2022) ; 44 éditeur (déjà : Gallimard) ; 50 éditeur (déjà : Éditions Mesures) ; 56 annee (déjà : 1892) ; 84 annee (déjà : 2019) ; 94 éditeur (déjà : Gallimard) ; 100 annee (déjà : 2012) ; 112 annee (déjà : 2017) ; 114 annee (déjà : 2016) ; 132 éditeur (déjà : Apostolia) ; 134 éditeur (déjà : Éditions du Cerf) ; 140 éditeur (déjà : Fayard) ; 161 éditeur (déjà : Flammarion) ; 163 éditeur (déjà : LGF) ; 165 éditeur (déjà : LGF) ; 177 annee (déjà : 2009) ; 177 éditeur (déjà : Éditions du Cerf) ; 187 pages (déjà : 180) ; 189 pages (déjà : 191) ; 195 éditeur (déjà : Fayard) ; 211 annee (déjà : 2018) ; 223 éditeur (déjà : Perrin) ; 225 annee (déjà : 2018) ; 225 éditeur (déjà : Flammarion) ; 227 éditeur (déjà : Flammarion) ; 249 éditeur (déjà : Éditions Sillage) ; 253 éditeur (déjà : Gallimard) ; 283 annee (déjà : 1989) ; 285 annee (déjà : 1989) ; 289 annee (déjà : 1985) ; 293 annee (déjà : 1986) ; 295 annee (déjà : 1987) ; 297 annee (déjà : 1988) ; 299 annee (déjà : 1988) ; 301 annee (déjà : 1988) ; 303 annee (déjà : 1989) ; 305 annee (déjà : 1989) ; 307 annee (déjà : 1990) ; 309 annee (déjà : 1990) ; 311 annee (déjà : 1991) ; 313 annee (déjà : 1991) ; 315 annee (déjà : 1992) ; 317 annee (déjà : 1992) ; 319 annee (déjà : 1993) ; 321 annee (déjà : 1993) ; 323 annee (déjà : 1994-95) ; 327 annee (déjà : 1994-95) ; 329 annee (déjà : 2012) ; 331 annee (déjà : 2012) ; 335 annee (déjà : 2010-2011) ; 337 annee (déjà : 2009) ; 339 annee (déjà : 2009) ; 341 annee (déjà : 2008) ; 343 annee (déjà : 2007) ; 343 pages (déjà : 99) ; 345 annee (déjà : 2006-2007) ; 347 annee (déjà : 2005) ; 349 annee (déjà : 2005) ; 353 annee (déjà : 2004) ; 355 annee (déjà : 2003) ; 357 annee (déjà : 2003) ; 359 annee (déjà : 2001) ; 361 annee (déjà : 2000) ; 363 annee (déjà : 2000) ; 367 annee (déjà : 1998-99) ; 369 annee (déjà : 1998-99) ; 371 annee (déjà : 1997) ; 373 annee (déjà : 1997) ; 375 annee (déjà : 1996) ; 377 annee (déjà : 2016) ; 399 annee (déjà : 2009) ; 399 pages (déjà : 303) ; 403 pages (déjà : 148) ; 457 annee (déjà : 1977) ; 467 pages (déjà : 176) ; 485 éditeur (déjà : F.-X. de Guibert) ; 501 éditeur (déjà : Fayard) ; 511 éditeur (déjà : Harpo) ; 523 éditeur (déjà : Азбука-Аттикус) ; 525 éditeur (déjà : Время) ; 533 éditeur (déjà : Молодая гвардия) ; 579 éditeur (déjà : Institut d’études slaves) ; 587 annee (déjà : 2020) ; 587 éditeur (déjà : YMCA-Press) ; 591 annee (déjà : 1979) ; 591 éditeur (déjà : Abbaye de Bellefontaine) ; 595 annee (déjà : 2011) ; 595 pages (déjà : 388) ; 595 éditeur (déjà : L’Âge d’Homme) ; 599 éditeur (déjà : Éditions du Cerf) ; 601 éditeur (déjà : Éditions du Cerf) ; 607 éditeur (déjà : Éditions du Cerf) ; 615 annee (déjà : 1993) ; 615 éditeur (déjà : Gallimard) ; 623 éditeur (déjà : Fayard) ; 625 annee (déjà : 1993) ; 625 éditeur (déjà : Gallimard) ; 627 annee (déjà : 1987) ; 627 éditeur (déjà : Gallimard) ; 631 pages (déjà : 224) ; 631 éditeur (déjà : Verdier) ; 635 annee (déjà : 2010) ; 635 pages (déjà : 384) ; 635 éditeur (déjà : Actes Sud) ; 637 annee (déjà : 2016) ; 637 pages (déjà : 352) ; 637 éditeur (déjà : Actes Sud) ; 639 éditeur (déjà : Verdier) ; 645 annee (déjà : 2011) ; 645 éditeur (déjà : Éditions Singulières) ; 649 pages (déjà : 701) ; 649 éditeur (déjà : Fayard) ; 651 annee (déjà : 2016) ; 653 annee (déjà : 1999) ; 653 éditeur (déjà : Gallimard) ; 655 annee (déjà : 2019) ; 655 éditeur (déjà : Gallimard) ; 657 annee (déjà : 2018) ; 657 éditeur (déjà : Robert Laffont) ; 659 annee (déjà : 2019) ; 659 pages (déjà : 600) ; 659 éditeur (déjà : Allary éditions) ; 661 éditeur (déjà : Usborne) ; 665 pages (déjà : 1053) ; 665 éditeur (déjà : Robert Laffont) ; 667 éditeur (déjà : Gallimard) ; 669 annee (déjà : 1995) ; 669 éditeur (déjà : Gallimard) ; 671 éditeur (déjà : Gallimard) ; 673 pages (déjà : 126) ; 673 éditeur (déjà : Ginkgo éditeur) ; 679 éditeur (déjà : Buchet-Chastel) ; 681 annee (déjà : 2020) ; 681 pages (déjà : 160) ; 681 éditeur (déjà : Éditions Mesures) ; 683 annee (déjà : 2020) ; 683 pages (déjà : 257) ; 683 éditeur (déjà : Éditions Mesures) ; 685 éditeur (déjà : Bleu nuit éditeur) ; 687 éditeur (déjà : YMCA-Press) ; 689 éditeur (déjà : Дом книги / Современные записки) ; 701 annee (déjà : 2014) ; 701 pages (déjà : 64) ; 701 éditeur (déjà : Larousse) ; 703 éditeur (déjà : Assimil) ; 706 annee (déjà : 2019) ; 706 éditeur (déjà : Златоуст) ; 714 annee (déjà : 2018) ; 714 éditeur (déjà : Éditions de la paroisse Notre-Dame du Signe) ; 722 éditeur (déjà : Perrin) ; 726 éditeur (déjà : Éditions Mesures) ; 728 éditeur (déjà : Temps présent) ; 732 annee (déjà : 2020) ; 741 annee (déjà : 2007) ; 741 éditeur (déjà : Harpo) ; 748 annee (déjà : 2020) ; 751 annee (déjà : 1994) ; 755 éditeur (déjà : Rostok) ; 759 annee (déjà : 1932) ; 759 pages (déjà : 216) ; 759 éditeur (déjà : Новый град) ; 761 annee (déjà : 2009) ; 761 éditeur (déjà : YMCA-Press) ; 765 éditeur (déjà : Inculte) ; 767 éditeur (déjà : Perrin) ; 773 annee (déjà : 2005) ; 773 éditeur (déjà : YMCA-Press) ; 776 éditeur (déjà : Les Amis de l’Histoire de Sainte-Geneviève-des-Bois et de ses environs) ; 778 éditeur (déjà : Flammarion) ; 782 annee (déjà : 2019) ; 782 pages (déjà : 108) ; 788 éditeur (déjà : Albin Michel / BnF) ; 798 annee (déjà : 2024) ; 804 éditeur (déjà : Издание общества любителей церковной истории) ; 806 éditeur (déjà : Perrin) ; 808 annee (déjà : 2020) ; 808 éditeur (déjà : Harpo) ; 822 annee (déjà : 1931) ; 828 éditeur (déjà : Librairie des Cinq Continents) ; 834 éditeur (déjà : Ginkgo éditeur) ; 842 annee (déjà : 2017) ; 842 éditeur (déjà : Русский путь) ; 844 annee (déjà : 2017) ; 844 éditeur (déjà : Научная библиотека) ; 846 pages (déjà : 872) ; 851 éditeur (déjà : Ginkgo éditeur) ; 853 éditeur (déjà : Ginkgo éditeur) ; 857 éditeur (déjà : Perrin) ; 869 éditeur (déjà : Liana Levi) ; 871 éditeur (déjà : L’Âge d’Homme) ; 873 éditeur (déjà : Le Temps retrouvé) ; 875 éditeur (déjà : Gallimard) ; 881 pages (déjà : 382) ; 890 éditeur (déjà : Éditions Natania) ; 898 éditeur (déjà : Fayard) ; 900 éditeur (déjà : La Barque) ; 902 éditeur (déjà : La Barque) ; 904 annee (déjà : 2020) ; 904 éditeur (déjà : Белый крест) ; 906 éditeur (déjà : Perrin) ; 909 éditeur (déjà : Éditions des Syrtes) ; 912 éditeur (déjà : Народный комиссариат по иностранным делам) ; 915 annee (déjà : 1852) ; 921 éditeur (déjà : Autrement) ; 923 pages (déjà : 144) ; 923 éditeur (déjà : Gallimard) ; 930 annee (déjà : 1864) ; 930 éditeur (déjà : Типография Бахметова) ; 933 annee (déjà : 1894) ; 933 éditeur (déjà : Paul Ollendorff) ; 935 pages (déjà : 115) ; 942 éditeur (déjà : Éditions Mesures) ; 945 éditeur (déjà : ACER-MJO) ; 952 éditeur (déjà : Éditions Interférences) ; 955 éditeur (déjà : Le Cherche midi éd.) ; 957 éditeur (déjà : Éditions Interférences) ; 961 éditeur (déjà : Éditions Interférences) ; 964 éditeur (déjà : Ginkgo éditeur) ; 975 annee (déjà : 2022) ; 975 éditeur (déjà : Casa di Matriona) ; 981 éditeur (déjà : Éditions du monastère Sretenski) ; 1004 annee (déjà : 2020) ; 1016 annee (déjà : 2005) ; 1018 éditeur (déjà : Le Local) ; 1021 annee (déjà : 2022) ; 1027 éditeur (déjà : Actes Sud BD) ; 1030 annee (déjà : 2021) ; 1030 pages (déjà : 588) ; 1030 éditeur (déjà : Belfond) ; 1033 annee (déjà : 2021) ; 1033 éditeur (déjà : Casterman) ; 1035 éditeur (déjà : Parenthèses) ; 1049 annee (déjà : 1990) ; 1049 éditeur (déjà : Художественная литература) ; 1051 annee (déjà : 1988) ; 1059 éditeur (déjà : Éditions Première partie) ; 1074 éditeur (déjà : Parole et Silence) ; 1076 annee (déjà : 1926) ; 1076 éditeur (déjà : Librairie académique Perrin) ; 1096 éditeur (déjà : Solin-Actes Sud) ; 1136 éditeur (déjà : Éditions Natania) ; 1138 éditeur (déjà : Éditions Natania) ; 1160 annee (déjà : 2022) ; 1160 pages (déjà : 282) ; 1160 éditeur (déjà : Ginkgo éditeur) ; 1175 éditeur (déjà : Rivages) ; 1177 éditeur (déjà : Éditions Mesures) ; 1183 annee (déjà : 2022) ; 1183 éditeur (déjà : La Barque) ; 1186 annee (déjà : 2012) ; 1188 annee (déjà : 2022) ; 1188 éditeur (déjà : Michel Lafon) ; 1191 annee (déjà : 2022) ; 1191 éditeur (déjà : Grasset) ; 1193 annee (déjà : 2022) ; 1193 éditeur (déjà : Buchet-Chastel) ; 1195 éditeur (déjà : Bartillat) ; 1210 éditeur (déjà : Ginkgo éditeur) ; 1212 éditeur (déjà : Ginkgo éditeur) ; 1214 éditeur (déjà : Noir sur Blanc) ; 1216 éditeur (déjà : Éditions des Syrtes) ; 1218 éditeur (déjà : Éditions des Syrtes) ; 1220 éditeur (déjà : Gallimard) ; 1222 éditeur (déjà : Robert Laffont) ; 1224 éditeur (déjà : Éditions des Syrtes) ; 1228 éditeur (déjà : Stock) ; 1234 éditeur (déjà : P.O.L) ; 1237 éditeur (déjà : Dukh i Litera) ; 1263 éditeur (déjà : Éditions des Syrtes) ; 1279 annee (déjà : 2022) ; 1279 éditeur (déjà : Babel) ; 1308 éditeur (déjà : Ginkgo éditeur) ; 1313 annee (déjà : 1838) ; 1313 éditeur (déjà : Firmin Didot frères) ; 1319 éditeur (déjà : Lis & parle éditions) ; 1321 éditeur (déjà : La Barque) ; 1323 éditeur (déjà : Noir sur Blanc) ; 1327 éditeur (déjà : FYP) ; 1329 annee (déjà : 1992) ; 1329 éditeur (déjà : Actes Sud) ; 1331 éditeur (déjà : Éditions Mareuil) ; 1333 éditeur (déjà : Éditions de l’Observatoire / Institut Montaigne) ; 1335 éditeur (déjà : Gallimard) ; 1359 annee (déjà : 1928) ; 1359 pages (déjà : 101) ; 1359 éditeur (déjà : YMCA-Press) ; 1361 éditeur (déjà : Saint Leger éditions) ; 1363 éditeur (déjà : Saint Leger éditions) ; 1368 annee (déjà : 1979) ; 1382 éditeur (déjà : Perrin) ; 1384 éditeur (déjà : Presses universitaires de Rennes) ; 1386 éditeur (déjà : Ginkgo éditeur) ; 1390 éditeur (déjà : Ginkgo éditeur) ; 1393 éditeur (déjà : Ginkgo éditeur) ; 1397 éditeur (déjà : Calmann-Lévy) ; 1399 éditeur (déjà : Calmann-Lévy) ; 1401 éditeur (déjà : Calmann-Lévy) ; 1405 éditeur (déjà : UGA éditions) ; 1576 annee (déjà : 2023) ; 1576 pages (déjà : 192) ; 1576 éditeur (déjà : Éditions Mesures) ; 1732 pages (déjà : 192) ; 1749 annee (déjà : 2018) ; 1852 annee (déjà : 2025) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 46 auteur (déjà : Anna Artemeva, Elena Ratcheva) ; 146 auteur (déjà : Mgr Alexandre Semenoff-Tian-Chansky) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 153 auteur (déjà : Andreï Plakhov, Daniil Dondurei, Lev Karakhan) ; 225 auteur (déjà : Robert Giraud) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 695 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 697 auteur (déjà : Andrew Kaufman, Cécile Giroldi, Serafima Gettys) ; 703 auteur (déjà : Victoria Melnikova-Suchet) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 706 auteur (déjà : Алла Чернышова, Станислав Чернышов) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 771 auteur (déjà : André Korliakov, Gérard Gorokhoff) ; 933 auteur (déjà : Ernest Daudet) ; 975 auteur (déjà : Michele Bacci) ; 997 auteur (déjà : Tatiana Mojenok) ; 1033 auteur (déjà : Virgile Dureuil) ; 1245 auteur (déjà : Alexandra Zelenskaïa) ; 1249 auteur (déjà : Сони Вестерхольт) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1271 auteur (déjà : Alexandre Afanassiev, Marko Vovtchok) ; 1296 auteur (déjà : François Malye) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1419 auteur (déjà : Vladimir Popov, Yuri Felshtinsky) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1643 auteur (déjà : Nicolas Spéranski, Paul Boyer) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1645 auteur (déjà : Arnaud Frilley, Erwan Barillot) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1652 auteur (déjà : Susan E. Kay, Svetlana Le Fleming) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1673 auteur (déjà : Mikhaïl Kouzmine, Vikenti Veressaïev, Zinaïda Hippius) ; 1785 auteur (déjà : Jean Liamine) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1803 auteur (déjà : Anastasia Kopřivová, Lukáš Babka) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1805 auteur (déjà : Céline Gailleurd, Damien Marguet, Eugénie Zvonkine) ; 1837 auteur (déjà : Natalie Stepanoff-Kontchalovski) ; 1854 auteur (déjà : Андрей Зубов) ; 1033 texte « Virgil Dubreuil » ; 706 texte « Черниршов » ; 56 nature (déjà : collectif) ; 86 nature (déjà : collectif) ; 92 nature (déjà : collectif) ; 142 nature (déjà : collectif) ; 233 nature (déjà : collectif) ; 269 nature (déjà : collectif) ; 499 nature (déjà : collectif) ; 501 nature (déjà : collectif) ; 513 nature (déjà : collectif) ; 563 nature (déjà : collectif) ; 691 nature (déjà : collectif) ; 699 nature (déjà : collectif) ; 748 nature (déjà : collectif) ; 751 nature (déjà : collectif) ; 776 nature (déjà : collectif) ; 830 nature (déjà : collectif) ; 844 nature (déjà : collectif) ; 867 nature (déjà : collectif) ; 915 nature (déjà : collectif) ; 970 nature (déjà : collectif) ; 1024 nature (déjà : collectif) ; 1045 nature (déjà : collectif) ; 1141 nature (déjà : collectif) ; 1144 nature (déjà : collectif) ; 1152 nature (déjà : collectif) ; 1240 nature (déjà : collectif) ; 1253 nature (déjà : collectif) ; 1261 nature (déjà : collectif) ; 1277 nature (déjà : collectif) ; 1359 nature (déjà : collectif) ; 1517 nature (déjà : collectif) ; 1738 nature (déjà : collectif) ; 1820 nature (déjà : collectif) ; 1824 nature (déjà : collectif) ; 1530 nature (déjà : revue) ; 1532 nature (déjà : revue) ; 144 auteur (déjà : Alexandre Afanassiev) ; 227 auteur (déjà : Natha Caputo) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 241 auteur (déjà : André Benoît, Boris Bobrinskoy, François Coudreau) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 467 auteur (déjà : Boris de Schlœzer, Лев Шестов) ; 1511 auteur (déjà : Пётр Паламарчук) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 1770 auteur (déjà : Leonid Livak, Patrick Hersant) ; 241 titre «  - André Benoit, B. Bobrinskoy, F. Coudreau » ; 1296 titre « - François Malye » ; 1419 titre «  - Vladimir Popov , Yuri Felshtinsky » ; 34 annee (déjà : 2023) ; 34 éditeur (déjà : Noir sur Blanc) ; 42 annee (déjà : 2023) ; 42 éditeur (déjà : Ginkgo éditeur) ; 42 pages (déjà : 584) ; 46 annee (déjà : 2021) ; 46 éditeur (déjà : Éditions des Quatre vivants) ; 46 pages (déjà : 430) ; 58 annee (déjà : 2021) ; 58 éditeur (déjà : Ginkgo éditeur) ; 58 pages (déjà : 158) ; 62 annee (déjà : 2024) ; 62 éditeur (déjà : Noir sur Blanc) ; 62 pages (déjà : 261) ; 78 éditeur (déjà : ACER-MJO) ; 80 éditeur (déjà : ACER-MJO) ; 112 éditeur (déjà : ACER-MJO) ; 114 éditeur (déjà : ACER-MJO) ; 116 éditeur (déjà : ACER-MJO) ; 118 éditeur (déjà : ACER-MJO) ; 120 éditeur (déjà : ACER-MJO) ; 122 éditeur (déjà : ACER-MJO) ; 124 éditeur (déjà : ACER-MJO) ; 126 éditeur (déjà : ACER-MJO) ; 128 éditeur (déjà : ACER-MJO) ; 211 éditeur (déjà : YMCA-Press) ; 217 éditeur (déjà : YMCA-Press) ; 289 éditeur (déjà : ACER-MJO) ; 291 éditeur (déjà : ACER-MJO) ; 293 éditeur (déjà : ACER-MJO) ; 295 éditeur (déjà : ACER-MJO) ; 297 éditeur (déjà : ACER-MJO) ; 299 éditeur (déjà : ACER-MJO) ; 301 éditeur (déjà : ACER-MJO) ; 303 éditeur (déjà : ACER-MJO) ; 305 éditeur (déjà : ACER-MJO) ; 307 éditeur (déjà : ACER-MJO) ; 309 éditeur (déjà : ACER-MJO) ; 311 éditeur (déjà : ACER-MJO) ; 313 éditeur (déjà : ACER-MJO) ; 315 éditeur (déjà : ACER-MJO) ; 317 éditeur (déjà : ACER-MJO) ; 319 éditeur (déjà : ACER-MJO) ; 321 éditeur (déjà : ACER-MJO) ; 323 éditeur (déjà : ACER-MJO) ; 327 éditeur (déjà : ACER-MJO) ; 329 éditeur (déjà : ACER-MJO) ; 331 éditeur (déjà : ACER-MJO) ; 333 éditeur (déjà : ACER-MJO) ; 335 éditeur (déjà : ACER-MJO) ; 337 éditeur (déjà : ACER-MJO) ; 339 éditeur (déjà : ACER-MJO) ; 341 éditeur (déjà : ACER-MJO) ; 343 éditeur (déjà : ACER-MJO) ; 345 éditeur (déjà : ACER-MJO) ; 347 éditeur (déjà : ACER-MJO) ; 349 éditeur (déjà : ACER-MJO) ; 351 éditeur (déjà : ACER-MJO) ; 353 éditeur (déjà : ACER-MJO) ; 355 éditeur (déjà : ACER-MJO) ; 357 éditeur (déjà : ACER-MJO) ; 359 éditeur (déjà : ACER-MJO) ; 361 éditeur (déjà : ACER-MJO) ; 363 éditeur (déjà : ACER-MJO) ; 365 éditeur (déjà : ACER-MJO) ; 367 éditeur (déjà : ACER-MJO) ; 369 éditeur (déjà : ACER-MJO) ; 371 éditeur (déjà : ACER-MJO) ; 373 éditeur (déjà : ACER-MJO) ; 375 éditeur (déjà : ACER-MJO) ; 377 éditeur (déjà : YMCA-Press) ; 379 éditeur (déjà : YMCA-Press) ; 381 éditeur (déjà : YMCA-Press) ; 383 éditeur (déjà : YMCA-Press) ; 385 éditeur (déjà : YMCA-Press) ; 387 éditeur (déjà : YMCA-Press) ; 389 éditeur (déjà : YMCA-Press) ; 391 éditeur (déjà : YMCA-Press) ; 393 éditeur (déjà : YMCA-Press) ; 395 éditeur (déjà : YMCA-Press) ; 397 éditeur (déjà : YMCA-Press) ; 399 éditeur (déjà : YMCA-Press) ; 613 éditeur (déjà : LGF) ; 613 pages (déjà : 377) ; 663 annee (déjà : 2019) ; 663 éditeur (déjà : Le Bruit du temps) ; 663 pages (déjà : 1244) ; 697 éditeur (déjà : First éditions) ; 710 annee (déjà : 2020) ; 710 éditeur (déjà : Vibration éditions) ; 710 pages (déjà : 137) ; 712 annee (déjà : 2020) ; 712 éditeur (déjà : Éditions Transboréal) ; 712 pages (déjà : 276) ; 732 éditeur (déjà : YMCA-Press) ; 745 annee (déjà : 2020) ; 745 éditeur (déjà : Éditions Art sacré) ; 745 pages (déjà : 156) ; 757 annee (déjà : 1937) ; 757 éditeur (déjà : Speer & Schmidt) ; 757 pages (déjà : 1098) ; 855 annee (déjà : 2021) ; 855 éditeur (déjà : Perrin) ; 855 pages (déjà : 534) ; 867 annee (déjà : 2021) ; 867 éditeur (déjà : Fayard) ; 867 pages (déjà : 417) ; 888 annee (déjà : 2020) ; 888 éditeur (déjà : Викмо-М) ; 888 pages (déjà : 411) ; 959 annee (déjà : 1992) ; 959 éditeur (déjà : Éditions Interférences) ; 973 annee (déjà : 2005) ; 973 éditeur (déjà : Ginkgo éditeur) ; 973 pages (déjà : 191) ; 978 annee (déjà : 2014) ; 978 éditeur (déjà : Hélium) ; 986 annee (déjà : 2021) ; 986 éditeur (déjà : Ginkgo éditeur) ; 986 pages (déjà : 271) ; 992 annee (déjà : 2021) ; 992 éditeur (déjà : Éditions du Cerf) ; 992 pages (déjà : 353) ; 999 annee (déjà : 2022) ; 999 éditeur (déjà : Pluriel) ; 999 pages (déjà : 306) ; 1002 annee (déjà : 2019) ; 1002 éditeur (déjà : Philippe Rey) ; 1002 pages (déjà : 156) ; 1040 annee (déjà : 2021) ; 1040 éditeur (déjà : Folio) ; 1040 pages (déjà : 273) ; 1065 éditeur (déjà : Éditions des Syrtes) ; 1100 annee (déjà : 2021) ; 1100 éditeur (déjà : Gallimard) ; 1100 pages (déjà : 449) ; 1102 annee (déjà : 2021) ; 1102 éditeur (déjà : Éditions Sillage) ; 1102 pages (déjà : 100) ; 1112 annee (déjà : 2021) ; 1112 éditeur (déjà : Vendémiaire) ; 1112 pages (déjà : 355) ; 1114 éditeur (déjà : Éditions Transboréal) ; 1116 éditeur (déjà : Éditions Transboréal) ; 1118 annee (déjà : 2021) ; 1118 éditeur (déjà : Éditions Transboréal) ; 1118 pages (déjà : 761) ; 1131 annee (déjà : 2017) ; 1131 éditeur (déjà : Perrin) ; 1131 pages (déjà : 498) ; 1133 annee (déjà : 2022) ; 1133 éditeur (déjà : Liana Levi) ; 1144 annee (déjà : 2022) ; 1144 éditeur (déjà : Boukovki) ; 1144 pages (déjà : 43) ; 1152 annee (déjà : 2021) ; 1152 éditeur (déjà : Les Petits matins) ; 1152 pages (déjà : 124) ; 1154 éditeur (déjà : Premier Parallèle) ; 1157 annee (déjà : 2020) ; 1157 éditeur (déjà : Les Arènes) ; 1157 pages (déjà : 282) ; 1165 annee (déjà : 2022) ; 1165 éditeur (déjà : Gallimard) ; 1165 pages (déjà : 204) ; 1172 éditeur (déjà : Nevicata) ; 1179 éditeur (déjà : Éditions des Syrtes) ; 1181 annee (déjà : 2022) ; 1181 éditeur (déjà : Éditions des Syrtes) ; 1181 pages (déjà : 601) ; 1200 annee (déjà : 2022) ; 1200 éditeur (déjà : Eur’Orbem) ; 1243 annee (déjà : 2022) ; 1243 éditeur (déjà : Noir sur Blanc) ; 1243 pages (déjà : 218) ; 1253 annee (déjà : 2022) ; 1253 éditeur (déjà : Robert Laffont) ; 1253 pages (déjà : 451) ; 1261 annee (déjà : 2022) ; 1261 éditeur (déjà : Stock) ; 1261 pages (déjà : 288) ; 1271 annee (déjà : 1999) ; 1271 éditeur (déjà : Hachette Littératures) ; 1271 pages (déjà : 203) ; 1275 éditeur (déjà : ACER-MJO) ; 1281 annee (déjà : 2023) ; 1281 éditeur (déjà : Éditions des Syrtes) ; 1281 pages (déjà : 331) ; 1292 éditeur (déjà : Eyrolles) ; 1296 annee (déjà : 2023) ; 1296 éditeur (déjà : Perrin) ; 1296 pages (déjà : 314) ; 1298 annee (déjà : 2023) ; 1298 éditeur (déjà : Gallimard) ; 1298 pages (déjà : 167) ; 1300 annee (déjà : 2022) ; 1300 éditeur (déjà : BoD – Books on Demand) ; 1300 pages (déjà : 210) ; 1302 annee (déjà : 2022) ; 1302 éditeur (déjà : Institut d’études slaves) ; 1302 pages (déjà : 780) ; 1377 annee (déjà : 2023) ; 1377 éditeur (déjà : Noir sur Blanc) ; 1377 pages (déjà : 254) ; 1380 annee (déjà : 2023) ; 1380 éditeur (déjà : Noir sur Blanc) ; 1380 pages (déjà : 204) ; 1403 annee (déjà : 2023) ; 1403 éditeur (déjà : Calmann-Lévy) ; 1421 éditeur (déjà : Verdier) ; 1423 éditeur (déjà : Verdier) ; 1425 éditeur (déjà : Verdier) ; 1427 éditeur (déjà : Verdier) ; 1429 éditeur (déjà : Verdier) ; 1431 éditeur (déjà : Verdier) ; 1435 annee (déjà : 1991) ; 1435 éditeur (déjà : Maurice Nadeau) ; 1437 annee (déjà : 1993) ; 1437 éditeur (déjà : Gallimard) ; 1439 éditeur (déjà : Verdier) ; 1443 annee (déjà : 2023) ; 1443 éditeur (déjà : Ginkgo éditeur) ; 1443 pages (déjà : 238) ; 1448 annee (déjà : 2020) ; 1448 éditeur (déjà : Éditions des Quatre vivants) ; 1448 pages (déjà : 141) ; 1453 éditeur (déjà : YMCA-Press) ; 1453 pages (déjà : 415) ; 1560 annee (déjà : 2023) ; 1560 éditeur (déjà : Les Carnets de l’aléatoire) ; 1562 annee (déjà : 2023) ; 1562 éditeur (déjà : Tallandier) ; 1562 pages (déjà : 349) ; 1580 annee (déjà : 2023) ; 1580 éditeur (déjà : Éditions Mesures) ; 1580 pages (déjà : 120) ; 1582 annee (déjà : 2017) ; 1582 éditeur (déjà : Éditions Interférences) ; 1582 pages (déjà : 63) ; 1584 annee (déjà : 2023) ; 1584 éditeur (déjà : Ginkgo éditeur) ; 1584 pages (déjà : 188) ; 1590 annee (déjà : 2024) ; 1590 éditeur (déjà : Éditions des Syrtes) ; 1590 pages (déjà : 221) ; 1592 annee (déjà : 2024) ; 1592 éditeur (déjà : Éditions des Syrtes) ; 1592 pages (déjà : 248) ; 1598 annee (déjà : 2024) ; 1598 éditeur (déjà : Bayard) ; 1598 pages (déjà : 216) ; 1603 annee (déjà : 2021) ; 1603 éditeur (déjà : Christian Bourgois) ; 1603 pages (déjà : 618) ; 1614 annee (déjà : 2024) ; 1614 éditeur (déjà : Ginkgo éditeur) ; 1614 pages (déjà : 141) ; 1616 annee (déjà : 2024) ; 1616 éditeur (déjà : Monastère Saint-Silouane) ; 1616 pages (déjà : 60) ; 1621 éditeur (déjà : YMCA-Press) ; 1633 annee (déjà : 2024) ; 1633 éditeur (déjà : Ginkgo éditeur) ; 1633 pages (déjà : 255) ; 1643 annee (déjà : 2024) ; 1643 éditeur (déjà : Armand Colin) ; 1643 pages (déjà : 410) ; 1652 annee (déjà : 2023) ; 1652 éditeur (déjà : Armand Colin) ; 1652 pages (déjà : 397) ; 1655 annee (déjà : 2024) ; 1655 éditeur (déjà : Calmann-Lévy) ; 1655 pages (déjà : 349) ; 1666 annee (déjà : 2024) ; 1666 éditeur (déjà : Noir sur Blanc) ; 1666 pages (déjà : 944) ; 1673 annee (déjà : 2020) ; 1673 éditeur (déjà : Pocket) ; 1673 pages (déjà : 120) ; 1675 annee (déjà : 2024) ; 1675 éditeur (déjà : Robert Laffont) ; 1675 pages (déjà : 520) ; 1679 annee (déjà : 2024) ; 1679 éditeur (déjà : Les Belles lettres) ; 1679 pages (déjà : 402) ; 1695 éditeur (déjà : YMCA-Press) ; 1699 éditeur (déjà : YMCA-Press) ; 1702 éditeur (déjà : BAbook) ; 1709 annee (déjà : 2024) ; 1709 pages (déjà : 398) ; 1712 annee (déjà : 2024) ; 1712 éditeur (déjà : Vidim Books) ; 1714 annee (déjà : 2024) ; 1714 éditeur (déjà : Meduza) ; 1714 pages (déjà : 428) ; 1716 annee (déjà : 2024) ; 1718 annee (déjà : 2023) ; 1718 éditeur (déjà : Meduza) ; 1718 pages (déjà : 470) ; 1720 annee (déjà : 2024) ; 1720 éditeur (déjà : Ginkgo éditeur) ; 1720 pages (déjà : 299) ; 1726 annee (déjà : 2023) ; 1726 éditeur (déjà : Гилея) ; 1726 pages (déjà : 499) ; 1736 annee (déjà : 2024) ; 1736 éditeur (déjà : Ginkgo éditeur) ; 1736 pages (déjà : 797) ; 1740 annee (déjà : 2025) ; 1740 éditeur (déjà : Éditions Mesures) ; 1740 pages (déjà : 200) ; 1755 éditeur (déjà : CNRS éditions) ; 1766 éditeur (déjà : YMCA-Press) ; 1768 annee (déjà : 2025) ; 1768 éditeur (déjà : Verdier) ; 1768 pages (déjà : 279) ; 1770 annee (déjà : 2025) ; 1770 éditeur (déjà : Sorbonne Université Presses) ; 1770 pages (déjà : 396) ; 1772 annee (déjà : 2018) ; 1772 éditeur (déjà : Éditions Sofia) ; 1772 pages (déjà : 46) ; 1793 annee (déjà : 2025) ; 1793 éditeur (déjà : Время) ; 1801 éditeur (déjà : YMCA-Press) ; 1805 annee (déjà : 2025) ; 1805 éditeur (déjà : Éditions Mimésis) ; 1805 pages (déjà : 253) ; 1811 annee (déjà : 2025) ; 1811 éditeur (déjà : Überbau) ; 1817 annee (déjà : 2025) ; 1817 éditeur (déjà : Новое литературное обозрение) ; 1817 pages (déjà : 416) ; 1837 éditeur (déjà : Les Éditeurs réunis) ; 1837 pages (déjà : 210) ; 1839 annee (déjà : 2026) ; 1839 éditeur (déjà : Vidim Books) ; 1852 éditeur (déjà : YMCA-Press) ; 1854 éditeur (déjà : Vidim Books) ; 1860 annee (déjà : 2026) ; 1860 éditeur (déjà : Meduza) ; 1862 annee (déjà : 2025) ; 1862 éditeur (déjà : Редакция Елены Шубиной) ; 1862 pages (déjà : 544) ; 1866 annee (déjà : 2026) ; 1866 éditeur (déjà : Stock) ; 1866 pages (déjà : 201) ; 1885 annee (déjà : 2026)
+SANS #36 |  |  | 0 |  | épuisé | russe | 30 | Сценарии кинофильмов Андрея Звягинцева | Андрей Звягинцев | 
+SANS #38 |  |  | 0 |  | épuisé | francais | 30 | L’Archipel du Goulag, cinquante ans après | Alexandre Soljenitsyne | Geneviève Johannet
+SANS #40 |  |  | 0 |  | stock | russe | 15 | Путь фильма | Семён Ляшенко | 
+SANS #44 | 1972 | Gallimard | 703 |  | stock | francais | 26 | Le docteur Jivago | Boris Pasternak | Hélène Henry
+SANS #48 | 2018 | YMCA-Press | 64 |  | épuisé | bilingue-russe-francais | 10 | Les Douze | Alexandre Blok | Georges Nivat
+SANS #56 | 1892 |  | 0 | collectif | stock | russe | 200 | Русская поэзия |  | 
+SANS #78 |  | ACER-MJO | 0 | revue | stock | francais | 24 | Le Messager orthodoxe, n° 164-165 |  | 
+SANS #80 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 163 |  | 
+SANS #82 | 1932 | YMCA-Press | 0 |  | stock | francais | 19 | La vie de Tourgueniev | Boris Zaïtsev | Anne Kichilov
+SANS #86 | 2018 | YMCA-Press | 100 | collectif | stock | bilingue-russe-francais | 19 | L’Archipel du Goulag, un séisme littéraire - Catalogue d’exposition |  | 
+SANS #96 | 1998 | Gallimard | 452 |  | stock | bilingue-russe-francais | 14.1 | Un héros de notre temps | Michel Lermontov | Boris de Schlœzer
+SANS #104 | 2006 | Gallimard | 114 |  | épuisé | bilingue-russe-francais | 12.3 | La dame de pique | Alexandre Pouchkine | André Gide, Jacques Schiffrin
+SANS #106 | 2005 | Gallimard | 193 |  | stock | bilingue-russe-francais | 13.5 | La dame au petit chien, L’évêque, La fiancée | Anton Tchekhov | Edouard Parayre, Lily Denis
+SANS #108 | 1994 | Gallimard | 333 |  | stock | bilingue-russe-francais | 14 | La sonate à Kreutzer | Léon Tolstoï | Sylvie Luneau
+SANS #110 | 2005 | Gallimard | 169 |  | stock | bilingue-russe-francais | 11.4 | La montre | Ivan Tourguéniev | Édith Scherrer
+SANS #112 | 2017 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 162 |  | 
+SANS #114 | 2016 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 161 |  | 
+SANS #116 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 160 |  | 
+SANS #118 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 159 |  | 
+SANS #120 |  | ACER-MJO | 0 | revue | épuisé | francais | 12 | Le Messager orthodoxe, n° 158 |  | 
+SANS #122 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 157 |  | 
+SANS #124 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 156 |  | 
+SANS #126 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 155 |  | 
+SANS #128 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 154 |  | 
+SANS #130 | 1989 | YMCA-Press | 202 |  | épuisé | russe | 15 | Избранная поэзия | Anna Akhmatova | 
+SANS #136 | 2012 | YMCA-Press | 722 |  | stock | bilingue-russe-francais | 80 | Culture russe en exil 1917- 1947 | André Korliakov | 
+SANS #150 |  | Éditions des Syrtes | 0 |  | épuisé | francais | 22 | D’eau et d’Esprit | Alexandre Schmemann | Françoise Lhoest, Michel Sollogoub, Paul Toutchkov
+SANS #157 | 2017 | Éditions des Syrtes | 348 |  | stock | francais | 20 | De l’orient à l’occident : orthodoxie et catholicisme | Père Placide Deseille | 
+SANS #159 | 2012 | Robert Laffont | 643 |  | stock | francais | 7.9 | Le Maître et Marguerite | Mikhaïl Boulgakov | Claude Ligny
+SANS #161 | 2011 | Flammarion | 718 |  | épuisé | francais | 7.9 | Crime et Châtiment | Fiodor Dostoïevski | Pierre Pascal
+SANS #163 | 2007 | LGF | 304 |  | stock | francais | 8 | L’Idiot | Fiodor Dostoïevski | Gabriel Arout, Georges Arout
+SANS #165 | 2008 | LGF | 217 |  | stock | francais | 3.5 | Le Joueur | Fiodor Dostoïevski | Alexandre de Couriss, Constantin Andronikof
+SANS #167 | 2016 | Actes Sud | 998 |  | épuisé | francais | 29 | Œuvres romanesques 1869-1874 | Fiodor Dostoïevski | André Markowicz
+SANS #169 | 2015 | Actes Sud | 988 |  | épuisé | francais | 29 | Œuvres romanesques 1846-1849 | Fiodor Dostoïevski | André Markowicz
+SANS #171 | 2017 | Philippe Rey | 624 |  | stock | francais | 29 | Journal 1970-1986 | Andreï Tarkovski | 
+SANS #181 | 1991 | YMCA-Press | 171 |  | stock | russe | 14 | Христианство и Еврейский вопрос | Père Serge Boulgakov | 
+SANS #185 | 1984 | YMCA-Press | 144 |  | épuisé | russe | 15 | Избранная поэзия | Zinaïda Hippius | 
+SANS #187 | 1985 | YMCA-Press | 180 |  | stock | russe | 12 | Избранная поэзия | Сергей Клычков | 
+SANS #189 | 1991 | YMCA-Press | 191 |  | stock | russe | 12 | Избранная поэзия | Осип Мандельштам | 
+SANS #195 |  | Fayard | 910 |  | stock | francais | 15 | L’Archipel du Goulag | Alexandre Soljenitsyne | Natalia Soljénitsyne
+SANS #203 |  | YMCA-Press | 335 |  | stock | francais | 23 | Le pasteur de nos âmes | Lev Gillet | 
+SANS #205 | 1987 | YMCA-Press | 384 |  | stock | francais | 20 | Homélies | Grégoire Palamas | Jérôme Cler
+SANS #207 | 1985 | L’Œil | 144 |  | stock | francais | 15 | Trois études sur l’icône | Eugène Troubetskoï | 
+SANS #209 | 1990 | YMCA-Press | 136 |  | stock | slavon | 10 | Службы великого Пятка и великой Субботы страстной седмицы |  | 
+SANS #211 | 2018 | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 210 |  | 
+SANS #213 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 209 |  | 
+SANS #215 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 208 |  | 
+SANS #217 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 207 |  | 
+SANS #229 |  | YMCA-Press | 0 |  | stock | russe | 12 | Встречи c Пастернаком | Александр Гладков | 
+SANS #231 | 1988 | YMCA-Press | 196 |  | épuisé | russe | 12 | Избранная поэзия | Boris Pasternak | 
+SANS #237 | 2016 | Éditions des Syrtes | 0 |  | stock | francais | 20 | lectures orthodoxes pour chaque jour | Le Grand Carême | 
+SANS #241 | 1971 | Éditions Mame | 220 |  | stock | francais | 10 | Baptême, sacrement d’unité | André Benoît, Boris Bobrinskoy, François Coudreau | 
+SANS #243 | 1969 | Éditions Mame | 274 |  | stock | francais | 15 | L’idée russe | Nicolas Berdiaev | Hélène Arjakovsky
+SANS #247 | 2012 | Éditions Sillage | 80 |  | stock | francais | 7.5 | L’exécution de Troppmann | Ivan Tourguéniev | 
+SANS #259 | 1991 | YMCA-Press | 347 |  | stock | russe | 20 | Встречи с Анной Ахматовой | Павел Лукницкий | 
+SANS #261 | 1987 | YMCA-Press | 506 |  | stock | russe | 25 | Жанна – Божья Дева | Cергей Оболенский | 
+SANS #263 | 1991 | YMCA-Press | 600 |  | stock | russe | 32 | Собрание cочинений | Alexandre Pouchkine | 
+SANS #265 | 1990 | YMCA-Press | 598 |  | stock | russe | 25 | Духовные Основы Русской Революции - Философия Неравенства | Nicolas Berdiaev | 
+SANS #269 | 2012 | YMCA-Press | 321 | collectif | stock | francais | 22 | La joie du Royaume - Colloque père Alexandre Schmemann |  | 
+SANS #271 |  | YMCA-Press | 0 |  | stock | russe | 25 | Типы религиозной мысли в россии | Nicolas Berdiaev | 
+SANS #273 | 1992 | YMCA-Press | 280 |  | stock | russe | 16 | o. Сергий Гаккель | Мать Мария | 
+SANS #281 | 1991 | YMCA-Press | 208 |  | stock | russe | 13 | Житие, Проповеди | Архиеп. Серафим Звездинский | 
+SANS #283 | 1989 | YMCA-Press | 0 |  | stock | russe | 15 | История Русской Философии, том 1 | Прот. Василий Зеньковский | 
+SANS #285 | 1989 | YMCA-Press | 0 |  | stock | russe | 15 | История Русской Философии, том 2 | Прот. Василий Зеньковский | 
+SANS #287 | 1991 | YMCA-Press | 386 |  | stock | russe | 16 | Русское религиозное возрождение XХ века | Nicolas Zernov | 
+SANS #289 | 1985 | ACER-MJO | 0 | revue | épuisé | francais | 12 | Le Messager orthodoxe, n° 100 |  | Lydia Ouspensky
+SANS #291 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 101 |  | 
+SANS #293 | 1986 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 103 |  | 
+SANS #295 | 1987 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 106 |  | 
+SANS #297 | 1988 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 107 |  | 
+SANS #299 | 1988 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 108 |  | 
+SANS #301 | 1988 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 109 |  | 
+SANS #303 | 1989 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 110 |  | 
+SANS #305 | 1989 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 111 |  | 
+SANS #307 | 1990 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 113 |  | 
+SANS #309 | 1990 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 115 |  | 
+SANS #311 | 1991 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 116 |  | 
+SANS #313 | 1991 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 117-118 |  | 
+SANS #315 | 1992 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 119-120 |  | 
+SANS #317 | 1992 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 121 |  | 
+SANS #319 | 1993 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 122 |  | 
+SANS #321 | 1993 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 123 |  | 
+SANS #323 | 1994-95 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 124 |  | 
+SANS #325 |  |  | 0 |  | épuisé | russe | 33.6 | Кавалергарды на службе России | Вера Ферзен, Георгий Бибиков | 
+SANS #327 | 1994-95 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 125 |  | 
+SANS #329 | 2012 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 153 |  | 
+SANS #331 | 2012 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 152 |  | 
+SANS #333 | 2011 | ACER-MJO | 80 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 151 |  | 
+SANS #335 | 2010-2011 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 150 |  | 
+SANS #337 | 2009 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 149 |  | 
+SANS #339 | 2009 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 148 |  | 
+SANS #341 | 2008 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 146 |  | 
+SANS #343 | 2007 | ACER-MJO | 99 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 145 |  | 
+SANS #345 | 2006-2007 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 144 |  | 
+SANS #347 | 2005 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 143 |  | 
+SANS #349 | 2005 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 142 |  | 
+SANS #351 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 141 |  | 
+SANS #353 | 2004 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 140 |  | 
+SANS #355 | 2003 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 139 |  | 
+SANS #357 | 2003 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 138 |  | 
+SANS #359 | 2001 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 136 |  | 
+SANS #361 | 2000 | ACER-MJO | 0 | revue | épuisé | francais | 12 | Le Messager orthodoxe, n° 135 |  | 
+SANS #363 | 2000 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 134 |  | 
+SANS #365 |  | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 133 |  | 
+SANS #367 | 1998-99 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 132 |  | 
+SANS #369 | 1998-99 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 131 |  | 
+SANS #371 | 1997 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 129 |  | 
+SANS #373 | 1997 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 128 |  | 
+SANS #375 | 1996 | ACER-MJO | 0 | revue | stock | francais | 12 | Le Messager orthodoxe, n° 127 |  | 
+SANS #377 | 2016 | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 206 |  | 
+SANS #379 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 205 |  | 
+SANS #381 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 204 |  | 
+SANS #383 | 2013 | YMCA-Press | 293 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 203 |  | 
+SANS #385 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 201 |  | 
+SANS #387 | 2014 | YMCA-Press | 263 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 202 |  | 
+SANS #389 | 2012 | YMCA-Press | 363 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 200 |  | 
+SANS #391 | 2012 | YMCA-Press | 244 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 199 |  | 
+SANS #393 | 2011 | YMCA-Press | 241 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 198 |  | 
+SANS #395 | 2010 | YMCA-Press | 298 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 197 |  | 
+SANS #397 |  | YMCA-Press | 310 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 196 |  | 
+SANS #399 | 2009 | YMCA-Press | 303 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 195 |  | 
+SANS #403 | 1987 | YMCA-Press | 148 |  | épuisé | russe | 12 | Избранная поэзия | Георгий Иванов | 
+SANS #407 | 1991 | YMCA-Press | 126 |  | stock | russe | 13 | Запечатанный Гроб. Пасха Нетленная | Владимир Ильин | 
+SANS #411 | 1991 | YMCA-Press | 230 |  | stock | russe | 13 | Шесть Дней Творения | Владимир Ильин | 
+SANS #413 | 1993 | YMCA-Press | 370 |  | stock | russe | 20 | Христос и первое христианское поколение | Епископ Кассиан | 
+SANS #417 | 1989 | YMCA-Press | 389 |  | stock | russe | 16 | Проповеди, письма, воспоминания о нем | Отец Алексий Мечев | 
+SANS #419 | 1988 | YMCA-Press | 160 |  | stock | russe | 12 | Письма духовным детям | Игумен Никон | 
+SANS #421 | 1978 | YMCA-Press | 248 |  | stock | russe | 14 | Юрий Самарин и его время | Барон Б. Э. Нольде | 
+SANS #425 | 1990 | YMCA-Press | 380 |  | stock | russe | 16 | Отец Иоанн Кронштадтский | Mgr Alexandre Semenoff-Tian-Chansky | 
+SANS #427 | 1992 | YMCA-Press | 332 |  | stock | russe | 15 | Воспоминания, Статьи, Очерки, Том 1 | Мать Мария | 
+SANS #433 | 1989 | YMCA-Press | 241 |  | stock | russe | 16 | Cвятые древней Руси | Георгий Федотов | 
+SANS #437 | 1980 | YMCA-Press | 360 |  | stock | russe | 12 | Мысли перед рассветом | Владимир Тростников | 
+SANS #441 | 1989 | YMCA-Press | 816 |  | stock | russe | 25 | Столп и утверждение Истины | Pavel Florensky | 
+SANS #443 | 1988 | YMCA-Press | 604 |  | stock | russe | 28 | Пути русского богословия | Georges Florovsky | 
+SANS #445 | 1990 | YMCA-Press | 240 |  | stock | russe | 16 | Восточные Отцы IV Века | Georges Florovsky | 
+SANS #451 |  | YMCA-Press | 0 |  | stock | russe | 16 | Исторический Путь Православия | Прот. Александр Шмеман | 
+SANS #453 | 1987 | YMCA-Press | 138 |  | stock | russe | 10 | Религия Революции и гибель Культуры | Владимир Ильин | 
+SANS #457 | 1977 | YMCA-Press | 400 |  | stock | russe | 14 | Я увожу к отверженным селеньям | Георгий Александров | 
+SANS #459 | 1982 | YMCA-Press | 650 |  | stock | russe | 20 | Собрание Сочинений, Том 3 | Anna Akhmatova | 
+SANS #461 | 1973 | YMCA-Press | 192 |  | stock | russe | 14 | Воспоминания | Евгения Герцык | 
+SANS #463 | 1982 | YMCA-Press | 451 |  | stock | russe | 16 | Сахарный Немец | Сергей Клычков | 
+SANS #467 | 2011 | YMCA-Press | 176 |  | épuisé | russe | 12 | Переписка Льва Шестова c Борисом Шлёцером | Boris de Schlœzer, Лев Шестов | 
+SANS #469 | 1991 | YMCA-Press | 256 |  | stock | russe | 12 | Черный Огонь | Vassili Rozanov | 
+SANS #477 | 1990 | YMCA-Press | 430 |  | stock | russe | 16 | Калейдоскоп Жизни | Е. Рачинская | 
+SANS #479 | 1990 | YMCA-Press | 190 |  | stock | russe | 14 | Письма к Ариадне Берг | Marina Tsvétaïéva | Nikita Struve
+SANS #481 | 1979 | YMCA-Press | 268 |  | stock | russe | 14 | Годы Изгнания | И.В. Гессен | 
+SANS #483 | 1993 |  | 312 |  | stock | russe | 20 | Р. С. Х. Д. в Латвии И Эстонии | Б.В. Плюханов | 
+SANS #487 |  |  | 0 |  | stock | francais | 7 | Étiquettes clavier cyrillique |  | 
+SANS #491 | 1958 | Librairie des Cinq Continents | 203 |  | stock | francais | 13 | La versification russe | Boris Unbegaun | 
+SANS #497 | 2012 | Эксмо | 96 |  | épuisé | russe | 10 | Букварь | Н.С. Жукова | 
+SANS #499 | 2011 | Fraternité orthodoxe en Europe occidentale | 0 | collectif | épuisé | francais | 4.5 | Pentecôte - ascension raconte aux enfants |  | 
+SANS #501 | 2007 | Fayard | 880 | collectif | stock | francais | 49.9 | Les sites de la mémoire russe, tome 2 |  | 
+SANS #509 | 2014 | Harpo | 0 |  | épuisé | bilingue-russe-francais | 22 | Soir | Anna Akhmatova | 
+SANS #511 | 2010 | Harpo | 32 |  | stock | bilingue-russe-francais | 30 | La guerre | Anna Akhmatova | Christian Mouze
+SANS #523 | 2014 | Азбука-Аттикус | 672 |  | épuisé | russe | 15 | Малое собрание сочинений | Gaïto Gazdanov | 
+SANS #525 | 2013 | Время | 304 |  | épuisé | russe | 20 | Цинковые мальчики | Светлана Алексиевич | 
+SANS #527 | 2015 | Захаров | 448 |  | épuisé | russe | 7 | Коронация или последний из романов | Борис Акунин | 
+SANS #529 | 2009 | Захаров | 365 |  | épuisé | russe | 6 | Особые поручения | Борис Акунин | 
+SANS #531 | 2010 | Захаров | 351 |  | épuisé | russe | 7 | Статский Советник | Борис Акунин | 
+SANS #533 | 2013 | Молодая гвардия | 447 |  | stock | russe | 20 | Станиславский | Римма Кречетова | 
+SANS #541 | 1985 | YMCA-Press | 184 |  | épuisé | russe | 14 | Письма из ссылки Б. Пастернаку | Ариадна Эфрон | 
+SANS #547 | 1984 | YMCA-Press | 306 |  | stock | russe | 15 | Записки об Анне Ахматовой | Lydia Tchoukovskaïa | 
+SANS #549 | 1976 | YMCA-Press | 380 |  | stock | russe | 16 | Стихи, театр, проза | Marina Tsvétaïéva | 
+SANS #551 | 1987 | YMCA-Press | 252 |  | stock | russe | 20 | Дело Корнилова | Г. Катков | 
+SANS #553 | 1984 | YMCA-Press | 426 |  | stock | russe | 20 | Февральская Революция | Г. Катков | 
+SANS #557 | 1987 | YMCA-Press | 300 |  | stock | russe | 16 | В немецком плену/ Из жизни военнопленного - Палий П. | Ващенко Н. | 
+SANS #559 | 1985 | YMCA-Press | 290 |  | stock | russe | 20 | Большевики и левые эсеры | Yuri Felshtinsky | 
+SANS #561 | 1990 | YMCA-Press | 380 |  | stock | russe | 20 | История власовской армии | Й. Хофманн | 
+SANS #565 | 1989 | YMCA-Press | 592 |  | stock | russe | 20 | Красное Колесо, Октябрь Шестнадцатого | Alexandre Soljenitsyne | 
+SANS #567 | 1989 | YMCA-Press | 592 |  | stock | russe | 20 | Красное Колесо, Октябрь Шестнадцатого - Александр Солженицын том 2 | Alexandre Soljenitsyne | 
+SANS #569 | 1986 | YMCA-Press | 720 |  | stock | russe | 25 | Красное Колесо – Март Семнадцатого том 1 | Alexandre Soljenitsyne | 
+SANS #571 | 1986 | YMCA-Press | 760 |  | épuisé | russe | 25 | Красное Колесо – Март Семнадцатого том 2 | Alexandre Soljenitsyne | 
+SANS #573 | 1987 | YMCA-Press | 752 |  | stock | russe | 25 | Красное Колесо – Март Семнадцатого том 3 | Alexandre Soljenitsyne | 
+SANS #575 | 1988 | YMCA-Press | 680 |  | stock | russe | 25 | Красное Колесо – Март Семнадцатого том 4 | Alexandre Soljenitsyne | 
+SANS #577 | 1999 | Éditions des Syrtes | 0 |  | stock | francais | 14 | L’histoire de ma sœur | Mikhaïl Ossorguine | Marie Leymarie
+SANS #583 | 2013 | Harpo | 0 |  | épuisé | bilingue-russe-francais | 26 | Tristia | Ossip Mandelstam | Christian Mouze
+SANS #587 | 2020 | YMCA-Press | 0 |  | stock | bilingue-russe-francais | 50 | Histoire illustrée de l’émigration russe, 1917-1947 | André Korliakov | 
+SANS #595 | 2011 | L’Âge d’Homme | 388 |  | épuisé | francais | 27 | Saint Jean de Changhaï et son temps | Bernard Le Caro | 
+SANS #601 | 2013 | Éditions du Cerf | 176 |  | épuisé | francais | 20 | Trois homélies | Anastase le Sinaïte | Nicolas Molinier
+SANS #603 | 2002 |  | 466 |  | épuisé | francais | 30 | Passeur de la foi, consolateur des âmes | Père Arsène | 
+SANS #631 |  | Verdier | 224 |  | stock | francais | 10.6 | Correspondance | Varlam Chalamov | Francine Andreieff
+SANS #645 | 2011 | Éditions Singulières | 0 |  | épuisé | francais | 25 | J’ai vécu la fin de la Russie impériale | Georges Chavelski | André Donzeau
+SANS #653 | 1999 | Gallimard | 0 |  | stock | francais | 11.3 | Le Ciel brûle | Marina Tsvétaïéva | Ève Malleret, Pierre Léon
+SANS #669 | 1995 | Gallimard | 0 |  | stock | bilingue-russe-francais | 15.5 | Carnets du sous-sol | Fiodor Dostoïevski | Boris de Schlœzer
+SANS #687 | 1929 | YMCA-Press | 375 |  | épuisé | russe | 150 | На весах Иова | Лев Шестов | 
+SANS #689 | 1939 | Дом книги | 199 |  | épuisé | russe | 100 | Киргегард и экзистенциальная философия | Лев Шестов | 
+SANS #691 | 1947 |  | 163 | collectif | stock | russe | 50 | Орион |  | 
+SANS #693 |  |  | 0 |  | épuisé | russe | 50 | Сочинений | Alexandre Pouchkine | 
+SANS #695 |  |  | 0 |  | stock | francais | 7.95 | Le russe pour les nuls, guide de conversation | Andrew Kaufman, Cécile Giroldi, Serafima Gettys | 
+SANS #699 |  |  | 0 | collectif | stock | bilingue-russe-francais | 17.95 | Dictionnaire Larousse Maxi poche plus Russe |  | 
+SANS #701 | 2014 | Larousse | 64 |  | épuisé | francais | 4.99 | Premiers pas en Russe |  | 
+SANS #703 |  | Assimil | 128 |  | épuisé | francais | 9.9 | Russe intermédiaire - Les cahiers d’excercice Assimil | Victoria Melnikova-Suchet | 
+SANS #706 | 2019 | Златоуст | 0 |  | épuisé | russe | 30 | Поехали! Начальный курс | Алла Чернышова, Станислав Чернышов | 
+SANS #714 | 2018 | Éditions de la paroisse Notre-Dame du Signe | 0 |  | stock | bilingue-russe-francais | 9.5 | La divine liturgie de Saint Jean Chrysostome |  | 
+SANS #724 | 2020 | Éditions Jourdan | 333 |  | épuisé | francais | 19.9 | De l’armée rouge...à l’armée de Vlassov | Vassiliï Panarin | 
+SANS #726 |  | Éditions Mesures | 320 |  | stock | bilingue-russe-francais | 24 | Œuvres poétiques | Iliazd | André Markowicz
+SANS #732 | 2020 | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 211 |  | 
+SANS #743 | 2019 | Éditions du Panthéon | 0 |  | stock | francais | 20.9 | Une vie pour le théâtre, Maria Knöbel | Gérard Abensour | 
+SANS #753 | 1895 |  | 906 |  | stock | russe | 200 | Сочинения М.Ю. Лермонтова | Michel Lermontov | 
+SANS #757 | 1937 | Speer & Schmidt | 1098 |  | épuisé | russe | 200 | Сочинения Александра Пушкина | Alexandre Pouchkine | 
+SANS #759 | 1932 | Новый град | 216 |  | stock | russe | 100 | И есть и будет | Георгий Федотов | 
+SANS #771 | 2003 | André Korliakov | 656 |  | épuisé | bilingue-russe-francais | 90 | Le Corps expéditionnaire russe en France et à Salonique, 1916-1918 | André Korliakov, Gérard Gorokhoff | 
+SANS #773 | 2005 | YMCA-Press | 464 |  | stock | bilingue-russe-francais | 70 | Emigration russe en photos, 1917-1947. Vers le succès | André Korliakov | 
+SANS #776 | 2020 | Les Amis de l’Histoire de Sainte-Geneviève-des-Bois et de ses environs | 168 | collectif | stock | russe | 20 | Уголок России в Сент-Женевьев-де-Буа |  | 
+SANS #778 |  | Flammarion | 32 |  | stock | francais | 5.25 | Le petit poisson d’Or |  | 
+SANS #780 | 2017 | Нигма | 232 |  | épuisé | russe | 25 | Сказки | Корней Чуковский | 
+SANS #782 | 2019 |  | 108 |  | stock | russe | 8 | Мысли об иконе | Инок Григорий Круг | 
+SANS #784 | 2016 | Нигма | 128 |  | épuisé | russe | 20 | Русские сказки для детей |  | 
+SANS #786 | 1936 | YMCA-Press | 0 |  | épuisé | russe | 100 | Баба-Яга | Nadejda Teffi | 
+SANS #788 |  | Albin Michel | 28 |  | épuisé | francais | 19 | Conte du Tsar Saltan | Alexandre Pouchkine | 
+SANS #790 | 2020 | ACER-MJO | 0 |  | stock | francais | 9 | La liturgie expliquée aux jeunes |  | 
+SANS #794 | 2020 | Ginkgo éditeur | 0 |  | stock | francais | 23 | Les 12 chaises | Ilf et Pétrov | Alain Préchac
+SANS #798 | 2024 |  | 0 |  | stock | francais | 16 | Calendrier orthodoxe des scouts russes 2024 |  | 
+SANS #802 |  | YMCA-Press | 808 |  | épuisé | russe | 22 | Россия и эмиграция | Mère Marie Skobtsova | 
+SANS #804 | 2020 | Издание общества любителей церковной истории | 350 |  | épuisé | russe | 14 | Воспоминаеия - Владимир Ягелло протоиерей | Vladimir Iagello | 
+SANS #808 | 2020 | Harpo | 0 |  | épuisé | bilingue-russe-francais | 28 | Poèmes 1921-1925 | Ossip Mandelstam | Christian Mouze
+SANS #814 | 1979 | YMCA-Press | 272 |  | stock | russe | 15 | Религия и культура | Vassili Rozanov | 
+SANS #816 | 1976 | Reprint | 172 |  | stock | russe | 10 | Политические статьи | Fiodor Tiouttchev | 
+SANS #818 | 1965 | YMCA-Press | 251 |  | stock | russe | 20 | Воссоздание святой Руси | Антон Карташев | 
+SANS #820 |  |  | 0 |  | épuisé | russe | 10 | Терем-теремок Сказки для малышей |  | 
+SANS #822 | 1931 |  | 254 |  | épuisé | russe | 10 | Комедии | Андрей Ренников | 
+SANS #824 | 1948 | YMCA-Press | 0 |  | stock | russe | 50 | Лилия и серп | Юргис Балтрушайтис | 
+SANS #826 |  |  | 0 |  | épuisé | russe | 20 | Горнее солнце | Николай Рощин | 
+SANS #828 | 1970 | Librairie des Cinq Continents | 95 |  | épuisé | russe | 6 | Клоп | Vladimir Maïakovski | 
+SANS #836 |  |  | 0 |  | épuisé | russe | 20 | Не прощаюсь | Борис Акунин | 
+SANS #838 |  |  | 0 |  | épuisé | russe | 20 | Планета вода | Борис Акунин | 
+SANS #840 |  |  | 0 |  | épuisé | russe | 12 | Рассказы, повести, пьесы | Mikhaïl Boulgakov | 
+SANS #842 | 2017 | Русский путь | 792 |  | épuisé | russe | 20 | Александр Гинзбург: русский роман | Vladimir Orlov | 
+SANS #844 | 2017 | Научная библиотека | 0 | collectif | stock | russe | 20 | По, Бодлер, Достоевский: Блеск и нищета национального гения |  | 
+SANS #846 | 2004 | YMCA-Press | 872 |  | stock | russe | 20 | Дневник политика (1925-1935) | Pierre Struve | 
+SANS #848 | 2020 | Buchet-Chastel | 287 |  | stock | francais | 19 | Sergueï Rachmaninov, portrait d’un pianiste | André Lischke | 
+SANS #871 | 1975 | L’Âge d’Homme | 112 |  | stock | francais | 15 | Le Fléau de Dieu | Evgueni Zamiatine | Claude Levenson
+SANS #881 | 2020 | Éditions des Syrtes | 382 |  | stock | francais | 22 | Julie Dansas | Michel Niqueux | 
+SANS #892 | 2018 | Institut d’études slaves | 127 |  | stock | francais,slavon | 16 | Manuel du slavon liturgique T1 Grammaire | Jean-Paul Deschler | 
+SANS #898 |  | Fayard | 120 |  | stock | francais | 4 | Dieu et l’Etat | Bakounine | 
+SANS #904 | 2020 | Белый крест | 394 |  | épuisé | russe | 20 | Врангель в Крыму | Nicolas Ross | 
+SANS #912 | 1922 | Народный комиссариат по иностранным делам | 0 |  | épuisé | russe | 50 | Материалы по истории франко-русских отношеий за 1910-1914 г.г. |  | 
+SANS #915 | 1852 |  | 0 | collectif | épuisé | russe | 50 | Пропилеи |  | 
+SANS #917 | 2001 |  | 232 |  | épuisé | russe | 28 | Барон Фальц-Фейн, жизнь русского аристократа | Н. Данилевич | 
+SANS #930 | 1864 | Типография Бахметова | 150 |  | épuisé | russe | 50 | Стихотворения А.С. Хомякова | Alexeï Khomiakov | 
+SANS #933 | 1894 | Paul Ollendorff | 0 |  | stock | francais | 150 | Histoire diplomatique de l’Alliance Franco-Russe | Ernest Daudet | 
+SANS #945 |  | ACER-MJO | 0 | revue | épuisé | francais | 24 | Le Messager orthodoxe, n° 166-167 |  | 
+SANS #957 |  | Éditions Interférences | 0 |  | stock | francais | 17 | Sofia Pétrovna | Lydia Tchoukovskaïa | Sophie Benech
+SANS #967 | 2007 | Mediaspaul éditions | 0 |  | stock | francais | 19.25 | Epiphane de Salamine, docteur de l’iconoclasme? | Stéphane Bigham | 
+SANS #970 |  |  | 0 | collectif | stock | francais | 17 | Peur |  | 
+SANS #975 | 2022 | Casa di Matriona | 0 |  | stock | italien | 27 | Le vie del Mediterraneo • Icone tra Venezia e Bisanzio | Michele Bacci | 
+SANS #981 | 2021 | Éditions du monastère Sretenski | 160 |  | stock | francais | 15 | L’Esprit, l’âme et le corps | Saint Luc de Crimée | Anne Davidenkoff
+SANS #990 |  | Éditions des Syrtes | 0 |  | stock | francais | 30 | Philosophie de l’œuvre commune | Nikolaï Fiodorov | 
+SANS #995 |  |  | 0 |  | épuisé | russe | 10 | Лиса и медведь |  | 
+SANS #1004 | 2020 | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 212 |  | 
+SANS #1009 |  |  | 0 |  | stock | bilingue-russe-francais | 9 | Noël russe, Рождество | Ivan Chmeliov | 
+SANS #1016 | 2005 |  | 0 |  | stock | francais | 14 | Une île dans la vie, souvenirs d’enfance | Olga Andreyev Carlisle | Jean Bodiou
+SANS #1021 | 2022 |  | 0 |  | épuisé | russe | 17 | Православный русский календарь на 2022 год |  | 
+SANS #1027 |  | Actes Sud BD | 0 |  | épuisé | francais | 16 | Le Maître & Marguerite | Mikhaïl Boulgakov | 
+SANS #1038 |  |  | 0 |  | stock | francais | 11.9 | Le Maître et Marguerite | Mikhaïl Boulgakov | 
+SANS #1045 |  |  | 0 | collectif | stock | russe | 25 | Cмерть Андрея Белого (1880-1934) |  | 
+SANS #1049 | 1990 | Художественная литература | 0 |  | épuisé | russe | 25 | На рубуже двух столетий | Andreï Biely | 
+SANS #1051 | 1988 |  | 0 |  | stock | russe | 8 | Новое назначение | Александр Бек | 
+SANS #1059 |  | Éditions Première partie | 156 |  | stock | francais | 15 | Le Dieu de Dostoïevski | Marguerite Souchon | 
+SANS #1076 | 1926 | Librairie académique Perrin | 492 |  | stock | francais | 40 | La Résurrection des Dieux | Dmitri Merejkovski | 
+SANS #1078 | 1925 | Calmann-Lévy | 263 |  | stock | francais | 40 | Naissance des Dieux | Dmitri Merejkovski | Michel Dumesnil de Gramont
+SANS #1080 |  |  | 0 |  | stock | francais | 10 | Le Moine noir, suivi de Volodia et Une morne histoire | Anton Tchekhov | Gabriel Arout
+SANS #1083 |  |  | 0 |  | stock | francais | 14 | Le Roman de Monsieur de Molière | Mikhaïl Boulgakov | 
+SANS #1085 |  |  | 0 |  | épuisé | russe | 12 | Жизнь Господина де Мольера, а также Кабала святош | Mikhaïl Boulgakov | 
+SANS #1110 |  |  | 0 |  | épuisé | russe | 16 | Встреча с Россией | Nikita Struve | 
+SANS #1129 |  |  | 0 |  | stock | francais | 26 | De Gaulle et la Russie, le prix de la grandeur | Alexandre Jevakhoff | 
+SANS #1141 |  |  | 0 | collectif | stock | francais | 15 | Les Cahiers du Vicariat 2020-2021 |  | 
+SANS #1147 |  |  | 0 |  | épuisé | francais | 6.8 | Crime et Châtiment - Fiodor Dostoïevski | Iwashita | 
+SANS #1150 |  |  | 0 |  | stock | francais | 6.8 | Les Frères Karamazov - Dostoïevski | Iwashita | 
+SANS #1162 |  |  | 0 |  | stock | francais | 9.5 | L’Apocalypse russe, Dieu au pays de Dostoïevski | Jean-François Colosimo | 
+SANS #1170 |  | YMCA-Press | 0 |  | stock | francais | 16 | La Fuite - Pièces et nouvelles | Mikhaïl Boulgakov | Laure Troubetzkoy
+SANS #1179 |  | Éditions des Syrtes | 0 |  | stock | francais | 13 | La Veilleuse des Solovki | Boris Chiriaev | Anne Kichilov
+SANS #1202 | 1992 | YMCA-Press | 283 |  | stock | russe | 15 | Воспоминания, Статьи, Очерки, Том 2 | Мать Мария | 
+SANS #1212 |  | Ginkgo éditeur | 154 |  | épuisé | francais | 8 | La Dame au petit chien | Anton Tchekhov | Gabriel Arout
+SANS #1226 |  | Éditions des Syrtes | 0 |  | stock | francais | 16 | Le Siège de Leningrad, Journal d’un adolescent | Iouri Riabinkine | Marina Bobrova
+SANS #1230 | 2022 | Ginkgo éditeur | 160 |  | stock | francais | 9 | Les Œufs fatidiques | Mikhaïl Boulgakov | Colette Stoïanov
+SANS #1237 |  | Dukh i Litera | 0 |  | épuisé | francais,ukrainien | 12 | Poésies choisies | Vasyl Stus | Georges Nivat
+SANS #1240 |  |  | 0 | collectif | stock | francais | 18 | Elena, histoire du film d’Andreï Zviaguintsev |  | 
+SANS #1245 | 2019 | Sandermoen Publishing | 0 |  | stock | bilingue-russe-francais | 16 | Le Kaléidoscope des animaux. Звериный калейдоскоп | Alexandra Zelenskaïa | 
+SANS #1247 | 2022 | Sandermoen Publishing | 0 |  | stock | russe | 29 | Дитя ГУЛАГа | Юлиан Беттер | 
+SANS #1249 |  | Sandermoen Publishing | 0 |  | stock | russe | 25 | СОБАКА ЗДОРОВА. Рассказы о моей жизни в Советском Союзе | Сони Вестерхольт | 
+SANS #1255 |  |  | 0 |  | stock | francais | 11 | Journal (1867) | Anna Dostoïevski | Jean-Claude Lanne
+SANS #1257 |  | Sandermoen Publishing | 0 |  | épuisé | russe | 20 | Как вырастить билингва и не сойти с ума | Людмила Зотова | 
+SANS #1259 |  | Sandermoen Publishing | 0 |  | stock | russe | 19 | СЕКТА в доме моей бабушки | Анна Сандермоен | 
+SANS #1265 |  |  | 0 |  | stock | francais | 30 | Ma femme Russe | Kjetil Sandermoen | 
+SANS #1273 |  |  | 104 |  | épuisé | francais | 22 | Le livre de cuisine de Baba Yaga |  | 
+SANS #1275 |  | ACER-MJO | 0 | revue | épuisé | francais | 24 | Le Messager orthodoxe, n° 168-169 |  | 
+SANS #1277 |  |  | 0 | collectif | épuisé | russe | 18 | Елена |  | 
+SANS #1279 | 2022 | Babel | 76 |  | épuisé | russe | 14 | Адвокат Беса | Акунин | 
+SANS #1313 | 1838 | Firmin Didot frères | 384 |  | stock | francais | 100 | Russie - M. Chopin (Tome Deuxième) | Jean-Marie Chopin | 
+SANS #1315 | 2013 | Éditions de l’EHESS | 0 |  | stock | francais | 19 | Jamais frères ? | Anna Colin Lebedev | 
+SANS #1317 |  | Éditions des Syrtes | 0 |  | stock | francais | 23 | Au cœur de la guerre froide | Nicolas Ross | 
+SANS #1331 |  | Éditions Mareuil | 0 |  | stock | francais | 21 | France-Russie, La grande Histoire | Daniel de Montplaisir | 
+SANS #1351 |  |  | 0 |  | stock | russe | 30 | Левиафан Разбор по косточкам | Звягинцев | 
+SANS #1359 | 1928 | YMCA-Press | 101 | collectif | stock | russe | 25 | Русская земля. Альманах для юношества |  | 
+SANS #1363 |  | Saint Leger éditions | 0 |  | stock | francais | 15 | Semences de l’unité - Voix orthodoxes et fraternelles | Vladimir Zelinsky | Henri de Lubac
+SANS #1366 |  |  | 0 |  | stock | russe | 100 | Игорь Грабарь Репин Том I и II | Igor Grabar | 
+SANS #1368 | 1979 |  | 0 |  | stock | francais | 22 | L’Église et sa mission dans ce monde | Alexandre Schmemann | 
+SANS #1370 |  |  | 0 |  | épuisé | russe | 30 | Перед лицом катастрофы | Николай Плотников | 
+SANS #1372 | 2023 | Éditions Nouvel Attila | 0 |  | stock | francais | 18 | La Révolution au cœur | Christian Olivier | 
+SANS #1375 |  |  | 0 |  | épuisé | russe | 19 | Яма | Борис Акунин | 
+SANS #1395 | 1902 | Les Bas-fonds | 0 |  | stock | francais | 22 | Mes universités | Maxime Gorki | 
+SANS #1411 |  |  | 0 |  | stock | francais | 18 | La Filiale | Sergueï Dovlatov | 
+SANS #1421 |  | Verdier | 0 |  | stock | francais | 8.1 | Récits de la Kolyma | Varlam Chalamov | 
+SANS #1423 |  | Verdier | 0 |  | stock | francais | 10.6 | Correspondance avec Alexandre Soljenitsyne et Nadejda Mandelstam | Varlam Chalamov | 
+SANS #1425 |  | Verdier | 0 |  | stock | francais | 8.8 | Les années vingt | Varlam Chalamov | 
+SANS #1435 | 1991 | Maurice Nadeau | 0 |  | stock | francais | 17 | Cahiers de la Kolyma | Varlam Chalamov | Christian Mouze
+SANS #1445 |  |  | 0 |  | stock | francais | 10 | L a Mer de jouvence | Andreï Platonov | 
+SANS #1451 |  |  | 0 |  | stock | russe | 22 | Духовные завещания | Протоиерей Михаил Фортунато | 
+SANS #1453 |  | YMCA-Press | 415 |  | stock | slavon | 20 | Требник |  | 
+SANS #1455 |  | YMCA-Press | 0 |  | stock | russe | 19 | Многосемейная хроника | Антонович Александр | 
+SANS #1457 |  | YMCA-Press | 0 |  | stock | russe | 10 | О нашем уповании | Дудко Дмитрий | 
+SANS #1459 | 1955 | YMCA-Press | 86 |  | stock | russe | 10 | На пороге зрелости | Василий Зеньковский | 
+SANS #1461 |  | YMCA-Press | 0 |  | stock | russe | 12 | Письма Баламута | Клайв Льюис | 
+SANS #1463 |  | YMCA-Press | 0 |  | stock | russe | 15 | Св. благоверная Анна Кашинская | Татьяна Манухина | 
+SANS #1465 | 1972 | YMCA-Press | 303 |  | stock | russe | 12 | Ожидание | Владимир Варшавский | 
+SANS #1469 | 1986 | YMCA-Press | 46 |  | stock | russe | 6 | Мик. Африканская Поэма | Гумилев Николай | 
+SANS #1471 | 1976 | YMCA-Press | 112 |  | stock | russe | 12 | В.В. Розанов | Эрих Голлербах | 
+SANS #1473 |  | YMCA-Press | 0 |  | stock | russe | 32 | Андрей Платонов в поисках счастья | Геллер М. | 
+SANS #1475 |  | YMCA-Press | 0 |  | stock | russe | 14 | Неизданные стихи и письма | Nikolaï Goumilev | 
+SANS #1477 |  | YMCA-Press | 528 |  | épuisé | russe | 14 | СтепанчикогСело о и др. рассказы | Fiodor Dostoïevski | 
+SANS #1479 | 1954 | YMCA-Press | 203 |  | stock | russe | 16 | Русские мыслители о России и человечестве | Сергей Жаба | 
+SANS #1481 | 1976 | YMCA-Press | 123 |  | stock | russe | 5 | Партия или мафия | Земцов Илья | 
+SANS #1483 | 1978 | YMCA-Press | 154 |  | stock | russe | 12 | Муза и мода | Николай Метнер | 
+SANS #1485 | 1991 | YMCA-Press | 596 |  | stock | russe | 25 | Красное Колесо - Апрель Семнадцатого т. 1 | Alexandre Soljenitsyne | 
+SANS #1487 | 1991 | YMCA-Press | 564 |  | stock | russe | 25 | Красное Колесо - Апрель Семнадцатого т. 2 | Alexandre Soljenitsyne | 
+SANS #1489 | 1983 | YMCA-Press | 148 |  | stock | russe | 10 | Забытые | Владимир Душкин | 
+SANS #1491 |  |  | 0 |  | stock | russe | 12 | В пути | Boris Zaïtsev | 
+SANS #1493 |  | YMCA-Press | 0 |  | stock | russe | 12 | Жуковский | Boris Zaïtsev | 
+SANS #1495 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск 5 |  | 
+SANS #1497 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск 7 |  | 
+SANS #1499 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск VIII |  | 
+SANS #1501 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск IX |  | 
+SANS #1503 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск X |  | 
+SANS #1505 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск XI |  | 
+SANS #1507 |  | YMCA-Press | 0 | revue | stock | russe | 10 | Православная мысль, выпуск 14 |  | 
+SANS #1511 |  | YMCA-Press | 0 |  | stock | russe | 100 | Сорок Сороков Альбом указатель всех московских церквей | Пётр Паламарчук | 
+SANS #1513 |  |  | 0 |  | stock | russe | 14 | Н.В. Гоголь | Василий Зеньковский | 
+SANS #1515 | 1971 | YMCA-Press | 112 |  | stock | russe | 10 | Отчина | Леонид Зуров | 
+SANS #1517 | 1974 | YMCA-Press | 276 | collectif | stock | russe | 12 | Из под глыб |  | 
+SANS #1521 |  | YMCA-Press | 0 |  | stock | russe | 16 | Фенька | Владимир Крымов | 
+SANS #1523 |  | YMCA-Press | 0 |  | stock | russe | 12 | Дневники 1970-1971 | Эдуард Кузнецов | 
+SANS #1525 |  | YMCA-Press | 0 |  | stock | russe | 20 | Со старинной полки | Лукаш Иван | 
+SANS #1527 |  |  | 0 |  | stock | russe | 20 | Воспоминания Книга первая | Надежда Мандельштам | 
+SANS #1530 | 1980 |  | 600 | revue | stock | russe | 15 | Память - выпуск 3 |  | 
+SANS #1532 | 1980 |  | 535 | revue | stock | russe | 23 | Память - выпуск |  | 
+SANS #1535 |  | YMCA-Press | 0 |  | stock | russe | 20 | Крестьянство и Госудйрство (1945-1953) | Попов Василий | 
+SANS #1537 |  | YMCA-Press | 0 |  | stock | russe | 20 | Отверзи ми Двери | Феликс Светов | 
+SANS #1539 |  | YMCA-Press | 0 |  | stock | russe | 7 | Как нам обостроить Росию? | Alexandre Soljenitsyne | 
+SANS #1541 |  | YMCA-Press | 0 |  | stock | russe | 12 | Князь Серебреный | А. К. Толстой | 
+SANS #1545 | 1979 | YMCA-Press | 64 |  | stock | russe | 5 | Сквозь Чада | Alexandre Soljenitsyne | 
+SANS #1549 |  |  | 0 |  | stock | russe | 10 | Малознакомый Ленин | В. Валентинов | 
+SANS #1551 |  | YMCA-Press | 0 |  | stock | russe | 12 | Избранная Поэзия | Sergueï Essénine | 
+SANS #1553 |  |  | 0 |  | stock | russe | 15 | Денис Давыдов | Александр Шик | 
+SANS #1555 |  | YMCA-Press | 0 |  | stock | russe | 20 | Le "Cher ami" de Gogol | Alexandra Smirnova-Rosseti | 
+SANS #1564 | 1956 |  | 162 |  | stock | russe | 12 | По Днепру через пороги | С. Вербов | 
+SANS #1566 |  |  | 0 |  | stock | russe | 14 | Ротонда | Илья Сургучев | 
+SANS #1568 | 1919 | Kiev | 0 |  | stock | francais | 12 | L’oreille de Kiev | Andreï Kourkov | 
+SANS #1578 |  |  | 0 |  | stock | francais | 18 | De vie à vie | Marina Tsvétaïéva, Maximilian Volochine | André Markowicz
+SANS #1601 |  | YMCA-Press | 0 |  | stock | francais | 15 | Anthologie de la poésie russe-XVIIIe siècle | Anita Davidenkoff | 
+SANS #1605 |  |  | 0 |  | épuisé | russe | 23 | Сказки К.Чуковского | Корней Чуковский | 
+SANS #1612 |  | Ginkgo éditeur | 0 |  | stock | francais | 10 | Une personnalité lumineuse | Ilf et Pétrov | 
+SANS #1619 |  |  | 0 |  | stock | francais | 7.5 | « À chacun je voudrais donner mon âme … » : La vie de sainte Mère Marie |  | 
+SANS #1625 |  |  | 0 |  | stock | bilingue-russe-francais | 10 | La Vie de St Martin de Tours | Sulpice Sévère | 
+SANS #1631 |  |  | 0 |  | stock | francais | 10 | L’histoire de ma sœur | Mikhaïl Ossorguine | 
+SANS #1637 |  | YMCA-Press | 0 |  | stock | russe | 15 | Песнь жизни | Marina Tsvétaïéva | 
+SANS #1645 | 2022 | Bouquins | 48 |  | stock | francais | 26 | Destins russes à Paris - Un siècle au Conservatoire Rachmaninoff | Arnaud Frilley, Erwan Barillot | 
+SANS #1650 |  |  | 0 |  | stock | russe | 100 | Русский холм | Максим Макаров | 
+SANS #1659 |  |  | 0 |  | stock | francais | 14 | Zigzags | Elena Balzamo | Elena Balzamo
+SANS #1664 |  |  | 0 |  | stock | francais | 23 | Saison toxique pour les fœtus | Vera Bogdanova | 
+SANS #1668 | 2017 | The Faith of a Mushroom | 0 |  | stock | russe | 12 | Обещание | Дмитрий Веденяпин | 
+SANS #1677 |  |  | 0 |  | épuisé | francais | 20 | L’esprit de Dostoïevski | Nicolas Berdiaeff | 
+SANS #1683 |  |  | 0 |  | épuisé | russe | 15 | Пикник на льду | Andreï Kourkov | 
+SANS #1685 |  |  | 0 |  | stock | russe | 15 | Львовская гастроль Джими Хендрикса | Andreï Kourkov | 
+SANS #1687 |  |  | 0 |  | épuisé | russe | 15 | Красный крест | Sacha Filipenko | 
+SANS #1691 |  |  | 0 |  | épuisé | russe | 15 | Бывший сын | Sacha Filipenko | 
+SANS #1693 |  |  | 0 |  | épuisé | russe | 15 | Кремулятор | Sacha Filipenko | 
+SANS #1695 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 215 |  | 
+SANS #1697 |  |  | 0 |  | stock | russe | 10 | Анна Каренина | Léon Tolstoï | 
+SANS #1699 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 216 |  | 
+SANS #1702 |  | BAbook | 0 |  | stock | russe | 30 | Москва-Синьцзин | Борис Акунин | 
+SANS #1716 | 2024 |  | 0 |  | stock | russe | 12 | Фокус | Maria Stepanova | 
+SANS #1722 |  |  | 0 |  | épuisé | russe | 20 | Истерика Истерик | Boris Poplavski | 
+SANS #1724 |  |  | 0 |  | épuisé | russe | 20 | В смирительной рубашке | Boris Poplavski | 
+SANS #1729 | 1993 |  | 0 |  | stock | russe | 12 | Избранная поэзия | Alexandre Blok | 
+SANS #1732 | 1997 | YMCA-Press | 192 |  | stock | russe | 12 | Избранная поэзия | Николай Клюев | 
+SANS #1734 |  |  | 0 |  | stock | francais | 12 | Récits d’Orient | Boris Pilniak | 
+SANS #1738 |  |  | 0 | collectif | stock | bilingue-russe-francais | 12 | Un rôle à jouer / Обречённые на роль любую |  | Paul Lequesne
+SANS #1761 |  |  | 0 |  | stock | francais | 22 | Chrétiens dans une société plurielle | Georges Khodr | 
+SANS #1766 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 217 |  | 
+SANS #1775 |  |  | 0 |  | stock | russe | 18 | Что нам с этим делать | Олдос Хаксли | 
+SANS #1777 |  |  | 0 |  | stock | francais | 18 | Le livre des anges | Ludmila Oulitskaïa | 
+SANS #1785 |  |  | 0 |  | stock | francais | 16 | Le juste vivra par la foi | Jean Liamine | 
+SANS #1787 |  | YMCA-Press | 0 |  | stock | francais | 19 | Elisabeth de S*** ou l’histoire d’une russe | Natalia Golovkina | 
+SANS #1793 | 2025 | Время | 0 |  | stock | russe | 24 | Слон | Sacha Filipenko | 
+SANS #1799 |  |  | 0 |  | stock | francais | 15 | Sclirène | Alexeï Smirnov | 
+SANS #1801 |  | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 218 |  | 
+SANS #1803 |  |  | 0 |  | stock | russe | 25 | Русская эмиграция в Праге (1918-1945) Путеводитель | Anastasia Kopřivová, Lukáš Babka | 
+SANS #1807 | 1934 | Sibérie | 0 |  | stock | francais | 16 | La Joie éternelle | Pavel Florensky | 
+SANS #1811 | 2025 | Überbau | 0 |  | stock | russe | 22 | Бехтерев в Кремле. Психолог и тиран | Лучано Мекаччи | 
+SANS #1813 |  |  | 0 |  | stock | russe | 20 | Просто классика! | Ал. Архангельский | 
+SANS #1815 |  |  | 0 |  | stock | russe | 24 | Пушкин. книга про всё | Ал. Архангельский | 
+SANS #1820 |  | YMCA-Press | 0 | collectif | stock | russe | 12 | Поэт и время - Поэтический сборник |  | 
+SANS #1824 |  |  | 0 | collectif | stock | bilingue-russe-francais | 11.95 | Examen de conscience - Poésie russe en temps de guerre |  | 
+SANS #1827 |  |  | 0 |  | stock | russe | 30 | Молитва, творимая красками: художник-иконописец Мария Струве |  | 
+SANS #1839 | 2026 | Vidim Books | 0 |  | stock | russe | 24 | Церковный автостоп | Алексей Уминский, Ксения Лученко | 
+SANS #1842 |  |  | 0 |  | stock | russe | 15 | Признаки жизни | Наум Блик | 
+SANS #1847 |  |  | 0 |  | stock | russe | 15 | Нуар | Дмитрий Макаров | 
+SANS #1852 | 2025 | YMCA-Press | 0 | revue | stock | russe | 15 | Вестник Русского христианского движения, № 219 |  | 
+SANS #1854 |  | Vidim Books | 0 |  | stock | russe | 30 | Андрей Зубов. История россии XIX столетия. том IV | Андрей Зубов | 
+SANS #1856 |  |  | 0 |  | stock | russe | 15 | Незримая нить | Алексей Востриков | 
+SANS #1860 | 2026 | Meduza | 0 |  | stock | russe | 29 | Пожалуйста, живи | Лана Эстемирова | 
+SANS #1870 |  | YMCA-Press | 0 |  | stock | russe | 15 | «Мерещатся ответы» | Дмитрий Веденяпин | 
+SANS #1872 | 1980 | YMCA-Press | 147 |  | stock | russe | 10 | Четыре главы | Наталия Роскина | 
+SANS #1874 |  |  | 0 |  | stock | russe | 27 | Мимоходом | Ирина Роскина | 
+SANS #1878 |  |  | 0 |  | stock | francais | 26 | Le Troisième Livre | Nadejda Mandelstam | 
+SANS #1885 | 2026 |  | 0 |  | stock | russe | 16 | Регистрация | Дмитрий Глуховский | 
