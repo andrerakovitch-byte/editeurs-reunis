@@ -942,7 +942,11 @@ function er_continuer_inventaire( $ids, $ix, $options = array() ) {
 			$siens   = $moi && array( $moi ) === $auteurs && ! in_array( 0, $g['auteurs'], true );
 			$sur_lui = $o['sur'] && ! in_array( false, $g['sur'], true );
 			if ( 'revue' === $sorte ) {
-				$texte   = ( 1 === $n ? 'un numéro ' : er_continuer_nombre( $n ) . ' numéros ' ) . er_continuer_de( er_continuer_titre( er_continuer_revue( $ix['livres'][ $g['livres'][0] ]['t'] ) ) );
+				// Sur une page en français, le titre français d'une revue russe (« le Messager du Mouvement chrétien
+				// russe » pour le Вестник).
+				$lr      = $ix['livres'][ $g['livres'][0] ];
+				$nom_r   = 'ru' !== $o['page'] && ! empty( $lr['fr'] ) ? er_continuer_revue( $lr['fr'] ) : er_continuer_revue( $lr['t'] );
+				$texte   = ( 1 === $n ? 'un numéro ' : er_continuer_nombre( $n ) . ' numéros ' ) . er_continuer_de( er_continuer_titre( $nom_r ) );
 				$auteurs = array();
 				$precis  = true;
 			} elseif ( $o['possessif'] && $siens ) {
