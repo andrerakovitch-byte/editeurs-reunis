@@ -12,7 +12,7 @@ plan.json :
      "739": {"pdf": "debut.pdf", "pages": [{"p": 7}, {"p": 2, "pdf": "fin.pdf", "legende": "Le sommaire"}]}}
 
 Les numéros de page sont ceux du PDF (1 = la première page du fichier). Un PDF en doubles pages (largeur > hauteur)
-donne des doubles pages. Les PDF et les images ne vont jamais dans le dépôt : le dépôt est public.
+donne des doubles pages ; « "moitie": "droite" » (ou « gauche ») n'en garde qu'un côté. Les PDF et les images ne vont jamais dans le dépôt : le dépôt est public.
 """
 
 import json
@@ -161,6 +161,11 @@ def extraire(plan, dossier_pdf, sortie):
             if c.get("pdf"):  # Une page d'un autre fichier du même livre (le sommaire d'un PDF découpé).
                 source = autres.setdefault(c["pdf"], ouvrir(dossier_pdf / c["pdf"]))
             image = rendre(source, int(c["p"]), bool(c.get("double")))
+            if c.get("moitie") in ("gauche", "droite") and image.width > image.height:
+                # Une double page du PDF dont on ne veut qu'un côté (l'achevé d'imprimer à gauche de la préface).
+                milieu = image.width // 2
+                boite = (0, 0, milieu, image.height) if c["moitie"] == "gauche" else (milieu, 0, image.width, image.height)
+                image = image.crop(boite)
             if not en_couleur(image):
                 image = image.convert("L")
             nom = f"{n:02d}.jpg"
