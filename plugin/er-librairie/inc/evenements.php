@@ -125,7 +125,8 @@ function er_evt_champs() {
 		'er_places'      => array( __( 'Places', 'er-librairie' ), 'nombre', __( 'Vide : sans limite.', 'er-librairie' ) ),
 		'er_etat'        => array( __( 'État', 'er-librairie' ), 'etat', '' ),
 		'er_videos'      => array( __( 'Vidéos et enregistrements', 'er-librairie' ), 'liens', __( 'Un lien par ligne : YouTube, Vimeo, SoundCloud, Dailymotion, Spotify, Facebook, ou un fichier de la médiathèque. Pour un titre : « Titre | lien ».', 'er-librairie' ) ),
-		'er_livres'      => array( __( 'Livres liés', 'er-librairie' ), 'texte', __( 'Leurs références (ou identifiants), séparées par des virgules. Les livres des intervenants qui sont aussi des auteurs s’y ajoutent.', 'er-librairie' ) ),
+		'er_animation'   => array( __( 'Animation', 'er-librairie' ), 'texte', __( 'Parmi les intervenants, ceux qui animent la rencontre : leurs noms, séparés par des virgules. Ils ont leur ligne à part, et leurs livres ne s’ajoutent pas d’eux-mêmes.', 'er-librairie' ) ),
+		'er_livres'      => array( __( 'Livres liés', 'er-librairie' ), 'texte', __( 'Leurs références (ou identifiants), séparées par des virgules. Les livres des intervenants qui sont aussi des auteurs s’y ajoutent (pas ceux de qui anime).', 'er-librairie' ) ),
 		'er_produit'     => array( __( 'Billet', 'er-librairie' ), 'interne', '' ),
 		'er_wix'         => array( __( 'Ancien site', 'er-librairie' ), 'interne', '' ),
 	);
@@ -674,13 +675,32 @@ function er_evt_personne( $t ) {
 }
 
 /**
- * Les intervenants, liés à leur page d'auteur quand ils en ont une.
+ * Un intervenant anime-t-il la rencontre (le champ er_animation : des noms, séparés par des virgules) ?
  *
- * @param int $id La rencontre.
+ * @param WP_Term $t  L'intervenant.
+ * @param int     $id La rencontre.
  */
-function er_evt_intervenants( $id ) {
+function er_evt_anime( $t, $id ) {
+	$noms = array_filter( array_map( 'trim', explode( ',', (string) get_post_meta( $id, 'er_animation', true ) ) ) );
+	if ( ! $noms ) {
+		return false;
+	}
+	$cle = function_exists( 'er_cle_recherche' ) ? 'er_cle_recherche' : 'sanitize_title';
+	return in_array( $cle( $t->name ), array_map( $cle, $noms ), true ) || in_array( $t->slug, array_map( 'sanitize_title', $noms ), true );
+}
+
+/**
+ * Les intervenants, liés à leur page d'auteur quand ils en ont une : ceux qui parlent, ou ceux qui animent.
+ *
+ * @param int  $id        La rencontre.
+ * @param bool $animation Ceux qui animent (la ligne « Animation »), plutôt que les autres (« Avec »).
+ */
+function er_evt_intervenants( $id, $animation = false ) {
 	$noms = array();
 	foreach ( wp_get_post_terms( $id, 'er_intervenant' ) as $t ) {
+		if ( er_evt_anime( $t, $id ) !== $animation ) {
+			continue;
+		}
 		$auteur = er_evt_personne( $t );
 		$lien   = $auteur ? get_term_link( $auteur ) : '';
 		$noms[] = $lien && ! is_wp_error( $lien ) ? '<a href="' . esc_url( $lien ) . '">' . esc_html( $t->name ) . '</a>' : esc_html( $t->name );
@@ -736,6 +756,10 @@ function er_evt_bloc_infos( $id ) {
 	$avec = er_evt_intervenants( $id );
 	if ( $avec ) {
 		$lignes[ __( 'Avec', 'er-librairie' ) ] = implode( ', ', $avec );
+	}
+	$animation = er_evt_intervenants( $id, true );
+	if ( $animation ) {
+		$lignes[ __( 'Animation', 'er-librairie' ) ] = implode( ', ', $animation );
 	}
 	$langue = er_evt_langue( $id );
 	if ( $langue ) {
@@ -828,7 +852,8 @@ function er_evt_bloc_videos( $id ) {
 }
 
 /**
- * Les livres de la rencontre : ceux qu'on a liés, puis ceux des intervenants qui sont aussi des auteurs (en stock).
+ * Les livres de la rencontre : ceux qu'on a liés, puis ceux des intervenants qui sont aussi des auteurs (en stock), sauf
+ * de qui anime.
  *
  * @param int $id La rencontre.
  */
@@ -845,7 +870,7 @@ function er_evt_bloc_livres( $id ) {
 	}
 	$auteurs = array();
 	foreach ( wp_get_post_terms( $id, 'er_intervenant' ) as $t ) {
-		$auteur = er_evt_personne( $t );
+		$auteur = er_evt_anime( $t, $id ) ? null : er_evt_personne( $t ); // Les livres de qui anime ne s'ajoutent pas.
 		if ( $auteur ) {
 			$auteurs[] = $auteur->term_id;
 		}

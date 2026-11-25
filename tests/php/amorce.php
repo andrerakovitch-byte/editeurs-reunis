@@ -389,6 +389,7 @@ foreach ( array(
 	'plugin/er-bascule/inc/etiquettes.php',
 	'plugin/er-bascule/inc/phrases.php',
 	'plugin/er-bascule/inc/recoupement.php',
+	'plugin/er-librairie/inc/evenements.php',
 	'theme/editeurs-reunis/inc/bande.php',
 	'theme/editeurs-reunis/inc/tete.php',
 ) as $fichier ) {

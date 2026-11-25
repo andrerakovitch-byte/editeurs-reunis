@@ -1,0 +1,955 @@
+# Les rencontres du centre recoupées (25 nov. 2026) : identifiant, champ, valeur. Lu par « wp er evenements recouper
+# [appliquer] » (inc/evenements-recoupes.php). Une rencontre qui paraît ici a ses intervenants, ses livres, ses auteurs
+# et ses sujets remplacés par ceux-ci. Champs : intervenant (qui parle), animation (qui anime), livre (une fiche de la
+# librairie), auteur (une personne dont on parle, qui a sa page), sujet (un sujet du site).
+1913	intervenant	Nicolas Werth
+1913	livre	1868
+1913	auteur	Alexander Werth
+1913	sujet	Histoire
+1913	sujet	Période soviétique
+1913	sujet	Russie d’aujourd’hui
+1915	intervenant	Алексей Макушинский
+1915	livre	1820
+1915	sujet	Poésie
+1915	sujet	Âge d’argent
+1915	sujet	Critique et histoire littéraire
+1917	intervenant	Ирина Роскина
+1917	animation	Дмитрий Макаров
+1917	livre	1874
+1917	livre	1872
+1917	auteur	Наталия Роскина
+1917	auteur	Anna Akhmatova
+1917	auteur	Nikolaï Zabolotski
+1917	sujet	Poésie
+1917	sujet	Période soviétique
+1919	intervenant	Jean-Claude Schneider
+1919	intervenant	Anastassia Forquenot de La Fortelle
+1919	intervenant	Antoine Jaccottet
+1919	animation	Tatiana Victoroff
+1919	livre	1880
+1919	livre	1878
+1919	auteur	Ossip Mandelstam
+1919	auteur	Nadejda Mandelstam
+1919	sujet	Poésie
+1919	sujet	Âge d’argent
+1919	sujet	Traduction
+1921	intervenant	Павел Арсеньев
+1921	sujet	Poésie
+1921	sujet	Émigration
+1921	sujet	Langue russe
+1921	sujet	Russie d’aujourd’hui
+1923	intervenant	Наталья Громова
+1923	animation	Дмитрий Макаров
+1923	sujet	Théâtre
+1923	sujet	Contes et légendes
+1923	sujet	Période soviétique
+1923	sujet	Critique et histoire littéraire
+1925	intervenant	Marie Barbier
+1925	intervenant	Yves Gauthier
+1925	livre	1835
+1925	auteur	Ksenia Kirillova
+1925	sujet	Russie d’aujourd’hui
+1925	sujet	Ukraine
+1925	sujet	Pouvoir et politique
+1925	sujet	Traduction
+1927	intervenant	Дмитрий Макаров
+1927	livre	1820
+1927	livre	1847
+1927	auteur	Vladimir Nabokov
+1927	sujet	Poésie
+1927	sujet	Émigration
+1929	intervenant	Catherine Géry
+1929	sujet	Femmes
+1929	sujet	Classiques russes
+1929	sujet	Critique et histoire littéraire
+1931	intervenant	Маша Слоним
+1931	animation	Дмитрий Макаров
+1931	sujet	Émigration
+1931	sujet	Enfance et famille
+1933	intervenant	Дмитрий Веденяпин
+1933	animation	Дмитрий Макаров
+1933	livre	1870
+1933	sujet	Poésie
+1935	intervenant	Maria Matalaev
+1935	sujet	Musique
+1935	sujet	Période soviétique
+1935	sujet	Traduction
+1937	intervenant	Irène Rovere-Sova
+1937	intervenant	Michel Stavrou
+1937	intervenant	Daniel Struve
+1937	livre	1831
+1937	auteur	Alexandre Schmemann
+1937	sujet	Orthodoxie
+1939	intervenant	Наум Блик
+1939	livre	1842
+1939	sujet	Poésie
+1939	sujet	Musique
+1939	sujet	Émigration
+1939	sujet	Guerre
+1941	intervenant	Jean-Paul Engélibert
+1941	sujet	Ukraine
+1941	sujet	Arts
+1943	intervenant	Sophie Cœuré
+1943	intervenant	Alexei Grinbaum
+1943	intervenant	Kristina Konstantinova
+1943	intervenant	Olga Medvedkova
+1943	auteur	Véronique Schiltz
+1943	sujet	Arts
+1943	sujet	Femmes
+1945	intervenant	Anastasiia Syreishchikova-Horn
+1945	intervenant	André Lischke
+1945	sujet	Musique
+1945	sujet	Russie et Europe
+1947	sujet	Histoire de la maison
+1947	sujet	Émigration
+1947	sujet	Histoire
+1949	intervenant	Françoise Lesourd
+1949	intervenant	Mikhaïl Bourmistrov
+1949	intervenant	Michel Carassou
+1949	intervenant	Ruslan Loshakov
+1949	intervenant	Françoise Schwab
+1949	intervenant	Roman Zolotovitski
+1949	intervenant	Ekaterina Alekseeva
+1949	animation	Anne Laurent
+1949	auteur	Лев Шестов
+1949	sujet	Philosophie
+1949	sujet	Émigration
+1951	intervenant	Евгения Лавут
+1951	animation	Дмитрий Макаров
+1951	livre	1820
+1951	sujet	Poésie
+1951	sujet	Période soviétique
+1953	intervenant	Валерий Леденев
+1953	animation	Дмитрий Макаров
+1953	livre	1820
+1953	sujet	Poésie
+1953	sujet	Arts
+1955	intervenant	Иоанн Гуайта
+1955	auteur	Pavel Florensky
+1955	auteur	Alexandre Men
+1955	sujet	Orthodoxie
+1955	sujet	Période soviétique
+1963	intervenant	Иоанн Гуайта
+1963	sujet	Orthodoxie
+1963	sujet	Russie et Europe
+1957	intervenant	Natalia Pashkeeva
+1957	intervenant	Пьер Волькенштейн
+1957	sujet	Juifs de Russie
+1957	sujet	Émigration
+1957	sujet	Histoire
+1959	intervenant	Sacha Filipenko
+1959	livre	1793
+1959	sujet	Russie d’aujourd’hui
+1961	intervenant	Елена Фанайлова
+1961	livre	1820
+1961	sujet	Poésie
+1961	sujet	Russie et Europe
+1886	intervenant	André Korliakov
+1886	intervenant	Николай Эндегор
+1886	livre	1822
+1886	auteur	Rostislav Doboujinsky
+1886	sujet	Émigration
+1886	sujet	Arts
+1886	sujet	Théâtre
+1965	animation	Дмитрий Макаров
+1965	livre	1820
+1965	auteur	Дмитрий Веденяпин
+1965	auteur	Анна Аркатова
+1965	auteur	Глеб Шульпяков
+1965	auteur	Наум Блик
+1965	auteur	Валентина Фехнер
+1965	sujet	Poésie
+1965	sujet	Histoire de la maison
+1967	intervenant	Florian Voutev
+1967	intervenant	Tatiana Victoroff
+1967	auteur	Sergueï Essénine
+1967	auteur	Michel Niqueux
+1967	sujet	Poésie
+1967	sujet	Âge d’argent
+1967	sujet	Traduction
+1969	intervenant	Philippe Sers
+1969	livre	1753
+1969	sujet	Arts
+1969	sujet	Musique
+1969	sujet	Poésie
+1979	intervenant	Алексей Уминский
+1979	livre	1839
+1979	auteur	Ossip Mandelstam
+1979	sujet	Orthodoxie
+1979	sujet	Poésie
+1979	sujet	Âge d’argent
+1975	intervenant	Алексей Уминский
+1975	livre	1839
+1975	auteur	Nicolas Leskov
+1975	sujet	Orthodoxie
+1975	sujet	Classiques russes
+1971	intervenant	Алексей Уминский
+1971	livre	1839
+1971	sujet	Orthodoxie
+1971	sujet	Philosophie
+1973	intervenant	Рива Евстифеева
+1973	intervenant	Daria Sinichkina
+1973	livre	1356
+1973	sujet	Enfance et famille
+1973	sujet	Période soviétique
+1973	sujet	Traduction
+1977	intervenant	Georges Nivat
+1977	intervenant	Vladimir Zelinsky
+1977	intervenant	Ольга Седакова
+1977	intervenant	Daniel Struve
+1977	intervenant	Кирилл Сологуб
+1977	intervenant	Дарья Кряжова
+1977	intervenant	Tatiana Victoroff
+1977	livre	1852
+1977	livre	1801
+1977	livre	1766
+1977	sujet	Histoire de la maison
+1977	sujet	Orthodoxie
+1977	sujet	Émigration
+1981	intervenant	Dany Savelli
+1981	intervenant	Irène Semenoff-Tian-Chansky-Baïdine
+1981	intervenant	Florence Corrado-Kazanski
+1981	intervenant	Alexandre Musin
+1981	intervenant	Mélanie Kedroff
+1981	intervenant	Kathy Rousselet
+1981	intervenant	Galia Valtchinova
+1981	sujet	Saints et monastères
+1981	sujet	Orthodoxie
+1981	sujet	Russie d’aujourd’hui
+1888	intervenant	Catherine Géry
+1888	intervenant	Galina Subbotina
+1888	livre	1787
+1888	auteur	Natalia Golovkina
+1888	sujet	Femmes
+1888	sujet	Russie et Europe
+1888	sujet	Critique et histoire littéraire
+1983	intervenant	Дмитрий Макаров
+1983	livre	1820
+1983	livre	1847
+1983	auteur	Nikolaï Goumilev
+1983	sujet	Poésie
+1983	sujet	Âge d’argent
+1985	intervenant	Marie Barbier
+1985	intervenant	Christine Zeytounian-Beloüs
+1985	intervenant	Marie-Louisa Bonaque
+1985	sujet	Poésie
+1985	sujet	Traduction
+1985	sujet	Russie d’aujourd’hui
+1987	intervenant	Дмитрий Петров
+1987	sujet	Ukraine
+1987	sujet	Guerre
+1987	sujet	Enfance et famille
+1987	sujet	Russie d’aujourd’hui
+1890	intervenant	Georges Nivat
+1890	livre	501
+1890	livre	867
+1890	sujet	Russie et Europe
+1890	sujet	Critique et histoire littéraire
+1989	intervenant	Yuri Felshtinsky
+1989	livre	1419
+1989	sujet	Pouvoir et politique
+1989	sujet	Ukraine
+1989	sujet	Histoire
+1991	intervenant	Александр Стесин
+1991	sujet	Émigration
+1991	sujet	Enfance et famille
+1993	intervenant	Jean-Louis Backès
+1993	livre	1781
+1993	sujet	Humour et satire
+1995	intervenant	Татьяна Костина
+1995	sujet	Histoire
+1995	sujet	Saint-Pétersbourg
+1995	sujet	Enfance et famille
+1995	sujet	Goulag et dissidence
+1997	intervenant	Catherine Gousseff
+1997	livre	1755
+1997	sujet	Émigration
+1997	sujet	Histoire
+1997	sujet	Goulag et dissidence
+1999	intervenant	Глеб Шульпяков
+1999	livre	1820
+1999	sujet	Poésie
+1999	sujet	Classiques russes
+1999	sujet	Critique et histoire littéraire
+2017	intervenant	Catherine Gousseff
+2017	livre	1755
+2017	sujet	Émigration
+2017	sujet	Histoire
+2017	sujet	Goulag et dissidence
+2013	intervenant	Catherine Gousseff
+2013	livre	1755
+2013	sujet	Émigration
+2013	sujet	Histoire
+2013	sujet	Goulag et dissidence
+2009	intervenant	Catherine Gousseff
+2009	livre	1755
+2009	sujet	Émigration
+2009	sujet	Histoire
+2009	sujet	Goulag et dissidence
+2005	intervenant	Catherine Gousseff
+2005	livre	1755
+2005	sujet	Émigration
+2005	sujet	Histoire
+2005	sujet	Russie et Europe
+2001	intervenant	Catherine Gousseff
+2001	livre	1755
+2001	sujet	Émigration
+2001	sujet	Histoire
+2001	sujet	Enfance et famille
+2003	intervenant	Roma Liberov
+2003	livre	1738
+2003	auteur	Boris Poplavski
+2003	auteur	Irina Odoevtseva
+2003	auteur	Mère Marie Skobtsova
+2003	auteur	Юрий Одарченко
+2003	sujet	Poésie
+2003	sujet	Émigration
+2007	intervenant	Llewellyn Brown
+2007	intervenant	Jean-Louis Backès
+2007	auteur	Fiodor Dostoïevski
+2007	sujet	Classiques russes
+2007	sujet	Critique et histoire littéraire
+2007	sujet	Russie et Europe
+2011	intervenant	Philippe Sers
+2011	intervenant	Thomas Sabourin
+2011	livre	1753
+2011	sujet	Arts
+2011	sujet	Philosophie
+2015	intervenant	Алексей Красовский
+2015	intervenant	Teymuraz Veldin
+2015	sujet	Théâtre
+2015	sujet	Humour et satire
+2019	intervenant	Nicolas Miletitch
+2019	sujet	Cinéma
+2019	sujet	Goulag et dissidence
+2019	sujet	Période soviétique
+2021	intervenant	Olga Lossky
+2021	intervenant	Alexis Arkhipoff
+2021	intervenant	Elisabeth Heriard
+2021	intervenant	François Spiero
+2021	livre	1635
+2021	auteur	Cyrille Argenti
+2021	sujet	Orthodoxie
+2023	intervenant	Борис Беленкин
+2023	livre	1712
+2023	sujet	Goulag et dissidence
+2023	sujet	Histoire
+2023	sujet	Russie d’aujourd’hui
+2025	intervenant	André Lischke
+2025	livre	1055
+2025	livre	60
+2025	auteur	Modeste Moussorgski
+2025	sujet	Musique
+2025	sujet	Théâtre
+2027	sujet	Cinéma
+2027	sujet	Russie d’aujourd’hui
+2029	intervenant	André Lischke
+2029	livre	685
+2029	livre	1053
+2029	sujet	Musique
+2029	sujet	Saint-Pétersbourg
+2029	sujet	Russie et Europe
+2031	intervenant	André Lischke
+2031	livre	1053
+2031	sujet	Musique
+2033	intervenant	André Lischke
+2033	livre	1055
+2033	sujet	Musique
+2033	sujet	Théâtre
+2035	intervenant	André Lischke
+2035	livre	1053
+2035	sujet	Musique
+2035	sujet	Saint-Pétersbourg
+2035	sujet	Russie et Europe
+1892	animation	Yves Hamant
+1892	livre	195
+1892	auteur	Alexandre Soljenitsyne
+1892	sujet	Goulag et dissidence
+1892	sujet	Femmes
+1892	sujet	Histoire de la maison
+2037	intervenant	Владимир Фещенко
+2037	intervenant	Barrett Watten
+2037	intervenant	Carla Harryman
+2037	animation	Милена Арсич
+2037	sujet	Poésie
+2037	sujet	Traduction
+2039	livre	1578
+2039	auteur	Maximilian Volochine
+2039	sujet	Poésie
+2039	sujet	Âge d’argent
+2039	sujet	Arts
+2041	intervenant	Алексей Красовский
+2041	intervenant	Ксения Буравская
+2041	intervenant	Егор Морозов
+2041	intervenant	Дмитрий Калач
+2041	intervenant	Анастасия Келейрас
+2041	sujet	Théâtre
+2041	sujet	Pouvoir et politique
+2041	sujet	Femmes
+2041	sujet	Russie d’aujourd’hui
+2043	intervenant	Irène Sokologorsky
+2043	intervenant	Christine Zeytounian-Beloüs
+2043	intervenant	Marie-Louisa Bonaque
+2043	intervenant	Philippe Tancelin
+2043	sujet	Poésie
+2043	sujet	Traduction
+2043	sujet	Critique et histoire littéraire
+2045	intervenant	Alexis Struve
+2045	intervenant	Wladimir Yagello
+2045	intervenant	Mère Aemiliani
+2045	livre	1623
+2045	auteur	Boris Bobrinskoy
+2045	sujet	Orthodoxie
+2047	intervenant	Duncan Roberts
+2047	intervenant	Frédéric Guelton
+2047	intervenant	André Korliakov
+2047	sujet	Émigration
+2047	sujet	Histoire
+2047	sujet	Russie et Europe
+2049	sujet	Goulag et dissidence
+2049	sujet	Histoire
+1894	intervenant	Florian Voutev
+1894	intervenant	Caroline Bérenger
+1894	auteur	Marina Tsvétaïéva
+1894	sujet	Théâtre
+1894	sujet	Poésie
+1894	sujet	Âge d’argent
+1894	sujet	Traduction
+2051	intervenant	Глеб Морев
+2051	livre	1817
+2051	auteur	Ossip Mandelstam
+2051	auteur	Boris Pasternak
+2051	auteur	Joseph Brodsky
+2051	sujet	Poésie
+2051	sujet	Pouvoir et politique
+2051	sujet	Période soviétique
+2053	intervenant	Agnès Graceffa
+2053	intervenant	Tatiana Fougal
+2053	intervenant	Anne Hogenhuis
+2053	sujet	Émigration
+2053	sujet	Histoire
+2053	sujet	Russie et Europe
+1896	intervenant	Maria Stepanova
+1896	sujet	Poésie
+2055	intervenant	Anita Davidenkoff
+2055	intervenant	Florence Corrado-Kazanski
+2055	livre	1601
+2055	sujet	Poésie
+2055	sujet	Traduction
+2055	sujet	Classiques russes
+2057	intervenant	Дмитрий Петров
+2057	sujet	Émigration
+2057	sujet	Période soviétique
+2057	sujet	Critique et histoire littéraire
+2059	intervenant	Catherine Brémeau
+2059	sujet	Poésie
+2059	sujet	Goulag et dissidence
+2059	sujet	Femmes
+2061	intervenant	Svetlana Doubrovina
+2061	auteur	Julia Reitlinger
+2061	sujet	Arts
+2061	sujet	Orthodoxie
+2061	sujet	Femmes
+2061	sujet	Émigration
+2063	intervenant	Cécile Vaissié
+2063	livre	1572
+2063	livre	1607
+2063	sujet	Période soviétique
+2063	sujet	Russie et Europe
+2063	sujet	Ukraine
+2065	intervenant	Julia Kristeva
+2065	intervenant	Luba Jurgenson
+2065	intervenant	Georges Nivat
+2065	intervenant	Nicolas Struve
+2065	intervenant	Stéphanie Schwartzbrod
+2065	intervenant	Grégoire Lopoukhine
+2065	livre	195
+2065	auteur	Alexandre Soljenitsyne
+2065	sujet	Goulag et dissidence
+2065	sujet	Histoire de la maison
+2067	intervenant	Stig Fredrikson
+2067	livre	195
+2067	auteur	Alexandre Soljenitsyne
+2067	auteur	Nikita Struve
+2067	sujet	Goulag et dissidence
+2067	sujet	Histoire de la maison
+2069	intervenant	Nicolas Miletitch
+2069	intervenant	Yves Hamant
+2069	intervenant	Alexandre Ginzburg
+2069	sujet	Goulag et dissidence
+2069	sujet	Histoire
+2071	intervenant	Georges Nivat
+2071	intervenant	Pierre Morel
+2071	livre	195
+2071	auteur	Alexandre Soljenitsyne
+2071	sujet	Goulag et dissidence
+2071	sujet	Histoire de la maison
+2073	auteur	Leonid Rakov
+2073	auteur	Olga Rakova
+2073	auteur	Irina Rakova
+2073	auteur	Anna Rakova
+2073	auteur	Anna Rkv.
+2073	auteur	Roman Saoulski
+2073	auteur	Vassilissa Tatokhina
+2073	sujet	Arts
+2073	sujet	Enfance et famille
+2075	intervenant	Hélène Henry
+2075	intervenant	Georges Nivat
+2075	livre	44
+2075	auteur	Boris Pasternak
+2075	sujet	Traduction
+2075	sujet	Période soviétique
+2077	intervenant	Иван Толстой
+2077	sujet	Saint-Pétersbourg
+2077	sujet	Période soviétique
+2077	sujet	Arts
+2079	intervenant	Michel Niqueux
+2079	livre	902
+2079	livre	1641
+2079	auteur	Nicolas Gogol
+2079	sujet	Classiques russes
+2079	sujet	Critique et histoire littéraire
+2081	auteur	Irina Rakova
+2081	sujet	Arts
+2081	sujet	Enfance et famille
+2083	intervenant	Андрей Звягинцев
+2083	livre	1351
+2083	livre	40
+2083	sujet	Cinéma
+2085	intervenant	André Markowicz
+2085	livre	1177
+2085	auteur	Kari Unksova
+2085	sujet	Poésie
+2085	sujet	Femmes
+2085	sujet	Goulag et dissidence
+2085	sujet	Traduction
+2087	auteur	Andrey Grin
+2087	sujet	Arts
+2087	sujet	Émigration
+2089	intervenant	Luba Jurgenson
+2089	livre	1433
+2089	livre	1421
+2089	auteur	Varlam Chalamov
+2089	sujet	Goulag et dissidence
+2089	sujet	Période soviétique
+2091	intervenant	Christian Olivier
+2091	intervenant	André Markowicz
+2091	livre	1372
+2091	auteur	Vladimir Maïakovski
+2091	auteur	Boris Pasternak
+2091	auteur	Sergueï Essénine
+2091	auteur	Anna Akhmatova
+2091	sujet	Poésie
+2091	sujet	Âge d’argent
+2091	sujet	Musique
+2091	sujet	Traduction
+2093	intervenant	Рива Евстифеева
+2093	intervenant	Polina de Mauny
+2093	livre	1356
+2093	sujet	Enfance et famille
+2093	sujet	Période soviétique
+2095	intervenant	Eva Rapoport
+2095	sujet	Arts
+2095	sujet	Émigration
+2095	sujet	Ukraine
+2095	sujet	Russie d’aujourd’hui
+2097	intervenant	Svetlana Dokoudovskaïa
+2097	intervenant	Alexandra Ilhovskaïa
+2097	intervenant	Antoine Nicolle
+2097	sujet	Ukraine
+2097	sujet	Guerre
+2097	sujet	Émigration
+2099	intervenant	Sylvie Mamy
+2099	livre	1288
+2099	auteur	Fédor Chaliapine
+2099	sujet	Musique
+2099	sujet	Émigration
+2101	intervenant	André Lischke
+2101	intervenant	Jules Cavalié
+2101	sujet	Musique
+2101	sujet	Contes et légendes
+2101	sujet	Théâtre
+2103	intervenant	Jérôme Cler
+2103	livre	1319
+2103	auteur	Grégoire Palamas
+2103	sujet	Orthodoxie
+2103	sujet	Traduction
+2105	intervenant	Olga Lossky
+2105	livre	1125
+2105	livre	1339
+2105	livre	1590
+2105	auteur	Monseigneur Antoine Bloom
+2105	sujet	Orthodoxie
+2105	sujet	Émigration
+2107	intervenant	Françoise Lesourd
+2107	livre	990
+2107	sujet	Philosophie
+2107	sujet	Pouvoir et politique
+2115	intervenant	Françoise Lesourd
+2115	livre	990
+2115	sujet	Philosophie
+2115	sujet	Pouvoir et politique
+1898	intervenant	Françoise Lesourd
+1898	livre	990
+1898	sujet	Philosophie
+1898	sujet	Pouvoir et politique
+2111	intervenant	Françoise Lesourd
+2111	livre	990
+2111	sujet	Philosophie
+2111	sujet	Pouvoir et politique
+2109	intervenant	Françoise Lesourd
+2109	livre	990
+2109	auteur	Alexandre Soljenitsyne
+2109	sujet	Philosophie
+2109	sujet	Goulag et dissidence
+2109	sujet	Pouvoir et politique
+2113	intervenant	Anne Cauldefy-Faucard
+2113	livre	1228
+2113	auteur	Maria Stepanova
+2113	sujet	Enfance et famille
+2113	sujet	Juifs de Russie
+2113	sujet	Traduction
+2117	intervenant	Andreï Tarkovski Jr.
+2117	livre	171
+2117	auteur	Andreï Tarkovski
+2117	sujet	Cinéma
+2119	intervenant	Georges Nivat
+2119	livre	1833
+2119	auteur	Vasyl Stus
+2119	sujet	Poésie
+2119	sujet	Ukraine
+2119	sujet	Goulag et dissidence
+2121	intervenant	Grégoire Aslanoff
+2121	livre	207
+2121	sujet	Arts
+2121	sujet	Orthodoxie
+2121	sujet	Histoire
+2123	intervenant	Grégoire Aslanoff
+2123	livre	207
+2123	sujet	Arts
+2123	sujet	Orthodoxie
+2123	sujet	Histoire
+2135	intervenant	Grégoire Aslanoff
+2135	livre	207
+2135	sujet	Arts
+2135	sujet	Orthodoxie
+2135	sujet	Histoire
+2137	intervenant	Grégoire Aslanoff
+2137	livre	207
+2137	sujet	Arts
+2137	sujet	Orthodoxie
+2137	sujet	Histoire
+1900	intervenant	Grégoire Aslanoff
+1900	livre	207
+1900	sujet	Arts
+1900	sujet	Orthodoxie
+1900	sujet	Histoire
+2127	intervenant	Grégoire Aslanoff
+2127	livre	207
+2127	sujet	Arts
+2127	sujet	Orthodoxie
+2127	sujet	Histoire
+1902	intervenant	Grégoire Aslanoff
+1902	livre	207
+1902	sujet	Arts
+1902	sujet	Orthodoxie
+1902	sujet	Histoire
+1904	intervenant	Grégoire Aslanoff
+1904	livre	207
+1904	sujet	Arts
+1904	sujet	Orthodoxie
+1904	sujet	Histoire
+1906	intervenant	Grégoire Aslanoff
+1906	livre	207
+1906	sujet	Arts
+1906	sujet	Orthodoxie
+1906	sujet	Histoire
+2131	intervenant	Grégoire Aslanoff
+2131	livre	207
+2131	sujet	Arts
+2131	sujet	Orthodoxie
+2131	sujet	Histoire
+2125	intervenant	Hélène Menegaldo
+2125	intervenant	Christine Zeytounian-Beloüs
+2125	intervenant	Yves Hamant
+2125	livre	1232
+2125	auteur	Boris Poplavski
+2125	sujet	Poésie
+2125	sujet	Émigration
+2125	sujet	Traduction
+2129	intervenant	Андрей Звягинцев
+2129	intervenant	Joël Chapron
+2129	livre	1240
+2129	auteur	Oleg Neguine
+2129	auteur	Mikhaïl Kritchman
+2129	sujet	Cinéma
+2129	sujet	Traduction
+2133	intervenant	Laure Troubetzkoy
+2133	intervenant	Tatiana Victoroff
+2133	livre	1170
+2133	auteur	Mikhaïl Boulgakov
+2133	sujet	Théâtre
+2133	sujet	Période soviétique
+2133	sujet	Traduction
+2133	sujet	Histoire de la maison
+2139	intervenant	Dmitri Strotsev
+2139	intervenant	Virginie Symaniec
+2139	sujet	Poésie
+2139	sujet	Traduction
+2141	intervenant	Bernard Hubert
+2141	intervenant	Françoise Lesourd
+2141	livre	1205
+2141	auteur	Jacques Maritain
+2141	auteur	Nicolas Berdiaev
+2141	sujet	Philosophie
+2141	sujet	Russie et Europe
+2141	sujet	Émigration
+2097	animation	Natalia Pashkeeva
+2143	intervenant	Alexandre Tcherkassof
+2143	intervenant	Catherine Gousseff
+2143	intervenant	Natalia Morozova
+2143	sujet	Goulag et dissidence
+2143	sujet	Pouvoir et politique
+2143	sujet	Russie d’aujourd’hui
+2144	intervenant	Leonid Livak
+2144	livre	1200
+2144	sujet	Émigration
+2144	sujet	Histoire
+2144	sujet	Russie et Europe
+2146	intervenant	Tatiana Dvinyatina
+2146	livre	739
+2146	livre	1195
+2146	auteur	Ivan Bounine
+2146	sujet	Poésie
+2146	sujet	Classiques russes
+2146	sujet	Émigration
+2148	intervenant	Emmanuel Rehbinder
+2148	livre	1195
+2148	auteur	Ivan Bounine
+2148	auteur	Pierre Struve
+2148	sujet	Théâtre
+2148	sujet	Histoire
+2148	sujet	Émigration
+2150	intervenant	Emmanuel Rehbinder
+2150	livre	1195
+2150	auteur	Ivan Bounine
+2150	auteur	Pierre Struve
+2150	sujet	Théâtre
+2150	sujet	Histoire
+2150	sujet	Émigration
+2152	intervenant	Tatiana Victoroff
+2152	intervenant	Maria Zhukova
+2152	intervenant	Innokenti Ouroupine
+2152	livre	846
+2152	livre	1195
+2152	auteur	Ivan Bounine
+2152	auteur	Pierre Struve
+2152	auteur	Nikita Struve
+2152	sujet	Émigration
+2152	sujet	Histoire
+2152	sujet	Critique et histoire littéraire
+2154	intervenant	Rambert Nicolas
+2154	livre	1175
+2154	auteur	Pavel Florensky
+2154	sujet	Philosophie
+2154	sujet	Orthodoxie
+2154	sujet	Âge d’argent
+2154	sujet	Traduction
+1908	intervenant	Dominique Samson Normand de Chambourg
+1908	livre	1114
+1908	sujet	Sibérie et Grand Nord
+1908	sujet	Histoire
+2158	intervenant	Dominique Samson Normand de Chambourg
+2158	livre	1114
+2158	sujet	Sibérie et Grand Nord
+2158	sujet	Histoire
+2160	intervenant	Dominique Samson Normand de Chambourg
+2160	livre	1114
+2160	sujet	Sibérie et Grand Nord
+2160	sujet	Histoire
+2166	intervenant	Dominique Samson Normand de Chambourg
+2166	livre	1114
+2166	sujet	Sibérie et Grand Nord
+2166	sujet	Histoire
+2168	intervenant	Dominique Samson Normand de Chambourg
+2168	livre	1114
+2168	sujet	Sibérie et Grand Nord
+2168	sujet	Histoire
+2156	intervenant	Светлана Носова
+2156	livre	257
+2156	livre	92
+2156	sujet	Poésie
+2162	auteur	Ivan Sollogoub
+2162	sujet	Arts
+2164	intervenant	Françoise Lesourd
+2164	intervenant	Michel Eltchaninoff
+2164	livre	990
+2164	livre	1096
+2164	auteur	Nikolaï Fiodorov
+2164	sujet	Philosophie
+2180	intervenant	André Lischke
+2180	livre	1053
+2180	sujet	Musique
+2180	sujet	Contes et légendes
+1910	intervenant	André Lischke
+1910	livre	1053
+1910	sujet	Musique
+1910	sujet	Caucase et Asie centrale
+2174	intervenant	André Lischke
+2174	livre	1053
+2174	sujet	Musique
+2174	sujet	Orthodoxie
+2170	intervenant	André Lischke
+2170	livre	1053
+2170	sujet	Musique
+2170	sujet	Pouvoir et politique
+2172	intervenant	Michel Niqueux
+2172	intervenant	Jean-Louis Backès
+2172	livre	919
+2172	livre	948
+2172	auteur	Fiodor Dostoïevski
+2172	sujet	Classiques russes
+2172	sujet	Critique et histoire littéraire
+2176	intervenant	Julia Kristeva
+2176	intervenant	Georges Nivat
+2176	livre	984
+2176	livre	679
+2176	auteur	Fiodor Dostoïevski
+2176	sujet	Classiques russes
+2176	sujet	Critique et histoire littéraire
+2176	sujet	Philosophie
+2178	intervenant	André Markowicz
+2178	animation	Tatiana Victoroff
+2178	auteur	Fiodor Dostoïevski
+2178	sujet	Classiques russes
+2178	sujet	Traduction
+2182	intervenant	André Lischke
+2182	livre	1053
+2182	sujet	Musique
+2182	sujet	Contes et légendes
+2186	intervenant	André Lischke
+2186	livre	1053
+2186	livre	685
+2186	sujet	Musique
+2186	sujet	Classiques russes
+2184	intervenant	Madeleine Melot
+2184	intervenant	Thierry Wolton
+2184	intervenant	Marguerite Léna
+2184	intervenant	Georges Nivat
+2184	sujet	Arts
+2184	sujet	Goulag et dissidence
+2184	sujet	Période soviétique
+2202	auteur	Madeleine Melot
+2202	sujet	Arts
+2202	sujet	Goulag et dissidence
+2202	sujet	Période soviétique
+2188	intervenant	Jean-Louis Backès
+2188	intervenant	Michel Eltchaninoff
+2188	livre	948
+2188	auteur	Fiodor Dostoïevski
+2188	sujet	Classiques russes
+2188	sujet	Philosophie
+2188	sujet	Histoire de la maison
+2190	intervenant	Sophie Benech
+2190	intervenant	Diane de Schoutheete
+2190	livre	950
+2190	livre	955
+2190	auteur	Jacques Rossi
+2190	auteur	Véronique Patte
+2190	sujet	Goulag et dissidence
+2190	sujet	Période soviétique
+2192	intervenant	Caroline Bérenger
+2192	intervenant	Ekaterina Belavina
+2192	intervenant	Anne Lefol
+2192	intervenant	Grégoire Lopoukhine
+2192	intervenant	Florent Delporte
+2192	intervenant	Florian Voutev
+2192	livre	54
+2192	auteur	Nikolaï Goumilev
+2192	auteur	Anna Akhmatova
+2192	sujet	Poésie
+2192	sujet	Âge d’argent
+2192	sujet	Traduction
+2194	intervenant	Leonilla Marakhovskaïa
+2194	intervenant	Irina Velikodnaïa
+2194	intervenant	Viktoria Kozlovskaia
+2194	intervenant	Elena Ponomareva
+2194	intervenant	Иван Толстой
+2194	intervenant	François Deweer
+2194	animation	Natalia Pashkeeva
+2194	sujet	Arts
+2194	sujet	Émigration
+2194	sujet	Histoire
+2196	intervenant	André Korliakov
+2196	livre	587
+2196	sujet	Émigration
+2196	sujet	Histoire
+2196	sujet	Arts
+2198	intervenant	Georges Nivat
+2198	intervenant	Pierre Morel
+2198	livre	867
+2198	auteur	Alexandre Soljenitsyne
+2198	sujet	Goulag et dissidence
+2198	sujet	Russie et Europe
+2200	intervenant	André Lischke
+2200	livre	848
+2200	livre	1193
+2200	auteur	Serguei Rachmaninov
+2200	sujet	Musique
+2200	sujet	Émigration
+2204	auteur	Paul Kichilov
+2204	auteur	Boris Pasternak
+2204	auteur	Hélène Péras
+2204	sujet	Arts
+2204	sujet	Poésie
+2204	sujet	Traduction
+2206	auteur	Paul Kichilov
+2206	auteur	Boris Pasternak
+2206	auteur	Hélène Péras
+2206	sujet	Arts
+2206	sujet	Poésie
+2206	sujet	Traduction
+2208	auteur	Paul Kichilov
+2208	auteur	Boris Pasternak
+2208	auteur	Hélène Péras
+2208	sujet	Arts
+2208	sujet	Poésie
+2208	sujet	Traduction
+2210	intervenant	Georges Nivat
+2210	animation	Tatiana Victoroff
+2210	animation	Daniel Struve
+2210	livre	909
+2210	auteur	Andreï Biely
+2210	sujet	Âge d’argent
+2210	sujet	Critique et histoire littéraire
+2212	livre	92
+2212	sujet	Poésie
+2212	sujet	Histoire de la maison
+2214	intervenant	Michel Niqueux
+2214	livre	881
+2214	auteur	Julia Danzas
+2214	sujet	Orthodoxie
+2214	sujet	Goulag et dissidence
+2214	sujet	Femmes
+2216	intervenant	Anne Hogenhuis
+2216	intervenant	Alina Bikineeva
+2216	intervenant	André Korliakov
+2216	intervenant	Olga Blinova
+2216	livre	191
+2216	auteur	Zinaïda Hippius
+2216	sujet	Poésie
+2216	sujet	Âge d’argent
+2216	sujet	Émigration
+2216	sujet	Femmes
+2218	intervenant	André Lischke
+2218	livre	1055
+2218	sujet	Musique
+2218	sujet	Théâtre
+2218	sujet	Histoire
+2220	intervenant	Иоанн Гуайта
+2220	sujet	Orthodoxie
+2220	sujet	Russie et Europe
+2222	intervenant	Michel Fedoroff
+2222	sujet	Émigration
+2222	sujet	Histoire
+2222	sujet	Pouvoir et politique

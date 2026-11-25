@@ -139,7 +139,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 						if ( $t ) {
 							$intervenants[] = $t->slug;
 							if ( 'animation' === $role ) {
-								$animation[] = $t->slug;
+								$animation[] = $t->name;
 							}
 						}
 					}

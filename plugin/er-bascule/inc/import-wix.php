@@ -104,7 +104,8 @@ function er_evt_importer_un( $e, $auteurs, $images = true ) {
 	// Nivat », « par Hélène Henry »). Un auteur dont on parle (« le Docteur Jivago de Boris Pasternak ») est un auteur
 	// lié (le classement des auteurs) ; les sujets se devinent aussi (sujets.php).
 	$cyrillique = (bool) preg_match( '/\p{Cyrillic}/u', $e['titre'] );
-	foreach ( er_auteurs_cites( $e['titre'] . ' ' . $e['chapo'], $auteurs ) as list( $t, $noms, $intervient ) ) {
+	$relues     = (bool) get_post_meta( $id, 'er_etiquettes_relues', true ); // Recoupées à la main (evenements-recoupes.php).
+	foreach ( $relues ? array() : er_auteurs_cites( $e['titre'] . ' ' . $e['chapo'], $auteurs ) as list( $t, $noms, $intervient ) ) {
 		if ( ! $intervient ) {
 			continue;
 		}
