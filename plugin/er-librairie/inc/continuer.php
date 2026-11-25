@@ -727,7 +727,7 @@ function er_continuer_lien( $m ) {
 		'er_sujet'    => __( 'Tout le thème', 'er-librairie' ),
 		'product_cat' => __( 'Tout le rayon', 'er-librairie' ),
 	);
-	return '<p class="er-lien-fleche er-module__lien"><a href="' . esc_url( $url ) . '">' . esc_html( isset( $mots[ $taxonomie ] ) ? $mots[ $taxonomie ] : __( 'Voir tout', 'er-librairie' ) ) . '</a></p>';
+	return '<p class="er-lien-fleche er-pl-module__lien"><a href="' . esc_url( $url ) . '">' . esc_html( isset( $mots[ $taxonomie ] ) ? $mots[ $taxonomie ] : __( 'Voir tout', 'er-librairie' ) ) . '</a></p>';
 }
 
 /**
@@ -809,20 +809,20 @@ function er_continuer_bloc( $id ) {
 	$html    = '';
 	$phrases = array();
 	foreach ( $modules as $k => $m ) {
-		$classes = array( 'er-module', 'er-module--' . $m['forme'], 'er-module--' . $m['type'] );
+		$classes = array( 'er-pl-module', 'er-pl-module--' . $m['forme'], 'er-pl-module--' . $m['type'] );
 		if ( ! empty( $m['fond'] ) ) {
-			$classes[] = 'er-module--fond';
+			$classes[] = 'er-pl-module--fond';
 		}
 		if ( ! empty( $m['secondaire'] ) ) {
-			$classes[] = 'er-module--secondaire';
+			$classes[] = 'er-pl-module--secondaire';
 		}
 		$titre_id = 'er-module-' . ( $k + 1 );
-		$html    .= '<section class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-labelledby="' . esc_attr( $titre_id ) . '"><div class="er-module__g">'
-			. '<div class="er-module__tete"><p class="er-module__sur">' . er_continuer_html( $m['sur'] ) . '</p>'
-			. '<h3 class="er-module__titre" id="' . esc_attr( $titre_id ) . '">' . er_continuer_html( $m['titre'] ) . '</h3>'
-			. ( '' !== $m['ligne'] ? '<p class="er-module__ligne">' . er_continuer_html( $m['ligne'] ) . '</p>' : '' )
+		$html    .= '<section class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-labelledby="' . esc_attr( $titre_id ) . '"><div class="er-pl-module__g">'
+			. '<div class="er-pl-module__tete"><p class="er-pl-module__sur">' . er_continuer_html( $m['sur'] ) . '</p>'
+			. '<h3 class="er-pl-module__titre" id="' . esc_attr( $titre_id ) . '">' . er_continuer_html( $m['titre'] ) . '</h3>'
+			. ( '' !== $m['ligne'] ? '<p class="er-pl-module__ligne">' . er_continuer_html( $m['ligne'] ) . '</p>' : '' )
 			. er_continuer_lien( $m ) . '</div>'
-			. '<div class="er-module__corps">' . er_continuer_corps( $m ) . '</div></div></section>';
+			. '<div class="er-pl-module__corps">' . er_continuer_corps( $m ) . '</div></div></section>';
 		$phrases = array_merge( $phrases, array_map( 'intval', $m['livres'] ) );
 	}
 	$mention = function_exists( 'er_reco_mention_phrases' ) ? er_reco_mention_phrases( $phrases ) : '';

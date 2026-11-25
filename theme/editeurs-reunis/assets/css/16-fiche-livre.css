@@ -52,7 +52,7 @@
 
 .er-plus-loin { margin-top: var(--wp--preset--spacing--60) !important; }
 .er-plus-loin__ouverture,
-.er-module__g,
+.er-pl-module__g,
 .er-plus-loin__mention {
 	box-sizing: border-box;
 	max-width: calc(1440px + var(--wp--style--root--padding-left) + var(--wp--style--root--padding-right));
@@ -61,7 +61,7 @@
 }
 /* Les surtitres : ce qui relie un module au livre. */
 .er-plus-loin__sur,
-.er-module__sur {
+.er-pl-module__sur {
 	margin: 0;
 	font-size: 0.6875rem;
 	font-weight: 600;
@@ -76,17 +76,17 @@
 
 /* Un module : à gauche ce qui le relie au livre et ce qu'il contient, à droite les livres. Le premier sur le fond
    doux, de marge à marge ; les suivants sous un filet noir. */
-.er-module { padding-top: 4.5rem; }
-.er-module__g { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 3.5rem; align-items: start; }
-.er-module:not(.er-module--fond) .er-module__g { background-image: linear-gradient(var(--wp--preset--color--contrast), var(--wp--preset--color--contrast)); background-size: calc(100% - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right)) 1px; background-position: var(--wp--style--root--padding-left) 0; background-repeat: no-repeat; padding-top: 1.75rem; }
-.er-module--fond { margin-top: 1.5rem; padding-block: 4.5rem; background: var(--wp--preset--color--doux); }
-.er-module__tete { display: flex; flex-direction: column; gap: 0.6rem; }
-.er-module__titre { margin: 0; font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-.er-module__titre em { font-weight: 600; }
-.er-module__ligne { margin: 0; font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--discret); }
-.er-module--fond .er-module__ligne { color: var(--wp--preset--color--encre-2); }
-.er-module__lien { margin: 0.4rem 0 0; }
-.er-module--secondaire .er-module__titre { font-size: clamp(1.375rem, 1.8vw, 1.5rem); }
+.er-pl-module { padding-top: 4.5rem; }
+.er-pl-module__g { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 3.5rem; align-items: start; }
+.er-pl-module:not(.er-pl-module--fond) .er-pl-module__g { background-image: linear-gradient(var(--wp--preset--color--contrast), var(--wp--preset--color--contrast)); background-size: calc(100% - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right)) 1px; background-position: var(--wp--style--root--padding-left) 0; background-repeat: no-repeat; padding-top: 1.75rem; }
+.er-pl-module--fond { margin-top: 1.5rem; padding-block: 4.5rem; background: var(--wp--preset--color--doux); }
+.er-pl-module__tete { display: flex; flex-direction: column; gap: 0.6rem; }
+.er-pl-module__titre { margin: 0; font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+.er-pl-module__titre em { font-weight: 600; }
+.er-pl-module__ligne { margin: 0; font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--discret); }
+.er-pl-module--fond .er-pl-module__ligne { color: var(--wp--preset--color--encre-2); }
+.er-pl-module__lien { margin: 0.4rem 0 0; }
+.er-pl-module--secondaire .er-pl-module__titre { font-size: clamp(1.375rem, 1.8vw, 1.5rem); }
 
 /* Les livres posés dans leur case : la couverture entière, centrée, sur le fond doux (blanc sur un module en fond
    doux), puis la mention, le titre en italique, l'auteur, la phrase, le prix et « Ajouter ». */
@@ -102,8 +102,8 @@
 	background: var(--wp--preset--color--doux);
 }
 .er-pl-vignette__case { padding: 1.625rem 1.875rem; }
-.er-module--fond .er-pl-vignette__case,
-.er-module--fond .er-pl-vedette__case { background: var(--wp--preset--color--base); }
+.er-pl-module--fond .er-pl-vignette__case,
+.er-pl-module--fond .er-pl-vedette__case { background: var(--wp--preset--color--base); }
 .er-pl-vignette__case img,
 .er-pl-vedette__case img,
 .er-pl-ligne__case img {
@@ -138,8 +138,8 @@
 .er-pl-vignette__auteur,
 .er-pl-vedette__auteur,
 .er-pl-ligne__auteur { font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
-.er-module--fond .er-pl-vignette__auteur,
-.er-module--fond .er-pl-vedette__auteur { color: var(--wp--preset--color--encre-2); }
+.er-pl-module--fond .er-pl-vignette__auteur,
+.er-pl-module--fond .er-pl-vedette__auteur { color: var(--wp--preset--color--encre-2); }
 .er-pl-vignette__phrase,
 .er-pl-ligne__phrase { font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
 .er-pl-vignette__achat,
@@ -204,8 +204,8 @@
 .er-plus-loin__mention .er-reco-note-phrases { margin: 3.5rem 0 0; padding-top: 1.25rem; border-top: var(--er-filet); font-size: 0.8125rem; line-height: 1.45; color: var(--wp--preset--color--discret); }
 
 @media (max-width: 1100px) {
-	.er-module__g { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
-	.er-module__tete { max-width: 46rem; }
+	.er-pl-module__g { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+	.er-pl-module__tete { max-width: 46rem; }
 }
 @media (max-width: 900px) {
 	.er-pl-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -217,11 +217,11 @@
 	.er-plus-loin__ouverture { padding-bottom: 0.5rem; }
 	.er-plus-loin__titre { font-size: 1.625rem; }
 	.er-plus-loin__resume { font-size: 1rem; }
-	.er-module { padding-top: 2.5rem; }
-	.er-module--fond { margin-top: 2rem; padding-block: 2.25rem 2.5rem; }
-	.er-module:not(.er-module--fond) .er-module__g { padding-top: 1rem; }
-	.er-module__g { gap: 1.375rem; }
-	.er-module__titre { font-size: 1.5rem; }
+	.er-pl-module { padding-top: 2.5rem; }
+	.er-pl-module--fond { margin-top: 2rem; padding-block: 2.25rem 2.5rem; }
+	.er-pl-module:not(.er-pl-module--fond) .er-pl-module__g { padding-top: 1rem; }
+	.er-pl-module__g { gap: 1.375rem; }
+	.er-pl-module__titre { font-size: 1.5rem; }
 	/* Les vignettes se font glisser de côté, la suivante dépasse un peu. */
 	.er-pl-vignettes,
 	.er-pl-langues__ru .er-pl-vignettes {
