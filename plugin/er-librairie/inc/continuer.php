@@ -403,37 +403,43 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	WP_CLI::add_command(
 		'er continuer voir',
 		/**
-		 * Les modules d'un livre, en texte : wp er continuer voir <slug> [--refaire] (--refaire : sans le choix gardé).
+		 * Les modules de livres, en texte : wp er continuer voir <slug ou identifiant>… [--refaire] (--refaire :
+		 * l'index et le choix refaits).
 		 *
-		 * @param array $args  Le slug.
+		 * @param array $args  Les slugs ou les identifiants.
 		 * @param array $assoc refaire.
 		 */
 		function ( $args, $assoc ) {
-			$livre = isset( $args[0] ) ? get_page_by_path( sanitize_title( $args[0] ), OBJECT, 'product' ) : null;
-			if ( ! $livre ) {
-				WP_CLI::error( 'Livre introuvable : ' . ( isset( $args[0] ) ? $args[0] : '' ) );
-			}
 			if ( isset( $assoc['refaire'] ) ) {
 				delete_transient( er_continuer_cle_index() );
 			}
 			$index = er_continuer_index();
-			delete_transient( 'er_continuer_' . $livre->ID . '_' . ( function_exists( 'er_langue' ) ? er_langue() : 'fr' ) . '_' . (int) $index['quand'] );
-			$choix = er_continuer( $livre->ID );
-			WP_CLI::log( html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' ) );
-			WP_CLI::log( '  ' . er_continuer_nu( $choix['ouverture'] ) );
-			foreach ( $choix['modules'] as $m ) {
-				WP_CLI::log( '  [' . $m['type'] . '] ' . er_continuer_nu( $m['sur'] ) . ' / ' . er_continuer_nu( $m['titre'] ) );
-				if ( '' !== $m['ligne'] ) {
-					WP_CLI::log( '      ' . er_continuer_nu( $m['ligne'] ) );
+			foreach ( $args as $arg ) {
+				$livre = ctype_digit( (string) $arg ) ? get_post( (int) $arg ) : get_page_by_path( sanitize_title( $arg ), OBJECT, 'product' );
+				if ( ! $livre || 'product' !== $livre->post_type ) {
+					WP_CLI::warning( 'Livre introuvable : ' . $arg );
+					continue;
 				}
-				foreach ( $m['livres'] as $pid ) {
-					WP_CLI::log( '      · ' . html_entity_decode( get_the_title( $pid ), ENT_QUOTES, 'UTF-8' ) );
+				delete_transient( 'er_continuer_' . $livre->ID . '_' . ( function_exists( 'er_langue' ) ? er_langue() : 'fr' ) . '_' . (int) $index['quand'] );
+				$choix = er_continuer( $livre->ID );
+				WP_CLI::log( '' );
+				WP_CLI::log( html_entity_decode( get_the_title( $livre ), ENT_QUOTES, 'UTF-8' ) . ' (' . $livre->ID . ')' );
+				WP_CLI::log( '  ' . er_continuer_nu( $choix['ouverture'] ) );
+				foreach ( $choix['modules'] as $m ) {
+					WP_CLI::log( '  [' . $m['type'] . '] ' . er_continuer_nu( $m['sur'] ) . ' / ' . er_continuer_nu( $m['titre'] ) );
+					if ( '' !== $m['ligne'] ) {
+						WP_CLI::log( '      ' . er_continuer_nu( $m['ligne'] ) );
+					}
+					foreach ( $m['livres'] as $pid ) {
+						WP_CLI::log( '      · ' . html_entity_decode( get_the_title( $pid ), ENT_QUOTES, 'UTF-8' ) );
+					}
+					foreach ( $m['contenus'] as $cid ) {
+						WP_CLI::log( '      ◦ ' . html_entity_decode( get_the_title( $cid ), ENT_QUOTES, 'UTF-8' ) );
+					}
 				}
-				foreach ( $m['contenus'] as $cid ) {
-					WP_CLI::log( '      ◦ ' . html_entity_decode( get_the_title( $cid ), ENT_QUOTES, 'UTF-8' ) );
-				}
+				$html = er_continuer_bloc( $livre->ID );
+				WP_CLI::log( 'Rendu : ' . strlen( $html ) . ' octets, ' . substr_count( $html, 'class="er-carte__ajouter"' ) . ' « Ajouter » ; colonne « Du même auteur » : ' . substr_count( er_reco_bloc_auteur( $livre->ID ), '<li' ) . ' livres.' );
 			}
-			WP_CLI::log( 'Rendu : ' . strlen( er_continuer_bloc( $livre->ID ) ) . ' octets ; colonne « Du même auteur » : ' . substr_count( er_reco_bloc_auteur( $livre->ID ), '<li' ) . ' livres.' );
 		}
 	);
 	WP_CLI::add_command(
