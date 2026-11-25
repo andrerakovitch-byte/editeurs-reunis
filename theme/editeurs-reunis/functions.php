@@ -17,6 +17,7 @@ require get_template_directory() . '/inc/bande.php';
 require get_template_directory() . '/inc/tete.php';
 require get_template_directory() . '/inc/index.php';
 require get_template_directory() . '/inc/expo-du-moment.php';
+require get_template_directory() . '/inc/journal-defile.php';
 
 add_action(
 	'after_setup_theme',
@@ -159,6 +160,17 @@ add_action(
 				get_theme_file_uri( 'assets/js/une-index.js' ),
 				array(),
 				$version . '.' . filemtime( get_theme_file_path( 'assets/js/une-index.js' ) ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+			// Le journal qui défile de côté : les deux flèches et le trait (inc/journal-defile.php).
+			wp_enqueue_script(
+				'editeurs-reunis-une-journal-defile',
+				get_theme_file_uri( 'assets/js/une-journal-defile.js' ),
+				array(),
+				$version . '.' . filemtime( get_theme_file_path( 'assets/js/une-journal-defile.js' ) ),
 				array(
 					'strategy'  => 'defer',
 					'in_footer' => true,
@@ -679,7 +691,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index|expo_du_moment)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index|expo_du_moment|journal_defile)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 
