@@ -664,6 +664,10 @@ function er_continuer_ranger( $ids, $ix, $courant, $bonus = array(), $stock = 6 
 		if ( ! isset( $ix['livres'][ $i ] ) ) {
 			continue;
 		}
+		// Un calendrier, un objet ne se propose pas comme une lecture (oeuvres-collectives.php).
+		if ( $i !== $courant && isset( $ix['livres'][ $i ]['na'] ) && function_exists( 'er_nature_hors_livre' ) && er_nature_hors_livre( $ix['livres'][ $i ]['na'] ) ) {
+			continue;
+		}
 		$l            = $ix['livres'][ $i ];
 		$s            = ( isset( $bonus[ $i ] ) ? $bonus[ $i ] : 0 ) * 10
 			+ ( ! empty( $l['st'] ) ? $stock : 0 )

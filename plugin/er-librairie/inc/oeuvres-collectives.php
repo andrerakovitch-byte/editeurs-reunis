@@ -6,6 +6,11 @@
  *
  * - La nature d'un livre, la méta er_nature : « revue » ou « collectif » (rien : un livre d'auteur). Une revue se
  *   reconnaît aussi à son titre, pour les numéros à venir.
+ * - Ce qui n'est pas un livre (25 nov. 2026) : « calendrier » (un calendrier mural ou de l'année liturgique) ou « objet »
+ *   (des étiquettes de clavier, un marque-page). La fiche le dit à la ligne « Nature », la carte sous le titre ; on ne
+ *   leur cherche ni ISBN ni pages (wp er librairie sans-isbn, outils/catalogue/notices.py), les moteurs de recherche
+ *   les lisent comme un produit et non comme un livre (donnees-structurees.php), et « Pour aller plus loin » ne les
+ *   propose pas comme une lecture (continuer-modules.php).
  * - Le rôle « Avec des contributions de » (er_contribution, traducteurs-editeurs.php) : les auteurs d'articles ou de
  *   textes, et ceux qui y traduisent ou publient un texte.
  * - Sous le titre, à la place de l'auteur absent : « Revue, sous la direction de Nikita Struve », « Ouvrage collectif,
@@ -17,15 +22,27 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Les natures d'une œuvre collective : clé → libellé.
+ * Les natures d'une fiche qui n'est pas un livre d'auteur : les œuvres collectives, puis ce qui n'est pas un livre.
+ * Clé → libellé.
  *
  * @return array<string,string>
  */
 function er_natures() {
 	return array(
-		'revue'     => _x( 'Revue', 'nature d’un livre', 'er-librairie' ),
-		'collectif' => _x( 'Ouvrage collectif', 'nature d’un livre', 'er-librairie' ),
+		'revue'      => _x( 'Revue', 'nature d’un livre', 'er-librairie' ),
+		'collectif'  => _x( 'Ouvrage collectif', 'nature d’un livre', 'er-librairie' ),
+		'calendrier' => _x( 'Calendrier', 'nature d’un livre', 'er-librairie' ),
+		'objet'      => _x( 'Objet', 'nature d’un livre', 'er-librairie' ),
 	);
+}
+
+/**
+ * Une nature qui n'est pas celle d'un livre : un calendrier, un objet. Ni ISBN ni pages à leur chercher.
+ *
+ * @param string $nature La nature (er_nature_du_livre()).
+ */
+function er_nature_hors_livre( $nature ) {
+	return in_array( (string) $nature, array( 'calendrier', 'objet' ), true );
 }
 
 /**
@@ -53,7 +70,8 @@ function er_nature_du_livre( $id ) {
 
 /**
  * Ce qui tient lieu d'auteur à une œuvre collective, en HTML (déjà échappé) : sa nature, puis qui la dirige, l'établit
- * ou la traduit, sinon ses premiers contributeurs. Rien pour un livre d'auteur.
+ * ou la traduit, sinon ses premiers contributeurs. Pour un calendrier ou un objet, sa nature seule. Rien pour un livre
+ * d'auteur.
  *
  * @param int  $id    Le livre.
  * @param bool $liens Des liens vers les pages des personnes (la fiche), ou du texte (la carte, dont le titre est déjà un
@@ -61,6 +79,9 @@ function er_nature_du_livre( $id ) {
  */
 function er_collectif_en_tete( $id, $liens = true ) {
 	$nature = er_nature_du_livre( $id );
+	if ( er_nature_hors_livre( $nature ) ) {
+		return esc_html( er_natures()[ $nature ] );
+	}
 	if ( '' === $nature || ! function_exists( 'er_personnes_du_livre' ) ) {
 		return '';
 	}
@@ -120,7 +141,7 @@ add_action(
 				foreach ( er_natures() as $cle => $libelle ) {
 					echo '<option value="' . esc_attr( $cle ) . '"' . selected( $choisie, $cle, false ) . '>' . esc_html( $libelle ) . '</option>';
 				}
-				echo '</select></p><p class="description">' . esc_html__( 'Une revue ou un ouvrage collectif n’a pas d’auteur seul : la fiche montre à la place qui le dirige, l’établit, le traduit ou y contribue.', 'er-librairie' ) . '</p>';
+				echo '</select></p><p class="description">' . esc_html__( 'Une revue ou un ouvrage collectif n’a pas d’auteur seul : la fiche montre à la place qui le dirige, l’établit, le traduit ou y contribue. Un calendrier ou un objet n’est pas un livre : on ne lui cherche ni ISBN ni pages.', 'er-librairie' ) . '</p>';
 			},
 			'product',
 			'side'

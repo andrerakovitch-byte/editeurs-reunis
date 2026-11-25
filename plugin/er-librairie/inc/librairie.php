@@ -182,6 +182,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			er_librairie_ligne( 'Avec un éditeur', count( array_filter( $publies, fn( $f ) => '' !== $f['editeur'] ) ) );
 			er_librairie_ligne( 'Avec une présentation de plus de 200 signes', count( array_filter( $publies, fn( $f ) => mb_strlen( $f['texte'] ) > 200 ) ) );
 			er_librairie_ligne( 'Sans auteur', count( array_filter( $publies, fn( $f ) => ! $f['auteurs'] ) ) );
+			er_librairie_ligne( 'Calendriers et objets (ni ISBN ni pages)', count( array_filter( $publies, fn( $f ) => er_nature_hors_livre( $f['nature'] ) ) ) );
 
 			WP_CLI::log( 'Les décennies d’édition' );
 			$dec = array();
@@ -293,14 +294,15 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 	/**
 	 * Les fiches sans ISBN, une par ligne : année, éditeur, pages, nature, stock, langues, prix, titre, auteurs et
-	 * traducteurs, de quoi chercher leur ISBN : wp er librairie sans-isbn.
+	 * traducteurs, de quoi chercher leur ISBN : wp er librairie sans-isbn. Sans les calendriers ni les objets, qui n'en
+	 * ont pas.
 	 */
 	WP_CLI::add_command(
 		'er librairie sans-isbn',
 		function () {
 			foreach ( er_librairie_ids() as $id ) {
 				$f = er_librairie_fiche( $id );
-				if ( '' !== $f['isbn'] ) {
+				if ( '' !== $f['isbn'] || er_nature_hors_livre( $f['nature'] ) ) {
 					continue;
 				}
 				WP_CLI::log(

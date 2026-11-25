@@ -128,6 +128,8 @@ LANGUES = {'fre': 'fr', 'fra': 'fr', 'fr': 'fr', 'rus': 'ru', 'ru': 'ru', 'eng':
 # suite, on le laisse de côté pour le reste du passage (le rapport le dit).
 REFUS = {}
 REFUS_MAX = 10
+# Les natures d'une fiche qui n'est pas un livre (er_nature_hors_livre(), oeuvres-collectives.php).
+HORS_LIVRE = ('calendrier', 'objet')
 
 
 def lire(url, essais=3, delai=20):
@@ -484,7 +486,7 @@ def releve_candidates(livres, seulement=None):
 
     def sans_isbn(x):
         annee = re.search(r'\d{4}', str(x.get('annee') or ''))
-        return not x.get('isbn') and x.get('nature') != 'revue' and (not annee or int(annee.group(0)) >= 1970)
+        return not x.get('isbn') and x.get('nature') not in ('revue', *HORS_LIVRE) and (not annee or int(annee.group(0)) >= 1970)
 
     durs = [x for x in livres if sans_isbn(x) and (not seulement or x['id'] in seulement)]
     print(f'CANDIDATES : {len(durs)} livres sans ISBN depuis 1970', flush=True)
@@ -509,7 +511,8 @@ def main():
     ap.add_argument('--rapport', default='')
     ap.add_argument('--limite', type=int, default=0)
     args = ap.parse_args()
-    livres = [x for x in json.load(open(args.livres, encoding='utf-8')) if x.get('titre')]
+    # Les calendriers et les objets n'ont pas de notice à chercher (oeuvres-collectives.php).
+    livres = [x for x in json.load(open(args.livres, encoding='utf-8')) if x.get('titre') and x.get('nature') not in HORS_LIVRE]
     temoin = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'candidates.seules')
     if os.path.exists(temoin):
         # Le fichier témoin candidates.seules : le relevé des candidates seul (des livres qu'il nomme par leur

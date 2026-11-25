@@ -4,7 +4,8 @@
 # renomme une personne déjà sur le site (le premier livre où elle paraît en tête), avant la pose des rôles ;
 # editeur-nom : renomme un éditeur du classement (ou le réunit à celui qui porte déjà le bon nom) ; editeur, annee,
 # pages : posés sur un livre qui n'en a pas, ou, si « avant » est donné, seulement à la place de cette valeur fausse.
-# nature : « revue » ou « collectif », une œuvre collective sans auteur seul (oeuvres-collectives.php).
+# nature : « revue » ou « collectif », une œuvre collective sans auteur seul ; « calendrier » ou « objet », ce qui
+# n'est pas un livre (oeuvres-collectives.php).
 # « wp er recoupement [appliquer] » les applique.
 104	personne	Nina Kchayan	Nina Kehayan
 110	personne	Edith Sherrer	Édith Scherrer
@@ -964,3 +965,8 @@
 631	isbn		9782378560201
 653	isbn		9782070403608
 1423	isbn		9782378560201
+# Ce qui n’est pas un livre (25 nov. 2026) : les calendriers et les objets, classés comme tels.
+487	nature		objet
+798	nature		calendrier
+975	nature		calendrier
+1021	nature		calendrier

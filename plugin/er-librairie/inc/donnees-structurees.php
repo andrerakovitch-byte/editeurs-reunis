@@ -3,7 +3,7 @@
  * Les données structurées (schema.org, en JSON-LD) : ce que les moteurs de recherche lisent pour montrer un livre
  * avec son prix et sa disponibilité, une rencontre avec sa date et son lieu, une personne avec ses dates.
  *
- * - Un livre : Book et Product à la fois, avec l'offre (le prix que la règle du livre laisse payer, la disponibilité,
+ * - Un livre : Book et Product à la fois (un calendrier, un objet : Product seul), avec l'offre (le prix que la règle du livre laisse payer, la disponibilité,
  *   neuf ou d'occasion), l'ISBN, les auteurs et les traducteurs, l'éditeur, la langue, l'année, les pages, et son fil
  *   d'Ariane. Celles de WooCommerce sont éteintes : une seule description du livre.
  * - Une rencontre : Event ; une exposition : ExhibitionEvent. La date à l'heure de Paris, le lieu, l'état (annulée),
@@ -197,6 +197,11 @@ function er_ld_livre( $produit ) {
 		if ( function_exists( 'er_personnes_du_livre' ) ) {
 			$livre[ $propriete ] = array_map( 'er_ld_nom', er_personnes_du_livre( $id, $taxonomie ) );
 		}
+	}
+	// Un calendrier, un objet (oeuvres-collectives.php) : un produit, sans ce qui ne se dit que d'un livre.
+	if ( function_exists( 'er_nature_du_livre' ) && er_nature_hors_livre( er_nature_du_livre( $id ) ) ) {
+		$livre['@type'] = 'Product';
+		$livre          = array_diff_key( $livre, array_flip( array( 'isbn', 'author', 'publisher', 'inLanguage', 'datePublished', 'numberOfPages', 'translator', 'editor', 'illustrator', 'contributor' ) ) );
 	}
 	return array_filter( $livre, fn( $v ) => '' !== $v && array() !== $v && 0 !== $v );
 }

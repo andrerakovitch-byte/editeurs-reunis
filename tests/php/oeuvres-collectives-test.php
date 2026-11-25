@@ -26,6 +26,17 @@ function test_la_nature_d_un_livre() {
 	egal( '', er_collectif_en_tete( 9003 ), 'rien sous le titre d’un livre d’auteur' );
 }
 
+function test_un_calendrier_un_objet_ne_sont_pas_des_livres() {
+	er_test_article( 9005, array( 'post_title' => 'Calendrier orthodoxe des scouts russes 2024', 'metas' => array( 'er_nature' => 'calendrier' ) ) );
+	er_test_article( 9006, array( 'post_title' => 'Étiquettes clavier cyrillique', 'metas' => array( 'er_nature' => 'objet' ) ) );
+	egal( 'calendrier', er_nature_du_livre( 9005 ), 'un calendrier, à sa méta' );
+	egal( 'objet', er_nature_du_livre( 9006 ), 'un objet, à sa méta' );
+	vrai( er_nature_hors_livre( 'calendrier' ) && er_nature_hors_livre( 'objet' ), 'ni l’un ni l’autre n’est un livre' );
+	vrai( ! er_nature_hors_livre( 'revue' ) && ! er_nature_hors_livre( 'collectif' ) && ! er_nature_hors_livre( '' ), 'une revue, un ouvrage collectif, un livre d’auteur sont des livres' );
+	egal( 'Calendrier', er_collectif_en_tete( 9005 ), 'sous le titre : « Calendrier », sans personne' );
+	egal( 'Objet', er_collectif_en_tete( 9006, false ), 'sur la carte : « Objet »' );
+}
+
 function test_le_role_des_contributions() {
 	$roles = er_roles_personnes();
 	vrai( isset( $roles['er_contribution'] ), 'le rôle existe' );
