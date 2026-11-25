@@ -196,24 +196,105 @@
 		break;
 	}
 
-	/* Le relais (24 nov., la façon 4 du canevas « Les informations au téléphone » ; à toutes les largeurs et de bas
-	   en haut depuis le 25 nov.) : la barre montre une information à la fois (l'ouverture, l'exposition, la rencontre,
-	   l'adresse) ; la suivante monte par en dessous et pousse l'autre vers le haut. Un trait gris avance au pied de la
-	   barre et donne la mesure : quand il arrive au bout (cinq secondes, 02-en-tete.css), la suivante vient. Il attend
-	   pendant qu'on parcourt la barre au clavier ou que la souris est dessus ; si le système demande moins
-	   d'animations, la barre reste comme avant : tout en ligne sur ordinateur, l'ouverture seule au téléphone. */
+	/* Le relais (24 nov. ; de bas en haut, à toutes les largeurs, le 25 nov. ; « Jusqu'au bout », la version 6 du
+	   canevas « La barre d'informations, de bas en haut », le même soir) : la barre montre une information à la fois
+	   (l'ouverture, l'exposition, la rencontre, l'adresse) ; la suivante monte par en dessous et pousse l'autre vers
+	   le haut. Une ligne plus longue que la place (au téléphone, la rencontre et l'adresse) ne se coupe pas : après
+	   un temps, elle glisse vers la gauche jusqu'à sa fin, s'y arrête, puis laisse la place. Chaque information reste
+	   au moins quatre secondes et demie. Tout attend pendant que la souris est sur la barre ou qu'on la parcourt au
+	   clavier ; si le système demande moins d'animations, la barre reste comme avant : tout en ligne sur ordinateur,
+	   l'ouverture seule au téléphone. */
 	var calme = window.matchMedia( '(prefers-reduced-motion: reduce)' );
 	var relaisCourant = null;
 	var relaisDedans = infos && infos.querySelector( '.er-infos-dedans' );
+	var RELAIS_ATTENTE = 1800; // avant de glisser, puis une fois au bout (ms)
+	var RELAIS_VITESSE = 45; // px par seconde
+	var RELAIS_MINIMUM = 4500; // le temps d'une information qui tient en entier (ms)
+	var relaisPlus = null; // ce qui vient ensuite : glisser, ou passer à la suivante
+	var relaisFin = 0;
+	var relaisReste = 0;
+	var relaisMinuteur = null;
+	var relaisArret = false;
 	function relaisListe() {
 		return Array.prototype.slice.call( infos.querySelectorAll( '.er-info' ) ).filter( function ( i ) {
 			return ! i.hidden;
 		} );
 	}
-	function relaisRepartir() {
-		infos.classList.remove( 'est-en-route' );
-		void infos.offsetWidth; // le trait repart de zéro
-		infos.classList.add( 'est-en-route' );
+	// Chaque information reçoit une ligne intérieure, celle qui glisse (display: contents tant que le relais dort).
+	function relaisLigne( info ) {
+		var ligne = info.querySelector( ':scope > .er-info-ligne' );
+		if ( ! ligne ) {
+			ligne = document.createElement( 'span' );
+			ligne.className = 'er-info-ligne';
+			while ( info.firstChild ) {
+				ligne.appendChild( info.firstChild );
+			}
+			info.appendChild( ligne );
+		}
+		return ligne;
+	}
+	function relaisRemettre( info ) {
+		var ligne = relaisLigne( info );
+		ligne.style.transition = 'none';
+		ligne.style.transform = '';
+		info.classList.remove( 'est-trop' );
+	}
+	function relaisPlanifier( fn, ms ) {
+		clearTimeout( relaisMinuteur );
+		relaisPlus = fn;
+		relaisReste = ms;
+		if ( ! relaisArret ) {
+			relaisFin = Date.now() + ms;
+			relaisMinuteur = setTimeout( relaisSonner, ms );
+		}
+	}
+	function relaisSonner() {
+		var fn = relaisPlus;
+		relaisPlus = null;
+		if ( fn ) {
+			fn();
+		}
+	}
+	function relaisArreter() {
+		if ( relaisArret ) {
+			return;
+		}
+		relaisArret = true;
+		clearTimeout( relaisMinuteur );
+		if ( relaisPlus ) {
+			relaisReste = Math.max( 0, relaisFin - Date.now() );
+		}
+	}
+	function relaisReprendre() {
+		if ( ! relaisArret ) {
+			return;
+		}
+		relaisArret = false;
+		if ( relaisPlus ) {
+			relaisFin = Date.now() + relaisReste;
+			relaisMinuteur = setTimeout( relaisSonner, relaisReste );
+		}
+	}
+	// L'information du moment : tient-elle ? Sinon, elle glissera de ce qui dépasse (et un peu plus, pour sortir du
+	// fondu de droite).
+	function relaisMontrer( info ) {
+		var ligne = relaisLigne( info );
+		var style = getComputedStyle( info );
+		var gauche = parseFloat( style.paddingLeft ) || 0;
+		var droite = parseFloat( style.paddingRight ) || 0;
+		var trop = Math.ceil( ligne.offsetWidth - ( info.clientWidth - gauche - droite ) );
+		if ( trop <= 0 ) {
+			relaisPlanifier( relaisSuivant, RELAIS_MINIMUM );
+			return;
+		}
+		var decale = trop + Math.max( 0, 40 - droite );
+		var glisse = Math.round( decale / RELAIS_VITESSE * 1000 );
+		info.classList.add( 'est-trop' );
+		relaisPlanifier( function () {
+			ligne.style.transition = 'transform ' + glisse + 'ms linear';
+			ligne.style.transform = 'translateX(' + -decale + 'px)';
+			relaisPlanifier( relaisSuivant, Math.max( glisse + RELAIS_ATTENTE, RELAIS_MINIMUM - RELAIS_ATTENTE ) );
+		}, RELAIS_ATTENTE );
 	}
 	function relaisSuivant() {
 		var liste = relaisListe();
@@ -223,14 +304,16 @@
 		var vient = liste[ ( liste.indexOf( relaisCourant ) + 1 ) % liste.length ];
 		vient.classList.add( 'sans-glisse' );
 		vient.classList.remove( 'est-avant', 'est-ici' ); // en dessous, prête à monter
+		relaisRemettre( vient ); // l'autre bout de la ligne, si elle avait glissé au tour d'avant
 		void vient.offsetWidth;
 		vient.classList.remove( 'sans-glisse' );
 		vient.classList.add( 'est-ici' );
 		if ( relaisCourant ) {
 			relaisCourant.classList.remove( 'est-ici' );
-			relaisCourant.classList.add( 'est-avant' );
+			relaisCourant.classList.add( 'est-avant' ); // elle part telle quelle, glissée ou non
 		}
 		relaisCourant = vient;
+		relaisMontrer( vient );
 	}
 	function relaisRegler() {
 		var oui = ! calme.matches && relaisListe().length > 1;
@@ -241,6 +324,7 @@
 				i.classList.add( 'sans-glisse' );
 				i.classList.remove( 'est-avant' );
 				i.classList.toggle( 'est-ici', i === liste[ 0 ] );
+				relaisRemettre( i );
 			} );
 			infos.classList.add( 'est-relais' );
 			void infos.offsetWidth;
@@ -248,19 +332,28 @@
 				i.classList.remove( 'sans-glisse' );
 			} );
 			relaisCourant = liste[ 0 ];
-			relaisRepartir();
+			relaisMontrer( relaisCourant );
 		} else if ( ! oui && marche ) {
-			infos.classList.remove( 'est-relais', 'est-en-route' );
+			clearTimeout( relaisMinuteur );
+			relaisPlus = null;
+			infos.classList.remove( 'est-relais' );
 			infos.querySelectorAll( '.er-info' ).forEach( function ( i ) {
 				i.classList.remove( 'est-ici', 'est-avant', 'sans-glisse' );
+				relaisRemettre( i );
 			} );
 		}
 	}
 	if ( relaisDedans ) {
-		relaisDedans.addEventListener( 'animationend', function ( e ) {
-			if ( 'er-infos-trait' === e.animationName && infos.classList.contains( 'est-relais' ) ) {
-				relaisSuivant();
-				relaisRepartir();
+		infos.addEventListener( 'mouseenter', relaisArreter );
+		infos.addEventListener( 'mouseleave', function () {
+			if ( ! infos.contains( document.activeElement ) ) {
+				relaisReprendre();
+			}
+		} );
+		infos.addEventListener( 'focusin', relaisArreter );
+		infos.addEventListener( 'focusout', function ( e ) {
+			if ( ! infos.contains( e.relatedTarget ) && ! infos.matches( ':hover' ) ) {
+				relaisReprendre();
 			}
 		} );
 		relaisRegler();
