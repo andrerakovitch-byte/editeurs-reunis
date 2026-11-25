@@ -158,7 +158,9 @@
 .er-pl-vedette__phrase { margin-top: 0.4rem; font-size: 1.5rem; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; }
 .er-pl-vedette__achat { margin-top: 0.75rem; gap: 1.125rem; }
 .er-pl-vedette__achat .er-reco-prix { font-size: 1.25rem; font-weight: 600; }
-.er-pl-vedette .er-carte__ajouter { height: 2.75rem; padding: 0 1.5rem; font-size: 0.875rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+/* En vedette, « Ajouter au panier » reste écrit en toutes lettres, même là où les cartes du rayonnage n'ont plus qu'un « + ». */
+.er-pl-vedette .er-carte__ajouter { width: auto; height: 2.75rem; padding: 0 1.5rem; font-size: 0.875rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
+.er-pl-vedette .er-carte__ajouter::before { content: none; }
 .er-pl-vedette .er-carte__ajouter:hover { background: var(--wp--preset--color--encre-2); }
 
 /* Les livres en ligne (les modules discrets : le traducteur, les autres éditions). */
