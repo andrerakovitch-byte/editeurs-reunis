@@ -72,3 +72,8 @@ sup { font-size: 0.62em; line-height: 0; }
 }
 .er-lien-fleche a::after { content: " →"; transition: margin var(--er-transition); }
 .er-lien-fleche a:hover::after { margin-inline-start: 0.25em; }
+
+/* Les grands mots russes en filigrane (les têtes de page, les aplats de la une, les écrans de l'accueil, les fiches de
+   l'encyclopédie, les tuiles du menu) : retirés le 25 novembre 2026, « trop, surtout au téléphone » (André). Les
+   lettrines, qui tiennent lieu d'image, restent. */
+.er-tete-lettre, .er-une-glyphe, .er-ecran-glyphe, .er-une-fiche-mot, .er-tuile-glyphe { display: none !important; }

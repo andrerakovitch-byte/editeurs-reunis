@@ -6,9 +6,12 @@
  * Block Types: core/template-part/header
  * Inserter: no
  *
- * L'en-tête plein écran, retenu le 24 novembre 2026 (le réglage 2 du canevas « Les Éditeurs réunis — plein écran »),
- * de marge à marge : la barre d'informations (40 px), la barre noire (88 px), la ligne de la maison (48 px). Le détail
- * est dans inc/entete.php ; en défilant, seule la ligne de la maison reste en haut de l'écran.
+ * L'en-tête plein écran, de marge à marge, en blanc depuis le 25 novembre 2026 (« B3 blanc », canevas « La barre
+ * d'informations, de bas en haut — versions ») : la barre d'informations (48 px), qui porte à son bout la langue et le
+ * compte ; la barre du nom (120 px), blanche, le nom espacé comme sur l'ancien site ; la ligne de la maison, sur sa
+ * couleur. Au téléphone, la barre du nom n'a que le nom et le menu (deux barres), qui contient en tête la recherche et
+ * le panier, au bas la langue et le compte. Le détail est dans inc/entete.php ; en défilant, seule la ligne de la
+ * maison reste en haut de l'écran. Ce qui suit décrit l'en-tête noir d'avant ; les couleurs ont changé, pas l'ordre.
  *
  * Il prolonge l'en-tête du 21 novembre 2026 (B3 : « noir dessus, la couleur dessous »), dont le nom en capitales
  * espacées est gardé :
@@ -54,15 +57,16 @@ $er_pages = er_pages_des_maisons();
 ?>
 <!-- wp:html -->[er_infos]<!-- /wp:html -->
 
-<!-- wp:group {"className":"er-barre","backgroundColor":"noir","textColor":"base","layout":{"type":"constrained"}} -->
-<div class="wp-block-group er-barre has-base-color has-noir-background-color has-text-color has-background">
+<!-- wp:group {"className":"er-barre","backgroundColor":"base","textColor":"contrast","layout":{"type":"constrained"}} -->
+<div class="wp-block-group er-barre has-contrast-color has-base-background-color has-text-color has-background">
 	<!-- wp:group {"align":"wide","className":"er-barre-dedans","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group alignwide er-barre-dedans">
 		<!-- wp:paragraph {"className":"er-logo"} -->
 		<p class="er-logo"><a href="<?php echo er_lien(); ?>" rel="home"><span><?php echo esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ); ?></span> <span><?php echo esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ); ?></span></a></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:navigation {"overlayMenu":"always","overlayBackgroundColor":"noir","overlayTextColor":"base","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"1.75rem"}}} -->
+		<!-- wp:navigation {"overlayMenu":"always","overlayBackgroundColor":"base","overlayTextColor":"contrast","icon":"handle","className":"er-menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"1.75rem"}}} -->
+			<!-- wp:html -->[er_menu_outils]<!-- /wp:html -->
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput -- du balisage de blocs, échappé pièce à pièce.
 			echo $er_lien_maison( _x( 'Librairie', 'menu du haut', 'editeurs-reunis' ), 'librairie/', 'librairie' );
@@ -76,11 +80,7 @@ $er_pages = er_pages_des_maisons();
 
 		<!-- wp:html --><a class="er-loupe er-picto" href="<?php echo esc_url( er_lien_recherche() ); ?>" aria-controls="er-recherche" aria-expanded="false" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="screen-reader-text er-loupe-libelle"><?php esc_html_e( 'Rechercher', 'editeurs-reunis' ); ?></span></a><!-- /wp:html -->
 
-		<!-- wp:html -->[er_compte_entete]<!-- /wp:html -->
-
 		<!-- wp:woocommerce/mini-cart {"hasHiddenPrice":true,"productCountVisibility":"greater_than_zero","className":"er-panier"} /-->
-
-		<!-- wp:html -->[er_langues_entete]<!-- /wp:html -->
 	</div>
 	<!-- /wp:group -->
 </div>

@@ -9,8 +9,8 @@
  *   droite (« 8 expositions depuis 2019 », « 312 livres ») ;
  * - le titre (titre-page) sur 7 colonnes, le chapô sur 5, alignés par le bas ; sans chapô, le titre prend la largeur ;
  * - une image, s'il y en a une (le portrait d'une personne), sur 2 colonnes à gauche du titre ;
- * - la page dit son nom en russe, en très grand, à 7 % de la couleur de la maison, coupé par le bas (la grande lettre
- *   du système) ; une page sans nom russe n'en a pas.
+ * - le nom russe de la page, en très grand et en filigrane, a été retiré le 25 novembre 2026 (« trop, surtout au
+ *   téléphone », André) : er_tete_mot_russe() le trouve encore, mais la tête ne l'affiche plus.
  * Une page sans maison (un sujet, les pages communes) : le fond doux, les trois points. Pas sur l'accueil, la fiche
  * d'un livre, un article, une rencontre, une exposition ni une vidéo, qui ont leur ouverture à eux.
  *
@@ -69,7 +69,6 @@ function er_tete_page( $a ) {
 		)
 	);
 	$maison = in_array( $a['maison'], array( 'librairie', 'ymca', 'centre' ), true ) ? $a['maison'] : 'aucune';
-	$mot    = null === $a['mot'] ? er_tete_mot_russe() : (string) $a['mot'];
 
 	// Le fil : la maison (ou le nom du site), puis le chemin.
 	$chemin = array();
@@ -101,7 +100,6 @@ function er_tete_page( $a ) {
 	$image  = '' !== $a['image'] ? '<figure class="er-tete-image">' . $a['image'] . '</figure>' : '';
 	$classes = 'er-tete er-tete-' . $maison . ( $image ? ' er-tete-avec-image' : '' ) . ( $chapo ? '' : ' er-tete-sans-chapo' );
 	return '<section class="' . esc_attr( $classes ) . '">'
-		. ( '' !== $mot ? '<span class="er-tete-lettre" lang="ru" aria-hidden="true">' . esc_html( $mot ) . '</span>' : '' )
 		. $fil . '<div class="er-tete-corps">' . $image . $titre . $chapo . '</div></section>'
 		. er_tete_fil_ld( $chemin, $a['titre'] );
 }

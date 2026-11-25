@@ -498,6 +498,14 @@
 					pastille.hidden = ! n || '0' === n;
 				}
 			} );
+			// Le panier en tête du menu du téléphone : « 2 articles ».
+			document.querySelectorAll( '.er-menu-panier-nombre' ).forEach( function ( el ) {
+				var k = parseInt( n, 10 ) || 0;
+				var modele = el.getAttribute( k > 1 ? 'data-plusieurs' : 'data-un' );
+				if ( modele && b ) {
+					el.textContent = modele.replace( '%d', k );
+				}
+			} );
 		};
 		recopier();
 		var cadrePanier = document.querySelector( '.er-barre .er-panier' );
@@ -505,6 +513,34 @@
 			new MutationObserver( recopier ).observe( cadrePanier, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: [ 'hidden', 'class', 'style' ] } );
 		}
 	}
+
+	/* Le choix de la langue, au bout de la barre d'informations (B3, 25 nov. 2026) : le bouton ouvre et ferme la liste,
+	   à la même place ; un clic ailleurs ou Échap la referme. */
+	document.querySelectorAll( '.er-choix-langue' ).forEach( function ( bloc ) {
+		var bouton = bloc.querySelector( '.er-choix-langue-bouton' );
+		var liste = bloc.querySelector( '.er-choix-langue-liste' );
+		if ( ! bouton || ! liste ) {
+			return;
+		}
+		var ouvrir = function ( oui ) {
+			liste.hidden = ! oui;
+			bouton.setAttribute( 'aria-expanded', oui ? 'true' : 'false' );
+		};
+		bouton.addEventListener( 'click', function () {
+			ouvrir( liste.hidden );
+		} );
+		document.addEventListener( 'click', function ( e ) {
+			if ( ! liste.hidden && ! bloc.contains( e.target ) ) {
+				ouvrir( false );
+			}
+		} );
+		bloc.addEventListener( 'keydown', function ( e ) {
+			if ( 'Escape' === e.key && ! liste.hidden ) {
+				ouvrir( false );
+				bouton.focus();
+			}
+		} );
+	} );
 
 	mesurer();
 } )();

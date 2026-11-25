@@ -648,6 +648,28 @@ add_shortcode(
 	}
 );
 
+// En tête du menu du téléphone (B3, 25 nov. 2026) : la recherche et le panier, qui ont quitté la barre ; la langue et
+// le compte restent au bas du menu.
+add_shortcode(
+	'er_menu_outils',
+	function () {
+		$accueil = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
+		$panier  = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : er_lien( 'panier/' );
+		$nombre  = function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+		$loupe   = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+		$sac     = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+		return '<div class="er-menu-outils er-menu-telephone">'
+			. '<form class="er-menu-recherche" role="search" method="get" action="' . esc_url( $accueil ) . '">' . $loupe
+			. '<label class="screen-reader-text" for="er-menu-recherche">' . esc_html__( 'Rechercher', 'editeurs-reunis' ) . '</label>'
+			. '<input type="search" id="er-menu-recherche" name="s" placeholder="' . esc_attr__( 'Un titre, un auteur, un ISBN…', 'editeurs-reunis' ) . '" autocomplete="off">'
+			. '<input type="hidden" name="post_type" value="product"></form>'
+			. '<a class="er-menu-panier" href="' . esc_url( $panier ) . '">' . $sac . '<span>' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</span>'
+			/* translators: %d: le nombre de livres au panier. */
+			. '<span class="er-menu-panier-nombre" data-un="' . esc_attr( _n( '%d article', '%d articles', 1, 'editeurs-reunis' ) ) . '" data-plusieurs="' . esc_attr( _n( '%d article', '%d articles', 2, 'editeurs-reunis' ) ) . '">' . esc_html( sprintf( _n( '%d article', '%d articles', $nombre, 'editeurs-reunis' ), $nombre ) ) . '</span></a>'
+			. '</div>';
+	}
+);
+
 // Au bas du menu (≡) du téléphone, la langue : la barre n'a plus la place.
 add_shortcode(
 	'er_langues_menu',
@@ -665,7 +687,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|sous_menu|compte_entete|infos|lignes)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 

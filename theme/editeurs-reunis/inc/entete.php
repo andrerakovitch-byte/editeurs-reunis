@@ -217,6 +217,71 @@ function er_info_quand( $id ) {
 }
 
 /**
+ * Le jour et l'heure d'une rencontre, en court, pour la barre d'informations du téléphone : « Lun. 30 nov. à 19 h ».
+ *
+ * @param int $id La rencontre.
+ * @return string
+ */
+function er_info_quand_court( $id ) {
+	$valeur = (string) get_post_meta( $id, 'er_debut', true );
+	if ( ! preg_match( '/^(\d{4}-\d{2}-\d{2})(?: (\d{2}):(\d{2}))?$/', $valeur, $m ) ) {
+		return '';
+	}
+	$fuseau = new DateTimeZone( 'Europe/Paris' );
+	$date   = new DateTimeImmutable( $m[1], $fuseau );
+	$fr     = 'fr' === substr( determine_locale(), 0, 2 );
+	if ( $fr ) {
+		$jours = array( 'Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.' );
+		$mois  = array( 1 => 'janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.' );
+		$j     = (int) $date->format( 'j' );
+		$jour  = $jours[ (int) $date->format( 'w' ) ] . "\u{00A0}" . ( 1 === $j ? '1er' : $j ) . "\u{00A0}" . $mois[ (int) $date->format( 'n' ) ];
+	} else {
+		$jour = wp_date( _x( 'D j M', 'jour d’une rencontre, en court, dans la barre d’informations', 'editeurs-reunis' ), $date->getTimestamp(), $fuseau );
+	}
+	if ( empty( $m[2] ) || '00:00' === $m[2] . ':' . $m[3] ) {
+		return $jour;
+	}
+	$heure = $fr ? (int) $m[2] . "\u{00A0}h" . ( '00' === $m[3] ? '' : "\u{00A0}" . $m[3] ) : $m[2] . ':' . $m[3];
+	/* translators: 1: le jour (« Lun. 30 nov. »), 2: l'heure (« 19 h »). */
+	return sprintf( __( '%1$s à %2$s', 'editeurs-reunis' ), $jour, $heure );
+}
+
+/**
+ * Le choix de la langue, au bout de la barre d'informations (B3, 25 nov. 2026) : la langue de la page en toutes lettres
+ * et un chevron ; la liste s'ouvre dessous, chaque langue dans son alphabet, avec son code, celle de la page cochée
+ * (assets/js/entete.js). Sans JavaScript, la liste reste fermée : les langues sont aussi dans le menu du téléphone et
+ * au pied de la page.
+ */
+function er_choix_langue() {
+	if ( ! function_exists( 'er_liens_langues' ) ) {
+		return '';
+	}
+	$liens = er_liens_langues();
+	if ( count( $liens ) < 2 ) {
+		return '';
+	}
+	$ici = $liens[0];
+	foreach ( $liens as $l ) {
+		if ( $l['actuelle'] ) {
+			$ici = $l;
+		}
+	}
+	$coche   = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+	$chevron = '<svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true" focusable="false"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
+	$items   = '';
+	foreach ( $liens as $l ) {
+		$items .= '<li><a class="er-choix-langue-lien' . ( $l['traduite'] ? '' : ' est-absente' ) . '" href="' . esc_url( $l['url'] ) . '" hreflang="' . esc_attr( $l['code'] ) . '" lang="' . esc_attr( $l['code'] ) . '"' . ( $l['actuelle'] ? ' aria-current="true"' : '' ) . '>'
+			. '<span class="er-choix-langue-nom">' . esc_html( $l['nom'] ) . '</span>'
+			. '<span class="er-choix-langue-code">' . esc_html( strtoupper( $l['code'] ) ) . ( $l['actuelle'] ? $coche : '' ) . '</span></a></li>';
+	}
+	return '<div class="er-choix-langue">'
+		/* translators: %s: la langue de la page, dans sa langue (« Français »). */
+		. '<button type="button" class="er-choix-langue-bouton" aria-expanded="false" aria-controls="er-choix-langue-liste" aria-label="' . esc_attr( sprintf( __( 'Langue du site : %s', 'editeurs-reunis' ), $ici['nom'] ) ) . '">'
+		. '<span lang="' . esc_attr( $ici['code'] ) . '">' . esc_html( $ici['nom'] ) . '</span>' . $chevron . '</button>'
+		. '<ul class="er-choix-langue-liste" id="er-choix-langue-liste" hidden>' . $items . '</ul></div>';
+}
+
+/**
  * La barre d'informations, en haut du site.
  */
 function er_infos() {
@@ -227,7 +292,7 @@ function er_infos() {
 	// Les jours et les heures d'ouverture (25 nov. 2026). Avec des horaires posés (réglage er_horaires), le navigateur
 	// dit plutôt s'il est ouvert ou fermé en ce moment.
 	$items[] = sprintf(
-		'<a class="er-info er-info-ouvert" href="%1$s" data-horaires="%2$s"><span class="er-info-point" aria-hidden="true"></span><span class="er-info-texte">%3$s</span></a>',
+		'<a class="er-info er-info-ouvert" href="%1$s" data-horaires="%2$s"><span class="er-info-texte">%3$s</span></a>',
 		$nous_trouver,
 		esc_attr( wp_json_encode( (object) $horaires ) ),
 		esc_html__( 'Ouvert du mardi au samedi de 10 h à 18 h 30', 'editeurs-reunis' )
@@ -255,26 +320,35 @@ function er_infos() {
 				continue;
 			}
 			$quand  = er_info_quand( $r->ID );
+			$court  = er_info_quand_court( $r->ID );
+			$titre  = esc_html( get_the_title( er_traduction( $r->ID ) ) );
+			$fr     = 'fr' === substr( determine_locale(), 0, 2 );
 			$liste .= sprintf(
-				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden>%3$s · <strong>%4$s</strong>%5$s</a>',
+				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden><span class="er-info-point" aria-hidden="true"></span><span class="er-info-long">%3$s · <strong>%4$s</strong>%5$s</span><span class="er-info-court">%6$s<strong>%4$s</strong></span></a>',
 				esc_url( get_permalink( er_traduction( $r->ID ) ) ),
 				esc_attr( $debut ),
 				esc_html__( 'Prochain événement', 'editeurs-reunis' ),
-				esc_html( get_the_title( er_traduction( $r->ID ) ) ),
-				'' !== $quand ? ', ' . esc_html( $quand ) : ''
+				$titre,
+				'' !== $quand ? ', ' . esc_html( $quand ) : '',
+				// Au téléphone, la date d'abord (25 nov. 2026) : « Lun. 30 nov. à 19 h : Rencontre avec… ».
+				'' !== $court ? esc_html( $court ) . ( $fr ? "\u{00A0}: " : ': ' ) : ''
 			);
 		}
 		$items[] = $liste;
 	}
 
 	$items[] = sprintf(
-		'<a class="er-info er-info-adresse er-info-plus" href="%1$s"><span class="er-info-rue">%2$s</span> · <strong>%3$s</strong></a>',
+		'<a class="er-info er-info-adresse er-info-plus" href="%1$s"><span class="er-info-long"><span class="er-info-rue">%2$s</span> · <strong>%3$s</strong></span><span class="er-info-court">%2$s</span></a>',
 		$nous_trouver,
 		esc_html__( '11, rue de la Montagne-Sainte-Geneviève, 75005 Paris', 'editeurs-reunis' ),
 		esc_html__( 'Nous trouver →', 'editeurs-reunis' )
 	);
 
-	return '<div class="er-infos" role="region" aria-label="' . esc_attr__( 'En ce moment', 'editeurs-reunis' ) . '"><div class="er-infos-dedans">' . implode( '', $items ) . '</div></div>';
+	// Au bout de la barre (B3, 25 nov. 2026) : la langue, puis le compte, au-dessus du panier de la barre du nom. Au
+	// téléphone, ils passent dans le menu.
+	$outils = '<div class="er-infos-outils">' . er_choix_langue() . '<span class="er-infos-filet" aria-hidden="true"></span>' . do_shortcode( '[er_compte_entete]' ) . '</div>';
+
+	return '<div class="er-infos" role="region" aria-label="' . esc_attr__( 'En ce moment', 'editeurs-reunis' ) . '"><div class="er-infos-dedans"><div class="er-infos-fil">' . implode( '', $items ) . '</div>' . $outils . '</div></div>';
 }
 add_shortcode( 'er_infos', 'er_infos' );
 
