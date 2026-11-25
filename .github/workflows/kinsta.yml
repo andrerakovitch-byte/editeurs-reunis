@@ -15,6 +15,7 @@
 # « boutique ». Avec « notices » : les notices des livres dans les catalogues des bibliothèques (outils/catalogue/notices.py).
 # Avec « proches » : les livres proches par le sens, lus par un modèle multilingue (bge-m3) qui tourne ici, gratuitement
 # (outils/proches.py) ; « Pour aller plus loin » s'en sert pour choisir les livres de ses modules (inc/proches.php).
+# Avec « extraits » : les pages à feuilleter (outils/extraits.py), posées sous la couverture des fiches (inc/extraits.php).
 name: Déployer chez Kinsta
 
 on:
@@ -51,6 +52,9 @@ on:
         description: "Les livres proches par le sens (IA, bge-m3) : les calculer et les poser"
         type: boolean
         default: false
+      extraits:
+        description: "Les pages à feuilleter : l'étiquette de la publication (release) qui porte leur zip (extraits-…)"
+        default: ''
 
 concurrency: kinsta
 
@@ -276,6 +280,22 @@ jobs:
           $SSH "$QUI@$HOTE" 'mkdir -p private'
           rsync -z -e "$SSH" proches/proches.json "$QUI@$HOTE:private/proches.json"
           $SSH "$QUI@$HOTE" 'cd public && wp er proches importer ../private/proches.json'
+
+      # Le zip (outils/extraits.py : un dossier d'images par livre et le manifeste) passe par une publication
+      # temporaire du dépôt, effacée une fois les pages posées : les images ne vont jamais dans l'historique.
+      - name: Les pages à feuilleter
+        if: inputs.extraits != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ETIQUETTE: ${{ inputs.extraits }}
+        run: |
+          case "$ETIQUETTE" in extraits-[a-z0-9-]*) ;; *) echo "Étiquette inattendue : $ETIQUETTE"; exit 1 ;; esac
+          mkdir -p extraits
+          gh release download "$ETIQUETTE" --pattern '*.zip' --dir extraits
+          (cd extraits && unzip -q ./*.zip && rm -f ./*.zip)
+          $SSH "$QUI@$HOTE" 'mkdir -p private/extraits'
+          rsync -az --delete -e "$SSH" extraits/ "$QUI@$HOTE:private/extraits/"
+          $SSH "$QUI@$HOTE" 'cd public && wp er extraits importer ../private/extraits && rm -rf ../private/extraits'
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

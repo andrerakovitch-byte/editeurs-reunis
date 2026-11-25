@@ -33,6 +33,7 @@ require __DIR__ . '/inc/recommandations.php';
 require __DIR__ . '/inc/phrases.php';
 require __DIR__ . '/inc/continuer.php';
 require __DIR__ . '/inc/proches.php';
+require __DIR__ . '/inc/extraits.php';
 require __DIR__ . '/inc/traducteurs-editeurs.php';
 require __DIR__ . '/inc/oeuvres-collectives.php';
 require __DIR__ . '/inc/prix-du-livre.php';

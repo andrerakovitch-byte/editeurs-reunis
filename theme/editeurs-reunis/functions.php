@@ -96,6 +96,19 @@ add_action(
 				'in_footer' => true,
 			)
 		);
+		// « Feuilleter » sur la fiche d'un livre (er/fiche-feuilleter) : la fenêtre des pages.
+		if ( function_exists( 'is_product' ) && is_product() ) {
+			wp_enqueue_script(
+				'editeurs-reunis-feuilleter',
+				get_theme_file_uri( 'assets/js/feuilleter.js' ),
+				array(),
+				$version . '.' . filemtime( get_theme_file_path( 'assets/js/feuilleter.js' ) ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
 		// L'en-tête plein écran : un clic sur une maison montre son menu, l'en-tête accroché, la barre d'informations.
 		wp_enqueue_script(
 			'editeurs-reunis-entete',

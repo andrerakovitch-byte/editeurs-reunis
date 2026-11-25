@@ -1,0 +1,81 @@
+/* « Feuilleter » : sous la couverture de la fiche, quelques pages du livre (er/fiche-feuilleter, inc/extraits.php de
+   l'extension ; assets/js/feuilleter.js). Le bouton : trois pages en éventail et « Feuilleter · 5 pages » ; la
+   fenêtre : une page à la fois, en plein écran, sur un fond sombre. */
+.er-feuilleter { margin-top: 1.75rem; display: flex; justify-content: center; }
+.er-feuilleter__ouvrir {
+	display: inline-flex; align-items: center; gap: 1rem;
+	padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer;
+}
+.er-feuilleter__vignettes { display: inline-flex; align-items: center; padding-inline: 4px; }
+.er-feuilleter__vignette {
+	display: block; width: auto; height: 56px; background: #fff;
+	box-shadow: 0 1px 4px rgb(0 0 0 / .18); transition: transform .2s ease;
+}
+.er-feuilleter__vignette + .er-feuilleter__vignette { margin-left: -24px; }
+.er-feuilleter__vignette:nth-child(1) { transform: rotate(-5deg); }
+.er-feuilleter__vignette:nth-child(2) { position: relative; z-index: 1; }
+.er-feuilleter__vignette:nth-child(3) { transform: rotate(5deg); }
+.er-feuilleter__ouvrir:hover .er-feuilleter__vignette:nth-child(1),
+.er-feuilleter__ouvrir:focus-visible .er-feuilleter__vignette:nth-child(1) { transform: rotate(-9deg) translateX(-5px); }
+.er-feuilleter__ouvrir:hover .er-feuilleter__vignette:nth-child(3),
+.er-feuilleter__ouvrir:focus-visible .er-feuilleter__vignette:nth-child(3) { transform: rotate(9deg) translateX(5px); }
+.er-feuilleter__libelle {
+	font-size: var(--wp--preset--font-size--small);
+	text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25em;
+}
+.er-feuilleter__nombre { display: inline-block; margin-left: .3em; opacity: .6; }
+
+html:has(.er-feuilleter__fenetre[open]) { overflow: hidden; }
+.er-feuilleter__fenetre {
+	position: fixed; inset: 0; box-sizing: border-box; width: 100vw; height: 100svh; max-width: none; max-height: none;
+	margin: 0; padding: 0; border: 0; background: #1b1a18; color: #f4f1ea;
+}
+.er-feuilleter__fenetre[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.er-feuilleter__fenetre::backdrop { background: rgb(0 0 0 / .6); }
+.er-feuilleter__haut {
+	display: flex; align-items: baseline; gap: 1.5rem;
+	padding: 1rem var(--wp--style--root--padding-right) .75rem var(--wp--style--root--padding-left);
+	font-size: var(--wp--preset--font-size--small);
+}
+.er-feuilleter__titre { margin: 0; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.er-feuilleter__ou { margin: 0; flex: 1; opacity: .7; }
+.er-feuilleter__compte { white-space: nowrap; }
+.er-feuilleter__legende:not(:empty)::after { content: " ·"; }
+.er-feuilleter__fermer {
+	padding: .3rem .9rem; border: 1px solid rgb(255 255 255 / .5); border-radius: 999px;
+	background: none; color: inherit; font: inherit; cursor: pointer;
+}
+.er-feuilleter__fermer:hover { background: rgb(255 255 255 / .1); }
+.er-feuilleter__pages {
+	display: flex; margin: 0; padding: 0; list-style: none;
+	overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior: contain;
+}
+.er-feuilleter__pages::-webkit-scrollbar { display: none; }
+.er-feuilleter__page {
+	flex: 0 0 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+	padding: .5rem 5rem; scroll-snap-align: start; overflow: auto;
+}
+.er-feuilleter__page figure { display: flex; align-items: center; justify-content: center; height: 100%; max-width: 100%; min-width: 0; margin: 0; }
+.er-feuilleter__image {
+	display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; min-width: 0; object-fit: contain;
+	background: #fff; box-shadow: 0 12px 40px rgb(0 0 0 / .45); cursor: zoom-in;
+}
+.er-feuilleter__page.est-agrandie { align-items: flex-start; }
+.er-feuilleter__page.est-agrandie figure { height: auto; }
+.er-feuilleter__page.est-agrandie .er-feuilleter__image { max-height: none; cursor: zoom-out; }
+.er-feuilleter__fleche {
+	position: absolute; top: 50%; transform: translateY(-50%);
+	width: 3rem; height: 3rem; border: 1px solid rgb(255 255 255 / .3); border-radius: 50%;
+	background: rgb(0 0 0 / .35); color: inherit; font-size: 1.75rem; line-height: 1; cursor: pointer;
+}
+.er-feuilleter__fleche--avant { left: 1rem; }
+.er-feuilleter__fleche--apres { right: 1rem; }
+.er-feuilleter__fleche:disabled { opacity: .2; cursor: default; }
+.er-feuilleter__mention { margin: 0; padding: .5rem 1rem 1rem; text-align: center; font-size: var(--wp--preset--font-size--x-small); opacity: .55; }
+
+@media (max-width: 900px) {
+	.er-feuilleter { margin-top: 1.25rem; }
+	.er-feuilleter__page { padding: .25rem .75rem; }
+	.er-feuilleter__fleche { display: none; }
+	.er-feuilleter__haut { gap: 1rem; }
+}

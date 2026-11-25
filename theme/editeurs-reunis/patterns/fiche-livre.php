@@ -6,7 +6,8 @@
  * Inserter: no
  *
  * En deux moitiés (la page C du canevas « Les Éditeurs réunis — plein écran », retenue le 24 nov. 2026) : à gauche,
- * sur le fond doux et collée au bord de l'écran, la couverture, qui reste à l'écran pendant qu'on lit ; à droite,
+ * sur le fond doux et collée au bord de l'écran, la couverture, qui reste à l'écran pendant qu'on lit, et dessous
+ * « Feuilleter » quand le livre a des pages à montrer (er/fiche-feuilleter, inc/extraits.php) ; à droite,
  * tout le reste qui défile : le fil d'Ariane, les mentions, le titre, l'auteur, le prix, le panier, la présentation,
  * la fiche (rayon, langue, auteur, référence) et « Du même auteur » (er/fiche-auteur). Dessous, de marge à marge,
  * « Pour aller plus loin » : les modules choisis pour ce livre (er/fiche-continuer, inc/continuer.php de l'extension ;
@@ -25,6 +26,8 @@
 			<!-- wp:group {"className":"er-fiche-couverture-colle","layout":{"type":"default"}} -->
 			<div class="wp-block-group er-fiche-couverture-colle">
 				<!-- wp:woocommerce/product-image-gallery /-->
+
+				<!-- wp:er/fiche-feuilleter /-->
 			</div>
 			<!-- /wp:group -->
 		</div>
