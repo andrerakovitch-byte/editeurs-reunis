@@ -96,6 +96,7 @@
 .er-pl-vedette__case {
 	box-sizing: border-box;
 	aspect-ratio: 4 / 5;
+	min-height: 0; /* La case garde ses proportions : la couverture s'y ajuste, elle ne l'agrandit pas. */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -162,8 +163,9 @@
 
 /* Les livres en ligne (les modules discrets : le traducteur, les autres éditions). */
 .er-pl-lignes { list-style: none; margin: 0; padding: 0; }
-.er-pl-ligne { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: 1.5rem; align-items: center; padding: 1.125rem 0; border-top: var(--er-filet); }
-.er-pl-ligne:last-child { border-bottom: var(--er-filet); }
+.er-pl-ligne { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: 1.5rem; align-items: center; padding: 1.125rem 0; }
+.er-pl-ligne:first-child { padding-top: 0; }
+.er-pl-ligne + .er-pl-ligne { border-top: var(--er-filet); }
 .er-pl-ligne__case { display: flex; justify-content: center; }
 .er-pl-ligne__case img { max-height: 126px; }
 .er-pl-ligne__case .er-couverture-typo { width: 84px; }
@@ -171,8 +173,13 @@
 .er-pl-ligne__achat { align-self: start; flex-direction: column; align-items: flex-end; gap: 0.625rem; margin: 0; }
 
 /* La personne dont parle le livre : les livres en français, et ceux en russe à côté. */
-.er-pl-langues { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr); gap: 1.75rem; }
-.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: minmax(0, 1fr); }
+/* Les deux langues sur une même grille de cinq colonnes (le nombre de livres de chaque côté, --fr et --ru, vient de
+   l'extension) : un livre en russe a la largeur d'un livre en français, et leurs cases s'alignent. */
+.er-pl-langues { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 1.75rem; }
+.er-pl-langues__fr { grid-column: span var(--fr, 4); }
+.er-pl-langues__ru { grid-column: span var(--ru, 1); }
+.er-pl-langues__fr .er-pl-vignettes { grid-template-columns: repeat(var(--fr, 4), minmax(0, 1fr)); }
+.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: repeat(var(--ru, 1), minmax(0, 1fr)); }
 .er-pl-langues__titre { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; }
 
 /* Les cartes du centre (une rencontre, un article, une vidéo, une exposition) : sur le bleu nuit du centre culturel,
@@ -180,6 +187,9 @@
 .er-pl-cartes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
 * + .er-pl-cartes { margin-top: 1.75rem; }
 .er-pl-vignettes > .er-pl-carte { grid-column: span 2; }
+/* Après trois livres, la carte tient dans la quatrième colonne, à la hauteur des livres ; les règles qui la resserrent
+   n'ont que le poids de leur classe (:where), pour céder à celles des petits écrans. */
+.er-pl-vignettes > .er-pl-vignette:nth-child(3) + .er-pl-carte { grid-column: span 1; }
 .er-pl-carte a {
 	box-sizing: border-box;
 	height: 100%;
@@ -198,6 +208,9 @@
 .er-pl-carte--er_exposition .er-pl-carte__titre { font-style: italic; }
 .er-pl-carte__meta { font-size: 0.875rem; color: rgba(255, 255, 255, 0.78); }
 .er-pl-carte a:hover .er-pl-carte__titre { text-decoration: underline; text-underline-offset: 0.15em; }
+.er-pl-carte a:where(.er-pl-vignette:nth-child(3) + .er-pl-carte > *) { padding: 1.5rem; }
+.er-pl-carte__genre:where(.er-pl-vignette:nth-child(3) + .er-pl-carte *) { letter-spacing: 0.16em; }
+.er-pl-carte__titre:where(.er-pl-vignette:nth-child(3) + .er-pl-carte *) { font-size: 1.125rem; }
 .er-reco-point { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--point-centre); }
 
 /* La mention des phrases, en bas de la section (er-librairie/inc/phrases.php). */
@@ -208,9 +221,15 @@
 	.er-pl-module__tete { max-width: 46rem; }
 }
 @media (max-width: 900px) {
-	.er-pl-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-	.er-pl-langues { grid-template-columns: minmax(0, 1fr); }
-	.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	/* Les vignettes restent sur quatre colonnes (trois laisseraient le quatrième livre seul sur sa ligne) ; les deux
+	   langues passent l'une sous l'autre, sur les mêmes colonnes. */
+	.er-pl-langues { grid-template-columns: minmax(0, 1fr); row-gap: 2.5rem; }
+	.er-pl-langues__fr,
+	.er-pl-langues__ru { grid-column: auto; }
+	.er-pl-langues__fr .er-pl-vignettes,
+	.er-pl-langues__ru .er-pl-vignettes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.er-pl-vignettes { column-gap: 1.25rem; }
+	.er-pl-vignette__case { padding: 1.125rem 1.25rem; }
 }
 @media (max-width: 781px) {
 	.er-reco-courts { grid-template-columns: minmax(0, 1fr); }

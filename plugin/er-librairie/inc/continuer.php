@@ -595,7 +595,7 @@ function er_continuer_mots_livre( $p, $bloc, $titre = true ) {
 	$phrase   = function_exists( 'er_reco_phrase' ) ? er_reco_phrase( $id ) : '';
 	return $mention
 		. ( $titre ? '<a class="' . $bloc . '__titre" href="' . esc_url( $lien ) . '">' . er_continuer_cyrillique( esc_html( wptexturize( $nom ) ) ) . '</a>' : '' )
-		. ( '' !== $glose ? '<span class="' . $bloc . '__glose">« ' . esc_html( $glose ) . ' »</span>' : '' )
+		. ( '' !== $glose ? '<span class="' . $bloc . '__glose">«' . "\u{00A0}" . esc_html( $glose ) . "\u{00A0}" . '»</span>' : '' )
 		. ( '' !== $auteurs ? '<span class="' . $bloc . '__auteur">' . er_continuer_cyrillique( esc_html( $auteurs ) ) . '</span>' : '' )
 		. ( '' !== $phrase ? '<span class="' . $bloc . '__phrase">' . esc_html( $phrase ) . '</span>' : '' );
 }
@@ -747,14 +747,18 @@ function er_continuer_corps( $m ) {
 		case 'deux-langues':
 			$fr = '';
 			$ru = '';
+			$n  = array( 0, 0 );
 			foreach ( $livres as $pid ) {
 				if ( has_term( 'russe', 'langue', $pid ) ) {
 					$ru .= er_continuer_vignette( $pid );
+					++$n[1];
 				} else {
 					$fr .= er_continuer_vignette( $pid );
+					++$n[0];
 				}
 			}
-			return '<div class="er-pl-langues"><div class="er-pl-langues__fr"><h4 class="er-pl-langues__titre">' . esc_html__( 'En français', 'er-librairie' ) . '</h4><ul class="er-pl-vignettes">' . $fr . '</ul></div>'
+			// Les deux colonnes se partagent la même grille : un livre russe a la largeur d'un livre français.
+			return '<div class="er-pl-langues" style="--fr:' . $n[0] . ';--ru:' . $n[1] . '"><div class="er-pl-langues__fr"><h4 class="er-pl-langues__titre">' . esc_html__( 'En français', 'er-librairie' ) . '</h4><ul class="er-pl-vignettes">' . $fr . '</ul></div>'
 				. '<div class="er-pl-langues__ru"><h4 class="er-pl-langues__titre" lang="ru">По-русски</h4><ul class="er-pl-vignettes">' . $ru . '</ul></div></div>'
 				. ( $cartes ? '<ul class="er-pl-cartes">' . $cartes . '</ul>' : '' );
 		case 'ligne':
