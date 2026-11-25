@@ -7,8 +7,9 @@
 	padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer;
 }
 .er-feuilleter__vignettes { display: inline-flex; align-items: center; padding-inline: 4px; }
-.er-feuilleter__vignette {
-	display: block; width: auto; height: 56px; background: #fff;
+/* Deux classes : « .woocommerce img { height: auto } » passerait devant une seule. */
+.er-feuilleter .er-feuilleter__vignette {
+	display: block; width: auto; max-width: none; height: 56px; background: #fff;
 	box-shadow: 0 1px 4px rgb(0 0 0 / .18); transition: transform .2s ease;
 }
 .er-feuilleter__vignette + .er-feuilleter__vignette { margin-left: -24px; }
