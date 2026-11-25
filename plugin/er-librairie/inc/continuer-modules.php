@@ -1167,7 +1167,7 @@ function er_continuer_titre_court( $titre, $max = 48 ) {
 	$t = trim( (string) $titre );
 	// « Les songes de Tchang. Poèmes » : un mot générique après un point tombe.
 	$t = (string) preg_replace( '/\.\s+(po[èe]mes|poésies|nouvelles|récits|roman|essais?|contes|стихи|стихотворения|рассказы|повесть|роман)\s*$/iu', '', $t );
-	foreach ( array( '/\s[:—–-]\s/u', '/\s*\/\s*/u', '/\ssuivi(e|s|es)? de\s/iu', '/,\s/u', '/:\s/u' ) as $coupe ) {
+	foreach ( array( '/\s[:—–-]\s/u', '/\s*\/\s*/u', '/\ssuivi(e|s|es)? (de\s|d’\s?)/iu', '/,\s/u', '/:\s/u' ) as $coupe ) {
 		$morceaux = preg_split( $coupe, $t, 2 );
 		// Avant une virgule, au moins trois mots : « Anna Akhmatova, requiem pour l'Europe » garde son titre entier.
 		if ( count( $morceaux ) > 1 && mb_strlen( trim( $morceaux[0] ) ) >= 3 && ( '/,\s/u' !== $coupe || substr_count( trim( $morceaux[0] ), ' ' ) >= 2 ) ) {
@@ -1624,7 +1624,8 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			);
 			$fait_autour = true;
 		}
-		$oeuvre = $restants( $de_carte( 'auteur', $p ) );
+		$oeuvre    = $restants( $de_carte( 'auteur', $p ) );
+		$dicible_p = er_continuer_nom_dicible( $p, $ix, $page );
 		if ( $oeuvre && 0 === $rang && count( $principaux ) < 3 ) {
 			$oeuvre = er_continuer_divers( er_continuer_ranger( $oeuvre, $ix, $id ), $ix, 4 );
 			$sortes = array_values( array_unique( array_map( fn( $i ) => er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] ), $oeuvre ) ) );
@@ -1632,10 +1633,10 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$ajouter(
 				array(
 					'type'     => 'oeuvre',
-					'sur'      => $fait_autour ? 'Et l’œuvre elle-même' : 'L’œuvre ' . er_continuer_de( $nom( $p ) ),
-					'titre'    => 'Lire ' . $court( $p ),
+					'sur'      => $fait_autour ? 'Et l’œuvre elle-même' : ( $dicible_p ? 'L’œuvre ' . er_continuer_de( $nom( $p ) ) : 'Son œuvre' ),
+					'titre'    => $dicible_p ? 'Lire ' . $court( $p ) : $nom( $p ),
 					'ligne'    => $inv( $oeuvre, array( 'personne' => $p, 'possessif' => true ) ),
-					'fragment' => $fait_autour ? $poss : 'l’œuvre ' . er_continuer_de( $court( $p ) ),
+					'fragment' => $fait_autour ? $poss : ( $dicible_p ? 'l’œuvre ' . er_continuer_de( $court( $p ) ) : '' ),
 					'livres'   => $oeuvre,
 					'forme'    => 1 === count( $oeuvre ) ? 'vedette' : 'vignettes',
 					'personne' => $p,
