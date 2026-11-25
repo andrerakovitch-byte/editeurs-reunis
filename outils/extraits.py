@@ -44,6 +44,12 @@ def langue(t):
     return "ru" if cyr > 2 * lat else ("fr" if lat > 2 * cyr else "")
 
 
+def numero_imprime(t):
+    """Le numéro imprimé sur la page (le premier nombre seul sur sa ligne), 0 s'il n'y en a pas."""
+    m = re.search(r"^\s*(\d{1,4})\s*$", t, re.M)
+    return int(m.group(1)) if m else 0
+
+
 def titre_de(t):
     """La première ligne qui ressemble à un intertitre (ni numéro, ni titre courant), pour la légende."""
     t = re.sub(r"[\x00-\x08\x0b-\x1f]", "’", t)  # L'apostrophe de certaines polices sort en caractère de contrôle.
@@ -80,8 +86,11 @@ def choisir(doc):
         legende = titre_de(texte(doc[debut])) or "Le début du texte"
         for k, i in enumerate(range(debut, min(debut + 3, doc.page_count))):
             choix.append({"p": i + 1, "legende": legende if k == 0 else ""})
-    # Un bilingue : la première double page où le russe et le français se répondent.
+    # Un bilingue : la première double page où le russe et le français se répondent. Une vraie double page commence
+    # sur une page paire (le verso, à gauche).
     for i in range(3, doc.page_count - 1):
+        if numero_imprime(texte(doc[i])) % 2:
+            continue
         a, b = langue(texte(doc[i])), langue(texte(doc[i + 1]))
         if {a, b} == {"ru", "fr"}:
             choix.append({"p": i + 1, "double": True, "legende": "Le texte et sa traduction, en regard"})

@@ -11,6 +11,11 @@ def test_langue_d_une_page():
     assert extraits.langue("12") == ""
 
 
+def test_numero_imprime():
+    assert extraits.numero_imprime("34\nNam krzyż Chrystusów maszt jest") == 34
+    assert extraits.numero_imprime("Sans numéro") == 0
+
+
 def test_legende_tiree_de_l_intertitre():
     assert extraits.titre_de("7\nPROLOGUE\nSaint-Pétersbourg, 5 octobre 2011. Je dispose…") == "Prologue"
     assert extraits.titre_de("15\nPréface\n« Je revois ma lampe verte… »") == "Préface"
