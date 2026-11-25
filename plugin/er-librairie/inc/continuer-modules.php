@@ -1380,8 +1380,9 @@ function er_continuer_des( $ids, $ix ) {
  * plus loin encore : [ classement, terme ], une personne, une époque, un sujet, un rayon).
  *
  * Au plus trois modules principaux, dans cet ordre : l'autre langue, les autres volumes (ou les autres numéros d'une
- * revue), le livre que cite la notice, ce qu'on a écrit sur l'auteur, la personne dont parle le livre puis son
- * œuvre, les mêmes années, la personne que nomme la notice, le même thème, le même rayon (à défaut d'autre chose) ;
+ * revue), le livre que cite la notice, l'œuvre de l'auteur (d'un écrivain), ce qu'on a écrit sur l'auteur, la
+ * personne dont parle le livre puis son œuvre, les mêmes années, la personne que nomme la notice, le même thème, le
+ * même rayon (à défaut d'autre chose) ;
  * et des secondaires, plus discrets : les autres éditions dans la même langue, le traducteur (ou le préfacier, un
  * contributeur), une rencontre ou un article qui cite le livre. Un livre ne paraît qu'une fois.
  *
@@ -1643,13 +1644,20 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		}
 	}
 
-	// 3. Les livres du même auteur que nomme la notice.
+	// Un livre qui se lit dans la langue de celui-ci : le lecteur d'un livre en français n'a que faire de l'édition
+	// russe d'un roman (pas d'« Анна Каренина » sous « Le Prisonnier du Caucase »), ni l'inverse. Le bilingue va à tous.
+	$lisible = function ( $i ) use ( $ix, $langue ) {
+		$li = er_continuer_langue_du_livre( $ix['livres'][ $i ] );
+		return ! ( ( 'fr' === $langue && 'ru' === $li ) || ( 'ru' === $langue && 'fr' === $li ) );
+	};
+
+	// 3. Les livres du même auteur que nomme la notice, dans une édition qui se lit dans la langue du livre.
 	$cle_notice = ' ' . implode( ' ', array_column( $ctx['notice'], 1 ) ) . ' ';
 	$k_courant  = ' ' . ( isset( $l['k'] ) ? $l['k'] : '' ) . ' ';
 	$trouves    = array();
 	foreach ( $restants( $du_meme ) as $o ) {
 		$lo = $ix['livres'][ $o ];
-		if ( er_continuer_titre_generique( $lo['t'] ) || 'revue' === er_continuer_sorte( $lo, $ix['rayons'] ) ) {
+		if ( er_continuer_titre_generique( $lo['t'] ) || 'revue' === er_continuer_sorte( $lo, $ix['rayons'] ) || ! $lisible( $o ) ) {
 			continue;
 		}
 		foreach ( array( 'k', 'kf' ) as $champ ) {
@@ -1744,6 +1752,67 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			$m['fragment']   = $un ? $titre_c( $trouves[0] ) : 'les livres que cite la notice';
 		}
 		$ajouter( $m );
+	}
+
+	// 3 bis. L'œuvre de l'auteur : ses autres livres, et les recueils où il figure, qui se lisent dans la langue de
+	// celui-ci, les plus proches d'abord. La colonne « Du même auteur » montre la suite, et les éditions dans l'autre
+	// langue. Seulement pour un écrivain (après un récit, on lit l'auteur ; après un dictionnaire, le sujet), et pas
+	// quand la notice ou les volumes ont déjà mené à ses livres, ni pour une revue.
+	$lettres    = array( 'roman', 'poemes', 'nouvelles', 'recit', 'contes', 'theatre', 'oeuvres', 'voyage', 'bilingue' );
+	$litteraire = fn( $i ) => in_array( er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] ), $lettres, true );
+	if ( ! $revue && ! array_filter( $principaux, fn( $p ) => in_array( $p['type'], array( 'cite', 'volumes' ), true ) ) ) {
+		foreach ( $auteurs as $a ) {
+			if ( ! $litteraire( $id ) && count( array_filter( $de_carte( 'auteur', $a ), $litteraire ) ) < 2 ) {
+				continue;
+			}
+			$garder   = fn( $ids ) => array_values( array_filter( $restants( $ids ), fn( $i ) => $lisible( $i ) && ! er_continuer_titre_generique( $ix['livres'][ $i ]['t'] ) && ! er_continuer_meme_oeuvre( $i, $id, $ix ) ) );
+			$recueils = array_filter(
+				$de_carte( 'role', 'contribution' )[ $a ] ?? array(),
+				fn( $i ) => 'revue' !== er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] )
+			);
+			// Ses propres livres d'abord ; les recueils où il figure (« Peur ») complètent.
+			$propres = er_continuer_une_edition( er_continuer_ranger( $garder( $de_carte( 'auteur', $a ) ), $ix, $id ), $ix );
+			// Une œuvre en plusieurs volumes (« Красное колесо, Октябрь Шестнадцатого », « … – Март Семнадцатого том 1 »)
+			// ou en plusieurs éditions (« Le Moine noir – La Tête à l'évent », « Le Moine noir, suivi de… ») : une fois, et
+			// pas celle du livre.
+			$tete_de = function ( $i ) use ( $ix ) {
+				$t = mb_strtolower( trim( preg_split( '/\s[–—-]\s|,\s|\s:\s|\s\(|\s(?:том|tome|t\.)\s*[0-9IVX]/u', (string) $ix['livres'][ $i ]['t'], 2 )[0] ), 'UTF-8' );
+				return false !== strpos( $t, ' ' ) ? $t : '';
+			};
+			$siens = array();
+			$tetes = array( $tete_de( $id ) => true );
+			foreach ( array_merge( $propres, er_continuer_ranger( array_diff( $garder( $recueils ), $propres ), $ix, $id ) ) as $i ) {
+				if ( count( $siens ) >= 3 ) {
+					break;
+				}
+				$tete = $tete_de( $i );
+				if ( ( '' !== $tete && isset( $tetes[ $tete ] ) ) || array_filter( $siens, fn( $c ) => er_continuer_meme_oeuvre( $i, $c, $ix ) ) ) {
+					continue;
+				}
+				$tetes[ $tete ] = true;
+				$siens[]        = $i;
+			}
+			if ( count( $siens ) < 2 ) {
+				continue;
+			}
+			$dit = er_continuer_nom_dicible( $a, $ix, $page );
+			// « d'autres récits » seulement si ce sont tous des récits.
+			$des = 1 === count( array_unique( array_map( fn( $i ) => er_continuer_sorte( $ix['livres'][ $i ], $ix['rayons'] ), $siens ) ) ) ? er_continuer_des( $siens, $ix )[0] : 'des livres';
+			$ajouter(
+				array(
+					'type'     => 'auteur',
+					'sur'      => $dit ? 'L’œuvre ' . er_continuer_de( er_continuer_nom_dans_phrase( $nom( $a ) ) ) : 'Son œuvre',
+					'titre'    => $dit ? 'Lire encore ' . $court( $a ) : $nom( $a ),
+					'ligne'    => $inv( $siens, array( 'personne' => $a, 'possessif' => true ) ),
+					'fragment' => preg_replace( '/^des /u', 'd’autres ', $des ) . ' ' . ( $dit ? er_continuer_de( $court( $a ) ) : 'du même auteur' ),
+					'livres'   => $siens,
+					'forme'    => 'vignettes',
+					'personne' => $a,
+					'lien'     => array( 'auteur', $a ),
+				)
+			);
+			break;
+		}
 	}
 
 	// 4. Ce qu'on a écrit sur l'auteur.
@@ -1854,8 +1923,8 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 		}
 	}
 
-	// Les modules qui cherchent plus loin laissent de côté les livres de l'auteur (la colonne « Du même auteur » les
-	// montre) et, pour une revue, ses autres numéros.
+	// Les modules qui cherchent plus loin laissent de côté les livres de l'auteur (son module et la colonne « Du même
+	// auteur » les montrent) et, pour une revue, ses autres numéros.
 	$loin = function ( $ids ) use ( $restants, $du_meme, $revue, $ix, $l ) {
 		$ids = array_values( array_diff( $restants( $ids ), $du_meme ) );
 		if ( $revue ) {
@@ -2236,7 +2305,25 @@ function er_continuer_choisir( $id, $ix, $ctx = array() ) {
 			array( 'fond' => 0 === $k )
 		);
 	}
-	$fragments = er_continuer_fusionner( array_values( array_filter( array_column( $modules, 'fragment' ), 'strlen' ) ) );
+	// « D'autres récits de Léon Tolstoï, des livres sur Léon Tolstoï » : le nom une fois, dans les livres sur lui.
+	$sur_qui = array_column( array_filter( $modules, fn( $m ) => 'sur-auteur' === $m['type'] ), 'personne' );
+	foreach ( $modules as $k => $m ) {
+		if ( 'auteur' === $m['type'] && in_array( $m['personne'], $sur_qui, true ) ) {
+			$modules[ $k ]['fragment'] = preg_replace( '/ (de|d’)\s*[^ ].*$/u', ' du même auteur', $m['fragment'] );
+		}
+	}
+	// « d'autres romans du même auteur, d'autres romans sur Moscou » : le second « d'autres » devient « des ».
+	$fragments = array_values( array_filter( array_column( $modules, 'fragment' ), 'strlen' ) );
+	$vus       = array();
+	foreach ( $fragments as $k => $f ) {
+		if ( preg_match( '/^d’autres (\S+) /u', $f, $mm ) ) {
+			if ( isset( $vus[ $mm[1] ] ) ) {
+				$fragments[ $k ] = 'des ' . mb_substr( $f, mb_strlen( 'd’autres ', 'UTF-8' ), null, 'UTF-8' );
+			}
+			$vus[ $mm[1] ] = true;
+		}
+	}
+	$fragments = er_continuer_fusionner( $fragments );
 	$court_l   = $revue ? '' : er_continuer_titre_court( $l['t'] );
 	return array(
 		'ouverture' => er_continuer_phrase( 'après ' . ( '' !== $court_l ? er_continuer_titre( $court_l ) : ( $revue ? 'ce numéro' : 'ce livre' ) ) . ' : ' . er_continuer_liste( $fragments ) ),

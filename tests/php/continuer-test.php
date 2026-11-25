@@ -177,6 +177,33 @@ function test_continuer_trois_editions_d_un_livre_cite() {
 	egal( 'En trois éditions, trois traductions.', $cite[0]['ligne'], 'trois traducteurs' );
 }
 
+function test_continuer_l_oeuvre_de_l_auteur_dans_la_langue_du_livre() {
+	$ix                  = er_test_continuer_index();
+	$ix['personnes'][20] = array( 'n' => 'Léon Tolstoï', 'g' => array( 'Лев Толстой' ), 'nb' => 4 );
+	$ix['personnes'][21] = array( 'n' => 'Anton Tchekhov', 'nb' => 6 );
+	$recit               = array( 'a' => array( 20 ), 'c' => array( 18 ), 'st' => 1 );
+	$ix['livres'][120]   = $recit + array( 't' => 'Le Prisonnier du Caucase', 'k' => 'l prisoner du caucas', 'l' => array( 'francais' ) );
+	$ix['livres'][121]   = $recit + array( 't' => 'Анна Каренина', 'k' => 'ana karenina', 'fr' => 'Anna Karénine', 'kf' => 'ana karenin', 'l' => array( 'russe' ) );
+	$ix['livres'][122]   = $recit + array( 't' => 'Ma confession', 'k' => 'ma confesion', 'l' => array( 'francais' ) );
+	$ix['livres'][123]   = $recit + array( 't' => 'La sonate à Kreutzer', 'k' => 'la sonat a kreutzer', 'l' => array( 'bilingue-russe-francais' ) );
+	$ix['livres'][124]   = array( 't' => 'Peur', 'k' => 'peur', 'c' => array( 18 ), 'l' => array( 'francais' ), 'st' => 1, 'r' => array( 'contribution' => array( 21, 20 ) ) );
+	$notice              = array( array( 'Tolstoï rejetait Anna Karénine.', 'tolstoi rejetait ana karenin' ) );
+	$r                   = er_continuer_choisir( 120, $ix, array( 'notice' => $notice ) );
+	$types               = array_column( $r['modules'], 'type' );
+	vrai( ! in_array( 'cite', $types, true ), 'l’édition russe que cite la notice ne vient pas sous un livre en français' );
+	$oeuvre = array_values( array_filter( $r['modules'], fn( $m ) => 'auteur' === $m['type'] ) );
+	egal( 1, count( $oeuvre ), 'un module de l’œuvre de l’auteur' );
+	egal( 'Lire encore Tolstoï', $oeuvre[0]['titre'] );
+	egal( array( 122, 123, 124 ), array_values( array_intersect( array( 122, 123, 124 ), $oeuvre[0]['livres'] ) ), 'ses livres lisibles, puis le recueil où il figure' );
+	egal( 124, end( $oeuvre[0]['livres'] ), 'le recueil en dernier' );
+	vrai( ! in_array( 121, $oeuvre[0]['livres'], true ), 'l’édition russe reste à la colonne' );
+	vrai( 0 === strpos( er_continuer_nu( $r['ouverture'] ), 'Après Le Prisonnier du Caucase : d’autres ' ), $r['ouverture'] );
+	// Un livre en russe : l'édition russe que cite la notice y a sa place.
+	$ix['livres'][125] = $recit + array( 't' => 'Кавказский пленник', 'k' => 'kavkazski plenik', 'l' => array( 'russe' ) );
+	$r                 = er_continuer_choisir( 125, $ix, array( 'notice' => $notice ) );
+	egal( 'cite', $r['modules'][0]['type'], 'sous un livre en russe, l’édition russe citée' );
+}
+
 function test_continuer_volumes_et_nom_en_cyrillique() {
 	$ix = er_test_continuer_index();
 	$r  = er_continuer_choisir( 108, $ix );

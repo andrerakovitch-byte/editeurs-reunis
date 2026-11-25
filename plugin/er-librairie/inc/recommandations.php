@@ -211,8 +211,24 @@ function er_reco_bloc_auteur( $id ) {
 	$vignette = $portrait ? wp_get_attachment_image( $portrait, 'thumbnail', false, array( 'alt' => '' ) ) : '<span lang="ru">' . esc_html( er_reco_initiale( $a ) ) . '</span>';
 	$lien     = get_term_link( $a );
 	$livres   = '';
-	// Les livres que « Pour aller plus loin » montre déjà (l'autre volume, le livre que cite la notice) n'y sont pas.
-	foreach ( array_slice( array_values( array_diff( $r['auteur'], $montres ) ), 0, 4 ) as $pid ) {
+	// Les livres que « Pour aller plus loin » montre déjà (l'autre volume, le livre que cite la notice) n'y sont pas ;
+	// ceux qui se lisent dans la langue du livre d'abord (sous un livre en français, l'édition russe en dernier).
+	$langues = function ( $pid ) {
+		$l = wp_get_post_terms( $pid, 'langue', array( 'fields' => 'slugs' ) );
+		return is_wp_error( $l ) ? array() : (array) $l;
+	};
+	$la_sienne = $langues( $id );
+	$etranger  = function ( $pid ) use ( $langues, $la_sienne ) {
+		$l = $langues( $pid );
+		if ( in_array( 'bilingue-russe-francais', $l, true ) || in_array( 'bilingue-russe-francais', $la_sienne, true ) ) {
+			return 0;
+		}
+		return (int) ( ( in_array( 'francais', $la_sienne, true ) && in_array( 'russe', $l, true ) && ! in_array( 'francais', $l, true ) )
+			|| ( in_array( 'russe', $la_sienne, true ) && in_array( 'francais', $l, true ) && ! in_array( 'russe', $l, true ) ) );
+	};
+	$restent = array_values( array_diff( $r['auteur'], $montres ) );
+	usort( $restent, fn( $x, $y ) => $etranger( $x ) <=> $etranger( $y ) );
+	foreach ( array_slice( $restent, 0, 4 ) as $pid ) {
 		$livres .= er_reco_carte( $pid, 'er-reco-court' );
 	}
 	return '<section class="er-reco-auteur-bloc" aria-labelledby="er-reco-auteur-titre">'
