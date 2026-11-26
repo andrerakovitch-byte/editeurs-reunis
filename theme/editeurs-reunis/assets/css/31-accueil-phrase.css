@@ -74,17 +74,17 @@
 .er-ap-suit-photo.est-livre { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.18); }
 .er-ap-suit-photo.est-visible { opacity: 1; }
 
-/* Le triptyque de l'accueil : bord à bord, 560 px ; en arrivant, le bas de l'écran le coupe. */
-.er-ap-triptyque .er-tpq { height: 560px; }
+/* Le triptyque de l'accueil : bord à bord, 720 px (560 jusqu'au 27 nov.) ; en arrivant, le bas de l'écran le coupe. */
+.er-ap-triptyque .er-tpq { height: 720px; }
 
 @media (max-width: 1100px) {
 	.er-ap { height: 340px; }
-	.er-ap-triptyque .er-tpq { height: 440px; }
+	.er-ap-triptyque .er-tpq { height: 560px; }
 }
 @media (max-width: 781px) {
 	.er-ap { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.875rem; line-height: 1.12; letter-spacing: -0.03em; }
-	.er-ap-triptyque .er-tpq { height: 220px; gap: 8px; }
+	.er-ap-triptyque .er-tpq { height: 280px; gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
 	.er-ap-reponse, .er-ap-suit-photo { transition: none; }
