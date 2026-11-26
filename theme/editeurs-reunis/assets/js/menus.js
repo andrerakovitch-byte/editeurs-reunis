@@ -41,7 +41,15 @@
 		var menu = cible( bouton );
 		courant = null;
 		bouton.setAttribute( 'aria-expanded', 'false' );
-		if ( menu ) {
+		if ( menu && menu === plan ) {
+			// Le plan se replie, puis se cache.
+			plan.classList.remove( 'est-ouvert' );
+			window.setTimeout( function () {
+				if ( ! courant || cible( courant ) !== plan ) {
+					plan.hidden = true;
+				}
+			}, 420 );
+		} else if ( menu ) {
 			menu.hidden = true;
 		}
 		racine.classList.remove( 'er-em-ouvert', 'er-em-plan-ouvert' );
@@ -74,6 +82,10 @@
 			// est sortie de l'écran, le plan prend tout l'écran, avec sa propre barre et « Fermer ».
 			placerPlan();
 			racine.classList.add( 'er-em-plan-ouvert' );
+			void plan.offsetHeight; // le plan part replié, puis se déplie
+			window.requestAnimationFrame( function () {
+				plan.classList.add( 'est-ouvert' );
+			} );
 			if ( plan.classList.contains( 'avec-barre' ) ) {
 				var croix = plan.querySelector( '.er-em-fermer-plan' );
 				if ( croix ) {
@@ -91,6 +103,13 @@
 		}
 	}
 
+	// Les entrées du plan arrivent l'une après l'autre : chacune a son rang.
+	if ( plan ) {
+		plan.querySelectorAll( '.er-em-colonne-titre, .er-em-colonne li, .er-em-plan-pied > *' ).forEach( function ( el, i ) {
+			el.classList.add( 'er-em-anim' );
+			el.style.setProperty( '--er-i', String( Math.min( i, 24 ) ) );
+		} );
+	}
 	function placerPlan() {
 		if ( ! plan ) {
 			return;

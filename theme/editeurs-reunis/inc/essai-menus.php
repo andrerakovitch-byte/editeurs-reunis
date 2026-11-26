@@ -417,8 +417,8 @@ add_shortcode( 'er_essai_menu', 'er_essai_menu' );
  */
 function er_essai_bouton_menu() {
 	return '<button type="button" class="er-em-menu er-picto" data-er-em="plan" aria-expanded="false" aria-controls="er-em-plan" aria-label="' . esc_attr__( 'Menu', 'editeurs-reunis' ) . '">'
-		. '<svg class="er-em-menu-trois" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
-		. '<svg class="er-em-menu-croix" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+		// Les trois traits se croisent en × quand le plan s'ouvre (assets/css/29-en-tete-retenu.css).
+		. '<svg class="er-em-menu-traits" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="er-em-trait-1" d="M4 7h16"/><path class="er-em-trait-2" d="M4 12h16"/><path class="er-em-trait-3" d="M4 17h16"/></svg></button>';
 }
 add_shortcode( 'er_essai_bouton_menu', 'er_essai_bouton_menu' );
 
