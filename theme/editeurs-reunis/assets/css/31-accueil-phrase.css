@@ -46,8 +46,9 @@
 .er-ap-reponse:focus { opacity: 1; transform: none; }
 
 /* La photo qui suit la souris sur la phrase (assets/js/accueil-phrase.js), comme dans les trois maisons : seulement
-   avec une souris. Le point d'accroche suit le pointeur avec un peu de retard ; la photo se pose autour, dans son
-   format d'origine, et passe à la suivante en fondu. */
+   avec une souris. Le point d'accroche suit le pointeur avec un peu de retard (le script l'avance image par image) ;
+   la photo se pose autour, dans son format d'origine, et passe à la suivante en fondu. Par-dessus, la même phrase en
+   blanc, découpée à la forme de la photo : les mots qu'elle couvre passent dessus (Y6, 27 nov., à l'essai). */
 .er-ap-suit { display: none; }
 @media (hover: hover) and (pointer: fine) {
 	.er-ap.est-pilote .er-ap-suit {
@@ -59,10 +60,25 @@
 		height: 0;
 		z-index: 5;
 		pointer-events: none;
-		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 		will-change: transform;
 	}
+	.er-ap.est-pilote .er-ap-blanc {
+		display: flex;
+		position: absolute;
+		inset: 0;
+		z-index: 6;
+		align-items: flex-end;
+		box-sizing: border-box;
+		padding: inherit;
+		pointer-events: none;
+		opacity: 0;
+		clip-path: inset(50%);
+		transition: opacity 0.35s ease;
+	}
+	.er-ap.est-pilote.est-survol .er-ap-blanc { opacity: 1; }
 }
+.er-ap-blanc { display: none; }
+.er-ap-blanc .er-ap-reponse { color: var(--wp--preset--color--base) !important; }
 .er-ap-suit-photo {
 	position: absolute;
 	display: block;
@@ -88,5 +104,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
 	.er-ap-reponse, .er-ap-suit-photo { transition: none; }
-	.er-ap.est-pilote .er-ap-suit { transition: none; }
+	.er-ap.est-pilote .er-ap-blanc { transition: none; }
 }

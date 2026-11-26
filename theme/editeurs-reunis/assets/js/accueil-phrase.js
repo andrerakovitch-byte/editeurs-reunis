@@ -1,20 +1,22 @@
 /**
  * La phrase en haut de l'accueil (inc/accueil-phrase.php, Y3b) : elle change d'elle-même toutes les six secondes ;
- * la nouvelle monte en paraissant, l'ancienne s'efface vers le haut. Elle tourne aussi sous la
- * souris (André, 26 nov.) ; seul le focus dans ses liens l'arrête, et un lien qui prend le focus paraît. Ni pendant
- * que l'onglet est caché, ni si l'on a demandé moins d'animations : la première phrase reste. Sans ce script, la
- * première phrase reste aussi.
+ * la nouvelle monte en paraissant, l'ancienne s'efface vers le haut. Elle tourne aussi sous la souris (André, 26 nov.) ;
+ * seul le focus dans ses liens l'arrête, et un lien qui prend le focus paraît. Ni pendant que l'onglet est caché, ni si
+ * l'on a demandé moins d'animations : la première phrase reste. Sans ce script, la première phrase reste aussi.
  *
  * Avec une souris, la photo de la phrase suit le pointeur quand il passe sur ses mots, comme dans les trois maisons
  * (une-trois-maisons.js), et aussi grande : elle se pose à droite du curseur (à gauche près du bord), centrée sur lui
  * en hauteur, sans sortir de l'écran ni passer sous l'en-tête (elle peut déborder sur le triptyque) ; quand la phrase
- * change, la photo change avec elle.
+ * change, la photo change avec elle. Les mots qu'elle couvre passent dessus, en blanc, à la manière de la Pinault
+ * Collection (Y6, 27 nov., à l'essai) : une copie blanche de la phrase, au-dessus de la photo, découpée à sa forme. La
+ * photo et la découpe avancent ensemble, image par image, avec un peu de retard sur le pointeur.
  */
 ( function () {
 	'use strict';
 	var DUREE = 6000;
 	var ECART = 32;
 	var MARGE = 16;
+	var SUITE = 0.18; // la part du chemin faite à chaque image : le retard de la photo sur le pointeur
 	var calme = window.matchMedia( '(prefers-reduced-motion: reduce)' );
 	var souris = window.matchMedia( '(hover: hover) and (pointer: fine)' );
 
@@ -35,8 +37,10 @@
 	}
 
 	document.querySelectorAll( '.er-ap' ).forEach( function ( ap ) {
-		var phrases = Array.prototype.slice.call( ap.querySelectorAll( '.er-ap-reponse' ) );
+		var phrases = Array.prototype.slice.call( ap.querySelectorAll( 'a.er-ap-reponse' ) );
+		var blancs = Array.prototype.slice.call( ap.querySelectorAll( '.er-ap-blanc .er-ap-reponse' ) );
 		var calque = ap.querySelector( '.er-ap-suit' );
+		var blanc = ap.querySelector( '.er-ap-blanc' );
 		var photos = {};
 		if ( calque ) {
 			calque.querySelectorAll( '.er-ap-suit-photo' ).forEach( function ( img ) {
@@ -47,10 +51,49 @@
 		var arret = false;
 		var visible = null;
 		var dernier = null; // le dernier mouvement de la souris sur la tête
+		var cible = null; // où va le point d'accroche (le pointeur), dans la tête
+		var point = null; // où il est
+		var anime = 0;
+		var entete = document.querySelector( 'header.er-haut' );
+
+		// Pose les photos autour du point d'accroche, et la découpe blanche sur celle qu'on voit.
+		function poser() {
+			if ( ! point || ! calque ) {
+				return;
+			}
+			var x = point[ 0 ];
+			var y = point[ 1 ];
+			var w = ap.offsetWidth;
+			var h = ap.offsetHeight;
+			// Les bornes en hauteur : le bas de l'en-tête et le bas de l'écran, ramenés à la tête de l'accueil.
+			var dessus = ap.getBoundingClientRect().top;
+			var plafond = ( entete ? Math.max( 0, entete.getBoundingClientRect().bottom ) : 0 ) - dessus + MARGE;
+			var plancher = window.innerHeight - dessus - MARGE;
+			calque.style.transform = 'translate3d(' + x.toFixed( 1 ) + 'px, ' + y.toFixed( 1 ) + 'px, 0)';
+			var cadre = null;
+			Object.keys( photos ).forEach( function ( cle ) {
+				var img = photos[ cle ];
+				var t = taille( img );
+				var gauche = Math.round( x + ECART + t[ 0 ] > w - MARGE ? -ECART - t[ 0 ] : ECART );
+				var haut = Math.round( Math.max( plafond - y, Math.min( -t[ 1 ] / 2, plancher - t[ 1 ] - y ) ) );
+				img.style.width = Math.round( t[ 0 ] ) + 'px';
+				img.style.height = Math.round( t[ 1 ] ) + 'px';
+				img.style.left = gauche + 'px';
+				img.style.top = haut + 'px';
+				if ( img === visible ) {
+					cadre = [ x + gauche, y + haut, Math.round( t[ 0 ] ), Math.round( t[ 1 ] ) ];
+				}
+			} );
+			if ( blanc && cadre ) {
+				blanc.style.clipPath = 'inset(' + Math.max( 0, cadre[ 1 ] ).toFixed( 1 ) + 'px ' + Math.max( 0, w - cadre[ 0 ] - cadre[ 2 ] ).toFixed( 1 ) + 'px '
+					+ Math.max( 0, h - cadre[ 1 ] - cadre[ 3 ] ).toFixed( 1 ) + 'px ' + Math.max( 0, cadre[ 0 ] ).toFixed( 1 ) + 'px)';
+			}
+		}
 
 		// La photo qui suit la souris : celle de la phrase sous le pointeur, ou aucune.
 		function montrePhoto( cle ) {
 			var img = cle ? photos[ cle ] || null : null;
+			ap.classList.toggle( 'est-survol', !! img );
 			if ( img === visible ) {
 				return;
 			}
@@ -61,26 +104,27 @@
 			if ( visible ) {
 				visible.classList.add( 'est-visible' );
 			}
+			poser();
 		}
-		var entete = document.querySelector( 'header.er-haut' );
-		function place( x, y ) {
-			var w = ap.offsetWidth;
-			// Les bornes en hauteur : le bas de l'en-tête et le bas de l'écran, ramenés à la tête de l'accueil.
-			var dessus = ap.getBoundingClientRect().top;
-			var plafond = ( entete ? Math.max( 0, entete.getBoundingClientRect().bottom ) : 0 ) - dessus + MARGE;
-			var plancher = window.innerHeight - dessus - MARGE;
-			calque.style.transform = 'translate3d(' + Math.round( x ) + 'px, ' + Math.round( y ) + 'px, 0)';
-			Object.keys( photos ).forEach( function ( cle ) {
-				var img = photos[ cle ];
-				var t = taille( img );
-				var gauche = x + ECART + t[ 0 ] > w - MARGE ? -ECART - t[ 0 ] : ECART;
-				var haut = Math.max( plafond - y, Math.min( -t[ 1 ] / 2, plancher - t[ 1 ] - y ) );
-				img.style.width = Math.round( t[ 0 ] ) + 'px';
-				img.style.height = Math.round( t[ 1 ] ) + 'px';
-				img.style.left = Math.round( gauche ) + 'px';
-				img.style.top = Math.round( haut ) + 'px';
-			} );
+
+		// Le point d'accroche rejoint le pointeur, un peu en retard, image par image.
+		function avancer() {
+			anime = 0;
+			if ( ! cible ) {
+				return;
+			}
+			if ( ! point || calme.matches ) {
+				point = cible.slice();
+			} else {
+				point[ 0 ] += ( cible[ 0 ] - point[ 0 ] ) * SUITE;
+				point[ 1 ] += ( cible[ 1 ] - point[ 1 ] ) * SUITE;
+			}
+			poser();
+			if ( Math.abs( cible[ 0 ] - point[ 0 ] ) > 0.3 || Math.abs( cible[ 1 ] - point[ 1 ] ) > 0.3 ) {
+				anime = window.requestAnimationFrame( avancer );
+			}
 		}
+
 		// La phrase sous le pointeur (les autres ne prennent pas la souris).
 		function sousLaSouris() {
 			if ( ! dernier ) {
@@ -88,7 +132,7 @@
 			}
 			var el = document.elementFromPoint( dernier.clientX, dernier.clientY );
 			var mots = el && el.closest ? el.closest( '.er-ap-mots' ) : null;
-			var phrase = mots ? mots.closest( '.er-ap-reponse' ) : null;
+			var phrase = mots ? mots.closest( 'a.er-ap-reponse' ) : null;
 			return phrase && ap.contains( phrase ) ? phrase.getAttribute( 'data-cle' ) : null;
 		}
 
@@ -96,14 +140,19 @@
 			if ( k === ici ) {
 				return;
 			}
-			var avant = phrases[ ici ];
-			avant.classList.remove( 'est-vue' );
-			avant.classList.add( 'est-partie' );
-			window.setTimeout( function () {
-				avant.classList.remove( 'est-partie' );
-			}, 500 );
+			[ phrases, blancs ].forEach( function ( liste ) {
+				var avant = liste[ ici ];
+				if ( ! avant || ! liste[ k ] ) {
+					return;
+				}
+				avant.classList.remove( 'est-vue' );
+				avant.classList.add( 'est-partie' );
+				window.setTimeout( function () {
+					avant.classList.remove( 'est-partie' );
+				}, 500 );
+				liste[ k ].classList.add( 'est-vue' );
+			} );
 			ici = k;
-			phrases[ ici ].classList.add( 'est-vue' );
 			if ( calque && dernier ) {
 				montrePhoto( sousLaSouris() );
 			}
@@ -131,35 +180,22 @@
 		if ( ! calque || ! souris.matches ) {
 			return;
 		}
-		var attente = 0;
-		var posee = false;
 		ap.addEventListener( 'mousemove', function ( e ) {
 			dernier = e;
-			if ( attente ) {
-				return;
+			var r = ap.getBoundingClientRect();
+			cible = [ e.clientX - r.left, e.clientY - r.top ];
+			if ( ! point ) {
+				point = cible.slice(); // en entrant, la photo se pose d'emblée près du pointeur
 			}
-			attente = window.requestAnimationFrame( function () {
-				attente = 0;
-				if ( ! dernier ) {
-					return;
-				}
-				var r = ap.getBoundingClientRect();
-				// En entrant, la photo se pose d'emblée près du pointeur (elle ne glisse pas depuis le coin).
-				if ( ! posee ) {
-					calque.style.transition = 'none';
-				}
-				place( dernier.clientX - r.left, dernier.clientY - r.top );
-				if ( ! posee ) {
-					void calque.offsetWidth;
-					calque.style.transition = '';
-					posee = true;
-				}
-				montrePhoto( sousLaSouris() );
-			} );
+			montrePhoto( sousLaSouris() );
+			if ( ! anime ) {
+				anime = window.requestAnimationFrame( avancer );
+			}
 		} );
 		ap.addEventListener( 'mouseleave', function () {
 			dernier = null;
-			posee = false;
+			cible = null;
+			point = null;
 			montrePhoto( null );
 		} );
 		ap.classList.add( 'est-pilote' );

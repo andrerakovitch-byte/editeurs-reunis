@@ -212,18 +212,23 @@ function er_ap_reponses() {
 
 /**
  * Le module : la phrase, puis le triptyque. Avec une souris, la photo de la phrase suit le pointeur quand il passe
- * sur elle, comme dans les trois maisons ; plus d'image à droite (André, 26 nov.).
+ * sur elle, comme dans les trois maisons ; plus d'image à droite (André, 26 nov.). Les mots que la photo couvre
+ * passent dessus, en blanc, à la manière de la Pinault Collection (Y6, 27 nov., à l'essai) : une copie blanche de la
+ * phrase, au-dessus de la photo, découpée à sa forme.
  *
  * Les phrases qu'on ne voit pas restent des liens qu'on atteint au clavier : celle qui prend le focus paraît (le script
  * la montre et s'arrête, comme au survol). Rien n'est annoncé quand la phrase change seule.
  */
 function er_accueil_phrase() {
 	$textes = '';
+	$blancs = '';
 	$photos = '';
 	foreach ( er_ap_reponses() as $i => $r ) {
 		$vue     = 0 === $i ? ' est-vue' : '';
 		// Les mots dans un span : la photo ne vient que sur eux, pas sur le blanc au bout des lignes.
 		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '"><span class="er-ap-mots">' . $r['texte'] . '</span></a>';
+		// La même phrase, en blanc, que le script découpe à la forme de la photo (Y6, 27 nov., à l'essai).
+		$blancs .= '<span class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '"><span class="er-ap-mots">' . $r['texte'] . '</span></span>';
 		if ( $r['photo'] ) {
 			$photos .= str_replace( '<img ', '<img data-cle="' . esc_attr( $r['cle'] ) . '" ', $r['photo'] );
 		}
@@ -231,7 +236,9 @@ function er_accueil_phrase() {
 	$triptyque = function_exists( 'er_triptyque_html' ) ? er_triptyque_html( 'accueil' ) : '';
 	return '<section class="er-ap" aria-label="' . esc_attr__( 'À la une', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
 		. '<div class="er-ap-reponses">' . $textes . '</div></div>'
-		. ( '' !== $photos ? '<div class="er-ap-suit" aria-hidden="true">' . $photos . '</div>' : '' ) . '</section>'
+		. ( '' !== $photos ? '<div class="er-ap-suit" aria-hidden="true">' . $photos . '</div>'
+			. '<div class="er-ap-blanc" aria-hidden="true"><div class="er-ap-corps"><div class="er-ap-reponses">' . $blancs . '</div></div></div>' : '' )
+		. '</section>'
 		. ( $triptyque ? '<div class="er-ap-triptyque">' . $triptyque . '</div>' : '' );
 }
 add_shortcode( 'er_accueil_phrase', 'er_accueil_phrase' );
