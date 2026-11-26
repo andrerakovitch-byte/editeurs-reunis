@@ -1,6 +1,7 @@
 /* --------------------------------------------------------------------------
    Les trois maisons, en trois paragraphes (26 nov. 2026, planche « T · Trois paragraphes ») : le module texte de
-   l'accueil, après le journal. Un filet fin, puis le texte en grand ; les noms en lien, soulignés. Au survol d'un lien,
+   l'accueil, après le journal. Le texte en grand, après un grand blanc, sans filet (André, 26 nov. : « n'ayons pas
+   peur du vide ») ; les noms en lien, soulignés. Au survol d'un lien,
    le reste passe en gris et sa photo apparaît près de la souris (assets/js/une-trois-maisons.js). Le contenu :
    inc/trois-maisons.php.
    -------------------------------------------------------------------------- */
@@ -17,7 +18,6 @@
 
 .er-tm-corps {
 	padding-top: 3.5rem;
-	border-top: 1px solid var(--wp--preset--color--filet);
 	font-size: clamp(1.6875rem, 3.2vw, 2.875rem); /* 46 px à 1440, 27 px au téléphone. */
 	font-weight: 500;
 	line-height: 1.13;
