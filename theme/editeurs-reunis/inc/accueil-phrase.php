@@ -94,8 +94,36 @@ function er_ap_image_theme( $nom, $cadre = array( 1, 50, 50 ) ) {
 }
 
 /**
- * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, l'image (HTML) et si l'image est
- * une couverture (montrée entière, avec son ombre).
+ * La photo qui suit la souris sur la phrase, dans son format d'origine (comme celles des trois maisons) : une image
+ * du thème, ou une pièce jointe ; avec sa largeur et sa hauteur, dont le script tire sa taille.
+ *
+ * @param string|int $source Le fichier du thème (assets/images/…) ou l'identifiant de la pièce jointe.
+ * @param bool       $livre  Une couverture (avec son ombre).
+ */
+function er_ap_photo( $source, $livre = false ) {
+	$classe = 'er-ap-suit-photo' . ( $livre ? ' est-livre' : '' );
+	if ( is_int( $source ) ) {
+		return $source ? wp_get_attachment_image(
+			$source,
+			'medium_large',
+			false,
+			array(
+				'class'    => $classe,
+				'alt'      => '',
+				'loading'  => 'lazy',
+				'decoding' => 'async',
+				'sizes'    => '460px',
+			)
+		) : '';
+	}
+	$chemin = get_theme_file_path( 'assets/images/' . $source );
+	$taille = is_readable( $chemin ) ? wp_getimagesize( $chemin ) : false;
+	return $taille ? '<img class="' . esc_attr( $classe ) . '" src="' . esc_url( er_image( $source ) ) . '" width="' . (int) $taille[0] . '" height="' . (int) $taille[1] . '" alt="" loading="lazy" decoding="async">' : '';
+}
+
+/**
+ * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, l'image de droite (HTML), si
+ * c'est une couverture (montrée entière, avec son ombre), et la photo qui suit la souris (HTML).
  *
  * @return array<int,array<string,mixed>>
  */
@@ -110,6 +138,7 @@ function er_ap_reponses() {
 		'lien'  => er_em_lien( 'librairie/' ),
 		'image' => er_ap_image_theme( 'triptyques/khokhloma.jpg', array( 1.5, 0, 0 ) ),
 		'livre' => false,
+		'photo' => er_ap_photo( 'triptyques/khokhloma.jpg' ),
 	);
 
 	// Une rencontre : la prochaine (deux heures après son début, elle est passée).
@@ -134,6 +163,7 @@ function er_ap_reponses() {
 			'lien'  => get_permalink( $id ),
 			'image' => $photo ? ( $livre ? '' : '<span class="er-ap-cadre">' ) . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . ( $livre ? '' : '</span>' ) : '',
 			'livre' => (bool) $livre,
+			'photo' => er_ap_photo( $photo, (bool) $livre ),
 		);
 		break;
 	}
@@ -153,6 +183,7 @@ function er_ap_reponses() {
 			'lien'  => get_permalink( function_exists( 'er_traduction' ) ? er_traduction( $expo ) : $expo ),
 			'image' => $photo ? '<span class="er-ap-cadre">' . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . '</span>' : '',
 			'livre' => false,
+			'photo' => er_ap_photo( $photo ),
 		);
 	}
 
@@ -179,6 +210,7 @@ function er_ap_reponses() {
 		'lien'  => $classique ? get_permalink( $classique ) : er_em_lien( 'ymca-press/catalogue/' ),
 		'image' => '<img src="' . esc_url( er_image( 'couv-maitre-marguerite.jpg' ) ) . '" alt="" width="619" height="950" loading="lazy" decoding="async">',
 		'livre' => true,
+		'photo' => er_ap_photo( 'couv-maitre-marguerite.jpg', true ),
 	);
 
 	foreach ( $reponses as &$r ) {
@@ -188,7 +220,8 @@ function er_ap_reponses() {
 }
 
 /**
- * Le module : la phrase et son image, puis le triptyque.
+ * Le module : la phrase et son image, puis le triptyque. Avec une souris, la photo de la phrase suit le pointeur
+ * quand il passe sur elle, comme dans les trois maisons (l'image de droite s'efface alors).
  *
  * Les phrases qu'on ne voit pas restent des liens qu'on atteint au clavier : celle qui prend le focus paraît (le script
  * la montre et s'arrête, comme au survol). Rien n'est annoncé quand la phrase change seule.
@@ -196,17 +229,22 @@ function er_ap_reponses() {
 function er_accueil_phrase() {
 	$textes = '';
 	$images = '';
+	$photos = '';
 	foreach ( er_ap_reponses() as $i => $r ) {
 		$vue     = 0 === $i ? ' est-vue' : '';
 		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '">' . $r['texte'] . '</a>';
 		if ( $r['image'] ) {
 			$images .= '<span class="er-ap-image' . ( $r['livre'] ? ' est-livre' : '' ) . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '">' . $r['image'] . '</span>';
 		}
+		if ( $r['photo'] ) {
+			$photos .= str_replace( '<img ', '<img data-cle="' . esc_attr( $r['cle'] ) . '" ', $r['photo'] );
+		}
 	}
 	$triptyque = function_exists( 'er_triptyque_html' ) ? er_triptyque_html( 'accueil' ) : '';
 	return '<section class="er-ap" aria-label="' . esc_attr__( 'À la une', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
 		. '<div class="er-ap-reponses">' . $textes . '</div>'
-		. '<div class="er-ap-images" aria-hidden="true">' . $images . '</div></div></section>'
+		. '<div class="er-ap-images" aria-hidden="true">' . $images . '</div></div>'
+		. ( '' !== $photos ? '<div class="er-ap-suit" aria-hidden="true">' . $photos . '</div>' : '' ) . '</section>'
 		. ( $triptyque ? '<div class="er-ap-triptyque">' . $triptyque . '</div>' : '' );
 }
 add_shortcode( 'er_accueil_phrase', 'er_accueil_phrase' );

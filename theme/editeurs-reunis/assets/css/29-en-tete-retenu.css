@@ -79,6 +79,11 @@
 }
 .er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 500; }
 html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
+/* Au survol d'un nom, comme partout : il reste à l'encre, les autres passent en gris, en fondu (André, 26 nov.) ;
+   celui dont le menu est ouvert reste à l'encre. */
+.er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: var(--er-gris-nom); }
+.er-mn .er-em-bouton:hover,
+html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--contrast); }
 .er-mn-outils {
 	display: flex;
 	align-items: center;
