@@ -491,16 +491,24 @@
 					liste.innerHTML = '<p class="er-mn-panier-vide">' + texte( liste.getAttribute( 'data-vide' ) ) + '</p>';
 					return;
 				}
+				// Deux colonnes de deux : quatre livres au plus ; au-delà, trois, et la quatrième case dit combien d'autres.
 				var html = '<ul class="er-mn-panier-articles">';
-				articles.slice( 0, 3 ).forEach( function ( a ) {
+				var montres = articles.length > 4 ? articles.slice( 0, 3 ) : articles;
+				montres.forEach( function ( a ) {
 					var image = a.images && a.images[ 0 ] ? '<img src="' + texte( a.images[ 0 ].thumbnail ) + '" alt="">' : '<span class="er-mn-panier-sans"></span>';
 					html += '<li><a href="' + texte( a.permalink ) + '">' + image + '<span class="er-mn-panier-texte"><span class="er-mn-panier-nom">' + a.name + '</span>'
 						+ '<span class="er-mn-panier-prix">' + a.quantity + ' × ' + texte( prix( a.prices.price, a.prices ) ) + '</span></span></a></li>';
 				} );
-				html += '</ul>';
-				if ( articles.length > 3 ) {
-					html += '<p class="er-mn-panier-autres">' + texte( liste.getAttribute( 'data-autres' ).replace( '%d', articles.length - 3 ) ) + '</p>';
+				if ( articles.length > 4 ) {
+					var reste = articles.slice( 3 ).reduce( function ( somme, a ) {
+						return somme + ( parseInt( a.quantity, 10 ) || 1 );
+					}, 0 );
+					var modele = reste > 1 ? liste.getAttribute( 'data-autres' ) : liste.getAttribute( 'data-autre' );
+					var voir = colonne ? colonne.querySelector( '.er-mn-bouton' ) : null;
+					var dire = texte( modele.replace( '%d', reste ) );
+					html += '<li class="er-mn-panier-autres">' + ( voir ? '<a href="' + texte( voir.href ) + '">' + dire + '</a>' : dire ) + '</li>';
 				}
+				html += '</ul>';
 				if ( panier.totals ) {
 					html += '<p class="er-mn-panier-total">' + texte( liste.getAttribute( 'data-total' ).replace( '%s', prix( panier.totals.total_items, panier.totals ) ) ) + '</p>';
 				}

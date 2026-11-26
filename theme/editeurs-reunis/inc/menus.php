@@ -214,7 +214,7 @@ function er_menu_panneau_panier() {
 	}
 	return '<div class="er-em-panneau er-mn-panier" id="er-em-panier" hidden><div class="er-mn-dedans">'
 		. '<div class="er-mn-panier-col"><p class="er-mn-titre">' . esc_html__( 'Votre panier', 'editeurs-reunis' ) . '</p>'
-		. '<div class="er-mn-panier-liste" data-vide="' . esc_attr__( 'Votre panier est vide.', 'editeurs-reunis' ) . '" data-autres="' . esc_attr__( 'et %d autres livres', 'editeurs-reunis' ) . '" data-total="' . esc_attr__( 'Sous-total : %s', 'editeurs-reunis' ) . '"><p class="er-mn-panier-attente">' . esc_html__( 'Votre panier…', 'editeurs-reunis' ) . '</p></div>'
+		. '<div class="er-mn-panier-liste" data-vide="' . esc_attr__( 'Votre panier est vide.', 'editeurs-reunis' ) . '" data-autre="' . esc_attr__( 'et un autre livre', 'editeurs-reunis' ) . '" data-autres="' . esc_attr__( 'et %d autres livres', 'editeurs-reunis' ) . '" data-total="' . esc_attr__( 'Sous-total : %s', 'editeurs-reunis' ) . '"><p class="er-mn-panier-attente">' . esc_html__( 'Votre panier…', 'editeurs-reunis' ) . '</p></div>'
 		. '<p class="er-mn-panier-boutons"><a class="er-mn-bouton" href="' . esc_url( $panier ) . '">' . esc_html__( 'Voir le panier', 'editeurs-reunis' ) . '</a>'
 		. '<a class="er-mn-bouton er-mn-bouton-plein" href="' . esc_url( $caisse ) . '">' . esc_html__( 'Commander', 'editeurs-reunis' ) . '</a></p></div>'
 		. '<div class="er-mn-compte-col"><p class="er-mn-titre">' . esc_html__( 'Mon compte', 'editeurs-reunis' ) . '</p><ul class="er-mn-compte">' . $compte_html . '</ul></div>'

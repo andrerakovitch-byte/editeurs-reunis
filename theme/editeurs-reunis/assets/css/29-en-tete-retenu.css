@@ -142,13 +142,35 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-
 .er-mn-compte-col { grid-column: 9 / span 4; }
 .er-mn-titre { margin: 0 0 24px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
 .er-mn-panier-attente, .er-mn-panier-vide { margin: 0; font-size: 1rem; color: #6B6B66; }
-.er-mn-panier-articles { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+/* Les livres sur deux colonnes de deux, qui se lisent de haut en bas : avec le titre, le sous-total et les boutons,
+   quatre livres tiennent dans les 444 px du panneau (sur une colonne, dès trois, les boutons sortaient du cadre). */
+.er-mn-panier-articles {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: repeat(2, auto);
+	grid-auto-flow: column;
+	gap: 16px 24px;
+}
 .er-mn-panier-articles a { display: flex; align-items: center; gap: 16px; }
 .er-mn-panier-articles img, .er-mn-panier-sans { flex: none; width: 44px; height: 64px; object-fit: cover; background: var(--wp--preset--color--doux); }
 .er-mn-panier-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.er-mn-panier-nom { font-size: 1rem; font-weight: 500; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.er-mn-panier-nom {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.3;
+}
 .er-mn-panier-prix, .er-mn-panier-autres { font-size: 0.875rem; color: #6B6B66; }
-.er-mn-panier-autres { margin: 12px 0 0; }
+/* La quatrième case, quand il y a plus de quatre livres : « et 2 autres livres », sous les titres, vers le panier. */
+.er-mn-panier-autres { display: flex; align-items: center; padding-inline-start: 60px; }
+.er-mn-dedans .er-mn-panier-autres a { color: #6B6B66; transition: color 200ms ease; }
+.er-mn-dedans .er-mn-panier-autres a:hover { color: var(--wp--preset--color--contrast); }
 .er-mn-panier-total { margin: 18px 0 0; font-size: 1rem; font-weight: 500; }
 .er-mn-panier-boutons { display: flex; gap: 12px; margin: auto 0 0; padding-top: 24px; }
 .er-mn-panier-col.est-vide .er-mn-panier-boutons { display: none; }
