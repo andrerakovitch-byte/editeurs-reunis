@@ -9,14 +9,47 @@
 	--er-ligne: 0px; /* plus de ligne de maison : la bande s'accroche en haut de l'écran */
 }
 
-/* La barre d'informations : la langue au bout, dans sa bulle « Aя ». Elle passe au-dessus de la barre du nom et des
-   menus ouverts, pour que la liste des langues, qui descend sur eux, se voie et se touche. */
+/* La barre d'informations : la langue au bout, dans sa bulle « Aя ». */
 .er-em-barre { position: relative; z-index: 2; }
-.er-infos { position: relative; z-index: 4; }
 .er-choix-langue-bouton { display: inline-flex; align-items: center; gap: 7px; }
 .er-choix-langue-bulle { flex: none; transform: translateY(2px); }
-.er-choix-langue-liste { min-width: 15rem; padding-block: 10px; }
-.er-choix-langue-nom { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+
+/* Les langues (P5, 26 nov.) : chacune dans son alphabet, en toutes lettres ; celle de la page à l'encre, les autres
+   en gris, qui passent à l'encre au survol. Ailleurs que dans la barre (le pied du plan, le menu du téléphone), une
+   petite liste ; dans la barre, le panneau ci-dessous. */
+.er-choix-langue-liste { display: flex; flex-direction: column; gap: 6px; min-width: 12rem; padding: 18px 22px; }
+.er-choix-langue-liste[hidden] { display: none; }
+.er-choix-langue-lien { padding: 0; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; color: var(--er-gris-nom, #8C8C87) !important; transition: color 200ms ease; }
+.er-choix-langue-lien:hover,
+.er-choix-langue-lien:focus-visible,
+.er-choix-langue-lien[aria-current] { background: none; color: var(--wp--preset--color--contrast) !important; }
+.er-choix-langue-lien[aria-current] { font-weight: 500; }
+.er-choix-langue-liste .er-choix-langue-nom { font: inherit; letter-spacing: inherit; color: inherit !important; }
+
+/* Dans la barre d'informations, à l'ordinateur : au clic sur « Français », un panneau sous la barre du nom, de la
+   hauteur des menus (446 px avec ses filets), les langues en grands mots de 48 px, comme les pages des maisons. */
+@media (min-width: 782px) {
+	.er-infos,
+	.er-infos .er-choix-langue { position: static; }
+	.er-infos .er-choix-langue-liste {
+		top: 100%;
+		right: 0;
+		left: 0;
+		z-index: 4;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-content: flex-start;
+		gap: 4px 0.6em;
+		min-width: 0;
+		height: 446px;
+		box-sizing: border-box;
+		padding: 48px var(--wp--style--root--padding-right) 48px var(--wp--style--root--padding-left);
+		border: 0;
+		border-block: 1px solid var(--wp--preset--color--filet);
+		background: var(--wp--preset--color--base);
+	}
+	.er-infos .er-choix-langue-lien { font-size: 3rem; line-height: 1.14; letter-spacing: -0.03em; }
+}
 
 /* La barre du nom : blanche, 116 px, fermée d'un filet. */
 .er-barre { border-bottom: 1px solid var(--wp--preset--color--filet); }

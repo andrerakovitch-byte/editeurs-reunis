@@ -247,9 +247,9 @@ function er_info_quand_court( $id ) {
 }
 
 /**
- * Le choix de la langue, au bout de la barre d'informations (B3, 25 nov. 2026) : la langue de la page en toutes lettres
- * et un chevron ; la liste s'ouvre dessous, chaque langue dans son alphabet, avec son code, celle de la page cochée
- * (assets/js/entete.js). Sans JavaScript, la liste reste fermée : les langues sont aussi dans le menu du téléphone et
+ * Le choix de la langue, au bout de la barre d'informations (B3, 25 nov. 2026 ; P5, 26 nov.) : la bulle « Aя » et la
+ * langue de la page en toutes lettres ; au clic, les langues s'ouvrent en grands mots, sous la barre du nom, comme
+ * les menus, chacune dans son alphabet, celle de la page à l'encre (assets/js/entete.js). Sans JavaScript, la liste reste fermée : les langues sont aussi dans le menu du téléphone et
  * au pied de la page.
  */
 function er_choix_langue() {
@@ -266,12 +266,12 @@ function er_choix_langue() {
 			$ici = $l;
 		}
 	}
-	$coche   = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
-	$items   = '';
+	// Chaque langue dans son alphabet, en toutes lettres (P5, 26 nov. 2026) : plus de code ni de coche, la langue de la
+	// page est à l'encre, les autres en gris.
+	$items = '';
 	foreach ( $liens as $l ) {
 		$items .= '<li><a class="er-choix-langue-lien' . ( $l['traduite'] ? '' : ' est-absente' ) . '" href="' . esc_url( $l['url'] ) . '" hreflang="' . esc_attr( $l['code'] ) . '" lang="' . esc_attr( $l['code'] ) . '"' . ( $l['actuelle'] ? ' aria-current="true"' : '' ) . '>'
-			. '<span class="er-choix-langue-nom">' . esc_html( $l['nom'] ) . '</span>'
-			. '<span class="er-choix-langue-code">' . esc_html( strtoupper( $l['code'] ) ) . ( $l['actuelle'] ? $coche : '' ) . '</span></a></li>';
+			. '<span class="er-choix-langue-nom">' . esc_html( $l['nom'] ) . '</span></a></li>';
 	}
 	return '<div class="er-choix-langue">'
 		/* translators: %s: la langue de la page, dans sa langue (« Français »). */

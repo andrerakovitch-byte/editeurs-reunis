@@ -164,7 +164,22 @@
 	.er-mp-outils > a { color: var(--wp--preset--color--contrast); }
 	.er-mp-langue { margin-left: auto; }
 	.er-mp-langue .er-choix-langue-bouton { gap: 8px; padding: 0; font-size: 0.9375rem; font-weight: 500; color: var(--wp--preset--color--contrast); }
-	.er-mp-langue .er-choix-langue-liste { top: auto; bottom: calc(100% + 12px); right: 0; }
+	/* Les langues montent au-dessus du bas, sur toute la largeur, en gras comme les maisons. */
+	.er-mp-bas { position: relative; }
+	.er-mp-langue .er-choix-langue { position: static; }
+	.er-mp-langue .er-choix-langue-liste {
+		top: auto;
+		right: 0;
+		bottom: 100%;
+		left: 0;
+		gap: 4px;
+		min-width: 0;
+		padding: 20px var(--wp--style--root--padding-right, 20px) 20px var(--wp--style--root--padding-left, 20px);
+		border: 0;
+		border-top: 1px solid var(--wp--preset--color--filet);
+		background: var(--wp--preset--color--base);
+	}
+	.er-mp-langue .er-choix-langue-lien { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
 }
 
 @media (prefers-reduced-motion: reduce) {
