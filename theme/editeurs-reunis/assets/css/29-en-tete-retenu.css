@@ -139,7 +139,7 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-
 /* Pas de nom dans le plan (André, 26 nov.) : la barre du nom, au-dessus, le porte déjà ; sans elle, « Fermer » seul. */
 .er-em-plan .er-logo { display: none; }
 .er-em-plan.avec-barre .er-em-plan-barre { justify-content: flex-end; min-height: 0; padding-block: 1rem; }
-.er-em-menu-croix { display: none; }
+.er-em-menu .er-em-menu-croix { display: none; }
 .er-em-menu[aria-expanded="true"] .er-em-menu-trois { display: none; }
 .er-em-menu[aria-expanded="true"] .er-em-menu-croix { display: block; }
 
