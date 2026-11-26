@@ -93,14 +93,21 @@ function er_tete_page( $a ) {
 		. implode( '<span class="er-tete-sep" aria-hidden="true">/</span>', $morceaux ) . '</nav>'
 		. ( '' !== $a['faits'] ? '<p class="er-tete-faits">' . esc_html( $a['faits'] ) . '</p>' : '' ) . '</div>';
 
+	// La tête retenue le 26 novembre 2026 (S1 et T1, canevas « Les pages intérieures, dans la direction ») : sur le
+	// blanc, 400 px de haut, le grand titre en bas à gauche, et à droite le triptyque de la page (inc/triptyques.php),
+	// ou le portrait d'une personne. Le fil, les faits et le chapô ne s'affichent plus ; le fil reste pour les moteurs
+	// de recherche (er_tete_fil_ld()).
+	unset( $fil, $points );
 	$balise = $a['h1'] ? 'h1' : 'p';
-	$titre  = '<div class="er-tete-titres"><' . $balise . ' class="er-tete-titre">' . esc_html( $a['titre'] ) . '</' . $balise . '>'
+	$long   = mb_strlen( $a['titre'] );
+	$taille = $long <= 16 ? 'grand' : ( $long <= 30 ? 'moyen' : ( $long <= 52 ? 'long' : 'tres-long' ) );
+	$titre  = '<div class="er-tete-titres"><' . $balise . ' class="er-tete-titre er-tete-titre-' . $taille . '"' . ( preg_match( '/\p{Cyrillic}/u', $a['titre'] ) ? ' lang="ru"' : '' ) . '>' . esc_html( $a['titre'] ) . '</' . $balise . '>'
 		. ( '' !== $a['sous_titre'] ? '<p class="er-tete-sous-titre">' . esc_html( $a['sous_titre'] ) . '</p>' : '' ) . '</div>';
-	$chapo  = '' !== trim( $a['chapo'] ) ? '<p class="er-tete-chapo">' . esc_html( $a['chapo'] ) . '</p>' : '';
-	$image  = '' !== $a['image'] ? '<figure class="er-tete-image">' . $a['image'] . '</figure>' : '';
-	$classes = 'er-tete er-tete-' . $maison . ( $image ? ' er-tete-avec-image' : '' ) . ( $chapo ? '' : ' er-tete-sans-chapo' );
-	return '<section class="' . esc_attr( $classes ) . '">'
-		. $fil . '<div class="er-tete-corps">' . $image . $titre . $chapo . '</div></section>'
+	$droite = '' !== $a['image']
+		? '<figure class="er-tete-image">' . $a['image'] . '</figure>'
+		: ( function_exists( 'er_triptyque_html' ) ? er_triptyque_html( er_triptyque_de_la_page( $maison ) ) : '' );
+	$classes = 'er-tete er-tete-' . $maison . ( '' !== $a['image'] ? ' er-tete-avec-image' : '' );
+	return '<section class="' . esc_attr( $classes ) . '"><div class="er-tete-corps">' . $titre . $droite . '</div></section>'
 		. er_tete_fil_ld( $chemin, $a['titre'] );
 }
 

@@ -125,24 +125,7 @@ add_filter(
 // Les liens de la bande (les années, les vidéos, les cycles) restent sur la page d'essai.
 add_filter( 'er_evt_page_liste', fn( $url ) => er_essai() ? get_permalink( get_queried_object_id() ) : $url );
 
-// Les menus au clic : leur script, sur les pages d'essai seulement.
-add_action(
-	'wp_enqueue_scripts',
-	function () {
-		if ( er_essai() ) {
-			wp_enqueue_script(
-				'editeurs-reunis-essai-menus',
-				get_theme_file_uri( 'assets/js/essai-menus.js' ),
-				array(),
-				wp_get_theme()->get( 'Version' ) . '.' . filemtime( get_theme_file_path( 'assets/js/essai-menus.js' ) ),
-				array(
-					'strategy'  => 'defer',
-					'in_footer' => true,
-				)
-			);
-		}
-	}
-);
+// Les menus : leur script est celui de tout le site (inc/menus.php, assets/js/menus.js).
 
 /**
  * La tête blanche : le titre de la page, seul.

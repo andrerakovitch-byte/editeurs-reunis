@@ -1,0 +1,213 @@
+/* --------------------------------------------------------------------------
+   L'en-tête retenu et la tête de page, sur tout le site (26 nov. 2026 ; inc/menus.php, inc/triptyques.php,
+   assets/js/menus.js ; canevas « Les pages intérieures, dans la direction », planches H, I, J, N, P5, R1, S1 et la
+   planche des triptyques). Ces règles passent après celles de l'en-tête des maisons (02) et des pages d'essai (27, 28).
+   -------------------------------------------------------------------------- */
+
+:root {
+	--er-gris-nom: #8C8C87; /* les noms qui pâlissent, menu ouvert */
+	--er-ligne: 0px; /* plus de ligne de maison : la bande s'accroche en haut de l'écran */
+}
+
+/* La barre d'informations : la langue au bout, dans sa bulle « Aя ». */
+.er-infos,
+.er-em-barre { position: relative; z-index: 2; }
+.er-choix-langue-bouton { display: inline-flex; align-items: center; gap: 7px; }
+.er-choix-langue-bulle { flex: none; transform: translateY(2px); }
+.er-choix-langue-liste { min-width: 15rem; padding-block: 10px; }
+.er-choix-langue-nom { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+
+/* La barre du nom : blanche, 116 px, fermée d'un filet. */
+.er-barre { border-bottom: 1px solid var(--wp--preset--color--filet); }
+.er-barre-dedans { min-height: 116px; }
+.er-mn-droite { display: flex; align-items: center; gap: 30px; }
+.er-mn { gap: 16px; font-size: 1.25rem; }
+.er-mn .er-em-bouton {
+	padding: 10px 0;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+	transition: color 200ms ease;
+}
+.er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 500; }
+html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
+.er-mn-outils {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-inline-start: 20px;
+	border-inline-start: 1px solid var(--wp--preset--color--filet);
+}
+.er-mn-outils .er-picto { width: 40px; height: 40px; }
+.er-barre .er-mn-outils .er-loupe { margin-inline-start: 0; }
+.er-barre .er-mn-outils .er-loupe::before { content: none; }
+.er-sac[aria-expanded="true"] { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base) !important; }
+.er-sac-nombre {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	min-width: 16px;
+	height: 16px;
+	padding: 0 4px;
+	box-sizing: border-box;
+	border-radius: 8px;
+	background: #4F6AD8;
+	color: #FFFFFF;
+	box-shadow: 0 0 0 2px #FFFFFF;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 16px;
+	text-align: center;
+}
+.er-sac-nombre[hidden] { display: none; }
+
+/* Les menus : 446 px avec leurs filets, de quoi couvrir la tête de la page et sa bande. */
+.er-em-panneau .er-em-dedans,
+.er-mn-dedans {
+	box-sizing: border-box;
+	height: 444px;
+	overflow: hidden;
+	padding: 48px var(--wp--style--root--padding-right) 48px var(--wp--style--root--padding-left);
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 24px;
+	align-items: start;
+}
+.er-mn-dedans a { color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-mn-dedans a:hover { text-decoration: none; }
+
+/* La Librairie : les rayons, les sous-rayons du rayon survolé, le livre. */
+.er-mn-rayons-col { grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 24px; }
+.er-mn-rayons { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 1.25rem; font-weight: 500; line-height: 1.2; }
+.er-mn-rayons a { color: var(--er-gris-nom) !important; transition: color 200ms ease; }
+.er-mn-rayons a.est-actif { color: var(--wp--preset--color--contrast) !important; }
+.er-mn-toute { font-size: 0.9375rem; }
+.er-mn-sous { grid-column: 4 / span 5; }
+.er-mn-sous-rayon[hidden], .er-mn-livre[hidden] { display: none; }
+.er-mn-tout-rayon { display: inline-block; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+.er-mn-groupes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.er-mn-groupe { display: flex; flex-direction: column; gap: 12px; }
+.er-mn-groupe-titre { margin: 0 0 4px; font-size: 0.8125rem; color: #6B6B66; }
+.er-mn-groupe ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 1rem; line-height: 1.3; }
+.er-mn-groupe a { transition: color 200ms ease; }
+.er-mn-sous-rayon.est-survol a[data-livre]:not(.est-survole) { color: var(--er-gris-nom); }
+.er-mn-livres { grid-column: 9 / span 4; }
+.er-mn-livre-rayon { margin: 0 0 14px; font-size: 0.8125rem; color: #6B6B66; }
+.er-mn-livre a { display: flex; align-items: flex-end; gap: 20px; }
+.er-mn-livre img { display: block; flex: none; width: auto; height: 200px; max-width: 60%; object-fit: cover; }
+.er-mn-livre-texte { display: flex; flex-direction: column; gap: 6px; }
+.er-mn-livre-titre { font-size: 1.1875rem; font-weight: 500; line-height: 1.3; }
+.er-mn-livre-sous { font-size: 0.875rem; color: #6B6B66; }
+
+/* Les grands mots : 48 px ; la photo de la page survolée, 300 px, à droite. */
+.er-em-mots { font-size: 3rem; font-weight: 500; line-height: 1.14; letter-spacing: -0.03em; }
+.er-em-photos { height: 300px; }
+.er-em-photos img { height: 300px; }
+
+/* Le sac : le panier à gauche, le compte à droite. */
+.er-mn-panier-col { grid-column: 1 / span 7; display: flex; flex-direction: column; min-height: 0; }
+.er-mn-compte-col { grid-column: 9 / span 4; }
+.er-mn-titre { margin: 0 0 24px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+.er-mn-panier-attente, .er-mn-panier-vide { margin: 0; font-size: 1rem; color: #6B6B66; }
+.er-mn-panier-articles { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.er-mn-panier-articles a { display: flex; align-items: center; gap: 16px; }
+.er-mn-panier-articles img, .er-mn-panier-sans { flex: none; width: 44px; height: 64px; object-fit: cover; background: var(--wp--preset--color--doux); }
+.er-mn-panier-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.er-mn-panier-nom { font-size: 1rem; font-weight: 500; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.er-mn-panier-prix, .er-mn-panier-autres { font-size: 0.875rem; color: #6B6B66; }
+.er-mn-panier-autres { margin: 12px 0 0; }
+.er-mn-panier-total { margin: 18px 0 0; font-size: 1rem; font-weight: 500; }
+.er-mn-panier-boutons { display: flex; gap: 12px; margin: auto 0 0; padding-top: 24px; }
+.er-mn-bouton {
+	display: inline-flex;
+	align-items: center;
+	padding: 12px 22px;
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: 999px;
+	font-size: 0.9375rem;
+	font-weight: 500;
+}
+.er-mn-bouton-plein { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base) !important; }
+.er-mn-compte { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+
+@media (max-width: 1319px) {
+	.er-mn { display: none; }
+	.er-mn-droite { gap: 16px; }
+}
+@media (max-width: 781px) {
+	.er-barre-dedans { min-height: 80px; }
+	.er-mn-outils { padding-inline-start: 0; border-inline-start: 0; }
+	.er-mn-outils .er-loupe, .er-mn-outils .er-sac { display: none; }
+}
+
+/* La tête de page (S1, T1) : sur le blanc, 400 px ; le grand titre en bas à gauche ; le triptyque à droite. */
+.er-tete {
+	display: flex;
+	align-items: flex-end;
+	height: 400px;
+	padding: 0 var(--wp--style--root--padding-right, 5rem) 64px var(--wp--style--root--padding-left, 5rem);
+	background: var(--wp--preset--color--base);
+	border-bottom: 0;
+}
+.er-tete-corps { width: 100%; margin-top: 0; column-gap: 24px; align-items: end; }
+.er-tete-titres, .er-tete-avec-image .er-tete-titres { grid-column: 1 / span 7; }
+.er-tete-titre { font-weight: 500; line-height: 0.95; letter-spacing: -0.045em; text-wrap: balance; }
+.er-tete-titre-grand { font-size: clamp(3rem, 8.4vw, 7.5rem); }
+.er-tete-titre-moyen { font-size: clamp(2.5rem, 5.6vw, 5rem); }
+.er-tete-titre-long { font-size: clamp(2.125rem, 4vw, 3.5rem); line-height: 1; }
+.er-tete-titre-tres-long { font-size: clamp(1.875rem, 3vw, 2.625rem); line-height: 1.05; letter-spacing: -0.03em; }
+.er-tete-sous-titre { margin: 16px 0 0; font-size: 0.9375rem; }
+.er-tri {
+	grid-column: 8 / -1;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+	height: 288px;
+}
+.er-tri-image { position: relative; display: block; overflow: hidden; height: 100%; background: var(--wp--preset--color--doux); }
+.er-tri-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: var(--er-tri-x, 50%) var(--er-tri-y, 50%);
+	transform: scale(var(--er-tri-z, 1));
+	transform-origin: var(--er-tri-x, 50%) var(--er-tri-y, 50%);
+}
+.er-tri-aplat { display: block; width: 100%; height: 100%; }
+/* Une personne : son portrait à la place du triptyque, en hauteur, à droite. */
+.er-tete-image { grid-column: 10 / -1; justify-self: end; height: 288px; aspect-ratio: auto; background: none; }
+.er-tete-image img { width: auto; height: 100%; max-width: 100%; }
+
+/* La bande : sur le blanc, entre deux filets ; l'entrée courante en demi-gras. */
+.er-bande {
+	--er-teinte: var(--wp--preset--color--base);
+	--er-trait: var(--wp--preset--color--contrast);
+	background: var(--wp--preset--color--base);
+	border-block: 1px solid var(--wp--preset--color--filet);
+}
+.er-bande.est-accrochee { box-shadow: none; }
+.er-bande-liste { gap: 0 26px; }
+.er-bande-lien { font-size: 0.9375rem; font-weight: 400; color: var(--wp--preset--color--contrast); }
+.er-bande-lien[aria-current], .er-bande-lien.est-courant { font-weight: 600; }
+.er-bande-groupe { font-size: 0.9375rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--wp--preset--color--discret); }
+.er-bande-sep { height: 18px; background: var(--wp--preset--color--filet); }
+.er-bande-nom { font-size: 0.9375rem; letter-spacing: 0; text-transform: none; }
+.er-bande.est-accrochee .er-bande-nom { border-inline-end-color: var(--wp--preset--color--filet); }
+
+@media (max-width: 1100px) {
+	.er-tete { height: 340px; }
+	.er-tri, .er-tete-image { height: 220px; }
+}
+@media (max-width: 781px) {
+	.er-tete { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
+	.er-tete-corps, .er-tete-avec-image .er-tete-corps { display: flex; flex-direction: column; align-items: stretch; gap: 24px; margin-top: 0; }
+	.er-tete-titre-grand { font-size: 3rem; }
+	.er-tete-titre-moyen { font-size: 2.5rem; }
+	.er-tete-titre-long { font-size: 2rem; }
+	.er-tete-titre-tres-long { font-size: 1.75rem; }
+	.er-tri { height: 190px; gap: 8px; }
+	.er-tete-image { align-self: flex-start; height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.er-mn .er-em-bouton, .er-mn-rayons a, .er-mn-groupe a { transition: none; }
+}

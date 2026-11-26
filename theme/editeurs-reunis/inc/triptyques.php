@@ -1,0 +1,165 @@
+<?php
+/**
+ * Les triptyques de la tête de page (26 nov. 2026, la planche « Un triptyque par page, pour la photographe » du
+ * canevas « Les pages intérieures, dans la direction ») : trois images sans texte, à droite du grand titre, chacune un
+ * lien. Ce sont des triptyques d'essai, en attendant les séries de la photographe.
+ *
+ * - Six pages ont le leur (Nos expositions, Nos événements, la librairie, la maison d'édition, Un siècle d'histoire,
+ *   Nous trouver) ; les autres pages prennent celui de leur maison (er_triptyque_de_la_page()).
+ * - Le cadrage de chaque image est celui qu'André a réglé sur la planche : le zoom, et le point (horizontal, vertical,
+ *   en %) vers lequel on zoome. Le CSS le rend tel quel (object-position, transform-origin, scale).
+ * - Nos photos sont dans le thème (assets/images/triptyques/). Les filés de la Comédie-Française, qui servent de
+ *   références sur la bêta, ne vont pas dans le dépôt, qui est public : on les dépose dans la médiathèque de WordPress
+ *   sous leur nom (er-cf-bleu-nuit.jpg…), et le thème les y trouve ; tant qu'ils n'y sont pas, leur place est un aplat
+ *   de leur teinte.
+ *
+ * @package editeurs-reunis
+ */
+
+/**
+ * Les images : la source (le thème, ou la médiathèque pour un filé), la teinte de repli, le cadrage d'André.
+ */
+function er_triptyque_images() {
+	return array(
+		// Nos photos.
+		'photographe'   => array( 'theme' => 'triptyques/photographe.jpg', 'cadre' => array( 2.05, 61, 44 ) ),
+		'signature'     => array( 'theme' => 'triptyques/signature.jpg', 'cadre' => array( 1.75, 42, 4 ) ),
+		'lecteur'       => array( 'theme' => 'triptyques/lecteur.jpg', 'cadre' => array( 1.65, 47, 6 ) ),
+		'deux-lecteurs' => array( 'theme' => 'triptyques/deux-lecteurs.jpg', 'cadre' => array( 1.82, 65, 67 ) ),
+		'vermont'       => array( 'theme' => 'triptyques/vermont.jpg', 'cadre' => array( 1.03, 42, 0 ) ),
+		'congres'       => array( 'theme' => 'une-congres.jpg', 'cadre' => array( 2.95, 46, 36 ) ),
+		'imprimerie'    => array( 'theme' => 'une-imprimerie.jpg', 'cadre' => array( 1.85, 71, 39 ) ),
+		'groupe'        => array( 'theme' => 'triptyques/groupe.jpg', 'cadre' => array( 1.45, 35, 0 ) ),
+		'facade'        => array( 'theme' => 'triptyques/facade.jpg', 'cadre' => array( 1, 100, 50 ) ),
+		'peintre'       => array( 'theme' => 'triptyques/peintre.jpg', 'cadre' => array( 1.91, 15, 0 ) ),
+		'khokhloma'     => array( 'theme' => 'triptyques/khokhloma.jpg', 'cadre' => array( 1.5, 0, 0 ) ),
+		// Les filés de la Comédie-Française, des références : dans la médiathèque seulement.
+		'cf-bleu-nuit'  => array( 'media' => 'er-cf-bleu-nuit', 'teinte' => '#21303F', 'cadre' => array( 1, 50, 42 ) ),
+		'cf-ciel-pale'  => array( 'media' => 'er-cf-ciel-pale', 'teinte' => '#848BA3', 'cadre' => array( 1, 50, 50 ) ),
+		'cf-orange'     => array( 'media' => 'er-cf-orange', 'teinte' => '#503828', 'cadre' => array( 1, 50, 56 ) ),
+		'cf-or-brun'    => array( 'media' => 'er-cf-or-brun', 'teinte' => '#754B1D', 'cadre' => array( 1, 50, 50 ) ),
+		'cf-creme'      => array( 'media' => 'er-cf-creme', 'teinte' => '#8B7969', 'cadre' => array( 1, 50, 50 ) ),
+		'cf-fenetre'    => array( 'media' => 'er-cf-fenetre', 'teinte' => '#5D4F44', 'cadre' => array( 1, 50, 50 ) ),
+		'cf-visage'     => array( 'media' => 'er-cf-visage', 'teinte' => '#462E24', 'cadre' => array( 1, 50, 50 ) ),
+	);
+}
+
+/**
+ * Les triptyques : trois images, et la page où mène chacune.
+ */
+function er_triptyques() {
+	$expo      = function_exists( 'er_info_exposition' ) ? er_info_exposition() : null;
+	$rencontre = function_exists( 'er_evt_requete' ) ? er_evt_requete( true ) : array();
+	$archipel  = function_exists( 'er_trois_maisons_archipel' ) ? (int) er_trois_maisons_archipel() : 0;
+	$expos     = er_lien( 'centre-culturel/expositions/' );
+	$evts      = er_lien( 'centre-culturel/evenements/' );
+	return array(
+		'expositions' => array(
+			array( 'cf-bleu-nuit', $expos ),
+			array( 'photographe', $expo ? get_permalink( $expo ) : $expos ),
+			array( 'cf-ciel-pale', er_lien( 'centre-culturel/videos/' ) ),
+		),
+		'evenements'  => array(
+			array( 'signature', $rencontre ? get_permalink( $rencontre[0] ) : $evts ),
+			array( 'lecteur', $evts ),
+			array( 'deux-lecteurs', er_lien( 'centre-culturel/podcasts/' ) ),
+		),
+		'librairie'   => array(
+			array( 'cf-creme', er_lien( 'librairie/' ) ),
+			array( 'cf-fenetre', add_query_arg( 'orderby', 'popularity', er_lien( 'librairie/' ) ) ),
+			array( 'cf-visage', er_lien( 'mention/occasion/' ) ),
+		),
+		'edition'     => array(
+			array( 'cf-orange', er_lien( 'ymca-press/catalogue/' ) ),
+			array( 'cf-or-brun', er_lien( 'ymca-press/histoire/' ) ),
+			array( 'vermont', er_lien( 'ymca-press/amis-ymca-press/' ) ),
+		),
+		'histoire'    => array(
+			array( 'congres', er_lien( 'ymca-press/histoire/' ) ),
+			array( 'imprimerie', $archipel ? get_permalink( $archipel ) : er_lien( 'ymca-press/catalogue/' ) ),
+			array( 'groupe', er_lien( 'ymca-press/' ) ),
+		),
+		'trouver'     => array(
+			array( 'facade', er_lien( 'nous-trouver/' ) ),
+			array( 'peintre', er_lien( 'ymca-press/' ) ),
+			array( 'khokhloma', er_lien( 'librairie/' ) ),
+		),
+	);
+}
+
+/**
+ * Le triptyque de la page qu'on regarde : le sien (six pages), sinon celui de sa maison.
+ *
+ * @param string $maison La maison de la page (librairie, ymca, centre, ou rien).
+ */
+function er_triptyque_de_la_page( $maison ) {
+	$chemin = trim( (string) ( function_exists( 'er_chemin_reference' ) ? er_chemin_reference() : '' ), '/' );
+	$pages  = array(
+		'centre-culturel/expositions' => 'expositions',
+		'centre-culturel/evenements'  => 'evenements',
+		'ymca-press'                  => 'edition',
+		'ymca-press/histoire'         => 'histoire',
+		'nous-trouver'                => 'trouver',
+	);
+	if ( isset( $pages[ $chemin ] ) ) {
+		return $pages[ $chemin ];
+	}
+	if ( 0 === strpos( $chemin, 'centre-culturel/evenements' ) || 0 === strpos( $chemin, 'centre-culturel/essai' ) ) {
+		return 'evenements';
+	}
+	$maisons = array(
+		'librairie' => 'librairie',
+		'ymca'      => 'edition',
+		'centre'    => 'evenements',
+	);
+	return isset( $maisons[ $maison ] ) ? $maisons[ $maison ] : 'trouver';
+}
+
+/**
+ * L'adresse d'un filé déposé dans la médiathèque, d'après son nom ; '' s'il n'y est pas encore.
+ *
+ * @param string $nom Le nom du fichier, sans extension (er-cf-bleu-nuit).
+ */
+function er_triptyque_media( $nom ) {
+	static $trouves = array();
+	if ( ! isset( $trouves[ $nom ] ) ) {
+		$ids             = get_posts(
+			array(
+				'post_type'      => 'attachment',
+				'post_status'    => 'inherit',
+				'name'           => $nom,
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
+				'lang'           => '',
+			)
+		);
+		$trouves[ $nom ] = $ids ? (string) wp_get_attachment_image_url( $ids[0], 'large' ) : '';
+	}
+	return $trouves[ $nom ];
+}
+
+/**
+ * Un triptyque, en HTML : trois liens, chacun une image cadrée (ou l'aplat d'un filé absent).
+ *
+ * @param string $cle expositions, evenements, librairie, edition, histoire, trouver.
+ */
+function er_triptyque_html( $cle ) {
+	$tous   = er_triptyques();
+	$images = er_triptyque_images();
+	if ( ! isset( $tous[ $cle ] ) ) {
+		return '';
+	}
+	$html = '';
+	foreach ( $tous[ $cle ] as list( $nom, $lien ) ) {
+		$i             = $images[ $nom ];
+		list( $z, $x, $y ) = $i['cadre'];
+		$src           = isset( $i['theme'] ) ? er_image( $i['theme'] ) : er_triptyque_media( $i['media'] );
+		$style         = sprintf( '--er-tri-x:%1$s%%;--er-tri-y:%2$s%%;--er-tri-z:%3$s', $x, $y, $z );
+		$contenu       = $src
+			? '<img src="' . esc_url( $src ) . '" alt="" loading="lazy" decoding="async" style="' . esc_attr( $style ) . '">'
+			: '<span class="er-tri-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
+		$html         .= '<a class="er-tri-image" href="' . esc_url( $lien ) . '" tabindex="-1" aria-hidden="true">' . $contenu . '</a>';
+	}
+	return '<div class="er-tri" data-triptyque="' . esc_attr( $cle ) . '">' . $html . '</div>';
+}

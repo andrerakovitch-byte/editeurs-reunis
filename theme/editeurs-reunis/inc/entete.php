@@ -267,7 +267,6 @@ function er_choix_langue() {
 		}
 	}
 	$coche   = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
-	$chevron = '<svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true" focusable="false"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
 	$items   = '';
 	foreach ( $liens as $l ) {
 		$items .= '<li><a class="er-choix-langue-lien' . ( $l['traduite'] ? '' : ' est-absente' ) . '" href="' . esc_url( $l['url'] ) . '" hreflang="' . esc_attr( $l['code'] ) . '" lang="' . esc_attr( $l['code'] ) . '"' . ( $l['actuelle'] ? ' aria-current="true"' : '' ) . '>'
@@ -277,7 +276,8 @@ function er_choix_langue() {
 	return '<div class="er-choix-langue">'
 		/* translators: %s: la langue de la page, dans sa langue (« Français »). */
 		. '<button type="button" class="er-choix-langue-bouton" aria-expanded="false" aria-controls="er-choix-langue-liste" aria-label="' . esc_attr( sprintf( __( 'Langue du site : %s', 'editeurs-reunis' ), $ici['nom'] ) ) . '">'
-		. '<span lang="' . esc_attr( $ici['code'] ) . '">' . esc_html( $ici['nom'] ) . '</span>' . $chevron . '</button>'
+		// La bulle « Aя » devant le nom de la langue (P5, 26 nov. 2026), sans chevron.
+		. '<svg class="er-choix-langue-bulle" width="22" height="19" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 1h19A2.5 2.5 0 0 1 25 3.5v10a2.5 2.5 0 0 1-2.5 2.5H11L6 21v-5H3.5A2.5 2.5 0 0 1 1 13.5v-10A2.5 2.5 0 0 1 3.5 1z"/><text x="13" y="12.7" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="11.5" font-weight="700" letter-spacing="-0.3" fill="currentColor" stroke="none">Aя</text></svg>' . '<span lang="' . esc_attr( $ici['code'] ) . '">' . esc_html( $ici['nom'] ) . '</span></button>'
 		. '<ul class="er-choix-langue-liste" id="er-choix-langue-liste" hidden>' . $items . '</ul></div>';
 }
 
@@ -346,7 +346,8 @@ function er_infos() {
 
 	// Au bout de la barre (B3, 25 nov. 2026) : la langue, puis le compte, au-dessus du panier de la barre du nom. Au
 	// téléphone, ils passent dans le menu.
-	$outils = '<div class="er-infos-outils">' . er_choix_langue() . '<span class="er-infos-filet" aria-hidden="true"></span>' . do_shortcode( '[er_compte_entete]' ) . '</div>';
+	// Le compte est passé dans le sac de la barre du nom (J, 26 nov. 2026) : il ne reste que la langue.
+	$outils = '<div class="er-infos-outils">' . er_choix_langue() . '</div>';
 
 	return '<div class="er-infos" role="region" aria-label="' . esc_attr__( 'En ce moment', 'editeurs-reunis' ) . '"><div class="er-infos-dedans"><div class="er-infos-fil">' . implode( '', $items ) . '</div>' . $outils . '</div></div>';
 }
