@@ -17,6 +17,7 @@ require get_template_directory() . '/inc/bande.php';
 require get_template_directory() . '/inc/tete.php';
 require get_template_directory() . '/inc/triptyques.php';
 require get_template_directory() . '/inc/index.php';
+require get_template_directory() . '/inc/accueil-phrase.php';
 require get_template_directory() . '/inc/expo-du-moment.php';
 require get_template_directory() . '/inc/journal-defile.php';
 require get_template_directory() . '/inc/trois-maisons.php';
@@ -708,7 +709,7 @@ add_shortcode(
 add_filter(
 	'render_block_core/html',
 	function ( $html ) {
-		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index|expo_du_moment|journal_defile|trois_maisons|pied|essai_[a-z_]+|menu|menu_[a-z_]+)\]/', $html ) ? do_shortcode( $html ) : $html;
+		return preg_match( '/\[er_(langues_entete|langues_menu|menu_outils|sous_menu|compte_entete|infos|lignes|index|accueil_phrase|expo_du_moment|journal_defile|trois_maisons|pied|essai_[a-z_]+|menu|menu_[a-z_]+)\]/', $html ) ? do_shortcode( $html ) : $html;
 	}
 );
 
