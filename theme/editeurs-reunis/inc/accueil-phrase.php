@@ -6,10 +6,11 @@
  * gabarit est celui de la tête des pages intérieures : 400 px, le texte calé en bas.
  *
  * Le livre (la librairie) et le classique (Le Maître et Marguerite) sont écrits ici. La rencontre et l'exposition se
- * lisent dans le site à chaque affichage : la prochaine rencontre et l'exposition du moment. Leur phrase est l'extrait
- * de leur fiche s'il est rempli (« l'historien Nicolas Werth présentera son livre Adieu ma Russie »), sinon elle se
- * compose de leur titre ; l'image de la rencontre est la couverture de son livre (les livres liés, puis ceux des
- * intervenants), à défaut sa propre image. Sans rencontre à venir ou sans exposition, le mot s'en va de la question.
+ * lisent dans le site à chaque affichage : la prochaine rencontre (son jour, son titre, son livre : « Lundi 30 novembre
+ * à 19 h, rencontre avec l'historien Nicolas Werth, autour de son livre Adieu ma Russie ») et l'exposition du moment
+ * (son titre, ses artistes, jusqu'à quand). L'extrait des fiches n'y entre pas : écrit pour être lu seul, il ne suit pas
+ * une date. L'image de la rencontre est la couverture de son livre (les livres liés, puis ceux des intervenants), à
+ * défaut sa propre image. Sans rencontre à venir ou sans exposition, le mot s'en va de la question.
  *
  * @package editeurs-reunis
  */
@@ -80,15 +81,6 @@ function er_ap_minuscule( $texte ) {
 }
 
 /**
- * L'extrait d'une fiche, s'il a été écrit (pas celui que WordPress tire du texte).
- *
- * @param int $id La fiche.
- */
-function er_ap_extrait( $id ) {
-	return trim( wp_strip_all_tags( (string) get_post_field( 'post_excerpt', $id ) ) );
-}
-
-/**
  * Une image du thème, cadrée comme dans les triptyques.
  *
  * @param string $nom Le fichier (assets/images/…).
@@ -130,15 +122,10 @@ function er_ap_reponses() {
 		$quand = function_exists( 'er_info_quand' ) ? er_info_quand( $r->ID ) : '';
 		$quand = '' !== $quand ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) . ', ' : '';
 		$livre = er_ap_livre_de_la_rencontre( $r->ID );
-		$texte = er_ap_extrait( $id );
-		if ( '' !== $texte ) {
-			$texte = esc_html( $quand . er_ap_minuscule( $texte ) );
-		} else {
-			$texte = esc_html( $quand . er_ap_minuscule( html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) ) );
-			if ( $livre ) {
-				/* translators: %s: le titre du livre, en italique */
-				$texte .= sprintf( $livre[1] ? esc_html__( ', autour de son livre %s', 'editeurs-reunis' ) : esc_html__( ', autour du livre %s', 'editeurs-reunis' ), '<em>' . esc_html( html_entity_decode( get_the_title( $livre[0] ), ENT_QUOTES, 'UTF-8' ) ) . '</em>' );
-			}
+		$texte = esc_html( $quand . er_ap_minuscule( html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) ) );
+		if ( $livre ) {
+			/* translators: %s: le titre du livre, en italique */
+			$texte .= sprintf( $livre[1] ? esc_html__( ', autour de son livre %s', 'editeurs-reunis' ) : esc_html__( ', autour du livre %s', 'editeurs-reunis' ), '<em>' . esc_html( html_entity_decode( get_the_title( $livre[0] ), ENT_QUOTES, 'UTF-8' ) ) . '</em>' );
 		}
 		$photo      = $livre ? (int) get_post_thumbnail_id( $livre[0] ) : (int) get_post_thumbnail_id( $id );
 		$reponses[] = array(
@@ -156,15 +143,10 @@ function er_ap_reponses() {
 	$expo = function_exists( 'er_expo_du_moment' ) ? er_expo_du_moment() : 0;
 	if ( $expo ) {
 		$titre = '<em>' . esc_html( html_entity_decode( get_the_title( $expo ), ENT_QUOTES, 'UTF-8' ) ) . '</em>';
-		$texte = er_ap_extrait( $expo );
-		if ( '' !== $texte ) {
-			$texte = $titre . ' : ' . esc_html( er_ap_minuscule( $texte ) );
-		} else {
-			$artistes = function_exists( 'er_expo_artistes' ) ? er_expo_artistes( $expo ) : '';
-			$fin      = function_exists( 'er_evt_date' ) ? er_evt_date( $expo, 'er_fin' ) : null;
-			$texte    = $titre . ( '' !== $artistes ? esc_html( sprintf( /* translators: %s: les artistes */ __( ', de %s', 'editeurs-reunis' ), $artistes ) ) : '' )
-				. ( $fin && function_exists( 'er_expo_du_moment_jour' ) ? esc_html( sprintf( /* translators: %s: le dernier jour */ __( ', jusqu’au %s', 'editeurs-reunis' ), er_expo_du_moment_jour( $fin ) ) ) : '' );
-		}
+		$artistes = function_exists( 'er_expo_artistes' ) ? er_expo_artistes( $expo ) : '';
+		$fin      = function_exists( 'er_evt_date' ) ? er_evt_date( $expo, 'er_fin' ) : null;
+		$texte    = $titre . ( '' !== $artistes ? esc_html( sprintf( /* translators: %s: les artistes */ __( ', de %s', 'editeurs-reunis' ), $artistes ) ) : '' )
+			. ( $fin && function_exists( 'er_expo_du_moment_jour' ) ? esc_html( sprintf( /* translators: %s: le dernier jour */ __( ', jusqu’au %s', 'editeurs-reunis' ), er_expo_du_moment_jour( $fin ) ) ) : '' );
 		$photo      = (int) get_post_thumbnail_id( $expo );
 		$reponses[] = array(
 			'cle'   => 'expo',
