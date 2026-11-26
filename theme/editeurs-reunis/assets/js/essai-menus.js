@@ -52,6 +52,10 @@
 		courant = bouton;
 		bouton.setAttribute( 'aria-expanded', 'true' );
 		menu.hidden = false;
+		// Les photos du menu arrivent tout de suite, sans attendre qu'on survole un mot.
+		menu.querySelectorAll( 'img[loading="lazy"]' ).forEach( function ( image ) {
+			image.loading = 'eager';
+		} );
 		if ( menu === plan ) {
 			var maison = bouton.getAttribute( 'data-er-em' );
 			plan.querySelectorAll( '.er-em-colonne' ).forEach( function ( colonne ) {

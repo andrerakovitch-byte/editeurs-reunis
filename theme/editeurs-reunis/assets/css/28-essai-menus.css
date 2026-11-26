@@ -3,13 +3,11 @@
    26 nov. 2026) : le panneau (E), les grands mots (F), le plein écran (G). Rien de tout cela n'existe ailleurs.
    -------------------------------------------------------------------------- */
 
-/* La barre du nom : quatre boutons, puis un filet, la loupe et le panier. */
+/* La barre du nom : quatre boutons, puis la loupe (qui porte son filet) et le panier. */
 .er-em {
 	display: flex;
 	align-items: center;
 	gap: 30px;
-	padding-inline-end: 24px;
-	border-inline-end: 1px solid var(--wp--preset--color--filet);
 	font-size: 0.9375rem;
 }
 .er-em-bouton {
