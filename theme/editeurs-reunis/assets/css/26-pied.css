@@ -147,6 +147,11 @@
 .er-pd-langues .est-actuelle { color: var(--wp--preset--color--contrast); }
 .er-pd-fin { white-space: nowrap; text-align: right; }
 
+/* Sur un écran moyen : l'arborescence sur trois colonnes. */
+@media (min-width: 782px) and (max-width: 1180px) {
+	.er-pd-plan { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 64px; }
+}
+
 /* Au téléphone : l'inscription sous le titre, l'arborescence sur deux colonnes, le bas empilé. */
 @media (max-width: 781px) {
 	.er-pd { --er-pd-air: 5.5rem; padding-top: 6rem; }
