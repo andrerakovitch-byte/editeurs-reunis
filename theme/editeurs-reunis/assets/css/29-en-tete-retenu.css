@@ -184,6 +184,19 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-
 	font-weight: 500;
 }
 .er-mn-bouton-plein { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base) !important; }
+
+/* Le survol dans le sac (assets/js/menus.js), comme dans les autres menus : le livre survolé reste net, les autres
+   pâlissent, couverture comprise ; dans le compte, le lien survolé reste à l'encre, les autres passent au gris des
+   noms. Les boutons : le bouton au trait se remplit, le bouton plein passe à l'encre secondaire, comme ailleurs. */
+.er-mn-panier-articles a, .er-mn-compte a { transition: opacity 200ms ease, color 200ms ease; }
+.er-mn-panier-liste.est-survol .er-mn-panier-articles li:not(.er-mn-panier-autres) a:not(.est-survole) { opacity: 0.5; }
+.er-mn-dedans .er-mn-compte.est-survol a:not(.est-survole) { color: var(--er-gris-nom); }
+.er-mn-dedans .er-mn-panier-autres a.est-survole { color: var(--wp--preset--color--contrast); }
+.er-mn-bouton { transition: background-color 200ms ease, color 200ms ease; }
+.er-mn-dedans a.er-mn-bouton:hover,
+.er-mn-dedans a.er-mn-bouton:focus-visible { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base) !important; }
+.er-mn-dedans a.er-mn-bouton-plein:hover,
+.er-mn-dedans a.er-mn-bouton-plein:focus-visible { background: var(--wp--preset--color--encre-2, #4A4A48); border-color: var(--wp--preset--color--encre-2, #4A4A48); }
 .er-mn-compte { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
 
 /* Le plan du site (≡), comme chez Apple (André, 26 nov.) : il prend tout l'écran, sans l'en-tête ni le nom ; seul

@@ -513,9 +513,42 @@
 					html += '<p class="er-mn-panier-total">' + texte( liste.getAttribute( 'data-total' ).replace( '%s', prix( panier.totals.total_items, panier.totals ) ) ) + '</p>';
 				}
 				liste.innerHTML = html;
+				liste.classList.remove( 'est-survol' );
 			} )
 			.catch( function () {} );
 	}
+	// Le survol dans le sac, comme dans les autres menus : le livre ou le lien survolé reste à l'encre, les autres
+	// pâlissent, jusqu'à ce que la souris quitte la liste (pas d'éclipse en passant d'un livre à l'autre). Les livres
+	// arrivent après coup, d'où l'écoute de la liste entière.
+	document.querySelectorAll( '.er-mn-panier-liste, .er-mn-compte' ).forEach( function ( bloc ) {
+		var vider = function () {
+			bloc.classList.remove( 'est-survol' );
+			bloc.querySelectorAll( '.est-survole' ).forEach( function ( a ) {
+				a.classList.remove( 'est-survole' );
+			} );
+		};
+		var viser = function ( e ) {
+			var lien = e.target.closest ? e.target.closest( 'a' ) : null;
+			if ( ! lien || ! bloc.contains( lien ) ) {
+				return;
+			}
+			bloc.querySelectorAll( '.est-survole' ).forEach( function ( a ) {
+				if ( a !== lien ) {
+					a.classList.remove( 'est-survole' );
+				}
+			} );
+			lien.classList.add( 'est-survole' );
+			bloc.classList.add( 'est-survol' );
+		};
+		bloc.addEventListener( 'mouseover', viser );
+		bloc.addEventListener( 'focusin', viser );
+		bloc.addEventListener( 'mouseleave', vider );
+		bloc.addEventListener( 'focusout', function ( e ) {
+			if ( ! bloc.contains( e.relatedTarget ) ) {
+				vider();
+			}
+		} );
+	} );
 	// Après un ajout au panier (les blocs de WooCommerce le disent sur la page), la pastille suit.
 	document.body.addEventListener( 'wc-blocks_added_to_cart', lirePanier );
 	document.body.addEventListener( 'wc-blocks_removed_from_cart', lirePanier );
