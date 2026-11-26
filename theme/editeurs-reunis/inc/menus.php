@@ -377,7 +377,7 @@ function er_menu_telephone() {
 	$langue  = function_exists( 'er_choix_langue' ) ? er_choix_langue() : '';
 
 	return '<div class="er-mp">'
-		. '<div class="er-mp-defile"><ul class="er-mp-maisons">' . $rangs . '</ul></div>'
+		. '<div class="er-mp-defile"><div class="er-mp-colle"><ul class="er-mp-maisons">' . $rangs . '</ul></div></div>'
 		. '<div class="er-mp-bas">'
 		// Le carrousel collé au bas, au-dessus de la recherche (N2) : il reste en vue quand une maison se déplie.
 		. '<div class="er-mp-carrousel"><div class="er-mp-cartes">' . $cartes . '</div>'

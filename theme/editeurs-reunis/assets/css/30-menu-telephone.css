@@ -21,20 +21,24 @@
 	.er-em-plan .er-em-plan-pied { display: none; }
 	.er-mp { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 	/* Tout le menu est collé en bas, sous le pouce ; la croix seule reste en haut, et le vide est entre les deux.
-	   Quand une maison dépliée ne tient plus, la liste défile depuis le haut, jamais plus haut que la barre du nom. */
+	   Les maisons défilent toujours, même quand tout tient (un pixel de plus que la place : le doigt sent le rebond),
+	   et d'autant plus quand une maison est dépliée ; elles passent sous la barre du nom, pas sous la croix. */
 	.er-mp-defile {
 		flex: 1;
 		min-height: 0;
 		display: flex;
 		flex-direction: column;
+		margin-top: calc(var(--er-plan-croix, 40px) + 40px);
+		padding: 0 var(--wp--style--root--padding-right, 20px) 20px var(--wp--style--root--padding-left, 20px);
 		overflow-y: auto;
 		overscroll-behavior: contain;
-		padding: calc(var(--er-plan-croix, 40px) + 40px) var(--wp--style--root--padding-right, 20px) 20px var(--wp--style--root--padding-left, 20px);
+		-webkit-overflow-scrolling: touch;
 	}
-	.er-em-plan.avec-barre .er-mp-defile { padding-top: 16px; }
+	.er-em-plan.avec-barre .er-mp-defile { margin-top: 16px; }
+	.er-mp-colle { flex: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: calc(100% + 1px); }
 
 	/* Les maisons : un rang de 56 px entre deux filets ; le nom, le triptyque en trois petits carrés, le +. */
-	.er-mp-maisons { flex: none; margin: auto 0 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
+	.er-mp-maisons { flex: none; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-rang { border-bottom: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-tete {
 		display: flex;
