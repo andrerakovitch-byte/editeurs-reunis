@@ -143,9 +143,12 @@
 .er-pd-langues .est-actuelle { color: var(--wp--preset--color--contrast); }
 .er-pd-fin { white-space: nowrap; text-align: right; }
 
-/* Sur un écran moyen : l'arborescence sur trois colonnes. */
+/* Sur un écran moyen : l'arborescence sur trois colonnes, le nom au-dessus du reste. */
 @media (min-width: 782px) and (max-width: 1180px) {
 	.er-pd-plan { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 64px; }
+	/* Le nom sur sa ligne, le reste dessous. */
+	.er-pd-bas { flex-wrap: wrap; row-gap: 32px; }
+	.er-pd .er-logo { flex-basis: 100%; }
 }
 
 /* Au téléphone : l'inscription sous le titre, l'arborescence sur deux colonnes, le bas empilé. */
