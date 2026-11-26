@@ -155,6 +155,8 @@
 	.er-pd-inscription { grid-column: 1 / -1; }
 	.er-pd-bouton { width: 72px; }
 	.er-pd-plan { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; row-gap: 64px; }
+	.er-pd-liste,
+	.er-pd-texte { font-size: 1rem; }
 	.er-pd-bas { flex-direction: column; align-items: flex-start; }
 	.er-pd-fin { white-space: normal; text-align: left; }
 }
