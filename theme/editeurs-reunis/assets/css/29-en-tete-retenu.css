@@ -9,9 +9,10 @@
 	--er-ligne: 0px; /* plus de ligne de maison : la bande s'accroche en haut de l'écran */
 }
 
-/* La barre d'informations : la langue au bout, dans sa bulle « Aя ». */
-.er-infos,
+/* La barre d'informations : la langue au bout, dans sa bulle « Aя ». Elle passe au-dessus de la barre du nom et des
+   menus ouverts, pour que la liste des langues, qui descend sur eux, se voie et se touche. */
 .er-em-barre { position: relative; z-index: 2; }
+.er-infos { position: relative; z-index: 4; }
 .er-choix-langue-bouton { display: inline-flex; align-items: center; gap: 7px; }
 .er-choix-langue-bulle { flex: none; transform: translateY(2px); }
 .er-choix-langue-liste { min-width: 15rem; padding-block: 10px; }

@@ -3,7 +3,7 @@
  *
  * - un nom de la barre ouvre son menu au survol, après un court temps (on ne l'ouvre pas en passant) ; on passe d'un
  *   nom à l'autre sans attendre ; le menu se referme quand la souris quitte l'en-tête et ses menus, sur un clic
- *   ailleurs, ou sur Échap. Au doigt et au clavier, le nom s'ouvre et se referme au clic ;
+ *   ailleurs, sur Échap, ou sur un clic sur son nom. Au doigt et au clavier, le nom s'ouvre et se referme au clic ;
  * - la Librairie : les sous-rayons du rayon survolé, et le livre du rayon ou du sous-rayon survolé ;
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
@@ -25,6 +25,7 @@
 	var survol = window.matchMedia( '(hover: hover) and (pointer: fine)' );
 	var courant = null;
 	var minuteur = 0;
+	var ouvertAuSurvol = 0; // quand le survol a ouvert le menu courant
 
 	function cible( bouton ) {
 		return document.getElementById( bouton.getAttribute( 'aria-controls' ) );
@@ -71,6 +72,14 @@
 		}
 		courant = bouton;
 		bouton.setAttribute( 'aria-expanded', 'true' );
+		// Un menu qui s'ouvre referme la liste des langues, si elle était ouverte.
+		document.querySelectorAll( '.er-choix-langue-liste:not([hidden])' ).forEach( function ( liste ) {
+			var choix = liste.parentNode.querySelector( '.er-choix-langue-bouton' );
+			liste.hidden = true;
+			if ( choix ) {
+				choix.setAttribute( 'aria-expanded', 'false' );
+			}
+		} );
 		menu.hidden = false;
 		racine.setAttribute( 'data-er-em', bouton.getAttribute( 'data-er-em' ) );
 		menu.querySelectorAll( 'img[loading="lazy"]' ).forEach( function ( image ) {
@@ -237,12 +246,15 @@
 		var duPlan = 'plan' === bouton.getAttribute( 'data-er-em' );
 		bouton.addEventListener( 'click', function ( e ) {
 			if ( courant === bouton ) {
-				// Ouvert au survol : le clic ne le referme pas (la souris venait de l'ouvrir).
-				if ( ! survol.matches || duPlan || 0 === e.detail ) {
-					fermer( false );
+				// Un clic sur le nom d'un menu ouvert le referme, à la souris aussi (André, 26 nov.) ; sauf si le
+				// survol vient de l'ouvrir, à l'instant : ce clic-là voulait l'ouvrir, pas le refermer.
+				if ( survol.matches && ! duPlan && 0 !== e.detail && Date.now() - ouvertAuSurvol < 400 ) {
+					return;
 				}
+				fermer( false );
 				return;
 			}
+			ouvertAuSurvol = 0;
 			ouvrir( bouton, 0 === e.detail );
 		} );
 		if ( duPlan ) {
@@ -254,7 +266,10 @@
 			}
 			// D'un menu ouvert à l'autre, sans attendre ; sinon, un temps, pour ne pas ouvrir en passant.
 			attendre( function () {
-				ouvrir( bouton, false );
+				if ( courant !== bouton ) {
+					ouvrir( bouton, false );
+					ouvertAuSurvol = Date.now();
+				}
 			}, courant ? 0 : 150 );
 		} );
 		bouton.addEventListener( 'mouseleave', function () {
