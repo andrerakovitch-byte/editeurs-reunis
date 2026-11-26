@@ -1,9 +1,9 @@
 /**
  * Les menus de l'en-tête (inc/menus.php ; retenus le 26 novembre 2026) :
  *
- * - un nom de la barre ouvre son menu au survol, après un court temps (on ne l'ouvre pas en passant) ; on passe d'un
- *   nom à l'autre sans attendre ; le menu se referme quand la souris quitte l'en-tête et ses menus, sur un clic
- *   ailleurs, sur Échap, ou sur un clic sur son nom. Au doigt et au clavier, le nom s'ouvre et se referme au clic ;
+ * - un nom de la barre ouvre son menu au clic, plus au survol (André, 26 nov. : en allant vers « Centre culturel » ou
+ *   vers les langues, on passait sur « Maison d'édition », qui s'ouvrait) ; un clic sur un autre nom ouvre le sien ; le
+ *   menu se referme sur un clic sur son nom, sur un clic ailleurs ou sur Échap ;
  * - la Librairie : les sous-rayons du rayon survolé, et le livre du rayon ou du sous-rayon survolé ;
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
@@ -19,23 +19,14 @@
 	if ( ! boutons.length ) {
 		return;
 	}
-	var haut = boutons[ 0 ].closest( 'header' ) || document.body;
 	var plan = document.getElementById( 'er-em-plan' );
 	var voile = document.querySelector( '.er-em-voile' );
-	var survol = window.matchMedia( '(hover: hover) and (pointer: fine)' );
 	var courant = null;
-	var minuteur = 0;
-	var ouvertAuSurvol = 0; // quand le survol a ouvert le menu courant
 
 	function cible( bouton ) {
 		return document.getElementById( bouton.getAttribute( 'aria-controls' ) );
 	}
-	function attendre( fn, ms ) {
-		window.clearTimeout( minuteur );
-		minuteur = window.setTimeout( fn, ms );
-	}
 	function fermer( rendre ) {
-		window.clearTimeout( minuteur );
 		if ( ! courant ) {
 			return;
 		}
@@ -243,57 +234,15 @@
 	} );
 
 	boutons.forEach( function ( bouton ) {
-		var duPlan = 'plan' === bouton.getAttribute( 'data-er-em' );
 		bouton.addEventListener( 'click', function ( e ) {
 			if ( courant === bouton ) {
-				// Un clic sur le nom d'un menu ouvert le referme, à la souris aussi (André, 26 nov.) ; sauf si le
-				// survol vient de l'ouvrir, à l'instant : ce clic-là voulait l'ouvrir, pas le refermer.
-				if ( survol.matches && ! duPlan && 0 !== e.detail && Date.now() - ouvertAuSurvol < 400 ) {
-					return;
-				}
 				fermer( false );
 				return;
 			}
-			ouvertAuSurvol = 0;
 			ouvrir( bouton, 0 === e.detail );
-		} );
-		// Le plan et le sac ne s'ouvrent qu'au clic (le sac : André, 26 nov.) ; les quatre menus, aussi au survol.
-		if ( duPlan || 'panier' === bouton.getAttribute( 'data-er-em' ) ) {
-			return;
-		}
-		bouton.addEventListener( 'mouseenter', function () {
-			if ( ! survol.matches ) {
-				return;
-			}
-			// D'un menu ouvert à l'autre, sans attendre ; sinon, un temps, pour ne pas ouvrir en passant.
-			attendre( function () {
-				if ( courant !== bouton ) {
-					ouvrir( bouton, false );
-					ouvertAuSurvol = Date.now();
-				}
-			}, courant ? 0 : 150 );
-		} );
-		bouton.addEventListener( 'mouseleave', function () {
-			if ( ! courant ) {
-				window.clearTimeout( minuteur );
-			}
 		} );
 	} );
 
-	// La souris quitte l'en-tête et ses menus : le menu se referme, après un instant (le temps d'y revenir). Le sac,
-	// ouvert d'un clic, reste ouvert jusqu'à un clic ailleurs (ou Échap).
-	haut.addEventListener( 'mouseleave', function () {
-		if ( survol.matches && courant && cible( courant ) !== plan && 'panier' !== courant.getAttribute( 'data-er-em' ) ) {
-			attendre( function () {
-				fermer( false );
-			}, 250 );
-		}
-	} );
-	haut.addEventListener( 'mouseenter', function () {
-		if ( courant ) {
-			window.clearTimeout( minuteur );
-		}
-	} );
 	if ( voile ) {
 		voile.addEventListener( 'click', function () {
 			fermer( false );
@@ -303,8 +252,11 @@
 		if ( ! courant || cible( courant ) === plan ) {
 			return;
 		}
+		// Un clic dans le menu, ou sur un nom de la barre (pas sur la page elle-même, qui porte aussi data-er-em quand un
+		// menu est ouvert), ne le referme pas.
 		var menu = cible( courant );
-		if ( ( menu && menu.contains( e.target ) ) || e.target.closest( '[data-er-em]' ) ) {
+		var nom = e.target.closest( '[data-er-em]' );
+		if ( ( menu && menu.contains( e.target ) ) || ( nom && nom !== racine ) ) {
 			return;
 		}
 		fermer( false );
