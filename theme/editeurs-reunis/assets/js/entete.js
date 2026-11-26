@@ -30,10 +30,13 @@
 		if ( ! barre ) {
 			return;
 		}
-		var cache = barre.offsetHeight + ( infos ? infos.offsetHeight : 0 );
+		// Au téléphone, la barre du nom (le nom et le menu) reste accrochée en haut de l'écran (26 nov. 2026) : seule la
+		// barre d'informations part, et la bande s'accroche sous la barre du nom.
+		var telephone = window.matchMedia( '(max-width: 781px)' ).matches;
+		var cache = ( telephone ? 0 : barre.offsetHeight ) + ( infos ? infos.offsetHeight : 0 );
 		racine.style.setProperty( '--er-haut-cache', cache + 'px' );
 		var visible = lignes ? lignes.querySelector( '.er-ligne:not([hidden])' ) : null;
-		racine.style.setProperty( '--er-ligne', ( visible ? visible.offsetHeight : 0 ) + 'px' );
+		racine.style.setProperty( '--er-ligne', ( visible ? visible.offsetHeight : ( telephone ? barre.offsetHeight : 0 ) ) + 'px' );
 	}
 	mesurer();
 	window.addEventListener( 'resize', mesurer );

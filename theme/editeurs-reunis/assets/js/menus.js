@@ -70,10 +70,15 @@
 			lirePanier();
 		}
 		if ( menu === plan ) {
+			// Sous la barre du nom, qui reste : le bouton (≡, devenu ×) referme le plan à la même place. Si la barre
+			// est sortie de l'écran, le plan prend tout l'écran, avec sa propre barre et « Fermer ».
+			placerPlan();
 			racine.classList.add( 'er-em-plan-ouvert' );
-			var croix = plan.querySelector( '.er-em-fermer-plan' );
-			if ( croix ) {
-				croix.focus();
+			if ( plan.classList.contains( 'avec-barre' ) ) {
+				var croix = plan.querySelector( '.er-em-fermer-plan' );
+				if ( croix ) {
+					croix.focus();
+				}
 			}
 			return;
 		}
@@ -85,6 +90,21 @@
 			}
 		}
 	}
+
+	function placerPlan() {
+		if ( ! plan ) {
+			return;
+		}
+		var barre = document.querySelector( '.er-em-barre' );
+		var bas = barre ? Math.round( barre.getBoundingClientRect().bottom ) : 0;
+		plan.classList.toggle( 'avec-barre', bas <= 0 );
+		racine.style.setProperty( '--er-plan-haut', Math.max( 0, bas ) + 'px' );
+	}
+	window.addEventListener( 'resize', function () {
+		if ( courant && cible( courant ) === plan ) {
+			placerPlan();
+		}
+	} );
 
 	boutons.forEach( function ( bouton ) {
 		var duPlan = 'plan' === bouton.getAttribute( 'data-er-em' );
@@ -168,7 +188,12 @@
 			return;
 		}
 		if ( 'Tab' === e.key && plan && ! plan.hidden ) {
-			var liens = Array.prototype.slice.call( plan.querySelectorAll( 'a, button' ) );
+			var liens = Array.prototype.slice.call( plan.querySelectorAll( 'a, button' ) ).filter( function ( el ) {
+				return el.offsetParent !== null;
+			} );
+			if ( ! plan.classList.contains( 'avec-barre' ) ) {
+				liens.unshift( courant ); // le bouton du menu, qui le referme
+			}
 			if ( ! liens.length ) {
 				return;
 			}

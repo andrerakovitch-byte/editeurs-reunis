@@ -130,6 +130,19 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-
 .er-mn-bouton-plein { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base) !important; }
 .er-mn-compte { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
 
+/* Le plan du site (≡) : sous la barre du nom, qui reste ; le bouton devient une croix, à la même place, et le
+   referme. */
+.er-em-plan { top: var(--er-plan-haut, 0px); border-top: 1px solid var(--wp--preset--color--filet); }
+.er-em-plan.avec-barre { border-top: 0; }
+.er-em-plan:not(.avec-barre) .er-em-plan-barre { display: none; }
+.er-em-plan:not(.avec-barre) .er-em-colonnes { padding-top: 1.5rem; }
+/* Pas de nom dans le plan (André, 26 nov.) : la barre du nom, au-dessus, le porte déjà ; sans elle, « Fermer » seul. */
+.er-em-plan .er-logo { display: none; }
+.er-em-plan.avec-barre .er-em-plan-barre { justify-content: flex-end; min-height: 0; padding-block: 1rem; }
+.er-em-menu-croix { display: none; }
+.er-em-menu[aria-expanded="true"] .er-em-menu-trois { display: none; }
+.er-em-menu[aria-expanded="true"] .er-em-menu-croix { display: block; }
+
 @media (max-width: 1319px) {
 	.er-mn { display: none; }
 	.er-mn-droite { gap: 16px; }
