@@ -1,8 +1,9 @@
 <?php
 /**
  * Les triptyques de la tête de page (26 nov. 2026, la planche « Un triptyque par page, pour la photographe » du
- * canevas « Les pages intérieures, dans la direction ») : trois images sans texte, à droite du grand titre, chacune un
- * lien. Ce sont des triptyques d'essai, en attendant les séries de la photographe.
+ * canevas « Les pages intérieures, dans la direction ») : trois images sans texte, à droite du grand titre, qui
+ * illustrent la page ouverte ; ce ne sont pas des liens (André, 26 nov.). Ce sont des triptyques d'essai, en attendant
+ * les séries de la photographe.
  *
  * - Six pages ont le leur (Nos expositions, Nos événements, la librairie, la maison d'édition, Un siècle d'histoire,
  *   Nous trouver) ; les autres pages prennent celui de leur maison (er_triptyque_de_la_page()).
@@ -45,45 +46,16 @@ function er_triptyque_images() {
 }
 
 /**
- * Les triptyques : trois images, et la page où mène chacune.
+ * Les triptyques : trois images chacun.
  */
 function er_triptyques() {
-	$expo      = function_exists( 'er_info_exposition' ) ? er_info_exposition() : null;
-	$rencontre = function_exists( 'er_evt_requete' ) ? er_evt_requete( true ) : array();
-	$archipel  = function_exists( 'er_trois_maisons_archipel' ) ? (int) er_trois_maisons_archipel() : 0;
-	$expos     = er_lien( 'centre-culturel/expositions/' );
-	$evts      = er_lien( 'centre-culturel/evenements/' );
 	return array(
-		'expositions' => array(
-			array( 'cf-bleu-nuit', $expos ),
-			array( 'photographe', $expo ? get_permalink( $expo ) : $expos ),
-			array( 'cf-ciel-pale', er_lien( 'centre-culturel/videos/' ) ),
-		),
-		'evenements'  => array(
-			array( 'signature', $rencontre ? get_permalink( $rencontre[0] ) : $evts ),
-			array( 'lecteur', $evts ),
-			array( 'deux-lecteurs', er_lien( 'centre-culturel/podcasts/' ) ),
-		),
-		'librairie'   => array(
-			array( 'cf-creme', er_lien( 'librairie/' ) ),
-			array( 'cf-fenetre', add_query_arg( 'orderby', 'popularity', er_lien( 'librairie/' ) ) ),
-			array( 'cf-visage', er_lien( 'mention/occasion/' ) ),
-		),
-		'edition'     => array(
-			array( 'cf-orange', er_lien( 'ymca-press/catalogue/' ) ),
-			array( 'cf-or-brun', er_lien( 'ymca-press/histoire/' ) ),
-			array( 'vermont', er_lien( 'ymca-press/amis-ymca-press/' ) ),
-		),
-		'histoire'    => array(
-			array( 'congres', er_lien( 'ymca-press/histoire/' ) ),
-			array( 'imprimerie', $archipel ? get_permalink( $archipel ) : er_lien( 'ymca-press/catalogue/' ) ),
-			array( 'groupe', er_lien( 'ymca-press/' ) ),
-		),
-		'trouver'     => array(
-			array( 'facade', er_lien( 'nous-trouver/' ) ),
-			array( 'peintre', er_lien( 'ymca-press/' ) ),
-			array( 'khokhloma', er_lien( 'librairie/' ) ),
-		),
+		'expositions' => array( 'cf-bleu-nuit', 'photographe', 'cf-ciel-pale' ),
+		'evenements'  => array( 'signature', 'lecteur', 'deux-lecteurs' ),
+		'librairie'   => array( 'cf-creme', 'cf-fenetre', 'cf-visage' ),
+		'edition'     => array( 'cf-orange', 'cf-or-brun', 'vermont' ),
+		'histoire'    => array( 'congres', 'imprimerie', 'groupe' ),
+		'trouver'     => array( 'facade', 'peintre', 'khokhloma' ),
 	);
 }
 
@@ -140,7 +112,7 @@ function er_triptyque_media( $nom ) {
 }
 
 /**
- * Un triptyque, en HTML : trois liens, chacun une image cadrée (ou l'aplat d'un filé absent).
+ * Un triptyque, en HTML : trois images cadrées (ou l'aplat d'un filé absent), pour l'œil seulement.
  *
  * @param string $cle expositions, evenements, librairie, edition, histoire, trouver.
  */
@@ -151,7 +123,7 @@ function er_triptyque_html( $cle ) {
 		return '';
 	}
 	$html = '';
-	foreach ( $tous[ $cle ] as list( $nom, $lien ) ) {
+	foreach ( $tous[ $cle ] as $nom ) {
 		$i             = $images[ $nom ];
 		list( $z, $x, $y ) = $i['cadre'];
 		$src           = isset( $i['theme'] ) ? er_image( $i['theme'] ) : er_triptyque_media( $i['media'] );
@@ -159,7 +131,7 @@ function er_triptyque_html( $cle ) {
 		$contenu       = $src
 			? '<img src="' . esc_url( $src ) . '" alt="" decoding="async" style="' . esc_attr( $style ) . '">'
 			: '<span class="er-tpq-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
-		$html         .= '<a class="er-tpq-image" href="' . esc_url( $lien ) . '" tabindex="-1" aria-hidden="true">' . $contenu . '</a>';
+		$html         .= '<span class="er-tpq-image">' . $contenu . '</span>';
 	}
-	return '<div class="er-tpq" data-triptyque="' . esc_attr( $cle ) . '">' . $html . '</div>';
+	return '<div class="er-tpq" data-triptyque="' . esc_attr( $cle ) . '" aria-hidden="true">' . $html . '</div>';
 }
