@@ -1,7 +1,8 @@
-/* Le menu du téléphone (M6 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
-   (inc/menus.php, er_menu_telephone) : les quatre maisons en accordéon, sans point de couleur, chacune avec son
-   triptyque en bande basse ; dessous, les informations du haut en carrousel ; en bas, accrochées, la recherche, puis
-   le panier, le compte et la langue. Au-dessus de 781 px, le plan en colonnes reste. */
+/* Le menu du téléphone (N2 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
+   (inc/menus.php, er_menu_telephone) : les quatre maisons en accordéon, sans point de couleur, chacune sur une ligne
+   (son nom, son triptyque en trois petits carrés, le +) ; en bas, accrochés, les informations du haut en carrousel,
+   la recherche, puis le panier, le compte et la langue. Tout fermé, tout se voit sans défiler. Au-dessus de 781 px,
+   le plan en colonnes reste. */
 
 /* La bulle « Aя » ne se retourne pas quand la liste des langues s'ouvre (seul l'ancien chevron le faisait). */
 .er-choix-langue-bouton[aria-expanded="true"] .er-choix-langue-bulle { transform: translateY(2px); }
@@ -29,31 +30,32 @@
 	}
 	.er-em-plan.avec-barre .er-mp-defile { padding-top: 16px; }
 
-	/* Les maisons : un rang entre deux filets ; le nom, le +, la bande du triptyque. */
+	/* Les maisons : un rang de 56 px entre deux filets ; le nom, le triptyque en trois petits carrés, le +. */
 	.er-mp-maisons { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-rang { border-bottom: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-tete {
 		display: flex;
-		flex-direction: column;
-		gap: 12px;
+		align-items: center;
+		gap: 14px;
 		width: 100%;
-		padding: 16px 0;
+		min-height: 56px;
+		padding: 0;
 		border: 0;
 		background: none;
 		text-align: left;
 		font: inherit;
-		font-size: 1.625rem;
+		font-size: 1.375rem;
 		font-weight: 500;
 		letter-spacing: -0.03em;
 		color: var(--wp--preset--color--contrast);
 		cursor: pointer;
 		-webkit-tap-highlight-color: transparent;
 	}
-	.er-mp-nom { display: flex; align-items: center; justify-content: space-between; width: 100%; line-height: 1.15; }
-	.er-mp-signe { flex: none; margin-right: 2px; }
+	.er-mp-nom { flex: 1; min-width: 0; line-height: 1.15; }
+	.er-mp-signe { flex: none; width: 14px; height: 14px; margin-right: 2px; }
 	.er-mp-signe-v { transform-box: view-box; transform-origin: 8px 8px; transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1); }
 	.er-mp-rang.est-ouvert .er-mp-signe-v { transform: rotate(90deg); }
-	.er-mp-bande { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; width: 100%; height: 32px; }
+	.er-mp-bande { flex: none; display: grid; grid-template-columns: repeat(3, 30px); gap: 2px; height: 30px; }
 	.er-mp-bande-image { display: block; min-width: 0; overflow: hidden; background: var(--wp--preset--color--doux); }
 	.er-mp-bande-image img,
 	.er-mp-carte-image img {
@@ -71,16 +73,16 @@
 	.er-mp-volet { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1); }
 	.er-mp-rang.est-ouvert .er-mp-volet { grid-template-rows: 1fr; }
 	.er-mp-volet-dedans { min-height: 0; overflow: hidden; }
-	.er-mp-pages { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 2px 0 22px; list-style: none; font-size: 1.125rem; font-weight: 500; line-height: 1.3; }
+	.er-mp-pages { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 2px 0 20px; list-style: none; font-size: 1.0625rem; font-weight: 500; line-height: 1.3; }
 	.er-mp-pages li { opacity: 0; transition: opacity 200ms ease; }
 	.er-mp-rang.est-ouvert .er-mp-pages li { opacity: 1; transition: opacity 260ms ease calc(120ms + var(--er-j, 0) * 28ms); }
 	.er-mp-pages a { color: var(--wp--preset--color--contrast); }
 	.er-mp-pages a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
 	.er-mp-tout a { font-size: 0.9375rem; color: var(--wp--preset--color--discret); }
 
-	/* Le carrousel : une carte comme la rencontre de M4 (l'image, la ligne grise, le titre) ; la suivante dépasse à
-	   droite ; un trait par carte, le noir pour celle qu'on voit. */
-	.er-mp-carrousel { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--wp--preset--color--filet); }
+	/* Le carrousel, collé au bas au-dessus de la recherche : une carte comme la rencontre de M4 (l'image, la ligne
+	   grise, le titre) ; la suivante dépasse à droite ; un trait par carte, le noir pour celle qu'on voit. */
+	.er-mp-carrousel { margin: 0 0 10px; }
 	.er-mp-cartes {
 		position: relative;
 		display: flex;
@@ -98,16 +100,16 @@
 	.er-mp-carte-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 	.er-mp-carte-label { font-size: 0.8125rem; line-height: 1.35; color: var(--wp--preset--color--discret); }
 	.er-mp-carte-titre { font-size: 0.9375rem; font-weight: 500; line-height: 1.3; }
-	.er-mp-traits { display: flex; gap: 6px; margin-top: 6px; }
+	.er-mp-traits { display: flex; gap: 6px; margin-top: 2px; }
 	.er-mp-traits[hidden] { display: none; }
 	.er-mp-traits button { flex: 1; padding: 10px 0; border: 0; background: none; cursor: pointer; }
 	.er-mp-traits span { display: block; height: 2px; background: var(--wp--preset--color--filet); transition: background 300ms ease; }
 	.er-mp-traits [aria-current="true"] span { background: var(--wp--preset--color--contrast); }
 
-	/* Le bas, accroché : la recherche de M3, puis le panier, le compte et la langue. */
+	/* Le bas, accroché : le carrousel, la recherche de M3, puis le panier, le compte et la langue. */
 	.er-mp-bas {
 		flex: none;
-		padding: 12px var(--wp--style--root--padding-right, 20px) calc(16px + env(safe-area-inset-bottom)) var(--wp--style--root--padding-left, 20px);
+		padding: 16px var(--wp--style--root--padding-right, 20px) calc(16px + env(safe-area-inset-bottom)) var(--wp--style--root--padding-left, 20px);
 		border-top: 1px solid var(--wp--preset--color--filet);
 		background: var(--wp--preset--color--base);
 	}

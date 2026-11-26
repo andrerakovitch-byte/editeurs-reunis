@@ -8,7 +8,7 @@
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
  * - le plan du site (≡, jusqu'à 1 320 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas ;
- * - au téléphone, dans ce plan, le menu M6 : les maisons en accordéon, les informations du haut en carrousel.
+ * - au téléphone, dans ce plan, le menu N2 : les maisons en accordéon, les informations du haut en carrousel.
  *
  * Sans ce script, les menus restent fermés : les pages des maisons sont aussi au pied de page.
  */
@@ -115,7 +115,7 @@
 		} );
 	}
 
-	// Le menu du téléphone (M6, inc/menus.php) : une maison se déplie, les autres se replient ; ses pages repliées
+	// Le menu du téléphone (N2, inc/menus.php) : une maison se déplie, les autres se replient ; ses pages repliées
 	// ne prennent pas le doigt ni le clavier (inert).
 	var telephone = plan && plan.querySelector( '.er-mp' );
 	if ( telephone ) {

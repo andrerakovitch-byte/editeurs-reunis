@@ -316,10 +316,11 @@ function er_menu_cartes() {
 }
 
 /**
- * Le menu du téléphone (M6 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
- * les quatre maisons en accordéon, chacune avec son triptyque en bande basse, sans point de couleur ; la maison de la
- * page ouverte est dépliée ; dessous, ce que dit la barre d'informations, en carrousel ; en bas, accrochées, la
- * recherche, puis le panier, le compte et la langue. Au-dessus de 781 px, le plan en colonnes reste.
+ * Le menu du téléphone (N2 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
+ * les quatre maisons en accordéon, sans point de couleur, chacune sur une ligne : son nom, son triptyque en trois
+ * petits carrés, le + ; la maison de la page ouverte est dépliée. En bas, accrochés : ce que dit la barre
+ * d'informations, en carrousel, puis la recherche, puis le panier, le compte et la langue. Tout fermé, tout se voit
+ * sans défiler. Au-dessus de 781 px, le plan en colonnes reste.
  */
 function er_menu_telephone() {
 	$donnees = er_em_donnees();
@@ -356,8 +357,8 @@ function er_menu_telephone() {
 		}
 		$rangs .= '<li class="er-mp-rang' . ( $ouvert ? ' est-ouvert' : '' ) . '">'
 			. '<button type="button" class="er-mp-tete" aria-expanded="' . ( $ouvert ? 'true' : 'false' ) . '" aria-controls="' . esc_attr( $id ) . '">'
-			. '<span class="er-mp-nom"><span>' . esc_html( $m['nom'] ) . '</span>' . er_menu_signe() . '</span>'
-			. ( isset( $bandes[ $cle ] ) ? er_triptyque_bande( $bandes[ $cle ] ) : '' ) . '</button>'
+			. '<span class="er-mp-nom">' . esc_html( $m['nom'] ) . '</span>'
+			. ( isset( $bandes[ $cle ] ) ? er_triptyque_bande( $bandes[ $cle ] ) : '' ) . er_menu_signe() . '</button>'
 			. '<div class="er-mp-volet" id="' . esc_attr( $id ) . '"' . ( $ouvert ? '' : ' inert' ) . '><div class="er-mp-volet-dedans"><ul class="er-mp-pages">'
 			. $liste . '</ul></div></div></li>';
 	}
@@ -376,11 +377,12 @@ function er_menu_telephone() {
 	$langue  = function_exists( 'er_choix_langue' ) ? er_choix_langue() : '';
 
 	return '<div class="er-mp">'
-		. '<div class="er-mp-defile"><ul class="er-mp-maisons">' . $rangs . '</ul>'
+		. '<div class="er-mp-defile"><ul class="er-mp-maisons">' . $rangs . '</ul></div>'
+		. '<div class="er-mp-bas">'
+		// Le carrousel collé au bas, au-dessus de la recherche (N2) : il reste en vue quand une maison se déplie.
 		. '<div class="er-mp-carrousel"><div class="er-mp-cartes">' . $cartes . '</div>'
 		/* translators: 1: le rang d'une carte, 2: le nombre de cartes (le carrousel du menu du téléphone). */
-		. '<div class="er-mp-traits" data-libelle="' . esc_attr__( 'Information %1$s sur %2$s', 'editeurs-reunis' ) . '"></div></div></div>'
-		. '<div class="er-mp-bas">'
+		. '<div class="er-mp-traits" data-libelle="' . esc_attr__( 'Information %1$s sur %2$s', 'editeurs-reunis' ) . '"></div></div>'
 		. '<form class="er-mp-recherche" role="search" method="get" action="' . esc_url( $accueil ) . '">'
 		. '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16.4 16.4L20.5 20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
 		. '<input type="search" name="s" placeholder="' . esc_attr__( 'Un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '" aria-label="' . esc_attr__( 'Rechercher', 'editeurs-reunis' ) . '" enterkeyhint="search">'
