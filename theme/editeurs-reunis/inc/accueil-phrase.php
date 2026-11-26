@@ -1,16 +1,17 @@
 <?php
 /**
- * La phrase à trous, en haut de l'accueil (Q5c du canevas « Les pages intérieures », retenue le 26 nov. 2026) :
- * « Vous cherchez un livre, une rencontre, une exposition ou un classique ? » Au survol, au toucher ou au clavier, le
- * mot passe à l'encre, la réponse se réécrit dessous et son image paraît à droite, comme dans l'index qui suit. Le
- * gabarit est celui de la tête des pages intérieures : 400 px, le texte calé en bas.
+ * La phrase en haut de l'accueil (Y3b du canevas « Les pages intérieures », retenue le 26 nov. 2026, d'après Q5c) :
+ * une seule phrase, sur trois lignes au plus, qui change d'elle-même toutes les six secondes, avec son image à droite
+ * (André : « c'est plus classe sur 3 lignes uniquement », la question « Vous cherchez… ? » enlevée). Dessous, le
+ * triptyque de l'accueil, bord à bord, que le bas de l'écran coupe pour donner envie de descendre ; puis l'index.
  *
- * Le livre (la librairie) et le classique (Le Maître et Marguerite) sont écrits ici. La rencontre et l'exposition se
- * lisent dans le site à chaque affichage : la prochaine rencontre (son jour, son titre, son livre : « Lundi 30 novembre
- * à 19 h, rencontre avec l'historien Nicolas Werth, autour de son livre Adieu ma Russie ») et l'exposition du moment
- * (son titre, ses artistes, jusqu'à quand). L'extrait des fiches n'y entre pas : écrit pour être lu seul, il ne suit pas
- * une date. L'image de la rencontre est la couverture de son livre (les livres liés, puis ceux des intervenants), à
- * défaut sa propre image. Sans rencontre à venir ou sans exposition, le mot s'en va de la question.
+ * La librairie et le classique sont écrits ici, chacun une phrase qui se tient seule (« Notre librairie… », « Notre
+ * maison d'édition a publié… »). La rencontre et l'exposition se lisent dans le site à chaque affichage : la prochaine
+ * rencontre (son jour, son titre, son livre : « Lundi 30 novembre à 19 h, rencontre avec l'historien Nicolas Werth,
+ * autour de son livre Adieu ma Russie ») et l'exposition du moment (son titre, ses artistes, jusqu'à quand). L'extrait
+ * des fiches n'y entre pas : écrit pour être lu seul, il ne suit pas une date. L'image de la rencontre est la
+ * couverture de son livre (les livres liés, puis ceux des intervenants), à défaut sa propre image. Sans rencontre à
+ * venir ou sans exposition, la phrase saute son tour.
  *
  * @package editeurs-reunis
  */
@@ -93,8 +94,8 @@ function er_ap_image_theme( $nom, $cadre = array( 1, 50, 50 ) ) {
 }
 
 /**
- * Les réponses, dans l'ordre de la question : la clé, le mot, la réponse (HTML), le lien, l'image (HTML) et si l'image
- * est une couverture (montrée entière, avec son ombre).
+ * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, l'image (HTML) et si l'image est
+ * une couverture (montrée entière, avec son ombre).
  *
  * @return array<int,array<string,mixed>>
  */
@@ -104,12 +105,11 @@ function er_ap_reponses() {
 
 	// Un livre : la librairie.
 	$reponses[] = array(
-		'cle'    => 'livre',
-		'mot'    => __( 'un livre', 'editeurs-reunis' ),
-		'texte'  => esc_html__( 'La plus ancienne librairie russe de Paris : littérature, histoire, pensée, en russe et en français', 'editeurs-reunis' ),
-		'lien'   => er_em_lien( 'librairie/' ),
-		'image'  => er_ap_image_theme( 'triptyques/khokhloma.jpg', array( 1.5, 0, 0 ) ),
-		'livre'  => false,
+		'cle'   => 'livre',
+		'texte' => esc_html__( 'Notre librairie, rue de la Montagne-Sainte-Geneviève, est la plus ancienne librairie russe de Paris', 'editeurs-reunis' ),
+		'lien'  => er_em_lien( 'librairie/' ),
+		'image' => er_ap_image_theme( 'triptyques/khokhloma.jpg', array( 1.5, 0, 0 ) ),
+		'livre' => false,
 	);
 
 	// Une rencontre : la prochaine (deux heures après son début, elle est passée).
@@ -130,7 +130,6 @@ function er_ap_reponses() {
 		$photo      = $livre ? (int) get_post_thumbnail_id( $livre[0] ) : (int) get_post_thumbnail_id( $id );
 		$reponses[] = array(
 			'cle'   => 'rencontre',
-			'mot'   => __( 'une rencontre', 'editeurs-reunis' ),
 			'texte' => $texte,
 			'lien'  => get_permalink( $id ),
 			'image' => $photo ? ( $livre ? '' : '<span class="er-ap-cadre">' ) . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . ( $livre ? '' : '</span>' ) : '',
@@ -150,7 +149,6 @@ function er_ap_reponses() {
 		$photo      = (int) get_post_thumbnail_id( $expo );
 		$reponses[] = array(
 			'cle'   => 'expo',
-			'mot'   => __( 'une exposition', 'editeurs-reunis' ),
 			'texte' => $texte,
 			'lien'  => get_permalink( function_exists( 'er_traduction' ) ? er_traduction( $expo ) : $expo ),
 			'image' => $photo ? '<span class="er-ap-cadre">' . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . '</span>' : '',
@@ -158,7 +156,8 @@ function er_ap_reponses() {
 		);
 	}
 
-	// Un classique : Le Maître et Marguerite, dont YMCA-Press a donné la première édition (la couverture de 1967).
+	// Un classique : Le Maître et Marguerite, dont YMCA-Press a publié la première édition en volume (la couverture de
+	// 1967) ; le roman avait d'abord paru, coupé, dans une revue de Moscou.
 	$classique  = get_transient( 'er_ap_classique' );
 	if ( false === $classique ) {
 		$trouves   = function_exists( 'wc_get_product' ) ? get_posts(
@@ -175,9 +174,8 @@ function er_ap_reponses() {
 	}
 	$reponses[] = array(
 		'cle'   => 'classique',
-		'mot'   => __( 'un classique', 'editeurs-reunis' ),
-		/* translators: %s: le titre, en italique */
-		'texte' => sprintf( esc_html__( '%s, de Boulgakov, dont YMCA-Press a donné la première édition en 1967', 'editeurs-reunis' ), '<em>' . esc_html__( 'Le Maître et Marguerite', 'editeurs-reunis' ) . '</em>' ),
+		/* translators: %s: le titre, en italique (« Maître et Marguerite », après « du ») */
+		'texte' => sprintf( esc_html__( 'Notre maison d’édition a publié en 1967 la première édition en volume du %s, de Boulgakov', 'editeurs-reunis' ), '<em>' . esc_html__( 'Maître et Marguerite', 'editeurs-reunis' ) . '</em>' ),
 		'lien'  => $classique ? get_permalink( $classique ) : er_em_lien( 'ymca-press/catalogue/' ),
 		'image' => '<img src="' . esc_url( er_image( 'couv-maitre-marguerite.jpg' ) ) . '" alt="" width="619" height="950" loading="lazy" decoding="async">',
 		'livre' => true,
@@ -190,32 +188,26 @@ function er_ap_reponses() {
 }
 
 /**
- * Le module.
+ * Le module : la phrase et son image, puis le triptyque.
+ *
+ * Les phrases qu'on ne voit pas restent des liens qu'on atteint au clavier : celle qui prend le focus paraît (le script
+ * la montre et s'arrête, comme au survol). Rien n'est annoncé quand la phrase change seule.
  */
 function er_accueil_phrase() {
-	$reponses = er_ap_reponses();
-	$n        = count( $reponses );
-	$mots     = '';
-	$textes   = '';
-	$images   = '';
-	foreach ( $reponses as $i => $r ) {
-		$premier = 0 === $i;
-		$id      = 'er-ap-' . $r['cle'];
-		$sep     = $i < $n - 2 ? ', ' : ( $i === $n - 2 ? ' ' . __( 'ou', 'editeurs-reunis' ) . ' ' : '' );
-		$mots   .= '<button type="button" class="er-ap-mot" data-cle="' . esc_attr( $r['cle'] ) . '" aria-controls="' . esc_attr( $id ) . '" aria-pressed="' . ( $premier ? 'true' : 'false' ) . '">'
-			. esc_html( $r['mot'] ) . '</button>' . esc_html( $sep );
-		$textes .= '<a class="er-ap-reponse' . ( $premier ? ' est-vue' : '' ) . '" id="' . esc_attr( $id ) . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '"' . ( $premier ? '' : ' inert' ) . '>'
-			. $r['texte'] . '</a>';
+	$textes = '';
+	$images = '';
+	foreach ( er_ap_reponses() as $i => $r ) {
+		$vue     = 0 === $i ? ' est-vue' : '';
+		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '">' . $r['texte'] . '</a>';
 		if ( $r['image'] ) {
-			$images .= '<span class="er-ap-image' . ( $r['livre'] ? ' est-livre' : '' ) . ( $premier ? ' est-vue' : '' ) . '" data-cle="' . esc_attr( $r['cle'] ) . '">' . $r['image'] . '</span>';
+			$images .= '<span class="er-ap-image' . ( $r['livre'] ? ' est-livre' : '' ) . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '">' . $r['image'] . '</span>';
 		}
 	}
-	/* translators: la question en haut de l'accueil, devant les mots à choisir (« un livre, une rencontre… ») */
-	$question = esc_html__( 'Vous cherchez', 'editeurs-reunis' );
+	$triptyque = function_exists( 'er_triptyque_html' ) ? er_triptyque_html( 'accueil' ) : '';
 	return '<section class="er-ap" aria-label="' . esc_attr__( 'À la une', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
-		. '<div class="er-ap-texte"><p class="er-ap-question">' . $question . ' ' . $mots . "\u{00A0}?</p>"
-		. '<div class="er-ap-reponses" aria-live="polite">' . $textes . '</div></div>'
-		. '<div class="er-ap-images" aria-hidden="true">' . $images . '</div></div></section>';
+		. '<div class="er-ap-reponses">' . $textes . '</div>'
+		. '<div class="er-ap-images" aria-hidden="true">' . $images . '</div></div></section>'
+		. ( $triptyque ? '<div class="er-ap-triptyque">' . $triptyque . '</div>' : '' );
 }
 add_shortcode( 'er_accueil_phrase', 'er_accueil_phrase' );
 

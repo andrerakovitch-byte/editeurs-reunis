@@ -1,6 +1,7 @@
-/* La phrase à trous, en haut de l'accueil (inc/accueil-phrase.php ; Q5c du canevas « Les pages intérieures », 26 nov.
-   2026), dans le gabarit de la tête des pages intérieures : 400 px, sur le blanc, le texte calé en bas (36 px du bord),
-   l'image de la réponse à droite, comme dans l'index qui suit. */
+/* La phrase en haut de l'accueil (inc/accueil-phrase.php ; Y3b du canevas « Les pages intérieures », 26 nov. 2026),
+   dans le gabarit de la tête des pages intérieures : 400 px, sur le blanc, la phrase calée en bas (36 px du bord), sur
+   trois lignes au plus, son image à droite ; dessous, le triptyque bord à bord. La phrase change d'elle-même
+   (assets/js/accueil-phrase.js). */
 .er-ap {
 	display: flex;
 	align-items: flex-end;
@@ -11,27 +12,18 @@
 	color: var(--wp--preset--color--contrast);
 }
 .er-ap-corps { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; }
-.er-ap-texte { grid-column: 1 / span 9; font-size: 3rem; font-weight: 500; line-height: 1.08; letter-spacing: -0.035em; }
-.er-ap-question { margin: 0; }
 
-/* Les mots : en gris ; celui qu'on regarde, à l'encre. */
-.er-ap-mot {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: none;
-	font: inherit;
-	letter-spacing: inherit;
-	color: #8c8c87;
-	cursor: pointer;
-	transition: color 200ms ease;
+/* Les phrases : toutes dans la même case, calées en bas, la dernière ligne toujours à la même place. Seule celle du
+   moment se voit ; la suivante monte en paraissant, celle qui s'en va s'efface vers le haut. */
+.er-ap-reponses {
+	grid-column: 1 / span 9;
+	display: grid;
+	align-items: end;
+	font-size: 3rem;
+	font-weight: 500;
+	line-height: 1.08;
+	letter-spacing: -0.035em;
 }
-.er-ap-mot[aria-pressed="true"] { color: var(--wp--preset--color--contrast); }
-.er-ap-mot:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
-
-/* Les réponses : toutes dans la même case, la place de la plus longue réservée, chacune calée en haut ; la question
-   ne bouge donc jamais (sinon les mots fuiraient sous la souris). Seule celle qu'on regarde se voit. */
-.er-ap-reponses { display: grid; align-items: start; margin-top: 12px; }
 .er-ap-reponse {
 	grid-area: 1 / 1;
 	display: block;
@@ -39,13 +31,18 @@
 	text-decoration: none !important;
 	opacity: 0;
 	transform: translateY(14px);
-	transition: opacity 350ms ease, transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	transition: opacity 400ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
 	pointer-events: none;
 }
 .er-ap-reponse.est-vue { opacity: 1; transform: none; pointer-events: auto; }
+.er-ap-reponse.est-partie { transform: translateY(-8px); }
 .er-ap-reponse em { font-style: italic; }
+.er-ap-reponse:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
+/* Sans script, une phrase qui prend le focus paraît quand même, à la place de l'autre. */
+.er-ap-reponses:focus-within .er-ap-reponse:not(:focus) { opacity: 0; }
+.er-ap-reponse:focus { opacity: 1; transform: none; }
 
-/* L'image de la réponse, contre la marge de droite : une photo en 230 × 288, une couverture entière avec son ombre. */
+/* L'image de la phrase, contre la marge de droite : une photo en 230 × 288, une couverture entière avec son ombre. */
 .er-ap-images { grid-column: 10 / -1; position: relative; height: 288px; }
 .er-ap-image { position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end; opacity: 0; transition: opacity 400ms ease; }
 .er-ap-image.est-vue { opacity: 1; }
@@ -69,18 +66,23 @@
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 28px rgba(0, 0, 0, 0.14);
 }
 
+/* Le triptyque de l'accueil : bord à bord, 560 px ; en arrivant, le bas de l'écran le coupe. */
+.er-ap-triptyque .er-tpq { height: 560px; }
+
 @media (max-width: 1100px) {
 	.er-ap { height: 340px; }
-	.er-ap-texte { font-size: 2.5rem; }
+	.er-ap-reponses { font-size: 2.5rem; }
+	.er-ap-triptyque .er-tpq { height: 440px; }
 	.er-ap-images { height: 220px; }
 	.er-ap-cadre, .er-ap-image.est-livre img { height: 220px; }
 	.er-ap-cadre { width: 176px; }
 }
 @media (max-width: 781px) {
 	.er-ap { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
-	.er-ap-texte { grid-column: 1 / -1; font-size: 1.875rem; line-height: 1.12; letter-spacing: -0.03em; }
+	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.875rem; line-height: 1.12; letter-spacing: -0.03em; }
 	.er-ap-images { display: none; }
+	.er-ap-triptyque .er-tpq { height: 220px; gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-	.er-ap-mot, .er-ap-reponse, .er-ap-image { transition: none; }
+	.er-ap-reponse, .er-ap-image { transition: none; }
 }

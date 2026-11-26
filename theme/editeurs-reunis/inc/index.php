@@ -8,7 +8,7 @@
  * qu'on fait défiler la page (assets/js/une-index.js), avec en bas une seule ligne : ce que la gauche ne dit pas (un
  * éditeur et une langue, une entrée, une durée, une signature), le prix s'il y en a un, un bouton.
  *
- * Tout se lit dans le site à chaque affichage, rien n'est recopié : la prochaine rencontre (en grand) et les deux
+ * Tout se lit dans le site à chaque affichage, rien n'est recopié : la prochaine rencontre et les deux
  * suivantes, la dernière parution d'YMCA-Press (de l'année ou de la précédente), le dernier podcast, les sept
  * dernières nouveautés de la librairie (la mention « nouveauté ») ; puis, mois par mois, les rencontres passées, les
  * vidéos et les articles du journal, les dix plus récents, les plus anciens sous « Plus tôt ».
@@ -313,7 +313,7 @@ function er_index_produits( $args ) {
 }
 
 /**
- * Les rubriques de l'index : [ titre, lignes ]. La première n'a pas de titre (ce qui vient, ce qui vient d'arriver).
+ * Les rubriques de l'index : [ titre, lignes ]. La première, « À la une » : ce qui vient, ce qui vient d'arriver.
  */
 function er_index_rubriques() {
 	$haut       = array();
@@ -343,7 +343,7 @@ function er_index_rubriques() {
 		return $q->posts;
 	};
 
-	// La prochaine rencontre, en grand, et les deux suivantes.
+	// La prochaine rencontre et les deux suivantes.
 	foreach ( $rencontres( true, 3 ) as $rang => $p ) {
 		$haut[] = array( 'grand' => 0 === $rang ) + er_index_rencontre( $p, true );
 	}
@@ -470,7 +470,8 @@ function er_index_rubriques() {
 	usort( $passe, fn( $a, $b ) => $b['ts'] <=> $a['ts'] );
 	$passe = array_slice( $passe, 0, 10 );
 
-	$rubriques = $haut ? array( array( '', $haut ) ) : array();
+	// La première rubrique a son titre, « À la une », sur un trait noir comme les mois qui suivent (Y3b, 26 nov.).
+	$rubriques = $haut ? array( array( __( 'À la une', 'editeurs-reunis' ), $haut ) ) : array();
 	$fuseau    = new DateTimeZone( 'Europe/Paris' );
 	$ce_mois   = new DateTimeImmutable( 'first day of this month 00:00', $fuseau );
 	$limite    = $ce_mois->modify( '-2 months' )->getTimestamp();
@@ -539,7 +540,8 @@ function er_index_html() {
 		foreach ( $lignes as $l ) {
 			$actif   = 0 === $rang ? ' est-actif' : '';
 			$vignette = er_index_image( $l, 'woocommerce_thumbnail', '72px' );
-			$liste  .= '<li class="er-index-ligne' . ( $l['grand'] ? ' est-grand' : '' ) . $actif . '" data-maison="' . esc_attr( $l['maison'] ) . '">'
+			// Tous les titres à la même taille (26 nov.) : la prochaine rencontre n'est plus en grand, elle dépassait la phrase.
+			$liste  .= '<li class="er-index-ligne' . $actif . '" data-maison="' . esc_attr( $l['maison'] ) . '">'
 				. '<p class="er-index-quand"><span class="er-index-point" aria-hidden="true"></span>' . esc_html( $l['quand'] ) . '</p>'
 				. '<p class="er-index-titre"><a href="' . esc_url( $l['lien'] ) . '">' . $l['titre'] . '</a></p>' // Le titre est échappé pièce à pièce.
 				. ( $vignette ? '<span class="er-index-vignette est-' . esc_attr( $l['vue'] ) . '" aria-hidden="true">' . $vignette . '</span>' : '' )

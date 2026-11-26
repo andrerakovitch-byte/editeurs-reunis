@@ -257,7 +257,8 @@
 			ouvertAuSurvol = 0;
 			ouvrir( bouton, 0 === e.detail );
 		} );
-		if ( duPlan ) {
+		// Le plan et le sac ne s'ouvrent qu'au clic (le sac : André, 26 nov.) ; les quatre menus, aussi au survol.
+		if ( duPlan || 'panier' === bouton.getAttribute( 'data-er-em' ) ) {
 			return;
 		}
 		bouton.addEventListener( 'mouseenter', function () {
@@ -279,9 +280,10 @@
 		} );
 	} );
 
-	// La souris quitte l'en-tête et ses menus : le menu se referme, après un instant (le temps d'y revenir).
+	// La souris quitte l'en-tête et ses menus : le menu se referme, après un instant (le temps d'y revenir). Le sac,
+	// ouvert d'un clic, reste ouvert jusqu'à un clic ailleurs (ou Échap).
 	haut.addEventListener( 'mouseleave', function () {
-		if ( survol.matches && courant && cible( courant ) !== plan ) {
+		if ( survol.matches && courant && cible( courant ) !== plan && 'panier' !== courant.getAttribute( 'data-er-em' ) ) {
 			attendre( function () {
 				fermer( false );
 			}, 250 );

@@ -11,6 +11,21 @@
 
 /* La barre d'informations : la langue au bout, dans sa bulle « Aя ». */
 .er-em-barre { position: relative; z-index: 2; }
+
+/* Plus discrète (André, 26 nov.) : ses informations et la langue en gris pâle, le gris des noms ; chacune passe à
+   l'encre au survol (et la langue tant que sa liste est ouverte). */
+.er-infos .er-info,
+.er-infos .er-info strong,
+.er-infos .er-choix-langue-bouton { color: var(--er-gris-nom) !important; transition: color 200ms ease; }
+.er-infos .er-info:hover,
+.er-infos .er-info:focus-visible,
+.er-infos .er-info:hover strong,
+.er-infos .er-info:focus-visible strong,
+.er-infos .er-choix-langue-bouton:hover,
+.er-infos .er-choix-langue-bouton:focus-visible,
+.er-infos .er-choix-langue-bouton[aria-expanded="true"] { color: var(--wp--preset--color--contrast) !important; }
+.er-infos .er-info:hover strong,
+.er-infos .er-info:focus-visible strong { text-decoration: none; }
 .er-choix-langue-bouton { display: inline-flex; align-items: center; gap: 7px; }
 .er-choix-langue-bulle { flex: none; transform: translateY(2px); }
 

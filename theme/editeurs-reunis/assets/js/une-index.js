@@ -3,9 +3,9 @@
  *
  * La ligne en cours est celle qui passe sous le repère, aux trois dixièmes de l'écran sous l'en-tête, pendant qu'on
  * fait défiler la page ; la souris, ou le clavier, la choisit aussi. La colonne reste accrochée sous l'en-tête
- * (position: sticky) : ce script l'accroche au bas de l'en-tête tel qu'il est (sa ligne verte peut passer sur deux
- * lignes) et lui donne la hauteur qui reste jusqu'au bas de l'écran, pour que sa bande (le prix, le bouton) y soit
- * toujours. Au téléphone, la colonne est cachée : le script ne fait rien et les titres restent noirs.
+ * (position: sticky) : ce script l'accroche au bas de l'en-tête tel qu'il est et lui donne toute la hauteur sous
+ * l'en-tête, pour que sa bande (le prix, le bouton) soit au bas de l'écran une fois accrochée ; avant, le bas de
+ * l'écran la coupe. Au téléphone, la colonne est cachée : le script ne fait rien et les titres restent noirs.
  */
 ( function () {
 	'use strict';
@@ -56,8 +56,9 @@
 		}
 		var haut = accroche();
 		colonne.style.top = haut + 'px';
-		var dessus = Math.max( colonne.getBoundingClientRect().top, haut );
-		colonne.style.setProperty( '--er-index-h', Math.max( 360, window.innerHeight - dessus ) + 'px' );
+		// Toujours toute la hauteur sous l'en-tête, même avant d'être accrochée : l'image n'est pas réduite pour tenir
+		// sous la phrase, c'est le bas de l'écran qui la coupe (Y3b, 26 nov.).
+		colonne.style.setProperty( '--er-index-h', Math.max( 360, window.innerHeight - haut ) + 'px' );
 
 		var repere = haut + ( window.innerHeight - haut ) * 0.3;
 		var choisie = 0;

@@ -56,6 +56,8 @@ function er_triptyques() {
 		'edition'     => array( 'cf-orange', 'cf-or-brun', 'vermont' ),
 		'histoire'    => array( 'congres', 'imprimerie', 'groupe' ),
 		'trouver'     => array( 'facade', 'peintre', 'khokhloma' ),
+		// L'accueil, sous la phrase, bord à bord (Y3b, 26 nov.) : les filés de la librairie, en attendant les siens.
+		'accueil'     => array( 'cf-creme', 'cf-fenetre', 'cf-visage' ),
 	);
 }
 
