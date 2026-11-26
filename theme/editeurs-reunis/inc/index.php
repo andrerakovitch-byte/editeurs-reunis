@@ -561,14 +561,15 @@ function er_index_html() {
 		$liste .= '</ol></div>';
 	}
 
-	// Au bout : où tout trouver (le compte des nouveautés, des rencontres et des textes est parti, André, 26 nov.).
+	// Au bout : « Le fil continue : » et où tout trouver, sans le compte des nouveautés, des rencontres et des textes
+	// (André, 26 nov.) ; sur la même ligne que le bas de la colonne de l'image (22-index.css).
 	$liens = array(
 		array( __( 'Les nouveautés', 'editeurs-reunis' ), function_exists( 'er_mention' ) ? er_mention( 'nouveaute' ) : er_lien( 'librairie/' ) ),
 		array( __( 'Les rencontres', 'editeurs-reunis' ), function_exists( 'er_evt_page_liste' ) ? esc_url( er_evt_page_liste() ) : er_lien( 'centre-culturel/evenements/' ) ),
 		array( __( 'Le journal', 'editeurs-reunis' ), er_lien( 'journal/' ) ),
 	);
 	$fin = '<div class="er-index-fin">'
-		. '<p class="er-index-liens">' . implode( '', array_map( fn( $l ) => '<a href="' . $l[1] . '">' . esc_html( $l[0] ) . '</a>', $liens ) ) . '</p>'
+		. '<p class="er-index-liens"><span class="er-index-fil">' . esc_html__( "Le fil continue\u{00A0}:", 'editeurs-reunis' ) . '</span>' . implode( '', array_map( fn( $l ) => '<a href="' . $l[1] . '">' . esc_html( $l[0] ) . '</a>', $liens ) ) . '</p>'
 		. '</div>';
 
 	return '<section class="er-index" aria-labelledby="er-index-titre">'
