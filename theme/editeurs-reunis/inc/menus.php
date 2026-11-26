@@ -243,10 +243,10 @@ add_shortcode( 'er_menu_sac', 'er_menu_sac' );
 add_shortcode( 'er_menu_bouton', 'er_essai_bouton_menu' );
 
 /**
- * Le + d'une maison du menu du téléphone : son trait vertical pivote, et le + devient −.
+ * Le chevron d'une maison du menu du téléphone, au trait gras, comme chez Apple.
  */
-function er_menu_signe() {
-	return '<svg class="er-mp-signe" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M1 8h14"/><path class="er-mp-signe-v" d="M8 1v14"/></svg>';
+function er_menu_chevron() {
+	return '<svg class="er-mp-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>';
 }
 
 /**
@@ -316,51 +316,35 @@ function er_menu_cartes() {
 }
 
 /**
- * Le menu du téléphone (N2 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
- * les quatre maisons en accordéon, sans point de couleur, chacune sur une ligne : son nom, son triptyque en trois
- * petits carrés, le + ; la maison de la page ouverte est dépliée. En bas, accrochés : ce que dit la barre
- * d'informations, en carrousel, puis la recherche, puis le panier, le compte et la langue. Tout fermé, tout se voit
- * sans défiler. Au-dessus de 781 px, le plan en colonnes reste.
+ * Le menu du téléphone (P1 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
+ * les quatre maisons en gras, sans photo, un chevron au bout ; on touche une maison, ses pages glissent depuis la
+ * droite, et « ‹ Le menu » ramène, comme sur apple.com. La liste est collée en bas et défile. En bas, accrochés (N2,
+ * retenus) : ce que dit la barre d'informations, en carrousel, puis la recherche, puis le panier, le compte et la
+ * langue. Au-dessus de 781 px, le plan en colonnes reste.
  */
 function er_menu_telephone() {
-	$donnees = er_em_donnees();
-	$bandes  = array(
-		'librairie' => 'librairie',
-		'ymca'      => 'edition',
-		'centre'    => 'evenements',
-		'journal'   => 'histoire', // Le journal n'a pas encore son triptyque : les archives d'Un siècle d'histoire.
-	);
-	$ouverte = er_maison();
-	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) || 0 === strpos( er_chemin_reference(), 'journal' ) ) {
-		$ouverte = 'journal';
-	}
 	$chemin = function ( $lien ) {
 		return trailingslashit( (string) wp_parse_url( (string) $lien, PHP_URL_PATH ) );
 	};
 	$ici = $chemin( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/' );
 
-	$rangs = '';
-	foreach ( $donnees as $cle => $m ) {
-		$id     = 'er-mp-pages-' . $cle;
-		$ouvert = $cle === $ouverte;
-		$liste  = '';
-		$deja   = false;
-		foreach ( array_values( $m['pages'] ) as $j => $p ) {
+	$maisons = '';
+	$tiroirs = '';
+	foreach ( er_em_donnees() as $cle => $m ) {
+		$id    = 'er-mp-pages-' . $cle;
+		$liste = '';
+		$deja  = false;
+		foreach ( $m['pages'] as $p ) {
 			$deja   = $deja || $chemin( $p['lien'] ) === $chemin( $m['lien'] );
-			$liste .= '<li style="--er-j:' . (int) $j . '"><a href="' . esc_url( $p['lien'] ) . '"' . ( $chemin( $p['lien'] ) === $ici ? ' aria-current="page"' : '' ) . '>'
-				. esc_html( $p['nom'] ) . '</a></li>';
+			$liste .= '<li><a href="' . esc_url( $p['lien'] ) . '"' . ( $chemin( $p['lien'] ) === $ici ? ' aria-current="page"' : '' ) . '>' . esc_html( $p['nom'] ) . '</a></li>';
 		}
-		if ( ! $deja ) {
-			// La page de la maison, quand elle n'est pas déjà dans la liste (la Librairie, dont la liste a les rayons).
-			$liste .= '<li class="er-mp-tout" style="--er-j:' . count( $m['pages'] ) . '"><a href="' . esc_url( $m['lien'] ) . '">'
-				. esc_html( 'librairie' === $cle ? __( 'Toute la librairie', 'editeurs-reunis' ) : $m['nom'] ) . ' <span aria-hidden="true">→</span></a></li>';
-		}
-		$rangs .= '<li class="er-mp-rang' . ( $ouvert ? ' est-ouvert' : '' ) . '">'
-			. '<button type="button" class="er-mp-tete" aria-expanded="' . ( $ouvert ? 'true' : 'false' ) . '" aria-controls="' . esc_attr( $id ) . '">'
-			. '<span class="er-mp-nom">' . esc_html( $m['nom'] ) . '</span>'
-			. ( isset( $bandes[ $cle ] ) ? er_triptyque_bande( $bandes[ $cle ] ) : '' ) . er_menu_signe() . '</button>'
-			. '<div class="er-mp-volet" id="' . esc_attr( $id ) . '"' . ( $ouvert ? '' : ' inert' ) . '><div class="er-mp-volet-dedans"><ul class="er-mp-pages">'
-			. $liste . '</ul></div></div></li>';
+		// La page de la maison, quand elle n'est pas déjà dans la liste (la Librairie, dont la liste a les rayons).
+		$tout     = $deja ? '' : '<a class="er-mp-tout" href="' . esc_url( $m['lien'] ) . '">'
+			. esc_html( 'librairie' === $cle ? __( 'Toute la librairie', 'editeurs-reunis' ) : $m['nom'] ) . ' <span aria-hidden="true">→</span></a>';
+		$maisons .= '<li><button type="button" class="er-mp-maison" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '">'
+			. '<span>' . esc_html( $m['nom'] ) . '</span>' . er_menu_chevron() . '</button></li>';
+		$tiroirs .= '<div class="er-mp-tiroir" id="' . esc_attr( $id ) . '" hidden><p class="er-mp-surtitre">' . esc_html( $m['nom'] ) . '</p>'
+			. '<ul class="er-mp-pages">' . $liste . '</ul>' . $tout . '</div>';
 	}
 
 	$cartes = '';
@@ -377,9 +361,14 @@ function er_menu_telephone() {
 	$langue  = function_exists( 'er_choix_langue' ) ? er_choix_langue() : '';
 
 	return '<div class="er-mp">'
-		. '<div class="er-mp-defile"><div class="er-mp-colle"><ul class="er-mp-maisons">' . $rangs . '</ul></div></div>'
+		. '<button type="button" class="er-mp-retour" inert><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>'
+		. esc_html__( 'Le menu', 'editeurs-reunis' ) . '</button>'
+		. '<div class="er-mp-fenetre"><div class="er-mp-rail">'
+		. '<div class="er-mp-panneau er-mp-panneau-maisons"><div class="er-mp-colle"><ul class="er-mp-maisons">' . $maisons . '</ul></div></div>'
+		. '<div class="er-mp-panneau er-mp-panneau-pages" inert><div class="er-mp-colle">' . $tiroirs . '</div></div>'
+		. '</div></div>'
 		. '<div class="er-mp-bas">'
-		// Le carrousel collé au bas, au-dessus de la recherche (N2) : il reste en vue quand une maison se déplie.
+		// Le carrousel collé au bas, au-dessus de la recherche (N2) : il reste en vue quand on parcourt les pages.
 		. '<div class="er-mp-carrousel"><div class="er-mp-cartes">' . $cartes . '</div>'
 		/* translators: 1: le rang d'une carte, 2: le nombre de cartes (le carrousel du menu du téléphone). */
 		. '<div class="er-mp-traits" data-libelle="' . esc_attr__( 'Information %1$s sur %2$s', 'editeurs-reunis' ) . '"></div></div>'

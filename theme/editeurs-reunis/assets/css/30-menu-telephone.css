@@ -1,8 +1,8 @@
-/* Le menu du téléphone (N2 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
-   (inc/menus.php, er_menu_telephone) : les quatre maisons en accordéon, sans point de couleur, chacune sur une ligne
-   (son nom, son triptyque en trois petits carrés, le +), collées en bas ; en bas, accrochés, les informations du haut en carrousel,
-   la recherche, puis le panier, le compte et la langue. Tout fermé, tout se voit sans défiler. Au-dessus de 781 px,
-   le plan en colonnes reste. */
+/* Le menu du téléphone (P1 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
+   (inc/menus.php, er_menu_telephone) : les quatre maisons en gras, sans photo, un chevron au bout ; leurs pages en
+   tiroir, qui glisse depuis la droite ; « ‹ Le menu » ramène. La liste est collée en bas et défile. En bas, accrochés
+   (N2, retenus) : les informations du haut en carrousel, la recherche, puis le panier, le compte et la langue.
+   Au-dessus de 781 px, le plan en colonnes reste. */
 
 /* La bulle « Aя » ne se retourne pas quand la liste des langues s'ouvre (seul l'ancien chevron le faisait). */
 .er-choix-langue-bouton[aria-expanded="true"] .er-choix-langue-bulle { transform: translateY(2px); }
@@ -20,72 +20,80 @@
 	.er-em-plan .er-em-colonnes,
 	.er-em-plan .er-em-plan-pied { display: none; }
 	.er-mp { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-	/* Tout le menu est collé en bas, sous le pouce ; la croix seule reste en haut, et le vide est entre les deux.
-	   Les maisons défilent toujours, même quand tout tient (un pixel de plus que la place : le doigt sent le rebond),
-	   et d'autant plus quand une maison est dépliée ; elles passent sous la barre du nom, pas sous la croix. */
-	.er-mp-defile {
-		flex: 1;
-		min-height: 0;
+	/* « ‹ Le menu », à la hauteur de la croix, à gauche : il paraît quand le tiroir est ouvert. */
+	.er-mp-retour {
+		position: absolute;
+		top: calc(var(--er-plan-croix, 40px) - 20px);
+		left: calc(var(--wp--style--root--padding-left, 20px) - 10px);
+		z-index: 3;
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		height: 40px;
+		padding: 0 8px 0 0;
+		border: 0;
+		background: none;
+		font: inherit;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--wp--preset--color--contrast);
+		cursor: pointer;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 300ms ease, visibility 0s linear 300ms;
+	}
+	.er-mp.est-pages .er-mp-retour { opacity: 1; visibility: visible; transition: opacity 300ms ease; }
+
+	/* La fenêtre, sous la barre du nom : un rail de deux panneaux, les maisons puis les pages, qui glisse d'un cran. */
+	.er-mp-fenetre { flex: 1; min-height: 0; margin-top: calc(var(--er-plan-croix, 40px) + 40px); overflow: hidden; }
+	.er-em-plan.avec-barre .er-mp-fenetre { margin-top: 16px; }
+	.er-mp-rail { display: flex; width: 200%; height: 100%; transition: transform 460ms cubic-bezier(0.4, 0, 0.2, 1); }
+	.er-mp.est-pages .er-mp-rail { transform: translateX(-50%); }
+	/* Chaque panneau défile ; ce qu'il montre est collé en bas, avec un pixel de plus que la place (le rebond). */
+	.er-mp-panneau {
+		flex: none;
+		width: 50%;
+		height: 100%;
+		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
-		margin-top: calc(var(--er-plan-croix, 40px) + 40px);
 		padding: 0 var(--wp--style--root--padding-right, 20px) 20px var(--wp--style--root--padding-left, 20px);
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		-webkit-overflow-scrolling: touch;
 	}
-	.er-em-plan.avec-barre .er-mp-defile { margin-top: 16px; }
 	.er-mp-colle { flex: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: calc(100% + 1px); }
 
-	/* Les maisons : un rang de 56 px entre deux filets ; le nom, le triptyque en trois petits carrés, le +. */
-	.er-mp-maisons { flex: none; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
-	.er-mp-rang { border-bottom: 1px solid var(--wp--preset--color--filet); }
-	.er-mp-tete {
+	/* Les maisons : 28 px gras, un chevron gris au bout. */
+	.er-mp-maisons { margin: 0; padding: 0; list-style: none; }
+	.er-mp-maison {
 		display: flex;
 		align-items: center;
-		gap: 14px;
+		justify-content: space-between;
+		gap: 12px;
 		width: 100%;
-		min-height: 56px;
-		padding: 0;
+		padding: 10px 0;
 		border: 0;
 		background: none;
 		text-align: left;
 		font: inherit;
-		font-size: 1.375rem;
-		font-weight: 500;
+		font-size: 1.75rem;
+		font-weight: 600;
 		letter-spacing: -0.03em;
+		line-height: 1.15;
 		color: var(--wp--preset--color--contrast);
 		cursor: pointer;
 		-webkit-tap-highlight-color: transparent;
 	}
-	.er-mp-nom { flex: 1; min-width: 0; line-height: 1.15; }
-	.er-mp-signe { flex: none; width: 14px; height: 14px; margin-right: 2px; }
-	.er-mp-signe-v { transform-box: view-box; transform-origin: 8px 8px; transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1); }
-	.er-mp-rang.est-ouvert .er-mp-signe-v { transform: rotate(90deg); }
-	.er-mp-bande { flex: none; display: grid; grid-template-columns: repeat(3, 30px); gap: 2px; height: 30px; }
-	.er-mp-bande-image { display: block; min-width: 0; overflow: hidden; background: var(--wp--preset--color--doux); }
-	.er-mp-bande-image img,
-	.er-mp-carte-image img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		max-width: none;
-		object-fit: cover;
-		object-position: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
-		transform: scale(var(--er-tpq-z, 1));
-		transform-origin: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
-	}
+	.er-mp-chevron { flex: none; color: #a3a39e; }
 
-	/* Les pages d'une maison se déplient sous elle, l'une après l'autre ; la page ouverte est soulignée. */
-	.er-mp-volet { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1); }
-	.er-mp-rang.est-ouvert .er-mp-volet { grid-template-rows: 1fr; }
-	.er-mp-volet-dedans { min-height: 0; overflow: hidden; }
-	.er-mp-pages { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 2px 0 20px; list-style: none; font-size: 1.0625rem; font-weight: 500; line-height: 1.3; }
-	.er-mp-pages li { opacity: 0; transition: opacity 200ms ease; }
-	.er-mp-rang.est-ouvert .er-mp-pages li { opacity: 1; transition: opacity 260ms ease calc(120ms + var(--er-j, 0) * 28ms); }
+	/* Les pages d'une maison : son nom en petit et en gris, puis ses pages en 24 px gras ; la page ouverte soulignée. */
+	.er-mp-tiroir[hidden] { display: none; }
+	.er-mp-surtitre { margin: 0 0 10px; font-size: 0.8125rem; font-weight: 500; color: var(--wp--preset--color--discret); }
+	.er-mp-pages { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
 	.er-mp-pages a { color: var(--wp--preset--color--contrast); }
 	.er-mp-pages a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
-	.er-mp-tout a { font-size: 0.9375rem; color: var(--wp--preset--color--discret); }
+	.er-em-plan .er-mp-tout { display: inline-block; margin-top: 18px; font-size: 0.9375rem; font-weight: 500; color: var(--wp--preset--color--discret); }
 
 	/* Le carrousel, collé au bas au-dessus de la recherche : une carte comme la rencontre de M4 (l'image, la ligne
 	   grise, le titre) ; la suivante dépasse à droite ; un trait par carte, le noir pour celle qu'on voit. */
@@ -104,6 +112,16 @@
 	.er-mp-cartes::-webkit-scrollbar { display: none; }
 	.er-mp-carte { flex: none; display: flex; gap: 14px; width: min(290px, calc(100vw - 100px)); scroll-snap-align: start; color: var(--wp--preset--color--contrast); }
 	.er-mp-carte-image { flex: none; width: 64px; height: 80px; overflow: hidden; background: var(--wp--preset--color--doux); }
+	.er-mp-carte-image img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		object-position: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
+		transform: scale(var(--er-tpq-z, 1));
+		transform-origin: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
+	}
 	.er-mp-carte-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 	.er-mp-carte-label { font-size: 0.8125rem; line-height: 1.35; color: var(--wp--preset--color--discret); }
 	.er-mp-carte-titre { font-size: 0.9375rem; font-weight: 500; line-height: 1.3; }
@@ -150,5 +168,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.er-mp-signe-v, .er-mp-volet, .er-mp-pages li, .er-mp-rang.est-ouvert .er-mp-pages li, .er-mp-traits span { transition: none; }
+	.er-mp-rail, .er-mp-retour, .er-mp.est-pages .er-mp-retour, .er-mp-traits span { transition: none; }
 }

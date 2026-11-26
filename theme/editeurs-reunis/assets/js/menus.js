@@ -8,7 +8,7 @@
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
  * - le plan du site (≡, jusqu'à 1 320 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas ;
- * - au téléphone, dans ce plan, le menu N2 : les maisons en accordéon, les informations du haut en carrousel.
+ * - au téléphone, dans ce plan, le menu P1 : les maisons, leurs pages en tiroir, les informations du haut en carrousel.
  *
  * Sans ce script, les menus restent fermés : les pages des maisons sont aussi au pied de page.
  */
@@ -48,6 +48,7 @@
 			window.setTimeout( function () {
 				if ( ! courant || cible( courant ) !== plan ) {
 					plan.hidden = true;
+					plan.dispatchEvent( new CustomEvent( 'er-plan-ferme' ) );
 				}
 			}, 420 );
 		} else if ( menu ) {
@@ -107,7 +108,7 @@
 	// Les entrées du plan arrivent l'une après l'autre : chacune a son rang (le plan en colonnes et le menu du
 	// téléphone ont chacun leur suite).
 	if ( plan ) {
-		[ '.er-em-colonne-titre, .er-em-colonne li, .er-em-plan-pied > *', '.er-mp-rang, .er-mp-carrousel, .er-mp-bas > *' ].forEach( function ( suite ) {
+		[ '.er-em-colonne-titre, .er-em-colonne li, .er-em-plan-pied > *', '.er-mp-maisons > li, .er-mp-bas > *' ].forEach( function ( suite ) {
 			plan.querySelectorAll( suite ).forEach( function ( el, i ) {
 				el.classList.add( 'er-em-anim' );
 				el.style.setProperty( '--er-i', String( Math.min( i, 24 ) ) );
@@ -115,35 +116,54 @@
 		} );
 	}
 
-	// Le menu du téléphone (N2, inc/menus.php) : une maison se déplie, les autres se replient ; ses pages repliées
-	// ne prennent pas le doigt ni le clavier (inert).
+	// Le menu du téléphone (P1, inc/menus.php) : une maison touchée fait glisser ses pages depuis la droite ;
+	// « ‹ Le menu » les ramène. Le panneau qu'on ne voit pas ne prend ni le doigt ni le clavier (inert). Le plan
+	// refermé revient aux maisons.
 	var telephone = plan && plan.querySelector( '.er-mp' );
 	if ( telephone ) {
-		var rangs = Array.prototype.slice.call( telephone.querySelectorAll( '.er-mp-rang' ) );
-		var deplier = function ( rang, oui ) {
-			var volet = rang.querySelector( '.er-mp-volet' );
-			rang.classList.toggle( 'est-ouvert', oui );
-			rang.querySelector( '.er-mp-tete' ).setAttribute( 'aria-expanded', oui ? 'true' : 'false' );
-			if ( volet ) {
-				volet.toggleAttribute( 'inert', ! oui );
+		var retour = telephone.querySelector( '.er-mp-retour' );
+		var panneauMaisons = telephone.querySelector( '.er-mp-panneau-maisons' );
+		var panneauPages = telephone.querySelector( '.er-mp-panneau-pages' );
+		var maisons = Array.prototype.slice.call( telephone.querySelectorAll( '.er-mp-maison' ) );
+		var maisonOuverte = null;
+		var tiroir = function ( maison ) {
+			var ouvert = !! maison;
+			if ( maison ) {
+				telephone.querySelectorAll( '.er-mp-tiroir' ).forEach( function ( t ) {
+					t.hidden = t.id !== maison.getAttribute( 'aria-controls' );
+				} );
+				panneauPages.scrollTop = 0;
+			}
+			maisons.forEach( function ( m ) {
+				m.setAttribute( 'aria-expanded', m === maison ? 'true' : 'false' );
+			} );
+			telephone.classList.toggle( 'est-pages', ouvert );
+			panneauMaisons.toggleAttribute( 'inert', ouvert );
+			panneauPages.toggleAttribute( 'inert', ! ouvert );
+			retour.toggleAttribute( 'inert', ! ouvert );
+			if ( ouvert ) {
+				maisonOuverte = maison;
 			}
 		};
-		rangs.forEach( function ( rang ) {
-			rang.querySelector( '.er-mp-tete' ).addEventListener( 'click', function () {
-				var oui = ! rang.classList.contains( 'est-ouvert' );
-				rangs.forEach( function ( autre ) {
-					if ( autre !== rang ) {
-						deplier( autre, false );
-					}
-				} );
-				deplier( rang, oui );
-				// Collé en bas, le menu grandit vers le haut ; si la maison dépliée ne tient plus, on la ramène en vue.
-				if ( oui ) {
-					window.setTimeout( function () {
-						rang.scrollIntoView( { block: 'nearest', behavior: window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ? 'auto' : 'smooth' } );
-					}, 400 );
-				}
+		maisons.forEach( function ( maison ) {
+			maison.addEventListener( 'click', function () {
+				tiroir( maison );
+				retour.focus( { preventScroll: true } );
 			} );
+		} );
+		retour.addEventListener( 'click', function () {
+			var revenir = maisonOuverte;
+			tiroir( null );
+			if ( revenir ) {
+				revenir.focus( { preventScroll: true } );
+			}
+		} );
+		plan.addEventListener( 'er-plan-ferme', function () {
+			var rail = telephone.querySelector( '.er-mp-rail' );
+			rail.style.transition = 'none';
+			tiroir( null );
+			void rail.offsetWidth;
+			rail.style.transition = '';
 		} );
 
 		// Le carrousel : les rencontres passées s'en vont (deux heures après leur début ; la page peut dater) ; un
