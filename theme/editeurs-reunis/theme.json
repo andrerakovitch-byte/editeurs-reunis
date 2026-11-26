@@ -165,6 +165,7 @@
 	},
 	"templateParts": [
 		{ "name": "header", "title": "En-tête", "area": "header" },
+		{ "name": "header-essai", "title": "En-tête des pages d’essai", "area": "header" },
 		{ "name": "footer", "title": "Pied de page", "area": "footer" }
 	],
 	"customTemplates": [
@@ -172,6 +173,7 @@
 		{"name": "page-modules", "title": "Page en modules, pleine largeur", "postTypes": ["page"]},
 		{"name": "page-large", "title": "Page large (une liste : les événements)", "postTypes": ["page"]},
 		{"name": "page-exemple", "title": "Page d’exemple (maquette)", "postTypes": ["page"]},
-		{"name": "page-exemple-librairie", "title": "Page d’exemple (maquette), avec les rayons de la librairie", "postTypes": ["page"]}
+		{"name": "page-exemple-librairie", "title": "Page d’exemple (maquette), avec les rayons de la librairie", "postTypes": ["page"]},
+		{"name": "page-essai", "title": "Page d’essai (l’en-tête épuré)", "postTypes": ["page"]}
 	]
 }

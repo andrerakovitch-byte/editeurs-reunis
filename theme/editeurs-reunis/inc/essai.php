@@ -4,10 +4,13 @@
  * « tête blanche » (canevas « Les pages intérieures, dans la direction », planche C, avec les retouches d'André), pour
  * la regarder avec les vraies rencontres avant de l'étendre à tout le site, et pour travailler l'en-tête épuré.
  *
- * - L'adresse : /centre-culturel/essai/, une page créée une fois par ce fichier (l'option er_essai_page garde son
- *   numéro ; supprimée, la page ne revient pas). Hors des moteurs de recherche et de la recherche du site.
- * - L'en-tête : sans la ligne de la maison (le filtre er_sans_lignes) ; la barre d'informations et la barre du nom
- *   restent telles quelles.
+ * - Les adresses : trois pages créées une fois par ce fichier (une option garde le numéro de chacune ; supprimée, une
+ *   page ne revient pas), hors des moteurs de recherche et de la recherche du site. Chacune essaie un des menus au clic
+ *   de l'en-tête épuré (planches E, F et G du même canevas ; inc/essai-menus.php) :
+ *   /centre-culturel/essai/ le panneau, /centre-culturel/essai-mots/ les grands mots, /centre-culturel/essai-plein/
+ *   le plein écran.
+ * - L'en-tête : la barre d'informations, puis la barre du nom avec ses quatre menus au clic (parts/header-essai.html) ;
+ *   plus de ligne de la maison.
  * - La tête : le titre seul, en 500, sur le blanc ; ni fil, ni chapô, ni compteur.
  * - La bande : la même que sur « Nos événements », mais sur le blanc, entre deux filets ; « Passées » en simple texte
  *   gris ; ses liens restent sur la page d'essai.
@@ -21,52 +24,77 @@
  */
 
 /**
- * Le numéro de la page d'essai, ou 0.
+ * Les pages d'essai : leur slug, l'option qui garde leur numéro, le menu qu'elles essaient.
  */
-function er_essai_id() {
-	return (int) get_option( 'er_essai_page' );
+function er_essai_pages() {
+	return array(
+		'essai'       => array( 'er_essai_page', 'panneau' ),
+		'essai-mots'  => array( 'er_essai_page_mots', 'mots' ),
+		'essai-plein' => array( 'er_essai_page_plein', 'plein' ),
+	);
 }
 
 /**
- * Est-on sur la page d'essai ?
+ * Le menu qu'essaie la page qu'on regarde (panneau, mots, plein), ou rien hors des pages d'essai.
+ */
+function er_essai_variante() {
+	if ( ! is_page() ) {
+		return '';
+	}
+	$id = get_queried_object_id();
+	foreach ( er_essai_pages() as list( $option, $variante ) ) {
+		if ( $id && (int) get_option( $option ) === $id ) {
+			return $variante;
+		}
+	}
+	return '';
+}
+
+/**
+ * Est-on sur une page d'essai ?
  */
 function er_essai() {
-	return is_page() && er_essai_id() && get_queried_object_id() === er_essai_id();
+	return '' !== er_essai_variante();
 }
 
 /**
- * La page, créée une fois, sous « Le centre culturel ». L'option sert de verrou : deux visites en même temps n'en
- * créent pas deux.
+ * Les pages, créées une fois, sous « Le centre culturel ». L'option de chacune sert de verrou : deux visites en même
+ * temps n'en créent pas deux.
  */
 add_action(
 	'init',
 	function () {
-		if ( false !== get_option( 'er_essai_page' ) || ! add_option( 'er_essai_page', 'en-cours' ) ) {
-			return;
+		foreach ( er_essai_pages() as $slug => list( $option ) ) {
+			if ( false !== get_option( $option ) || ! add_option( $option, 'en-cours' ) ) {
+				continue;
+			}
+			$parent    = get_page_by_path( 'centre-culturel' );
+			$existante = get_page_by_path( 'centre-culturel/' . $slug );
+			$id        = $existante ? $existante->ID : wp_insert_post(
+				array(
+					'post_type'      => 'page',
+					'post_status'    => 'publish',
+					'post_title'     => 'Nos événements',
+					'post_name'      => $slug,
+					'post_parent'    => $parent ? $parent->ID : 0,
+					'post_content'   => '',
+					'comment_status' => 'closed',
+					'meta_input'     => array(
+						'er_hors_recherche' => '1',
+						'_wp_page_template' => 'page-essai',
+					),
+				),
+				true
+			);
+			if ( is_wp_error( $id ) || ! $id ) {
+				delete_option( $option );
+				continue;
+			}
+			if ( function_exists( 'pll_set_post_language' ) && function_exists( 'pll_default_language' ) ) {
+				pll_set_post_language( $id, pll_default_language() );
+			}
+			update_option( $option, (int) $id );
 		}
-		$parent    = get_page_by_path( 'centre-culturel' );
-		$existante = get_page_by_path( 'centre-culturel/essai' );
-		$id        = $existante ? $existante->ID : wp_insert_post(
-			array(
-				'post_type'      => 'page',
-				'post_status'    => 'publish',
-				'post_title'     => 'Nos événements',
-				'post_name'      => 'essai',
-				'post_parent'    => $parent ? $parent->ID : 0,
-				'post_content'   => '',
-				'comment_status' => 'closed',
-				'meta_input'     => array( 'er_hors_recherche' => '1' ),
-			),
-			true
-		);
-		if ( is_wp_error( $id ) || ! $id ) {
-			delete_option( 'er_essai_page' );
-			return;
-		}
-		if ( function_exists( 'pll_set_post_language' ) && function_exists( 'pll_default_language' ) ) {
-			pll_set_post_language( $id, pll_default_language() );
-		}
-		update_option( 'er_essai_page', (int) $id );
 	},
 	30
 );
@@ -88,13 +116,33 @@ add_filter(
 	function ( $classes ) {
 		if ( er_essai() ) {
 			$classes[] = 'er-essai';
+			$classes[] = 'er-essai-' . er_essai_variante();
 		}
 		return $classes;
 	}
 );
 
 // Les liens de la bande (les années, les vidéos, les cycles) restent sur la page d'essai.
-add_filter( 'er_evt_page_liste', fn( $url ) => er_essai() ? get_permalink( er_essai_id() ) : $url );
+add_filter( 'er_evt_page_liste', fn( $url ) => er_essai() ? get_permalink( get_queried_object_id() ) : $url );
+
+// Les menus au clic : leur script, sur les pages d'essai seulement.
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( er_essai() ) {
+			wp_enqueue_script(
+				'editeurs-reunis-essai-menus',
+				get_theme_file_uri( 'assets/js/essai-menus.js' ),
+				array(),
+				wp_get_theme()->get( 'Version' ) . '.' . filemtime( get_theme_file_path( 'assets/js/essai-menus.js' ) ),
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
+	}
+);
 
 /**
  * La tête blanche : le titre de la page, seul.
