@@ -70,14 +70,19 @@
 .er-barre { border-bottom: 1px solid var(--wp--preset--color--filet); }
 .er-barre-dedans { min-height: 116px; }
 .er-mn-droite { display: flex; align-items: center; gap: 30px; }
-.er-mn { gap: 16px; font-size: 1.25rem; }
+/* Les quatre noms en capitales espacées, comme le nom du centre (Z3, 27 nov., à l'essai) : 12 px, demi-gras,
+   0,18 em entre les lettres, 36 px entre les noms. L'espace après la dernière lettre est repris, pour que le dernier
+   nom tombe juste avant le filet des outils. */
+.er-mn { gap: 36px; font-size: 0.75rem; }
 .er-mn .er-em-bouton {
 	padding: 10px 0;
-	font-weight: 500;
-	letter-spacing: -0.01em;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
 	transition: color 200ms ease;
 }
-.er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 500; }
+.er-mn .er-em-bouton > span { margin-inline-end: -0.18em; }
+.er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 600; }
 html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
 /* Au survol d'un nom, comme partout : il reste à l'encre, les autres passent en gris, en fondu (André, 26 nov.) ;
    celui dont le menu est ouvert reste à l'encre. */
