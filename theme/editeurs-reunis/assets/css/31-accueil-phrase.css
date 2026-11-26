@@ -78,7 +78,8 @@
 	.er-ap.est-pilote.est-survol .er-ap-blanc { opacity: 1; }
 }
 .er-ap-blanc { display: none; }
-.er-ap-blanc .er-ap-reponse { color: var(--wp--preset--color--base) !important; }
+/* La copie blanche ne prend jamais la souris (sa phrase « vue » le demanderait, et volerait le survol à la vraie). */
+.er-ap-blanc .er-ap-reponse { color: var(--wp--preset--color--base) !important; pointer-events: none !important; }
 .er-ap-suit-photo {
 	position: absolute;
 	display: block;

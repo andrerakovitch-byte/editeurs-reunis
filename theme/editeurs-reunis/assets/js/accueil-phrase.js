@@ -4,7 +4,7 @@
  * seul le focus dans ses liens l'arrête, et un lien qui prend le focus paraît. Ni pendant que l'onglet est caché, ni si
  * l'on a demandé moins d'animations : la première phrase reste. Sans ce script, la première phrase reste aussi.
  *
- * Avec une souris, la photo de la phrase suit le pointeur quand il passe sur ses mots, comme dans les trois maisons
+ * Avec une souris, la photo de la phrase suit le pointeur quand il passe sur elle, comme dans les trois maisons
  * (une-trois-maisons.js), et aussi grande : elle se pose à droite du curseur (à gauche près du bord), centrée sur lui
  * en hauteur, sans sortir de l'écran ni passer sous l'en-tête (elle peut déborder sur le triptyque) ; quand la phrase
  * change, la photo change avec elle. Les mots qu'elle couvre passent dessus, en blanc, à la manière de la Pinault
@@ -125,14 +125,15 @@
 			}
 		}
 
-		// La phrase sous le pointeur (les autres ne prennent pas la souris).
+		// La phrase sous le pointeur : tout son bloc, blanc du bout des lignes compris (sur les mots seuls, la photo
+		// s'éteignait à chaque bout de ligne : « l'effet marche par intermittence », André, 27 nov.). Les autres
+		// phrases ne prennent pas la souris.
 		function sousLaSouris() {
 			if ( ! dernier ) {
 				return null;
 			}
 			var el = document.elementFromPoint( dernier.clientX, dernier.clientY );
-			var mots = el && el.closest ? el.closest( '.er-ap-mots' ) : null;
-			var phrase = mots ? mots.closest( 'a.er-ap-reponse' ) : null;
+			var phrase = el && el.closest ? el.closest( 'a.er-ap-reponse' ) : null;
 			return phrase && ap.contains( phrase ) ? phrase.getAttribute( 'data-cle' ) : null;
 		}
 

@@ -121,6 +121,27 @@ function er_ap_photo( $source, $livre = false ) {
 }
 
 /**
+ * La photo qui suit la souris, prise dans la médiathèque d'après le nom du fichier (er-cf-bleu-nuit…) ; '' si elle n'y
+ * est pas.
+ *
+ * @param string $nom Le nom de la pièce jointe, sans extension.
+ */
+function er_ap_photo_media( $nom ) {
+	$ids = get_posts(
+		array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'name'           => $nom,
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+			'lang'           => '',
+		)
+	);
+	return $ids ? er_ap_photo( (int) $ids[0] ) : '';
+}
+
+/**
  * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, et la photo qui suit la souris
  * (HTML ; une couverture a son ombre).
  *
@@ -158,7 +179,9 @@ function er_ap_reponses() {
 			'cle'   => 'rencontre',
 			'texte' => $texte,
 			'lien'  => get_permalink( $id ),
-			'photo' => er_ap_photo( $photo, (bool) $livre ),
+			// En attendant la photo de l'intervenant : un filé de la Comédie-Française de la médiathèque, une silhouette
+			// sur du bleu nuit (André, 27 nov. : « temporairement ») ; à défaut, le livre ou l'image de la rencontre.
+			'photo' => er_ap_photo_media( 'er-cf-bleu-nuit' ) ?: er_ap_photo( $photo, (bool) $livre ),
 		);
 		break;
 	}
@@ -225,7 +248,6 @@ function er_accueil_phrase() {
 	$photos = '';
 	foreach ( er_ap_reponses() as $i => $r ) {
 		$vue     = 0 === $i ? ' est-vue' : '';
-		// Les mots dans un span : la photo ne vient que sur eux, pas sur le blanc au bout des lignes.
 		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '"><span class="er-ap-mots">' . $r['texte'] . '</span></a>';
 		// La même phrase, en blanc, que le script découpe à la forme de la photo (Y6, 27 nov., à l'essai).
 		$blancs .= '<span class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '"><span class="er-ap-mots">' . $r['texte'] . '</span></span>';
