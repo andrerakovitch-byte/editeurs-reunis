@@ -7,7 +7,8 @@
  * - la Librairie : les sous-rayons du rayon survolé, et le livre du rayon ou du sous-rayon survolé ;
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
- * - le plan du site (≡, jusqu'à 1 320 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas.
+ * - le plan du site (≡, jusqu'à 1 320 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas ;
+ * - au téléphone, dans ce plan, le menu M6 : les maisons en accordéon, les informations du haut en carrousel.
  *
  * Sans ce script, les menus restent fermés : les pages des maisons sont aussi au pied de page.
  */
@@ -103,12 +104,87 @@
 		}
 	}
 
-	// Les entrées du plan arrivent l'une après l'autre : chacune a son rang.
+	// Les entrées du plan arrivent l'une après l'autre : chacune a son rang (le plan en colonnes et le menu du
+	// téléphone ont chacun leur suite).
 	if ( plan ) {
-		plan.querySelectorAll( '.er-em-colonne-titre, .er-em-colonne li, .er-em-plan-pied > *' ).forEach( function ( el, i ) {
-			el.classList.add( 'er-em-anim' );
-			el.style.setProperty( '--er-i', String( Math.min( i, 24 ) ) );
+		[ '.er-em-colonne-titre, .er-em-colonne li, .er-em-plan-pied > *', '.er-mp-rang, .er-mp-carrousel, .er-mp-bas > *' ].forEach( function ( suite ) {
+			plan.querySelectorAll( suite ).forEach( function ( el, i ) {
+				el.classList.add( 'er-em-anim' );
+				el.style.setProperty( '--er-i', String( Math.min( i, 24 ) ) );
+			} );
 		} );
+	}
+
+	// Le menu du téléphone (M6, inc/menus.php) : une maison se déplie, les autres se replient ; ses pages repliées
+	// ne prennent pas le doigt ni le clavier (inert).
+	var telephone = plan && plan.querySelector( '.er-mp' );
+	if ( telephone ) {
+		var rangs = Array.prototype.slice.call( telephone.querySelectorAll( '.er-mp-rang' ) );
+		var deplier = function ( rang, oui ) {
+			var volet = rang.querySelector( '.er-mp-volet' );
+			rang.classList.toggle( 'est-ouvert', oui );
+			rang.querySelector( '.er-mp-tete' ).setAttribute( 'aria-expanded', oui ? 'true' : 'false' );
+			if ( volet ) {
+				volet.toggleAttribute( 'inert', ! oui );
+			}
+		};
+		rangs.forEach( function ( rang ) {
+			rang.querySelector( '.er-mp-tete' ).addEventListener( 'click', function () {
+				var oui = ! rang.classList.contains( 'est-ouvert' );
+				rangs.forEach( function ( autre ) {
+					if ( autre !== rang ) {
+						deplier( autre, false );
+					}
+				} );
+				deplier( rang, oui );
+			} );
+		} );
+
+		// Le carrousel : les rencontres passées s'en vont (deux heures après leur début ; la page peut dater) ; un
+		// trait par carte, qui y mène ; le trait noir suit la carte en vue.
+		var cartes = telephone.querySelector( '.er-mp-cartes' );
+		var traits = telephone.querySelector( '.er-mp-traits' );
+		if ( cartes && traits ) {
+			cartes.querySelectorAll( '[data-debut]' ).forEach( function ( carte ) {
+				var debut = new Date( carte.getAttribute( 'data-debut' ) );
+				if ( ! isNaN( debut.getTime() ) && debut.getTime() + 2 * 36e5 < Date.now() ) {
+					carte.remove();
+				}
+			} );
+			var lesCartes = Array.prototype.slice.call( cartes.children );
+			var libelle = traits.getAttribute( 'data-libelle' ) || '%1$s / %2$s';
+			var calme = window.matchMedia( '(prefers-reduced-motion: reduce)' );
+			lesCartes.forEach( function ( carte, n ) {
+				var trait = document.createElement( 'button' );
+				trait.type = 'button';
+				trait.setAttribute( 'aria-label', libelle.replace( '%1$s', String( n + 1 ) ).replace( '%2$s', String( lesCartes.length ) ) );
+				trait.appendChild( document.createElement( 'span' ) );
+				trait.addEventListener( 'click', function () {
+					cartes.scrollTo( { left: carte.offsetLeft, behavior: calme.matches ? 'auto' : 'smooth' } );
+				} );
+				traits.appendChild( trait );
+			} );
+			traits.hidden = lesCartes.length < 2;
+			var suivre = function () {
+				var vue = 0;
+				if ( cartes.scrollLeft >= cartes.scrollWidth - cartes.clientWidth - 2 ) {
+					vue = lesCartes.length - 1;
+				} else {
+					lesCartes.forEach( function ( carte, n ) {
+						if ( carte.offsetLeft <= cartes.scrollLeft + 10 ) {
+							vue = n;
+						}
+					} );
+				}
+				Array.prototype.forEach.call( traits.children, function ( trait, n ) {
+					trait.setAttribute( 'aria-current', n === vue ? 'true' : 'false' );
+				} );
+			};
+			cartes.addEventListener( 'scroll', function () {
+				window.requestAnimationFrame( suivre );
+			}, { passive: true } );
+			suivre();
+		}
 	}
 	function placerPlan() {
 		if ( ! plan ) {
@@ -213,8 +289,8 @@
 			return;
 		}
 		if ( 'Tab' === e.key && plan && ! plan.hidden ) {
-			var liens = Array.prototype.slice.call( plan.querySelectorAll( 'a, button' ) ).filter( function ( el ) {
-				return el.offsetParent !== null;
+			var liens = Array.prototype.slice.call( plan.querySelectorAll( 'a, button, input:not([type="hidden"])' ) ).filter( function ( el ) {
+				return el.offsetParent !== null && ! el.closest( '[inert]' );
 			} );
 			if ( ! plan.classList.contains( 'avec-barre' ) ) {
 				liens.unshift( courant ); // le bouton du menu, qui le referme

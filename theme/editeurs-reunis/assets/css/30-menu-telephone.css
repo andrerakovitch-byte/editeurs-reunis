@@ -1,0 +1,145 @@
+/* Le menu du téléphone (M6 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
+   (inc/menus.php, er_menu_telephone) : les quatre maisons en accordéon, sans point de couleur, chacune avec son
+   triptyque en bande basse ; dessous, les informations du haut en carrousel ; en bas, accrochées, la recherche, puis
+   le panier, le compte et la langue. Au-dessus de 781 px, le plan en colonnes reste. */
+
+/* La bulle « Aя » ne se retourne pas quand la liste des langues s'ouvre (seul l'ancien chevron le faisait). */
+.er-choix-langue-bouton[aria-expanded="true"] .er-choix-langue-bulle { transform: translateY(2px); }
+
+.er-mp { display: none; }
+
+@media (max-width: 781px) {
+	/* Les informations du haut sont passées dans le menu : leur place reste, vide, pour aérer l'en-tête (André,
+	   26 nov. ; à remettre si ce n'est pas concluant : retirer ces deux lignes). */
+	.er-infos { border-bottom-color: transparent; }
+	.er-infos-dedans { visibility: hidden; }
+
+	/* Le plein écran : ce qui défile, puis le bas, accroché. */
+	.er-em-plan:not([hidden]) { display: flex; flex-direction: column; overflow: hidden; }
+	.er-em-plan .er-em-colonnes,
+	.er-em-plan .er-em-plan-pied { display: none; }
+	.er-mp { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+	.er-mp-defile {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		/* Les maisons commencent sous la croix, à la hauteur où finit la barre du nom. */
+		padding: calc(var(--er-plan-croix, 40px) + 40px) var(--wp--style--root--padding-right, 20px) 28px var(--wp--style--root--padding-left, 20px);
+	}
+	.er-em-plan.avec-barre .er-mp-defile { padding-top: 16px; }
+
+	/* Les maisons : un rang entre deux filets ; le nom, le +, la bande du triptyque. */
+	.er-mp-maisons { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
+	.er-mp-rang { border-bottom: 1px solid var(--wp--preset--color--filet); }
+	.er-mp-tete {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: 100%;
+		padding: 16px 0;
+		border: 0;
+		background: none;
+		text-align: left;
+		font: inherit;
+		font-size: 1.625rem;
+		font-weight: 500;
+		letter-spacing: -0.03em;
+		color: var(--wp--preset--color--contrast);
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.er-mp-nom { display: flex; align-items: center; justify-content: space-between; width: 100%; line-height: 1.15; }
+	.er-mp-signe { flex: none; margin-right: 2px; }
+	.er-mp-signe-v { transform-box: view-box; transform-origin: 8px 8px; transition: transform 380ms cubic-bezier(0.4, 0, 0.2, 1); }
+	.er-mp-rang.est-ouvert .er-mp-signe-v { transform: rotate(90deg); }
+	.er-mp-bande { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; width: 100%; height: 32px; }
+	.er-mp-bande-image { display: block; min-width: 0; overflow: hidden; background: var(--wp--preset--color--doux); }
+	.er-mp-bande-image img,
+	.er-mp-carte-image img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		object-position: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
+		transform: scale(var(--er-tpq-z, 1));
+		transform-origin: var(--er-tpq-x, 50%) var(--er-tpq-y, 50%);
+	}
+
+	/* Les pages d'une maison se déplient sous elle, l'une après l'autre ; la page ouverte est soulignée. */
+	.er-mp-volet { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1); }
+	.er-mp-rang.est-ouvert .er-mp-volet { grid-template-rows: 1fr; }
+	.er-mp-volet-dedans { min-height: 0; overflow: hidden; }
+	.er-mp-pages { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 2px 0 22px; list-style: none; font-size: 1.125rem; font-weight: 500; line-height: 1.3; }
+	.er-mp-pages li { opacity: 0; transition: opacity 200ms ease; }
+	.er-mp-rang.est-ouvert .er-mp-pages li { opacity: 1; transition: opacity 260ms ease calc(120ms + var(--er-j, 0) * 28ms); }
+	.er-mp-pages a { color: var(--wp--preset--color--contrast); }
+	.er-mp-pages a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+	.er-mp-tout a { font-size: 0.9375rem; color: var(--wp--preset--color--discret); }
+
+	/* Le carrousel : une carte comme la rencontre de M4 (l'image, la ligne grise, le titre) ; la suivante dépasse à
+	   droite ; un trait par carte, le noir pour celle qu'on voit. */
+	.er-mp-carrousel { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--wp--preset--color--filet); }
+	.er-mp-cartes {
+		position: relative;
+		display: flex;
+		gap: 20px;
+		margin-right: calc(-1 * var(--wp--style--root--padding-right, 20px));
+		padding-right: var(--wp--style--root--padding-right, 20px);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+	}
+	.er-mp-cartes::-webkit-scrollbar { display: none; }
+	.er-mp-carte { flex: none; display: flex; gap: 14px; width: min(290px, calc(100vw - 100px)); scroll-snap-align: start; color: var(--wp--preset--color--contrast); }
+	.er-mp-carte-image { flex: none; width: 64px; height: 80px; overflow: hidden; background: var(--wp--preset--color--doux); }
+	.er-mp-carte-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+	.er-mp-carte-label { font-size: 0.8125rem; line-height: 1.35; color: var(--wp--preset--color--discret); }
+	.er-mp-carte-titre { font-size: 0.9375rem; font-weight: 500; line-height: 1.3; }
+	.er-mp-traits { display: flex; gap: 6px; margin-top: 6px; }
+	.er-mp-traits[hidden] { display: none; }
+	.er-mp-traits button { flex: 1; padding: 10px 0; border: 0; background: none; cursor: pointer; }
+	.er-mp-traits span { display: block; height: 2px; background: var(--wp--preset--color--filet); transition: background 300ms ease; }
+	.er-mp-traits [aria-current="true"] span { background: var(--wp--preset--color--contrast); }
+
+	/* Le bas, accroché : la recherche de M3, puis le panier, le compte et la langue. */
+	.er-mp-bas {
+		flex: none;
+		padding: 12px var(--wp--style--root--padding-right, 20px) calc(16px + env(safe-area-inset-bottom)) var(--wp--style--root--padding-left, 20px);
+		border-top: 1px solid var(--wp--preset--color--filet);
+		background: var(--wp--preset--color--base);
+	}
+	.er-mp-recherche { display: flex; align-items: center; gap: 12px; height: 52px; margin: 0; padding: 0 16px; background: var(--wp--preset--color--doux); color: var(--wp--preset--color--discret); }
+	.er-mp-recherche svg { flex: none; }
+	.er-mp-recherche:focus-within { outline: 2px solid var(--wp--preset--color--contrast); }
+	.er-mp-recherche input[type="search"] {
+		flex: 1;
+		min-width: 0;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		outline: none;
+		background: none;
+		font: inherit;
+		font-size: 1rem; /* 16 px : l'iPhone ne zoome pas */
+		font-weight: 500;
+		color: var(--wp--preset--color--contrast);
+		-webkit-appearance: none;
+		appearance: none;
+	}
+	.er-mp-recherche input::placeholder { color: #8C8C87; opacity: 1; }
+	.er-mp-recherche input::-webkit-search-cancel-button { display: none; }
+	.er-mp-outils { display: flex; align-items: center; gap: 24px; margin-top: 14px; font-size: 0.9375rem; font-weight: 500; }
+	.er-mp-outils > a { color: var(--wp--preset--color--contrast); }
+	.er-mp-langue { margin-left: auto; }
+	.er-mp-langue .er-choix-langue-bouton { gap: 8px; padding: 0; font-size: 0.9375rem; font-weight: 500; color: var(--wp--preset--color--contrast); }
+	.er-mp-langue .er-choix-langue-liste { top: auto; bottom: calc(100% + 12px); right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.er-mp-signe-v, .er-mp-volet, .er-mp-pages li, .er-mp-rang.est-ouvert .er-mp-pages li, .er-mp-traits span { transition: none; }
+}

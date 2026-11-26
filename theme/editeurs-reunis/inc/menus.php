@@ -243,6 +243,154 @@ add_shortcode( 'er_menu_sac', 'er_menu_sac' );
 add_shortcode( 'er_menu_bouton', 'er_essai_bouton_menu' );
 
 /**
+ * Le + d'une maison du menu du téléphone : son trait vertical pivote, et le + devient −.
+ */
+function er_menu_signe() {
+	return '<svg class="er-mp-signe" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M1 8h14"/><path class="er-mp-signe-v" d="M8 1v14"/></svg>';
+}
+
+/**
+ * Une image du thème pour une carte du carrousel, cadrée comme dans les triptyques.
+ *
+ * @param string $nom La clé de l'image (er_triptyque_images).
+ */
+function er_menu_carte_image( $nom ) {
+	$images = er_triptyque_images();
+	if ( ! isset( $images[ $nom ]['theme'] ) ) {
+		return '';
+	}
+	list( $z, $x, $y ) = $images[ $nom ]['cadre'];
+	return '<img src="' . esc_url( er_image( $images[ $nom ]['theme'] ) ) . '" alt="" loading="lazy" decoding="async" style="'
+		. esc_attr( sprintf( '--er-tpq-x:%1$s%%;--er-tpq-y:%2$s%%;--er-tpq-z:%3$s', $x, $y, $z ) ) . '">';
+}
+
+/**
+ * Ce que dit la barre d'informations (inc/entete.php, er_infos), carte par carte : les prochaines rencontres,
+ * l'exposition en cours, les horaires, l'adresse.
+ */
+function er_menu_cartes() {
+	$trouver = er_em_lien( 'nous-trouver/' );
+	$cartes  = array();
+	foreach ( function_exists( 'er_info_rencontres' ) ? er_info_rencontres() : array() as $r ) {
+		$debut = er_info_iso( $r->ID, 'er_debut' );
+		if ( ! $debut ) {
+			continue;
+		}
+		$id       = er_traduction( $r->ID );
+		$quand    = er_info_quand( $r->ID );
+		$photo    = get_post_thumbnail_id( $id ) ? get_post_thumbnail_id( $id ) : get_post_thumbnail_id( $r->ID );
+		$cartes[] = array(
+			'lien'  => get_permalink( $id ),
+			'image' => $photo ? er_em_image( $photo, 'medium' ) : er_menu_carte_image( 'signature' ),
+			'label' => __( 'Prochain événement', 'editeurs-reunis' ) . ( '' !== $quand ? ' · ' . $quand : '' ),
+			'titre' => get_the_title( $id ),
+			'debut' => $debut,
+		);
+	}
+	$expo = function_exists( 'er_info_exposition' ) ? er_info_exposition() : null;
+	if ( $expo ) {
+		$id       = er_traduction( $expo->ID );
+		$fin      = er_info_iso( $expo->ID, 'er_fin' );
+		$photo    = get_post_thumbnail_id( $id ) ? get_post_thumbnail_id( $id ) : get_post_thumbnail_id( $expo->ID );
+		$cartes[] = array(
+			'lien'  => get_permalink( $id ),
+			'image' => $photo ? er_em_image( $photo, 'medium' ) : er_menu_carte_image( 'photographe' ),
+			/* translators: %s: la date de fin d'une exposition (« 28 février »). */
+			'label' => __( 'Exposition', 'editeurs-reunis' ) . ( $fin ? ' · ' . sprintf( __( 'jusqu’au %s', 'editeurs-reunis' ), wp_date( _x( 'j F', 'date de fin d’une exposition', 'editeurs-reunis' ), strtotime( $fin ) ) ) : '' ),
+			'titre' => get_the_title( $id ),
+		);
+	}
+	$cartes[] = array(
+		'lien'  => $trouver,
+		'image' => er_menu_carte_image( 'facade' ),
+		'label' => __( 'Horaires', 'editeurs-reunis' ),
+		'titre' => __( 'Ouvert du mardi au samedi de 10 h à 18 h 30', 'editeurs-reunis' ),
+	);
+	$cartes[] = array(
+		'lien'  => $trouver,
+		'image' => er_menu_carte_image( 'khokhloma' ),
+		'label' => __( 'Nous trouver', 'editeurs-reunis' ),
+		'titre' => __( '11, rue de la Montagne-Sainte-Geneviève, 75005 Paris', 'editeurs-reunis' ) . ' →',
+	);
+	return $cartes;
+}
+
+/**
+ * Le menu du téléphone (M6 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
+ * les quatre maisons en accordéon, chacune avec son triptyque en bande basse, sans point de couleur ; la maison de la
+ * page ouverte est dépliée ; dessous, ce que dit la barre d'informations, en carrousel ; en bas, accrochées, la
+ * recherche, puis le panier, le compte et la langue. Au-dessus de 781 px, le plan en colonnes reste.
+ */
+function er_menu_telephone() {
+	$donnees = er_em_donnees();
+	$bandes  = array(
+		'librairie' => 'librairie',
+		'ymca'      => 'edition',
+		'centre'    => 'evenements',
+		'journal'   => 'histoire', // Le journal n'a pas encore son triptyque : les archives d'Un siècle d'histoire.
+	);
+	$ouverte = er_maison();
+	if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_tax( 'er_genre' ) || 0 === strpos( er_chemin_reference(), 'journal' ) ) {
+		$ouverte = 'journal';
+	}
+	$chemin = function ( $lien ) {
+		return trailingslashit( (string) wp_parse_url( (string) $lien, PHP_URL_PATH ) );
+	};
+	$ici = $chemin( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/' );
+
+	$rangs = '';
+	foreach ( $donnees as $cle => $m ) {
+		$id     = 'er-mp-pages-' . $cle;
+		$ouvert = $cle === $ouverte;
+		$liste  = '';
+		$deja   = false;
+		foreach ( array_values( $m['pages'] ) as $j => $p ) {
+			$deja   = $deja || $chemin( $p['lien'] ) === $chemin( $m['lien'] );
+			$liste .= '<li style="--er-j:' . (int) $j . '"><a href="' . esc_url( $p['lien'] ) . '"' . ( $chemin( $p['lien'] ) === $ici ? ' aria-current="page"' : '' ) . '>'
+				. esc_html( $p['nom'] ) . '</a></li>';
+		}
+		if ( ! $deja ) {
+			// La page de la maison, quand elle n'est pas déjà dans la liste (la Librairie, dont la liste a les rayons).
+			$liste .= '<li class="er-mp-tout" style="--er-j:' . count( $m['pages'] ) . '"><a href="' . esc_url( $m['lien'] ) . '">'
+				. esc_html( 'librairie' === $cle ? __( 'Toute la librairie', 'editeurs-reunis' ) : $m['nom'] ) . ' <span aria-hidden="true">→</span></a></li>';
+		}
+		$rangs .= '<li class="er-mp-rang' . ( $ouvert ? ' est-ouvert' : '' ) . '">'
+			. '<button type="button" class="er-mp-tete" aria-expanded="' . ( $ouvert ? 'true' : 'false' ) . '" aria-controls="' . esc_attr( $id ) . '">'
+			. '<span class="er-mp-nom"><span>' . esc_html( $m['nom'] ) . '</span>' . er_menu_signe() . '</span>'
+			. ( isset( $bandes[ $cle ] ) ? er_triptyque_bande( $bandes[ $cle ] ) : '' ) . '</button>'
+			. '<div class="er-mp-volet" id="' . esc_attr( $id ) . '"' . ( $ouvert ? '' : ' inert' ) . '><div class="er-mp-volet-dedans"><ul class="er-mp-pages">'
+			. $liste . '</ul></div></div></li>';
+	}
+
+	$cartes = '';
+	foreach ( er_menu_cartes() as $c ) {
+		$cartes .= '<a class="er-mp-carte" href="' . esc_url( $c['lien'] ) . '"' . ( isset( $c['debut'] ) ? ' data-debut="' . esc_attr( $c['debut'] ) . '"' : '' ) . '>'
+			. '<span class="er-mp-carte-image">' . $c['image'] . '</span>'
+			. '<span class="er-mp-carte-texte"><span class="er-mp-carte-label">' . esc_html( $c['label'] ) . '</span>'
+			. '<span class="er-mp-carte-titre">' . esc_html( html_entity_decode( $c['titre'], ENT_QUOTES, 'UTF-8' ) ) . '</span></span></a>';
+	}
+
+	$accueil = function_exists( 'pll_home_url' ) ? pll_home_url() : home_url( '/' );
+	$compte  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'myaccount' ) : home_url( '/mon-compte/' );
+	$panier  = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/panier/' );
+	$langue  = function_exists( 'er_choix_langue' ) ? er_choix_langue() : '';
+
+	return '<div class="er-mp">'
+		. '<div class="er-mp-defile"><ul class="er-mp-maisons">' . $rangs . '</ul>'
+		. '<div class="er-mp-carrousel"><div class="er-mp-cartes">' . $cartes . '</div>'
+		/* translators: 1: le rang d'une carte, 2: le nombre de cartes (le carrousel du menu du téléphone). */
+		. '<div class="er-mp-traits" data-libelle="' . esc_attr__( 'Information %1$s sur %2$s', 'editeurs-reunis' ) . '"></div></div></div>'
+		. '<div class="er-mp-bas">'
+		. '<form class="er-mp-recherche" role="search" method="get" action="' . esc_url( $accueil ) . '">'
+		. '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16.4 16.4L20.5 20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
+		. '<input type="search" name="s" placeholder="' . esc_attr__( 'Un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '" aria-label="' . esc_attr__( 'Rechercher', 'editeurs-reunis' ) . '" enterkeyhint="search">'
+		. '<input type="hidden" name="post_type" value="product"></form>'
+		. '<div class="er-mp-outils"><a href="' . esc_url( $panier ) . '">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</a>'
+		. '<a href="' . esc_url( $compte ) . '">' . esc_html__( 'Mon compte', 'editeurs-reunis' ) . '</a>'
+		. ( $langue ? '<span class="er-mp-langue">' . $langue . '</span>' : '' ) . '</div></div></div>';
+}
+
+/**
  * Sous la barre du nom : le voile, les quatre menus, le panier, puis le plan du site.
  */
 function er_menu_panneaux() {
@@ -250,7 +398,7 @@ function er_menu_panneaux() {
 	foreach ( er_em_donnees() as $cle => $m ) {
 		$html .= 'librairie' === $cle ? er_menu_panneau_librairie( $m ) : er_em_panneau_mots( $cle, $m );
 	}
-	return $html . er_menu_panneau_panier() . er_em_plan();
+	return $html . er_menu_panneau_panier() . er_em_plan( er_menu_telephone() );
 }
 add_shortcode( 'er_menu_panneaux', 'er_menu_panneaux' );
 

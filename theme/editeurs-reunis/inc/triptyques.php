@@ -135,3 +135,28 @@ function er_triptyque_html( $cle ) {
 	}
 	return '<div class="er-tpq" data-triptyque="' . esc_attr( $cle ) . '" aria-hidden="true">' . $html . '</div>';
 }
+
+/**
+ * Le triptyque d'une page en bande basse, pour le menu du téléphone (M6, 26 nov. 2026) : en span, puisqu'il va dans
+ * le bouton de la maison, et des images qui ne se chargent qu'à l'ouverture du menu (menus.js les passe en eager).
+ *
+ * @param string $cle La clé du triptyque (er_triptyques).
+ */
+function er_triptyque_bande( $cle ) {
+	$tous   = er_triptyques();
+	$images = er_triptyque_images();
+	if ( ! isset( $tous[ $cle ] ) ) {
+		return '';
+	}
+	$html = '';
+	foreach ( $tous[ $cle ] as $nom ) {
+		$i                 = $images[ $nom ];
+		list( $z, $x, $y ) = $i['cadre'];
+		$src               = isset( $i['theme'] ) ? er_image( $i['theme'] ) : er_triptyque_media( $i['media'] );
+		$style             = sprintf( '--er-tpq-x:%1$s%%;--er-tpq-y:%2$s%%;--er-tpq-z:%3$s', $x, $y, $z );
+		$html             .= '<span class="er-mp-bande-image">' . ( $src
+			? '<img src="' . esc_url( $src ) . '" alt="" loading="lazy" decoding="async" style="' . esc_attr( $style ) . '">'
+			: '<span class="er-tpq-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>' ) . '</span>';
+	}
+	return '<span class="er-mp-bande" aria-hidden="true">' . $html . '</span>';
+}

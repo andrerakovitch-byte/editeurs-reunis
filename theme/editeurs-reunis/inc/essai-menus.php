@@ -517,8 +517,10 @@ function er_em_panneau_mots( $cle, $m ) {
 
 /**
  * G · Le plein écran : tout le plan du site, en quatre colonnes. Il sert aussi de menu sous 1 320 px.
+ *
+ * @param string $telephone Le menu du téléphone (inc/menus.php), glissé dans le plein écran.
  */
-function er_em_plan() {
+function er_em_plan( $telephone = '' ) {
 	$colonnes = '';
 	foreach ( er_em_donnees() as $cle => $m ) {
 		$pages = '';
@@ -538,7 +540,8 @@ function er_em_plan() {
 		. '<span class="er-em-plan-outils"><a href="' . esc_url( function_exists( 'er_lien_recherche' ) ? er_lien_recherche() : home_url( '/?s=' ) ) . '">' . esc_html__( 'Rechercher', 'editeurs-reunis' ) . '</a>'
 		. '<a href="' . esc_url( function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/panier/' ) ) . '">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</a></span>'
 		. ( $langue ? '<span class="er-em-plan-langue">' . $langue . '</span>' : '' )
-		. '<a href="' . er_lien( 'nous-trouver/' ) . '">' . esc_html__( 'Nous trouver →', 'editeurs-reunis' ) . '</a></div></div>';
+		. '<a href="' . er_lien( 'nous-trouver/' ) . '">' . esc_html__( 'Nous trouver →', 'editeurs-reunis' ) . '</a></div>'
+		. $telephone . '</div>';
 }
 
 /**
