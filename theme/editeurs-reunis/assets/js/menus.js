@@ -316,6 +316,10 @@
 					return;
 				}
 				var articles = panier.items || [];
+				var colonne = liste.closest( '.er-mn-panier-col' );
+				if ( colonne ) {
+					colonne.classList.toggle( 'est-vide', ! articles.length );
+				}
 				if ( ! articles.length ) {
 					liste.innerHTML = '<p class="er-mn-panier-vide">' + texte( liste.getAttribute( 'data-vide' ) ) + '</p>';
 					return;

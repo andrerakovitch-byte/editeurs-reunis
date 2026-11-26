@@ -155,11 +155,11 @@ function er_triptyque_html( $cle ) {
 		$i             = $images[ $nom ];
 		list( $z, $x, $y ) = $i['cadre'];
 		$src           = isset( $i['theme'] ) ? er_image( $i['theme'] ) : er_triptyque_media( $i['media'] );
-		$style         = sprintf( '--er-tri-x:%1$s%%;--er-tri-y:%2$s%%;--er-tri-z:%3$s', $x, $y, $z );
+		$style         = sprintf( '--er-tpq-x:%1$s%%;--er-tpq-y:%2$s%%;--er-tpq-z:%3$s', $x, $y, $z );
 		$contenu       = $src
-			? '<img src="' . esc_url( $src ) . '" alt="" loading="lazy" decoding="async" style="' . esc_attr( $style ) . '">'
-			: '<span class="er-tri-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
-		$html         .= '<a class="er-tri-image" href="' . esc_url( $lien ) . '" tabindex="-1" aria-hidden="true">' . $contenu . '</a>';
+			? '<img src="' . esc_url( $src ) . '" alt="" decoding="async" style="' . esc_attr( $style ) . '">'
+			: '<span class="er-tpq-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
+		$html         .= '<a class="er-tpq-image" href="' . esc_url( $lien ) . '" tabindex="-1" aria-hidden="true">' . $contenu . '</a>';
 	}
-	return '<div class="er-tri" data-triptyque="' . esc_attr( $cle ) . '">' . $html . '</div>';
+	return '<div class="er-tpq" data-triptyque="' . esc_attr( $cle ) . '">' . $html . '</div>';
 }
