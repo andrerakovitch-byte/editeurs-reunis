@@ -561,33 +561,13 @@ function er_index_html() {
 		$liste .= '</ol></div>';
 	}
 
-	// Au bout : ce que contiennent les trois maisons, et où tout trouver.
-	$nouveautes = get_term_by( 'slug', 'nouveaute', 'product_tag' );
-	$comptes    = array();
-	if ( $nouveautes && $nouveautes->count ) {
-		/* translators: %s: un nombre de livres */
-		$comptes[] = sprintf( _n( '%s nouveauté à la librairie', '%s nouveautés à la librairie', $nouveautes->count, 'editeurs-reunis' ), number_format_i18n( $nouveautes->count ) );
-	}
-	$n = (int) wp_count_posts( 'er_evenement' )->publish;
-	if ( $n ) {
-		/* translators: %s: un nombre de rencontres */
-		$comptes[] = sprintf( _n( '%s rencontre au centre', '%s rencontres au centre', $n, 'editeurs-reunis' ), number_format_i18n( $n ) );
-	}
-	$n = (int) wp_count_posts( 'post' )->publish;
-	if ( $n ) {
-		/* translators: %s: un nombre d'articles */
-		$comptes[] = sprintf( _n( '%s texte au journal', '%s textes au journal', $n, 'editeurs-reunis' ), number_format_i18n( $n ) );
-	}
+	// Au bout : où tout trouver (le compte des nouveautés, des rencontres et des textes est parti, André, 26 nov.).
 	$liens = array(
 		array( __( 'Les nouveautés', 'editeurs-reunis' ), function_exists( 'er_mention' ) ? er_mention( 'nouveaute' ) : er_lien( 'librairie/' ) ),
 		array( __( 'Les rencontres', 'editeurs-reunis' ), function_exists( 'er_evt_page_liste' ) ? esc_url( er_evt_page_liste() ) : er_lien( 'centre-culturel/evenements/' ) ),
 		array( __( 'Le journal', 'editeurs-reunis' ), er_lien( 'journal/' ) ),
 	);
 	$fin = '<div class="er-index-fin">'
-		. ( $comptes ? '<p class="er-index-comptes">' . esc_html(
-			/* translators: %s: « 118 nouveautés à la librairie, 169 rencontres au centre, 68 textes au journal » */
-			sprintf( __( 'Le fil continue : %s.', 'editeurs-reunis' ), implode( ', ', $comptes ) )
-		) . '</p>' : '' )
 		. '<p class="er-index-liens">' . implode( '', array_map( fn( $l ) => '<a href="' . $l[1] . '">' . esc_html( $l[0] ) . '</a>', $liens ) ) . '</p>'
 		. '</div>';
 
