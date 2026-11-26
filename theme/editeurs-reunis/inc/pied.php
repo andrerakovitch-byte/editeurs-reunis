@@ -118,7 +118,8 @@ function er_pied_html() {
 	$visite = '<div class="er-pd-colonne"><h2 class="er-pd-tete">' . esc_html__( 'Nous rendre visite', 'editeurs-reunis' ) . '</h2>'
 		. '<p class="er-pd-texte">11, rue de la Montagne-Sainte-Geneviève<br>75005 Paris</p>'
 		. '<p class="er-pd-texte">' . esc_html__( 'Du mardi au samedi', 'editeurs-reunis' ) . '<br>' . wp_kses_post( __( 'de 10&nbsp;h&nbsp;30 à 18&nbsp;h&nbsp;30', 'editeurs-reunis' ) ) . '</p>'
-		. '<p class="er-pd-texte"><a href="mailto:les-editeurs-reunis@orange.fr">les-editeurs-reunis@orange.fr</a></p>'
+		// Des traits d'union insécables : l'adresse ne se coupe qu'avant l'arobase.
+		. '<p class="er-pd-texte"><a href="mailto:les-editeurs-reunis@orange.fr">' . "les\u{2011}editeurs\u{2011}reunis<wbr>@orange.fr" . '</a></p>'
 		. '<p class="er-pd-texte"><a class="er-pd-souligne" href="' . er_lien( 'nous-trouver/' ) . '">' . esc_html_x( 'Nous trouver', 'menu du centre culturel', 'editeurs-reunis' ) . '</a></p>'
 		. '</div>';
 
