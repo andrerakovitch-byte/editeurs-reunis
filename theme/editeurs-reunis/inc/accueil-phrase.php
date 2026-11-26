@@ -82,6 +82,17 @@ function er_ap_minuscule( $texte ) {
 }
 
 /**
+ * Une date d'un seul tenant : pas de saut de ligne entre un nombre et ce qui le suit (« 30 novembre », « 19 h »), ni
+ * après « jusqu'au » (André, 26 nov. : « jusqu'au 30 / novembre » coupait la date).
+ *
+ * @param string $texte Le texte (déjà échappé, ou à échapper ensuite).
+ */
+function er_ap_insecable( $texte ) {
+	$texte = preg_replace( '/(\d+(?:er)?) (?=\S)/u', "$1\u{00A0}", $texte );
+	return preg_replace( '/(jusqu’au|jusqu\'au) /u', "$1\u{00A0}", $texte );
+}
+
+/**
  * La photo qui suit la souris sur la phrase, dans son format d'origine (comme celles des trois maisons) : une image
  * du thème, ou une pièce jointe ; avec sa largeur et sa hauteur, dont le script tire sa taille.
  *
@@ -117,7 +128,7 @@ function er_ap_photo( $source, $livre = false ) {
  */
 function er_ap_reponses() {
 	$reponses = array();
-	$fleche   = ' <span aria-hidden="true">→</span>';
+	$fleche   = "\u{00A0}" . '<span aria-hidden="true">→</span>'; // La flèche ne reste jamais seule sur sa ligne.
 
 	// Un livre : la librairie.
 	$reponses[] = array(
@@ -135,7 +146,7 @@ function er_ap_reponses() {
 		}
 		$id    = function_exists( 'er_traduction' ) ? er_traduction( $r->ID ) : $r->ID;
 		$quand = function_exists( 'er_info_quand' ) ? er_info_quand( $r->ID ) : '';
-		$quand = '' !== $quand ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) . ', ' : '';
+		$quand = '' !== $quand ? er_ap_insecable( mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) ) . ', ' : '';
 		$livre = er_ap_livre_de_la_rencontre( $r->ID );
 		$texte = esc_html( $quand . er_ap_minuscule( html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' ) ) );
 		if ( $livre ) {
@@ -159,7 +170,7 @@ function er_ap_reponses() {
 		$artistes = function_exists( 'er_expo_artistes' ) ? er_expo_artistes( $expo ) : '';
 		$fin      = function_exists( 'er_evt_date' ) ? er_evt_date( $expo, 'er_fin' ) : null;
 		$texte    = $titre . ( '' !== $artistes ? esc_html( sprintf( /* translators: %s: les artistes */ __( ', de %s', 'editeurs-reunis' ), $artistes ) ) : '' )
-			. ( $fin && function_exists( 'er_expo_du_moment_jour' ) ? esc_html( sprintf( /* translators: %s: le dernier jour */ __( ', jusqu’au %s', 'editeurs-reunis' ), er_expo_du_moment_jour( $fin ) ) ) : '' );
+			. ( $fin && function_exists( 'er_expo_du_moment_jour' ) ? esc_html( er_ap_insecable( sprintf( /* translators: %s: le dernier jour */ __( ', jusqu’au %s', 'editeurs-reunis' ), er_expo_du_moment_jour( $fin ) ) ) ) : '' );
 		$photo      = (int) get_post_thumbnail_id( $expo );
 		$reponses[] = array(
 			'cle'   => 'expo',

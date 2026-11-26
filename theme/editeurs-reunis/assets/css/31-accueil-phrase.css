@@ -21,7 +21,7 @@
 	grid-column: 1 / span 9;
 	display: grid;
 	align-items: end;
-	font-size: 3rem;
+	font-size: clamp(2.125rem, 3.35vw, 3rem); /* 48 px dès 1 440 ; un peu moins avant, pour tenir en trois lignes */
 	font-weight: 500;
 	line-height: 1.08;
 	letter-spacing: -0.035em;
@@ -78,7 +78,6 @@
 
 @media (max-width: 1100px) {
 	.er-ap { height: 340px; }
-	.er-ap-reponses { font-size: 2.5rem; }
 	.er-ap-triptyque .er-tpq { height: 440px; }
 }
 @media (max-width: 781px) {
