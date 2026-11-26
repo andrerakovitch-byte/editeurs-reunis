@@ -48,6 +48,7 @@ require __DIR__ . '/inc/sujets.php';
 require __DIR__ . '/inc/auteurs.php';
 require __DIR__ . '/inc/journal.php';
 require __DIR__ . '/inc/journal-une.php';
+require __DIR__ . '/inc/lettre.php';
 require __DIR__ . '/inc/expositions.php';
 require __DIR__ . '/inc/collections.php';
 require __DIR__ . '/inc/personnes.php';
