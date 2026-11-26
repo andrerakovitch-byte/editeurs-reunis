@@ -149,10 +149,11 @@ function er_trois_maisons_html() {
 		),
 	);
 
-	// Les espaces insécables de la typographie française : avant « ; », entre « prix » et « Nobel ».
+	// Les espaces insécables : avant « ; » (une insécable entière : Montserrat n'a pas d'espace fine), entre « prix » et
+	// « Nobel ».
 	$html = '';
 	foreach ( $paragraphes as $p ) {
-		$html .= '<p>' . str_replace( array( ' ;', 'prix Nobel' ), array( "\u{202F};", "prix\u{00A0}Nobel" ), $p ) . '</p>';
+		$html .= '<p>' . str_replace( array( ' ;', 'prix Nobel' ), array( "\u{00A0};", "prix\u{00A0}Nobel" ), $p ) . '</p>';
 	}
 
 	return '<section class="er-trois-maisons" aria-label="' . esc_attr__( 'Les trois maisons', 'editeurs-reunis' ) . '">'
