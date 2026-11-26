@@ -169,16 +169,15 @@ html.er-em-plan-ouvert .er-mn-outils .er-sac { visibility: hidden; }
 html.er-em-plan-ouvert .er-barre { border-bottom-color: transparent; background: transparent !important; pointer-events: none; }
 html.er-em-plan-ouvert .er-em-menu { pointer-events: auto; }
 html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
-/* ≡ → × : le trait du haut et celui du bas pivotent autour du centre, celui du milieu s'efface. */
+/* Deux traits (André, 26 nov.) → × : chacun rejoint le centre et pivote. */
 .er-em-menu-traits path {
 	transform-box: view-box;
 	transform-origin: 12px 12px;
 	transition: transform 360ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
 }
 .er-em-menu[aria-expanded="true"] { background: transparent !important; color: var(--wp--preset--color--contrast) !important; }
-.er-em-menu[aria-expanded="true"] .er-em-trait-1 { transform: rotate(45deg) translateY(5px); }
-.er-em-menu[aria-expanded="true"] .er-em-trait-2 { opacity: 0; }
-.er-em-menu[aria-expanded="true"] .er-em-trait-3 { transform: rotate(-45deg) translateY(-5px); }
+.er-em-menu[aria-expanded="true"] .er-em-trait-1 { transform: rotate(45deg) translateY(3.5px); }
+.er-em-menu[aria-expanded="true"] .er-em-trait-2 { transform: rotate(-45deg) translateY(-3.5px); }
 @media (prefers-reduced-motion: reduce) {
 	.er-em-plan, .er-em-plan .er-em-anim, .er-em-plan.est-ouvert .er-em-anim, .er-em-menu-traits path { transition: none; transform: none; }
 }
