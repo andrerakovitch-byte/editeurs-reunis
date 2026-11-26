@@ -372,6 +372,10 @@ function er_ligne_pictos() {
  * les deux autres attendent un clic sur leur maison. Sur une page commune (le panier, le compte), aucune n'est visible.
  */
 function er_lignes_maisons() {
+	// Une page peut s'en passer : la page d'essai de l'en-tête épuré (inc/essai.php).
+	if ( apply_filters( 'er_sans_lignes', false ) ) {
+		return '';
+	}
 	$maison = is_front_page() ? 'librairie' : er_maison();
 	$pictos = er_ligne_pictos();
 	$html   = '<div class="er-lignes">';

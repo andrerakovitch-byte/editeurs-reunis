@@ -268,8 +268,9 @@ function er_index_contenu( $id ) {
 		}
 		$poids = 'instock' === get_post_meta( $id, '_stock_status', true ) ? 1 : 0;
 	} elseif ( 'page' === $genre ) {
-		// Les pages techniques de WooCommerce (panier, commande, compte) ne se cherchent pas.
-		if ( function_exists( 'wc_get_page_id' ) && in_array( (int) $id, array_map( 'wc_get_page_id', array( 'cart', 'checkout', 'myaccount' ) ), true ) ) {
+		// Les pages techniques de WooCommerce (panier, commande, compte) ne se cherchent pas, ni une page marquée « hors
+		// recherche » (la page d'essai du thème).
+		if ( get_post_meta( $id, 'er_hors_recherche', true ) || ( function_exists( 'wc_get_page_id' ) && in_array( (int) $id, array_map( 'wc_get_page_id', array( 'cart', 'checkout', 'myaccount' ) ), true ) ) ) {
 			er_index_oter( $genre, $id );
 			return;
 		}

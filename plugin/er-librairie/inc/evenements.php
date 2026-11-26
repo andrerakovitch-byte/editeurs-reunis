@@ -294,6 +294,8 @@ function er_evt_page_liste( $criteres = array() ) {
 		$page = get_post( pll_get_post( $page->ID ) ?: $page->ID );
 	}
 	$url = $page ? get_permalink( $page ) : home_url( '/centre-culturel/evenements/' );
+	// Le thème peut garder ces liens sur une autre page (la page d'essai).
+	$url = (string) apply_filters( 'er_evt_page_liste', $url );
 	return add_query_arg( array_map( 'rawurlencode', $criteres ), $url );
 }
 
