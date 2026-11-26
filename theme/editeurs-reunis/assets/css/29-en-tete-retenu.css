@@ -164,7 +164,10 @@ html.er-em-plan-ouvert .er-em-barre .er-logo,
 html.er-em-plan-ouvert .er-mn,
 html.er-em-plan-ouvert .er-mn-outils .er-loupe,
 html.er-em-plan-ouvert .er-mn-outils .er-sac { visibility: hidden; }
-html.er-em-plan-ouvert .er-barre { border-bottom-color: transparent; }
+/* La barre du nom devient transparente et laisse passer le doigt : le plan, dessous, se voit et se touche jusqu'en
+   haut ; seul le bouton du menu reste au-dessus. */
+html.er-em-plan-ouvert .er-barre { border-bottom-color: transparent; background: transparent !important; pointer-events: none; }
+html.er-em-plan-ouvert .er-em-menu { pointer-events: auto; }
 html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 /* ≡ → × : le trait du haut et celui du bas pivotent autour du centre, celui du milieu s'efface. */
 .er-em-menu-traits path {
