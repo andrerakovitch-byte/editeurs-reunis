@@ -1,5 +1,6 @@
-/* La phrase en haut de l'accueil (inc/accueil-phrase.php ; Y3b du canevas « Les pages intérieures », 26 nov. 2026),
-   dans le gabarit de la tête des pages intérieures : 400 px, sur le blanc, la phrase calée en bas (36 px du bord), sur
+/* La phrase en haut de l'accueil (inc/accueil-phrase.php ; Y3b du canevas « Les pages intérieures », 26 nov. 2026) :
+   446 px, la hauteur des menus avec leurs filets, pour qu'un menu ouvert la couvre tout juste, comme il couvre la tête
+   et la bande des pages intérieures (André, 27 nov.) ; sur le blanc, la phrase calée en bas (36 px du bord), sur
    trois lignes au plus ; dessous, le triptyque bord à bord. La phrase change d'elle-même, et sa photo suit la souris
    (assets/js/accueil-phrase.js) ; plus d'image à droite (André, 26 nov.). */
 .er-ap {
@@ -7,7 +8,7 @@
 	z-index: 2; /* la photo qui suit la souris passe sur le triptyque */
 	display: flex;
 	align-items: flex-end;
-	height: 400px;
+	height: 446px;
 	box-sizing: border-box;
 	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 	background: var(--wp--preset--color--base);
