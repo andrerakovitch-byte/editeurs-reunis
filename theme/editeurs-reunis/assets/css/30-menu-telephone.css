@@ -1,6 +1,6 @@
 /* Le menu du téléphone (N2 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡
    (inc/menus.php, er_menu_telephone) : les quatre maisons en accordéon, sans point de couleur, chacune sur une ligne
-   (son nom, son triptyque en trois petits carrés, le +) ; en bas, accrochés, les informations du haut en carrousel,
+   (son nom, son triptyque en trois petits carrés, le +), collées en bas ; en bas, accrochés, les informations du haut en carrousel,
    la recherche, puis le panier, le compte et la langue. Tout fermé, tout se voit sans défiler. Au-dessus de 781 px,
    le plan en colonnes reste. */
 
@@ -20,18 +20,21 @@
 	.er-em-plan .er-em-colonnes,
 	.er-em-plan .er-em-plan-pied { display: none; }
 	.er-mp { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+	/* Tout le menu est collé en bas, sous le pouce ; la croix seule reste en haut, et le vide est entre les deux.
+	   Quand une maison dépliée ne tient plus, la liste défile depuis le haut, jamais plus haut que la barre du nom. */
 	.er-mp-defile {
 		flex: 1;
 		min-height: 0;
+		display: flex;
+		flex-direction: column;
 		overflow-y: auto;
 		overscroll-behavior: contain;
-		/* Les maisons commencent sous la croix, à la hauteur où finit la barre du nom. */
-		padding: calc(var(--er-plan-croix, 40px) + 40px) var(--wp--style--root--padding-right, 20px) 28px var(--wp--style--root--padding-left, 20px);
+		padding: calc(var(--er-plan-croix, 40px) + 40px) var(--wp--style--root--padding-right, 20px) 20px var(--wp--style--root--padding-left, 20px);
 	}
 	.er-em-plan.avec-barre .er-mp-defile { padding-top: 16px; }
 
 	/* Les maisons : un rang de 56 px entre deux filets ; le nom, le triptyque en trois petits carrés, le +. */
-	.er-mp-maisons { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
+	.er-mp-maisons { flex: none; margin: auto 0 0; padding: 0; list-style: none; border-top: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-rang { border-bottom: 1px solid var(--wp--preset--color--filet); }
 	.er-mp-tete {
 		display: flex;

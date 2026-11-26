@@ -137,6 +137,12 @@
 					}
 				} );
 				deplier( rang, oui );
+				// Collé en bas, le menu grandit vers le haut ; si la maison dépliée ne tient plus, on la ramène en vue.
+				if ( oui ) {
+					window.setTimeout( function () {
+						rang.scrollIntoView( { block: 'nearest', behavior: window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ? 'auto' : 'smooth' } );
+					}, 400 );
+				}
 			} );
 		} );
 
