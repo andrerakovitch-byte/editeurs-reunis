@@ -114,7 +114,7 @@ function er_ap_reponses() {
 	$reponses[] = array(
 		'cle'    => 'livre',
 		'mot'    => __( 'un livre', 'editeurs-reunis' ),
-		'texte'  => esc_html__( 'La plus ancienne librairie russe de Paris : littérature, histoire, pensée et religion, en russe et en français', 'editeurs-reunis' ),
+		'texte'  => esc_html__( 'La plus ancienne librairie russe de Paris : littérature, histoire, pensée, en russe et en français', 'editeurs-reunis' ),
 		'lien'   => er_em_lien( 'librairie/' ),
 		'image'  => er_ap_image_theme( 'triptyques/khokhloma.jpg', array( 1.5, 0, 0 ) ),
 		'livre'  => false,

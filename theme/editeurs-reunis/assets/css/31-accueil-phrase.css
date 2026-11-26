@@ -29,14 +29,11 @@
 .er-ap-mot[aria-pressed="true"] { color: var(--wp--preset--color--contrast); }
 .er-ap-mot:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
 
-/* Les réponses : seule celle qu'on voit est dans le flux, et la phrase garde sa hauteur réelle ; les autres, effacées,
-   se posent dessus. */
-.er-ap-reponses { position: relative; margin-top: 12px; }
+/* Les réponses : toutes dans la même case, la place de la plus longue réservée, chacune calée en haut ; la question
+   ne bouge donc jamais (sinon les mots fuiraient sous la souris). Seule celle qu'on regarde se voit. */
+.er-ap-reponses { display: grid; align-items: start; margin-top: 12px; }
 .er-ap-reponse {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
+	grid-area: 1 / 1;
 	display: block;
 	color: var(--wp--preset--color--contrast) !important;
 	text-decoration: none !important;
@@ -45,7 +42,7 @@
 	transition: opacity 350ms ease, transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1);
 	pointer-events: none;
 }
-.er-ap-reponse.est-vue { position: relative; opacity: 1; transform: none; pointer-events: auto; }
+.er-ap-reponse.est-vue { opacity: 1; transform: none; pointer-events: auto; }
 .er-ap-reponse em { font-style: italic; }
 
 /* L'image de la réponse, contre la marge de droite : une photo en 230 × 288, une couverture entière avec son ombre. */
