@@ -118,6 +118,12 @@
 		var bas = barre ? Math.round( barre.getBoundingClientRect().bottom ) : 0;
 		plan.classList.toggle( 'avec-barre', bas <= 0 );
 		racine.style.setProperty( '--er-plan-haut', Math.max( 0, bas ) + 'px' );
+		// La hauteur du milieu du bouton (≡, devenu ×) : la première maison du plan s'aligne dessus.
+		var menu = document.querySelector( '.er-em-menu' );
+		if ( menu ) {
+			var r = menu.getBoundingClientRect();
+			racine.style.setProperty( '--er-plan-croix', Math.max( 0, Math.round( r.top + r.height / 2 ) ) + 'px' );
+		}
 	}
 	window.addEventListener( 'resize', function () {
 		if ( courant && cible( courant ) === plan ) {
