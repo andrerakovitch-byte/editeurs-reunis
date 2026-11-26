@@ -115,6 +115,17 @@ function er_essai_lang( $texte ) {
 }
 
 /**
+ * Une abréviation à la française : en minuscules, avec son point (« nov. », « lun. ») ; « mai » reste « mai ».
+ *
+ * @param string $court La forme courte de WordPress (« Nov », « lun »).
+ * @param string $long  La forme longue (« novembre », « lundi »).
+ */
+function er_essai_abrege( $court, $long ) {
+	$court = mb_strtolower( $court );
+	return mb_strtolower( $long ) === $court || '.' === mb_substr( $court, -1 ) ? $court : $court . '.';
+}
+
+/**
  * Une rencontre à venir, en ligne : la date (le jour en grand, le mois, le jour de la semaine et l'heure), l'affiche,
  * le titre, puis « Réserver » ou ce qu'il faut savoir de l'entrée.
  *
@@ -131,9 +142,9 @@ function er_essai_ligne( $p ) {
 		$tz    = er_evt_fuseau();
 		$heure = '00:00' === $debut->format( 'H:i' ) ? '' : str_replace( ' ', "\u{00A0}", er_evt_heure( $debut ) );
 		$long  = wp_date( 'l', $ts, $tz ) . ( $heure ? ', ' . $heure : '' );
-		$court = wp_date( 'D', $ts, $tz ) . ( $heure ? ' ' . $heure : '' );
+		$court = er_essai_abrege( wp_date( 'D', $ts, $tz ), wp_date( 'l', $ts, $tz ) ) . ( $heure ? ' ' . $heure : '' );
 		$date  = '<p class="er-es-date"><span class="er-es-jour">' . esc_html( $debut->format( 'j' ) ) . '</span>'
-			. '<span class="er-es-mois"><span class="er-es-long">' . esc_html( wp_date( 'F', $ts, $tz ) ) . '</span><span class="er-es-court">' . esc_html( wp_date( 'M', $ts, $tz ) ) . '</span></span>'
+			. '<span class="er-es-mois"><span class="er-es-long">' . esc_html( wp_date( 'F', $ts, $tz ) ) . '</span><span class="er-es-court">' . esc_html( er_essai_abrege( wp_date( 'M', $ts, $tz ), wp_date( 'F', $ts, $tz ) ) ) . '</span></span>'
 			. '<span class="er-es-heure"><span class="er-es-long">' . esc_html( $long ) . '</span><span class="er-es-court">' . esc_html( $court ) . '</span></span></p>';
 	} else {
 		$date = '<p class="er-es-date"><span class="er-es-heure">' . esc_html__( 'Date à venir', 'er-librairie' ) . '</span></p>';
