@@ -127,15 +127,11 @@
 	padding-top: 40px;
 	border-top: 1px solid var(--wp--preset--color--filet);
 }
-.er-pd-nom {
-	margin: 0;
-	font-size: 0.75rem;
-	font-weight: 600;
-	line-height: 1.6;
-	letter-spacing: 0.42em;
-	text-transform: uppercase;
-}
-.er-pd-nom span { display: block; }
+/* Le nom, le même que dans l'en-tête (assets/css/02-en-tete.css, .er-barre .er-logo) : 15 px, gras, 0,72 em entre
+   les lettres, 1,33 d'interligne ; 10 px au téléphone. */
+.er-pd .er-logo { line-height: 1.33; }
+.er-pd .er-logo a { font-size: 0.9375rem; letter-spacing: 0.72em; white-space: nowrap; }
+.er-pd .er-logo a:hover { text-decoration: none; }
 .er-pd-petit {
 	max-width: 34em;
 	margin: 0;
@@ -164,4 +160,5 @@
 	.er-pd-texte { font-size: 1rem; }
 	.er-pd-bas { flex-direction: column; align-items: flex-start; }
 	.er-pd-fin { white-space: normal; text-align: left; }
+	.er-pd .er-logo a { font-size: 0.625rem; letter-spacing: 0.72em; }
 }

@@ -142,7 +142,8 @@ function er_pied_html() {
 		. '</div>'
 		. '<nav class="er-pd-plan" aria-label="' . esc_attr__( 'Plan du site', 'editeurs-reunis' ) . '">' . $colonnes . '</nav>'
 		. '<div class="er-pd-bas">'
-		. '<p class="er-pd-nom"><a href="' . er_lien() . '"><span>' . esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ) . '</span> <span>' . esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ) . '</span></a></p>'
+		// Le même nom que dans l'en-tête (patterns/en-tete.php), aux mêmes mesures (assets/css/26-pied.css).
+		. '<p class="er-logo"><a href="' . er_lien() . '" rel="home"><span>' . esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ) . '</span> <span>' . esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ) . '</span></a></p>'
 		. '<p class="er-pd-petit">' . esc_html__( 'Notre équipe est uniquement composée de bénévoles.', 'editeurs-reunis' ) . '<br>'
 		. '<a class="er-pd-souligne" href="' . er_lien( 'ymca-press/amis-ymca-press/' ) . '">' . esc_html__( 'Rejoindre l’Association des Amis d’YMCA-Press', 'editeurs-reunis' ) . '</a><br>'
 		. wp_kses_post( __( 'Avec nos partenaires l’ACER-MJO, Paris 15<sup>e</sup>, et la Fondation Michalski, Montricher (Suisse).', 'editeurs-reunis' ) ) . '</p>'
