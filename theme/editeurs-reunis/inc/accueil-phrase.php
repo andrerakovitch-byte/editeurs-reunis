@@ -1,7 +1,7 @@
 <?php
 /**
  * La phrase en haut de l'accueil (Y3b du canevas « Les pages intérieures », retenue le 26 nov. 2026, d'après Q5c) :
- * une seule phrase, sur trois lignes au plus, qui change d'elle-même toutes les six secondes, avec son image à droite
+ * une seule phrase, sur trois lignes au plus, qui change d'elle-même toutes les six secondes ; sa photo suit la souris
  * (André : « c'est plus classe sur 3 lignes uniquement », la question « Vous cherchez… ? » enlevée). Dessous, le
  * triptyque de l'accueil, bord à bord, que le bas de l'écran coupe pour donner envie de descendre ; puis l'index.
  *
@@ -82,18 +82,6 @@ function er_ap_minuscule( $texte ) {
 }
 
 /**
- * Une image du thème, cadrée comme dans les triptyques.
- *
- * @param string $nom Le fichier (assets/images/…).
- * @param array  $cadre Le zoom, X et Y.
- */
-function er_ap_image_theme( $nom, $cadre = array( 1, 50, 50 ) ) {
-	list( $z, $x, $y ) = $cadre;
-	return '<span class="er-ap-cadre"><img src="' . esc_url( er_image( $nom ) ) . '" alt="" loading="lazy" decoding="async" style="'
-		. esc_attr( sprintf( '--er-tpq-x:%1$s%%;--er-tpq-y:%2$s%%;--er-tpq-z:%3$s', $x, $y, $z ) ) . '"></span>';
-}
-
-/**
  * La photo qui suit la souris sur la phrase, dans son format d'origine (comme celles des trois maisons) : une image
  * du thème, ou une pièce jointe ; avec sa largeur et sa hauteur, dont le script tire sa taille.
  *
@@ -122,8 +110,8 @@ function er_ap_photo( $source, $livre = false ) {
 }
 
 /**
- * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, l'image de droite (HTML), si
- * c'est une couverture (montrée entière, avec son ombre), et la photo qui suit la souris (HTML).
+ * Les phrases, dans l'ordre où elles passent : la clé, la phrase (HTML), le lien, et la photo qui suit la souris
+ * (HTML ; une couverture a son ombre).
  *
  * @return array<int,array<string,mixed>>
  */
@@ -136,8 +124,6 @@ function er_ap_reponses() {
 		'cle'   => 'livre',
 		'texte' => esc_html__( 'Notre librairie, rue de la Montagne-Sainte-Geneviève, est la plus ancienne librairie russe de Paris', 'editeurs-reunis' ),
 		'lien'  => er_em_lien( 'librairie/' ),
-		'image' => er_ap_image_theme( 'triptyques/khokhloma.jpg', array( 1.5, 0, 0 ) ),
-		'livre' => false,
 		'photo' => er_ap_photo( 'triptyques/khokhloma.jpg' ),
 	);
 
@@ -161,8 +147,6 @@ function er_ap_reponses() {
 			'cle'   => 'rencontre',
 			'texte' => $texte,
 			'lien'  => get_permalink( $id ),
-			'image' => $photo ? ( $livre ? '' : '<span class="er-ap-cadre">' ) . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . ( $livre ? '' : '</span>' ) : '',
-			'livre' => (bool) $livre,
 			'photo' => er_ap_photo( $photo, (bool) $livre ),
 		);
 		break;
@@ -181,8 +165,6 @@ function er_ap_reponses() {
 			'cle'   => 'expo',
 			'texte' => $texte,
 			'lien'  => get_permalink( function_exists( 'er_traduction' ) ? er_traduction( $expo ) : $expo ),
-			'image' => $photo ? '<span class="er-ap-cadre">' . wp_get_attachment_image( $photo, 'medium_large', false, array( 'alt' => '', 'loading' => 'lazy', 'decoding' => 'async' ) ) . '</span>' : '',
-			'livre' => false,
 			'photo' => er_ap_photo( $photo ),
 		);
 	}
@@ -208,8 +190,6 @@ function er_ap_reponses() {
 		/* translators: %s: le titre, en italique (« Maître et Marguerite », après « du ») */
 		'texte' => sprintf( esc_html__( 'Notre maison d’édition a publié en 1967 la première édition en volume du %s, de Boulgakov', 'editeurs-reunis' ), '<em>' . esc_html__( 'Maître et Marguerite', 'editeurs-reunis' ) . '</em>' ),
 		'lien'  => $classique ? get_permalink( $classique ) : er_em_lien( 'ymca-press/catalogue/' ),
-		'image' => '<img src="' . esc_url( er_image( 'couv-maitre-marguerite.jpg' ) ) . '" alt="" width="619" height="950" loading="lazy" decoding="async">',
-		'livre' => true,
 		'photo' => er_ap_photo( 'couv-maitre-marguerite.jpg', true ),
 	);
 
@@ -220,30 +200,26 @@ function er_ap_reponses() {
 }
 
 /**
- * Le module : la phrase et son image, puis le triptyque. Avec une souris, la photo de la phrase suit le pointeur
- * quand il passe sur elle, comme dans les trois maisons (l'image de droite s'efface alors).
+ * Le module : la phrase, puis le triptyque. Avec une souris, la photo de la phrase suit le pointeur quand il passe
+ * sur elle, comme dans les trois maisons ; plus d'image à droite (André, 26 nov.).
  *
  * Les phrases qu'on ne voit pas restent des liens qu'on atteint au clavier : celle qui prend le focus paraît (le script
  * la montre et s'arrête, comme au survol). Rien n'est annoncé quand la phrase change seule.
  */
 function er_accueil_phrase() {
 	$textes = '';
-	$images = '';
 	$photos = '';
 	foreach ( er_ap_reponses() as $i => $r ) {
 		$vue     = 0 === $i ? ' est-vue' : '';
-		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '">' . $r['texte'] . '</a>';
-		if ( $r['image'] ) {
-			$images .= '<span class="er-ap-image' . ( $r['livre'] ? ' est-livre' : '' ) . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '">' . $r['image'] . '</span>';
-		}
+		// Les mots dans un span : la photo ne vient que sur eux, pas sur le blanc au bout des lignes.
+		$textes .= '<a class="er-ap-reponse' . $vue . '" data-cle="' . esc_attr( $r['cle'] ) . '" href="' . esc_url( $r['lien'] ) . '"><span class="er-ap-mots">' . $r['texte'] . '</span></a>';
 		if ( $r['photo'] ) {
 			$photos .= str_replace( '<img ', '<img data-cle="' . esc_attr( $r['cle'] ) . '" ', $r['photo'] );
 		}
 	}
 	$triptyque = function_exists( 'er_triptyque_html' ) ? er_triptyque_html( 'accueil' ) : '';
 	return '<section class="er-ap" aria-label="' . esc_attr__( 'À la une', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
-		. '<div class="er-ap-reponses">' . $textes . '</div>'
-		. '<div class="er-ap-images" aria-hidden="true">' . $images . '</div></div>'
+		. '<div class="er-ap-reponses">' . $textes . '</div></div>'
 		. ( '' !== $photos ? '<div class="er-ap-suit" aria-hidden="true">' . $photos . '</div>' : '' ) . '</section>'
 		. ( $triptyque ? '<div class="er-ap-triptyque">' . $triptyque . '</div>' : '' );
 }

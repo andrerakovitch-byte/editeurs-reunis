@@ -1,13 +1,14 @@
 /**
- * La phrase en haut de l'accueil (inc/accueil-phrase.php, Y3b) : elle change d'elle-même toutes les six secondes,
- * avec son image ; la nouvelle monte en paraissant, l'ancienne s'efface vers le haut. Elle tourne aussi sous la
+ * La phrase en haut de l'accueil (inc/accueil-phrase.php, Y3b) : elle change d'elle-même toutes les six secondes ;
+ * la nouvelle monte en paraissant, l'ancienne s'efface vers le haut. Elle tourne aussi sous la
  * souris (André, 26 nov.) ; seul le focus dans ses liens l'arrête, et un lien qui prend le focus paraît. Ni pendant
  * que l'onglet est caché, ni si l'on a demandé moins d'animations : la première phrase reste. Sans ce script, la
  * première phrase reste aussi.
  *
- * Avec une souris, la photo de la phrase suit le pointeur quand il passe sur elle, comme dans les trois maisons
- * (une-trois-maisons.js) : elle se pose à droite du curseur (à gauche près du bord), sans sortir de la tête ; quand
- * la phrase change, la photo change avec elle. L'image de droite s'efface pendant ce temps.
+ * Avec une souris, la photo de la phrase suit le pointeur quand il passe sur ses mots, comme dans les trois maisons
+ * (une-trois-maisons.js), et aussi grande : elle se pose à droite du curseur (à gauche près du bord), centrée sur lui
+ * en hauteur, sans sortir de l'écran ni passer sous l'en-tête (elle peut déborder sur le triptyque) ; quand la phrase
+ * change, la photo change avec elle.
  */
 ( function () {
 	'use strict';
@@ -17,25 +18,24 @@
 	var calme = window.matchMedia( '(prefers-reduced-motion: reduce)' );
 	var souris = window.matchMedia( '(hover: hover) and (pointer: fine)' );
 
-	// La taille d'une photo à 1440 : un paysage en 460 de large, presque carrée en 340, un portrait en 340 de haut ;
-	// un peu plus petite sur un écran plus étroit.
+	// La taille d'une photo, celle des trois maisons : à 1440, un paysage en 540 de large, presque carrée en 460, un
+	// portrait en 560 de haut ; un peu plus petite sur un écran plus étroit.
 	function taille( img ) {
 		var w = Number( img.getAttribute( 'width' ) ) || img.naturalWidth || 4;
 		var h = Number( img.getAttribute( 'height' ) ) || img.naturalHeight || 3;
 		var r = w / h;
 		var k = Math.min( 1, Math.max( 0.6, window.innerWidth / 1440 ) );
 		if ( r >= 1.2 ) {
-			return [ 460 * k, ( 460 * k ) / r ];
+			return [ 540 * k, ( 540 * k ) / r ];
 		}
 		if ( r >= 0.85 ) {
-			return [ 340 * k, ( 340 * k ) / r ];
+			return [ 460 * k, ( 460 * k ) / r ];
 		}
-		return [ 340 * k * r, 340 * k ];
+		return [ 560 * k * r, 560 * k ];
 	}
 
 	document.querySelectorAll( '.er-ap' ).forEach( function ( ap ) {
 		var phrases = Array.prototype.slice.call( ap.querySelectorAll( '.er-ap-reponse' ) );
-		var images = Array.prototype.slice.call( ap.querySelectorAll( '.er-ap-image' ) );
 		var calque = ap.querySelector( '.er-ap-suit' );
 		var photos = {};
 		if ( calque ) {
@@ -51,7 +51,6 @@
 		// La photo qui suit la souris : celle de la phrase sous le pointeur, ou aucune.
 		function montrePhoto( cle ) {
 			var img = cle ? photos[ cle ] || null : null;
-			ap.classList.toggle( 'est-survol', !! img );
 			if ( img === visible ) {
 				return;
 			}
@@ -63,15 +62,19 @@
 				visible.classList.add( 'est-visible' );
 			}
 		}
+		var entete = document.querySelector( 'header.er-haut' );
 		function place( x, y ) {
 			var w = ap.offsetWidth;
-			var h = ap.offsetHeight;
+			// Les bornes en hauteur : le bas de l'en-tête et le bas de l'écran, ramenés à la tête de l'accueil.
+			var dessus = ap.getBoundingClientRect().top;
+			var plafond = ( entete ? Math.max( 0, entete.getBoundingClientRect().bottom ) : 0 ) - dessus + MARGE;
+			var plancher = window.innerHeight - dessus - MARGE;
 			calque.style.transform = 'translate3d(' + Math.round( x ) + 'px, ' + Math.round( y ) + 'px, 0)';
 			Object.keys( photos ).forEach( function ( cle ) {
 				var img = photos[ cle ];
 				var t = taille( img );
 				var gauche = x + ECART + t[ 0 ] > w - MARGE ? -ECART - t[ 0 ] : ECART;
-				var haut = Math.max( MARGE - y, Math.min( -t[ 1 ] / 2, h - MARGE - t[ 1 ] - y ) );
+				var haut = Math.max( plafond - y, Math.min( -t[ 1 ] / 2, plancher - t[ 1 ] - y ) );
 				img.style.width = Math.round( t[ 0 ] ) + 'px';
 				img.style.height = Math.round( t[ 1 ] ) + 'px';
 				img.style.left = Math.round( gauche ) + 'px';
@@ -84,7 +87,8 @@
 				return null;
 			}
 			var el = document.elementFromPoint( dernier.clientX, dernier.clientY );
-			var phrase = el && el.closest ? el.closest( '.er-ap-reponse' ) : null;
+			var mots = el && el.closest ? el.closest( '.er-ap-mots' ) : null;
+			var phrase = mots ? mots.closest( '.er-ap-reponse' ) : null;
 			return phrase && ap.contains( phrase ) ? phrase.getAttribute( 'data-cle' ) : null;
 		}
 
@@ -100,10 +104,6 @@
 			}, 500 );
 			ici = k;
 			phrases[ ici ].classList.add( 'est-vue' );
-			var cle = phrases[ ici ].getAttribute( 'data-cle' );
-			images.forEach( function ( image ) {
-				image.classList.toggle( 'est-vue', image.getAttribute( 'data-cle' ) === cle );
-			} );
 			if ( calque && dernier ) {
 				montrePhoto( sousLaSouris() );
 			}
