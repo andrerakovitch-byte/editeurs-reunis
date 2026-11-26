@@ -189,7 +189,7 @@ function er_em_donnees() {
 		foreach ( $enfants as $e ) {
 			$lien = get_term_link( $e );
 			if ( ! is_wp_error( $lien ) ) {
-				$groupes[ 'g' . get_term_meta( $e->term_id, 'er_groupe', true ) ][] = array( $e->name, $lien );
+				$groupes[ 'g' . get_term_meta( $e->term_id, 'er_groupe', true ) ][] = array( $e->name, $lien, $e->slug );
 			}
 		}
 		$lien     = get_term_link( $t );

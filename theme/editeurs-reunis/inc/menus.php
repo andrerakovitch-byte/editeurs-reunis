@@ -147,21 +147,29 @@ function er_menu_panneau_librairie( $m ) {
 	$rayons = '';
 	$sous   = '';
 	$blocs  = '';
+	$faits  = array(); // Un livre par clé : un même sous-rayon ne se montre jamais deux fois.
 	foreach ( $m['rayons'] as $i => $r ) {
 		$rayons .= '<li><a href="' . esc_url( $r['lien'] ) . '" data-rayon="' . esc_attr( $r['cle'] ) . '"' . ( 0 === $i ? ' class="est-actif"' : '' ) . '>' . esc_html( $r['nom'] ) . '</a></li>';
-		if ( isset( $livres[ $r['cle'] ] ) ) {
-			$blocs .= er_menu_livre( $livres[ $r['cle'] ], $r['cle'], $r['nom'], 0 === $i );
+		if ( isset( $livres[ $r['cle'] ] ) && ! isset( $faits[ $r['cle'] ] ) ) {
+			$blocs              .= er_menu_livre( $livres[ $r['cle'] ], $r['cle'], $r['nom'], 0 === $i );
+			$faits[ $r['cle'] ] = true;
 		}
 		$groupes = '';
 		foreach ( $r['groupes'] as $titre => $liens ) {
 			$titre = substr( (string) $titre, 1 );
 			$items = '';
 			foreach ( $liens as $l ) {
-				$terme = get_term_by( 'name', $l[0], 'product_cat' );
-				$cle   = $terme ? 'sous-' . $terme->slug : '';
+				// Le sous-rayon par son identifiant (deux rayons peuvent avoir un sous-rayon du même nom, « Romans »).
+				$slug  = isset( $l[2] ) ? $l[2] : '';
+				if ( '' === $slug ) {
+					$terme = get_term_by( 'name', $l[0], 'product_cat' );
+					$slug  = $terme ? $terme->slug : '';
+				}
+				$cle    = '' !== $slug ? 'sous-' . $slug : '';
 				$items .= '<li><a href="' . esc_url( $l[1] ) . '"' . ( $cle && isset( $livres[ $cle ] ) ? ' data-livre="' . esc_attr( $cle ) . '"' : '' ) . '>' . esc_html( $l[0] ) . '</a></li>';
-				if ( $cle && isset( $livres[ $cle ] ) ) {
-					$blocs .= er_menu_livre( $livres[ $cle ], $cle, $l[0], false );
+				if ( $cle && isset( $livres[ $cle ] ) && ! isset( $faits[ $cle ] ) ) {
+					$blocs        .= er_menu_livre( $livres[ $cle ], $cle, $l[0], false );
+					$faits[ $cle ] = true;
 				}
 			}
 			$groupes .= '<div class="er-mn-groupe">' . ( '' !== $titre ? '<p class="er-mn-groupe-titre">' . esc_html( $titre ) . '</p>' : '' ) . '<ul>' . $items . '</ul></div>';
