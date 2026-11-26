@@ -110,7 +110,14 @@
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.35em;
+	transition: color 0.3s ease, text-decoration-color 0.3s ease;
 }
+.er-index-fil { transition: color 0.3s ease; }
+/* Au survol (ou au clavier), comme dans les trois maisons : le lien visé reste à l'encre, souligné ; le reste passe
+   en gris et les autres liens perdent leur soulignement. */
+.er-index-liens:has(a:hover, a:focus-visible) .er-index-fil,
+.er-index-liens:has(a:hover, a:focus-visible) a:not(:hover):not(:focus-visible) { color: #8C8C87; }
+.er-index-liens:has(a:hover, a:focus-visible) a:not(:hover):not(:focus-visible) { text-decoration-color: transparent; }
 
 /* La colonne de l'image ----------------------------------------------------------------------------------------- */
 
@@ -261,5 +268,7 @@
 	.er-index-panneau.est-actif,
 	.er-index-vue img,
 	.er-index-vue .er-couverture-typo,
-	.er-index.est-pilote .er-index-titre { transition: none !important; }
+	.er-index.est-pilote .er-index-titre,
+	.er-index-liens a,
+	.er-index-fil { transition: none !important; }
 }
