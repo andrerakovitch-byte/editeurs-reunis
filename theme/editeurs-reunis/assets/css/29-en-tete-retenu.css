@@ -140,6 +140,8 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-
 .er-em-plan .er-logo { display: none; }
 .er-em-plan.avec-barre .er-em-plan-barre { justify-content: flex-end; min-height: 0; padding-block: 1rem; }
 .er-em-menu .er-em-menu-croix { display: none; }
+/* Les textes du plan, un cran plus gras (André, 26 nov.) : 600 au lieu de 500. */
+.er-em-colonne-titre, .er-em-colonne ul { font-weight: 600; }
 .er-em-menu[aria-expanded="true"] .er-em-menu-trois { display: none; }
 .er-em-menu[aria-expanded="true"] .er-em-menu-croix { display: block; }
 
