@@ -1,0 +1,84 @@
+/* --------------------------------------------------------------------------
+   Les trois maisons, en trois paragraphes (26 nov. 2026, planche « T · Trois paragraphes ») : le module texte de
+   l'accueil, après le journal. Un filet fin, puis le texte en grand ; les noms en lien, soulignés. Au survol d'un lien,
+   le reste passe en gris et sa photo apparaît près de la souris (assets/js/une-trois-maisons.js). Le contenu :
+   inc/trois-maisons.php.
+   -------------------------------------------------------------------------- */
+
+.er-accueil > .er-trois-maisons { margin-block: 0 !important; }
+
+.er-trois-maisons {
+	--er-tm-gris: #8C8C87;
+	position: relative;
+	padding: 7.5rem var(--wp--style--root--padding-right) 7.5rem var(--wp--style--root--padding-left);
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
+.er-tm-corps {
+	padding-top: 3.5rem;
+	border-top: 1px solid var(--wp--preset--color--filet);
+	font-size: clamp(1.6875rem, 3.2vw, 2.875rem); /* 46 px à 1440, 27 px au téléphone. */
+	font-weight: 500;
+	line-height: 1.13;
+	letter-spacing: -0.025em;
+	text-wrap: pretty;
+	transition: color 0.3s ease;
+}
+.er-tm-corps p { margin: 0; }
+.er-tm-corps p + p { margin-top: 0.75em; }
+.er-tm-corps em { font-style: italic; }
+.er-tm-corps a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 0.13em;
+	text-decoration-skip-ink: none;
+	transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+.er-tm-corps a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent-texte);
+	outline-offset: 4px;
+	border-radius: 2px;
+}
+
+/* Le survol (ou le clavier) : le reste passe en gris et perd ses soulignés ; le lien visé reste noir. */
+.er-tm-corps:has(a:hover, a:focus-visible) { color: var(--er-tm-gris); }
+.er-tm-corps:has(a:hover, a:focus-visible) a:not(:hover):not(:focus-visible) { text-decoration-color: transparent; }
+.er-tm-corps a:hover,
+.er-tm-corps a:focus-visible { color: var(--wp--preset--color--contrast); }
+
+/* Les photos : seulement avec une souris. Le point d'accroche suit le pointeur ; chaque photo se pose autour, à sa
+   taille, et passe à la suivante en fondu. */
+.er-tm-photos { display: none; }
+@media (hover: hover) and (pointer: fine) {
+	.er-trois-maisons.est-pilote .er-tm-photos {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 0;
+		z-index: 5;
+		pointer-events: none;
+		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+		will-change: transform;
+	}
+}
+.er-tm-photo {
+	position: absolute;
+	display: block;
+	max-width: none;
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+.er-tm-photo.est-visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+	.er-trois-maisons.est-pilote .er-tm-photos { transition: none; }
+	.er-tm-photo { transition: none; }
+}
+
+@media (max-width: 781px) {
+	.er-trois-maisons { padding-block: 4.5rem; }
+	.er-tm-corps { padding-top: 2.25rem; }
+}
