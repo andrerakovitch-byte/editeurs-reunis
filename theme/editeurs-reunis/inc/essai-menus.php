@@ -534,6 +534,8 @@ function er_em_plan() {
 		. '<button type="button" class="er-em-fermer-plan"><span>' . esc_html__( 'Fermer', 'editeurs-reunis' ) . '</span>' . er_em_croix() . '</button></div>'
 		. '<div class="er-em-colonnes">' . $colonnes . '</div>'
 		. '<div class="er-em-plan-pied"><span>' . esc_html__( '11, rue de la Montagne-Sainte-Geneviève, 75005 Paris', 'editeurs-reunis' ) . '</span>'
+		. '<span class="er-em-plan-outils"><a href="' . esc_url( function_exists( 'er_lien_recherche' ) ? er_lien_recherche() : home_url( '/?s=' ) ) . '">' . esc_html__( 'Rechercher', 'editeurs-reunis' ) . '</a>'
+		. '<a href="' . esc_url( function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/panier/' ) ) . '">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</a></span>'
 		. ( $langue ? '<span class="er-em-plan-langue">' . $langue . '</span>' : '' )
 		. '<a href="' . er_lien( 'nous-trouver/' ) . '">' . esc_html__( 'Nous trouver →', 'editeurs-reunis' ) . '</a></div></div>';
 }
