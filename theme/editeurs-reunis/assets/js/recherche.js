@@ -21,7 +21,6 @@
 	var formulaire = panneau.querySelector( '.er-recherche-champ' );
 	var effacer = panneau.querySelector( '.er-recherche-effacer' );
 	var bascule = panneau.querySelector( '.er-recherche-bascule' );
-	var pour = panneau.querySelector( '.er-recherche-pour' );
 	var portees = panneau.querySelector( '.er-recherche-portees' );
 	var pistes = panneau.querySelector( '.er-recherche-pistes' );
 	var resultats = panneau.querySelector( '.er-recherche-resultats' );
@@ -331,13 +330,7 @@
 		if ( 'tout' !== portee && ! dansLaMaison( portee ) ) {
 			portee = 'tout';
 		}
-		// Le nom reconnu.
-		if ( d.pour ) {
-			pour.innerHTML = format( echapper( M.pour ), '<strong>' + echapper( d.pour ) + '</strong>' ) + ( d.aussi && d.aussi.length ? ' ' + echapper( format( M.aussi, d.aussi.join( ', ' ) ) ) : '' );
-			pour.hidden = false;
-		} else {
-			pour.hidden = true;
-		}
+		// Le nom reconnu et ses autres écritures ne s'affichent plus (« Résultats pour… Cherché aussi… », retiré le 27 nov.).
 		// Les genres, avec leurs nombres, en capitales comme les noms de la barre.
 		portees.innerHTML = PORTEES.filter( function ( p ) {
 			return p === 'tout' || ( dansLaMaison( p ) && ( p === portee || c[ p ] ) );
@@ -401,7 +394,6 @@
 	function rendreFiltre( d ) {
 		var n = ( d.comptes || {} ).livres || 0;
 		var liste = ( d.groupes || {} ).livres || [];
-		pour.hidden = true;
 		montrerGenres( false );
 		if ( ! n ) {
 			resultats.innerHTML = '<div class="er-grille-tpq"><p class="er-r-aucun">' + echapper( d.requete ? format( M.aucun_texte_filtre, d.requete ) : M.aucun_filtre ) + '</p></div>';
@@ -438,7 +430,6 @@
 			donnees = null;
 			resultats.hidden = true;
 			montrerGenres( false );
-			pour.hidden = true;
 			pistes.hidden = ! detaillee.hidden;
 			return;
 		}
@@ -654,7 +645,6 @@
 			resultats.hidden = true;
 			portees.hidden = true;
 			cadreFiltres.hidden = true;
-			pour.hidden = true;
 			compter();
 		} else if ( ! champ.value.trim() && ! filtresDeLivres() ) {
 			pistes.hidden = false;
@@ -662,7 +652,6 @@
 		} else if ( donnees ) {
 			resultats.hidden = false;
 			montrerGenres( ! donnees.filtre );
-			pour.hidden = ! donnees.pour;
 		} else {
 			montrerGenres( false );
 		}

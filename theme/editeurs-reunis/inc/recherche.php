@@ -220,7 +220,6 @@ function er_panneau_recherche() {
 							<?php endif; ?>
 						</div>
 					</div>
-					<p class="er-recherche-pour" hidden></p>
 					<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
 				</div>
 

@@ -46,7 +46,7 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-recherche ul { list-style: none; margin: 0; padding: 0; }
 .er-recherche a { color: inherit; text-decoration: none; }
 .er-recherche-libelle { margin: 0 0 12px; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); }
-.er-recherche-pour[hidden], .er-recherche-pistes[hidden], .er-recherche-resultats[hidden], .er-recherche-detaillee[hidden],
+.er-recherche-pistes[hidden], .er-recherche-resultats[hidden], .er-recherche-detaillee[hidden],
 .er-recherche-recentes[hidden], .er-recherche-rayons[hidden], .er-recherche-corps[hidden],
 .er-recherche-maisons[hidden], .er-recherche-portees[hidden], .er-recherche-effacer[hidden] { display: none; }
 
@@ -179,9 +179,7 @@ html.er-panier-ouvert body { overflow: visible !important; }
 /* Dans les résultats, la couverture reste en vue quand les lignes défilent. */
 .er-r-colonne-vue { position: sticky; top: 0; }
 
-/* En tapant : le nom reconnu, puis les trois colonnes. */
-.er-recherche-pour { margin: 0 0 22px; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); font-size: 0.8125rem; line-height: 1.5; color: var(--wp--preset--color--discret); }
-.er-recherche-pour strong { color: var(--wp--preset--color--contrast); font-weight: 600; }
+/* En tapant : les trois colonnes. */
 .er-r-groupe { margin-bottom: 22px; }
 .er-r-groupe .er-recherche-libelle { margin-bottom: 10px; }
 .er-r-lignes { display: flex; flex-direction: column; gap: 10px; }
