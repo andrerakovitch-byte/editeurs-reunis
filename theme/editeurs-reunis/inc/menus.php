@@ -114,7 +114,8 @@ function er_menu_livres() {
 add_action( 'woocommerce_update_product', fn() => delete_transient( 'er_menu_livres_v1' ) );
 
 /**
- * Un livre dans le panneau de la Librairie : « Au rayon … », la couverture, le titre, l'auteur et le prix.
+ * Un livre dans le panneau de la Librairie (AA1) : « Au rayon … », la couverture au centre d'un cadre beige, le titre,
+ * l'auteur et le prix dessous.
  *
  * @param int    $id   Le livre.
  * @param string $cle  La clé du rayon ou du sous-rayon.
@@ -132,7 +133,7 @@ function er_menu_livre( $id, $cle, $nom, $voir ) {
 	$sous   = array_filter( array( $auteur, $prix ) );
 	/* translators: %s: le nom d'un rayon (« Au rayon Poésie ») */
 	return '<div class="er-mn-livre" data-livre="' . esc_attr( $cle ) . '"' . ( $voir ? '' : ' hidden' ) . '><p class="er-mn-livre-rayon">' . esc_html( sprintf( __( 'Au rayon %s', 'editeurs-reunis' ), $nom ) ) . '</p>'
-		. '<a href="' . esc_url( get_permalink( $id ) ) . '">' . er_em_image( get_post_thumbnail_id( $id ), 'medium' )
+		. '<a href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-mn-livre-cadre">' . er_em_image( get_post_thumbnail_id( $id ), 'medium' ) . '</span>'
 		. '<span class="er-mn-livre-texte"><span class="er-mn-livre-titre"' . er_em_lang( $titre ) . '>' . esc_html( $titre ) . '</span>'
 		. ( $sous ? '<span class="er-mn-livre-sous">' . esc_html( implode( ' · ', $sous ) ) . '</span>' : '' ) . '</span></a></div>';
 }
