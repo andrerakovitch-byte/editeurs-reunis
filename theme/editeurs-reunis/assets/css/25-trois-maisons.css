@@ -2,8 +2,8 @@
    Les trois maisons, en trois paragraphes (26 nov. 2026, planche « T · Trois paragraphes ») : le module texte de
    l'accueil, après le journal. Le texte en grand, après un grand blanc, sans filet (André, 26 nov. : « n'ayons pas
    peur du vide ») ; les noms en lien, soulignés. Au survol d'un lien, le reste passe en gris et sa photo apparaît
-   près de la souris (assets/js/une-trois-maisons.js) ; les mots du lien qu'elle couvre passent dessus, en blanc, à la
-   manière de la Pinault Collection (27 nov.). Le contenu : inc/trois-maisons.php.
+   près de la souris (assets/js/une-trois-maisons.js) ; le texte qu'elle couvre passe dessus, en blanc, à la manière de
+   la Pinault Collection (27 nov.). Le contenu : inc/trois-maisons.php.
    -------------------------------------------------------------------------- */
 
 .er-accueil > .er-trois-maisons { margin-block: 0 !important; }
@@ -63,8 +63,8 @@
 		pointer-events: none;
 		will-change: transform;
 	}
-	/* La copie du texte, au-dessus des photos, découpée à la forme de celle qu'on voit : seuls les mots du lien visé y
-	   paraissent, en blanc, soulignés. */
+	/* La copie du texte, au-dessus des photos, découpée à la forme de celle qu'on voit : tout le texte qu'elle couvre y
+	   paraît en blanc (André, 27 nov.), le lien visé souligné. */
 	.er-trois-maisons.est-pilote .er-tm-blanc {
 		display: block;
 		position: absolute;
@@ -82,7 +82,7 @@
 .er-tm-blanc { display: none; }
 .er-tm-blanc,
 .er-tm-blanc * { pointer-events: none !important; }
-.er-tm-blanc .er-tm-corps { color: transparent; transition: none; }
+.er-tm-blanc .er-tm-corps { color: var(--wp--preset--color--base); transition: none; }
 .er-tm-blanc .er-tm-lien {
 	text-decoration: underline;
 	text-decoration-thickness: 1.5px;
@@ -90,7 +90,7 @@
 	text-decoration-skip-ink: none;
 	text-decoration-color: transparent;
 }
-.er-tm-blanc .er-tm-lien.est-vise { color: var(--wp--preset--color--base); text-decoration-color: currentColor; }
+.er-tm-blanc .er-tm-lien.est-vise { text-decoration-color: currentColor; }
 .er-tm-photo {
 	position: absolute;
 	display: block;

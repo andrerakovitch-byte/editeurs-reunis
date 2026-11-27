@@ -157,8 +157,8 @@ function er_trois_maisons_html() {
 	}
 
 	// La copie pour l'effet de la Pinault Collection (27 nov.) : le même texte, au-dessus des photos, découpé à la
-	// forme de celle qu'on voit ; seuls les mots du lien visé y paraissent, en blanc. Ses liens deviennent des span
-	// (rien à atteindre au clavier, rien d'annoncé).
+	// forme de celle qu'on voit ; tout le texte qu'elle couvre y paraît en blanc, le lien visé souligné. Ses liens
+	// deviennent des span (rien à atteindre au clavier, rien d'annoncé).
 	$copie = preg_replace( array( '#<a href="[^"]*"( data-photo="[^"]*")?>#', '#</a>#' ), array( '<span class="er-tm-lien"$1>', '</span>' ), $html );
 
 	return '<section class="er-trois-maisons" aria-label="' . esc_attr__( 'Les trois maisons', 'editeurs-reunis' ) . '">'

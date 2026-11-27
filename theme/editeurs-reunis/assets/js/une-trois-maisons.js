@@ -1,10 +1,10 @@
 /**
  * L'accueil, les trois maisons (inc/trois-maisons.php) : au survol d'un lien, sa photo apparaît près de la souris,
  * grande et dans son format d'origine. Le point d'accroche suit le pointeur avec un peu de retard ; la photo se pose à
- * droite du curseur, à gauche près du bord droit, centrée sur lui en hauteur, sans sortir du module. Les mots du lien
- * qu'elle couvre passent dessus, en blanc, à la manière de la Pinault Collection (27 nov.) : une copie du texte,
- * au-dessus des photos, découpée à la forme de celle qu'on voit, où seuls paraissent les mots du lien visé. La photo
- * et la découpe avancent ensemble, image par image. Seulement avec une souris ; ailleurs, rien ne change.
+ * droite du curseur, à gauche près du bord droit, centrée sur lui en hauteur, sans sortir du module. Le texte qu'elle
+ * couvre passe dessus, en blanc, à la manière de la Pinault Collection (27 nov.) : une copie du texte, au-dessus des
+ * photos, découpée à la forme de celle qu'on voit, le lien visé souligné. La photo et la découpe avancent ensemble,
+ * image par image. Seulement avec une souris ; ailleurs, rien ne change.
  */
 ( function () {
 	'use strict';
