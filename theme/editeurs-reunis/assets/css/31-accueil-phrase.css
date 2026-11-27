@@ -102,10 +102,11 @@
 	.er-ap-triptyque .er-tpq { height: 560px; }
 }
 @media (max-width: 781px) {
-	/* La hauteur d'avant le passage à 27 px (236 px : la phrase la plus longue en cinq lignes de 30 px, et les marges) :
-	   les phrases sont empilées dans la même case, calées en bas, et la plus longue fait la hauteur ; en raccourcissant
-	   d'une ligne, elle avait retiré l'air au-dessus des autres (André, 27 nov.). L'air ne dépend plus de sa longueur. */
-	.er-ap { height: auto; min-height: 236px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
+	/* La hauteur d'avant le passage à 27 px (270 px, mesurés sur la capture d'André : la phrase de la librairie en six
+	   lignes de 30 px, et les marges) : les phrases sont empilées dans la même case, calées en bas, et la plus longue
+	   fait la hauteur ; en raccourcissant, elle avait retiré l'air au-dessus des autres (André, 27 nov.). L'air ne
+	   dépend plus de sa longueur, et la photo reste où elle était. */
+	.er-ap { height: auto; min-height: 270px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	/* 27 px (AH2, 27 nov. ; 30 jusque-là) : la phrase la plus longue tient en quatre lignes au lieu de cinq. */
 	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.6875rem; line-height: 1.12; letter-spacing: -0.03em; }
 	.er-ap-saut { display: inline; }
