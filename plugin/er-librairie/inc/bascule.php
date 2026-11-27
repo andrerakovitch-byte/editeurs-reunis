@@ -152,6 +152,24 @@ function er_bascule_livre_du_site( $nom ) {
  */
 function er_bascule_destination( $chemin ) {
 	$chemin = preg_replace( '#^(?:ru|en)/#', '', $chemin );
+	// Les profils, le forum et les membres de Wix (98 profils, surtout des comptes de pourriel) : partis pour de bon.
+	if ( preg_match( '#^(?:profile|forum|members)(?:/|$)#', $chemin ) ) {
+		return array( '', 410 );
+	}
+	// Les catégories du journal de Wix (« journal/categories/nikita-struve ») : la catégorie du même nom, sinon le
+	// journal (audit du 27 nov. 2026 : elles n'avaient pas de redirection).
+	if ( preg_match( '#^journal/categories/([^/]+)#', $chemin, $m ) ) {
+		$categorie = get_term_by( 'slug', sanitize_title( urldecode( $m[1] ) ), 'category' );
+		$lien      = $categorie ? get_term_link( $categorie ) : '';
+		if ( $lien && ! is_wp_error( $lien ) ) {
+			return array( $lien, 301 );
+		}
+		$journal = get_page_by_path( 'journal' );
+		return array( $journal ? get_permalink( $journal ) : home_url( '/' ), 301 );
+	}
+	if ( 'recherche' === $chemin ) {
+		return array( add_query_arg( 's', '', home_url( '/' ) ), 301 );
+	}
 	if ( preg_match( '#^product-page/([^/]+)#', $chemin, $m ) ) {
 		$nom = urldecode( $m[1] );
 		$id  = er_bascule_livre_du_site( $nom );
@@ -171,6 +189,10 @@ function er_bascule_destination( $chemin ) {
 	return null;
 }
 
+// Avant la devinette de WordPress (redirect_canonical, priorité 10), qui envoyait en 301 vers n'importe quel contenu
+// dont le slug commence par le dernier mot de l'adresse (« /expo » vers un livre « Exposition… ») ; et la devinette,
+// quand elle joue encore, ne retient qu'un slug exact (audit du 27 nov. 2026).
+add_filter( 'strict_redirect_guess_404_permalink', '__return_true' );
 add_action(
 	'template_redirect',
 	function () {
@@ -179,11 +201,17 @@ add_action(
 		}
 		$chemin = trim( (string) wp_parse_url( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ), PHP_URL_PATH ), '/' );
 		$aller  = er_bascule_destination( $chemin );
+		if ( $aller && 410 === $aller[1] ) {
+			status_header( 410 ); // Parti pour de bon : la page d'erreur, avec le bon code.
+			nocache_headers();
+			return;
+		}
 		if ( $aller ) {
 			wp_safe_redirect( $aller[0], $aller[1] );
 			exit;
 		}
-	}
+	},
+	9
 );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

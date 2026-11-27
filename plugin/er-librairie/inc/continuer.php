@@ -488,7 +488,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 /**
  * Les modules d'un livre (er_continuer_choisir), gardés un jour, refaits quand l'index l'est. Sur une page qui
- * n'est pas en français, les lignes (des phrases françaises) se taisent.
+ * n'est pas en français, aucun module tant qu'ils ne sont pas traduits.
  *
  * @param int $id Le livre.
  * @return array ouverture, modules.
@@ -518,11 +518,11 @@ function er_continuer( $id ) {
 			'maintenant' => time(),
 		)
 	);
+	// Hors du français, rien tant que les modules ne sont pas traduits : leurs surtitres et leurs titres sont composés
+	// en français (« D'autres regards sur Akhmatova »), et restaient au milieu d'une page russe (audit du 27 nov. 2026).
 	if ( 'fr' !== $langue ) {
 		$choix['ouverture'] = '';
-		foreach ( $choix['modules'] as $k => $m ) {
-			$choix['modules'][ $k ]['ligne'] = '';
-		}
+		$choix['modules']   = array();
 	}
 	set_transient( $cle, $choix, DAY_IN_SECONDS );
 	$faits[ $id ] = $choix;

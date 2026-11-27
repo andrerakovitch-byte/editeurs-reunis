@@ -248,6 +248,10 @@ add_action(
 	5
 );
 
+// Le plan du site pour les moteurs, sans les pages d'auteur de WordPress (les comptes qui écrivent le journal) : elles
+// n'ont rien à montrer (audit du 27 nov. 2026).
+add_filter( 'wp_sitemaps_add_provider', fn( $fournisseur, $nom ) => 'users' === $nom ? false : $fournisseur, 10, 2 );
+
 // Un livre qui manque : « épuisé pour l'instant », le mot du reste du site (la carte, les menus, la recherche), plutôt
 // que « Rupture de stock » sur la fiche (audit du 27 nov. 2026).
 add_filter(

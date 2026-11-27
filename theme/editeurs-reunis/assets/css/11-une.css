@@ -443,7 +443,7 @@
 
 /* --- Une sélection, sous un titre (patterns/selection-*.php) --------------------------------------------------
    Plusieurs livres sous un même titre éditorialisé, un texte comme un article, et « À voir, à écouter » (une vidéo,
-   un podcast, un article). Deux mises en page à insérer : la table, sur un aplat ; l'étagère, sur le blanc. */
+   un podcast, un article). La table, sur un aplat (l'étagère, retirée le 24 nov., n'existe plus : audit du 27 nov.). */
 
 .er-une-livre-pourquoi { font-size: 0.875rem; line-height: 1.5; color: var(--er-une-doux); }
 .er-une-achat { gap: 0.75rem; margin-top: 0.3rem !important; }
@@ -482,20 +482,8 @@
 .er-une-selection-livre .er-une-livre-texte { gap: 0.3rem !important; }
 .er-une-selection-livres .er-une-lien { margin-top: 1rem !important; }
 
-/* B · L'étagère */
-.er-une .er-une-etagere-tete { align-items: flex-end; }
-.er-une-etagere-titre { font-size: clamp(3rem, 7vw, 6.25rem); font-weight: 600; line-height: 0.95; letter-spacing: -0.035em; }
-.er-une-etagere-chapo { margin-bottom: 0.5rem !important; font-size: clamp(1.25rem, 1.75vw, 1.5625rem); line-height: 1.28; }
 .er-une-trois-colonnes { columns: 3; column-gap: 2.75rem; column-rule: 1px solid var(--wp--preset--color--filet); padding-top: 1.75rem; border-top: 1px solid var(--wp--preset--color--filet); font-size: 1.03rem; line-height: 1.62; }
 .er-une-trois-colonnes > p { margin: 0 0 0.85em !important; }
-.er-une .er-une-etagere-livres { gap: 0 !important; margin-top: 1rem !important; }
-.er-une-etagere-livre { position: relative; display: flex; flex-direction: column; gap: 1.1rem; padding-inline-end: 2rem; min-width: 0; }
-.er-une-etagere-livre::after { content: ""; position: absolute; top: 250px; left: 0; right: 0; height: 3px; background: var(--wp--preset--color--contrast); }
-.er-une-etagere-livre .er-une-couverture { display: flex; align-items: flex-end; height: 250px; }
-.er-une-etagere-livre .er-une-couverture a { display: block; }
-.er-une .er-une-etagere-livre .er-une-couverture img { height: auto; max-height: 250px; max-width: 100%; }
-.er-une-etagere-livre .er-une-livre-texte { gap: 0.3rem !important; padding-top: 0.15rem; }
-.er-une-etagere-livre .er-une-livre-titre { font-size: 1rem; }
 .er-une-bande-media {
 	display: grid;
 	grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
@@ -514,24 +502,10 @@
 .er-une-bande-media .er-une-media-liens { align-self: center; border-top: 1px solid var(--er-une-filet); }
 
 @media (max-width: 1100px) {
-	.er-une .er-une-etagere-livres { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; row-gap: 2rem !important; }
 	.er-une-bande-media { grid-template-columns: 1fr; row-gap: 1rem; }
 }
 @media (max-width: 781px) {
 	.er-une-trois-colonnes { columns: 1; }
-	/* Les livres de l'étagère se font glisser de côté. */
-	.er-une .er-une-etagere-livres {
-		display: flex !important;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		margin-inline: calc(-1 * var(--wp--style--root--padding-right)) !important;
-		padding-inline: var(--wp--style--root--padding-left);
-		scrollbar-width: none;
-	}
-	.er-une-etagere-livre { flex: 0 0 62%; scroll-snap-align: start; }
-	.er-une-etagere-livre::after { top: 200px; }
-	.er-une-etagere-livre .er-une-couverture { height: 200px; }
-	.er-une .er-une-etagere-livre .er-une-couverture img { max-height: 200px; }
 	.er-une .er-une-media { flex-wrap: wrap !important; }
 	.er-une .er-une-media .er-une-video,
 	.er-une .er-une-bande-media .er-une-video { width: 100%; }

@@ -622,7 +622,7 @@ if ( $parent_ymca ) {
 $selections = er_semer_page(
 	'Une sélection, sous un titre',
 	'selections',
-	"<!-- wp:pattern {\"slug\":\"editeurs-reunis/selection-table\"} /-->\n\n<!-- wp:pattern {\"slug\":\"editeurs-reunis/selection-etagere\"} /-->",
+	"<!-- wp:pattern {\"slug\":\"editeurs-reunis/selection-table\"} /-->",
 	$parent_lib,
 	9
 );

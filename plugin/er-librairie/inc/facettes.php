@@ -522,6 +522,28 @@ function er_facettes_url( $sel ) {
 }
 
 /**
+ * Deux noms dans l'ordre du dictionnaire : « Élisabeth » avec les E, le cyrillique après le latin. strcoll() suivait
+ * l'ordre des octets (la locale de PHP reste « C » sous WordPress) : les É et le cyrillique passaient après Z (audit du
+ * 27 nov. 2026).
+ *
+ * @param string $a Un nom.
+ * @param string $b L'autre.
+ */
+function er_facettes_comparer_noms( $a, $b ) {
+	static $collateur = null;
+	if ( null === $collateur ) {
+		$collateur = class_exists( 'Collator' ) ? new Collator( 'fr_FR' ) : false;
+	}
+	if ( $collateur ) {
+		return $collateur->compare( (string) $a, (string) $b );
+	}
+	$cle = function ( $t ) {
+		return mb_strtolower( remove_accents( (string) $t ), 'UTF-8' );
+	};
+	return strcmp( $cle( $a ), $cle( $b ) );
+}
+
+/**
  * Le libellé d'une clé d'une facette.
  *
  * @param array  $etat er_facettes_etat().
@@ -602,7 +624,7 @@ function er_facettes_colonne( $etat ) {
 		usort(
 			$cles,
 			function ( $a, $b ) use ( $c, $sel, $f, $etat ) {
-				return ( in_array( $b, $sel[ $f ], true ) <=> in_array( $a, $sel[ $f ], true ) ) ?: ( ( $c[ $b ] ?? 0 ) <=> ( $c[ $a ] ?? 0 ) ) ?: strcoll( er_facettes_nom( $etat, $f, $a ), er_facettes_nom( $etat, $f, $b ) );
+				return ( in_array( $b, $sel[ $f ], true ) <=> in_array( $a, $sel[ $f ], true ) ) ?: ( ( $c[ $b ] ?? 0 ) <=> ( $c[ $a ] ?? 0 ) ) ?: er_facettes_comparer_noms( er_facettes_nom( $etat, $f, $a ), er_facettes_nom( $etat, $f, $b ) );
 			}
 		);
 		return $cles;
@@ -874,3 +896,21 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 	);
 }
+
+/**
+ * Une liste vue autrement (filtrée, triée, en liste, dans une autre langue sans Polylang) n'est pas une page de plus
+ * pour les moteurs : noindex, mais ses liens se suivent. Sinon chaque combinaison de filtres devenait un doublon de
+ * la page du rayon (audit du 27 nov. 2026).
+ */
+add_filter(
+	'wp_robots',
+	function ( $robots ) {
+		$parametres = array_merge( array( 'vue', 'orderby', 'sans-date', 'lang', 'add-to-cart' ), wp_list_pluck( er_facettes_definitions(), 0 ) );
+		if ( array_intersect( $parametres, array_keys( $_GET ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- on ne lit que les noms des paramètres.
+			$robots['noindex'] = true;
+			$robots['follow']  = true;
+			unset( $robots['index'], $robots['max-image-preview'] );
+		}
+		return $robots;
+	}
+);

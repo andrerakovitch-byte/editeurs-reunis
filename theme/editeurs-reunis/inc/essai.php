@@ -111,6 +111,19 @@ add_filter(
 	}
 );
 add_filter( 'er_sans_lignes', fn( $sans ) => $sans || er_essai() );
+// Hors du plan du site aussi : WordPress y met toutes les pages publiées, noindex ou non (audit du 27 nov. 2026).
+add_filter(
+	'wp_sitemaps_posts_query_args',
+	function ( $args, $type ) {
+		if ( 'page' === $type ) {
+			$essais                = array_filter( array_map( fn( $p ) => (int) get_option( $p[0] ), er_essai_pages() ) );
+			$args['post__not_in'] = array_merge( isset( $args['post__not_in'] ) ? (array) $args['post__not_in'] : array(), $essais );
+		}
+		return $args;
+	},
+	10,
+	2
+);
 add_filter(
 	'body_class',
 	function ( $classes ) {

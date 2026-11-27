@@ -190,8 +190,7 @@ function er_carte_bouton( $produit, $texte = '' ) {
  */
 function er_carte_pastilles( $produit ) {
 	$html   = '';
-	$termes = wp_get_post_terms( $produit->get_id(), 'product_tag' );
-	foreach ( is_array( $termes ) ? $termes : array() as $t ) {
+	foreach ( er_termes( $produit->get_id(), 'product_tag' ) as $t ) {
 		$html .= '<span class="er-pastille er-pastille--' . esc_attr( $t->slug ) . '">' . esc_html( html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' ) ) . '</span>';
 	}
 	if ( ! $produit->is_in_stock() ) {
@@ -199,6 +198,20 @@ function er_carte_pastilles( $produit ) {
 		$html .= '<span class="er-pastille er-pastille--epuise">' . esc_html__( 'Épuisé pour l’instant', 'er-librairie' ) . '</span>';
 	}
 	return $html;
+}
+
+/**
+ * Les termes d'un livre dans une taxonomie, lus dans le cache que la requête de la grille a déjà rempli
+ * (get_the_terms) : wp_get_post_terms interroge la base à chaque appel, quatre fois par carte (audit du 27 nov. 2026).
+ * Le même ordre (par nom).
+ *
+ * @param int    $id        Le livre.
+ * @param string $taxonomie La taxonomie.
+ * @return WP_Term[]
+ */
+function er_termes( $id, $taxonomie ) {
+	$t = get_the_terms( $id, $taxonomie );
+	return is_array( $t ) ? $t : array();
 }
 
 /**
@@ -212,12 +225,12 @@ function er_carte_html( $produit ) {
 	$titre  = er_carte_titre( $produit );
 	$glose  = trim( (string) $produit->get_meta( 'er_titre_fr' ) );
 	$langue = '';
-	$sa     = wp_get_post_terms( $id, 'langue' );
-	if ( $sa && ! is_wp_error( $sa ) ) {
+	$sa     = er_termes( $id, 'langue' );
+	if ( $sa ) {
 		$langue = er_carte_langue( $sa[0]->slug, html_entity_decode( $sa[0]->name, ENT_QUOTES, 'UTF-8' ) );
 	}
 	$auteurs = array();
-	foreach ( array_slice( (array) wp_get_post_terms( $id, 'auteur' ), 0, 2 ) as $t ) {
+	foreach ( array_slice( er_termes( $id, 'auteur' ), 0, 2 ) as $t ) {
 		if ( ! $t instanceof WP_Term ) {
 			continue;
 		}
@@ -570,22 +583,23 @@ function er_rayonnage_autre_langue( $id ) {
 	if ( ! $auteurs || is_wp_error( $auteurs ) ) {
 		return 0;
 	}
+	// Les livres eux-mêmes (pas seulement leurs identifiants) : la requête remplit alors le cache de leurs termes et
+	// de leurs métas, que la boucle lit sans autre requête.
 	$autres = get_posts(
 		array(
 			'post_type'      => 'product',
 			'post_status'    => 'publish',
 			'posts_per_page' => 80,
-			'fields'         => 'ids',
 			'lang'           => '',
 			'post__not_in'   => array( $id ),
 			'tax_query'      => array( array( 'taxonomy' => 'auteur', 'terms' => $auteurs ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
 		)
 	);
 	$livres = array();
-	foreach ( array_merge( array( $id ), $autres ) as $i ) {
+	foreach ( array_merge( array( $id ), wp_list_pluck( $autres, 'ID' ) ) as $i ) {
 		$livres[ $i ] = array(
-			'langue' => wp_get_post_terms( $i, 'langue', array( 'fields' => 'slugs' ) ),
-			'auteur' => wp_get_post_terms( $i, 'auteur', array( 'fields' => 'slugs' ) ),
+			'langue' => wp_list_pluck( er_termes( $i, 'langue' ), 'slug' ),
+			'auteur' => wp_list_pluck( er_termes( $i, 'auteur' ), 'slug' ),
 		);
 	}
 	$paire = er_rayonnage_paire(
@@ -806,6 +820,10 @@ function er_rayonnage_module_ymca( $etat ) {
  * @param array $etat er_facettes_etat().
  */
 function er_rayonnage_module_langues( $etat ) {
+	// Les titres et les métas des livres du rayon en deux requêtes, pas une ou deux par livre (audit du 27 nov. 2026).
+	if ( function_exists( '_prime_post_caches' ) && ! empty( $etat['livres'] ) ) {
+		_prime_post_caches( array_map( 'intval', array_keys( $etat['livres'] ) ), false, true );
+	}
 	$paire = er_rayonnage_paire(
 		$etat['livres'],
 		fn( $i ) => get_the_title( $i ),

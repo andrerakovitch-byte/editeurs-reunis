@@ -154,7 +154,8 @@ function er_ld_livre( $produit ) {
 	$langue   = $langues && ! is_wp_error( $langues ) ? er_ld_langue( $langues[0] ) : '';
 	$annee    = preg_match( '/\b(1[4-9]\d\d|20\d\d)\b/', (string) $produit->get_meta( 'er_annee' ), $m ) ? $m[1] : '';
 	$editeur  = function_exists( 'er_editeur_du_livre' ) ? er_editeur_du_livre( $id ) : array( 'termes' => array(), 'texte' => '' );
-	$editeur  = $editeur['termes'] ? $editeur['termes'][0]->name : trim( (string) $editeur['texte'] );
+	// Les noms de termes s'enregistrent avec leurs entités (« Lis &amp; Parle ») : décodées pour le JSON.
+	$editeur  = html_entity_decode( $editeur['termes'] ? $editeur['termes'][0]->name : trim( (string) $editeur['texte'] ), ENT_QUOTES, 'UTF-8' );
 	$occasion = has_term( 'occasion', 'product_tag', $id );
 	$image    = wp_get_attachment_image_url( $produit->get_image_id(), 'large' );
 	$isbn     = er_isbn( $produit );
@@ -185,7 +186,8 @@ function er_ld_livre( $produit ) {
 			'url'           => get_permalink( $id ),
 			'price'         => wc_format_decimal( $produit->get_price(), 2 ),
 			'priceCurrency' => get_woocommerce_currency(),
-			'availability'  => $produit->is_in_stock() ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+			// « Disponible sur commande » sur la page : BackOrder, pas InStock (la disponibilité balisée suit la page).
+			'availability'  => 'onbackorder' === $produit->get_stock_status() ? 'https://schema.org/BackOrder' : ( $produit->is_in_stock() ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' ),
 			'itemCondition' => $occasion ? 'https://schema.org/UsedCondition' : 'https://schema.org/NewCondition',
 			'seller'        => array(
 				'@type' => 'BookStore',
@@ -202,6 +204,14 @@ function er_ld_livre( $produit ) {
 	if ( function_exists( 'er_nature_du_livre' ) && er_nature_hors_livre( er_nature_du_livre( $id ) ) ) {
 		$livre['@type'] = 'Product';
 		$livre          = array_diff_key( $livre, array_flip( array( 'isbn', 'author', 'publisher', 'inLanguage', 'datePublished', 'numberOfPages', 'translator', 'editor', 'illustrator', 'contributor' ) ) );
+	}
+	// Sans prix (« prix à confirmer »), pas d'offre : une offre à « 0.00 » ou sans prix, Google la refuse ou l'affiche
+	// telle quelle ; un livre seul reste valable (audit du 27 nov. 2026).
+	if ( '' === (string) $produit->get_price() ) {
+		unset( $livre['offers'] );
+		if ( array( 'Book', 'Product' ) === $livre['@type'] ) {
+			$livre['@type'] = 'Book';
+		}
 	}
 	return array_filter( $livre, fn( $v ) => '' !== $v && array() !== $v && 0 !== $v );
 }
@@ -324,7 +334,7 @@ function er_ld_rencontre( $post ) {
 		'isAccessibleForFree' => in_array( $inscription, array( 'gratuite', 'libre' ), true ) ? true : '',
 	);
 	$billet = function_exists( 'er_evt_billet' ) ? er_evt_billet( $id ) : null;
-	if ( $billet ) {
+	if ( $billet && '' !== (string) $billet->get_price() ) {
 		$donnees['offers'] = array(
 			'@type'         => 'Offer',
 			'url'           => get_permalink( $id ),
