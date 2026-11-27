@@ -1,9 +1,9 @@
 /* --------------------------------------------------------------------------
    Les trois maisons, en trois paragraphes (26 nov. 2026, planche « T · Trois paragraphes ») : le module texte de
    l'accueil, après le journal. Le texte en grand, après un grand blanc, sans filet (André, 26 nov. : « n'ayons pas
-   peur du vide ») ; les noms en lien, soulignés. Au survol d'un lien,
-   le reste passe en gris et sa photo apparaît près de la souris (assets/js/une-trois-maisons.js). Le contenu :
-   inc/trois-maisons.php.
+   peur du vide ») ; les noms en lien, soulignés. Au survol d'un lien, le reste passe en gris et sa photo apparaît
+   près de la souris (assets/js/une-trois-maisons.js) ; les mots du lien qu'elle couvre passent dessus, en blanc, à la
+   manière de la Pinault Collection (27 nov.). Le contenu : inc/trois-maisons.php.
    -------------------------------------------------------------------------- */
 
 .er-accueil > .er-trois-maisons { margin-block: 0 !important; }
@@ -61,10 +61,36 @@
 		height: 0;
 		z-index: 5;
 		pointer-events: none;
-		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 		will-change: transform;
 	}
+	/* La copie du texte, au-dessus des photos, découpée à la forme de celle qu'on voit : seuls les mots du lien visé y
+	   paraissent, en blanc, soulignés. */
+	.er-trois-maisons.est-pilote .er-tm-blanc {
+		display: block;
+		position: absolute;
+		inset: 0;
+		z-index: 6;
+		box-sizing: border-box;
+		padding: inherit;
+		pointer-events: none;
+		opacity: 0;
+		clip-path: inset(50%);
+		transition: opacity 0.35s ease;
+	}
+	.er-trois-maisons.est-pilote.est-survol .er-tm-blanc { opacity: 1; }
 }
+.er-tm-blanc { display: none; }
+.er-tm-blanc,
+.er-tm-blanc * { pointer-events: none !important; }
+.er-tm-blanc .er-tm-corps { color: transparent; transition: none; }
+.er-tm-blanc .er-tm-lien {
+	text-decoration: underline;
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 0.13em;
+	text-decoration-skip-ink: none;
+	text-decoration-color: transparent;
+}
+.er-tm-blanc .er-tm-lien.est-vise { color: var(--wp--preset--color--base); text-decoration-color: currentColor; }
 .er-tm-photo {
 	position: absolute;
 	display: block;
@@ -74,7 +100,7 @@
 }
 .er-tm-photo.est-visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-	.er-trois-maisons.est-pilote .er-tm-photos { transition: none; }
+	.er-trois-maisons.est-pilote .er-tm-blanc { transition: none; }
 	.er-tm-photo { transition: none; }
 }
 

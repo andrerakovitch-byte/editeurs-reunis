@@ -156,9 +156,15 @@ function er_trois_maisons_html() {
 		$html .= '<p>' . str_replace( array( ' ;', 'prix Nobel' ), array( "\u{00A0};", "prix\u{00A0}Nobel" ), $p ) . '</p>';
 	}
 
+	// La copie pour l'effet de la Pinault Collection (27 nov.) : le même texte, au-dessus des photos, découpé à la
+	// forme de celle qu'on voit ; seuls les mots du lien visé y paraissent, en blanc. Ses liens deviennent des span
+	// (rien à atteindre au clavier, rien d'annoncé).
+	$copie = preg_replace( array( '#<a href="[^"]*"( data-photo="[^"]*")?>#', '#</a>#' ), array( '<span class="er-tm-lien"$1>', '</span>' ), $html );
+
 	return '<section class="er-trois-maisons" aria-label="' . esc_attr__( 'Les trois maisons', 'editeurs-reunis' ) . '">'
 		. '<div class="er-tm-corps">' . $html . '</div>'
-		. ( '' !== $photos ? '<div class="er-tm-photos" aria-hidden="true">' . $photos . '</div>' : '' )
+		. ( '' !== $photos ? '<div class="er-tm-photos" aria-hidden="true">' . $photos . '</div>'
+			. '<div class="er-tm-blanc" aria-hidden="true"><div class="er-tm-corps">' . $copie . '</div></div>' : '' )
 		. '</section>';
 }
 
