@@ -204,6 +204,35 @@ function er_autres_graphies( $terme ) {
 }
 
 /**
+ * Le nom russe d'un auteur : la première de ses autres écritures qui est en cyrillique.
+ *
+ * @param string[] $graphies Ses autres écritures (er_autres_graphies).
+ */
+function er_nom_russe( $graphies ) {
+	foreach ( $graphies as $g ) {
+		if ( preg_match( '/\p{Cyrillic}/u', $g ) ) {
+			return $g;
+		}
+	}
+	return '';
+}
+
+/**
+ * Les années d'un auteur, tirées de sa naissance et de sa mort (« Kislovodsk, 11 décembre 1918 ») : « 1918–2008 » ;
+ * « 1950– » s'il est vivant ; rien sans date de naissance.
+ *
+ * @param int $terme L'auteur.
+ */
+function er_annees_auteur( $terme ) {
+	$annee     = function ( $texte ) {
+		return preg_match_all( '/\b(1[0-9]\d\d|20\d\d)\b/', (string) $texte, $m ) ? end( $m[1] ) : '';
+	};
+	$naissance = $annee( get_term_meta( $terme, 'er_naissance', true ) );
+	$mort      = $annee( get_term_meta( $terme, 'er_deces', true ) );
+	return '' === $naissance ? '' : $naissance . '–' . $mort;
+}
+
+/**
  * La maison d'une page d'après son chemin (comme l'en-tête du thème) : ymca, centre, encyclopedie ou ''.
  *
  * @param int $id La page.
@@ -663,6 +692,9 @@ function er_api_chercher( $requete ) {
 					'autour'     => count( $roles['autour'] ),
 				) : null,
 				'graphies' => $graphies,
+				// La fiche réduite à une ligne grise, sous le nom (AE2a) : son nom russe et ses années, « 1918–2008 ».
+				'russe'    => 'auteurs' === $groupe ? er_nom_russe( $graphies ) : '',
+				'annees'   => 'auteurs' === $groupe ? er_annees_auteur( $terme->term_id ) : '',
 				// L'initiale du nom de famille, toujours en cyrillique : Д pour Dostoïevski, Б pour Brodsky.
 				'lettre'   => er_initiale_cyrillique( $terme->name, $graphies ),
 			);

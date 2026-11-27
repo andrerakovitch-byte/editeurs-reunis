@@ -83,17 +83,17 @@ function er_recherche_vue( $livre ) {
 	$sous   = implode( ' · ', array_filter( array( $auteur, $prix ) ) );
 	$image  = $livre->get_image_id() ? wp_get_attachment_image_url( $livre->get_image_id(), 'medium' ) : '';
 	$lang   = preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '';
-	return '<a class="er-r-vue" href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-r-vue-cadre">'
+	return '<a class="er-r-lien er-r-vue" href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-r-vue-cadre">'
 		. ( $image ? '<img src="' . esc_url( $image ) . '" alt="" loading="lazy">' : '<span class="er-r-couverture-vide" aria-hidden="true"><span>' . esc_html( $titre ) . '</span></span>' )
 		. '</span><span class="er-r-vue-texte"><span class="er-r-vue-titre"' . $lang . '>' . esc_html( $titre ) . '</span>'
 		. ( $sous ? '<span class="er-r-vue-sous">' . esc_html( $sous ) . '</span>' : '' ) . '</span></a>';
 }
 
 /**
- * Le panneau, au bas de chaque page (AB1a, retenu le 27 novembre 2026) : au-dessus du champ, les maisons en capitales
- * (en tapant, les genres et leurs nombres) ; sous le champ, trois colonnes calées sur les trois photos du triptyque
- * de l'accueil. Avant de taper : vos dernières recherches (ou les rayons), ce qu'on cherche souvent, le dernier livre
- * arrivé. En tapant : l'auteur et les livres ; le reste du site ; la couverture du livre survolé.
+ * Le panneau, au bas de chaque page (AB1a, retenu le 27 novembre 2026) : au-dessus du champ, les maisons en capitales ;
+ * sous le champ, trois colonnes calées sur les trois photos du triptyque de l'accueil. Avant de taper : vos dernières
+ * recherches (ou les rayons), ce qu'on cherche souvent, le dernier livre arrivé. En tapant (AE2a) : l'auteur et les
+ * rayons, des noms seulement, et « Tous les résultats » ; sur les deux autres colonnes, quatre livres, deux par colonne.
  */
 function er_panneau_recherche() {
 	$loupe = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
@@ -176,7 +176,6 @@ function er_panneau_recherche() {
 			<div class="er-recherche-dedans">
 				<div class="er-recherche-tete">
 					<div class="er-recherche-maisons er-filtre" data-er-filtre="maison" data-er-un-seul role="group" aria-label="<?php esc_attr_e( 'Où chercher', 'editeurs-reunis' ); ?>"><?php echo $choix_maisons; // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-					<div class="er-recherche-portees" role="group" aria-label="<?php esc_attr_e( 'Les résultats', 'editeurs-reunis' ); ?>" hidden></div>
 					<p class="er-recherche-mode" id="er-recherche-mode"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?></p>
 					<button type="button" class="er-recherche-bascule" aria-expanded="false" aria-controls="er-recherche-detaillee"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?>&nbsp;<span aria-hidden="true">→</span></button>
 					<button type="button" class="er-recherche-fermer" data-er-fermer><?php echo $croix; // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></button>
@@ -346,6 +345,7 @@ add_action(
 						/* translators: %s: un nombre de livres. */
 						'tous_livres'   => __( 'Les %s livres', 'editeurs-reunis' ),
 						'page_auteur'   => __( 'La page de l’auteur', 'editeurs-reunis' ),
+						'tous_resultats' => __( 'Tous les résultats', 'editeurs-reunis' ),
 						'le_livre'      => __( 'Le livre', 'editeurs-reunis' ),
 						'detaillee'     => __( 'Recherche détaillée', 'editeurs-reunis' ),
 						'simple'        => __( 'Recherche simple', 'editeurs-reunis' ),

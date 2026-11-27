@@ -1,8 +1,9 @@
 /* --------------------------------------------------------------------------
    La recherche : le panneau qu'ouvre la loupe (inc/recherche.php, assets/js/recherche.js), AB1a (27 nov. 2026).
-   Il s'ouvre sous la barre comme un menu, sur le voile blanc des menus, 446 px avant qu'on tape. Au-dessus du
-   champ, les maisons en capitales, comme les noms de la barre ; en tapant, les genres et leurs nombres à leur place.
-   Sous le champ, trois colonnes calées sur les trois photos du triptyque de l'accueil (.er-grille-tpq, 01-bases.css).
+   Il s'ouvre sous la barre comme un menu, sur le voile blanc des menus, 446 px quoi qu'on montre. Au-dessus du
+   champ, les maisons en capitales, comme les noms de la barre. Sous le champ, trois colonnes calées sur les trois
+   photos du triptyque de l'accueil (.er-grille-tpq, 01-bases.css) ; en tapant, AE2a : des noms sur la première,
+   quatre livres sur les deux autres, deux par colonne.
    -------------------------------------------------------------------------- */
 
 .er-point { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wp--preset--color--noir); }
@@ -29,8 +30,8 @@ html.er-panier-ouvert body { overflow: visible !important; }
 	background: var(--wp--preset--color--base);
 	border-block: 1px solid var(--wp--preset--color--filet);
 }
-/* Le gabarit des menus : 446 px avec les filets, quoi qu'on montre. La tête et le champ restent ; dessous, des
-   résultats nombreux défilent dans le panneau, fondus en bas. */
+/* Le gabarit des menus : 446 px avec les filets, quoi qu'on montre. La tête et le champ restent ; dessous, ce qui
+   ne tiendrait pas défile dans le panneau, fondu en bas (les résultats sont faits pour tenir). */
 .er-recherche-dedans { box-sizing: border-box; display: flex; flex-direction: column; height: 444px; padding-top: 32px; }
 .er-recherche-tete, .er-recherche-champ { flex: none; }
 .er-recherche-corps {
@@ -39,24 +40,21 @@ html.er-panier-ouvert body { overflow: visible !important; }
 	overflow-y: auto;
 	overscroll-behavior: contain;
 	scrollbar-width: thin;
-	padding-bottom: 44px;
-	-webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 40px), transparent);
-	mask-image: linear-gradient(to bottom, #000 calc(100% - 40px), transparent);
+	padding-bottom: 24px;
+	-webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+	mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
 }
 .er-recherche ul { list-style: none; margin: 0; padding: 0; }
 .er-recherche a { color: inherit; text-decoration: none; }
 .er-recherche-libelle { margin: 0 0 12px; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); }
 .er-recherche-pistes[hidden], .er-recherche-resultats[hidden], .er-recherche-detaillee[hidden],
 .er-recherche-recentes[hidden], .er-recherche-rayons[hidden], .er-recherche-corps[hidden],
-.er-recherche-maisons[hidden], .er-recherche-portees[hidden], .er-recherche-effacer[hidden] { display: none; }
+.er-recherche-maisons[hidden], .er-recherche-effacer[hidden] { display: none; }
 
-/* La tête : les maisons (ou, en tapant, les genres), en capitales comme les noms de la barre (Z3a) ; à droite, la
-   recherche détaillée. */
+/* La tête : les maisons, en capitales comme les noms de la barre (Z3a) ; à droite, la recherche détaillée. */
 .er-recherche-tete { display: flex; align-items: center; gap: 24px; line-height: 1.3; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
-.er-recherche-maisons,
-.er-recherche-portees { display: flex; align-items: center; gap: 28px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
-.er-recherche-maisons .er-choix,
-.er-portee {
+.er-recherche-maisons { display: flex; align-items: center; gap: 28px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+.er-recherche-maisons .er-choix {
 	padding: 6px 0;
 	border: 0;
 	background: none;
@@ -68,13 +66,9 @@ html.er-panier-ouvert body { overflow: visible !important; }
 	cursor: pointer;
 	transition: color 200ms ease;
 }
-.er-recherche-maisons .er-choix > span,
-.er-portee > span { margin-inline-end: -0.18em; }
+.er-recherche-maisons .er-choix > span { margin-inline-end: -0.18em; }
 .er-recherche-maisons .er-choix:hover,
-.er-recherche-maisons .er-choix.est-active,
-.er-portee:hover,
-.er-portee.est-active { color: var(--wp--preset--color--contrast); }
-.er-portee-nombre { font-weight: 500; }
+.er-recherche-maisons .er-choix.est-active { color: var(--wp--preset--color--contrast); }
 .er-recherche-bascule {
 	flex: none;
 	margin-inline-start: auto;
@@ -94,7 +88,7 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-recherche-bascule:hover, .er-recherche-bascule.est-active { text-decoration-color: currentColor; }
 /* « Fermer » dans le panneau, pour le téléphone (à l'ordinateur, la loupe de la barre devient « Fermer »). */
 .er-recherche-fermer { display: none; align-items: center; gap: 0.4rem; border: 0; background: none; padding: 0.5rem 0; font: inherit; font-size: 0.875rem; font-weight: 600; color: var(--wp--preset--color--contrast); cursor: pointer; }
-.er-recherche-maisons .er-choix:focus-visible, .er-portee:focus-visible, .er-recherche-bascule:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
+.er-recherche-maisons .er-choix:focus-visible, .er-recherche-bascule:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
 
 /* Le champ, entre les marges, souligné d'un filet à l'encre. */
 .er-recherche-champ {
@@ -142,17 +136,18 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-recherche-lignes a, .er-r-ligne { transition: color 200ms ease; }
 .er-recherche-lignes:has(a:hover, a:focus-visible) a:not(:hover):not(:focus-visible),
 .er-r-lignes:has(.er-r-ligne:hover, .er-r-ligne:focus-visible) .er-r-ligne:not(:hover):not(:focus-visible) { color: #8C8C87; }
-.er-recherche-lignes a:focus-visible, .er-r-ligne:focus-visible, .er-r-tout:focus-visible, .er-r-vue:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
+.er-recherche-lignes a:focus-visible, .er-r-ligne:focus-visible, .er-r-tous:focus-visible, .er-r-vue:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
 
-/* Le livre : la couverture au centre d'un cadre beige, avec son ombre ; le titre, l'auteur et le prix dessous (AA1).
-   Au survol, la couverture monte un peu. */
+/* Un livre a toujours le même dessin (principe 13, AE2) : la couverture entière au centre d'un cadre beige, avec son
+   ombre ; le titre dessous, sur deux lignes au plus ; en gris le prix (et l'auteur quand on ne le sait pas déjà). Au
+   survol, la couverture monte un peu et les autres titres pâlissent. */
 .er-r-vue { display: block; }
-.er-r-vue-cadre { display: flex; align-items: center; justify-content: center; height: 140px; background: #F3F2EE; }
+.er-r-vue-cadre { display: flex; align-items: center; justify-content: center; height: 172px; background: #F3F2EE; }
 .er-r-vue-cadre img,
 .er-r-vue-cadre .er-r-couverture-vide {
 	display: block;
 	width: auto;
-	height: 104px;
+	height: 128px;
 	max-width: 80%;
 	object-fit: cover;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.16);
@@ -173,20 +168,30 @@ html.er-panier-ouvert body { overflow: visible !important; }
 	font-weight: 600;
 	line-height: 1.15;
 }
-.er-r-vue-texte { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
-.er-r-vue-titre { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 1.1875rem; font-weight: 500; line-height: 1.25; }
-.er-r-vue-sous { overflow: hidden; font-size: 0.875rem; line-height: 1.4; color: var(--wp--preset--color--discret); white-space: nowrap; text-overflow: ellipsis; }
-/* Dans les résultats, la couverture reste en vue quand les lignes défilent. */
-.er-r-colonne-vue { position: sticky; top: 0; }
+.er-r-vue-texte { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding-inline-end: 8px; }
+.er-r-vue-titre { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 0.9375rem; font-weight: 500; line-height: 1.3; transition: color 200ms ease; }
+.er-r-vue-sous { overflow: hidden; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); white-space: nowrap; text-overflow: ellipsis; }
+.er-r-livres .er-r-vue-sous { display: flex; }
+.er-r-vue-coupe { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.er-r-vue-prix { flex: none; white-space: pre; }
+.er-r-grille:has(.er-r-vue:hover) .er-r-vue:not(:hover) .er-r-vue-titre { color: #8C8C87; }
+/* Avant de taper, le dernier livre arrivé : le même dessin, un cadre plus bas. */
+.er-recherche-pistes .er-r-vue-cadre { height: 140px; }
+.er-recherche-pistes .er-r-vue-cadre img,
+.er-recherche-pistes .er-r-vue-cadre .er-r-couverture-vide { height: 104px; }
+/* Deux livres par colonne du triptyque, 12 px entre eux : le premier cadre part avec la colonne, le second finit
+   avec elle. */
+.er-r-livres { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; }
 
 /* En tapant : les trois colonnes. */
-.er-r-groupe { margin-bottom: 22px; }
+.er-r-groupe { margin-bottom: 26px; }
 .er-r-groupe .er-recherche-libelle { margin-bottom: 10px; }
-.er-r-lignes { display: flex; flex-direction: column; gap: 10px; }
+.er-r-lignes { display: flex; flex-direction: column; gap: 8px; }
 .er-r-ligne { display: flex; flex-direction: column; gap: 2px; }
 .er-r-ligne .er-r-titre { font-size: 1rem; font-weight: 500; line-height: 1.3; }
 .er-r-ligne .er-r-sous { font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); }
-.er-r-tout { display: inline-block; font-size: 1rem; font-weight: 600; }
+.er-recherche .er-r-tous { display: inline-block; font-size: 0.9375rem; color: var(--wp--preset--color--discret); transition: color 200ms ease; }
+.er-recherche .er-r-tous:hover { color: var(--wp--preset--color--contrast); }
 .er-r-aucun { grid-column: 1 / -1; margin: 0; font-size: 1rem; color: var(--wp--preset--color--encre-2); }
 
 /* La recherche détaillée (André, 27 nov.) : le panneau s'agrandit jusqu'au bas de l'écran, sous l'en-tête, qui reste.
@@ -314,4 +319,17 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
 	.er-recherche-panneau { height: 100%; border: 0; }
 	.er-recherche-dedans { display: block; height: auto; padding: 1rem 0 2rem; }
 	.er-recherche-corps { overflow: visible; padding-bottom: 0; -webkit-mask-image: none; mask-image: none; }
-	
+	.er-rd-colonne { gap: 28px; }
+	.er-recherche-tete { flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+	.er-recherche-bascule { order: 1; margin-inline-start: 0; }
+	.er-recherche-fermer { display: inline-flex; order: 2; margin-inline-start: auto; }
+	.er-recherche-maisons { order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--wp--style--root--padding-left)); padding-inline: var(--wp--style--root--padding-left); }
+	.er-recherche-maisons::-webkit-scrollbar { display: none; }
+	.er-recherche-champ { margin: 0.75rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); gap: 0.75rem; }
+	.er-recherche-champ svg { width: 22px; height: 22px; }
+	.er-recherche-champ input[type="search"] { font-size: 1.375rem; }
+	.er-r-livres { row-gap: 24px; }
+	.er-rd-pied { flex-direction: column; align-items: stretch; padding-bottom: 1.25rem; }
+	.er-rd-actions { justify-content: space-between; }
+	.er-rd-voir { flex: 1; justify-content: center; }
+}
