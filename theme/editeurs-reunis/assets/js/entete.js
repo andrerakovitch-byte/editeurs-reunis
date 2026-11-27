@@ -63,6 +63,9 @@
 		};
 		var regarder = function () {
 			var compacte = haut.classList.contains( 'est-compacte' );
+			// La barre du nom est collée en haut de l'écran dès que la barre d'informations est passée : au téléphone,
+			// c'est là que son filet revient (André, 27 nov. ; 29-en-tete-retenu.css).
+			haut.classList.toggle( 'est-collee', window.scrollY > ( infos ? infos.offsetHeight : 0 ) );
 			if ( ! ordinateur.matches ) {
 				if ( compacte ) {
 					basculer( false );
