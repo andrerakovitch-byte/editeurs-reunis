@@ -79,14 +79,13 @@ function er_recherche_vue( $livre ) {
 	$id     = $livre->get_id();
 	$titre  = html_entity_decode( $livre->get_name(), ENT_QUOTES, 'UTF-8' );
 	$auteur = function_exists( 'er_em_auteurs' ) ? er_em_auteurs( $id ) : '';
-	$prix   = trim( wp_strip_all_tags( html_entity_decode( $livre->get_price_html(), ENT_QUOTES, 'UTF-8' ) ) );
-	$sous   = implode( ' · ', array_filter( array( $auteur, $prix ) ) );
+	$sous   = er_livre_sous( $livre, $auteur );
 	$image  = $livre->get_image_id() ? wp_get_attachment_image_url( $livre->get_image_id(), 'medium' ) : '';
 	$lang   = preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '';
 	return '<a class="er-r-lien er-r-vue" href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-r-vue-cadre">'
 		. ( $image ? '<img src="' . esc_url( $image ) . '" alt="" loading="lazy">' : '<span class="er-r-couverture-vide" aria-hidden="true"><span>' . esc_html( $titre ) . '</span></span>' )
 		. '</span><span class="er-r-vue-texte"><span class="er-r-vue-titre"' . $lang . '>' . esc_html( $titre ) . '</span>'
-		. ( $sous ? '<span class="er-r-vue-sous">' . esc_html( $sous ) . '</span>' : '' ) . '</span></a>';
+		. ( $sous ? '<span class="er-r-vue-sous">' . $sous . '</span>' : '' ) . '</span></a>'; // er_livre_sous() échappe.
 }
 
 /**
@@ -223,8 +222,10 @@ function er_panneau_recherche() {
 							<?php endif; ?>
 						</div>
 					</div>
-					<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
+					<div class="er-recherche-resultats" id="er-recherche-resultats" hidden></div>
 				</div>
+				<?php // Ce qu'un lecteur d'écran entend après chaque recherche : un compte bref, pas toute la grille relue. ?>
+				<p class="screen-reader-text" id="er-recherche-etat" role="status"></p>
 
 				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" aria-labelledby="er-recherche-mode" hidden>
 					<div class="er-rd-grille er-grille-tpq">
@@ -279,7 +280,7 @@ function er_panneau_recherche() {
 					<datalist id="er-rd-editeurs"><?php foreach ( function_exists( 'er_valeurs_champ' ) ? er_valeurs_champ( 'er_editeur' ) : array() as $v ) : ?><option value="<?php echo esc_attr( $v ); ?>"><?php endforeach; ?></datalist>
 					<datalist id="er-rd-collections"><?php foreach ( function_exists( 'er_valeurs_champ' ) ? er_valeurs_champ( 'er_collection' ) : array() as $v ) : ?><option value="<?php echo esc_attr( $v ); ?>"><?php endforeach; ?></datalist>
 					<div class="er-rd-pied">
-						<div class="er-rd-criteres" aria-live="polite"></div>
+						<div class="er-rd-criteres"></div>
 						<div class="er-rd-actions">
 							<button type="reset" class="er-rd-effacer"><?php esc_html_e( 'Tout effacer', 'editeurs-reunis' ); ?></button>
 							<button type="submit" class="er-rd-voir"><?php esc_html_e( 'Voir les livres', 'editeurs-reunis' ); ?></button>
@@ -342,6 +343,12 @@ add_action(
 						'aussi'         => __( 'Cherché aussi : %s.', 'editeurs-reunis' ),
 						/* translators: %s: ce qu'on a tapé. */
 						'aucun'         => __( 'Rien pour « %s ». Essayez un autre mot, une autre écriture, ou la recherche détaillée.', 'editeurs-reunis' ),
+						/* translators: %s: ce qu'on a tapé. Au téléphone, sans recherche détaillée. */
+						'aucun_court'   => __( 'Rien pour « %s ». Essayez un autre mot ou une autre écriture.', 'editeurs-reunis' ),
+						'erreur'        => __( 'La recherche ne répond pas pour l’instant. Entrée ouvre la page des résultats.', 'editeurs-reunis' ),
+						'etat_un'       => __( 'Un résultat.', 'editeurs-reunis' ),
+						/* translators: %s: un nombre de résultats. */
+						'etat_n'        => __( '%s résultats.', 'editeurs-reunis' ),
 						/* translators: %s: un nombre de livres. */
 						'voir_livres'   => __( 'Voir les %s livres', 'editeurs-reunis' ),
 						'voir_livre'    => __( 'Voir le livre', 'editeurs-reunis' ),

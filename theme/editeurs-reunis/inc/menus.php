@@ -9,7 +9,7 @@
  * - les menus, de 446 px : la Librairie en panneau (ses rayons, les sous-rayons du rayon survolé, et le dernier livre
  *   arrivé du rayon ou du sous-rayon survolé), les trois autres en grands mots, avec la photo de la page survolée ;
  * - le sac ouvre le panier et le compte, comme chez Apple ; la loupe, la recherche (inc/recherche.php) ;
- * - au téléphone et jusqu'à 1 320 px, le menu (≡) ouvre le plan du site en plein écran (er_em_plan()).
+ * - au téléphone et jusqu'à 1 360 px, le menu (≡) ouvre le plan du site en plein écran (er_em_plan()).
  *
  * Les données des menus viennent d'inc/essai-menus.php (er_em_donnees()), écrit pour les pages d'essai.
  *
@@ -111,7 +111,33 @@ function er_menu_livres() {
 	set_transient( 'er_menu_livres_v1', $livres, 6 * HOUR_IN_SECONDS );
 	return $livres;
 }
-add_action( 'woocommerce_update_product', fn() => delete_transient( 'er_menu_livres_v1' ) );
+
+/**
+ * Oublie les livres du menu et le panneau de la Librairie déjà rendu : un livre modifié, mis à la corbeille ou épuisé,
+ * un rayon renommé.
+ */
+function er_menu_oublier() {
+	delete_transient( 'er_menu_livres_v1' );
+	foreach ( function_exists( 'er_langues_du_site' ) ? array_keys( (array) er_langues_du_site() ) : array( 'fr' ) as $langue ) {
+		delete_transient( 'er_menu_librairie_' . $langue );
+	}
+}
+add_action( 'woocommerce_update_product', 'er_menu_oublier' );
+add_action( 'woocommerce_product_set_stock_status', 'er_menu_oublier' );
+add_action(
+	'transition_post_status',
+	function ( $apres, $avant, $post ) {
+		if ( $apres !== $avant && 'product' === $post->post_type ) {
+			er_menu_oublier();
+		}
+	},
+	10,
+	3
+);
+foreach ( array( 'created_product_cat', 'edited_product_cat', 'delete_product_cat' ) as $er_crochet ) {
+	add_action( $er_crochet, 'er_menu_oublier' );
+}
+unset( $er_crochet );
 
 /**
  * Un livre dans le panneau de la Librairie (AA1) : « Au rayon … », la couverture au centre d'un cadre beige, le titre,
@@ -124,18 +150,17 @@ add_action( 'woocommerce_update_product', fn() => delete_transient( 'er_menu_liv
  */
 function er_menu_livre( $id, $cle, $nom, $voir ) {
 	$produit = function_exists( 'wc_get_product' ) ? wc_get_product( $id ) : null;
-	if ( ! $produit ) {
+	// Un livre qui a quitté la vente depuis que la liste a été gardée ne s'y montre pas.
+	if ( ! $produit || 'publish' !== $produit->get_status() ) {
 		return '';
 	}
 	$titre  = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
-	$auteur = er_em_auteurs( $id );
-	$prix   = trim( wp_strip_all_tags( html_entity_decode( $produit->get_price_html(), ENT_QUOTES, 'UTF-8' ) ) );
-	$sous   = array_filter( array( $auteur, $prix ) );
+	$sous   = er_livre_sous( $produit, er_em_auteurs( $id ) );
 	/* translators: %s: le nom d'un rayon (« Au rayon Poésie ») */
 	return '<div class="er-mn-livre" data-livre="' . esc_attr( $cle ) . '"' . ( $voir ? '' : ' hidden' ) . '><p class="er-mn-livre-rayon">' . esc_html( sprintf( __( 'Au rayon %s', 'editeurs-reunis' ), $nom ) ) . '</p>'
-		. '<a href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-mn-livre-cadre">' . er_em_image( get_post_thumbnail_id( $id ), 'medium' ) . '</span>'
+		. '<a href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-mn-livre-cadre">' . er_em_image( get_post_thumbnail_id( $id ), 'medium', '112px' ) . '</span>'
 		. '<span class="er-mn-livre-texte"><span class="er-mn-livre-titre"' . er_em_lang( $titre ) . '>' . esc_html( $titre ) . '</span>'
-		. ( $sous ? '<span class="er-mn-livre-sous">' . esc_html( implode( ' · ', $sous ) ) . '</span>' : '' ) . '</span></a></div>';
+		. ( $sous ? '<span class="er-mn-livre-sous">' . $sous . '</span>' : '' ) . '</span></a></div>'; // er_livre_sous() échappe.
 }
 
 /**
@@ -144,6 +169,24 @@ function er_menu_livre( $id, $cle, $nom, $voir ) {
  * @param array $m Le menu de la Librairie (er_em_donnees()).
  */
 function er_menu_panneau_librairie( $m ) {
+	// Rendu une fois par heure et par langue (58 livres cachés, chacun avec sa couverture, son auteur, son prix : plus
+	// de 400 requêtes à chaque page qui n'est pas en cache, un panier rempli par exemple ; audit du 27 nov. 2026).
+	$cle_cache = 'er_menu_librairie_' . ( function_exists( 'er_langue' ) ? er_langue() : 'fr' );
+	$garde     = get_transient( $cle_cache );
+	if ( is_string( $garde ) && '' !== $garde ) {
+		return $garde;
+	}
+	$html = er_menu_panneau_librairie_rendre( $m );
+	set_transient( $cle_cache, $html, HOUR_IN_SECONDS );
+	return $html;
+}
+
+/**
+ * Le panneau de la Librairie, rendu (er_menu_panneau_librairie() le garde).
+ *
+ * @param array $m Le menu de la Librairie (er_em_donnees()).
+ */
+function er_menu_panneau_librairie_rendre( $m ) {
 	$livres = er_menu_livres();
 	$rayons = '';
 	$sous   = '';
@@ -186,7 +229,7 @@ function er_menu_panneau_librairie( $m ) {
 		. '<div class="er-mn-rayons-col"><ul class="er-mn-rayons">' . $rayons . '</ul>'
 		. '<a class="er-mn-toute" href="' . esc_url( $m['lien'] ) . '">' . esc_html__( 'Toute la librairie →', 'editeurs-reunis' ) . '</a></div>'
 		. '<div class="er-mn-sous">' . $sous . '</div>'
-		. '<div class="er-mn-livres" aria-live="polite">' . $blocs . '</div></div></div>';
+		. '<div class="er-mn-livres">' . $blocs . '</div></div></div>';
 }
 
 /**
@@ -249,7 +292,7 @@ function er_menu_sac() {
 add_shortcode( 'er_menu_sac', 'er_menu_sac' );
 
 /**
- * Le bouton du menu (≡), jusqu'à 1 320 px : il ouvre le plan du site.
+ * Le bouton du menu (≡), jusqu'à 1 360 px : il ouvre le plan du site.
  */
 add_shortcode( 'er_menu_bouton', 'er_essai_bouton_menu' );
 
@@ -292,7 +335,7 @@ function er_menu_cartes() {
 		$photo    = get_post_thumbnail_id( $id ) ? get_post_thumbnail_id( $id ) : get_post_thumbnail_id( $r->ID );
 		$cartes[] = array(
 			'lien'  => get_permalink( $id ),
-			'image' => $photo ? er_em_image( $photo, 'medium' ) : er_menu_carte_image( 'signature' ),
+			'image' => $photo ? er_em_image( $photo, 'medium', '64px' ) : er_menu_carte_image( 'signature' ),
 			'label' => __( 'Prochain événement', 'editeurs-reunis' ) . ( '' !== $quand ? ' · ' . $quand : '' ),
 			'titre' => get_the_title( $id ),
 			'debut' => $debut,
@@ -305,9 +348,9 @@ function er_menu_cartes() {
 		$photo    = get_post_thumbnail_id( $id ) ? get_post_thumbnail_id( $id ) : get_post_thumbnail_id( $expo->ID );
 		$cartes[] = array(
 			'lien'  => get_permalink( $id ),
-			'image' => $photo ? er_em_image( $photo, 'medium' ) : er_menu_carte_image( 'photographe' ),
+			'image' => $photo ? er_em_image( $photo, 'medium', '64px' ) : er_menu_carte_image( 'photographe' ),
 			/* translators: %s: la date de fin d'une exposition (« 28 février »). */
-			'label' => __( 'Exposition', 'editeurs-reunis' ) . ( $fin ? ' · ' . sprintf( __( 'jusqu’au %s', 'editeurs-reunis' ), wp_date( _x( 'j F', 'date de fin d’une exposition', 'editeurs-reunis' ), strtotime( $fin ) ) ) : '' ),
+			'label' => __( 'Exposition', 'editeurs-reunis' ) . ( $fin ? ' · ' . sprintf( __( 'jusqu’au %s', 'editeurs-reunis' ), er_jour_fin_expo( $fin ) ) : '' ),
 			'titre' => get_the_title( $id ),
 		);
 	}
@@ -386,7 +429,7 @@ function er_menu_telephone() {
 		// La recherche (AF1, 27 nov.) : ce n'est plus un champ dans le menu (le clavier faisait glisser la page, et le
 		// site se voyait derrière) ; on le touche, la recherche prend tout l'écran, le champ en haut, le clavier ouvert.
 		// Sans script, le lien mène à la recherche des livres.
-		. '<a class="er-mp-recherche" href="' . esc_url( add_query_arg( array( 's' => '', 'post_type' => 'product' ), $accueil ) ) . '" data-er-recherche-ouvrir>'
+		. '<a class="er-mp-recherche" href="' . esc_url( add_query_arg( array( 's' => '', 'post_type' => 'product' ), $accueil ) ) . '" data-er-recherche-ouvrir aria-label="' . esc_attr__( 'Rechercher un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '">'
 		. '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16.4 16.4L20.5 20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
 		. '<span class="er-mp-recherche-texte">' . esc_html__( 'Un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '</span></a>'
 		. '<div class="er-mp-outils"><a href="' . esc_url( $panier ) . '">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</a>'

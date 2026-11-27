@@ -204,17 +204,33 @@ function er_autres_graphies( $terme ) {
 }
 
 /**
- * Le nom russe d'un auteur : la première de ses autres écritures qui est en cyrillique.
+ * Le nom d'un auteur dans l'autre écriture, pour la ligne grise sous son nom : en cyrillique pour un nom latin, en
+ * latin pour un nom cyrillique. Le nom saisi (la méta er_nom_russe) d'abord ; sinon, parmi ses autres écritures, la
+ * plus longue sans initiales (les fusions de personnes ont mis en tête « А. Солженицын », « П.Б. Струве »).
  *
  * @param string[] $graphies Ses autres écritures (er_autres_graphies).
+ * @param string   $nom      Son nom (vide : on cherche le cyrillique).
+ * @param string   $saisi    Le nom russe saisi sur sa fiche.
  */
-function er_nom_russe( $graphies ) {
+function er_nom_russe( $graphies, $nom = '', $saisi = '' ) {
+	$cyrillique = (bool) preg_match( '/\p{Cyrillic}/u', $nom );
+	if ( ! $cyrillique && '' !== trim( $saisi ) ) {
+		return trim( $saisi );
+	}
+	$retenu = '';
+	$rang   = -1;
 	foreach ( $graphies as $g ) {
-		if ( preg_match( '/\p{Cyrillic}/u', $g ) ) {
-			return $g;
+		if ( (bool) preg_match( '/\p{Cyrillic}/u', $g ) === $cyrillique || ( $cyrillique && ! preg_match( '/\p{L}/u', $g ) ) ) {
+			continue;
+		}
+		// Une forme à initiales passe après toute forme entière ; à égalité, la plus longue.
+		$r = ( preg_match( '/\p{Lu}\./u', $g ) ? 0 : 1000 ) + mb_strlen( $g );
+		if ( $r > $rang ) {
+			$retenu = $g;
+			$rang   = $r;
 		}
 	}
-	return '';
+	return $retenu;
 }
 
 /**
@@ -284,6 +300,10 @@ function er_index_contenu( $id ) {
 	$poids  = 0;
 	if ( 'livre' === $genre && get_post_meta( $id, 'er_evenement', true ) ) {
 		er_index_oter( $genre, $id ); // Le billet d'une rencontre n'est pas un livre.
+		return;
+	}
+	if ( 'livre' === $genre && taxonomy_exists( 'product_visibility' ) && has_term( 'exclude-from-search', 'product_visibility', $id ) ) {
+		er_index_oter( $genre, $id ); // Un livre « masqué » ou « catalogue seulement » ne sort pas dans la recherche.
 		return;
 	}
 	if ( 'livre' === $genre ) {
@@ -494,7 +514,8 @@ function er_index_chercher( $cle, $genres, $limite = 60 ) {
 	if ( null !== $trouve ) {
 		return $trouve;
 	}
-	$mots = array_filter( explode( ' ', $cle ) );
+	// Huit mots au plus, sans doublons : chaque mot coûte une condition sur toute la table (audit du 27 nov. 2026).
+	$mots = array_slice( array_values( array_unique( array_filter( explode( ' ', $cle ) ) ) ), 0, 8 );
 	if ( ! $mots ) {
 		return array();
 	}
@@ -595,7 +616,7 @@ function er_resultat_livre( $id ) {
  * @param WP_REST_Request $requete La requête (q, portee).
  */
 function er_api_chercher( $requete ) {
-	$texte = trim( (string) $requete->get_param( 'q' ) );
+	$texte = mb_substr( trim( (string) $requete->get_param( 'q' ) ), 0, 200 );
 	$cle   = er_cle_recherche( $texte );
 	$vide  = array(
 		'requete' => $texte,
@@ -673,27 +694,15 @@ function er_api_chercher( $requete ) {
 			}
 			$graphies = 'auteurs' === $groupe ? er_autres_graphies( $terme->term_id ) : array();
 			$lien     = get_term_link( $terme );
-			// Les livres d'une personne : ceux qu'elle a écrits, traduits ou dirigés (Georges Nivat n'en a écrit aucun
-			// ici, mais en a traduit et dirigé) ; ceux qui parlent d'elle à part.
-			$roles                = 'auteurs' === $groupe && function_exists( 'er_personne_livres' ) ? er_personne_livres( $terme ) : null;
+			// Le panneau ne montre plus les livres d'une personne par rôle (AE2a : un nom, et une ligne grise) : on ne
+			// les compte plus à chaque lettre tapée (neuf requêtes sur tout le catalogue par auteur, audit du 27 nov.).
 			$groupes[ $groupe ][] = array(
 				'titre'    => $terme->name,
 				'url'      => is_wp_error( $lien ) ? '' : $lien,
-				'livres'   => $roles ? count( $roles['tous'] ) : (int) $terme->count,
-				'roles'    => $roles ? array(
-					'auteur'     => count( $roles['auteur'] ),
-					'traduction' => count( $roles['traduction'] ),
-					'direction'  => count( $roles['direction'] ),
-					'preface'    => count( $roles['preface'] ),
-					'edition'    => count( $roles['edition'] ),
-					'illustration' => count( $roles['illustration'] ),
-					'revision'   => count( $roles['revision'] ),
-					'contribution' => count( $roles['contribution'] ),
-					'autour'     => count( $roles['autour'] ),
-				) : null,
+				'livres'   => (int) $terme->count,
 				'graphies' => $graphies,
-				// La fiche réduite à une ligne grise, sous le nom (AE2a) : son nom russe et ses années, « 1918–2008 ».
-				'russe'    => 'auteurs' === $groupe ? er_nom_russe( $graphies ) : '',
+				// La fiche réduite à une ligne grise, sous le nom (AE2a) : son nom dans l'autre écriture et ses années.
+				'russe'    => 'auteurs' === $groupe ? er_nom_russe( $graphies, $terme->name, (string) get_term_meta( $terme->term_id, 'er_nom_russe', true ) ) : '',
 				'annees'   => 'auteurs' === $groupe ? er_annees_auteur( $terme->term_id ) : '',
 				// L'initiale du nom de famille, toujours en cyrillique : Д pour Dostoïevski, Б pour Brodsky.
 				'lettre'   => er_initiale_cyrillique( $terme->name, $graphies ),
@@ -744,7 +753,7 @@ function er_api_chercher( $requete ) {
 		}
 	}
 
-	return rest_ensure_response(
+	$reponse = rest_ensure_response(
 		array(
 			'requete' => $texte,
 			'pour'    => $pour,
@@ -760,6 +769,9 @@ function er_api_chercher( $requete ) {
 			),
 		)
 	);
+	// Les mêmes lettres retapées (on efface, on reprend) : la réponse se garde cinq minutes, ici et en chemin.
+	$reponse->header( 'Cache-Control', 'public, max-age=300' );
+	return $reponse;
 }
 
 /**
@@ -782,6 +794,16 @@ function er_api_chercher_filtre( $texte, $cle, $criteres ) {
 		),
 		er_criteres_requete( $criteres )
 	);
+	if ( taxonomy_exists( 'product_visibility' ) ) {
+		// Comme la page des résultats : pas de livre « masqué » ni « catalogue seulement ».
+		$args['tax_query']   = isset( $args['tax_query'] ) ? (array) $args['tax_query'] : array(); // phpcs:ignore WordPress.DB.SlowDBQuery
+		$args['tax_query'][] = array(
+			'taxonomy' => 'product_visibility',
+			'field'    => 'name',
+			'terms'    => array( 'exclude-from-search' ),
+			'operator' => 'NOT IN',
+		);
+	}
 	if ( '' !== $cle ) {
 		$trouves          = er_livres_trouves( $texte );
 		$args['post__in'] = isset( $args['post__in'] ) ? array_values( array_intersect( $trouves, $args['post__in'] ) ) : $trouves;

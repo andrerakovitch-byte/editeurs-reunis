@@ -116,6 +116,8 @@ html.er-panier-ouvert body { overflow: visible !important; }
 	outline: none;
 }
 .er-recherche-champ input[type="search"]::placeholder { color: #C6C6C1; opacity: 1; }
+/* Le champ qui a la main se voit : le filet s'épaissit (audit du 27 nov. 2026). */
+.er-recherche-champ:focus-within { box-shadow: 0 1px 0 currentColor; }
 .er-recherche-champ input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
 .er-recherche-effacer, .er-rd-effacer {
 	flex: none;
@@ -143,18 +145,22 @@ html.er-panier-ouvert body { overflow: visible !important; }
    survol, la couverture monte un peu et les autres titres pâlissent. */
 .er-r-vue { display: block; }
 .er-r-vue-cadre { display: flex; align-items: center; justify-content: center; height: 172px; background: #F3F2EE; }
+/* La couverture entière : jamais rognée, même dans un cadre étroit (entre 782 et 1100 px, la troisième colonne) ;
+   elle rapetisse plutôt (audit du 27 nov. 2026). */
 .er-r-vue-cadre img,
 .er-r-vue-cadre .er-r-couverture-vide {
 	display: block;
 	width: auto;
-	height: 128px;
+	height: auto;
+	max-height: 128px;
 	max-width: 80%;
-	object-fit: cover;
+	object-fit: contain;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.16);
 	transition: transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 450ms ease;
 }
 .er-r-vue:hover .er-r-vue-cadre img,
 .er-r-vue:hover .er-r-vue-cadre .er-r-couverture-vide { transform: translateY(-4px); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 18px 32px rgba(0, 0, 0, 0.2); }
+.er-r-vue-cadre .er-r-couverture-vide { height: 128px; }
 .er-r-couverture-vide {
 	box-sizing: border-box;
 	display: flex;
@@ -170,14 +176,17 @@ html.er-panier-ouvert body { overflow: visible !important; }
 }
 .er-r-vue-texte { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding-inline-end: 8px; }
 .er-r-vue-titre { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 0.9375rem; font-weight: 500; line-height: 1.3; transition: color 200ms ease; }
-.er-r-vue-sous { overflow: hidden; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); white-space: nowrap; text-overflow: ellipsis; }
-.er-r-livres .er-r-vue-sous { display: flex; }
-.er-r-vue-coupe { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.er-r-vue-prix { flex: none; white-space: pre; }
+/* La ligne grise, partout où il y a un livre (la recherche, le menu Librairie) : l'auteur rétrécit le premier, jusqu'à
+   disparaître ; le prix ne se coupe jamais, et « épuisé pour l'instant » passe à la ligne plutôt que d'être rogné
+   (audit du 27 nov. 2026). */
+.er-r-vue-sous,
+.er-mn-livre-sous { display: flex; align-items: baseline; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); }
+.er-r-vue-coupe { flex: 0 1000 auto; min-width: 0; margin-inline-end: 0.25em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.er-r-vue-prix { flex: 0 1 auto; min-width: 0; }
 .er-r-grille:has(.er-r-vue:hover) .er-r-vue:not(:hover) .er-r-vue-titre { color: #8C8C87; }
 /* Avant de taper, le dernier livre arrivé : le même dessin, un cadre plus bas. */
 .er-recherche-pistes .er-r-vue-cadre { height: 140px; }
-.er-recherche-pistes .er-r-vue-cadre img,
+.er-recherche-pistes .er-r-vue-cadre img { max-height: 104px; }
 .er-recherche-pistes .er-r-vue-cadre .er-r-couverture-vide { height: 104px; }
 /* Deux livres par colonne du triptyque, 12 px entre eux : le premier cadre part avec la colonne, le second finit
    avec elle. */
@@ -318,7 +327,7 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
    (--er-vv-haut, --er-vv-dy : recherche.js). En haut, le champ et « Annuler » ; dessous, les maisons, qui défilent ;
    puis ce qui défile, le champ restant en place. En tapant : l'auteur, les livres deux par rang, puis le reste. */
 .er-recherche-annuler { display: none; }
-@media (max-width: 781px) {
+@media (max-width: 781px), (pointer: coarse) and (max-height: 500px) {
 	/* Le fond blanc couvre tout l'écran, jusque sous la barre de Safari et le clavier (100lvh : ce que l'écran a de plus
 	   haut) ; seul le panneau, dedans, prend la hauteur qu'on voit au-dessus du clavier, pour que ce qui défile s'arrête
 	   au bon endroit. Sinon, sous la barre de Safari, le menu se voyait derrière (André, 27 nov.). */
@@ -373,7 +382,7 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
 	.er-r-grille .er-r-tous { align-self: flex-start; }
 	.er-r-livres { row-gap: 22px; }
 	.er-r-livres .er-r-vue-cadre { height: 132px; }
-	.er-r-livres .er-r-vue-cadre img,
+	.er-r-livres .er-r-vue-cadre img { max-height: 96px; }
 	.er-r-livres .er-r-vue-cadre .er-r-couverture-vide { height: 96px; }
 	.er-rd-colonne { gap: 28px; }
 	.er-rd-pied { flex-direction: column; align-items: stretch; padding-bottom: 1.25rem; }

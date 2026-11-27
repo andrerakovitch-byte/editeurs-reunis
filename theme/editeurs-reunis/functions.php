@@ -26,6 +26,26 @@ require get_template_directory() . '/inc/essai.php';
 require get_template_directory() . '/inc/essai-menus.php';
 require get_template_directory() . '/inc/menus.php';
 
+/**
+ * La typographie française de nos textes, en un seul endroit : une espace insécable avant « ; : ! ? » et dans les
+ * guillemets, pour qu'un « ? » ne commence jamais une ligne, ni un « » » (règle d'écriture du système de dessin ;
+ * audit du 27 nov. 2026 : une vingtaine de phrases l'oubliaient). Seulement nos deux domaines, et seulement une espace
+ * ordinaire : ce qui est déjà insécable ne change pas.
+ *
+ * @param string $texte La traduction.
+ * @param string $domaine Le domaine de texte.
+ */
+function er_insecables( $texte, $domaine ) {
+	if ( ! in_array( $domaine, array( 'editeurs-reunis', 'er-librairie' ), true ) || ! preg_match( '/ [;:!?»]|« /u', (string) $texte ) ) {
+		return $texte;
+	}
+	return preg_replace( array( '/ ([;:!?»])/u', '/« /u' ), array( "\u{00A0}$1", "«\u{00A0}" ), $texte );
+}
+add_filter( 'gettext', fn( $t, $original, $domaine ) => er_insecables( $t, $domaine ), 10, 3 );
+add_filter( 'gettext_with_context', fn( $t, $original, $contexte, $domaine ) => er_insecables( $t, $domaine ), 10, 4 );
+add_filter( 'ngettext', fn( $t, $un, $plusieurs, $n, $domaine ) => er_insecables( $t, $domaine ), 10, 5 );
+add_filter( 'ngettext_with_context', fn( $t, $un, $plusieurs, $n, $contexte, $domaine ) => er_insecables( $t, $domaine ), 10, 6 );
+
 add_action(
 	'after_setup_theme',
 	function () {
@@ -612,6 +632,41 @@ function er_prix( $slug ) {
 		return '';
 	}
 	return html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $produit ) ) ), ENT_QUOTES, 'UTF-8' );
+}
+
+/**
+ * Le prix d'un produit en texte, tel qu'on le paie (« 18,00 € »), ou rien sans prix. Jamais get_price_html() dépouillé
+ * de ses balises : pour un livre remisé, WooCommerce y met l'ancien prix et deux phrases pour les lecteurs d'écran, qui
+ * restaient collées (« 26,00 € Le prix initial était : 26,00 €.18,00 €Le prix actuel est… », audit du 27 nov. 2026).
+ *
+ * @param WC_Product $produit Le produit.
+ */
+function er_prix_texte( $produit ) {
+	if ( ! $produit || '' === (string) $produit->get_price() ) {
+		return '';
+	}
+	if ( ! function_exists( 'wc_price' ) ) {
+		return (string) $produit->get_price();
+	}
+	return html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $produit ) ) ), ENT_QUOTES, 'UTF-8' );
+}
+
+/**
+ * La ligne grise d'un livre (principe 13, AE2) : l'auteur, qui se coupe si le cadre est étroit, puis le prix, qui ne se
+ * coupe jamais, ou « épuisé pour l'instant » à sa place. Le même balisage que le script de la recherche
+ * (assets/js/recherche.js, livre()) ; le menu Librairie et le dernier livre arrivé de la recherche s'en servent.
+ *
+ * @param WC_Product $produit     Le livre.
+ * @param string     $auteur      L'auteur (vide quand on le sait déjà).
+ * @return string Le HTML (échappé), vide s'il n'y a rien à dire.
+ */
+function er_livre_sous( $produit, $auteur = '' ) {
+	$prix = $produit->is_in_stock() ? er_prix_texte( $produit ) : __( 'épuisé pour l’instant', 'editeurs-reunis' );
+	if ( '' === $auteur && '' !== $prix ) {
+		$prix = mb_strtoupper( mb_substr( $prix, 0, 1 ) ) . mb_substr( $prix, 1 ); // « Épuisé pour l'instant », seul.
+	}
+	return ( '' !== $auteur ? '<span class="er-r-vue-coupe"' . ( preg_match( '/\p{Cyrillic}/u', $auteur ) ? ' lang="ru"' : '' ) . '>' . esc_html( $auteur ) . ( '' !== $prix ? "\u{00A0}·" : '' ) . '</span>' : '' )
+		. ( '' !== $prix ? '<span class="er-r-vue-prix">' . esc_html( $prix ) . '</span>' : '' );
 }
 
 /**

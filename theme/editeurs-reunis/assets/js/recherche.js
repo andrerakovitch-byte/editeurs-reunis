@@ -36,7 +36,9 @@
 	var cadreFiltres = panneau.querySelector( '.er-recherche-maisons' );
 	var postType = formulaire.querySelector( 'input[name="post_type"]' );
 
-	var telephone = window.matchMedia( '(max-width: 781px)' );
+	// Le téléphone, debout ou couché : un iPhone à l'horizontale fait plus de 781 px, mais garde son clavier (audit du
+	// 27 nov. 2026). Le même critère que le bloc AF1 de 05-recherche.css.
+	var telephone = window.matchMedia( '(max-width: 781px), (pointer: coarse) and (max-height: 500px)' );
 	var ouvert = false;
 	var dernier = null; // L'élément qui avait la main avant l'ouverture.
 	var donnees = null;
@@ -45,7 +47,11 @@
 	var LIVRES = [ 'rayon', 'langue', 'etat' ];
 	var minuterie;
 	var compteur;
-	var demande = 0;
+	var demande = 0; // Le numéro de la dernière recherche : une réponse plus ancienne ne s'affiche pas.
+	var numeroCompte = 0; // Pareil pour le compte de la recherche détaillée.
+	var enRoute = null; // La requête en cours, annulée par la suivante.
+	var memoire = {}; // Les réponses déjà reçues, par adresse : effacer une lettre et la retaper ne redemande rien.
+	var etat = document.getElementById( 'er-recherche-etat' );
 
 	var CROIX = '<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
@@ -61,16 +67,40 @@
 			return String( valeurs[ n ? n - 1 : rang++ ] );
 		} );
 	}
-	function api( chemin, parametres ) {
+	// Avec « annulable », la requête précédente du même genre est abandonnée (elle occupait le serveur pour rien).
+	function api( chemin, parametres, annulable ) {
 		if ( R.langue ) {
 			parametres.append( 'lang', R.langue );
 		}
-		return fetch( R.api + chemin + '?' + parametres.toString(), { credentials: 'same-origin', headers: { Accept: 'application/json' } } ).then( function ( r ) {
+		var url = R.api + chemin + '?' + parametres.toString();
+		if ( memoire[ url ] ) {
+			return Promise.resolve( memoire[ url ] );
+		}
+		var options = { credentials: 'same-origin', headers: { Accept: 'application/json' } };
+		if ( annulable && window.AbortController ) {
+			if ( enRoute ) {
+				enRoute.abort();
+			}
+			enRoute = new AbortController();
+			options.signal = enRoute.signal;
+		}
+		return fetch( url, options ).then( function ( r ) {
 			if ( ! r.ok ) {
 				throw new Error( r.status );
 			}
 			return r.json();
+		} ).then( function ( d ) {
+			if ( d && 'object' === typeof d ) {
+				memoire[ url ] = d;
+			}
+			return d;
 		} );
+	}
+	// Ce qu'un lecteur d'écran entend après une recherche : un compte, une fois (role="status").
+	function annoncer( texte ) {
+		if ( etat ) {
+			etat.textContent = texte || '';
+		}
 	}
 
 	/* Les dernières recherches, gardées dans le navigateur ------------------------------------------------------- */
@@ -190,9 +220,8 @@
 	// couvrirait sinon) ; menus.js ouvre le menu (André, 27 nov.).
 	document.addEventListener( 'click', function ( e ) {
 		var nom = ouvert ? e.target.closest( '[data-er-em]' ) : null;
-		// Le menu ouvert pose aussi data-er-em sur <html> (menus.js) : ce n'est pas un nom (sinon, au téléphone, tout
-		// clic dans la recherche ouverte depuis le menu la refermait).
-		if ( nom && nom !== document.documentElement && ! panneau.contains( e.target ) ) {
+		// Un clic dans la recherche (ouverte depuis le menu du téléphone) ne la referme pas.
+		if ( nom && ! panneau.contains( e.target ) ) {
 			fermer( true );
 		}
 	}, true );
@@ -221,6 +250,17 @@
 	}, { passive: true } );
 
 	loupes.forEach( function ( l ) {
+		// Sans script, un lien vers la page de recherche ; avec, un bouton qui ouvre le panneau : il le dit, et
+		// répond à Espace comme un bouton.
+		if ( 'A' === l.tagName ) {
+			l.setAttribute( 'role', 'button' );
+			l.addEventListener( 'keydown', function ( e ) {
+				if ( ' ' === e.key ) {
+					e.preventDefault();
+					l.click();
+				}
+			} );
+		}
 		l.addEventListener( 'click', function ( e ) {
 			e.preventDefault();
 			if ( ouvert ) {
@@ -294,8 +334,10 @@
 		// Le prix, ou « épuisé » à sa place, ne se coupe jamais ; l'auteur se coupe s'il le faut, sur un cadre étroit.
 		var qui = avecAuteur ? l.auteurs : '';
 		var prix = l.stock ? l.prix : ( qui ? M.rupture : M.rupture.charAt( 0 ).toUpperCase() + M.rupture.slice( 1 ) );
-		var sous = ( qui ? '<span class="er-r-vue-coupe"' + langue( qui ) + '>' + echapper( qui ) + '</span>' : '' )
-			+ ( prix ? '<span class="er-r-vue-prix">' + ( qui ? '\u00a0· ' : '' ) + echapper( prix ) + '</span>' : '' );
+		// Le « · » finit le nom de l'auteur (er_livre_sous() en PHP fait de même) : il part avec lui quand le cadre est
+		// étroit, plutôt que de rester seul en tête de ligne.
+		var sous = ( qui ? '<span class="er-r-vue-coupe"' + langue( qui ) + '>' + echapper( qui ) + ( prix ? '\u00a0·' : '' ) + '</span>' : '' )
+			+ ( prix ? '<span class="er-r-vue-prix">' + echapper( prix ) + '</span>' : '' );
 		return '<li><a class="er-r-lien er-r-vue" href="' + echapper( l.url ) + '"><span class="er-r-vue-cadre">' + couverture + '</span>'
 			+ '<span class="er-r-vue-texte"><span class="er-r-vue-titre"' + langue( l.titre ) + '>' + echapper( l.titre ) + '</span>'
 			+ ( sous ? '<span class="er-r-vue-sous">' + sous + '</span>' : '' ) + '</span></a></li>';
@@ -332,7 +374,7 @@
 		if ( 'ymca' === filtres.maison || 'centre' === filtres.maison ) {
 			url = formulaire.action + ( formulaire.action.indexOf( '?' ) > -1 ? '&' : '?' ) + 's=' + encodeURIComponent( d.requete );
 		}
-		return '<a class="er-r-lien er-r-tous" href="' + echapper( url ) + '">' + echapper( M.tous_resultats ) + ' →</a>';
+		return '<a class="er-r-lien er-r-tous" href="' + echapper( url ) + '">' + echapper( M.tous_resultats ) + ' <span aria-hidden="true">→</span></a>';
 	}
 
 	function dansLaMaison( nom ) {
@@ -344,6 +386,7 @@
 	}
 	function aucun( texte ) {
 		resultats.innerHTML = '<div class="er-grille-tpq"><p class="er-r-aucun">' + echapper( texte ) + '</p></div>';
+		annoncer( texte );
 	}
 	// En tapant (AE2a, retenu le 27 nov.) : sur la première colonne, l'auteur et les rayons, des noms seulement, et
 	// « Tous les résultats » ; sur les deux autres, quatre livres. Tout tient dans le panneau, sans défiler.
@@ -364,9 +407,12 @@
 		var aLivres = montre( 'livres' );
 		var groupes = NOMS.filter( montre );
 		if ( ! aLivres && ! groupes.length ) {
-			aucun( format( M.aucun, d.requete ) );
+			// Au téléphone, pas de recherche détaillée à proposer.
+			aucun( format( telephone.matches && M.aucun_court ? M.aucun_court : M.aucun, d.requete ) );
 			return;
 		}
+		var n = ( d.comptes || {} ).tout || 0;
+		annoncer( 1 === n ? M.etat_un : format( M.etat_n, n ) );
 		var gauche = groupes.slice( 0, 2 ).map( function ( nom ) {
 			return noms( nom, g[ nom ], false );
 		} ).join( '' ) + tousLesResultats( d );
@@ -395,7 +441,8 @@
 			aucun( d.requete ? format( M.aucun_texte_filtre, d.requete ) : M.aucun_filtre );
 			return;
 		}
-		var tous = '<a class="er-r-lien er-r-tous" href="' + echapper( d.livres ) + '">' + echapper( n === 1 ? M.voir_livre : format( M.voir_livres, n ) ) + ' →</a>';
+		var tous = '<a class="er-r-lien er-r-tous" href="' + echapper( d.livres ) + '">' + echapper( n === 1 ? M.voir_livre : format( M.voir_livres, n ) ) + ' <span aria-hidden="true">→</span></a>';
+		annoncer( n === 1 ? M.voir_livre : format( M.voir_livres, n ) );
 		resultats.innerHTML = '<div class="er-grille-tpq er-r-grille"><div class="er-r-colonne">' + libelle( M.g_livres ) + tous + '</div>'
 			+ livres( liste.slice( 0, 4 ), true ) + '</div>';
 	}
@@ -417,30 +464,55 @@
 	function chercher() {
 		var texte = champ.value.trim();
 		effacer.hidden = ! champ.value;
-		if ( ! texte && ! filtresDeLivres() ) {
+		// Toute réponse encore en route devient périmée, même quand le champ se vide : sinon les livres de « sol »
+		// arrivaient sous un champ effacé (audit du 27 nov. 2026).
+		var numero = ++demande;
+		// Une lettre seule ne dit rien encore : les pistes restent.
+		if ( texte.length < 2 && ! filtresDeLivres() ) {
+			if ( enRoute ) {
+				enRoute.abort();
+				enRoute = null;
+			}
 			donnees = null;
 			resultats.hidden = true;
 			montrerMaisons();
 			pistes.hidden = ! detaillee.hidden;
+			annoncer( '' );
 			return;
 		}
-		var numero = ++demande;
-		api( 'chercher', parametresFiltres( new URLSearchParams( { q: texte } ) ) ).then( function ( d ) {
+		api( 'chercher', parametresFiltres( new URLSearchParams( { q: texte } ) ), true ).then( function ( d ) {
 			if ( numero !== demande ) {
 				return; // Une réponse plus ancienne que la dernière lettre tapée.
 			}
 			donnees = d;
+			// La recherche détaillée ouverte entre-temps reste ouverte (sous la main du visiteur) : la refermer la
+			// rendra.
 			if ( ! detaillee.hidden ) {
-				basculer( false );
+				return;
 			}
+			var avaitLaMain = resultats.contains( document.activeElement );
 			pistes.hidden = true;
 			resultats.hidden = false;
 			rendre();
-		} ).catch( function () {} );
+			if ( avaitLaMain ) {
+				champ.focus( { preventScroll: true } );
+			}
+		} ).catch( function ( erreur ) {
+			if ( ( erreur && 'AbortError' === erreur.name ) || numero !== demande ) {
+				return;
+			}
+			// La panne se dit : les résultats d'avant ne restent pas sous le nouveau texte.
+			donnees = null;
+			if ( detaillee.hidden ) {
+				pistes.hidden = true;
+				resultats.hidden = false;
+				aucun( M.erreur );
+			}
+		} );
 	}
 	champ.addEventListener( 'input', function () {
 		window.clearTimeout( minuterie );
-		minuterie = window.setTimeout( chercher, 160 );
+		minuterie = window.setTimeout( chercher, 220 );
 	} );
 	effacer.addEventListener( 'click', function () {
 		champ.value = '';
@@ -553,9 +625,35 @@
 
 	/* Le clavier ------------------------------------------------------------------------------------------------- */
 
+	// Le tour de Tab : la loupe devenue croix (ce qui ouvre referme, et on doit pouvoir l'atteindre au clavier), puis ce
+	// qu'on voit du panneau.
+	function cycle() {
+		return loupes.concat( Array.prototype.slice.call( panneau.querySelectorAll( 'a[href], button:not([hidden]), input:not([type="hidden"]), select' ) ) ).filter( function ( el ) {
+			return el.getClientRects().length > 0 && 'hidden' !== window.getComputedStyle( el ).visibility;
+		} );
+	}
+	loupes.forEach( function ( l ) {
+		l.addEventListener( 'keydown', function ( e ) {
+			if ( ! ouvert || 'Tab' !== e.key ) {
+				return;
+			}
+			var tour = cycle();
+			var i = tour.indexOf( l );
+			if ( i < 0 || tour.length < 2 ) {
+				return;
+			}
+			e.preventDefault();
+			tour[ e.shiftKey ? ( i - 1 + tour.length ) % tour.length : ( i + 1 ) % tour.length ].focus();
+		} );
+	} );
+
+	// Les liens qu'on voit : les rayons des pistes sont cachés quand il y a des recherches gardées, et les flèches
+	// butaient sur eux.
 	function liens() {
 		var zone = ! resultats.hidden ? resultats : ( ! pistes.hidden ? pistes : null );
-		return zone ? Array.prototype.slice.call( zone.querySelectorAll( '.er-r-lien' ) ) : [];
+		return zone ? Array.prototype.slice.call( zone.querySelectorAll( '.er-r-lien' ) ).filter( function ( a ) {
+			return a.getClientRects().length > 0;
+		} ) : [];
 	}
 	panneau.addEventListener( 'keydown', function ( e ) {
 		if ( 'Escape' === e.key ) {
@@ -570,10 +668,7 @@
 		}
 		if ( 'ArrowDown' !== e.key && 'ArrowUp' !== e.key ) {
 			if ( 'Tab' === e.key ) {
-				// La main reste dans le panneau.
-				var focusables = Array.prototype.slice.call( panneau.querySelectorAll( 'a[href], button:not([hidden]), input:not([type="hidden"]), select' ) ).filter( function ( el ) {
-					return el.offsetParent !== null;
-				} );
+				var focusables = cycle();
 				var premier = focusables[ 0 ];
 				var dernierEl = focusables[ focusables.length - 1 ];
 				if ( e.shiftKey && document.activeElement === premier ) {
@@ -630,8 +725,9 @@
 			pistes.hidden = false;
 			montrerMaisons();
 		} else if ( donnees ) {
+			pistes.hidden = true;
 			resultats.hidden = false;
-			montrerMaisons();
+			rendre(); // Une réponse arrivée pendant la recherche détaillée.
 		} else {
 			montrerMaisons();
 		}
@@ -687,9 +783,14 @@
 		montrerCriteres();
 		window.clearTimeout( compteur );
 		compteur = window.setTimeout( function () {
+			var n = ++numeroCompte;
 			api( 'livres', valeurs() ).then( function ( d ) {
+				if ( n !== numeroCompte ) {
+					return; // Le compte d'un choix déjà changé.
+				}
 				voir.textContent = d.nombre === 0 ? M.voir_aucun : ( d.nombre === 1 ? M.voir_livre : format( M.voir_livres, d.nombre ) );
 				voir.disabled = d.nombre === 0;
+				annoncer( voir.textContent );
 			} ).catch( function () {} );
 		}, 180 );
 	}
