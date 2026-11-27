@@ -193,7 +193,9 @@
 			traits.hidden = lesCartes.length < 2;
 			var suivre = function () {
 				var vue = 0;
-				if ( cartes.scrollLeft >= cartes.scrollWidth - cartes.clientWidth - 2 ) {
+				// Le menu fermé, le carrousel n'a pas de largeur : on resterait sur la dernière carte (« au bout »).
+				var largeur = cartes.scrollWidth - cartes.clientWidth;
+				if ( cartes.clientWidth > 0 && largeur > 2 && cartes.scrollLeft >= largeur - 2 ) {
 					vue = lesCartes.length - 1;
 				} else {
 					lesCartes.forEach( function ( carte, n ) {
@@ -209,6 +211,10 @@
 			cartes.addEventListener( 'scroll', function () {
 				window.requestAnimationFrame( suivre );
 			}, { passive: true } );
+			// À l'ouverture du menu, le carrousel prend sa largeur : on recale le trait sur la carte en vue.
+			if ( 'ResizeObserver' in window ) {
+				new window.ResizeObserver( suivre ).observe( cartes );
+			}
 			suivre();
 		}
 	}
