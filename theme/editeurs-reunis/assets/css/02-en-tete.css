@@ -486,7 +486,6 @@ header.er-haut {
 .er-info strong { font-weight: 600; color: var(--wp--preset--color--contrast); }
 .er-info:hover strong, .er-info:focus-visible strong { text-decoration: underline; text-underline-offset: 0.3em; }
 /* Le point bleu : devant l'événement (25 nov. 2026), plus devant les horaires. */
-.er-info-point { display: inline-block; flex: none; width: 7px; height: 7px; margin-inline-end: 0.6rem; border-radius: 50%; background: var(--wp--preset--color--accent-texte); vertical-align: 1px; }
 /* Au téléphone, des textes plus courts : la date d'abord pour l'événement, l'adresse seule. */
 .er-info-court { display: none; }
 .er-info-adresse { margin-inline-start: auto; }

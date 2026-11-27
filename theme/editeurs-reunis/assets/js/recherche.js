@@ -142,9 +142,12 @@
 			( detail ? detaillee.querySelector( 'input, select' ) : champ ).focus();
 		}, 30 );
 	}
-	function fermer() {
+	function fermer( sansRendre ) {
 		if ( ! ouvert ) {
 			return;
+		}
+		if ( ! detaillee.hidden ) {
+			basculer( false );
 		}
 		ouvert = false;
 		panneau.hidden = true;
@@ -156,10 +159,17 @@
 				libelle.textContent = M.rechercher;
 			}
 		} );
-		if ( dernier && dernier.focus && document.contains( dernier ) ) {
+		if ( ! sansRendre && dernier && dernier.focus && document.contains( dernier ) ) {
 			dernier.focus();
 		}
 	}
+	// Un nom du menu cliqué pendant la recherche ouvre son menu tout de suite : la recherche se retire (elle le
+	// couvrirait sinon) ; menus.js ouvre le menu (André, 27 nov.).
+	document.addEventListener( 'click', function ( e ) {
+		if ( ouvert && e.target.closest( '[data-er-em]' ) ) {
+			fermer( true );
+		}
+	}, true );
 
 	loupes.forEach( function ( l ) {
 		l.addEventListener( 'click', function ( e ) {
@@ -180,6 +190,11 @@
 	document.addEventListener( 'keydown', function ( e ) {
 		if ( ouvert && 'Escape' === e.key && ! e.defaultPrevented ) {
 			e.preventDefault();
+			if ( ! detaillee.hidden ) {
+				basculer( false );
+				bascule.focus();
+				return;
+			}
 			fermer();
 		}
 	} );
@@ -573,6 +588,11 @@
 	panneau.addEventListener( 'keydown', function ( e ) {
 		if ( 'Escape' === e.key ) {
 			e.preventDefault();
+			if ( ! detaillee.hidden ) {
+				basculer( false );
+				bascule.focus();
+				return;
+			}
 			fermer();
 			return;
 		}
@@ -617,8 +637,10 @@
 
 	/* La recherche détaillée ------------------------------------------------------------------------------------- */
 
+	// La recherche détaillée s'ouvre en plein écran, par-dessus l'en-tête ; « Fermer » ou Échap ramène au panneau.
 	function basculer( montrer ) {
 		detaillee.hidden = ! montrer;
+		document.documentElement.classList.toggle( 'er-rd-ouverte', montrer );
 		corps.hidden = montrer;
 		bascule.setAttribute( 'aria-expanded', montrer ? 'true' : 'false' );
 		bascule.classList.toggle( 'est-active', montrer );
@@ -642,7 +664,17 @@
 		}
 	}
 	bascule.addEventListener( 'click', function () {
-		basculer( detaillee.hidden );
+		var montrer = detaillee.hidden;
+		basculer( montrer );
+		if ( montrer ) {
+			window.setTimeout( function () {
+				detaillee.querySelector( 'input, select' ).focus();
+			}, 30 );
+		}
+	} );
+	detaillee.querySelector( '.er-rd-fermer' ).addEventListener( 'click', function () {
+		basculer( false );
+		bascule.focus();
 	} );
 
 	function valeurs() {

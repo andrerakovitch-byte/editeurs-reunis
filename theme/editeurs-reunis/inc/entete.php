@@ -134,7 +134,7 @@ function er_info_exposition() {
 
 /**
  * Les rencontres des six semaines qui viennent (au plus trois) : le navigateur garde la première qui n'est pas passée,
- * « Prochain événement », avec son jour et son heure.
+ * « Événement : », avec son jour et son heure.
  *
  * @return WP_Post[]
  */
@@ -324,10 +324,11 @@ function er_infos() {
 			$titre  = esc_html( get_the_title( er_traduction( $r->ID ) ) );
 			$fr     = 'fr' === substr( determine_locale(), 0, 2 );
 			$liste .= sprintf(
-				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden><span class="er-info-point" aria-hidden="true"></span><span class="er-info-long">%3$s · <strong>%4$s</strong>%5$s</span><span class="er-info-court">%6$s<strong>%4$s</strong></span></a>',
+				// « Événement : » sans point devant (André, 27 nov. : il remplace « ● Prochain événement · »).
+				'<a class="er-info er-info-rencontre er-info-plus" href="%1$s" data-debut="%2$s" hidden><span class="er-info-long">%3$s<strong>%4$s</strong>%5$s</span><span class="er-info-court">%6$s<strong>%4$s</strong></span></a>',
 				esc_url( get_permalink( er_traduction( $r->ID ) ) ),
 				esc_attr( $debut ),
-				esc_html__( 'Prochain événement', 'editeurs-reunis' ),
+				esc_html__( 'Événement', 'editeurs-reunis' ) . ( $fr ? "\u{00A0}: " : ': ' ),
 				$titre,
 				'' !== $quand ? ', ' . esc_html( $quand ) : '',
 				// Au téléphone, la date d'abord (25 nov. 2026) : « Lun. 30 nov. à 19 h : Rencontre avec… ».

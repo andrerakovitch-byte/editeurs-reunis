@@ -8,7 +8,8 @@
  * - avant de taper, des pistes : les dernières recherches (gardées dans le navigateur ; à défaut, les rayons), les
  *   recherches fréquentes, le dernier livre arrivé ;
  * - en tapant, les genres et leurs nombres à la place des maisons ; les résultats en trois colonnes ;
- * - la recherche détaillée, des champs qui se combinent, avec le nombre de livres qui répondent.
+ * - la recherche détaillée, en plein écran (27 nov.) : des champs qui se combinent, sur les trois colonnes du
+ *   triptyque, avec le nombre de livres qui répondent.
  * Sans JavaScript, la loupe mène à la recherche des livres, et la recherche détaillée reste un formulaire.
  *
  * @package editeurs-reunis
@@ -221,7 +222,12 @@ function er_panneau_recherche() {
 					<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
 				</div>
 
-				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" hidden>
+				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" aria-labelledby="er-rd-titre" hidden>
+					<div class="er-rd-tete">
+						<h2 class="er-rd-titre" id="er-rd-titre"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?></h2>
+						<button type="button" class="er-rd-fermer"><span><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></span><?php echo $croix; // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
+					</div>
+					<p class="er-rd-note"><?php esc_html_e( 'Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres change à chaque choix.', 'editeurs-reunis' ); ?></p>
 					<div class="er-rd-grille er-grille-tpq">
 						<div class="er-rd-colonne">
 							<?php
