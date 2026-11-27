@@ -70,8 +70,16 @@
 .er-barre { border-bottom: 1px solid var(--wp--preset--color--filet); }
 .er-barre-dedans { min-height: 116px; }
 /* Accrochée en haut de l'écran sur ordinateur, une fois passée (Z8c, 27 nov., à l'essai ; assets/js/entete.js) :
-   56 px, le nom du centre sur une ligne, plus petit. */
+   56 px, le nom du centre sur une ligne, plus petit ; un voile blanc translucide, la page passe dessous, floutée (le
+   voile de Z8d). Sur le voile, les noms pâlis au survol gardent le gris des noms : le gris très pâle s'y perdait. */
 @media (min-width: 782px) {
+	header.er-haut.est-compacte .er-barre {
+		background-color: rgba(255, 255, 255, 0.8) !important;
+		-webkit-backdrop-filter: saturate(160%) blur(20px);
+		backdrop-filter: saturate(160%) blur(20px);
+	}
+	header.er-haut.est-compacte .er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]),
+	html.er-em-ouvert header.er-haut.est-compacte .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
 	header.er-haut.est-compacte .er-barre-dedans { min-height: 56px; }
 	header.er-haut.est-compacte .er-barre .er-logo { line-height: 1.3; }
 	header.er-haut.est-compacte .er-barre .er-logo a { font-size: 0.6875rem; letter-spacing: 0.5em; }
