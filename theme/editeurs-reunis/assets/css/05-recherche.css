@@ -319,9 +319,12 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
    puis ce qui défile, le champ restant en place. En tapant : l'auteur, les livres deux par rang, puis le reste. */
 .er-recherche-annuler { display: none; }
 @media (max-width: 781px) {
-	.er-recherche { inset: auto 0; top: var(--er-vv-dy, 0px); height: var(--er-vv-haut, 100dvh); }
+	/* Le fond blanc couvre tout l'écran, jusque sous la barre de Safari et le clavier (100lvh : ce que l'écran a de plus
+	   haut) ; seul le panneau, dedans, prend la hauteur qu'on voit au-dessus du clavier, pour que ce qui défile s'arrête
+	   au bon endroit. Sinon, sous la barre de Safari, le menu se voyait derrière (André, 27 nov.). */
+	.er-recherche { inset: auto 0; top: var(--er-vv-dy, 0px); height: 100lvh; background: var(--wp--preset--color--base); }
 	.er-recherche-voile { display: none; }
-	.er-recherche-panneau { height: 100%; max-height: none; overflow: hidden; border: 0; }
+	.er-recherche-panneau { height: var(--er-vv-haut, 100dvh); max-height: none; overflow: hidden; border: 0; }
 	.er-recherche-dedans {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
