@@ -102,13 +102,14 @@
 	.er-ap-triptyque .er-tpq { height: 560px; }
 }
 @media (max-width: 781px) {
-	/* La hauteur d'avant le passage à 27 px (270 px, mesurés sur la capture d'André : la phrase de la librairie en six
-	   lignes de 30 px, et les marges) : les phrases sont empilées dans la même case, calées en bas, et la plus longue
-	   fait la hauteur ; en raccourcissant, elle avait retiré l'air au-dessus des autres (André, 27 nov.). L'air ne
-	   dépend plus de sa longueur, et la photo reste où elle était. */
-	.er-ap { height: auto; min-height: 270px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
+	/* 410 px au moins (AI2, 27 nov. ; 270 jusque-là) : plus de blanc au-dessus de la phrase, qui descend vers le milieu
+	   de l'écran ; la photo de droite en occupe le bas. Les phrases sont empilées dans la même case, calées en bas :
+	   l'air ne dépend pas de la plus longue. */
+	.er-ap { height: auto; min-height: 410px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	/* 27 px (AH2, 27 nov. ; 30 jusque-là) : la phrase la plus longue tient en quatre lignes au lieu de cinq. */
-	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.6875rem; line-height: 1.12; letter-spacing: -0.03em; }
+	/* Pas de mot seul sur la dernière ligne (AJ2, 27 nov.) : « … librairie russe / de Paris → », plutôt que « Paris → »
+	   tout seul. Là où le navigateur ne connaît pas text-wrap: pretty, rien ne change. */
+	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.6875rem; line-height: 1.12; letter-spacing: -0.03em; text-wrap: pretty; }
 	.er-ap-saut { display: inline; }
 	/* AG3 (27 nov.) : au téléphone, seulement la photo de droite du triptyque, bord à bord, 600 px de haut ; elle passe
 	   sous le bas de l'écran, on sent que la page continue (à 280 px, l'écran avait l'air fini ; à 125 px de large,
