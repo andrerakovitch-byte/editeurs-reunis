@@ -99,6 +99,22 @@
 }
 .er-mn .er-em-bouton > span { margin-inline-end: -0.18em; }
 .er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 600; }
+/* Le focus au clavier : un trait fin sous le nom, de la largeur exacte des lettres, à la place du cadre noir
+   (André, 27 nov.) ; le navigateur le montre à qui navigue au clavier, ou après un menu refermé par Échap. */
+.er-mn .er-em-bouton { position: relative; }
+.er-mn .er-em-bouton::after {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	top: calc(50% + 0.7em); /* 4 px sous la ligne des capitales, quelle que soit la hauteur de ligne */
+	height: 1px;
+	background: currentColor;
+	opacity: 0;
+}
+.er-mn .er-em-bouton:focus-visible { outline: none; }
+.er-mn .er-em-bouton:focus-visible,
+html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded]:focus-visible { color: var(--wp--preset--color--contrast); }
+.er-mn .er-em-bouton:focus-visible::after { opacity: 1; }
 /* Au survol d'un nom, comme partout : il reste à l'encre, les autres passent en gris, en fondu (André, 26 nov.) ;
    celui dont le menu est ouvert reste à l'encre. Un gris bien plus pâle que celui des noms, presque celui des filets,
    pour que le nom survolé ressorte seul en capitales (Z3a, 27 nov.) ; de même quand un menu est ouvert. */
