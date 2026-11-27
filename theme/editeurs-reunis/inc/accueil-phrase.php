@@ -192,7 +192,10 @@ function er_ap_reponses() {
 		$titre = '<em>' . esc_html( html_entity_decode( get_the_title( $expo ), ENT_QUOTES, 'UTF-8' ) ) . '</em>';
 		$artistes = function_exists( 'er_expo_artistes' ) ? er_expo_artistes( $expo ) : '';
 		$fin      = function_exists( 'er_evt_date' ) ? er_evt_date( $expo, 'er_fin' ) : null;
-		$texte    = $titre . ( '' !== $artistes ? esc_html( sprintf( /* translators: %s: les artistes */ __( ', de %s', 'editeurs-reunis' ), $artistes ) ) : '' )
+		// Au téléphone, l'artiste passe à la ligne : « Je m'appelle la guerre, / de Victoria Ivleva, » (André, 27 nov.) ;
+		// le saut ne se voit qu'au téléphone (.er-ap-saut, 31-accueil-phrase.css).
+		$de       = '' !== $artistes ? esc_html( sprintf( /* translators: %s: les artistes */ __( ', de %s', 'editeurs-reunis' ), $artistes ) ) : '';
+		$texte    = $titre . preg_replace( '/^,\s*/u', ',<br class="er-ap-saut"> ', $de )
 			. ( $fin && function_exists( 'er_expo_du_moment_jour' ) ? esc_html( er_ap_insecable( sprintf( /* translators: %s: le dernier jour */ __( ', jusqu’au %s', 'editeurs-reunis' ), er_expo_du_moment_jour( $fin ) ) ) ) : '' );
 		$photo      = (int) get_post_thumbnail_id( $expo );
 		$reponses[] = array(

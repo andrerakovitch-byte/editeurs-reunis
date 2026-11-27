@@ -40,6 +40,8 @@
 .er-ap-reponse.est-vue { opacity: 1; transform: none; pointer-events: auto; }
 .er-ap-reponse.est-partie { transform: translateY(-8px); }
 .er-ap-reponse em { font-style: italic; }
+/* Le saut avant l'artiste ne vaut qu'au téléphone. */
+.er-ap-saut { display: none; }
 .er-ap-reponse:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
 /* Sans script, une phrase qui prend le focus paraît quand même, à la place de l'autre. */
 .er-ap-reponses:focus-within .er-ap-reponse:not(:focus) { opacity: 0; }
@@ -101,7 +103,9 @@
 }
 @media (max-width: 781px) {
 	.er-ap { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
-	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.875rem; line-height: 1.12; letter-spacing: -0.03em; }
+	/* 27 px (AH2, 27 nov. ; 30 jusque-là) : la phrase la plus longue tient en quatre lignes au lieu de cinq. */
+	.er-ap-reponses { grid-column: 1 / -1; font-size: 1.6875rem; line-height: 1.12; letter-spacing: -0.03em; }
+	.er-ap-saut { display: inline; }
 	/* AG3 (27 nov.) : au téléphone, seulement la photo de droite du triptyque, bord à bord, 600 px de haut ; elle passe
 	   sous le bas de l'écran, on sent que la page continue (à 280 px, l'écran avait l'air fini ; à 125 px de large,
 	   trois bandes étirées n'auraient plus rien montré). */
