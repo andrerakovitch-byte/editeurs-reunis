@@ -299,7 +299,8 @@ add_action(
 			'editeurs-reunis-recherche',
 			get_theme_file_uri( 'assets/js/recherche.js' ),
 			array(),
-			$version,
+			// La date du fichier dans l'adresse : sans elle, le navigateur gardait l'ancien script (27 nov.).
+			$version . '.' . filemtime( get_theme_file_path( 'assets/js/recherche.js' ) ),
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
