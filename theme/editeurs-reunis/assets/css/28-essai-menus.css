@@ -1,6 +1,8 @@
 /* --------------------------------------------------------------------------
-   Les menus au clic de l'en-tête épuré, sur les pages d'essai (inc/essai-menus.php, assets/js/essai-menus.js ;
-   26 nov. 2026) : le panneau (E), les grands mots (F), le plein écran (G). Rien de tout cela n'existe ailleurs.
+   Les menus au clic de l'en-tête épuré (inc/essai-menus.php ; 26 nov. 2026) : le panneau (E), les grands mots (F), le
+   plein écran (G). ATTENTION (audit du 27 nov. 2026) : l'en-tête de tout le site s'en sert (le voile, les panneaux,
+   les grands mots, le plan) ; 29-en-tete-retenu.css passe par-dessus. Ne pas supprimer avant d'avoir repris dans 29
+   les règles encore vivantes.
    -------------------------------------------------------------------------- */
 
 /* La barre du nom : quatre boutons, puis la loupe (qui porte son filet) et le panier. */

@@ -1,5 +1,10 @@
 <?php
 /**
+ * ATTENTION (audit du 27 nov. 2026) : malgré son nom, ce fichier porte l'en-tête de TOUT le site depuis le 26 novembre
+ * (0c0f433) : inc/menus.php appelle er_em_donnees(), er_em_panneau_mots(), er_em_plan(), er_essai_bouton_menu(),
+ * er_em_image(), er_em_lang(), er_em_lien() et er_em_auteurs(), définies ici. Le supprimer, c'est une erreur fatale sur
+ * chaque page. À fondre dans inc/menus.php (sous des noms er_menu_*) avant de retirer les pages d'essai.
+ *
  * Les menus au clic de l'en-tête épuré (26 novembre 2026), sur les pages d'essai (inc/essai.php) : Librairie, Maison
  * d'édition, Centre culturel et Journal, d'après les planches E, F et G du canevas « Les pages intérieures, dans la
  * direction », avec les retouches d'André (plus de phrase dans les panneaux).
@@ -15,8 +20,8 @@
  *
  * Le bouton d'une maison ouvre et referme son menu, à la même place (l'interrupteur du 24 novembre) ; un clic ailleurs
  * et Échap le referment aussi : plus de croix dans les panneaux (André, 26 novembre). Le plein écran garde « Fermer ».
- * Sous 1 320 px, un seul bouton (≡) ouvre le plein écran, quelle que soit la page. Le script : assets/js/essai-menus.js ;
- * les styles : assets/css/28-essai-menus.css.
+ * Sous 1 360 px, un seul bouton (≡) ouvre le plein écran, quelle que soit la page. Le script : assets/js/menus.js
+ * (essai-menus.js n'est plus chargé) ; les styles : assets/css/28-essai-menus.css et 29-en-tete-retenu.css.
  *
  * @package editeurs-reunis
  */

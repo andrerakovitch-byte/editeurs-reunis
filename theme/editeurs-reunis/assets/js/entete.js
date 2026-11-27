@@ -604,7 +604,9 @@
 		voletEtaitOuvert = ouvert;
 		racine.classList.toggle( 'er-panier-ouvert', ouvert );
 	};
-	if ( window.MutationObserver ) {
+	// Seulement si le mini-panier de WooCommerce est là : l'en-tête retenu (26 nov.) a son propre sac (menus.js), et
+	// cet observateur de tout le <body> tournait à chaque changement de classe pour un volet absent (audit du 27 nov.).
+	if ( window.MutationObserver && miniPanier() ) {
 		new MutationObserver( suivrePanier ).observe( document.body, { subtree: true, childList: true, attributes: true, attributeFilter: [ 'class' ] } );
 	}
 	if ( lignesPanier.length ) {

@@ -18,7 +18,8 @@
  *   leur titre entier, sans mot russe en filigrane.
  *
  * Le gabarit : templates/page-essai.html ; les styles : assets/css/27-essai.css. À retirer quand la passe commune aura
- * repris tout cela sur les vraies pages.
+ * repris tout cela sur les vraies pages ; mais pas inc/essai-menus.php ni 28-essai-menus.css, qui portent l'en-tête de
+ * tout le site (voir l'avertissement en tête de inc/essai-menus.php).
  *
  * @package editeurs-reunis
  */

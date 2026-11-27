@@ -26,6 +26,9 @@ for f in theme/editeurs-reunis/assets/js/*.js plugin/er-librairie/assets/js/*.js
 done
 echo '  ok'
 
+echo '— Les fonctions appelées, toutes définies'
+php outils/fonctions.php
+
 echo '— Les feuilles de style entières'
 node outils/css.js theme/editeurs-reunis/style.css theme/editeurs-reunis/assets/css/*.css
 

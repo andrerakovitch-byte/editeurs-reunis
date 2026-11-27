@@ -80,16 +80,8 @@ add_action(
 			wp_enqueue_style( $nom, get_theme_file_uri( $feuille ), $avant, $version . '.' . filemtime( get_theme_file_path( $feuille ) ) );
 			$avant = array( $nom );
 		}
-		wp_enqueue_script(
-			'editeurs-reunis-menu-librairie',
-			get_theme_file_uri( 'assets/js/menu-librairie.js' ),
-			array(),
-			$version,
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
+		// menu-librairie.js n'est plus chargé (audit du 27 nov. 2026) : son menu (patterns/menu-librairie.php) ne sort
+		// plus que du code court [er_lignes] de l'ancien en-tête, qu'aucun gabarit n'appelle.
 		// La bande de page (inc/bande.php) : accrochée, le nom de la page, le trait qui suit la lecture, les menus.
 		wp_enqueue_script(
 			'editeurs-reunis-bande',
