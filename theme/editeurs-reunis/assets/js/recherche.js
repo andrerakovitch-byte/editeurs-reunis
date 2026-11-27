@@ -1,7 +1,9 @@
 /**
- * Le panneau de recherche : la loupe de la barre noire l'ouvre (et devient « Fermer »), Échap ou un clic sur le voile
- * le referme. Avant de taper, des pistes ; en tapant, les résultats de l'API de la librairie, rangés par genre ; la
- * recherche détaillée compte les livres à chaque choix. Les flèches passent d'un résultat à l'autre.
+ * Le panneau de recherche : la loupe de l'en-tête l'ouvre (et devient « Fermer »), Échap ou un clic sur le voile le
+ * referme. Avant de taper, des pistes ; en tapant, les résultats de l'API de la librairie, en trois colonnes calées sur
+ * le triptyque (AB1a) : l'auteur et les livres, le reste du site, la couverture du livre survolé ; les genres et leurs
+ * nombres prennent la place des maisons. La recherche détaillée compte les livres à chaque choix. Les flèches passent
+ * d'un résultat à l'autre.
  *
  * Sans ce script, la loupe mène à la recherche des livres, et la recherche détaillée reste un formulaire ordinaire.
  */
@@ -28,11 +30,10 @@
 	var voir = detaillee.querySelector( '.er-rd-voir' );
 	var criteres = detaillee.querySelector( '.er-rd-criteres' );
 	var corps = panneau.querySelector( '.er-recherche-corps' );
-	var cadreFiltres = panneau.querySelector( '.er-recherche-filtres' );
-	var filtrer = panneau.querySelector( '.er-recherche-filtrer' );
-	var nombreFiltres = panneau.querySelector( '.er-recherche-nombre' );
-	var effacerFiltres = panneau.querySelector( '.er-filtres-effacer' );
-	var filtresLivres = panneau.querySelector( '.er-filtres-livres' );
+	var rayonsPistes = panneau.querySelector( '.er-recherche-rayons' );
+	// Où chercher : les maisons en capitales, au-dessus du champ (le rayon, la langue et l'état sont dans la recherche
+	// détaillée ; les filtres de livres restent vides ici).
+	var cadreFiltres = panneau.querySelector( '.er-recherche-maisons' );
 	var postType = formulaire.querySelector( 'input[name="post_type"]' );
 
 	var ouvert = false;
@@ -46,9 +47,7 @@
 	var compteur;
 	var demande = 0;
 
-	var FLECHE = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 	var CROIX = '<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-	var HORLOGE = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 
 	function echapper( t ) {
 		return String( t == null ? '' : t ).replace( /[&<>"']/g, function ( c ) {
@@ -99,8 +98,12 @@
 	function montrerRecentes() {
 		var liste = lireRecentes();
 		recentes.hidden = ! liste.length;
+		// Sans recherche gardée, les rayons à la place.
+		if ( rayonsPistes ) {
+			rayonsPistes.hidden = !! liste.length;
+		}
 		recentes.querySelector( 'ul' ).innerHTML = liste.map( function ( t ) {
-			return '<li><a class="er-r-lien er-recherche-proposition" href="#" data-er-texte="' + echapper( t ) + '">' + HORLOGE + echapper( t ) + '</a></li>';
+			return '<li><a class="er-r-lien er-recherche-proposition" href="#" data-er-texte="' + echapper( t ) + '">' + echapper( t ) + '</a></li>';
 		} ).join( '' );
 	}
 
@@ -209,22 +212,30 @@
 	var PORTEES = [ 'tout', 'livres', 'auteurs', 'encyclopedie', 'ymca', 'centre', 'journal' ];
 	var MAISON = { auteurs: 'librairie', livres: 'librairie', rayons: 'librairie', encyclopedie: 'librairie', ymca: 'ymca', centre: 'centre', journal: 'centre', pages: '' };
 
-	function point( maison ) {
-		return maison ? '<span class="er-point er-point-' + maison + '" aria-hidden="true"></span>' : '';
+	function langue( t ) {
+		return /[\u0400-\u04FF]/.test( String( t || '' ) ) ? ' lang="ru"' : '';
 	}
-	function ligne( r, sous ) {
-		return '<li><a class="er-r-lien er-r-ligne" href="' + echapper( r.url ) + '"><span class="er-r-texte"><span class="er-r-titre">' + echapper( r.titre ) + '</span>'
-			+ ( sous ? '<span class="er-r-sous">' + echapper( sous ) + '</span>' : '' ) + '</span>' + FLECHE + '</a></li>';
+	function libelle( t ) {
+		return '<p class="er-recherche-libelle">' + echapper( t ) + '</p>';
 	}
-	function livre( l ) {
+	// Une ligne : le titre, et dessous ce qui le situe ; un livre garde son rang pour montrer sa couverture à droite.
+	function ligne( r, sous, rang ) {
+		return '<li><a class="er-r-lien er-r-ligne" href="' + echapper( r.url ) + '"' + ( rang > -1 ? ' data-er-livre="' + rang + '"' : '' ) + '>'
+			+ '<span class="er-r-titre"' + langue( r.titre ) + '>' + echapper( r.titre ) + '</span>'
+			+ ( sous ? '<span class="er-r-sous">' + echapper( sous ) + '</span>' : '' ) + '</a></li>';
+	}
+	function sousLivre( l ) {
+		return [ l.mention, l.auteurs, l.prix, l.stock ? '' : M.rupture ].filter( Boolean ).join( ' · ' );
+	}
+	// La couverture au centre du cadre beige, le titre, l'auteur et le prix dessous (AA1).
+	function vue( l ) {
 		var couverture = l.image ? '<img src="' + echapper( l.image ) + '" alt="" loading="lazy">' : '<span class="er-r-couverture-vide" aria-hidden="true"><span>' + echapper( l.titre ) + '</span></span>';
-		return '<li><a class="er-r-lien er-r-livre" href="' + echapper( l.url ) + '">' + couverture
-			+ ( l.mention ? '<span class="er-r-mention">' + echapper( l.mention ) + '</span>' : '' )
-			+ '<span class="er-r-titre">' + echapper( l.titre ) + '</span>'
-			+ ( l.auteurs ? '<span class="er-r-sous">' + echapper( l.auteurs ) + '</span>' : '' )
-			+ '<span class="er-r-prix">' + ( l.prix ? echapper( l.prix ) + ' · ' : '' ) + '<span>' + echapper( l.stock ? M.en_stock : M.rupture ) + '</span></span></a></li>';
+		var sous = [ l.auteurs, l.prix ].filter( Boolean ).join( ' · ' );
+		return '<a class="er-r-vue" href="' + echapper( l.url ) + '" tabindex="-1"><span class="er-r-vue-cadre">' + couverture + '</span>'
+			+ '<span class="er-r-vue-texte"><span class="er-r-vue-titre"' + langue( l.titre ) + '>' + echapper( l.titre ) + '</span>'
+			+ ( sous ? '<span class="er-r-vue-sous">' + echapper( sous ) + '</span>' : '' ) + '</span></a>';
 	}
-	function auteur( a, premier ) {
+	function nombreAuteur( a ) {
 		var nombre = a.livres === 1 ? M.un_livre : format( M.n_livres, a.livres );
 		// Ses livres, ce sont aussi ceux qu'il a traduits ou dirigés : « 3 livres en rayon : 2 sous sa direction et une traduction ».
 		var r = a.roles || {}, dont = [];
@@ -240,22 +251,50 @@
 		if ( ! a.livres && r.autour ) {
 			nombre = r.autour === 1 ? M.un_sujet : format( M.n_sujet, r.autour );
 		}
+		return nombre;
+	}
+	function auteur( a, premier ) {
+		var nombre = nombreAuteur( a );
 		if ( ! premier ) {
-			return ligne( a, nombre );
+			return ligne( a, nombre, -1 );
 		}
-		return '<li><a class="er-r-lien er-r-auteur" href="' + echapper( a.url ) + '"><span class="er-r-lettre" aria-hidden="true" lang="ru">' + echapper( a.lettre ) + '</span>'
-			+ '<span class="er-r-texte"><span class="er-r-nom">' + echapper( a.titre ) + '</span>'
-			+ ( a.graphies.length ? '<span class="er-r-sous">' + echapper( a.graphies.join( ' · ' ) ) + '</span>' : '' )
-			+ '<span class="er-r-sous">' + echapper( nombre ) + '</span>'
-			+ '<span class="er-r-plus">' + echapper( M.page_auteur ) + FLECHE + '</span></span></a></li>';
+		var page = M.page_auteur.charAt( 0 ).toLowerCase() + M.page_auteur.slice( 1 );
+		return ligne( a, ( a.graphies || [] ).concat( [ nombre, page + '\u00a0→' ] ).join( ' · ' ), -1 );
 	}
-	function groupe( nom, contenu, compte, plus ) {
-		return '<section class="er-r-groupe er-r-groupe-' + nom + '"><div class="er-r-groupe-tete"><h2 class="er-recherche-surtitre">' + point( MAISON[ nom ] )
-			+ echapper( M[ 'g_' + nom ] ) + ' <span class="er-r-compte">' + compte + '</span></h2>' + ( plus || '' ) + '</div>' + contenu + '</section>';
+	function groupe( nom, contenu ) {
+		return '<section class="er-r-groupe er-r-groupe-' + nom + '">' + libelle( M[ 'g_' + nom ] ) + contenu + '</section>';
 	}
+
+	var livresVus = []; // Les livres des résultats, pour la couverture de droite.
+	var vueResultats = null;
+	function viser( rang ) {
+		var l = livresVus[ rang ];
+		if ( ! l || ! vueResultats || vueResultats.getAttribute( 'data-er-livre' ) === String( rang ) ) {
+			return;
+		}
+		vueResultats.setAttribute( 'data-er-livre', String( rang ) );
+		vueResultats.querySelector( '.er-r-vue-place' ).innerHTML = vue( l );
+	}
+	resultats.addEventListener( 'mouseover', function ( e ) {
+		var l = e.target.closest( '[data-er-livre]' );
+		if ( l ) {
+			viser( Number( l.getAttribute( 'data-er-livre' ) ) );
+		}
+	} );
+	resultats.addEventListener( 'focusin', function ( e ) {
+		var l = e.target.closest( '[data-er-livre]' );
+		if ( l ) {
+			viser( Number( l.getAttribute( 'data-er-livre' ) ) );
+		}
+	} );
 
 	function dansLaMaison( nom ) {
 		return 'tout' === filtres.maison || MAISON[ nom ] === filtres.maison;
+	}
+	// Les genres en capitales, à la place des maisons ; l'inverse quand il n'y a plus rien à montrer.
+	function montrerGenres( oui ) {
+		portees.hidden = ! oui;
+		cadreFiltres.hidden = oui || ! detaillee.hidden;
 	}
 	function rendre() {
 		var d = donnees;
@@ -284,59 +323,63 @@
 		} else {
 			pour.hidden = true;
 		}
-		// Les genres, avec leurs nombres.
+		// Les genres, avec leurs nombres, en capitales comme les noms de la barre.
 		portees.innerHTML = PORTEES.filter( function ( p ) {
 			return p === 'tout' || ( dansLaMaison( p ) && ( p === portee || c[ p ] ) );
 		} ).map( function ( p ) {
-			return '<button type="button" class="er-pilule' + ( p === portee ? ' est-active' : '' ) + '" aria-pressed="' + ( p === portee ) + '" data-er-portee="' + p + '">'
-				+ echapper( M[ p ] ) + ' <span>' + ( c[ p ] || 0 ) + '</span></button>';
+			return '<button type="button" class="er-portee' + ( p === portee ? ' est-active' : '' ) + '" aria-pressed="' + ( p === portee ) + '" data-er-portee="' + p + '">'
+				+ '<span>' + echapper( M[ p ] ) + ' <span class="er-portee-nombre">' + ( c[ p ] || 0 ) + '</span></span></button>';
 		} ).join( '' );
-		portees.hidden = false;
+		montrerGenres( true );
 
+		livresVus = [];
+		vueResultats = null;
 		if ( ! c.tout ) {
-			resultats.innerHTML = '<p class="er-r-aucun">' + echapper( format( M.aucun, d.requete ) ) + '</p>';
+			resultats.innerHTML = '<div class="er-grille-tpq"><p class="er-r-aucun">' + echapper( format( M.aucun, d.requete ) ) + '</p></div>';
 			return;
 		}
 		var montre = function ( nom ) {
 			return ( g[ nom ] || [] ).length && dansLaMaison( nom ) && ( portee === 'tout' || portee === nom || ( portee === 'livres' && nom === 'rayons' ) );
 		};
-		var gauche = '';
-		var droite = '';
+		// À gauche, l'auteur et les livres ; au milieu, le reste du site ; à droite, la couverture du livre visé.
+		var gauche = [];
+		var milieu = [];
 		ORDRE.forEach( function ( nom ) {
 			if ( ! montre( nom ) ) {
 				return;
 			}
 			var liste = g[ nom ];
-			var html;
 			if ( 'livres' === nom ) {
-				var plus = c.livres > 1 ? '<a class="er-r-tout" href="' + echapper( d.livres ) + '">' + echapper( format( M.tous_livres, c.livres ) ) + FLECHE + '</a>' : '';
-				html = groupe( nom, '<ul class="er-r-livres">' + liste.slice( 0, portee === 'livres' ? 8 : 4 ).map( livre ).join( '' ) + '</ul>', c[ nom ], plus );
-				droite += html;
+				livresVus = liste.slice( 0, portee === 'livres' ? 8 : 4 );
+				var tous = c.livres > 0 ? '<a class="er-r-lien er-r-tout" href="' + echapper( d.livres ) + '">' + echapper( c.livres === 1 ? M.voir_livre : format( M.voir_livres, c.livres ) ) + '\u00a0→</a>' : '';
+				gauche.push( groupe( nom, '<ul class="er-r-lignes">' + livresVus.map( function ( l, i ) {
+					return ligne( l, sousLivre( l ), i );
+				} ).join( '' ) + '</ul>' ) + tous );
 				return;
 			}
+			var html;
 			if ( 'auteurs' === nom ) {
 				html = groupe( nom, '<ul class="er-r-lignes">' + liste.map( function ( a, i ) {
 					return auteur( a, i === 0 );
-				} ).join( '' ) + '</ul>', c[ nom ] );
-			} else if ( 'rayons' === nom ) {
-				html = groupe( nom, '<ul class="er-r-rayons">' + liste.map( function ( r ) {
-					return '<li><a class="er-r-lien" href="' + echapper( r.url ) + '">' + echapper( r.titre ) + '</a></li>';
-				} ).join( '' ) + '</ul>', c[ nom ] );
-			} else {
-				html = groupe( nom, '<ul class="er-r-lignes">' + liste.map( function ( r ) {
-					return ligne( r, r.extrait );
-				} ).join( '' ) + '</ul>', c[ nom ] );
+				} ).join( '' ) + '</ul>' );
+				gauche.unshift( html );
+				return;
 			}
-			if ( ( 'rayons' === nom || 'ymca' === nom ) && droite ) {
-				droite += html;
-			} else {
-				gauche += html;
-			}
+			html = groupe( nom, '<ul class="er-r-lignes">' + liste.map( function ( r ) {
+				return ligne( r, 'rayons' === nom ? '' : r.extrait, -1 );
+			} ).join( '' ) + '</ul>' );
+			milieu.push( html );
 		} );
-		var pied = c.livres > 0 && dansLaMaison( 'livres' )
-			? '<div class="er-r-pied"><p>' + echapper( M.entree ) + '</p><a class="er-r-voir" href="' + echapper( d.livres ) + '">' + echapper( c.livres === 1 ? M.voir_livre : format( M.voir_livres, c.livres ) ) + FLECHE + '</a></div>'
+		// Sans auteur ni livre, le reste du site se partage les deux premières colonnes.
+		if ( ! gauche.length && milieu.length > 1 ) {
+			gauche = milieu.splice( 0, Math.ceil( milieu.length / 2 ) );
+		}
+		var droite = livresVus.length
+			? libelle( M.le_livre ) + '<div class="er-r-vue-place">' + vue( livresVus[ 0 ] ) + '</div>'
 			: '';
-		resultats.innerHTML = '<div class="er-r-grille' + ( droite && gauche ? '' : ' er-r-grille-seule' ) + '"><div class="er-r-colonne">' + gauche + '</div><div class="er-r-colonne">' + droite + '</div></div>' + pied;
+		resultats.innerHTML = '<div class="er-grille-tpq er-r-grille"><div class="er-r-colonne">' + gauche.join( '' ) + '</div><div class="er-r-colonne">' + milieu.join( '' )
+			+ '</div><div class="er-r-colonne er-r-colonne-vue"' + ( droite ? ' data-er-livre="0"' : '' ) + '>' + droite + '</div></div>';
+		vueResultats = droite ? resultats.querySelector( '.er-r-colonne-vue' ) : null;
 	}
 
 	// Des filtres de livres choisis : rien que les livres qui y répondent (et au texte, s'il y en a un).
@@ -344,15 +387,19 @@
 		var n = ( d.comptes || {} ).livres || 0;
 		var liste = ( d.groupes || {} ).livres || [];
 		pour.hidden = true;
-		portees.hidden = true;
+		montrerGenres( false );
 		if ( ! n ) {
-			resultats.innerHTML = '<p class="er-r-aucun">' + echapper( d.requete ? format( M.aucun_texte_filtre, d.requete ) : M.aucun_filtre ) + '</p>';
+			resultats.innerHTML = '<div class="er-grille-tpq"><p class="er-r-aucun">' + echapper( d.requete ? format( M.aucun_texte_filtre, d.requete ) : M.aucun_filtre ) + '</p></div>';
 			return;
 		}
-		var plus = n > liste.length ? '<a class="er-r-tout" href="' + echapper( d.livres ) + '">' + echapper( format( M.tous_livres, n ) ) + FLECHE + '</a>' : '';
-		resultats.innerHTML = '<div class="er-r-grille er-r-grille-seule"><div class="er-r-colonne">'
-			+ groupe( 'livres', '<ul class="er-r-livres">' + liste.map( livre ).join( '' ) + '</ul>', n, plus ) + '</div></div>'
-			+ '<div class="er-r-pied"><p>' + echapper( M.entree ) + '</p><a class="er-r-voir" href="' + echapper( d.livres ) + '">' + echapper( n === 1 ? M.voir_livre : format( M.voir_livres, n ) ) + FLECHE + '</a></div>';
+		livresVus = liste;
+		var tous = '<a class="er-r-lien er-r-tout" href="' + echapper( d.livres ) + '">' + echapper( n === 1 ? M.voir_livre : format( M.voir_livres, n ) ) + '\u00a0→</a>';
+		resultats.innerHTML = '<div class="er-grille-tpq er-r-grille er-grille-tpq-2"><div class="er-r-colonne">'
+			+ groupe( 'livres', '<ul class="er-r-lignes">' + liste.map( function ( l, i ) {
+				return ligne( l, sousLivre( l ), i );
+			} ).join( '' ) + '</ul>' ) + tous + '</div><div class="er-r-colonne er-r-colonne-vue" data-er-livre="0">'
+			+ libelle( M.le_livre ) + '<div class="er-r-vue-place">' + vue( liste[ 0 ] ) + '</div></div></div>';
+		vueResultats = resultats.querySelector( '.er-r-colonne-vue' );
 	}
 
 	function filtresDeLivres() {
@@ -375,7 +422,7 @@
 		if ( ! texte && ! filtresDeLivres() ) {
 			donnees = null;
 			resultats.hidden = true;
-			portees.hidden = true;
+			montrerGenres( false );
 			pour.hidden = true;
 			pistes.hidden = ! detaillee.hidden;
 			return;
@@ -459,7 +506,7 @@
 	/* Les filtres ----------------------------------------------------------------------------------------------- */
 
 	function montrerFiltres() {
-		cadreFiltres.querySelectorAll( '.er-filtre' ).forEach( function ( groupeFiltre ) {
+		[ cadreFiltres ].forEach( function ( groupeFiltre ) {
 			var nom = groupeFiltre.getAttribute( 'data-er-filtre' );
 			groupeFiltre.querySelectorAll( '.er-choix' ).forEach( function ( choix ) {
 				var v = choix.getAttribute( 'data-er-valeur' );
@@ -468,14 +515,6 @@
 				choix.classList.toggle( 'est-active', presse );
 			} );
 		} );
-		// Les filtres des livres n'ont pas de sens chez YMCA-Press ni au centre.
-		filtresLivres.hidden = 'ymca' === filtres.maison || 'centre' === filtres.maison;
-		var n = ( 'tout' !== filtres.maison ? 1 : 0 ) + LIVRES.reduce( function ( somme, f ) {
-			return somme + filtres[ f ].length;
-		}, 0 );
-		effacerFiltres.hidden = ! n;
-		nombreFiltres.hidden = ! n;
-		nombreFiltres.textContent = n;
 		champ.placeholder = M[ 'champ_' + filtres.maison ] || M.champ_tout;
 	}
 	cadreFiltres.addEventListener( 'click', function ( e ) {
@@ -483,7 +522,7 @@
 		if ( ! choix ) {
 			return;
 		}
-		var nom = choix.closest( '.er-filtre' ).getAttribute( 'data-er-filtre' );
+		var nom = cadreFiltres.getAttribute( 'data-er-filtre' );
 		var v = choix.getAttribute( 'data-er-valeur' );
 		if ( 'maison' === nom ) {
 			filtres.maison = v;
@@ -507,19 +546,6 @@
 			basculer( false );
 		}
 		chercher();
-	} );
-	effacerFiltres.addEventListener( 'click', function () {
-		filtres = { maison: 'tout', rayon: [], langue: [], etat: [] };
-		portee = 'tout';
-		montrerFiltres();
-		chercher();
-		champ.focus();
-	} );
-	// Au téléphone, les filtres se replient sous un bouton.
-	filtrer.addEventListener( 'click', function () {
-		var deplie = ! cadreFiltres.classList.contains( 'est-deplie' );
-		cadreFiltres.classList.toggle( 'est-deplie', deplie );
-		filtrer.setAttribute( 'aria-expanded', deplie ? 'true' : 'false' );
 	} );
 	// La recherche détaillée reprend les filtres choisis, s'il y en a.
 	function reprendreFiltres() {
@@ -601,14 +627,18 @@
 			pistes.hidden = true;
 			resultats.hidden = true;
 			portees.hidden = true;
+			cadreFiltres.hidden = true;
 			pour.hidden = true;
 			compter();
 		} else if ( ! champ.value.trim() && ! filtresDeLivres() ) {
 			pistes.hidden = false;
+			montrerGenres( false );
 		} else if ( donnees ) {
 			resultats.hidden = false;
-			portees.hidden = false;
+			montrerGenres( ! donnees.filtre );
 			pour.hidden = ! donnees.pour;
+		} else {
+			montrerGenres( false );
 		}
 	}
 	bascule.addEventListener( 'click', function () {

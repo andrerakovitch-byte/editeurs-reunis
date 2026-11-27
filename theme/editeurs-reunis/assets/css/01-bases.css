@@ -77,3 +77,22 @@ sup { font-size: 0.62em; line-height: 0; }
    l'encyclopédie, les tuiles du menu) : retirés le 25 novembre 2026, « trop, surtout au téléphone » (André). Les
    lettrines, qui tiennent lieu d'image, restent. */
 .er-tete-lettre, .er-une-glyphe, .er-ecran-glyphe, .er-une-fiche-mot, .er-tuile-glyphe { display: none !important; }
+
+/* Les colonnes du triptyque (André, 27 nov. 2026) : les menus et les panneaux de l'en-tête se calent sur les trois
+   photos du triptyque de l'accueil, bord à bord, à 12 px d'écart. La première colonne commence à la marge de gauche,
+   la dernière finit à la marge de droite. Un menu de trois colonnes ou plus en prend trois ; un menu de deux
+   colonnes pose la première sur les deux premières photos (.er-grille-tpq-2), la seconde sur la dernière. */
+.er-grille-tpq {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	column-gap: 12px;
+	align-items: start;
+}
+.er-grille-tpq > * { min-width: 0; }
+.er-grille-tpq > :first-child { padding-inline-start: var(--wp--style--root--padding-left); }
+.er-grille-tpq > :last-child { padding-inline-end: var(--wp--style--root--padding-right); }
+.er-grille-tpq-2 > :first-child { grid-column: 1 / span 2; }
+@media (max-width: 781px) {
+	.er-grille-tpq { grid-template-columns: minmax(0, 1fr); row-gap: 2rem; }
+	.er-grille-tpq > *, .er-grille-tpq-2 > :first-child { grid-column: auto; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
+}

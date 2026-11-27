@@ -164,16 +164,18 @@ html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--c
 	column-gap: 24px;
 	align-items: start;
 }
+/* Les menus se calent sur les trois colonnes du triptyque (.er-grille-tpq, 01-bases.css ; André, 27 nov.) : bord à bord,
+   12 px d'écart, la marge dans la première et la dernière colonne. */
+.er-em-panneau .er-grille-tpq { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; padding-inline: 0; }
 .er-mn-dedans a { color: var(--wp--preset--color--contrast); text-decoration: none; }
 .er-mn-dedans a:hover { text-decoration: none; }
 
-/* La Librairie : les rayons, les sous-rayons du rayon survolé, le livre. */
-.er-mn-rayons-col { grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 24px; }
+/* La Librairie, sur les trois colonnes du triptyque : les rayons, les sous-rayons du rayon survolé, le livre. */
+.er-mn-rayons-col { display: flex; flex-direction: column; gap: 24px; }
 .er-mn-rayons { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 1.25rem; font-weight: 500; line-height: 1.2; }
 .er-mn-rayons a { color: var(--er-gris-nom) !important; transition: color 200ms ease; }
 .er-mn-rayons a.est-actif { color: var(--wp--preset--color--contrast) !important; }
 .er-mn-toute { font-size: 0.9375rem; }
-.er-mn-sous { grid-column: 4 / span 5; }
 .er-mn-sous-rayon[hidden], .er-mn-livre[hidden] { display: none; }
 .er-mn-tout-rayon { display: inline-block; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
 .er-mn-groupes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
@@ -182,7 +184,6 @@ html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--c
 .er-mn-groupe ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 1rem; line-height: 1.3; }
 .er-mn-groupe a { transition: color 200ms ease; }
 .er-mn-sous-rayon.est-survol a[data-livre]:not(.est-survole) { color: var(--er-gris-nom); }
-.er-mn-livres { grid-column: 9 / span 4; }
 .er-mn-livre-rayon { margin: 0 0 14px; font-size: 0.8125rem; color: #6B6B66; }
 /* Le livre (AA1) : la couverture au centre d'un cadre beige, le fond clair des couvertures du journal, avec son ombre ;
    le titre (deux lignes au plus), l'auteur et le prix dessous. Au survol, la couverture monte un peu. Le tout tient
@@ -204,14 +205,15 @@ html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--c
 .er-mn-livre-titre { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 1.1875rem; font-weight: 500; line-height: 1.3; }
 .er-mn-livre-sous { overflow: hidden; font-size: 0.875rem; color: #6B6B66; white-space: nowrap; text-overflow: ellipsis; }
 
-/* Les grands mots : 48 px ; la photo de la page survolée, 300 px, à droite. */
+/* Les grands mots : 48 px, sur les deux premières colonnes du triptyque ; la photo de la page survolée remplit la
+   dernière, sur toute la hauteur du panneau. */
 .er-em-mots { font-size: 3rem; font-weight: 500; line-height: 1.14; letter-spacing: -0.03em; }
-.er-em-photos { height: 300px; }
-.er-em-photos img { height: 300px; }
+.er-em-panneau .er-grille-tpq .er-em-mots-col { grid-column: 1 / span 2; }
+.er-em-panneau .er-grille-tpq .er-em-photos { grid-column: auto; display: block; height: 348px; }
+.er-em-panneau .er-grille-tpq .er-em-photos img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
 
-/* Le sac : le panier à gauche, le compte à droite. */
-.er-mn-panier-col { grid-column: 1 / span 7; display: flex; flex-direction: column; min-height: 0; }
-.er-mn-compte-col { grid-column: 9 / span 4; }
+/* Le sac, sur le triptyque : le panier sur les deux premières colonnes, le compte sur la dernière. */
+.er-mn-panier-col { display: flex; flex-direction: column; min-height: 0; }
 .er-mn-titre { margin: 0 0 24px; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
 .er-mn-panier-attente, .er-mn-panier-vide { margin: 0; font-size: 1rem; color: #6B6B66; }
 /* Les livres sur deux colonnes de deux, qui se lisent de haut en bas : avec le titre, le sous-total et les boutons,

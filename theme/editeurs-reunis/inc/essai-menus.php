@@ -510,7 +510,8 @@ function er_em_panneau_mots( $cle, $m ) {
 			$photos .= str_replace( array( 'class="er-em-photo"', '<img ' ), array( 'class="' . $classe . '"', '<img data-photo="' . esc_attr( $p['cle'] ) . '" ' ), $p['photo'] );
 		}
 	}
-	return '<div class="er-em-panneau er-em-panneau-mots" id="er-em-' . esc_attr( $cle ) . '" data-photo="' . esc_attr( $defaut ) . '" hidden><div class="er-em-dedans">'
+	// Deux colonnes sur le triptyque (.er-grille-tpq-2) : les mots sur les deux premières photos, la photo sur la dernière.
+	return '<div class="er-em-panneau er-em-panneau-mots" id="er-em-' . esc_attr( $cle ) . '" data-photo="' . esc_attr( $defaut ) . '" hidden><div class="er-em-dedans er-grille-tpq er-grille-tpq-2">'
 		. '<div class="er-em-mots-col"><ul class="er-em-mots">' . $mots . '</ul></div>'
 		. '<div class="er-em-photos" aria-hidden="true">' . $photos . '</div></div></div>';
 }

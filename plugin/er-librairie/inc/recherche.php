@@ -547,7 +547,7 @@ function er_resultat_livre( $id ) {
 			break;
 		}
 	}
-	$image = $produit->get_image_id() ? wp_get_attachment_image_url( $produit->get_image_id(), 'woocommerce_thumbnail' ) : '';
+	$image = $produit->get_image_id() ? wp_get_attachment_image_url( $produit->get_image_id(), 'medium' ) : '';
 	$prix  = $produit->get_price();
 	return array(
 		'titre'   => $produit->get_name(),

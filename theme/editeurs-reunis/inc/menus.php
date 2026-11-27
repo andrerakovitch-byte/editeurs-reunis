@@ -181,7 +181,8 @@ function er_menu_panneau_librairie( $m ) {
 			. '<a class="er-mn-tout-rayon" href="' . esc_url( $r['lien'] ) . '">' . esc_html( $tout ) . '</a>'
 			. ( $groupes ? '<div class="er-mn-groupes">' . $groupes . '</div>' : '' ) . '</div>';
 	}
-	return '<div class="er-em-panneau er-mn-librairie" id="er-em-librairie" hidden><div class="er-mn-dedans">'
+	// Trois colonnes calées sur les trois photos du triptyque (.er-grille-tpq) : les rayons, les sous-rayons, le livre.
+	return '<div class="er-em-panneau er-mn-librairie" id="er-em-librairie" hidden><div class="er-mn-dedans er-grille-tpq">'
 		. '<div class="er-mn-rayons-col"><ul class="er-mn-rayons">' . $rayons . '</ul>'
 		. '<a class="er-mn-toute" href="' . esc_url( $m['lien'] ) . '">' . esc_html__( 'Toute la librairie →', 'editeurs-reunis' ) . '</a></div>'
 		. '<div class="er-mn-sous">' . $sous . '</div>'
@@ -213,7 +214,8 @@ function er_menu_panneau_panier() {
 	foreach ( $liens as $l ) {
 		$compte_html .= '<li><a href="' . esc_url( $l[1] ) . '">' . esc_html( $l[0] ) . '</a></li>';
 	}
-	return '<div class="er-em-panneau er-mn-panier" id="er-em-panier" hidden><div class="er-mn-dedans">'
+	// Deux colonnes sur le triptyque (.er-grille-tpq-2) : le panier sur les deux premières photos, le compte sur la dernière.
+	return '<div class="er-em-panneau er-mn-panier" id="er-em-panier" hidden><div class="er-mn-dedans er-grille-tpq er-grille-tpq-2">'
 		. '<div class="er-mn-panier-col"><p class="er-mn-titre">' . esc_html__( 'Votre panier', 'editeurs-reunis' ) . '</p>'
 		. '<div class="er-mn-panier-liste" data-vide="' . esc_attr__( 'Votre panier est vide.', 'editeurs-reunis' ) . '" data-autre="' . esc_attr__( 'et un autre livre', 'editeurs-reunis' ) . '" data-autres="' . esc_attr__( 'et %d autres livres', 'editeurs-reunis' ) . '" data-total="' . esc_attr__( 'Sous-total : %s', 'editeurs-reunis' ) . '"><p class="er-mn-panier-attente">' . esc_html__( 'Votre panier…', 'editeurs-reunis' ) . '</p></div>'
 		. '<p class="er-mn-panier-boutons"><a class="er-mn-bouton" href="' . esc_url( $panier ) . '">' . esc_html__( 'Voir le panier', 'editeurs-reunis' ) . '</a>'
