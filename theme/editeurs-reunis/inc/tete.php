@@ -101,6 +101,12 @@ function er_tete_page( $a ) {
 	$balise = $a['h1'] ? 'h1' : 'p';
 	$long   = mb_strlen( $a['titre'] );
 	$taille = $long <= 16 ? 'grand' : ( $long <= 30 ? 'moyen' : ( $long <= 52 ? 'long' : 'tres-long' ) );
+	// Un mot de plus de onze lettres ne se coupe pas : en grand, « Photographie » passait sous le triptyque (audit du
+	// 27 nov. 2026).
+	$mot = max( array_map( 'mb_strlen', preg_split( '/\s+/u', $a['titre'] ) ?: array( '' ) ) );
+	if ( 'grand' === $taille && $mot > 11 ) {
+		$taille = 'moyen';
+	}
 	$titre  = '<div class="er-tete-titres"><' . $balise . ' class="er-tete-titre er-tete-titre-' . $taille . '"' . ( preg_match( '/\p{Cyrillic}/u', $a['titre'] ) ? ' lang="ru"' : '' ) . '>' . esc_html( $a['titre'] ) . '</' . $balise . '>'
 		. ( '' !== $a['sous_titre'] ? '<p class="er-tete-sous-titre">' . esc_html( $a['sous_titre'] ) . '</p>' : '' ) . '</div>';
 	$droite = '' !== $a['image']
@@ -119,11 +125,14 @@ function er_tete_page( $a ) {
  */
 function er_tete_fil_ld( $chemin, $titre ) {
 	$elements = array();
+	// Une étape sans adresse (« Sujet ») ne se balise pas : Google exige une adresse pour chaque étape sauf la dernière.
+	$chemin = array_values( array_filter( (array) $chemin, fn( $c ) => ! empty( $c['lien'] ) ) );
 	foreach ( array_merge( $chemin, array( array( 'texte' => $titre ) ) ) as $i => $c ) {
 		$element = array(
 			'@type'    => 'ListItem',
 			'position' => $i + 1,
-			'name'     => wp_strip_all_tags( (string) $c['texte'] ),
+			// Les noms de termes arrivent avec leurs entités (« Lis &amp; Parle »).
+			'name'     => html_entity_decode( wp_strip_all_tags( (string) $c['texte'] ), ENT_QUOTES, 'UTF-8' ),
 		);
 		if ( ! empty( $c['lien'] ) ) {
 			$element['item'] = html_entity_decode( (string) $c['lien'], ENT_QUOTES, 'UTF-8' );

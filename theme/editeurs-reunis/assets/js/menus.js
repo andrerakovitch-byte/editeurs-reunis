@@ -7,7 +7,7 @@
  * - la Librairie : les sous-rayons du rayon survolé, et le livre du rayon ou du sous-rayon survolé ;
  * - les grands mots : le mot survolé reste à l'encre, les autres pâlissent, la photo change ;
  * - le sac : le panier, lu à l'ouverture dans l'API du magasin, et le compte ; sa pastille suit les ajouts ;
- * - le plan du site (≡, jusqu'à 1 320 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas ;
+ * - le plan du site (≡, jusqu'à 1 360 px) : Fermer et Échap rendent la main au bouton ; Tab ne le quitte pas ;
  * - au téléphone, dans ce plan, le menu P1 : les maisons, leurs pages en tiroir, les informations du haut en carrousel.
  *
  * Sans ce script, les menus restent fermés : les pages des maisons sont aussi au pied de page.
@@ -47,7 +47,7 @@
 			menu.hidden = true;
 		}
 		racine.classList.remove( 'er-em-ouvert', 'er-em-plan-ouvert' );
-		racine.removeAttribute( 'data-er-em' );
+		racine.removeAttribute( 'data-er-em-ouvert' );
 		if ( rendre ) {
 			bouton.focus();
 		}
@@ -72,9 +72,19 @@
 			}
 		} );
 		menu.hidden = false;
-		racine.setAttribute( 'data-er-em', bouton.getAttribute( 'data-er-em' ) );
+		// Le menu ouvert, sur <html> : pas sous « data-er-em », le nom des boutons (closest( '[data-er-em]' ) trouvait
+		// <html> à chaque clic ; audit du 27 nov. 2026).
+		racine.setAttribute( 'data-er-em-ouvert', bouton.getAttribute( 'data-er-em' ) );
+		// Les images qu'on voit tout de suite, sans attendre : seulement celles-là (le panneau de la Librairie cache un
+		// livre par rayon et sous-rayon, 58 couvertures), et sans le « sizes="auto" » de WordPress, que le navigateur
+		// ne lit que pour une image paresseuse (sinon la plus grande taille du srcset).
 		menu.querySelectorAll( 'img[loading="lazy"]' ).forEach( function ( image ) {
-			image.loading = 'eager';
+			if ( image.getClientRects().length ) {
+				if ( image.sizes ) {
+					image.sizes = image.sizes.replace( /^\s*auto\s*,\s*/, '' );
+				}
+				image.loading = 'eager';
+			}
 		} );
 		if ( 'panier' === bouton.getAttribute( 'data-er-em' ) ) {
 			lirePanier();
@@ -265,10 +275,53 @@
 		// menu est ouvert), ne le referme pas.
 		var menu = cible( courant );
 		var nom = e.target.closest( '[data-er-em]' );
-		if ( ( menu && menu.contains( e.target ) ) || ( nom && nom !== racine ) ) {
+		if ( ( menu && menu.contains( e.target ) ) || nom ) {
 			return;
 		}
 		fermer( false );
+	} );
+	// Au clavier, la main qui sort d'un menu le referme : elle allait sinon sur des liens cachés sous le panneau ou
+	// sous le voile, menu toujours ouvert (audit du 27 nov. 2026). Le plan garde la main (son tour de Tab, plus bas).
+	document.addEventListener( 'focusin', function ( e ) {
+		if ( ! courant || cible( courant ) === plan ) {
+			return;
+		}
+		var menu = cible( courant );
+		if ( courant === e.target || ( menu && menu.contains( e.target ) ) ) {
+			return;
+		}
+		fermer( false );
+	} );
+	// Passer d'un côté à l'autre de 1 360 px referme ce qui est ouvert : au-dessus, le bouton du plan disparaît (le plan
+	// restait plein écran, sans croix) ; au-dessous, les noms disparaissent (leur menu restait ouvert, écrasé). Un iPad
+	// qu'on tourne, une fenêtre qu'on agrandit.
+	var large = window.matchMedia( '(min-width: 1360px)' );
+	var auPassage = function () {
+		if ( courant ) {
+			var etaitLePlan = cible( courant ) === plan;
+			fermer( false );
+			if ( etaitLePlan && plan ) {
+				plan.hidden = true;
+			}
+		}
+	};
+	if ( large.addEventListener ) {
+		large.addEventListener( 'change', auPassage );
+	} else if ( large.addListener ) {
+		large.addListener( auPassage ); // Safari antérieur à 14.
+	}
+	// Revenir en arrière (le cache de navigation de Safari remet la page telle qu'on l'a laissée) : le menu se referme,
+	// sans attendre le repli.
+	window.addEventListener( 'pageshow', function ( e ) {
+		if ( ! e.persisted || ! courant ) {
+			return;
+		}
+		var etaitLePlan = cible( courant ) === plan;
+		fermer( false );
+		if ( etaitLePlan && plan ) {
+			plan.hidden = true;
+			plan.dispatchEvent( new CustomEvent( 'er-plan-ferme' ) );
+		}
 	} );
 	// La loupe ouvre la recherche : un menu ouvert se referme.
 	document.querySelectorAll( '.er-loupe' ).forEach( function ( loupe ) {
@@ -289,7 +342,10 @@
 			return;
 		}
 		if ( 'Escape' === e.key ) {
-			fermer( true );
+			// Déjà traité plus près (la recherche ouverte depuis le menu du téléphone se referme seule) : le menu reste.
+			if ( ! e.defaultPrevented ) {
+				fermer( true );
+			}
 			return;
 		}
 		if ( 'Tab' === e.key && plan && ! plan.hidden ) {
@@ -344,6 +400,44 @@
 			};
 			lien.addEventListener( 'mouseenter', choisir );
 			lien.addEventListener( 'focus', choisir );
+			// Au clavier, Tab depuis un rayon entre dans ses sous-rayons (ils viennent après tous les rayons dans la page,
+			// et le rayon suivant les remplaçait : seuls ceux du dernier étaient atteignables ; audit du 27 nov. 2026).
+			lien.addEventListener( 'keydown', function ( e ) {
+				if ( 'Tab' !== e.key || e.shiftKey ) {
+					return;
+				}
+				var bloc = librairie.querySelector( '.er-mn-sous-rayon[data-rayon="' + lien.getAttribute( 'data-rayon' ) + '"]' );
+				var premier = bloc ? bloc.querySelector( 'a' ) : null;
+				if ( premier ) {
+					e.preventDefault();
+					premier.focus();
+				}
+			} );
+		} );
+		// Et du dernier sous-rayon, au rayon suivant ; du premier, Maj+Tab revient à son rayon.
+		librairie.querySelectorAll( '.er-mn-sous-rayon' ).forEach( function ( bloc ) {
+			var leurs = bloc.querySelectorAll( 'a' );
+			var rayon = librairie.querySelector( '.er-mn-rayons a[data-rayon="' + bloc.getAttribute( 'data-rayon' ) + '"]' );
+			if ( ! leurs.length || ! rayon ) {
+				return;
+			}
+			leurs[ leurs.length - 1 ].addEventListener( 'keydown', function ( e ) {
+				if ( 'Tab' !== e.key || e.shiftKey ) {
+					return;
+				}
+				var li = rayon.closest( 'li' );
+				var suivant = li && li.nextElementSibling ? li.nextElementSibling.querySelector( 'a' ) : null;
+				if ( suivant ) {
+					e.preventDefault();
+					suivant.focus();
+				}
+			} );
+			leurs[ 0 ].addEventListener( 'keydown', function ( e ) {
+				if ( 'Tab' === e.key && e.shiftKey ) {
+					e.preventDefault();
+					rayon.focus();
+				}
+			} );
 		} );
 		librairie.querySelectorAll( '.er-mn-sous a[data-livre]' ).forEach( function ( lien ) {
 			var liste = lien.closest( '.er-mn-sous-rayon' );
@@ -418,6 +512,16 @@
 		d.textContent = s;
 		return d.innerHTML;
 	}
+	// Pour une valeur d'attribut : les guillemets aussi.
+	function attribut( s ) {
+		return texte( s ).replace( /"/g, '&quot;' ).replace( /'/g, '&#39;' );
+	}
+	// Un nom du magasin, qui peut contenir du HTML : son texte seul (un <template> reste inerte, rien ne s'y charge).
+	function enTexte( html ) {
+		var t = document.createElement( 'template' );
+		t.innerHTML = String( html == null ? '' : html );
+		return t.content.textContent;
+	}
 	function prix( valeur, p ) {
 		var n = parseInt( valeur, 10 ) / Math.pow( 10, p.currency_minor_unit || 0 );
 		var chiffres = n.toFixed( p.currency_minor_unit || 0 ).replace( '.', p.currency_decimal_separator || ',' );
@@ -452,15 +556,29 @@
 				}
 				if ( ! articles.length ) {
 					liste.innerHTML = '<p class="er-mn-panier-vide">' + texte( liste.getAttribute( 'data-vide' ) ) + '</p>';
+					// Ouvert au clavier, la main était sur « Voir le panier », qui vient de disparaître : au premier lien
+					// qu'on voit.
+					var sac = courant && 'panier' === courant.getAttribute( 'data-er-em' ) ? cible( courant ) : null;
+					if ( document.activeElement === document.body && sac && ! sac.hidden ) {
+						var visible = Array.prototype.slice.call( sac.querySelectorAll( 'a' ) ).filter( function ( a ) {
+							return a.getClientRects().length > 0;
+						} )[ 0 ];
+						if ( visible ) {
+							visible.focus();
+						}
+					}
 					return;
 				}
 				// Deux colonnes de deux : quatre livres au plus ; au-delà, trois, et la quatrième case dit combien d'autres.
 				var html = '<ul class="er-mn-panier-articles">';
 				var montres = articles.length > 4 ? articles.slice( 0, 3 ) : articles;
 				montres.forEach( function ( a ) {
-					var image = a.images && a.images[ 0 ] ? '<img src="' + texte( a.images[ 0 ].thumbnail ) + '" alt="">' : '<span class="er-mn-panier-sans"></span>';
-					html += '<li><a href="' + texte( a.permalink ) + '">' + image + '<span class="er-mn-panier-texte"><span class="er-mn-panier-nom">' + a.name + '</span>'
-						+ '<span class="er-mn-panier-prix">' + a.quantity + ' × ' + texte( prix( a.prices.price, a.prices ) ) + '</span></span></a></li>';
+					// Tout est échappé ici, sans compter sur le nettoyage fait par WooCommerce : le nom réduit à son texte,
+					// les adresses avec leurs guillemets (audit du 27 nov. 2026). La petite image, prise dans le srcset.
+					var im = a.images && a.images[ 0 ];
+					var image = im ? '<img src="' + attribut( im.thumbnail ) + '"' + ( im.srcset ? ' srcset="' + attribut( im.srcset ) + '" sizes="44px"' : '' ) + ' alt="">' : '<span class="er-mn-panier-sans"></span>';
+					html += '<li><a href="' + attribut( a.permalink ) + '">' + image + '<span class="er-mn-panier-texte"><span class="er-mn-panier-nom">' + texte( enTexte( a.name ) ) + '</span>'
+						+ '<span class="er-mn-panier-prix">' + texte( String( a.quantity ) ) + ' × ' + texte( prix( a.prices.price, a.prices ) ) + '</span></span></a></li>';
 				} );
 				if ( articles.length > 4 ) {
 					var reste = articles.slice( 3 ).reduce( function ( somme, a ) {

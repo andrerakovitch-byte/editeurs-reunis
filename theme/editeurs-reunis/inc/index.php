@@ -546,7 +546,9 @@ function er_index_html() {
 				. '<p class="er-index-titre"><a href="' . esc_url( $l['lien'] ) . '">' . $l['titre'] . '</a></p>' // Le titre est échappé pièce à pièce.
 				. ( $vignette ? '<span class="er-index-vignette est-' . esc_attr( $l['vue'] ) . '" aria-hidden="true">' . $vignette . '</span>' : '' )
 				. '</li>';
-			$image     = er_index_image( $l, 'photo' === $l['vue'] ? 'large' : 'medium_large', '(max-width: 781px) 1px, 45vw', 0 !== $rang );
+			// Toujours paresseuse : l'index vient après la phrase et le triptyque, hors de l'écran au chargement (la première
+			// image partait d'emblée, et WordPress lui donnait la priorité de la page ; audit du 27 nov. 2026).
+			$image     = er_index_image( $l, 'photo' === $l['vue'] ? 'large' : 'medium_large', '(max-width: 781px) 1px, 45vw' );
 			$panneaux .= '<div class="er-index-panneau' . $actif . '" data-maison="' . esc_attr( $l['maison'] ) . '">'
 				. '<div class="er-index-vue est-' . esc_attr( $image ? $l['vue'] : 'aucune' ) . '">'
 				. ( $image ? $image : '<p class="er-index-vue-titre">' . $l['titre'] . '</p>' )
@@ -554,7 +556,8 @@ function er_index_html() {
 				. '<div class="er-index-bande">'
 				. '<p class="er-index-bande-texte">' . implode( ' · ', $l['legende'] ) . '</p>' // Échappé pièce à pièce.
 				. ( '' !== $l['prix'] ? '<p class="er-index-prix">' . esc_html( $l['prix'] ) . '</p>' : '' )
-				. '<a class="er-index-bouton" href="' . esc_url( $l['action_lien'] ) . '" tabindex="-1">' . esc_html( $l['action'] ) . '</a>'
+				// Un ajout au panier ne se suit pas (les robots créaient des paniers et des doublons de l'accueil).
+				. '<a class="er-index-bouton" href="' . esc_url( $l['action_lien'] ) . '" tabindex="-1"' . ( false !== strpos( (string) $l['action_lien'], 'add-to-cart=' ) ? ' rel="nofollow"' : '' ) . '>' . esc_html( $l['action'] ) . '</a>'
 				. '</div></div>';
 			++$rang;
 		}

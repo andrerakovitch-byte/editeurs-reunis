@@ -27,18 +27,17 @@
  * @param int    $id     La pièce jointe.
  * @param string $taille La taille.
  */
-function er_em_image( $id, $taille = 'large' ) {
-	return $id ? wp_get_attachment_image(
-		(int) $id,
-		$taille,
-		false,
-		array(
-			'class'    => 'er-em-photo',
-			'alt'      => '',
-			'loading'  => 'lazy',
-			'decoding' => 'async',
-		)
-	) : '';
+function er_em_image( $id, $taille = 'large', $sizes = '' ) {
+	$attributs = array(
+		'class'    => 'er-em-photo',
+		'alt'      => '',
+		'loading'  => 'lazy',
+		'decoding' => 'async',
+	);
+	if ( '' !== $sizes ) {
+		$attributs['sizes'] = $sizes; // La taille qu'elle a vraiment : sinon le navigateur prend une image bien trop grande.
+	}
+	return $id ? wp_get_attachment_image( (int) $id, $taille, false, $attributs ) : '';
 }
 
 /**
@@ -533,7 +532,9 @@ function er_em_plan( $telephone = '' ) {
 			. '<ul>' . $pages . '</ul></div>';
 	}
 	$langue = function_exists( 'er_choix_langue' ) ? er_choix_langue() : '';
-	return '<div class="er-em-plan" id="er-em-plan" role="dialog" aria-modal="true" aria-label="' . esc_attr__( 'Le plan du site', 'editeurs-reunis' ) . '" hidden>'
+	// Un menu qui se déplie sous son bouton (≡), pas une fenêtre : aria-modal cachait aux lecteurs d'écran le bouton
+	// qui le referme, hors du plan (audit du 27 nov. 2026). Le tour de Tab de menus.js garde la main dedans.
+	return '<div class="er-em-plan" id="er-em-plan" role="navigation" aria-label="' . esc_attr__( 'Menu', 'editeurs-reunis' ) . '" hidden>'
 		. '<div class="er-em-plan-barre"><p class="er-logo"><a href="' . er_lien() . '" rel="home"><span>' . esc_html_x( 'Centre culturel', 'logo, première ligne', 'editeurs-reunis' ) . '</span> <span>' . esc_html_x( 'Alexandre Soljenitsyne', 'logo, seconde ligne', 'editeurs-reunis' ) . '</span></a></p>'
 		. '<button type="button" class="er-em-fermer-plan"><span>' . esc_html__( 'Fermer', 'editeurs-reunis' ) . '</span>' . er_em_croix() . '</button></div>'
 		. '<div class="er-em-colonnes">' . $colonnes . '</div>'

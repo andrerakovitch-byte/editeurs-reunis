@@ -6,7 +6,14 @@
 
 :root {
 	--er-gris-nom: #8C8C87; /* les noms qui pâlissent, menu ouvert */
-	--er-ligne: 0px; /* plus de ligne de maison : la bande s'accroche en haut de l'écran */
+	/* La hauteur de ce qui reste accroché en haut (la barre du nom), et celle de ce qui part (la barre d'informations) :
+	   assets/js/entete.js les mesure ; ces valeurs valent sans script (audit du 27 nov. 2026 : sans lui, la barre
+	   n'en montrait que 37 px, et la bande glissait dessous). */
+	--er-ligne: 117px;
+	--er-haut-cache: 47px;
+}
+@media (max-width: 781px) {
+	:root { --er-ligne: 0px; } /* La barre part avec la page au téléphone : la bande s'accroche tout en haut. */
 }
 
 /* La barre d'informations : la langue au bout, dans sa bulle « Aя ». */
@@ -82,8 +89,15 @@
 		-webkit-backdrop-filter: saturate(160%) blur(20px);
 		backdrop-filter: saturate(160%) blur(20px);
 	}
-	header.er-haut.est-compacte .er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]),
 	html.er-em-ouvert header.er-haut.est-compacte .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
+	/* Le plan (≡) ouvert après avoir descendu : la barre compacte s'efface aussi, sinon ses premières entrées
+	   passaient sous le voile givré (782–1 359 px). */
+	html.er-em-plan-ouvert header.er-haut.est-compacte .er-barre {
+		background-color: transparent !important;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		transition: border-bottom-color 200ms ease, background-color 0s linear 420ms;
+	}
 	header.er-haut.est-compacte .er-barre-dedans { min-height: 56px; }
 	header.er-haut.est-compacte .er-barre .er-logo { line-height: 1.3; }
 	header.er-haut.est-compacte .er-barre .er-logo a { font-size: 0.6875rem; letter-spacing: 0.5em; }
@@ -123,7 +137,12 @@ html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded]:focus-visible { color: var
    celui dont le menu est ouvert reste à l'encre. Un gris bien plus pâle que celui des noms, presque celui des filets,
    pour que le nom survolé ressorte seul en capitales (Z3a, 27 nov.) ; de même quand un menu est ouvert. */
 html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: #C6C6C1; }
-.er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: #C6C6C1; }
+/* Seulement avec une souris : au doigt, le survol reste collé après avoir refermé un menu, et les autres noms
+   restaient gris (iPad à l'horizontale ; audit du 27 nov. 2026). */
+@media (hover: hover) {
+	.er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: #C6C6C1; }
+	header.er-haut.est-compacte .er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: var(--er-gris-nom); }
+}
 .er-mn .er-em-bouton:hover,
 html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--contrast); }
 .er-mn-outils {
@@ -197,9 +216,10 @@ html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--c
 .er-mn-livre-cadre img {
 	display: block;
 	width: auto;
-	height: 166px;
+	height: auto;
+	max-height: 166px;
 	max-width: 80%;
-	object-fit: cover;
+	object-fit: contain;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.16);
 	transition: transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 450ms ease;
 }
@@ -208,7 +228,7 @@ html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--c
 /* Le même dessin que les livres de la recherche (principe 13) : le titre en 15 px, la ligne grise en 13. */
 .er-mn-livre-texte { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; }
 .er-mn-livre-titre { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 0.9375rem; font-weight: 500; line-height: 1.3; }
-.er-mn-livre-sous { overflow: hidden; font-size: 0.8125rem; line-height: 1.4; color: #6B6B66; white-space: nowrap; text-overflow: ellipsis; }
+/* La ligne grise : la même règle que dans la recherche (05-recherche.css, .er-mn-livre-sous). */
 
 /* Les grands mots : 48 px, sur les deux premières colonnes du triptyque ; la photo de la page survolée remplit la
    dernière, sur toute la hauteur du panneau. */
@@ -339,7 +359,9 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	.er-barre, html.er-em-plan-ouvert .er-barre { transition: none; }
 }
 
-@media (max-width: 1319px) {
+/* Sous 1 360 px, la barre ne tient plus le nom, les quatre noms et les outils (de 1 320 à 1 342 px, le sac mordait
+   sur la marge : audit du 27 nov. 2026) : le menu (≡). */
+@media (max-width: 1359px) {
 	.er-mn { display: none; }
 	.er-mn-droite { gap: 16px; }
 }
@@ -362,7 +384,24 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	}
 	html.er-em-plan-ouvert header.er-haut.est-flottant .er-em-menu { box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
 	.er-bande { top: var(--wp-admin--admin-bar--height, 0px); }
-	.er-bande.est-accrochee .er-bande-liste { padding-inline-end: calc(var(--wp--style--root--padding-right, 20px) + 56px); }
+	/* La liste s'arrête avant le rond : un retrait ne valait qu'au bout du défilement, et les entrées passaient dessous. */
+	.er-bande.est-accrochee .er-bande-liste { padding-inline-end: var(--wp--style--root--padding-right, 20px); margin-inline-end: 56px; }
+	/* Connecté : la barre de WordPress reste en haut de 601 à 781 px (le rond se met dessous) et part avec la page
+	   sous 600 px (la bande et le rond montent tout en haut). */
+	header.er-haut.est-flottant .er-em-menu { top: calc(var(--wp-admin--admin-bar--height, 0px) + 10px); }
+	/* Le nom du centre tient avec le bouton à toutes les largeurs : ses lettres se resserrent sous 410 px environ
+	   (à 360 px, le bouton sortait de 14 px ; à 320 px, en entier ; en russe, dès 390 px). */
+	.er-barre .er-logo { min-width: 0; }
+	.er-barre .er-logo a { letter-spacing: clamp(0.36em, 4vw - 8.4px, 0.72em); }
+	.er-barre .er-logo a:lang(ru) { letter-spacing: clamp(0.25em, 4vw - 10px, 0.72em); }
+	.er-pd .er-logo a { letter-spacing: clamp(0.36em, 4vw - 6.7px, 0.72em); }
+	.er-pd .er-logo a:lang(ru) { letter-spacing: clamp(0.25em, 4vw - 7.8px, 0.72em); }
+	/* Les boutons du menu, sans le rectangle gris d'iOS au toucher. */
+	.er-em-menu, .er-mp a, .er-mp button { -webkit-tap-highlight-color: transparent; }
+}
+@media (max-width: 600px) {
+	.er-bande { top: 0; }
+	header.er-haut.est-flottant .er-em-menu { top: 10px; }
 }
 @media (max-width: 781px) {
 	.er-barre-dedans { min-height: 80px; }
@@ -444,3 +483,42 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	.er-mn .er-em-bouton, .er-mn-rayons a, .er-mn-groupe a, .er-mn-livre-cadre img { transition: none; }
 	.er-mn-livre a:hover .er-mn-livre-cadre img, .er-mn-livre a:focus-visible .er-mn-livre-cadre img { transform: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Audit du 27 novembre 2026 : ce qui ne tenait pas.
+   -------------------------------------------------------------------------- */
+
+/* La tête et la bande, de bord à bord : 100vw compte la barre de défilement quand elle prend de la place (Windows,
+   macOS avec une souris), et tout partait 7,5 px à gauche. entete.js mesure la barre (--er-barre-defilement). */
+.er-tete,
+.er-bande {
+	width: calc(100vw - var(--er-barre-defilement, 0px));
+	margin-inline: calc(50% - 50vw + var(--er-barre-defilement, 0px) / 2) !important;
+}
+
+/* Les panneaux des menus tiennent leurs 446 px même dans une fenêtre basse : la limite héritée des pages d'essai
+   rognait le bas de trois d'entre eux. */
+.er-em-panneau .er-em-dedans { max-height: none; }
+
+/* Sur une tablette debout (782–899 px), les maisons de la recherche défilent, comme au téléphone : « Recherche
+   détaillée → » débordait de 40 px dans la marge. */
+@media (min-width: 782px) and (max-width: 899px) {
+	.er-recherche-maisons { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; gap: 20px; }
+	.er-recherche-maisons::-webkit-scrollbar { display: none; }
+}
+
+/* Au téléphone, Safari agrandit la page sur un champ de moins de 16 px, et la laisse agrandie. */
+@media (max-width: 781px) {
+	.er-facette__chercher input,
+	.er-evt-nombre input,
+	.er-tri select,
+	.woocommerce-ordering select { font-size: 1rem; }
+}
+
+/* La barre d'informations au clavier : le fil ne défile plus pour montrer l'information visée (entete.js la met à sa
+   place), et l'anneau du focus tient dans la barre. */
+.er-infos.est-relais .er-infos-fil { overflow: clip; }
+.er-infos.est-relais .er-info:focus-visible { outline-offset: -3px; }
+
+/* Le <picture> d'une photo du triptyque de l'accueil (inc/triptyques.php) ne change rien au cadre. */
+.er-tpq-image picture { display: contents; }

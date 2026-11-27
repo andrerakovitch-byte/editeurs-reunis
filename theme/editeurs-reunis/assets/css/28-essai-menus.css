@@ -213,8 +213,8 @@ html.er-em-plan-ouvert { overflow: hidden; }
 .er-em-plan-outils { display: none; gap: 24px; flex-basis: 100%; }
 .er-em-plan-outils a { color: var(--wp--preset--color--contrast); }
 
-/* Sous 1 320 px, la barre ne tient plus ses quatre menus : un seul bouton (≡) ouvre le plein écran. */
-@media (max-width: 1319px) {
+/* Sous 1 360 px, la barre ne tient plus ses quatre menus : un seul bouton (≡) ouvre le plein écran. */
+@media (max-width: 1359px) {
 	.er-em { display: none; }
 	.er-em-menu { display: inline-grid !important; }
 	.er-em-colonnes { grid-template-columns: repeat(2, minmax(0, 1fr)); }

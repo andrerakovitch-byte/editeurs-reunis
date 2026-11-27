@@ -259,7 +259,10 @@ function er_accueil_phrase() {
 		}
 	}
 	$triptyque = function_exists( 'er_triptyque_html' ) ? er_triptyque_html( 'accueil' ) : '';
-	return '<section class="er-ap" aria-label="' . esc_attr__( 'À la une', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
+	// Le titre de la page, pour les lecteurs d'écran et les moteurs : l'accueil n'en avait pas (audit du 27 nov. 2026).
+	// La section s'appelle « En ce moment » : l'index, juste après, a déjà son « À la une ».
+	return '<h1 class="screen-reader-text">' . esc_html__( 'Les Éditeurs réunis, YMCA-Press et le Centre culturel Alexandre Soljenitsyne', 'editeurs-reunis' ) . '</h1>'
+		. '<section class="er-ap" aria-label="' . esc_attr__( 'En ce moment', 'editeurs-reunis' ) . '"><div class="er-ap-corps">'
 		. '<div class="er-ap-reponses">' . $textes . '</div></div>'
 		. ( '' !== $photos ? '<div class="er-ap-suit" aria-hidden="true">' . $photos . '</div>'
 			. '<div class="er-ap-blanc" aria-hidden="true"><div class="er-ap-corps"><div class="er-ap-reponses">' . $blancs . '</div></div></div>' : '' )

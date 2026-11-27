@@ -49,6 +49,7 @@
 		}
 		var ici = 0;
 		var arret = false;
+		var survol = false; // La phrase ne change pas sous la souris : le lien qu'on vise ne change pas de page.
 		var visible = null;
 		var dernier = null; // le dernier mouvement de la souris sur la tête
 		var cible = null; // où va le point d'accroche (le pointeur), dans la tête
@@ -161,7 +162,7 @@
 
 		if ( phrases.length > 1 ) {
 			window.setInterval( function () {
-				if ( ! arret && ! document.hidden && ! calme.matches ) {
+				if ( ! arret && ! survol && ! document.hidden && ! calme.matches ) {
 					montrer( ( ici + 1 ) % phrases.length );
 				}
 			}, DUREE );
@@ -176,6 +177,13 @@
 			if ( ! ap.contains( e.relatedTarget ) ) {
 				arret = false;
 			}
+		} );
+		// Sous la souris, la rotation s'arrête (audit du 27 nov. 2026 : en 6 s, le lien sous le pointeur menait ailleurs).
+		ap.addEventListener( 'mouseenter', function () {
+			survol = true;
+		} );
+		ap.addEventListener( 'mouseleave', function () {
+			survol = false;
 		} );
 
 		if ( ! calque || ! souris.matches ) {
@@ -199,6 +207,14 @@
 			point = null;
 			montrePhoto( null );
 		} );
-		ap.classList.add( 'est-pilote' );
+		// Le calque des photos se pose après le chargement de la page : posé tout de suite, il faisait télécharger les
+		// photos du survol avant même le triptyque (audit du 27 nov. 2026).
+		if ( 'complete' === document.readyState ) {
+			ap.classList.add( 'est-pilote' );
+		} else {
+			window.addEventListener( 'load', function () {
+				ap.classList.add( 'est-pilote' );
+			} );
+		}
 	} );
 } )();

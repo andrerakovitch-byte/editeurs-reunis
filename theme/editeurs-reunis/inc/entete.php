@@ -122,8 +122,10 @@ function er_info_exposition() {
 					'compare' => '<=',
 				),
 				array(
+					// Une fin est une date seule : « 2026-11-30 » est plus petit que « 2026-11-30 10:15 », et l'exposition
+					// disparaissait le jour même de sa fin (audit du 27 nov. 2026).
 					'key'     => 'er_fin',
-					'value'   => $maintenant,
+					'value'   => wp_date( 'Y-m-d' ),
 					'compare' => '>=',
 				),
 			),
@@ -273,12 +275,24 @@ function er_choix_langue() {
 		$items .= '<li><a class="er-choix-langue-lien' . ( $l['traduite'] ? '' : ' est-absente' ) . '" href="' . esc_url( $l['url'] ) . '" hreflang="' . esc_attr( $l['code'] ) . '" lang="' . esc_attr( $l['code'] ) . '"' . ( $l['actuelle'] ? ' aria-current="true"' : '' ) . '>'
 			. '<span class="er-choix-langue-nom">' . esc_html( $l['nom'] ) . '</span></a></li>';
 	}
+	// Trois listes sur la page (la barre, le plan, le menu du téléphone) : chacune son identifiant.
+	$id = function_exists( 'wp_unique_id' ) ? wp_unique_id( 'er-choix-langue-liste-' ) : 'er-choix-langue-liste';
 	return '<div class="er-choix-langue">'
 		/* translators: %s: la langue de la page, dans sa langue (« Français »). */
-		. '<button type="button" class="er-choix-langue-bouton" aria-expanded="false" aria-controls="er-choix-langue-liste" aria-label="' . esc_attr( sprintf( __( 'Langue du site : %s', 'editeurs-reunis' ), $ici['nom'] ) ) . '">'
+		. '<button type="button" class="er-choix-langue-bouton" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '" aria-label=""' . esc_attr( sprintf( __( 'Langue du site : %s', 'editeurs-reunis' ), $ici['nom'] ) ) . '">'
 		// La bulle « Aя » devant le nom de la langue (P5, 26 nov. 2026), sans chevron.
 		. '<svg class="er-choix-langue-bulle" width="22" height="19" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 1h19A2.5 2.5 0 0 1 25 3.5v10a2.5 2.5 0 0 1-2.5 2.5H11L6 21v-5H3.5A2.5 2.5 0 0 1 1 13.5v-10A2.5 2.5 0 0 1 3.5 1z"/><text x="13" y="12.7" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="11.5" font-weight="700" letter-spacing="-0.3" fill="currentColor" stroke="none">Aя</text></svg>' . '<span lang="' . esc_attr( $ici['code'] ) . '">' . esc_html( $ici['nom'] ) . '</span></button>'
-		. '<ul class="er-choix-langue-liste" id="er-choix-langue-liste" hidden>' . $items . '</ul></div>';
+		. '<ul class="er-choix-langue-liste" id="' . esc_attr( $id ) . '" hidden>' . $items . '</ul></div>';
+}
+
+/**
+ * Le dernier jour d'une exposition, « 1er décembre » en français (comme l'accueil : expo-du-moment.php).
+ *
+ * @param string $fin La fin (AAAA-MM-JJ).
+ */
+function er_jour_fin_expo( $fin ) {
+	$jour = wp_date( _x( 'j F', 'date de fin d’une exposition', 'editeurs-reunis' ), strtotime( $fin ) );
+	return '1' === wp_date( 'j', strtotime( $fin ) ) && 'fr' === substr( determine_locale(), 0, 2 ) ? preg_replace( '/^1 /', '1er ', $jour ) : $jour;
 }
 
 /**
@@ -307,7 +321,7 @@ function er_infos() {
 			esc_html__( 'Exposition', 'editeurs-reunis' ),
 			esc_html( get_the_title( er_traduction( $expo->ID ) ) ),
 			/* translators: %s: la date de fin d'une exposition (« 28 février »). */
-			$fin ? esc_html( sprintf( __( ', jusqu’au %s', 'editeurs-reunis' ), wp_date( _x( 'j F', 'date de fin d’une exposition', 'editeurs-reunis' ), strtotime( $fin ) ) ) ) : ''
+			$fin ? esc_html( sprintf( __( ', jusqu’au %s', 'editeurs-reunis' ), er_jour_fin_expo( $fin ) ) ) : ''
 		);
 	}
 

@@ -28,7 +28,7 @@
 
 		function aller( i ) {
 			i = Math.max( 0, Math.min( pages.length - 1, i ) );
-			pages[ i ].scrollIntoView( { behavior: 'smooth', inline: 'start', block: 'nearest' } );
+			pages[ i ].scrollIntoView( { behavior: window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ? 'auto' : 'smooth', inline: 'start', block: 'nearest' } );
 			montrer( i );
 		}
 
@@ -73,6 +73,10 @@
 		liste.addEventListener( 'scroll', function () {
 			clearTimeout( attente );
 			attente = setTimeout( function () {
+				// Fermée entre-temps, la fenêtre n'a plus de largeur : rien à relever (sinon « NaN / 3 », et une erreur).
+				if ( ! fenetre.open || ! liste.clientWidth ) {
+					return;
+				}
 				montrer( Math.round( liste.scrollLeft / liste.clientWidth ) );
 			}, 80 );
 		}, { passive: true } );

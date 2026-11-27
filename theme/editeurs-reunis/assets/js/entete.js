@@ -36,7 +36,13 @@
 		var cache = infos ? infos.offsetHeight : 0;
 		racine.style.setProperty( '--er-haut-cache', cache + 'px' );
 		var visible = lignes ? lignes.querySelector( '.er-ligne:not([hidden])' ) : null;
-		racine.style.setProperty( '--er-ligne', ( visible ? visible.offsetHeight : barre.offsetHeight ) + 'px' );
+		// Au téléphone, la barre part avec la page (seul le bouton du menu s'accroche) : rien ne reste en haut, et les
+		// ancres arrivaient 81 px trop bas (audit du 27 nov. 2026).
+		var accroche = window.matchMedia( '(max-width: 781px)' ).matches ? 0 : ( visible ? visible.offsetHeight : barre.offsetHeight );
+		racine.style.setProperty( '--er-ligne', accroche + 'px' );
+		// La largeur de la barre de défilement quand elle prend de la place (Windows, macOS avec une souris) : la tête
+		// et la bande, de bord à bord en 100vw, s'en retranchent (29-en-tete-retenu.css).
+		racine.style.setProperty( '--er-barre-defilement', Math.max( 0, window.innerWidth - racine.clientWidth ) + 'px' );
 	}
 	mesurer();
 	window.addEventListener( 'resize', mesurer );
@@ -102,13 +108,18 @@
 	var dedans = barre ? barre.querySelector( '.er-barre-dedans' ) || barre : null;
 	if ( haut && boutonMenu && dedans ) {
 		var telephone = window.matchMedia( '(max-width: 781px)' );
+		var barreWp = document.getElementById( 'wpadminbar' );
 		var flotter = function () {
 			var r = dedans.getBoundingClientRect();
 			var hautDuBouton = r.top + r.height / 2 - boutonMenu.offsetHeight / 2;
-			var flottant = telephone.matches && hautDuBouton < 10;
-			if ( ! flottant ) {
-				// Sa marge à droite, dans la barre : il la garde en flottant, sans glisser de côté.
-				racine.style.setProperty( '--er-menu-droite', Math.round( document.documentElement.clientWidth - boutonMenu.getBoundingClientRect().right ) + 'px' );
+			// Connecté, sous la barre de WordPress quand elle reste en haut (601–781 px).
+			var dessus = barreWp && 'fixed' === window.getComputedStyle( barreWp ).position ? barreWp.offsetHeight : 0;
+			var flottant = telephone.matches && hautDuBouton < dessus + 10;
+			// Sa marge à droite, mesurée dans la barre et seulement quand on le voit : caché (au-dessus de 1 359 px),
+			// son rectangle est nul, et la marge valait toute la largeur de la fenêtre (le bouton sortait de l'écran
+			// après un passage de 1 440 à 390 px ; audit du 27 nov. 2026). Il la garde en flottant, sans glisser.
+			if ( ! flottant && boutonMenu.getClientRects().length ) {
+				racine.style.setProperty( '--er-menu-droite', Math.max( 0, Math.round( racine.clientWidth - boutonMenu.getBoundingClientRect().right ) ) + 'px' );
 			}
 			haut.classList.toggle( 'est-flottant', flottant );
 		};
@@ -122,7 +133,11 @@
 				} );
 			}
 		}, { passive: true } );
-		window.addEventListener( 'resize', flotter );
+		// Au redimensionnement, le bouton reprend sa place le temps de la mesure (même image : rien ne clignote).
+		window.addEventListener( 'resize', function () {
+			haut.classList.remove( 'est-flottant' );
+			flotter();
+		} );
 		flotter();
 	}
 
@@ -401,7 +416,9 @@
 		relaisMontrer( vient );
 	}
 	function relaisRegler() {
-		var oui = ! calme.matches && relaisListe().length > 1;
+		// Pas de relais quand la barre est cachée (au téléphone, ses informations sont dans le menu) : il tournait
+		// pour rien toutes les 4,5 s.
+		var oui = ! calme.matches && relaisListe().length > 1 && 'hidden' !== window.getComputedStyle( relaisDedans ).visibility;
 		var marche = infos.classList.contains( 'est-relais' );
 		if ( oui && ! marche ) {
 			var liste = relaisListe();
@@ -435,7 +452,29 @@
 				relaisReprendre();
 			}
 		} );
-		infos.addEventListener( 'focusin', relaisArreter );
+		// Au clavier, l'information qui a la main se montre seule, à sa place ; le navigateur faisait défiler le fil
+		// pour l'atteindre, et les informations en attente se superposaient, jusqu'à la fin de la visite (audit du
+		// 27 nov. 2026).
+		infos.addEventListener( 'focusin', function ( e ) {
+			relaisArreter();
+			var info = e.target.closest ? e.target.closest( '.er-info' ) : null;
+			if ( info && infos.classList.contains( 'est-relais' ) && info !== relaisCourant ) {
+				relaisListe().forEach( function ( i ) {
+					i.classList.add( 'sans-glisse' );
+					i.classList.remove( 'est-avant' );
+					i.classList.toggle( 'est-ici', i === info );
+					relaisRemettre( i );
+				} );
+				relaisCourant = info;
+			}
+			var fil = infos.querySelector( '.er-infos-fil' );
+			if ( fil ) {
+				fil.scrollTop = 0;
+				window.requestAnimationFrame( function () {
+					fil.scrollTop = 0;
+				} );
+			}
+		} );
 		infos.addEventListener( 'focusout', function ( e ) {
 			if ( ! infos.contains( e.relatedTarget ) && ! infos.matches( ':hover' ) ) {
 				relaisReprendre();
@@ -444,6 +483,7 @@
 		relaisRegler();
 		if ( calme.addEventListener ) {
 			calme.addEventListener( 'change', relaisRegler );
+			window.matchMedia( '(max-width: 781px)' ).addEventListener( 'change', relaisRegler );
 		}
 	}
 
@@ -623,6 +663,12 @@
 			if ( 'Escape' === e.key && ! liste.hidden ) {
 				ouvrir( false );
 				bouton.focus();
+			}
+		} );
+		// La main qui sort de la liste la referme (elle restait ouverte, et Échap n'y pouvait plus rien).
+		bloc.addEventListener( 'focusout', function ( e ) {
+			if ( ! liste.hidden && e.relatedTarget && ! bloc.contains( e.relatedTarget ) ) {
+				ouvrir( false );
 			}
 		} );
 	} );

@@ -28,7 +28,7 @@ sup { font-size: 0.62em; line-height: 0; }
 ::selection { background: var(--wp--preset--color--accent); color: var(--wp--preset--color--contrast); }
 
 @media (prefers-reduced-motion: reduce) {
-	* { transition: none !important; animation: none !important; }
+	*, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
 /* Les boutons : la pilule pleine (noire), la pilule cernée, la pilule blanche posée sur une image. */

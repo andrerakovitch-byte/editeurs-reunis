@@ -124,16 +124,22 @@ function er_triptyque_html( $cle ) {
 	if ( ! isset( $tous[ $cle ] ) ) {
 		return '';
 	}
-	$html = '';
-	foreach ( $tous[ $cle ] as $nom ) {
+	$html    = '';
+	$dernier = count( $tous[ $cle ] ) - 1;
+	foreach ( array_values( $tous[ $cle ] ) as $rang => $nom ) {
 		$i             = $images[ $nom ];
 		list( $z, $x, $y ) = $i['cadre'];
 		$src           = isset( $i['theme'] ) ? er_image( $i['theme'] ) : er_triptyque_media( $i['media'] );
 		$style         = sprintf( '--er-tpq-x:%1$s%%;--er-tpq-y:%2$s%%;--er-tpq-z:%3$s', $x, $y, $z );
-		$contenu       = $src
-			? '<img src="' . esc_url( $src ) . '" alt="" decoding="async" style="' . esc_attr( $style ) . '">'
-			: '<span class="er-tpq-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
-		$html         .= '<span class="er-tpq-image">' . $contenu . '</span>';
+		// L'accueil (31-accueil-phrase.css) : au téléphone, seule la photo de droite se voit, et c'est la plus grande
+		// image de l'écran. Les deux autres n'y téléchargent rien (une source vide), et elle passe en premier
+		// (audit du 27 nov. 2026 : 1 s de gagnée sur l'image principale, en 4G).
+		$img = '<img src="' . esc_url( $src ) . '" alt="" decoding="async"' . ( 'accueil' === $cle && $rang === $dernier ? ' fetchpriority="high"' : '' ) . ' style="' . esc_attr( $style ) . '">';
+		if ( $src && 'accueil' === $cle && $rang !== $dernier ) {
+			$img = '<picture><source media="(max-width: 781px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">' . $img . '</picture>';
+		}
+		$contenu = $src ? $img : '<span class="er-tpq-aplat" style="background-color:' . esc_attr( $i['teinte'] ) . '"></span>';
+		$html   .= '<span class="er-tpq-image">' . $contenu . '</span>';
 	}
 	return '<div class="er-tpq" data-triptyque="' . esc_attr( $cle ) . '" aria-hidden="true">' . $html . '</div>';
 }
