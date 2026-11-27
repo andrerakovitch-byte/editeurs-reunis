@@ -94,6 +94,38 @@
 		regarder();
 	}
 
+	/* Au téléphone, seul le menu (≡) s'accroche (27 nov., à l'essai : « pour mieux mettre en avant le contenu ») : la
+	   barre du nom part avec la page ; le bouton la suit jusqu'à 10 px du haut de l'écran, puis y reste, sur un rond
+	   de verre (« est-flottant », 29-en-tete-retenu.css). Sa place se lit sur la barre, qu'il y soit ou non. ---- */
+
+	var boutonMenu = barre ? barre.querySelector( '.er-em-menu' ) : null;
+	var dedans = barre ? barre.querySelector( '.er-barre-dedans' ) || barre : null;
+	if ( haut && boutonMenu && dedans ) {
+		var telephone = window.matchMedia( '(max-width: 781px)' );
+		var flotter = function () {
+			var r = dedans.getBoundingClientRect();
+			var hautDuBouton = r.top + r.height / 2 - boutonMenu.offsetHeight / 2;
+			var flottant = telephone.matches && hautDuBouton < 10;
+			if ( ! flottant ) {
+				// Sa marge à droite, dans la barre : il la garde en flottant, sans glisser de côté.
+				racine.style.setProperty( '--er-menu-droite', Math.round( document.documentElement.clientWidth - boutonMenu.getBoundingClientRect().right ) + 'px' );
+			}
+			haut.classList.toggle( 'est-flottant', flottant );
+		};
+		var flotteEnAttente = false;
+		window.addEventListener( 'scroll', function () {
+			if ( ! flotteEnAttente ) {
+				flotteEnAttente = true;
+				window.requestAnimationFrame( function () {
+					flotteEnAttente = false;
+					flotter();
+				} );
+			}
+		}, { passive: true } );
+		window.addEventListener( 'resize', flotter );
+		flotter();
+	}
+
 	/* L'en-tête accroché : la barre noire est sortie de l'écran. --------------------------------------------- */
 
 	if ( haut && barre && 'IntersectionObserver' in window ) {

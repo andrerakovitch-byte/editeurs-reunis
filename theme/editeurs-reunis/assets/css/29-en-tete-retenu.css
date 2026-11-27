@@ -66,12 +66,11 @@
 	.er-infos .er-choix-langue-lien { font-size: 3rem; line-height: 1.14; letter-spacing: -0.03em; }
 }
 
-/* La barre du nom : blanche, 116 px, fermée d'un filet. Au téléphone, pas de filet en haut de la page : il ne
-   revient que quand la barre est collée en haut de l'écran, la page passant dessous (est-collee, entete.js ; André,
-   27 nov.). */
+/* La barre du nom : blanche, 116 px, fermée d'un filet. Au téléphone, pas de filet (André, 27 nov.) : la barre part
+   avec la page, seul le menu reste (plus bas). */
 .er-barre { border-bottom: 1px solid var(--wp--preset--color--filet); }
 @media (max-width: 781px) {
-	header.er-haut:not(.est-collee) .er-barre { border-bottom-color: transparent; }
+	header.er-haut .er-barre { border-bottom-color: transparent; }
 }
 .er-barre-dedans { min-height: 116px; }
 /* Accrochée en haut de l'écran sur ordinateur, une fois passée (Z8c, 27 nov., à l'essai ; assets/js/entete.js) :
@@ -343,6 +342,27 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 @media (max-width: 1319px) {
 	.er-mn { display: none; }
 	.er-mn-droite { gap: 16px; }
+}
+/* Au téléphone, seul le menu (≡) s'accroche (27 nov., à l'essai : « pour mieux mettre en avant le contenu ») : la
+   barre du nom part avec la page ; le bouton la suit jusqu'à 10 px du haut de l'écran, puis y reste, sur un rond de
+   verre blanc (est-flottant, entete.js) ; menu ouvert, le rond s'efface sur le blanc du plan. La bande de page
+   s'accroche tout en haut et laisse au bouton le bout de sa ligne. */
+@media (max-width: 781px) {
+	header.er-haut { position: relative; top: auto; }
+	header.er-haut.est-flottant .er-em-menu {
+		position: fixed;
+		top: 10px;
+		right: var(--er-menu-droite, var(--wp--style--root--padding-right, 20px));
+		z-index: 3;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.82);
+		-webkit-backdrop-filter: saturate(160%) blur(16px);
+		backdrop-filter: saturate(160%) blur(16px);
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.12);
+	}
+	html.er-em-plan-ouvert header.er-haut.est-flottant .er-em-menu { box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+	.er-bande { top: var(--wp-admin--admin-bar--height, 0px); }
+	.er-bande.est-accrochee .er-bande-liste { padding-inline-end: calc(var(--wp--style--root--padding-right, 20px) + 56px); }
 }
 @media (max-width: 781px) {
 	.er-barre-dedans { min-height: 80px; }
