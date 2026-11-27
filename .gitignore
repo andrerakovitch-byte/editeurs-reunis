@@ -11,3 +11,19 @@ sortie/
 vendor/
 composer.lock
 .phpcs-cache
+# Les sorties des outils et des workflows (audit du 27 nov. 2026) : jamais dans ce dépôt public.
+*.pdf
+/plan.json
+/notices/
+/proches/
+/extraits/
+/rapport-boutique/
+/captures/
+*.zip
+!apercu/*.zip
+.env*
+# Les exports de ventes et de clients (Wix, WooCommerce) : seulement dans la base de Kinsta.
+*ventes*.csv
+*clients*.csv
+*commandes*.csv
+*orders*.csv

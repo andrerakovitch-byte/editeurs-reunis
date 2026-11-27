@@ -749,7 +749,8 @@ Pour brancher le dépôt sur Kinsta, une fois :
      SFTP/SSH.
 4. Actions → « Déployer chez Kinsta » → Run workflow, « installer » coché : active WooCommerce, l'extension et le
    thème, télécharge le français, le russe et l'anglais, ferme le site aux moteurs de recherche et sème le contenu
-   de l'ébauche. Relancé, `semer.php` ne crée rien en double.
+   de l'ébauche. Sur un site qui a déjà du contenu (plus de vingt livres, ou déjà semé), `semer.php` refuse de tourner :
+   il réécrirait les pages, les livres et les réglages.
 
 Tant que les variables ne sont pas posées, le déploiement ne fait rien. La bêta est fermée aux moteurs de recherche
 (`blog_public` à 0) : le jour de la mise en ligne, Réglages → Lecture, décocher « Demander aux moteurs de recherche

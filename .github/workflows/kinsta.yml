@@ -68,8 +68,13 @@ jobs:
 
   deployer:
     needs: verifier
-    if: vars.KINSTA_HOTE != ''
+    # Seulement depuis main : un lancement à la main depuis une autre branche ne met pas cette branche en ligne.
+    if: vars.KINSTA_HOTE != '' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # Chaque étape en bash avec pipefail : une commande qui échoue dans « … | tee » fait échouer l'étape.
+    defaults:
+      run:
+        shell: bash
     env:
       HOTE: ${{ vars.KINSTA_HOTE }}
       PORT: ${{ vars.KINSTA_PORT }}
@@ -87,12 +92,23 @@ jobs:
           ssh-keyscan -p "$PORT" "$HOTE" >> ~/.ssh/known_hosts 2>/dev/null
           echo "SSH=ssh -i $HOME/.ssh/kinsta -p $PORT" >> "$GITHUB_ENV"
 
+      # Les extensions avant le thème (le thème appelle leurs fonctions), et chaque dossier mis en place d'un coup à la
+      # fin de son envoi (--delay-updates) : pas de page servie entre un functions.php neuf et ses inc/ d'avant.
       - name: Le thème et les extensions
         run: |
-          rsync -rlz --delete -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
-          rsync -rlz --delete -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
+          RS='rsync -rlz --delete-after --delay-updates'
+          $RS -e "$SSH" plugin/er-librairie/ "$QUI@$HOTE:public/wp-content/plugins/er-librairie/"
           # L'extension de la bascule (le contenu de l'ébauche, les imports de Wix) : à retirer d'ici après la bascule.
-          rsync -rlz --delete -e "$SSH" plugin/er-bascule/ "$QUI@$HOTE:public/wp-content/plugins/er-bascule/"
+          $RS -e "$SSH" plugin/er-bascule/ "$QUI@$HOTE:public/wp-content/plugins/er-bascule/"
+          $RS -e "$SSH" theme/editeurs-reunis/ "$QUI@$HOTE:public/wp-content/themes/editeurs-reunis/"
+
+      # Avant toute opération qui écrit en base : une copie de la base dans private/ (hors du site public), les sept
+      # dernières gardées. Le retour arrière ne dépend plus de la sauvegarde de la nuit, qui effacerait les commandes
+      # passées depuis.
+      - name: Une sauvegarde de la base
+        if: inputs.installer || inputs.ancien_site != 'non' && inputs.ancien_site != '' || inputs.er != '' || inputs.notices == 'chercher et poser' || inputs.proches || inputs.extraits != ''
+        run: |
+          $SSH "$QUI@$HOTE" 'mkdir -p private/sauvegardes && cd public && wp db export "../private/sauvegardes/avant-$(date +%Y%m%d-%H%M%S).sql" --porcelain && ls -1t ../private/sauvegardes/*.sql | tail -n +8 | xargs -r rm --'
 
       # Polylang Pro et Polylang pour WooCommerce sont payants : téléversés à la main dans l'administration, jamais
       # par ce dépôt ; activés ici dès qu'ils sont là (wp er langues installer règle ensuite les trois langues).
@@ -122,8 +138,14 @@ jobs:
             wp language core install fr_FR ru_RU en_GB
             wp site switch-language fr_FR
             wp language plugin install woocommerce fr_FR ru_RU en_GB
-            wp option update blog_public 0
-            wp eval-file wp-content/plugins/er-bascule/donnees/semer.php
+            # Un site déjà semé (ou qui a son catalogue) garde ses pages, ses livres et sa visibilité : semer.php le
+            # refuserait de toute façon.
+            if wp option get er_seme >/dev/null 2>&1 || [ "$(wp post list --post_type=product --post_status=publish --format=count)" -gt 20 ]; then
+              echo "Site déjà semé : ni blog_public ni semer.php."
+            else
+              wp option update blog_public 0
+              wp eval-file wp-content/plugins/er-bascule/donnees/semer.php
+            fi
             wp rewrite structure "/%postname%/"
             wp rewrite flush'
 
@@ -160,7 +182,7 @@ jobs:
           for f in evenements-import.json journal-import.json medias-import.json; do
             if [ -s "sortie/$f" ]; then rsync -z -e "$SSH" "sortie/$f" "$QUI@$HOTE:private/$f"; fi
           done
-          $SSH "$QUI@$HOTE" 'cd public
+          $SSH "$QUI@$HOTE" 'cd public && set -e
             for f in evenements medias journal; do
               if [ -s "../private/$f-import.json" ]; then wp er "$f" importer "../private/$f-import.json"; fi
             done
@@ -184,8 +206,9 @@ jobs:
           COMMANDE: ${{ inputs.er }}
         run: |
           mkdir -p sortie
-          # Seulement des mots, des tirets et des signes égal : pas de quoi glisser une autre commande.
-          echo "$COMMANDE" | grep -Eq '^[a-z0-9 =_-]+$' || { echo "Commande refusée : $COMMANDE"; exit 1; }
+          # Des mots séparés d'une espace, d'un tiret, d'un souligné ou d'un signe égal : ni saut de ligne (grep lisait
+          # ligne par ligne), ni option de WP-CLI (« --user=… »), ni autre commande.
+          [[ "$COMMANDE" =~ ^[a-z0-9]+([\ =_-][a-z0-9]+)*$ ]] || { echo "Commande refusée : $COMMANDE"; exit 1; }
           $SSH "$QUI@$HOTE" "cd public && wp er $COMMANDE" | tee sortie/commande.txt
 
       - name: Le rapport, sur la branche wix-pages
@@ -210,8 +233,7 @@ jobs:
         env:
           COMMANDE: ${{ inputs.boutique }}
         run: |
-          set -o pipefail
-          echo "$COMMANDE" | grep -Eq '^[a-z0-9 =_-]+$' || { echo "Commande refusée : $COMMANDE"; exit 1; }
+          [[ "$COMMANDE" =~ ^[a-z0-9]+([\ =_-][a-z0-9]+)*$ ]] || { echo "Commande refusée : $COMMANDE"; exit 1; }
           mkdir -p rapport-boutique
           FICHIER="rapport-boutique/$(echo "$COMMANDE" | tr ' =' '--' | tr -s '-').md"
           {
@@ -282,7 +304,8 @@ jobs:
           $SSH "$QUI@$HOTE" 'cd public && wp er proches importer ../private/proches.json'
 
       # Le zip (outils/extraits.py : un dossier d'images par livre et le manifeste) passe par une publication
-      # temporaire du dépôt, effacée une fois les pages posées : les images ne vont jamais dans l'historique.
+      # temporaire du dépôt, effacée une fois les pages posées (avec son étiquette) : les images ne vont jamais dans
+      # l'historique, et ne restent pas téléchargeables.
       - name: Les pages à feuilleter
         if: inputs.extraits != ''
         env:
@@ -296,6 +319,7 @@ jobs:
           $SSH "$QUI@$HOTE" 'mkdir -p private/extraits'
           rsync -az --delete -e "$SSH" extraits/ "$QUI@$HOTE:private/extraits/"
           $SSH "$QUI@$HOTE" 'cd public && wp er extraits importer ../private/extraits && rm -rf ../private/extraits'
+          gh release delete "$ETIQUETTE" --yes --cleanup-tag
 
       - name: Vider le cache
         run: $SSH "$QUI@$HOTE" 'cd public && (wp kinsta cache purge --all || wp cache flush)'

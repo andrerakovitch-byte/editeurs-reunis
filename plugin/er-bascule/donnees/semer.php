@@ -4,8 +4,10 @@
  * maquette Wix et leurs couvertures, le communiqué.
  *
  * À lancer une fois, sur un site vide : `wp eval-file wp-content/plugins/er-bascule/donnees/semer.php`, ou dans
- * WordPress Playground (étape runPHP du plan d'aperçu). Relancé, il ne crée rien en double : chaque page, chaque
- * livre est retrouvé par son slug.
+ * WordPress Playground (étape runPHP du plan d'aperçu). Il réécrit ce qu'il retrouve (les pages, les livres, les
+ * réglages) : sur un site qui a déjà du contenu, il refuse de tourner (audit du 27 nov. 2026 : relancé sur la bêta, il
+ * aurait vidé les conditions de vente et les mentions légales, et remis les livres de l'ébauche à leur phrase
+ * d'attente). ER_RESEMER=1 le force.
  *
  * Les prix, les mentions et les statuts viennent de la maquette Wix. Les présentations des livres sont des
  * brouillons d'une phrase, à remplacer ; les couvertures « à venir » aussi.
@@ -18,6 +20,15 @@ defined( 'ABSPATH' ) || exit;
 require_once ABSPATH . 'wp-admin/includes/image.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
+
+$er_livres_publies = wp_count_posts( 'product' );
+if ( ( get_option( 'er_seme' ) || (int) ( $er_livres_publies->publish ?? 0 ) > 20 ) && ! getenv( 'ER_RESEMER' ) ) {
+	$er_refus = 'Ce site a déjà du contenu : semer.php ne s’y relance pas (ER_RESEMER=1 pour forcer).';
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		WP_CLI::error( $er_refus );
+	}
+	return;
+}
 
 /* Les réglages ------------------------------------------------------------------------------------------------- */
 
@@ -654,6 +665,7 @@ if ( function_exists( 'er_index_reconstruire' ) ) {
 
 flush_rewrite_rules();
 wc_delete_product_transients();
+update_option( 'er_seme', gmdate( 'c' ), false );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	WP_CLI::success( count( $livres ) . ' livres, les pages et les réglages sont en place.' );

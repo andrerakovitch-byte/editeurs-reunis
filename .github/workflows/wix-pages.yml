@@ -29,10 +29,15 @@ jobs:
         if: inputs.quoi == 'medias'
         run: pip install --quiet yt-dlp
       - name: Lire
+        # Les entrées passent par l'environnement, jamais écrites telles quelles dans le script (audit du 27 nov. 2026).
         env:
+          QUOI: ${{ inputs.quoi }}
+          BRUT: ${{ inputs.brut }}
           PAGES: ${{ inputs.pages }}
-        run: python3 outils/wix/pages.py "${{ inputs.quoi }}" --brut "${{ inputs.brut }}" --pages "$PAGES"
+        run: python3 outils/wix/pages.py "$QUOI" --brut "$BRUT" --pages "$PAGES"
       - name: Déposer sur la branche wix-pages
+        env:
+          QUOI: ${{ inputs.quoi }}
         run: |
           cd sortie
           git init -q -b wix-pages
@@ -42,5 +47,5 @@ jobs:
           # Les fichiers des passages précédents restent : on ajoute ceux-ci par-dessus.
           if git fetch -q --depth 1 origin wix-pages; then git reset -q --soft FETCH_HEAD; fi
           git add --ignore-removal .
-          git commit -q -m "Pages lues de l'ancien site : ${{ inputs.quoi }}" || exit 0
+          git commit -q -m "Pages lues de l'ancien site : $QUOI" || exit 0
           git push -q origin HEAD:wix-pages

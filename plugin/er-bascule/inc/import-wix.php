@@ -10,6 +10,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Les statuts où chercher un contenu déjà importé : « any » de WordPress ne voit pas la corbeille, et un contenu mis à
+ * la corbeille revenait, publié, à la relance de l'import (audit du 27 nov. 2026). Un contenu trouvé à la corbeille
+ * est laissé où il est : on l'a écarté.
+ */
+function er_bascule_statuts() {
+	return array( 'publish', 'future', 'draft', 'pending', 'private', 'trash' );
+}
+
 /* == Les rencontres (venu de er-librairie/inc/evenements.php) ======================================================================== */
 
 /**
@@ -24,13 +33,16 @@ function er_evt_importer_un( $e, $auteurs, $images = true ) {
 	$existants = get_posts(
 		array(
 			'post_type'   => ER_EVT,
-			'post_status' => 'any',
+			'post_status' => er_bascule_statuts(),
 			'meta_key'    => 'er_wix', // phpcs:ignore WordPress.DB.SlowDBQuery
 			'meta_value'  => $e['wix'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			'numberposts' => 1,
 			'lang'        => '',
 		)
 	);
+	if ( $existants && 'trash' === $existants[0]->post_status ) {
+		return 'écartée (à la corbeille)';
+	}
 	$texte  = array(
 		'post_title'   => $e['titre'],
 		'post_content' => $e['contenu'],
@@ -252,13 +264,16 @@ function er_journal_importer_un( $a, $auteurs, $images = true ) {
 	$existants = get_posts(
 		array(
 			'post_type'   => 'post',
-			'post_status' => 'any',
+			'post_status' => er_bascule_statuts(),
 			'meta_key'    => 'er_wix_slug', // phpcs:ignore WordPress.DB.SlowDBQuery
 			'meta_value'  => $a['wix_slug'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			'numberposts' => 1,
 			'lang'        => '',
 		)
 	);
+	if ( $existants && 'trash' === $existants[0]->post_status ) {
+		return 'écarté (à la corbeille)';
+	}
 	$source = md5( wp_json_encode( array( $a['titre'], $a['contenu'], $a['extrait'] ) ) );
 	$id     = $existants ? $existants[0]->ID : 0;
 	$etat   = 'inchangé';
@@ -448,13 +463,16 @@ function er_media_importer_un( $m, $auteurs, $images = true ) {
 	$existants = get_posts(
 		array(
 			'post_type'   => 'er_media',
-			'post_status' => 'any',
+			'post_status' => er_bascule_statuts(),
 			'meta_key'    => 'er_ident', // phpcs:ignore WordPress.DB.SlowDBQuery
 			'meta_value'  => $m['ident'], // phpcs:ignore WordPress.DB.SlowDBQuery
 			'numberposts' => 1,
 			'lang'        => '',
 		)
 	);
+	if ( $existants && 'trash' === $existants[0]->post_status ) {
+		return 'écartée (à la corbeille)';
+	}
 	if ( $existants ) {
 		$id   = $existants[0]->ID;
 		$etat = 'inchangée';
@@ -585,7 +603,10 @@ function er_expo_page_avec_liste() {
  * @param array $x L'entrée.
  */
 function er_expo_importer_un( $x ) {
-	$existantes = get_posts( array( 'post_type' => ER_EXPO, 'post_status' => 'any', 'numberposts' => 1, 'meta_key' => 'er_expo_cle', 'meta_value' => $x['cle'], 'lang' => '' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+	$existantes = get_posts( array( 'post_type' => ER_EXPO, 'post_status' => er_bascule_statuts(), 'numberposts' => 1, 'meta_key' => 'er_expo_cle', 'meta_value' => $x['cle'], 'lang' => '' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+	if ( $existantes && 'trash' === $existantes[0]->post_status ) {
+		return 'écartée';
+	}
 	// Les rencontres de l'exposition (le vernissage, la soirée de clôture) : la première donne le texte et l'image.
 	$rencontres = array();
 	foreach ( isset( $x['evenements'] ) ? $x['evenements'] : array() as $wix ) {

@@ -4,7 +4,8 @@
 #
 #   bash outils/verifier.sh
 #
-# 1. La syntaxe : chaque fichier PHP (php -l) et JavaScript (node --check).
+# 1. La syntaxe : chaque fichier PHP (php -l) et JavaScript (node --check) ; les feuilles de style entières
+#    (outils/css.js : accolades, commentaires, fin de fichier).
 # 2. Les tests : tests/php/lancer.php, puis pytest sur tests/python.
 # 3. Le style et les règles de sécurité de WordPress : PHPCS (phpcs.xml.dist), s'il est installé (composer install) ;
 #    ruff sur les outils Python (ruff.toml).
@@ -25,6 +26,9 @@ for f in theme/editeurs-reunis/assets/js/*.js plugin/er-librairie/assets/js/*.js
 done
 echo '  ok'
 
+echo '— Les feuilles de style entières'
+node outils/css.js theme/editeurs-reunis/style.css theme/editeurs-reunis/assets/css/*.css
+
 echo '— Les tests PHP'
 php tests/php/lancer.php
 
@@ -35,6 +39,10 @@ python3 -m pytest -q tests/python
 if [ -x vendor/bin/phpcs ]; then
 	echo '— Le style et la sécurité (PHPCS)'
 	vendor/bin/phpcs
+elif [ -n "${CI:-}" ]; then
+	# Dans GitHub, PHPCS doit être là : son absence ne vaut pas un contrôle passé.
+	echo '— PHPCS absent dans GitHub : composer install a-t-il échoué ?'
+	exit 1
 else
 	echo '— PHPCS absent (composer install pour l’avoir) : passé'
 fi
