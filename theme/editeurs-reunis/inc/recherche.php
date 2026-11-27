@@ -8,8 +8,9 @@
  * - avant de taper, des pistes : les dernières recherches (gardées dans le navigateur ; à défaut, les rayons), les
  *   recherches fréquentes, le dernier livre arrivé ;
  * - en tapant, les genres et leurs nombres à la place des maisons ; les résultats en trois colonnes ;
- * - la recherche détaillée, en plein écran (27 nov.) : des champs qui se combinent, sur les trois colonnes du
- *   triptyque, avec le nombre de livres qui répondent.
+ * - la recherche détaillée (27 nov.) : le panneau s'agrandit jusqu'au bas de l'écran, sous l'en-tête ; des champs qui
+ *   se combinent, sur les trois colonnes du triptyque, avec le nombre de livres qui répondent. Le même bouton, au même
+ *   endroit, l'ouvre et la referme (« Recherche détaillée → », puis « ← Recherche simple »).
  * Sans JavaScript, la loupe mène à la recherche des livres, et la recherche détaillée reste un formulaire.
  *
  * @package editeurs-reunis
@@ -176,6 +177,7 @@ function er_panneau_recherche() {
 				<div class="er-recherche-tete">
 					<div class="er-recherche-maisons er-filtre" data-er-filtre="maison" data-er-un-seul role="group" aria-label="<?php esc_attr_e( 'Où chercher', 'editeurs-reunis' ); ?>"><?php echo $choix_maisons; // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 					<div class="er-recherche-portees" role="group" aria-label="<?php esc_attr_e( 'Les résultats', 'editeurs-reunis' ); ?>" hidden></div>
+					<p class="er-recherche-mode" id="er-recherche-mode"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?></p>
 					<button type="button" class="er-recherche-bascule" aria-expanded="false" aria-controls="er-recherche-detaillee"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?>&nbsp;<span aria-hidden="true">→</span></button>
 					<button type="button" class="er-recherche-fermer" data-er-fermer><?php echo $croix; // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></button>
 				</div>
@@ -222,11 +224,7 @@ function er_panneau_recherche() {
 					<div class="er-recherche-resultats" id="er-recherche-resultats" aria-live="polite" hidden></div>
 				</div>
 
-				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" aria-labelledby="er-rd-titre" hidden>
-					<div class="er-rd-tete">
-						<h2 class="er-rd-titre" id="er-rd-titre"><?php esc_html_e( 'Recherche détaillée', 'editeurs-reunis' ); ?></h2>
-						<button type="button" class="er-rd-fermer"><span><?php esc_html_e( 'Fermer', 'editeurs-reunis' ); ?></span><?php echo $croix; // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
-					</div>
+				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" aria-labelledby="er-recherche-mode" hidden>
 					<p class="er-rd-note"><?php esc_html_e( 'Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres change à chaque choix.', 'editeurs-reunis' ); ?></p>
 					<div class="er-rd-grille er-grille-tpq">
 						<div class="er-rd-colonne">
@@ -351,6 +349,8 @@ add_action(
 						'tous_livres'   => __( 'Les %s livres', 'editeurs-reunis' ),
 						'page_auteur'   => __( 'La page de l’auteur', 'editeurs-reunis' ),
 						'le_livre'      => __( 'Le livre', 'editeurs-reunis' ),
+						'detaillee'     => __( 'Recherche détaillée', 'editeurs-reunis' ),
+						'simple'        => __( 'Recherche simple', 'editeurs-reunis' ),
 						/* translators: %s: un nombre de livres. */
 						'n_livres'      => __( '%s livres en rayon', 'editeurs-reunis' ),
 						'un_livre'      => __( 'Un livre en rayon', 'editeurs-reunis' ),

@@ -637,10 +637,14 @@
 
 	/* La recherche détaillée ------------------------------------------------------------------------------------- */
 
-	// La recherche détaillée s'ouvre en plein écran, par-dessus l'en-tête ; « Fermer » ou Échap ramène au panneau.
+	// La recherche détaillée : le panneau s'agrandit jusqu'au bas de l'écran, sous l'en-tête. Le même bouton, au même
+	// endroit, l'ouvre et la referme (un principe : on et off au même endroit) ; Échap ramène aussi au panneau.
 	function basculer( montrer ) {
 		detaillee.hidden = ! montrer;
 		document.documentElement.classList.toggle( 'er-rd-ouverte', montrer );
+		bascule.innerHTML = montrer
+			? '<span aria-hidden="true">←</span>\u00a0' + echapper( M.simple )
+			: echapper( M.detaillee ) + '\u00a0<span aria-hidden="true">→</span>';
 		corps.hidden = montrer;
 		bascule.setAttribute( 'aria-expanded', montrer ? 'true' : 'false' );
 		bascule.classList.toggle( 'est-active', montrer );
@@ -672,10 +676,7 @@
 			}, 30 );
 		}
 	} );
-	detaillee.querySelector( '.er-rd-fermer' ).addEventListener( 'click', function () {
-		basculer( false );
-		bascule.focus();
-	} );
+
 
 	function valeurs() {
 		var p = new URLSearchParams();

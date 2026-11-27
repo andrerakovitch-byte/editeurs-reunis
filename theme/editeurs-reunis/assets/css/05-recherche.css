@@ -191,46 +191,25 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-r-tout { display: inline-block; font-size: 1rem; font-weight: 600; }
 .er-r-aucun { grid-column: 1 / -1; margin: 0; font-size: 1rem; color: var(--wp--preset--color--encre-2); }
 
-/* La recherche détaillée, en plein écran (André, 27 nov.) : par-dessus l'en-tête, comme le plan du site. En haut, son
-   titre en grand et « Fermer » ; les champs sur les trois colonnes du triptyque, soulignés d'un filet ; en bas, collés
-   au bord, les critères choisis et le bouton qui compte les livres. Échap ou « Fermer » ramène au panneau. */
-html.er-rd-ouverte .er-recherche { inset: 0; z-index: 100000; }
+/* La recherche détaillée (André, 27 nov.) : le panneau s'agrandit jusqu'au bas de l'écran, sous l'en-tête, qui reste.
+   À gauche de la tête, « Recherche détaillée » en capitales ; à droite, au même endroit, le bouton qui la referme. Le
+   champ simple s'efface ; les champs sur les trois colonnes du triptyque, soulignés d'un filet ; en bas, collés au
+   bord, les critères choisis et le bouton qui compte les livres. */
+.er-recherche-mode { display: none; margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+html.er-rd-ouverte .er-recherche-mode { display: block; padding: 6px 0; }
+html.er-rd-ouverte .er-recherche-panneau,
+html.er-rd-ouverte .er-recherche-dedans { height: 100%; }
+html.er-rd-ouverte .er-recherche-champ { display: none; }
 .er-recherche-detaillee:not([hidden]) {
-	position: fixed;
-	inset: 0;
-	z-index: 2;
+	flex: 1;
+	min-height: 0;
 	display: flex;
 	flex-direction: column;
+	margin-top: 28px;
 	overflow-y: auto;
 	overscroll-behavior: contain;
-	background: var(--wp--preset--color--base);
 }
-.er-rd-tete {
-	position: sticky;
-	top: 0;
-	z-index: 1;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	gap: 24px;
-	padding: 56px var(--wp--style--root--padding-right) 20px var(--wp--style--root--padding-left);
-	background: var(--wp--preset--color--base);
-}
-.er-rd-titre { margin: 0; font-size: 3rem; font-weight: 500; line-height: 1.08; letter-spacing: -0.035em; }
-.er-rd-fermer {
-	display: inline-flex;
-	align-items: center;
-	gap: 10px;
-	padding: 10px 0;
-	border: 0;
-	background: none;
-	font: inherit;
-	font-size: 0.9375rem;
-	color: var(--wp--preset--color--contrast);
-	cursor: pointer;
-}
-.er-rd-fermer:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 4px; }
-.er-rd-note { margin: 0 0 56px; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-rd-note { margin: 0 0 40px; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
 .er-rd-grille { flex: none; padding-bottom: 56px; }
 .er-rd-colonne { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
 .er-rd-champ { display: block; min-width: 0; margin: 0; padding: 0; border: 0; }
@@ -338,22 +317,4 @@ html.er-rd-ouverte .er-recherche { inset: 0; z-index: 100000; }
 	.er-recherche-panneau { height: 100%; border: 0; }
 	.er-recherche-dedans { display: block; height: auto; padding: 1rem 0 2rem; }
 	.er-recherche-corps { overflow: visible; padding-bottom: 0; -webkit-mask-image: none; mask-image: none; }
-	.er-rd-tete { padding-top: 1.25rem; padding-bottom: 1rem; }
-	.er-rd-titre { font-size: 2rem; }
-	.er-rd-note { margin-bottom: 2rem; }
-	.er-rd-colonne { gap: 28px; }
-	.er-rd-pied { padding-bottom: 1.25rem; }
-	.er-recherche-tete { flex-wrap: wrap; gap: 0.5rem 1.5rem; }
-	.er-recherche-bascule { order: 1; margin-inline-start: 0; }
-	.er-recherche-fermer { display: inline-flex; order: 2; margin-inline-start: auto; }
-	.er-recherche-maisons,
-	.er-recherche-portees { order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--wp--style--root--padding-left)); padding-inline: var(--wp--style--root--padding-left); }
-	.er-recherche-maisons::-webkit-scrollbar, .er-recherche-portees::-webkit-scrollbar { display: none; }
-	.er-recherche-champ { margin: 0.75rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); gap: 0.75rem; }
-	.er-recherche-champ svg { width: 22px; height: 22px; }
-	.er-recherche-champ input[type="search"] { font-size: 1.375rem; }
-	.er-r-colonne-vue { display: none; }
-	.er-rd-pied { flex-direction: column; align-items: stretch; }
-	.er-rd-actions { justify-content: space-between; }
-	.er-rd-voir { flex: 1; justify-content: center; }
-}
+	
