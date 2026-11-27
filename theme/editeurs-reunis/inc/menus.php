@@ -254,10 +254,10 @@ add_shortcode( 'er_menu_sac', 'er_menu_sac' );
 add_shortcode( 'er_menu_bouton', 'er_essai_bouton_menu' );
 
 /**
- * Le chevron d'une maison du menu du téléphone, au trait gras, comme chez Apple.
+ * Le chevron d'une maison du menu du téléphone, au trait fin (AK1, 27 nov. ; gras jusque-là).
  */
 function er_menu_chevron() {
-	return '<svg class="er-mp-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>';
+	return '<svg class="er-mp-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>';
 }
 
 /**

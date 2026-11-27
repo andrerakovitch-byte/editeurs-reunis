@@ -64,7 +64,8 @@
 	}
 	.er-mp-colle { flex: none; display: flex; flex-direction: column; justify-content: flex-end; min-height: calc(100% + 1px); }
 
-	/* Les maisons : 28 px gras, un chevron gris au bout. */
+	/* Les maisons : 28 px en 500, comme les grands titres de la direction (AK1, 27 nov. ; 600 jusque-là), un chevron
+	   gris au trait fin au bout. */
 	.er-mp-maisons { margin: 0; padding: 0; list-style: none; }
 	.er-mp-maison {
 		display: flex;
@@ -78,7 +79,7 @@
 		text-align: left;
 		font: inherit;
 		font-size: 1.75rem;
-		font-weight: 600;
+		font-weight: 500;
 		letter-spacing: -0.03em;
 		line-height: 1.15;
 		color: var(--wp--preset--color--contrast);
