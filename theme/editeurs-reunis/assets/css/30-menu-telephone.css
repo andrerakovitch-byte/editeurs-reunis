@@ -138,28 +138,11 @@
 		border-top: 1px solid var(--wp--preset--color--filet);
 		background: var(--wp--preset--color--base);
 	}
+	/* La recherche : l'air d'un champ, mais un lien ; on le touche, elle s'ouvre en plein écran (AF1, 05-recherche.css). */
 	.er-mp-recherche { display: flex; align-items: center; gap: 12px; height: 52px; margin: 0; padding: 0 16px; background: var(--wp--preset--color--doux); color: var(--wp--preset--color--discret); }
 	.er-mp-recherche svg { flex: none; }
-	.er-mp-recherche:focus-within { outline: 2px solid var(--wp--preset--color--contrast); }
-	.er-mp-recherche input[type="search"] {
-		flex: 1;
-		min-width: 0;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		border-radius: 0;
-		outline: none;
-		background: none;
-		font: inherit;
-		font-size: 1rem; /* 16 px : l'iPhone ne zoome pas */
-		font-weight: 500;
-		color: var(--wp--preset--color--contrast);
-		-webkit-appearance: none;
-		appearance: none;
-	}
-	.er-mp-recherche input::placeholder { color: #8C8C87; opacity: 1; }
-	.er-mp-recherche input::-webkit-search-cancel-button { display: none; }
+	.er-mp-recherche:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); }
+	.er-mp-recherche-texte { flex: 1; min-width: 0; overflow: hidden; font-size: 1rem; font-weight: 500; color: #8C8C87; white-space: nowrap; text-overflow: ellipsis; }
 	.er-mp-outils { display: flex; align-items: center; gap: 24px; margin-top: 14px; font-size: 0.9375rem; font-weight: 500; }
 	.er-mp-outils > a { color: var(--wp--preset--color--contrast); }
 	.er-mp-langue { margin-left: auto; }

@@ -313,22 +313,64 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
 .er-rd-voir:disabled { opacity: 0.4; cursor: default; }
 
 
-/* Au téléphone, le panneau prend tout l'écran sous la barre ; les colonnes s'empilent. */
+/* Au téléphone (AF1, retenu le 27 novembre 2026) : la recherche prend tout l'écran, blanche et opaque ; plus rien
+   du site derrière, même quand le clavier de l'iPhone monte. Sa hauteur suit ce qu'on voit au-dessus du clavier
+   (--er-vv-haut, --er-vv-dy : recherche.js). En haut, le champ et « Annuler » ; dessous, les maisons, qui défilent ;
+   puis ce qui défile, le champ restant en place. En tapant : l'auteur, les livres deux par rang, puis le reste. */
+.er-recherche-annuler { display: none; }
 @media (max-width: 781px) {
+	.er-recherche { inset: auto 0; top: var(--er-vv-dy, 0px); height: var(--er-vv-haut, 100dvh); }
 	.er-recherche-voile { display: none; }
-	.er-recherche-panneau { height: 100%; border: 0; }
-	.er-recherche-dedans { display: block; height: auto; padding: 1rem 0 2rem; }
-	.er-recherche-corps { overflow: visible; padding-bottom: 0; -webkit-mask-image: none; mask-image: none; }
-	.er-rd-colonne { gap: 28px; }
-	.er-recherche-tete { flex-wrap: wrap; gap: 0.5rem 1.5rem; }
-	.er-recherche-bascule { order: 1; margin-inline-start: 0; }
-	.er-recherche-fermer { display: inline-flex; order: 2; margin-inline-start: auto; }
-	.er-recherche-maisons { order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--wp--style--root--padding-left)); padding-inline: var(--wp--style--root--padding-left); }
-	.er-recherche-maisons::-webkit-scrollbar { display: none; }
-	.er-recherche-champ { margin: 0.75rem var(--wp--style--root--padding-right) 1.5rem var(--wp--style--root--padding-left); gap: 0.75rem; }
+	.er-recherche-panneau { height: 100%; max-height: none; overflow: hidden; border: 0; }
+	.er-recherche-dedans {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-rows: auto auto minmax(0, 1fr);
+		height: 100%;
+		padding: 14px 0 0;
+	}
+	.er-recherche-champ { grid-area: 1 / 1 / 2 / 2; gap: 12px; margin: 0 0 0 var(--wp--style--root--padding-left); padding: 8px 0 12px; }
 	.er-recherche-champ svg { width: 22px; height: 22px; }
 	.er-recherche-champ input[type="search"] { font-size: 1.375rem; }
-	.er-r-livres { row-gap: 24px; }
+	.er-recherche-annuler {
+		grid-area: 1 / 2 / 2 / 3;
+		display: block;
+		align-self: center;
+		margin: 0 var(--wp--style--root--padding-right) 0 14px;
+		padding: 8px 0;
+		border: 0;
+		background: none;
+		font: inherit;
+		font-size: 0.9375rem;
+		color: var(--wp--preset--color--contrast);
+		cursor: pointer;
+	}
+	/* « Effacer » devient la petite croix ronde des champs de l'iPhone. */
+	.er-recherche-effacer { position: relative; width: 20px; height: 20px; border-radius: 50%; background: #C6C6C1; font-size: 0; color: transparent; }
+	.er-recherche-effacer::before,
+	.er-recherche-effacer::after { content: ""; position: absolute; left: 5.5px; right: 5.5px; top: 9.25px; height: 1.5px; background: #FFFFFF; transform: rotate(45deg); }
+	.er-recherche-effacer::after { transform: rotate(-45deg); }
+	.er-recherche-tete { grid-area: 2 / 1 / 3 / 3; margin-top: 18px; }
+	.er-recherche-mode, .er-recherche-bascule, .er-recherche-fermer { display: none; }
+	.er-recherche-maisons { flex: 1; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--wp--style--root--padding-left)) calc(-1 * var(--wp--style--root--padding-right)); padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
+	.er-recherche-maisons::-webkit-scrollbar { display: none; }
+	.er-recherche-corps, .er-recherche-detaillee { grid-area: 3 / 1 / 4 / 3; }
+	.er-recherche-corps { padding: 28px 0 calc(32px + env(safe-area-inset-bottom)); -webkit-mask-image: none; mask-image: none; }
+	.er-recherche-pistes { row-gap: 28px; }
+	.er-recherche-lignes, .er-r-lignes { gap: 10px; font-size: 1.0625rem; }
+	/* En tapant : le premier groupe (l'auteur), puis les livres, deux par rang, puis le reste et « Tous les résultats ». */
+	.er-r-grille { display: flex; flex-direction: column; row-gap: 0; }
+	.er-r-grille > .er-r-colonne:first-child { display: contents; }
+	.er-r-grille > .er-r-colonne:first-child > * { order: 3; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
+	.er-r-grille > .er-r-colonne:first-child > :first-child { order: 0; }
+	.er-r-grille > .er-r-colonne:nth-child(2) { order: 1; margin-bottom: 22px; }
+	.er-r-grille > .er-r-colonne:nth-child(3) { order: 2; margin-bottom: 30px; }
+	.er-r-grille .er-r-tous { align-self: flex-start; }
+	.er-r-livres { row-gap: 22px; }
+	.er-r-livres .er-r-vue-cadre { height: 132px; }
+	.er-r-livres .er-r-vue-cadre img,
+	.er-r-livres .er-r-vue-cadre .er-r-couverture-vide { height: 96px; }
+	.er-rd-colonne { gap: 28px; }
 	.er-rd-pied { flex-direction: column; align-items: stretch; padding-bottom: 1.25rem; }
 	.er-rd-actions { justify-content: space-between; }
 	.er-rd-voir { flex: 1; justify-content: center; }

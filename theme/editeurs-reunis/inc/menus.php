@@ -330,8 +330,8 @@ function er_menu_cartes() {
  * Le menu du téléphone (P1 du canevas « Les pages intérieures », retenu le 26 nov. 2026), dans le plein écran du ≡ :
  * les quatre maisons en gras, sans photo, un chevron au bout ; on touche une maison, ses pages glissent depuis la
  * droite, et « ‹ Le menu » ramène, comme sur apple.com. La liste est collée en bas et défile. En bas, accrochés (N2,
- * retenus) : ce que dit la barre d'informations, en carrousel, puis la recherche, puis le panier, le compte et la
- * langue. Au-dessus de 781 px, le plan en colonnes reste.
+ * retenus) : ce que dit la barre d'informations, en carrousel, puis la recherche (qui s'ouvre en plein écran, AF1),
+ * puis le panier, le compte et la langue. Au-dessus de 781 px, le plan en colonnes reste.
  */
 function er_menu_telephone() {
 	$chemin = function ( $lien ) {
@@ -383,10 +383,12 @@ function er_menu_telephone() {
 		. '<div class="er-mp-carrousel"><div class="er-mp-cartes">' . $cartes . '</div>'
 		/* translators: 1: le rang d'une carte, 2: le nombre de cartes (le carrousel du menu du téléphone). */
 		. '<div class="er-mp-traits" data-libelle="' . esc_attr__( 'Information %1$s sur %2$s', 'editeurs-reunis' ) . '"></div></div>'
-		. '<form class="er-mp-recherche" role="search" method="get" action="' . esc_url( $accueil ) . '">'
+		// La recherche (AF1, 27 nov.) : ce n'est plus un champ dans le menu (le clavier faisait glisser la page, et le
+		// site se voyait derrière) ; on le touche, la recherche prend tout l'écran, le champ en haut, le clavier ouvert.
+		// Sans script, le lien mène à la recherche des livres.
+		. '<a class="er-mp-recherche" href="' . esc_url( add_query_arg( array( 's' => '', 'post_type' => 'product' ), $accueil ) ) . '" data-er-recherche-ouvrir>'
 		. '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="11.5" cy="11.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16.4 16.4L20.5 20.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
-		. '<input type="search" name="s" placeholder="' . esc_attr__( 'Un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '" aria-label="' . esc_attr__( 'Rechercher', 'editeurs-reunis' ) . '" enterkeyhint="search">'
-		. '<input type="hidden" name="post_type" value="product"></form>'
+		. '<span class="er-mp-recherche-texte">' . esc_html__( 'Un livre, un auteur, une rencontre', 'editeurs-reunis' ) . '</span></a>'
 		. '<div class="er-mp-outils"><a href="' . esc_url( $panier ) . '">' . esc_html__( 'Panier', 'editeurs-reunis' ) . '</a>'
 		. '<a href="' . esc_url( $compte ) . '">' . esc_html__( 'Mon compte', 'editeurs-reunis' ) . '</a>'
 		. ( $langue ? '<span class="er-mp-langue">' . $langue . '</span>' : '' ) . '</div></div></div>';

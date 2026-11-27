@@ -94,6 +94,8 @@ function er_recherche_vue( $livre ) {
  * sous le champ, trois colonnes calées sur les trois photos du triptyque de l'accueil. Avant de taper : vos dernières
  * recherches (ou les rayons), ce qu'on cherche souvent, le dernier livre arrivé. En tapant (AE2a) : l'auteur et les
  * rayons, des noms seulement, et « Tous les résultats » ; sur les deux autres colonnes, quatre livres, deux par colonne.
+ * Au téléphone (AF1) : tout l'écran, blanc et opaque, le champ en haut avec « Annuler », les maisons dessous ; en
+ * tapant, l'auteur, puis les livres deux par rang, puis le reste.
  */
 function er_panneau_recherche() {
 	$loupe = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
@@ -183,10 +185,12 @@ function er_panneau_recherche() {
 				<form class="er-recherche-champ" role="search" method="get" action="<?php echo esc_url( $accueil ); ?>">
 					<?php echo $loupe; // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<label class="screen-reader-text" for="er-recherche-texte"><?php esc_html_e( 'Chercher un titre, un auteur, un sujet', 'editeurs-reunis' ); ?></label>
-					<input type="search" id="er-recherche-texte" name="s" autocomplete="off" spellcheck="false" placeholder="<?php esc_attr_e( 'Un titre, un auteur, un sujet…', 'editeurs-reunis' ); ?>" aria-controls="er-recherche-resultats">
+					<input type="search" id="er-recherche-texte" name="s" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="<?php esc_attr_e( 'Un titre, un auteur, un sujet…', 'editeurs-reunis' ); ?>" data-er-court="<?php esc_attr_e( 'Un livre, un auteur…', 'editeurs-reunis' ); ?>" aria-controls="er-recherche-resultats">
 					<input type="hidden" name="post_type" value="product">
 					<button type="button" class="er-recherche-effacer" hidden><?php esc_html_e( 'Effacer', 'editeurs-reunis' ); ?></button>
 				</form>
+				<?php // Au téléphone (AF1) : « Annuler » à côté du champ, là où l'on a ouvert la recherche (principe 12). ?>
+				<button type="button" class="er-recherche-annuler" data-er-fermer><?php esc_html_e( 'Annuler', 'editeurs-reunis' ); ?></button>
 				<div class="er-recherche-corps">
 					<div class="er-recherche-pistes er-grille-tpq">
 						<div class="er-recherche-colonne">

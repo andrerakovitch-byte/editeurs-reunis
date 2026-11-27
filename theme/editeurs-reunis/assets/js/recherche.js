@@ -1,9 +1,11 @@
 /**
  * Le panneau de recherche : la loupe de l'en-tête l'ouvre (et devient « Fermer »), Échap ou un clic sur le voile le
  * referme. Avant de taper, des pistes ; en tapant, les résultats de l'API de la librairie, en trois colonnes calées sur
- * le triptyque (AB1a) : l'auteur et les livres, le reste du site, la couverture du livre survolé ; les genres et leurs
- * nombres prennent la place des maisons. La recherche détaillée compte les livres à chaque choix. Les flèches passent
- * d'un résultat à l'autre.
+ * le triptyque (AE2a) : l'auteur et les rayons, puis quatre livres. La recherche détaillée compte les livres à chaque
+ * choix. Les flèches passent d'un résultat à l'autre.
+ *
+ * Au téléphone (AF1) : la recherche du menu l'ouvre en plein écran, le champ en haut, le clavier ouvert tout de suite ;
+ * le panneau suit ce qu'on voit au-dessus du clavier (visualViewport) ; faire défiler les résultats range le clavier.
  *
  * Sans ce script, la loupe mène à la recherche des livres, et la recherche détaillée reste un formulaire ordinaire.
  */
@@ -34,6 +36,7 @@
 	var cadreFiltres = panneau.querySelector( '.er-recherche-maisons' );
 	var postType = formulaire.querySelector( 'input[name="post_type"]' );
 
+	var telephone = window.matchMedia( '(max-width: 781px)' );
 	var ouvert = false;
 	var dernier = null; // L'élément qui avait la main avant l'ouverture.
 	var donnees = null;
@@ -115,6 +118,18 @@
 		var bas = repere ? Math.max( 0, repere.getBoundingClientRect().bottom ) : 0;
 		panneau.style.setProperty( '--er-recherche-haut', bas + 'px' );
 	}
+	// Au téléphone, le panneau prend exactement ce qu'on voit : le clavier de l'iPhone ne rétrécit pas la page, il la
+	// cache, et Safari la fait glisser pour montrer le champ ; sans cela, la page apparaissait sous le panneau.
+	function caler() {
+		var vv = window.visualViewport;
+		if ( ! vv || ! telephone.matches ) {
+			panneau.style.removeProperty( '--er-vv-haut' );
+			panneau.style.removeProperty( '--er-vv-dy' );
+			return;
+		}
+		panneau.style.setProperty( '--er-vv-haut', Math.round( vv.height ) + 'px' );
+		panneau.style.setProperty( '--er-vv-dy', Math.round( vv.offsetTop ) + 'px' );
+	}
 	function ouvrir( detail ) {
 		if ( ouvert ) {
 			return;
@@ -122,6 +137,14 @@
 		ouvert = true;
 		dernier = document.activeElement;
 		placer();
+		caler();
+		var court = champ.getAttribute( 'data-er-court' );
+		if ( court ) {
+			if ( ! champ.hasAttribute( 'data-er-long' ) ) {
+				champ.setAttribute( 'data-er-long', champ.placeholder );
+			}
+			champ.placeholder = telephone.matches ? court : champ.getAttribute( 'data-er-long' );
+		}
 		panneau.hidden = false;
 		document.documentElement.classList.add( 'er-recherche-ouverte' );
 		loupes.forEach( function ( l ) {
@@ -134,10 +157,13 @@
 		montrerRecentes();
 		if ( detail ) {
 			basculer( true );
+			window.setTimeout( function () {
+				detaillee.querySelector( 'input, select' ).focus();
+			}, 30 );
+			return;
 		}
-		window.setTimeout( function () {
-			( detail ? detaillee.querySelector( 'input, select' ) : champ ).focus();
-		}, 30 );
+		// Tout de suite, dans le geste même : sinon l'iPhone n'ouvre pas le clavier.
+		champ.focus( { preventScroll: true } );
 	}
 	function fermer( sansRendre ) {
 		if ( ! ouvert ) {
@@ -167,6 +193,29 @@
 			fermer( true );
 		}
 	}, true );
+
+	// La recherche du menu du téléphone (un lien qui a l'air d'un champ) ouvre le panneau en plein écran (AF1).
+	document.addEventListener( 'click', function ( e ) {
+		if ( e.target.closest( '[data-er-recherche-ouvrir]' ) ) {
+			e.preventDefault();
+			ouvrir();
+		}
+	} );
+	if ( window.visualViewport ) {
+		[ 'resize', 'scroll' ].forEach( function ( type ) {
+			window.visualViewport.addEventListener( type, function () {
+				if ( ouvert ) {
+					caler();
+				}
+			} );
+		} );
+	}
+	// Au téléphone, faire défiler les résultats range le clavier : on voit tout.
+	corps.addEventListener( 'touchmove', function () {
+		if ( telephone.matches && document.activeElement === champ ) {
+			champ.blur();
+		}
+	}, { passive: true } );
 
 	loupes.forEach( function ( l ) {
 		l.addEventListener( 'click', function ( e ) {
