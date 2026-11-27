@@ -225,7 +225,6 @@ function er_panneau_recherche() {
 				</div>
 
 				<form class="er-recherche-detaillee" id="er-recherche-detaillee" method="get" action="<?php echo esc_url( $boutique ); ?>" aria-labelledby="er-recherche-mode" hidden>
-					<p class="er-rd-note"><?php esc_html_e( 'Les champs se combinent, on peut n’en remplir qu’un ; le nombre de livres change à chaque choix.', 'editeurs-reunis' ); ?></p>
 					<div class="er-rd-grille er-grille-tpq">
 						<div class="er-rd-colonne">
 							<?php

@@ -205,11 +205,10 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
 	min-height: 0;
 	display: flex;
 	flex-direction: column;
-	margin-top: 28px;
+	margin-top: 40px;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 }
-.er-rd-note { margin: 0 0 40px; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
 .er-rd-grille { flex: none; padding-bottom: 56px; }
 .er-rd-colonne { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
 .er-rd-champ { display: block; min-width: 0; margin: 0; padding: 0; border: 0; }
