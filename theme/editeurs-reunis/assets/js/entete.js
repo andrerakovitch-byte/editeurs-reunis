@@ -30,18 +30,65 @@
 		if ( ! barre ) {
 			return;
 		}
-		// Au téléphone, la barre du nom (le nom et le menu) reste accrochée en haut de l'écran (26 nov. 2026) : seule la
-		// barre d'informations part, et la bande s'accroche sous la barre du nom.
-		var telephone = window.matchMedia( '(max-width: 781px)' ).matches;
-		var cache = ( telephone ? 0 : barre.offsetHeight ) + ( infos ? infos.offsetHeight : 0 );
+		// La barre du nom (le nom et le menu) reste accrochée en haut de l'écran, au téléphone (26 nov. 2026) comme sur
+		// ordinateur (Z8c, 27 nov., à l'essai) : seule la barre d'informations part, et la bande s'accroche sous la
+		// barre du nom.
+		var cache = infos ? infos.offsetHeight : 0;
 		racine.style.setProperty( '--er-haut-cache', cache + 'px' );
 		var visible = lignes ? lignes.querySelector( '.er-ligne:not([hidden])' ) : null;
-		racine.style.setProperty( '--er-ligne', ( visible ? visible.offsetHeight : ( telephone ? barre.offsetHeight : 0 ) ) + 'px' );
+		racine.style.setProperty( '--er-ligne', ( visible ? visible.offsetHeight : barre.offsetHeight ) + 'px' );
 	}
 	mesurer();
 	window.addEventListener( 'resize', mesurer );
 	if ( document.fonts && document.fonts.ready ) {
 		document.fonts.ready.then( mesurer );
+	}
+
+	/* Sur ordinateur, la barre accrochée se fait compacte (Z8c, 27 nov., à l'essai) : 56 px, le nom du centre sur une
+	   ligne, plus petit, une fois la barre entière passée ; elle reprend sa taille quand on remonte en haut de la page.
+	   La page ne saute pas : quand la barre change de hauteur, l'écran se décale d'autant (sauf si le navigateur l'a
+	   déjà fait de lui-même). --------------------------------------------------------------------------------- */
+
+	if ( haut && barre ) {
+		var ordinateur = window.matchMedia( '(min-width: 782px)' );
+		var basculer = function ( compacte ) {
+			var avant = window.scrollY;
+			var h0 = barre.offsetHeight;
+			haut.classList.toggle( 'est-compacte', compacte );
+			var ecart = barre.offsetHeight - h0;
+			if ( ecart && Math.abs( window.scrollY - avant ) < 1 ) {
+				window.scrollBy( 0, ecart );
+			}
+			mesurer();
+		};
+		var regarder = function () {
+			var compacte = haut.classList.contains( 'est-compacte' );
+			if ( ! ordinateur.matches ) {
+				if ( compacte ) {
+					basculer( false );
+				}
+				return;
+			}
+			var dessus = infos ? infos.offsetHeight : 0;
+			var y = window.scrollY;
+			if ( ! compacte && y > dessus + barre.offsetHeight ) {
+				basculer( true );
+			} else if ( compacte && y < dessus ) {
+				basculer( false );
+			}
+		};
+		var attente = false;
+		window.addEventListener( 'scroll', function () {
+			if ( ! attente ) {
+				attente = true;
+				window.requestAnimationFrame( function () {
+					attente = false;
+					regarder();
+				} );
+			}
+		}, { passive: true } );
+		window.addEventListener( 'resize', regarder );
+		regarder();
 	}
 
 	/* L'en-tête accroché : la barre noire est sortie de l'écran. --------------------------------------------- */
