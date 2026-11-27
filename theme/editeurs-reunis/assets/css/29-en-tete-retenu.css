@@ -83,10 +83,11 @@
 }
 .er-mn .er-em-bouton > span { margin-inline-end: -0.18em; }
 .er-mn .er-em-bouton[aria-expanded="true"] { font-weight: 600; }
-html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
 /* Au survol d'un nom, comme partout : il reste à l'encre, les autres passent en gris, en fondu (André, 26 nov.) ;
-   celui dont le menu est ouvert reste à l'encre. */
-.er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: var(--er-gris-nom); }
+   celui dont le menu est ouvert reste à l'encre. Un gris bien plus pâle que celui des noms, presque celui des filets,
+   pour que le nom survolé ressorte seul en capitales (Z3a, 27 nov.) ; de même quand un menu est ouvert. */
+html.er-em-ouvert .er-mn .er-em-bouton[aria-expanded="false"] { color: #C6C6C1; }
+.er-mn:has(.er-em-bouton:hover) .er-em-bouton:not(:hover):not([aria-expanded="true"]) { color: #C6C6C1; }
 .er-mn .er-em-bouton:hover,
 html.er-em-ouvert .er-mn .er-em-bouton:hover { color: var(--wp--preset--color--contrast); }
 .er-mn-outils {
