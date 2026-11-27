@@ -10,12 +10,18 @@
  * - Les soldes (art. 5) : seulement un livre édité depuis plus de deux ans, et dont le dernier approvisionnement
  *   remonte à plus de six mois. Nous ne connaissons que l'année d'édition : « plus de deux ans » n'est sûr qu'à trois
  *   ans d'écart (un livre de 2024 attend 2027). Le dernier approvisionnement se note tout seul quand on augmente le
- *   stock d'un livre dans sa fiche (le champ « Dernier approvisionnement », dans l'onglet Inventaire) ; un livre dont
- *   la date n'est pas notée garde ses soldes, et le relevé `wp er prix` le signale.
+ *   stock d'un livre dans sa fiche (le champ « Dernier approvisionnement », dans l'onglet Inventaire). Un livre dont
+ *   la date n'est pas notée se vend au prix de l'éditeur (audit du 27 nov. 2026 : rien ne prouve alors les six mois,
+ *   et l'import du catalogue ne la note pas) ; le relevé `wp er prix` dit lesquels dater. Pour un livre importé, les
+ *   deux ans courent depuis l'importation : à vérifier avant de dater une remise.
  * - Les titres de la maison (loi Darcos du 30 décembre 2021) : un éditeur qui vend lui-même au détail ne solde pas ses
- *   propres titres, à aucun âge. Les livres d'YMCA-Press n'ont jamais de remise.
- * - Les livres d'occasion (la mention « Occasion ») ont un prix libre. Les billets des rencontres ne sont pas des
+ *   propres titres, à aucun âge. Les livres d'YMCA-Press (ИМКА-Пресс) n'ont jamais de remise.
+ * - Les livres d'occasion (la mention « Occasion ») ont un prix libre, et la mention les suit jusque dans le panier et
+ *   la commande (décret du 22 juin 2023). Les billets des rencontres, les calendriers et les objets ne sont pas des
  *   livres.
+ * - Les codes promo : WooCommerce applique un code « remise sur le panier » à toutes les lignes, sans demander au
+ *   filtre des produits ; les lignes au prix unique sont donc retirées avant le calcul, et un code qui ne toucherait
+ *   que des livres neufs au prix unique est refusé.
  * - Les frais de port (arrêté du 4 avril 2023) : une commande expédiée qui contient des livres neufs paie au moins
  *   3 € TTC de livraison quand ses livres neufs font moins de 35 € TTC, et au moins 0,01 € au-delà. Le retrait à la
  *   librairie peut rester gratuit.
@@ -68,10 +74,13 @@ function er_prix_regle( $livre, $aujourdhui ) {
 	if ( (int) substr( $aujourdhui, 0, 4 ) - $livre['annee'] < 3 ) {
 		return array( false, 'édité il y a moins de deux ans' );
 	}
-	if ( '' !== $livre['appro'] && $livre['appro'] > gmdate( 'Y-m-d', strtotime( $aujourdhui . ' -6 months' ) ) ) {
+	if ( '' === $livre['appro'] ) {
+		return array( false, 'dernier approvisionnement non noté' );
+	}
+	if ( $livre['appro'] > gmdate( 'Y-m-d', strtotime( $aujourdhui . ' -6 months' ) ) ) {
 		return array( false, 'réapprovisionné il y a moins de six mois' );
 	}
-	return array( true, '' !== $livre['appro'] ? 'soldes' : 'soldes, dernier approvisionnement non noté' );
+	return array( true, 'soldes' );
 }
 
 /**
@@ -90,7 +99,7 @@ function er_prix_port_minimum( $neufs ) {
  * Les éditeurs dont les titres sont ceux de la maison, en clés (er_editeur_cle).
  */
 function er_prix_maisons() {
-	return array_map( 'er_editeur_cle', (array) apply_filters( 'er_prix_maisons', array( 'YMCA-Press' ) ) );
+	return array_map( 'er_editeur_cle', (array) apply_filters( 'er_prix_maisons', array( 'YMCA-Press', 'ИМКА-Пресс', 'IMKA-Press' ) ) );
 }
 
 /**
@@ -112,8 +121,10 @@ function er_prix_livre( $produit ) {
 			$editeur[] = er_editeur_cle( $e );
 		}
 	}
+	// Un calendrier, un objet (oeuvres-collectives.php) : ni le prix unique, ni le seuil des 35 € de livres neufs.
+	$hors = function_exists( 'er_nature_hors_livre' ) && er_nature_hors_livre( (string) $produit->get_meta( 'er_nature' ) );
 	return array(
-		'livre'  => ! $produit->get_meta( 'er_evenement' ),
+		'livre'  => ! $produit->get_meta( 'er_evenement' ) && ! $hors,
 		'neuf'   => ! has_term( 'occasion', 'product_tag', $id ),
 		'maison' => (bool) array_intersect( array_filter( $editeur ), er_prix_maisons() ),
 		'annee'  => $annee,
@@ -179,7 +190,7 @@ add_filter(
 	2
 );
 
-// Un code promo ne touche pas un livre neuf au prix unique.
+// Un code promo ne touche pas un livre neuf au prix unique : les codes « produit » le demandent à ce filtre…
 add_filter(
 	'woocommerce_coupon_is_valid_for_product',
 	function ( $valide, $produit ) {
@@ -187,6 +198,43 @@ add_filter(
 	},
 	20,
 	2
+);
+
+/**
+ * Une ligne de remise (WC_Discounts) qui peut recevoir un code promo : tout ce qui n'est pas un livre neuf au prix
+ * unique.
+ *
+ * @param object $ligne La ligne (son produit dans « product »).
+ */
+function er_prix_ligne_remisable( $ligne ) {
+	return ! ( isset( $ligne->product ) && $ligne->product instanceof WC_Product ) || er_prix_regle_du_produit( $ligne->product )[0];
+}
+
+// … mais un code « remise sur le panier » touche toutes les lignes sans le demander (WC_Discounts::
+// get_items_to_apply_coupon) : on retire les livres neufs au prix unique avant le calcul (WooCommerce 8.8 et plus).
+add_filter(
+	'woocommerce_coupon_get_items_to_apply',
+	function ( $lignes ) {
+		return array_values( array_filter( (array) $lignes, 'er_prix_ligne_remisable' ) );
+	},
+	20
+);
+
+// Et un code qui ne trouverait rien à remiser est refusé, avec la raison, plutôt qu'appliqué pour zéro.
+add_filter(
+	'woocommerce_coupon_is_valid',
+	function ( $valide, $code, $remises = null ) {
+		if ( ! $valide || ! is_object( $remises ) || ! method_exists( $remises, 'get_items' ) ) {
+			return $valide;
+		}
+		$lignes = (array) $remises->get_items();
+		if ( $lignes && ! array_filter( $lignes, 'er_prix_ligne_remisable' ) ) {
+			throw new Exception( esc_html__( 'Ce code ne s’applique pas aux livres neufs, vendus au prix fixé par l’éditeur (prix unique du livre).', 'er-librairie' ) );
+		}
+		return $valide;
+	},
+	20,
+	3
 );
 
 /* Les frais de port ------------------------------------------------------------------------------------------ */
@@ -283,6 +331,45 @@ add_action(
 	}
 );
 
+/* La mention « occasion », jusqu'au bout ---------------------------------------------------------------------- */
+
+/**
+ * Un livre d'occasion : la mention « Occasion » sur le produit (ou sur son parent).
+ *
+ * @param int $id Le produit.
+ */
+function er_prix_occasion( $id ) {
+	return $id > 0 && has_term( 'occasion', 'product_tag', $id );
+}
+
+// Le panier (classique et en blocs, par l'API du magasin) : « État : occasion » sous le titre.
+add_filter(
+	'woocommerce_get_item_data',
+	function ( $donnees, $ligne ) {
+		if ( er_prix_occasion( (int) ( $ligne['product_id'] ?? 0 ) ) ) {
+			$donnees[] = array(
+				'key'   => __( 'État', 'er-librairie' ),
+				'value' => __( 'occasion', 'er-librairie' ),
+			);
+		}
+		return $donnees;
+	},
+	10,
+	2
+);
+
+// La commande, et donc ses courriels et sa facture.
+add_action(
+	'woocommerce_checkout_create_order_line_item',
+	function ( $ligne, $cle, $valeurs ) {
+		if ( er_prix_occasion( (int) ( $valeurs['product_id'] ?? 0 ) ) ) {
+			$ligne->add_meta_data( __( 'État', 'er-librairie' ), __( 'occasion', 'er-librairie' ), true );
+		}
+	},
+	10,
+	3
+);
+
 /* Les commandes ---------------------------------------------------------------------------------------------- */
 
 /**
@@ -330,9 +417,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				}
 				list( $permis, $raison ) = er_prix_regle_du_produit( $p );
 				$raisons[ $raison ]      = ( $raisons[ $raison ] ?? 0 ) + 1;
+				$sans_ap += 'dernier approvisionnement non noté' === $raison ? 1 : 0;
 				if ( $permis ) {
-					$soldes  += in_array( $raison, array( 'soldes', 'soldes, dernier approvisionnement non noté' ), true ) ? 1 : 0;
-					$sans_ap += 'soldes, dernier approvisionnement non noté' === $raison ? 1 : 0;
+					$soldes += 'soldes' === $raison ? 1 : 0;
 				} else {
 					$ignorees[] = sprintf( '  %s · %s · %s € au lieu de %s €', html_entity_decode( $p->get_name(), ENT_QUOTES, 'UTF-8' ), $raison, $p->get_sale_price( 'edit' ), $p->get_regular_price( 'edit' ) );
 				}
@@ -342,7 +429,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			foreach ( $raisons as $raison => $n ) {
 				WP_CLI::log( '  ' . er_prix_colonne( $raison ) . $n );
 			}
-			WP_CLI::log( sprintf( 'Soldes permises : %d, dont %d sans date de dernier approvisionnement (à noter dans la fiche, onglet Inventaire).', $soldes, $sans_ap ) );
+			WP_CLI::log( sprintf( 'Soldes permises : %d. Remises ignorées faute de date de dernier approvisionnement : %d (à noter dans la fiche, onglet Inventaire, si le livre est en librairie depuis plus de six mois).', $soldes, $sans_ap ) );
 			WP_CLI::log( sprintf( 'Remises ignorées (le livre se vend au prix de l’éditeur) : %d', count( $ignorees ) ) );
 			foreach ( isset( $args[0] ) && 'tout' === $args[0] ? $ignorees : array_slice( $ignorees, 0, 40 ) as $ligne ) {
 				WP_CLI::log( $ligne );

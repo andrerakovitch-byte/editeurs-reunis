@@ -15,7 +15,25 @@ function test_prix_unique_pas_de_remise_sur_un_livre_neuf_recent() {
 function test_soldes_apres_deux_ans_et_six_mois_sans_approvisionnement() {
 	egal( array( true, 'soldes' ), er_prix_regle( array( 'annee' => 2019, 'appro' => '2026-03-01' ), '2026-11-24' ) );
 	egal( array( false, 'réapprovisionné il y a moins de six mois' ), er_prix_regle( array( 'annee' => 2019, 'appro' => '2026-06-01' ), '2026-11-24' ) );
-	egal( array( true, 'soldes, dernier approvisionnement non noté' ), er_prix_regle( array( 'annee' => 2019 ), '2026-11-24' ) );
+	egal( array( false, 'dernier approvisionnement non noté' ), er_prix_regle( array( 'annee' => 2019 ), '2026-11-24' ), 'sans date, rien ne prouve les six mois : le prix de l’éditeur' );
+}
+
+function test_un_calendrier_ou_un_objet_n_est_pas_un_livre() {
+	$GLOBALS['er_test_termes_de'][205] = array();
+	$calendrier                        = new WC_Product( 205, array( 'er_nature' => 'calendrier' ), array( 'regular' => '10', 'sale' => '7' ) );
+	egal( false, er_prix_livre( $calendrier )['livre'] );
+	egal( false, er_prix_livre_neuf( $calendrier ), 'il ne compte pas dans les 35 € de livres neufs' );
+	egal( '7', $calendrier->get_price(), 'son prix est libre' );
+	$livre  = new WC_Product( 206 );
+	$tarifs = er_prix_frais_de_port( array( new WC_Shipping_Rate( 'free_shipping', 0 ) ), er_test_colis( array( array( $livre, 30 ), array( $calendrier, 10 ) ) ) );
+	egal( '3', (string) $tarifs[0]->get_cost(), '30 € de livres neufs et un calendrier : 3 € de port' );
+}
+
+function test_la_maison_en_cyrillique() {
+	$GLOBALS['er_test_termes_de'][207] = array( 'er_editeur' => array( 'ИМКА-Пресс' ) );
+	egal( true, er_prix_livre( new WC_Product( 207, array( 'er_annee' => 'Париж, 1975' ) ) )['maison'] );
+	$GLOBALS['er_test_termes_de'][208] = array();
+	egal( true, er_prix_livre( new WC_Product( 208, array( 'er_editeur' => 'IMKA-Press' ) ) )['maison'] );
 }
 
 function test_jamais_de_soldes_sur_les_titres_de_la_maison() {
@@ -51,10 +69,40 @@ function test_le_prix_paye_est_celui_de_l_editeur_quand_la_remise_est_ignoree() 
 	egal( '', $recent->get_sale_price() );
 	egal( '18', $recent->get_sale_price( 'edit' ), 'la fiche garde la remise saisie' );
 	$GLOBALS['er_test_termes_de'][204] = array();
-	$solde                             = new WC_Product( 204, array( 'er_annee' => '2015' ), array( 'regular' => '22', 'sale' => '11' ) );
+	$solde                             = new WC_Product( 204, array( 'er_annee' => '2015', 'er_dernier_appro' => '2025-01-15' ), array( 'regular' => '22', 'sale' => '11' ) );
 	egal( '11', $solde->get_price() );
+	$GLOBALS['er_test_termes_de'][211] = array();
+	egal( '22', ( new WC_Product( 211, array( 'er_annee' => '2015' ), array( 'regular' => '22', 'sale' => '11' ) ) )->get_price(), 'sans date de dernier approvisionnement, le prix de l’éditeur' );
 	vrai( ! apply_filters( 'woocommerce_coupon_is_valid_for_product', true, $recent ), 'pas de code promo sur un livre neuf au prix unique' );
 	vrai( apply_filters( 'woocommerce_coupon_is_valid_for_product', true, $solde ), 'un code promo sur un livre soldé' );
+	unset( $GLOBALS['er_test_aujourdhui'] );
+}
+
+function test_un_code_panier_ne_remise_pas_un_livre_neuf() {
+	$GLOBALS['er_test_aujourdhui']     = '2026-11-27';
+	$GLOBALS['er_test_termes_de'][209] = array();
+	$GLOBALS['er_test_termes_de'][210] = array( 'product_tag' => array( 'occasion' ) );
+	$neuf                              = (object) array( 'product' => new WC_Product( 209, array( 'er_annee' => '2025' ), array( 'regular' => '22' ) ) );
+	$occasion                          = (object) array( 'product' => new WC_Product( 210, array(), array( 'regular' => '12' ) ) );
+	// WooCommerce garde toutes les lignes pour un code « remise sur le panier » ; le filtre retire le livre neuf.
+	$lignes = apply_filters( 'woocommerce_coupon_get_items_to_apply', array( $neuf, $occasion ), null, null );
+	egal( array( $occasion ), $lignes, 'seule l’occasion reçoit la remise' );
+	$remises = new class( array( $neuf ) ) {
+		private $l;
+		public function __construct( $l ) {
+			$this->l = $l;
+		}
+		public function get_items() {
+			return $this->l;
+		}
+	};
+	$refus = '';
+	try {
+		apply_filters( 'woocommerce_coupon_is_valid', true, null, $remises );
+	} catch ( Exception $e ) {
+		$refus = $e->getMessage();
+	}
+	vrai( false !== strpos( $refus, 'prix unique' ), 'un code sur un panier de livres neufs seulement est refusé, avec la raison' );
 	unset( $GLOBALS['er_test_aujourdhui'] );
 }
 

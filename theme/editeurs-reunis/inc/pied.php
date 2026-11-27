@@ -78,6 +78,7 @@ function er_pied_html() {
 	} else {
 		$formulaire = '<form class="er-pd-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">'
 			. '<input type="hidden" name="action" value="er_lettre">'
+			. '<input type="hidden" name="langue" value="' . esc_attr( function_exists( 'er_langue' ) ? er_langue() : substr( determine_locale(), 0, 2 ) ) . '">'
 			. wp_referer_field( false )
 			// Un champ que seuls les robots remplissent.
 			. '<p class="er-pd-piege" aria-hidden="true"><label>' . esc_html__( 'Ne pas remplir', 'editeurs-reunis' ) . ' <input type="text" name="site" tabindex="-1" autocomplete="off"></label></p>'
@@ -86,6 +87,9 @@ function er_pied_html() {
 			. '<button class="er-pd-bouton" type="submit"><span class="screen-reader-text">' . esc_html__( 'S’inscrire', 'editeurs-reunis' ) . '</span>'
 			. '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'
 			. '</form>'
+			// Ce qu'on fait de l'adresse, au moment où on la donne (RGPD, art. 13).
+			. '<p class="er-pd-mention">' . esc_html__( 'Votre adresse ne sert qu’à vous envoyer la lettre ; chaque lettre permet de se désinscrire.', 'editeurs-reunis' )
+			. ' <a href="' . esc_url( er_lien( 'politique-de-confidentialite/' ) ) . '">' . esc_html__( 'Vos données', 'editeurs-reunis' ) . '</a></p>'
 			. ( 'erreur' === $etat ? '<p id="er-pd-erreur" class="er-pd-reponse est-erreur" role="alert">' . esc_html__( 'Cette adresse ne semble pas valide : pouvez-vous la vérifier ?', 'editeurs-reunis' ) . '</p>' : '' );
 	}
 

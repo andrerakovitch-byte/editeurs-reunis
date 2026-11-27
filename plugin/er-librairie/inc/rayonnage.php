@@ -179,9 +179,7 @@ function er_carte_bouton( $produit, $texte = '' ) {
 			/* translators: %s: le titre du livre. */
 			. esc_attr( sprintf( __( 'Ajouter au panier : %s', 'er-librairie' ), $titre ) ) . '">' . esc_html( $texte ? $texte : __( 'Ajouter', 'er-librairie' ) ) . '</a>';
 	}
-	if ( ! $produit->is_in_stock() ) {
-		return '<a class="er-carte__prevenir" href="' . esc_url( $produit->get_permalink() ) . '">' . esc_html__( 'Me prévenir', 'er-librairie' ) . '</a>';
-	}
+	// « Me prévenir » promettait une alerte que le site n'envoie pas (audit du 27 nov. 2026) : la fiche, simplement.
 	return '<a class="er-carte__prevenir" href="' . esc_url( $produit->get_permalink() ) . '">' . esc_html__( 'Voir le livre', 'er-librairie' ) . '</a>';
 }
 
@@ -197,7 +195,8 @@ function er_carte_pastilles( $produit ) {
 		$html .= '<span class="er-pastille er-pastille--' . esc_attr( $t->slug ) . '">' . esc_html( html_entity_decode( $t->name, ENT_QUOTES, 'UTF-8' ) ) . '</span>';
 	}
 	if ( ! $produit->is_in_stock() ) {
-		$html .= '<span class="er-pastille er-pastille--epuise">' . esc_html__( 'Épuisé', 'er-librairie' ) . '</span>';
+		// « Épuisé » seul dirait que l'éditeur ne le réimprime plus : le même mot que partout ailleurs sur le site.
+		$html .= '<span class="er-pastille er-pastille--epuise">' . esc_html__( 'Épuisé pour l’instant', 'er-librairie' ) . '</span>';
 	}
 	return $html;
 }

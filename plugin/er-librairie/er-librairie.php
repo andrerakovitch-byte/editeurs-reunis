@@ -248,6 +248,17 @@ add_action(
 	5
 );
 
+// Un livre qui manque : « épuisé pour l'instant », le mot du reste du site (la carte, les menus, la recherche), plutôt
+// que « Rupture de stock » sur la fiche (audit du 27 nov. 2026).
+add_filter(
+	'woocommerce_get_availability_text',
+	function ( $texte, $produit ) {
+		return $produit instanceof WC_Product && ! $produit->is_in_stock() ? __( 'Épuisé pour l’instant', 'er-librairie' ) : $texte;
+	},
+	20,
+	2
+);
+
 /**
  * Traductions de secours. Sur l'hébergement définitif, installer le français dans Réglages → Général suffit, et ces
  * lignes ne servent plus : elles ne s'appliquent qu'à une phrase restée en anglais, et seulement sur les pages en
