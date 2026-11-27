@@ -224,10 +224,13 @@
 		}
 		var barre = document.querySelector( '.er-em-barre' );
 		var bas = barre ? Math.round( barre.getBoundingClientRect().bottom ) : 0;
-		plan.classList.toggle( 'avec-barre', bas <= 0 );
+		var menu = document.querySelector( '.er-em-menu' );
+		// Le plan n'a sa propre barre (et sa croix) que si le bouton du menu est sorti de l'écran avec la barre du nom.
+		// Au téléphone, le bouton flotte et reste en vue (entete.js) : sinon, deux croix l'une sur l'autre (André, 27 nov.).
+		var boutonEnVue = menu && menu.getBoundingClientRect().bottom > 0;
+		plan.classList.toggle( 'avec-barre', bas <= 0 && ! boutonEnVue );
 		racine.style.setProperty( '--er-plan-haut', Math.max( 0, bas ) + 'px' );
 		// La hauteur du milieu du bouton (≡, devenu ×) : la première maison du plan s'aligne dessus.
-		var menu = document.querySelector( '.er-em-menu' );
 		if ( menu ) {
 			var r = menu.getBoundingClientRect();
 			racine.style.setProperty( '--er-plan-croix', Math.max( 0, Math.round( r.top + r.height / 2 ) ) + 'px' );
