@@ -359,7 +359,9 @@ html.er-rd-ouverte .er-recherche-champ { display: none; }
 	.er-recherche-pistes { row-gap: 28px; }
 	.er-recherche-lignes, .er-r-lignes { gap: 10px; font-size: 1.0625rem; }
 	/* En tapant : le premier groupe (l'auteur), puis les livres, deux par rang, puis le reste et « Tous les résultats ». */
-	.er-r-grille { display: flex; flex-direction: column; row-gap: 0; }
+	/* Une grille de deux colonnes, de marge à marge : les colonnes s'étirent (la grille du triptyque les cale en haut,
+	   align-items: start, et elles ne prenaient que la largeur de leurs titres ; André, 27 nov.). */
+	.er-r-grille { display: flex; flex-direction: column; align-items: stretch; row-gap: 0; }
 	.er-r-grille > .er-r-colonne:first-child { display: contents; }
 	.er-r-grille > .er-r-colonne:first-child > * { order: 3; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
 	.er-r-grille > .er-r-colonne:first-child > :first-child { order: 0; }

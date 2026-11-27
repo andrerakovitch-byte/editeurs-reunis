@@ -189,7 +189,10 @@
 	// Un nom du menu cliqué pendant la recherche ouvre son menu tout de suite : la recherche se retire (elle le
 	// couvrirait sinon) ; menus.js ouvre le menu (André, 27 nov.).
 	document.addEventListener( 'click', function ( e ) {
-		if ( ouvert && e.target.closest( '[data-er-em]' ) ) {
+		var nom = ouvert ? e.target.closest( '[data-er-em]' ) : null;
+		// Le menu ouvert pose aussi data-er-em sur <html> (menus.js) : ce n'est pas un nom (sinon, au téléphone, tout
+		// clic dans la recherche ouverte depuis le menu la refermait).
+		if ( nom && nom !== document.documentElement && ! panneau.contains( e.target ) ) {
 			fermer( true );
 		}
 	}, true );
