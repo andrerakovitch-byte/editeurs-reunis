@@ -129,8 +129,10 @@
 	line-height: 1.35;
 	text-align: left;
 }
-.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; transition: transform 200ms ease; }
-.er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+/* La flèche en bloc en ligne : le soulignement du survol ne la prend pas. */
+.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; display: inline-block; text-decoration: none; transition: transform 200ms ease; }
+/* Au survol, le filet reste gris (la pilule cernée le passait à l'encre). */
+.er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--filet); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
 /* Un livre : son cadre beige, le titre et le prix dessous (le dessin de la recherche), sous les lignes. */
 .er-pt-marge > .er-pt-lien-livre { margin-top: 32px !important; }
