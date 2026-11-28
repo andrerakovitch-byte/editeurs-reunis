@@ -729,6 +729,10 @@ function er_api_chercher( $requete ) {
 		}
 	}
 	$comptes['tout'] = array_sum( $comptes );
+	// Rien trouvé : la recherche va au relevé des recherches sans résultat (recherches-vides.php).
+	if ( 0 === $comptes['tout'] && function_exists( 'er_recherches_vides_noter' ) ) {
+		er_recherches_vides_noter( $texte, 'panneau' );
+	}
 
 	// Le nom reconnu : l'auteur trouvé le premier, si ce qu'on a tapé est l'un de ses noms, nom de famille compris
 	// (« boris » seul ne désigne pas Boris Akounine plutôt que Boris Pasternak ; « akounine » ou « pasternak » oui).

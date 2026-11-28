@@ -13,6 +13,7 @@
 
 define( 'ABSPATH', __DIR__ . '/' );
 define( 'ER_RACINE', dirname( __DIR__, 2 ) );
+defined( 'YEAR_IN_SECONDS' ) || define( 'YEAR_IN_SECONDS', 365 * 24 * 3600 );
 
 /* Les crochets ------------------------------------------------------------------------------------------------- */
 
@@ -396,6 +397,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/oeuvres-collectives.php',
 	'plugin/er-librairie/inc/prix-du-livre.php',
 	'plugin/er-librairie/inc/vente-a-distance.php',
+	'plugin/er-librairie/inc/recherches-vides.php',
 	'plugin/er-librairie/inc/bascule.php',
 	'plugin/er-librairie/inc/donnees-structurees.php',
 	'plugin/er-librairie/inc/personnes.php',

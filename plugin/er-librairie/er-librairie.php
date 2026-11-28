@@ -19,6 +19,7 @@ add_action(
 );
 
 require __DIR__ . '/inc/recherche.php';
+require __DIR__ . '/inc/recherches-vides.php';
 require __DIR__ . '/inc/algolia.php';
 require __DIR__ . '/inc/import.php';
 require __DIR__ . '/inc/fiche.php';
