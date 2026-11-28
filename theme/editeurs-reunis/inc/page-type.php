@@ -84,7 +84,7 @@ function er_pt_rendez_vous() {
 		. '<h3 class="er-pt-rdv-titre"><a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $titre ) . '</a></h3>'
 		. '<p class="er-pt-rdv-action"><a class="er-pt-pilule" href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $bouton ) . '</a></p></div>'
 		. ( $image ? '<figure class="er-pt-rdv-image">' . $image . '</figure>' : '' )
-		// Une photo d'ambiance (la Comédie-Française), pour l'essai du rendez-vous (« ?rdv=c »).
+		// La photo d'ambiance (la Comédie-Française), à la place de l'affiche (32-page-type.css).
 		. '<figure class="er-pt-rdv-ambiance" aria-hidden="true"><img src="' . esc_url( content_url( 'uploads/2026/11/er-cf-bleu-nuit.jpg' ) ) . '" alt="" loading="lazy"></figure>'
 		. '</div>';
 }
@@ -411,20 +411,21 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 	<?php
 }
 
-// L'essai du rendez-vous (28 nov. 2026, à l'essai) : « ?rdv=b » sur la page type (32-page-type.css, html[data-er-rdv]).
+// L'essai des dessins du rendez-vous avec sa photo d'ambiance (28 nov. 2026, à l'essai) : « ?rdvc=b » sur la page type
+// (32-page-type.css, html[data-er-rdvc]).
 add_action(
 	'wp_head',
 	function () {
 		if ( is_page( 'page-type' ) ) {
 			er_pt_essai(
-				'rdv',
+				'rdvc',
 				'Essai du rendez-vous',
 				array(
-					'a' => 'Actuel',
-					'b' => 'Sans image',
-					'c' => 'Photo d’ambiance',
-					'd' => 'Sur le blanc',
-					'e' => 'Pleine photo',
+					'a' => 'Photo à droite',
+					'b' => 'Photo à gauche',
+					'c' => 'Bord à bord',
+					'd' => 'Sur le triptyque',
+					'e' => 'Grand titre, petite photo',
 				)
 			);
 		}
