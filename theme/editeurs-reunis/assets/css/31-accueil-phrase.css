@@ -8,9 +8,9 @@
 	z-index: 2; /* la photo qui suit la souris passe sur le triptyque */
 	display: flex;
 	align-items: flex-end;
-	/* 446 px jusqu'à 1 440 de large ; au-delà, le blanc grandit dans la même proportion (31 % de la largeur), sans
-	   dépasser 55 % de la hauteur de la fenêtre : la composition de 1 440 px, à toutes les tailles (28 nov.). */
-	height: max(446px, min(31vw, 55svh));
+	/* 446 px à toutes les largeurs, comme les têtes de page : la taille du menu qui s'ouvre, qui la couvre tout juste
+	   (André, 28 nov. ; elle grandissait au-delà de 1 440 px et la phrase dépassait sous le menu ouvert). */
+	height: 446px;
 	box-sizing: border-box;
 	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 	background: var(--wp--preset--color--base);
@@ -107,7 +107,6 @@
 .er-ap-triptyque .er-tpq { height: max(720px, 45vw); }
 
 @media (max-width: 1100px) {
-	.er-ap { height: 340px; }
 	.er-ap-triptyque .er-tpq { height: 560px; }
 }
 @media (max-width: 781px) {
