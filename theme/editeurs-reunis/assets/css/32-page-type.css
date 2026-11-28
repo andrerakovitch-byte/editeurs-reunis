@@ -68,6 +68,35 @@
 .er-pt-triptyque > .er-pt-legende { grid-column: 1 / -1; }
 .er-pt-diptyque { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
 .er-pt-diptyque .wp-block-image img { aspect-ratio: 4 / 5; }
+/* L'essai des dessins du diptyque (28 nov. 2026, à l'essai ; « ?dip=b ») : a, l'actuel ci-dessus, deux portraits à
+   mi-largeur (785 px de haut à 1440). La hauteur d'une photo du triptyque, pour les dessins c et d. */
+.er-pt-diptyque { --er-dip-h: calc((100vw - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right) - 24px) / 3 * 1.25); }
+/* b, en paysage : les deux photos à mi-largeur, en 3/2. */
+html[data-er-dip="b"] .er-pt-diptyque { column-gap: 12px; }
+html[data-er-dip="b"] .er-pt-diptyque .wp-block-image img { aspect-ratio: 3 / 2; }
+/* c, une grande et une petite : la première sur les deux premières colonnes du triptyque, la seconde sur la troisième,
+   à la même hauteur qu'une photo du triptyque. */
+html[data-er-dip="c"] .er-pt-diptyque { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; }
+html[data-er-dip="c"] .er-pt-diptyque > .wp-block-image:first-child { grid-column: 1 / span 2; }
+html[data-er-dip="c"] .er-pt-diptyque .wp-block-image img { height: var(--er-dip-h); aspect-ratio: auto; }
+/* d, les légendes à part : les deux photos sur les deux premières colonnes, leurs légendes sur la troisième, en bas,
+   à 40 px comme les liens de la marge du texte. */
+html[data-er-dip="d"] .er-pt-diptyque { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr auto auto; column-gap: 12px; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image { display: contents; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image > img { grid-row: 1 / -1; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image:first-child > img { grid-column: 1; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image:nth-child(2) > img { grid-column: 2; }
+html[data-er-dip="d"] .er-pt-diptyque .wp-element-caption { grid-column: 3; max-width: 18em; margin: 0 0 0 40px !important; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image:first-child .wp-element-caption { grid-row: 2; }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image:nth-child(2) .wp-element-caption { grid-row: 3; margin-top: 12px !important; }
+html[data-er-dip="d"] .er-pt-diptyque .wp-element-caption::before { content: "À gauche · "; font-weight: 500; color: var(--wp--preset--color--contrast); }
+html[data-er-dip="d"] .er-pt-diptyque > .wp-block-image:nth-child(2) .wp-element-caption::before { content: "À droite · "; }
+/* e, plein cadre : les deux photos jusqu'aux bords de l'écran, en 3/2 ; la légende de gauche reprend la marge. */
+html[data-er-dip="e"] .er-pt-diptyque { padding-inline: 0; column-gap: 12px; }
+html[data-er-dip="e"] .er-pt-diptyque .wp-block-image img { aspect-ratio: 3 / 2; }
+html[data-er-dip="e"] .er-pt-diptyque > .wp-block-image:first-child .wp-element-caption { padding-left: var(--wp--style--root--padding-left); }
+html[data-er-dip="e"] .er-pt-diptyque > .wp-block-image:nth-child(2) .wp-element-caption { padding-right: var(--wp--style--root--padding-right); }
+
 .er-pt-frise { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 12px; }
 .er-pt-frise .wp-block-image img { aspect-ratio: 3 / 5; }
 
@@ -186,35 +215,13 @@
 }
 .er-pt-pilule:hover { background: var(--wp--preset--color--base); }
 .er-pt-pilule:focus-visible { outline: 2px solid var(--wp--preset--color--base); outline-offset: 3px; }
-.er-pt-rdv-image { grid-column: 8 / -1; margin: 0; }
-.er-pt-rdv-image img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; object-position: right center; }
-
 /* Le rendez-vous et sa photo d'ambiance (C, retenu le 28 nov. 2026) : une photo de la Comédie-Française à la place
-   de l'affiche de la rencontre, pour que la page garde une seule famille d'images. */
-.er-pt-rdv-image { display: none; }
-.er-pt-rdv-ambiance { display: block; grid-column: 8 / -1; margin: 0; }
-.er-pt-rdv-ambiance img { display: block; width: 100%; aspect-ratio: 4 / 5; max-height: 560px; object-fit: cover; }
-
-/* L'essai des dessins de C (28 nov. 2026, à l'essai ; « ?rdvc=b ») : 1, l'actuel ci-dessus. */
-/* 2, la photo à gauche, le texte à droite. */
-html[data-er-rdvc="b"] .er-pt-rdv-ambiance { grid-column: 1 / span 5; grid-row: 1; }
-html[data-er-rdvc="b"] .er-pt-rdv-texte { grid-column: 7 / -1; grid-row: 1; }
-/* 3, bord à bord : la photo jusqu'au bord droit de l'écran, sur toute la hauteur de l'aplat. */
-html[data-er-rdvc="c"] .er-pt-rdv { padding-block: 0; }
-html[data-er-rdvc="c"] .er-pt-rdv-corps { align-items: stretch; margin-right: calc(-1 * var(--wp--style--root--padding-right)); }
-html[data-er-rdvc="c"] .er-pt-rdv-texte { align-self: center; padding-block: 96px; }
-html[data-er-rdvc="c"] .er-pt-rdv-ambiance { position: relative; grid-column: 7 / -1; min-height: 560px; }
-html[data-er-rdvc="c"] .er-pt-rdv-ambiance img { position: absolute; inset: 0; height: 100%; max-height: none; aspect-ratio: auto; }
-/* 4, sur la grille du triptyque : le texte calé en bas sur les deux premières colonnes, la photo sur la troisième. */
-html[data-er-rdvc="d"] .er-pt-rdv-corps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; align-items: end; }
-html[data-er-rdvc="d"] .er-pt-rdv-texte { grid-column: 1 / span 2; padding-right: 40px; }
-html[data-er-rdvc="d"] .er-pt-rdv-ambiance { grid-column: 3; }
-html[data-er-rdvc="d"] .er-pt-rdv-ambiance img { max-height: none; }
-/* 5, grand titre, petite photo : le titre en grand sur les deux tiers, une petite photo calée en bas à droite. */
-html[data-er-rdvc="e"] .er-pt-rdv-texte { grid-column: 1 / span 8; }
-html[data-er-rdvc="e"] .er-pt-rdv .er-pt-rdv-titre { font-size: clamp(2.5rem, 4.8vw, 4.25rem); line-height: 1.02; letter-spacing: -0.035em; }
-html[data-er-rdvc="e"] .er-pt-rdv-ambiance { grid-column: 10 / -1; align-self: end; }
-html[data-er-rdvc="e"] .er-pt-rdv-ambiance img { aspect-ratio: 3 / 4; max-height: 360px; }
+   de l'affiche de la rencontre, pour que la page garde une seule famille d'images. Sur la grille du triptyque
+   (D, retenu le 28 nov. 2026) : le texte calé en bas sur les deux premières colonnes, la photo sur la troisième. */
+.er-pt-rdv .er-pt-rdv-corps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; align-items: end; }
+.er-pt-rdv .er-pt-rdv-texte { grid-column: 1 / span 2; padding-right: 40px; }
+.er-pt-rdv-ambiance { display: block; grid-column: 3; margin: 0; }
+.er-pt-rdv-ambiance img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 
 /* Les livres et le journal : le titre du module, son lien à droite, puis la rangée ou les lignes. */
 .er-pt-livres,
@@ -261,7 +268,6 @@ html[data-er-rdvc="e"] .er-pt-rdv-ambiance img { aspect-ratio: 3 / 4; max-height
 	.er-pt-texte > .er-pt-marge { grid-column: 2 / span 2; grid-row: auto; max-width: 28em; margin: 2.5rem 0 0 !important; }
 	.er-pt-photo-marge > .wp-block-image > img { grid-column: 2 / span 7; }
 	.er-pt-photo-marge > .wp-block-image .wp-element-caption { grid-column: 9 / span 4; }
-	.er-pt-rdv-texte { grid-column: 1 / span 7; }
 	.er-pt-livres-grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	/* Deux colonnes de 290 px seraient trop étroites : l'intertitre au-dessus, le texte sur toute la largeur. */
 	.er-pt-deux-colonnes > .er-pt-intertitre { grid-column: 1 / -1; grid-row: auto; max-width: 16em; }
@@ -310,18 +316,15 @@ html[data-er-rdvc="e"] .er-pt-rdv-ambiance img { aspect-ratio: 3 / 4; max-height
 	.er-pt-frise .wp-block-image { grid-row: 1; scroll-snap-align: start; }
 	.er-pt-triptyque > .er-pt-legende { grid-row: 2; grid-column: 1 / span 3; }
 	.er-pt-diptyque { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+	html[data-er-dip] .er-pt-diptyque { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; padding-inline: var(--wp--style--root--padding-left) var(--wp--style--root--padding-right); }
+	html[data-er-dip] .er-pt-diptyque > .wp-block-image { display: block; grid-column: 1; }
+	html[data-er-dip] .er-pt-diptyque .wp-block-image img { height: auto; aspect-ratio: 3 / 2; }
+	html[data-er-dip] .er-pt-diptyque .wp-element-caption { max-width: none; margin: 10px 0 0 !important; padding: 0 !important; }
+	html[data-er-dip] .er-pt-diptyque .wp-element-caption::before { content: none; }
 	.er-pt-rdv { padding-block: 56px; }
-	.er-pt-rdv-corps { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
-	.er-pt-rdv-texte,
-	.er-pt-rdv-image,
-	html .er-pt-rdv-ambiance,
-	html[data-er-rdvc] .er-pt-rdv-texte { grid-column: 1; grid-row: auto; }
-	html[data-er-rdvc] .er-pt-rdv-corps { grid-template-columns: minmax(0, 1fr); margin-right: 0; }
-	html[data-er-rdvc="c"] .er-pt-rdv { padding-block: 0 56px; }
-	html[data-er-rdvc="c"] .er-pt-rdv-texte { padding: 56px 0 0; }
-	html[data-er-rdvc="c"] .er-pt-rdv-ambiance { min-height: 0; }
-	html[data-er-rdvc="c"] .er-pt-rdv-ambiance img { position: static; aspect-ratio: 4 / 5; }
-	.er-pt-rdv-image img { object-position: left center; max-height: 420px; }
+	.er-pt-rdv .er-pt-rdv-corps { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+	.er-pt-rdv .er-pt-rdv-texte,
+	.er-pt-rdv-ambiance { grid-column: 1; padding-right: 0; }
 	.er-pt-livres-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; margin-top: 32px; }
 	.er-pt-lignes { margin-top: 32px; }
 	.er-pt-ligne { grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; row-gap: 6px; padding: 16px 0; }

@@ -78,13 +78,11 @@ function er_pt_rendez_vous() {
 	}
 	$quand = function_exists( 'er_evt_quand' ) ? er_evt_quand( $id ) : '';
 	$titre = html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
-	$image = get_post_thumbnail_id( $id ) ? wp_get_attachment_image( get_post_thumbnail_id( $id ), 'large', false, array( 'loading' => 'lazy', 'sizes' => '(max-width: 781px) 100vw, 40vw' ) ) : '';
 	return '<div class="er-pt-rdv-corps"><div class="er-pt-rdv-texte">'
 		. ( $quand ? '<p class="er-pt-rdv-quand">' . esc_html( function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) : $quand ) . '</p>' : '' )
 		. '<h3 class="er-pt-rdv-titre"><a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $titre ) . '</a></h3>'
 		. '<p class="er-pt-rdv-action"><a class="er-pt-pilule" href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $bouton ) . '</a></p></div>'
-		. ( $image ? '<figure class="er-pt-rdv-image">' . $image . '</figure>' : '' )
-		// La photo d'ambiance (la Comédie-Française), à la place de l'affiche (32-page-type.css).
+		// La photo d'ambiance (la Comédie-Française), à la place de l'affiche de la rencontre (32-page-type.css).
 		. '<figure class="er-pt-rdv-ambiance" aria-hidden="true"><img src="' . esc_url( content_url( 'uploads/2026/11/er-cf-bleu-nuit.jpg' ) ) . '" alt="" loading="lazy"></figure>'
 		. '</div>';
 }
@@ -411,21 +409,21 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 	<?php
 }
 
-// L'essai des dessins du rendez-vous avec sa photo d'ambiance (28 nov. 2026, à l'essai) : « ?rdvc=b » sur la page type
-// (32-page-type.css, html[data-er-rdvc]).
+// L'essai des dessins du diptyque (28 nov. 2026, à l'essai) : « ?dip=b » sur la page type (32-page-type.css,
+// html[data-er-dip]).
 add_action(
 	'wp_head',
 	function () {
 		if ( is_page( 'page-type' ) ) {
 			er_pt_essai(
-				'rdvc',
-				'Essai du rendez-vous',
+				'dip',
+				'Essai du diptyque',
 				array(
-					'a' => 'Photo à droite',
-					'b' => 'Photo à gauche',
-					'c' => 'Bord à bord',
-					'd' => 'Sur le triptyque',
-					'e' => 'Grand titre, petite photo',
+					'a' => 'Actuel',
+					'b' => 'En paysage',
+					'c' => 'Une grande, une petite',
+					'd' => 'Légendes à part',
+					'e' => 'Plein cadre',
 				)
 			);
 		}
