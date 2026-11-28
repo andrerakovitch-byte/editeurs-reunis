@@ -384,10 +384,6 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	}
 	html.er-em-plan-ouvert header.er-haut.est-flottant .er-em-menu { box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
 	.er-bande { top: var(--wp-admin--admin-bar--height, 0px); }
-	/* Le sommaire d'une page de texte, pas au téléphone : le rond du menu le coupait, et on le faisait défiler au doigt
-	   sans voir où il menait (28 nov. 2026). La page se lit en descendant. Les autres bandes (une rubrique, ses
-	   filtres) restent. */
-	.er-bande-sommaire { display: none; }
 	/* La liste s'arrête avant le rond : un retrait ne valait qu'au bout du défilement, et les entrées passaient dessous. */
 	.er-bande.est-accrochee .er-bande-liste { padding-inline-end: var(--wp--style--root--padding-right, 20px); margin-inline-end: 56px; }
 	/* Connecté : la barre de WordPress reste en haut de 601 à 781 px (le rond se met dessous) et part avec la page
@@ -461,9 +457,6 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	border-block: 1px solid var(--wp--preset--color--filet);
 }
 .er-bande.est-accrochee { box-shadow: none; }
-/* Le sommaire d'une page de texte ne s'accroche plus (28 nov. 2026) : il reste en tête de la page et part avec elle. La
-   bande accrochée est gardée pour la librairie (ses rayons) et les rubriques. */
-.er-bande.er-bande-sommaire { position: relative; top: auto; }
 .er-bande-liste { gap: 0 26px; }
 .er-bande-lien { font-size: 0.9375rem; font-weight: 400; color: var(--wp--preset--color--contrast); }
 .er-bande-lien[aria-current], .er-bande-lien.est-courant { font-weight: 600; }
