@@ -4,7 +4,8 @@
  * contenu (.er-apercus) : le dessin de la recherche. Trois dessins, selon html[data-er-survol] (inc/page-type.php) :
  * - a, la couverture qui suit : la couverture seule, qui suit la souris avec un peu de retard ;
  * - b, la carte au-dessus : la carte du livre, posée au-dessus du lien, là où la souris l'a touché ;
- * - c, dans la marge : la carte dans la colonne de gauche du triptyque, à la hauteur du lien.
+ * - c, dans la marge : la carte dans la colonne de gauche du triptyque, à la hauteur du lien (sous l'intertitre
+ *   s'il occupe déjà cette hauteur).
  * Seulement avec une souris ; au doigt, le lien mène au livre, sans aperçu.
  */
 ( function () {
@@ -90,6 +91,17 @@
 				if ( x < gauche ) {
 					x = gauche;
 				}
+				// Ce qui occupe déjà la colonne (l'intertitre d'une section sur deux colonnes) : la carte passe dessous,
+				// à 32 px, au lieu de le couvrir.
+				Array.prototype.slice.call( module.children )
+					.map( function ( enfant ) { return enfant.getBoundingClientRect(); } )
+					.filter( function ( b ) { return b.width && b.height; } )
+					.sort( function ( b1, b2 ) { return b1.top - b2.top; } )
+					.forEach( function ( b ) {
+						if ( b.right > x && b.left < x + largeur && b.bottom > y && b.top < y + hauteur ) {
+							y = b.bottom + 32;
+						}
+					} );
 			} else {
 				// Au-dessus du lien, centrée sur l'endroit où la souris l'a touché, sans sortir de l'écran.
 				x = Math.min( Math.max( 16, e.clientX - largeur / 2 ), document.documentElement.clientWidth - largeur - 16 );
