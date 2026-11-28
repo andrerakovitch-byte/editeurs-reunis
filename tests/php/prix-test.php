@@ -157,3 +157,23 @@ function test_livraison_minimum_ttc_avec_la_tva() {
 	egal( 2.8436, (float) $tarifs[0]->get_cost() );
 	unset( $GLOBALS['er_test_taux_livraison'] );
 }
+
+function test_la_page_promos_ne_montre_que_les_vraies_remises() {
+	$GLOBALS['er_test_termes_de'][221] = array();
+	$GLOBALS['er_test_termes_de'][222] = array( 'product_tag' => array( 'occasion' ) );
+	$produits                          = array(
+		221 => new WC_Product( 221, array( 'er_annee' => '2025' ), array( 'regular' => '20', 'sale' => '15' ) ),
+		222 => new WC_Product( 222, array(), array( 'regular' => '12', 'sale' => '8' ) ),
+	);
+	$de = function ( $id ) use ( $produits ) {
+		return $produits[ $id ] ?? false;
+	};
+	egal( array( 222 ), er_prix_vraies_promos( array( 221, 222, 999 ), $de ), 'le livre neuf récent perd sa remise, l’occasion la garde' );
+	egal( array( 0 ), er_prix_vraies_promos( array( 221, -1 ), $de ), 'rien ne reste : aucun produit, jamais « tous »' );
+
+	$bloc    = (object) array( 'context' => array( 'query' => array( 'isProductCollectionBlock' => true, 'woocommerceOnSale' => true ) ) );
+	$requete = apply_filters( 'query_loop_block_query_vars', array( 'post__in' => array( -1 ) ), $bloc, 1 );
+	egal( array( 0 ), $requete['post__in'], 'le bloc réglé sur les promotions passe par la règle' );
+	$autre = (object) array( 'context' => array( 'query' => array( 'isProductCollectionBlock' => true ) ) );
+	egal( array( 5, 6 ), apply_filters( 'query_loop_block_query_vars', array( 'post__in' => array( 5, 6 ) ), $autre, 1 )['post__in'], 'les autres collections ne bougent pas' );
+}

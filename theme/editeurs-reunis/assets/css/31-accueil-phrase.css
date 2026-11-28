@@ -13,6 +13,10 @@
 	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 	background: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
+	/* La photo qui suit la souris garde sa taille d'origine (1 400 px pour certaines), même invisible : sans ce
+	   rognage, la page défilait de côté sous 1 400 px de large. En largeur seulement : elle passe toujours sur le
+	   triptyque (passage sur la bêta, 28 nov. 2026). */
+	overflow-x: clip;
 }
 .er-ap-corps { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; }
 

@@ -320,6 +320,10 @@ class WC_Product {
 		$prix = '' !== $this->prix['sale'] ? $this->prix['sale'] : $this->prix['regular'];
 		return 'view' === $c ? apply_filters( 'woocommerce_product_get_price', $prix, $this ) : $prix;
 	}
+	public function is_on_sale( $c = 'view' ) {
+		$en_solde = '' !== $this->prix['sale'] && (float) $this->prix['sale'] < (float) $this->prix['regular'];
+		return 'view' === $c ? apply_filters( 'woocommerce_product_is_on_sale', $en_solde, $this ) : $en_solde;
+	}
 }
 
 /**

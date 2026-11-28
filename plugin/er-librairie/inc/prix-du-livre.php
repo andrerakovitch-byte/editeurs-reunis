@@ -237,6 +237,42 @@ add_filter(
 	3
 );
 
+/**
+ * Ce qui reste d'une liste « en promotion » une fois la règle appliquée : seulement les produits dont la remise est
+ * vraiment faite. WooCommerce les choisit sur la remise saisie (wc_get_product_ids_on_sale), que la règle peut
+ * ignorer : la page Promos montrait 55 livres au prix plein (passage sur la bêta, 28 nov. 2026).
+ *
+ * @param int[]    $ids        Les produits retenus par WooCommerce.
+ * @param callable $produit_de De l'identifiant au produit.
+ * @return int[] Jamais vide : array( 0 ) quand rien ne reste, car un post__in vide voudrait dire « tous ».
+ */
+function er_prix_vraies_promos( $ids, $produit_de = 'wc_get_product' ) {
+	$garder = array();
+	foreach ( (array) $ids as $id ) {
+		$produit = (int) $id > 0 ? $produit_de( (int) $id ) : null;
+		if ( $produit && $produit->is_on_sale() ) {
+			$garder[] = (int) $id;
+		}
+	}
+	return $garder ? $garder : array( 0 );
+}
+
+// Le bloc « Collection de produits » réglé sur les promotions (la page Promos) : WooCommerce pose sa liste à la
+// priorité 10 ; on la trie ensuite.
+add_filter(
+	'query_loop_block_query_vars',
+	function ( $requete, $bloc = null ) {
+		$q = is_object( $bloc ) && isset( $bloc->context['query'] ) ? (array) $bloc->context['query'] : array();
+		if ( empty( $q['isProductCollectionBlock'] ) || empty( $q['woocommerceOnSale'] ) || empty( $requete['post__in'] ) ) {
+			return $requete;
+		}
+		$requete['post__in'] = er_prix_vraies_promos( $requete['post__in'] );
+		return $requete;
+	},
+	99,
+	2
+);
+
 /* Les frais de port ------------------------------------------------------------------------------------------ */
 
 /**
