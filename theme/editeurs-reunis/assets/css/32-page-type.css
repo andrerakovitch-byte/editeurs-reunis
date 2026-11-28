@@ -106,7 +106,8 @@
 .er-pt-lien-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .er-pt-lien-sur { font-size: 0.8125rem; line-height: 1.35; color: var(--wp--preset--color--discret); }
 .er-pt-lien-titre { font-size: 0.9375rem; font-weight: 500; line-height: 1.35; }
-.er-pt-lien-fleche { flex: none; transition: transform 200ms ease; }
+/* Toutes les flèches à la même taille (16 px), dans les liens, les boutons et les lignes du journal. */
+.er-pt-lien-fleche { flex: none; font-size: 1rem; line-height: 1.35; transition: transform 200ms ease; }
 .er-pt-lien:hover .er-pt-lien-fleche { transform: translateX(4px); }
 .er-pt-lien:hover .er-pt-lien-titre { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-boutons { flex-direction: column; flex-wrap: nowrap; gap: 0; border-bottom: 1px solid var(--wp--preset--color--filet); }
@@ -131,7 +132,7 @@
 }
 /* La flèche hors du flux, à droite : le soulignement du survol ne la prend pas. */
 .er-pt-boutons .wp-block-button > .wp-block-button__link { position: relative; padding-right: 28px; }
-.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; position: absolute; top: 14px; right: 0; transition: transform 200ms ease; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; position: absolute; top: 14px; right: 0; font-size: 1rem; line-height: 1.35; transition: transform 200ms ease; }
 /* Au survol, le filet reste gris (la pilule cernée le passait à l'encre). */
 .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--filet); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
@@ -215,7 +216,7 @@
 .er-pt-ligne-date { grid-column: 1 / span 2; font-size: 0.9375rem; color: var(--wp--preset--color--discret); }
 .er-pt-ligne-genre { grid-column: 3 / span 2; font-size: 0.9375rem; color: var(--wp--preset--color--discret); }
 .er-pt-ligne-titre { grid-column: 5 / span 7; font-size: 1.0625rem; font-weight: 500; line-height: 1.35; }
-.er-pt-ligne-fleche { grid-column: 12; justify-self: end; transition: transform 200ms ease; }
+.er-pt-ligne-fleche { grid-column: 12; justify-self: end; font-size: 1rem; transition: transform 200ms ease; }
 .er-pt-ligne:hover .er-pt-ligne-titre { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-ligne:hover .er-pt-ligne-fleche { transform: translateX(4px); }
 
