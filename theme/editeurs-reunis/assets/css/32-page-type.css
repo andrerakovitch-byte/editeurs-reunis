@@ -85,7 +85,8 @@
 .er-pt-texte > .er-pt-colonnes { grid-column: 2 / span 2; grid-row: 1; max-width: calc(56em + 40px); margin-top: 0 !important; column-count: 2; column-gap: 40px; }
 .er-pt-colonnes > p { margin-block: 0 !important; orphans: 3; widows: 3; }
 .er-pt-colonnes > p + p { margin-top: 1.25em !important; }
-.er-pt-deux-colonnes > .er-pt-boutons { grid-column: 2; }
+/* Le bouton sous la colonne de droite, où le texte finit. */
+.er-pt-deux-colonnes > .er-pt-boutons { grid-column: 2 / span 2; max-width: calc(56em + 40px); padding-inline-start: calc((100% - 40px) / 2 + 40px); box-sizing: border-box; }
 
 /* Le rendez-vous : l'aplat du centre, de bord à bord, la seule rupture de la page. Sans rendez-vous, rien. */
 .er-pt-rdv { padding-block: 96px; background: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); }
@@ -218,5 +219,6 @@
 	.er-pt-ligne-titre { grid-column: 1 / -1; }
 	.er-pt-ligne-fleche { display: none; }
 	.er-pt-colonnes { column-count: 1; }
+	.er-pt-deux-colonnes > .er-pt-boutons { padding-inline-start: 0; }
 	.er-pt-texte > .er-pt-colonnes { margin-top: 24px !important; }
 }
