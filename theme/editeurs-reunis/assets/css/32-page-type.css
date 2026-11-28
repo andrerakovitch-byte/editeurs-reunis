@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
    La page type d'une page de texte qui informe (28 nov. 2026 ; inc/page-type.php, patterns/pt-*.php) : d'après
-   « La Fondation » de la Fondation Cartier, dans la direction artistique de l'accueil. Le titre en grand, un filet, le
+   « La Fondation » de la Fondation Cartier, dans la direction artistique de l'accueil. La tête du gabarit, puis le
    chapô en grand ; le texte haut et étroit, sur la colonne du milieu du triptyque ; les photos de marge à marge ; des
    filets gris entre les étages ; un seul aplat, le rendez-vous. Chaque module est un groupe .er-pt, réarrangeable.
    -------------------------------------------------------------------------- */
@@ -21,20 +21,11 @@
 }
 .er-pt-rdv + .er-pt-filet { background-image: none; }
 
-/* L'ouverture : le titre, un filet, le chapô en grand. */
-.er-pt-ouverture { padding-block: 120px 96px; }
-.er-pt-titre {
-	max-width: 13em;
-	padding-bottom: 40px;
-	border-bottom: 1px solid var(--wp--preset--color--filet);
-	font-size: clamp(2.75rem, 6.6vw, 6rem);
-	font-weight: 500;
-	line-height: 0.98;
-	letter-spacing: -0.04em;
-}
-.er-pt-ouverture > .er-pt-chapo {
+/* Le chapô en grand, juste sous la tête de la page (le titre et le triptyque viennent du gabarit « Page de texte,
+   avec sa tête »). */
+.er-pt-intro { padding-block: 80px 96px; }
+.er-pt-intro > .er-pt-chapo {
 	max-width: 22em;
-	margin-top: 32px !important;
 	font-size: clamp(1.5rem, 2.65vw, 2.375rem);
 	font-weight: 500;
 	line-height: 1.16;
@@ -168,9 +159,7 @@
 }
 
 @media (max-width: 781px) {
-	.er-pt-ouverture { padding-block: 56px; }
-	.er-pt-titre { padding-bottom: 24px; }
-	.er-pt-ouverture > .er-pt-chapo { margin-top: 20px !important; }
+	.er-pt-intro { padding-block: 48px 56px; }
 	.er-pt-texte,
 	.er-pt-livres,
 	.er-pt-journal { padding-block: 56px; }

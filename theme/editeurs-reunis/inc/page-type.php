@@ -1,9 +1,10 @@
 <?php
 /**
  * La page type d'une page de texte qui informe (28 nov. 2026, d'après « La Fondation » de la Fondation Cartier et les
- * pages thématiques de la National Academies) : une ouverture (le titre, un filet, un chapô en grand), puis des modules
- * qui racontent dans l'ordre où on les lit, chacun réarrangeable dans l'éditeur (patterns/pt-*.php, catégorie « Les
- * modules d'une page ») : le texte en colonne, une section titrée, les photos (triptyque, diptyque, photo en marge,
+ * pages thématiques de la National Academies) : la tête du gabarit « Page de texte, avec sa tête » (le titre et le
+ * triptyque, comme sur toutes les pages), un chapô en grand, puis des modules qui racontent dans l'ordre où on les lit,
+ * chacun réarrangeable dans l'éditeur (patterns/pt-*.php, catégorie « Les modules d'une page ») : le texte en colonne,
+ * une section sur deux colonnes, les photos (triptyque, diptyque, photo en marge,
  * frise), le rendez-vous en aplat (la seule rupture de couleur), les livres, le journal, « Pour aller plus loin ».
  *
  * Les photos d'ambiance sont celles de la Comédie-Française, dans la médiathèque de la bêta (jamais dans le dépôt) :
@@ -22,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 2;
+const ER_PAGE_TYPE_VERSION = 3;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -182,7 +183,7 @@ function er_page_type_contenu() {
 	return (string) ob_get_clean();
 }
 
-// La page « Page type » (/page-type/), dans le gabarit « Page en modules, pleine largeur » : créée au premier passage,
+// La page « Page type » (/page-type/), dans le gabarit « Page de texte, avec sa tête » : créée au premier passage,
 // récrite quand ER_PAGE_TYPE_VERSION augmente, sauf si quelqu'un l'a retouchée dans l'éditeur depuis (son contenu ne
 // répond plus à l'empreinte de la dernière écriture) : la page de l'équipe passe avant. Hors des moteurs, comme toute
 // la bêta.
@@ -201,6 +202,7 @@ add_action(
 		$page      = get_page_by_path( 'page-type' );
 		$empreinte = (string) get_option( 'er_page_type_empreinte' );
 		if ( $page && '' !== $empreinte && md5( $page->post_content ) !== $empreinte ) {
+			update_post_meta( $page->ID, '_wp_page_template', 'page-texte' );
 			update_option( 'er_page_type_version', ER_PAGE_TYPE_VERSION, false );
 			delete_option( 'er_page_type_verrou' );
 			return;
@@ -214,7 +216,7 @@ add_action(
 		);
 		$id      = $page ? wp_update_post( array( 'ID' => $page->ID ) + $donnees, true ) : wp_insert_post( $donnees, true );
 		if ( $id && ! is_wp_error( $id ) ) {
-			update_post_meta( $id, '_wp_page_template', 'page-modules' );
+			update_post_meta( $id, '_wp_page_template', 'page-texte' );
 			if ( ! $page && function_exists( 'pll_set_post_language' ) && function_exists( 'pll_default_language' ) ) {
 				pll_set_post_language( $id, pll_default_language() );
 			}

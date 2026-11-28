@@ -5,16 +5,16 @@
  * Categories: editeurs-reunis
  * Block Types: core/post-content
  * Post Types: page
- * Description: L’ouverture, les photos, le texte, ses sections, le rendez-vous, les livres, le journal, « Pour aller plus loin ».
+ * Description: Le chapô, le texte, ses sections, les photos, le rendez-vous, les livres, le journal, « Pour aller plus loin ».
  *
  * La page type d'une page de texte qui informe (inc/page-type.php) : ses modules, dans l'ordre où ils racontent. Chacun
- * est aussi un pattern à part (« Les modules d'une page ») : on les réarrange, on en retire, on en ajoute.
+ * est aussi un pattern à part (« Les modules d'une page ») : on les réarrange, on en retire, on en ajoute. La tête (le
+ * titre de la page et son triptyque) vient du gabarit « Page de texte, avec sa tête » (templates/page-texte.html).
  *
  * @package editeurs-reunis
  */
 
-include __DIR__ . '/pt-ouverture.php';
-include __DIR__ . '/pt-triptyque.php';
+include __DIR__ . '/pt-chapo.php';
 include __DIR__ . '/pt-texte.php';
 include __DIR__ . '/pt-deux-colonnes.php';
 include __DIR__ . '/pt-diptyque.php';
