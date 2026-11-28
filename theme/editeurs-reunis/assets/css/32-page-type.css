@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------
    La page type d'une page de texte qui informe (28 nov. 2026 ; inc/page-type.php, patterns/pt-*.php) : d'après
    « La Fondation » de la Fondation Cartier, dans la direction artistique de l'accueil. Le titre en grand, un filet, le
-   chapô en grand ; le texte dans une colonne de six (de la quatrième à la neuvième) ; les photos de marge à marge ; des
+   chapô en grand ; le texte haut et étroit, sur la colonne du milieu du triptyque ; les photos de marge à marge ; des
    filets gris entre les étages ; un seul aplat, le rendez-vous. Chaque module est un groupe .er-pt, réarrangeable.
    -------------------------------------------------------------------------- */
 
@@ -33,7 +33,7 @@
 	letter-spacing: -0.04em;
 }
 .er-pt-ouverture > .er-pt-chapo {
-	max-width: 30em;
+	max-width: 22em;
 	margin-top: 32px !important;
 	font-size: clamp(1.5rem, 2.65vw, 2.375rem);
 	font-weight: 500;
@@ -56,21 +56,23 @@
 .er-pt-frise { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 12px; }
 .er-pt-frise .wp-block-image img { aspect-ratio: 3 / 5; }
 
-/* Le texte : une colonne de six, une amorce en demi-gras, des boutons cernés. */
-.er-pt-texte { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; padding-block: 96px; }
-.er-pt-texte > * { grid-column: 4 / span 6; }
+/* Le texte : haut et étroit plutôt que large et court (28 nov. 2026). Sur la colonne du milieu du triptyque, une
+   cinquantaine de signes par ligne ; jamais plus de 32em sur un très grand écran. */
+.er-pt-texte { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; padding-block: 96px; }
+.er-pt-texte > * { grid-column: 2; max-width: 32em; }
 .er-pt-texte > * + * { margin-top: 1.25em !important; }
 .er-pt-texte p { font-size: 1.0625rem; line-height: 1.65; }
 .er-pt-texte > .er-pt-amorce { font-size: 1.25rem; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
 /* L'intertitre : un vrai titre, comme ceux des livres et du journal, pour que la page se lise en le parcourant. */
-.er-pt-texte > .er-pt-intertitre { font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; }
+.er-pt-texte > .er-pt-intertitre { font-size: clamp(1.75rem, 2.4vw, 2.25rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; }
 .er-pt-texte > .er-pt-intertitre + * { margin-top: 32px !important; }
 .er-pt-texte > .er-pt-boutons { margin-top: 2rem !important; gap: 8px; }
 .er-pt-boutons .wp-block-button__link { padding: 0.6em 1.2em; font-size: 0.8125rem; }
 
-/* La photo dans le texte : sur la colonne, sa légende dans la marge de droite (le haut de la photo). */
+/* La photo dans le texte : de la largeur de la colonne, sa légende en haut de la colonne de droite. */
 .er-pt-photo-marge { padding-top: 0; }
-.er-pt-photo-marge > .wp-block-image { grid-column: 4 / -1; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: 24px; align-items: start; }
+.er-pt-photo-marge > .wp-block-image { grid-column: 2 / span 2; max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; align-items: start; }
+.er-pt-photo-marge > .wp-block-image .wp-element-caption { max-width: 20em; }
 .er-pt-photo-marge > .wp-block-image img { aspect-ratio: 4 / 5; }
 .er-pt-photo-marge > .wp-block-image .wp-element-caption { margin: 0 !important; }
 .er-pt-photo-marge > .wp-block-image + * { margin-top: 48px !important; }
@@ -143,8 +145,9 @@
 
 @media (max-width: 1100px) {
 	.er-pt-texte > *,
-	.er-pt-texte > .er-pt-boutons { grid-column: 2 / span 10; }
-	.er-pt-photo-marge > .wp-block-image { grid-column: 2 / -1; }
+	.er-pt-texte > .er-pt-boutons { grid-column: 2 / span 2; }
+	.er-pt-photo-marge > .wp-block-image { max-width: 32em; grid-template-columns: minmax(0, 1fr); }
+	.er-pt-photo-marge > .wp-block-image .wp-element-caption { margin-top: 10px !important; }
 	.er-pt-rdv-texte { grid-column: 1 / span 7; }
 	.er-pt-livres-grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
