@@ -81,15 +81,38 @@
 /* L'intertitre : un vrai titre, comme ceux des livres et du journal, pour que la page se lise en le parcourant. */
 .er-pt-texte > .er-pt-intertitre { font-size: clamp(1.75rem, 2.4vw, 2.25rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; }
 .er-pt-texte > .er-pt-intertitre + * { margin-top: 32px !important; }
-.er-pt-texte > .er-pt-boutons { margin-top: 2rem !important; gap: 8px; }
-.er-pt-boutons .wp-block-button__link { padding: 0.6em 1.2em; font-size: 0.8125rem; }
+/* Le texte et sa marge (D, retenu le 28 nov. 2026) : le corps sur la colonne du milieu, ses liens sur la dernière
+   colonne, à 40 px, à la hauteur du début du texte. */
+.er-pt-texte > .er-pt-corps { grid-column: 2; }
+.er-pt-corps > * { margin-block: 0 !important; }
+.er-pt-corps > * + * { margin-top: 1.25em !important; }
+.er-pt-corps > .er-pt-amorce { font-size: 1.25rem; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
+.er-pt-texte > .er-pt-marge { grid-column: 3; grid-row: 1; align-self: start; max-width: 18em; margin: 0.35em 0 0 40px !important; }
+.er-pt-marge > * { margin-block: 0 !important; }
 
-/* L'essai du module texte et boutons (28 nov. 2026, à l'essai ; inc/page-type.php, « ?texte=b ») : cinq dessins des
-   boutons, à comparer sur la page même. A, l'actuel, ci-dessus : deux pilules cernées. */
-/* B, fléchés, et D, en marge : des lignes entre deux filets, le nom à gauche, la flèche à droite. */
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons { flex-direction: column; flex-wrap: nowrap; gap: 0; border-bottom: 1px solid var(--wp--preset--color--filet); }
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button { width: 100%; }
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link {
+/* Les liens : des lignes entre deux filets, ce que c'est et quand en petit, le titre, la flèche qui avance au survol.
+   Les boutons d'un texte prennent le même dessin (sous les deux colonnes d'une section, sous celle de droite). */
+.er-pt-lien:not(.er-pt-lien-livre) {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 16px;
+	padding: 14px 0;
+	border-block: 1px solid var(--wp--preset--color--filet);
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+.er-pt-lien + .er-pt-lien:not(.er-pt-lien-livre), .er-pt-lien + .er-pt-boutons { margin-top: -1px !important; }
+.er-pt-lien-texte { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.er-pt-lien-sur { font-size: 0.8125rem; line-height: 1.35; color: var(--wp--preset--color--discret); }
+.er-pt-lien-titre { font-size: 0.9375rem; font-weight: 500; line-height: 1.35; }
+.er-pt-lien-fleche { flex: none; transition: transform 200ms ease; }
+.er-pt-lien:hover .er-pt-lien-fleche { transform: translateX(4px); }
+.er-pt-lien:hover .er-pt-lien-titre { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.er-pt-boutons { flex-direction: column; flex-wrap: nowrap; gap: 0; border-bottom: 1px solid var(--wp--preset--color--filet); }
+.er-pt-texte > .er-pt-boutons, .er-pt-corps + .er-pt-boutons { margin-top: 2rem !important; }
+.er-pt-boutons .wp-block-button { width: 100%; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
@@ -103,36 +126,17 @@ html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-butto
 	color: var(--wp--preset--color--contrast);
 	font-size: 0.9375rem;
 	font-weight: 500;
+	line-height: 1.35;
 	text-align: left;
 }
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; transition: transform 200ms ease; }
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); }
-html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
-/* D, en marge : les lignes sur la dernière colonne du triptyque, à la hauteur du début du texte. */
-html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 3; grid-row: 1 / span 3; align-self: start; max-width: 18em; margin-top: 0.35em !important; margin-inline-start: 40px; }
-/* C, pleins : la première pilule pleine, à l'encre, la seconde cernée ; plus grandes. */
-html[data-er-texte="c"] .er-pt-boutons { gap: 10px; }
-html[data-er-texte="c"] .er-pt-boutons .wp-block-button > .wp-block-button__link { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; font-size: 0.875rem; }
-html[data-er-texte="c"] .er-pt-boutons .wp-block-button:first-child > .wp-block-button__link { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); border-color: var(--wp--preset--color--contrast); }
-html[data-er-texte="c"] .er-pt-boutons .wp-block-button:first-child > .wp-block-button__link:hover { background: var(--wp--preset--color--encre-2); border-color: var(--wp--preset--color--encre-2); }
-/* E, grands liens : les noms en grand, l'un sous l'autre, la flèche après ; au survol, les autres en gris. */
-html[data-er-texte="e"] .er-pt-boutons { flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 2.5rem !important; }
-html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link {
-	padding: 0;
-	border: 0;
-	border-radius: 0;
-	background: none;
-	color: var(--wp--preset--color--contrast);
-	font-size: clamp(1.5rem, 2.2vw, 2rem);
-	font-weight: 500;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
-	text-align: left;
-	transition: color 300ms ease;
-}
-html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "\00a0→"; }
-html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); }
-html[data-er-texte="e"] .er-pt-boutons:has(a:hover) .wp-block-button > .wp-block-button__link:not(:hover) { color: #8C8C87; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; transition: transform 200ms ease; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
+/* Un livre : son cadre beige, le titre et le prix dessous (le dessin de la recherche), sous les lignes. */
+.er-pt-marge > .er-pt-lien-livre { margin-top: 32px !important; }
+.er-pt-lien-livre .er-r-vue-cadre { height: 260px; }
+.er-pt-lien-livre .er-r-vue-cadre img { max-height: 76%; max-width: 62%; }
+
 
 /* La photo dans le texte : sa grandeur d'avant (de la quatrième à la neuvième colonne sur douze), sa légende dans la
    marge de droite ; le texte reprend dessous, dans la colonne étroite. */
@@ -222,6 +226,7 @@ html[data-er-texte="e"] .er-pt-boutons:has(a:hover) .wp-block-button > .wp-block
 @media (max-width: 1100px) {
 	.er-pt-texte > *,
 	.er-pt-texte > .er-pt-boutons { grid-column: 2 / span 2; }
+	.er-pt-texte > .er-pt-marge { grid-column: 2 / span 2; grid-row: auto; max-width: 28em; margin: 2.5rem 0 0 !important; }
 	.er-pt-photo-marge > .wp-block-image > img { grid-column: 2 / span 7; }
 	.er-pt-photo-marge > .wp-block-image .wp-element-caption { grid-column: 9 / span 4; }
 	.er-pt-rdv-texte { grid-column: 1 / span 7; }
@@ -236,7 +241,7 @@ html[data-er-texte="e"] .er-pt-boutons:has(a:hover) .wp-block-button > .wp-block
 	.er-tete-texte { height: auto; min-height: 280px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-pt-intro { padding-block: 0 56px; }
 	.er-pt-intro > .er-pt-chapo { grid-column: 1 / -1; }
-	html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 1 / -1; grid-row: auto; max-width: none; margin-top: 2rem !important; margin-inline-start: 0; }
+	.er-pt-texte > .er-pt-marge { grid-column: 1 / -1; max-width: none; margin: 2rem 0 0 !important; }
 	.er-pt-texte,
 	.er-pt-livres,
 	.er-pt-journal { padding-block: 56px; }

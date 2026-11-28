@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 5;
+const ER_PAGE_TYPE_VERSION = 6;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -162,8 +162,8 @@ function er_pt_journal( $att = array() ) {
 	);
 	$html     = '';
 	foreach ( $articles as $p ) {
-		$genres = array_filter( get_the_category( $p->ID ), fn( $c ) => 'non-classe' !== $c->slug && 'uncategorized' !== $c->slug );
-		$genre  = $genres ? reset( $genres )->name : '';
+		$genre  = function_exists( 'er_journal_genre' ) ? er_journal_genre( $p->ID ) : null;
+		$genre  = $genre instanceof WP_Term ? $genre->name : '';
 		$titre  = html_entity_decode( get_the_title( $p ), ENT_QUOTES, 'UTF-8' );
 		$html  .= '<li><a class="er-pt-ligne" href="' . esc_url( get_permalink( $p ) ) . '">'
 			. '<span class="er-pt-ligne-date">' . esc_html( wp_date( 'j M Y', get_post_timestamp( $p ) ) ) . '</span>'
@@ -174,6 +174,117 @@ function er_pt_journal( $att = array() ) {
 	return $html ? '<ul class="er-pt-lignes">' . $html . '</ul>' : '';
 }
 add_shortcode( 'er_pt_journal', 'er_pt_journal' );
+
+/**
+ * Un lien de la marge (28 nov. 2026) : une ligne entre deux filets, ce que c'est et quand en petit, le titre, la flèche ;
+ * un livre, dans son cadre beige (principe 13).
+ *
+ * [er_pt_lien type="evenement"] : la rencontre (id), à défaut la prochaine ;
+ * [er_pt_lien type="exposition"] : l'exposition (id), à défaut celle du moment ;
+ * [er_pt_lien type="article"] : l'article du journal (id), à défaut le dernier ;
+ * [er_pt_lien type="livre" id="123"] : le livre, à défaut le dernier arrivé en stock ;
+ * [er_pt_lien type="page" lien="/nous-trouver/" titre="Nous trouver" sur="Le centre"] : une page.
+ *
+ * @param array $att type, id, lien, titre, sur.
+ */
+function er_pt_lien( $att = array() ) {
+	$att = shortcode_atts(
+		array(
+			'type'  => 'page',
+			'id'    => 0,
+			'lien'  => '',
+			'titre' => '',
+			'sur'   => '',
+		),
+		$att,
+		'er_pt_lien'
+	);
+	$id  = absint( $att['id'] );
+	$maj = fn( $t ) => function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $t, 0, 1 ) ) . mb_substr( $t, 1 ) : ucfirst( $t );
+	$sur = '';
+	switch ( $att['type'] ) {
+		case 'livre':
+			if ( ! function_exists( 'wc_get_product' ) || ! function_exists( 'er_recherche_vue' ) ) {
+				return '';
+			}
+			$livre = $id ? wc_get_product( $id ) : null;
+			if ( ! $livre && function_exists( 'wc_get_products' ) ) {
+				$livres = wc_get_products(
+					array(
+						'status'       => 'publish',
+						'limit'        => 1,
+						'visibility'   => 'catalog',
+						'stock_status' => 'instock',
+						'orderby'      => 'date',
+						'order'        => 'DESC',
+					)
+				);
+				$livre  = $livres ? $livres[0] : null;
+			}
+			return $livre ? '<div class="er-pt-lien er-pt-lien-livre">' . er_recherche_vue( $livre ) . '</div>' : ''; // er_recherche_vue() échappe.
+		case 'evenement':
+			if ( ! $id ) {
+				$maintenant = ( new DateTimeImmutable( 'now', new DateTimeZone( 'Europe/Paris' ) ) )->modify( '-2 hours' )->format( 'Y-m-d H:i' );
+				$prochains  = get_posts(
+					array(
+						'post_type'      => 'er_evenement',
+						'post_status'    => 'publish',
+						'posts_per_page' => 1,
+						'meta_key'       => 'er_debut', // phpcs:ignore WordPress.DB.SlowDBQuery
+						'meta_value'     => $maintenant, // phpcs:ignore WordPress.DB.SlowDBQuery
+						'meta_compare'   => '>=',
+						'orderby'        => 'meta_value',
+						'order'          => 'ASC',
+						'fields'         => 'ids',
+					)
+				);
+				$id         = $prochains ? (int) $prochains[0] : 0;
+			}
+			$sur = __( 'Rencontre', 'editeurs-reunis' ) . ( $id && function_exists( 'er_evt_quand' ) ? ' · ' . er_evt_quand( $id ) : '' );
+			break;
+		case 'exposition':
+			if ( ! $id && function_exists( 'er_expo_du_moment' ) ) {
+				$id = (int) er_expo_du_moment();
+			}
+			$fin = $id && function_exists( 'er_info_iso' ) ? er_info_iso( $id, 'er_fin' ) : '';
+			/* translators: %s: le dernier jour d'une exposition (« 30 novembre »). */
+			$sur = __( 'Exposition', 'editeurs-reunis' ) . ( $fin && function_exists( 'er_jour_fin_expo' ) ? ' · ' . sprintf( __( 'jusqu’au %s', 'editeurs-reunis' ), er_jour_fin_expo( $fin ) ) : '' );
+			break;
+		case 'article':
+			if ( ! $id ) {
+				$derniers = get_posts(
+					array(
+						'post_type'        => 'post',
+						'post_status'      => 'publish',
+						'numberposts'      => 1,
+						'fields'           => 'ids',
+						'suppress_filters' => false,
+					)
+				);
+				$id       = $derniers ? (int) $derniers[0] : 0;
+			}
+			$genre = $id && function_exists( 'er_journal_genre' ) ? er_journal_genre( $id ) : null;
+			$genre = $genre instanceof WP_Term ? $genre->name : '';
+			$sur   = ( '' !== $genre ? $genre : __( 'Le journal', 'editeurs-reunis' ) ) . ( $id ? ' · ' . wp_date( 'j M Y', get_post_timestamp( $id ) ) : '' );
+			break;
+		default:
+			if ( '' === $att['lien'] || '' === $att['titre'] ) {
+				return '';
+			}
+			return '<a class="er-pt-lien er-pt-lien-page" href="' . esc_url( 0 === strpos( $att['lien'], '/' ) ? home_url( $att['lien'] ) : $att['lien'] ) . '"><span class="er-pt-lien-texte">'
+				. ( '' !== $att['sur'] ? '<span class="er-pt-lien-sur">' . esc_html( $att['sur'] ) . '</span>' : '' )
+				. '<span class="er-pt-lien-titre">' . esc_html( $att['titre'] ) . '</span></span><span class="er-pt-lien-fleche" aria-hidden="true">→</span></a>';
+	}
+	if ( ! $id || 'publish' !== get_post_status( $id ) ) {
+		return '';
+	}
+	$titre = '' !== $att['titre'] ? $att['titre'] : html_entity_decode( get_the_title( $id ), ENT_QUOTES, 'UTF-8' );
+	return '<a class="er-pt-lien er-pt-lien-' . esc_attr( $att['type'] ) . '" href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-pt-lien-texte">'
+		. '<span class="er-pt-lien-sur">' . esc_html( $maj( $sur ) ) . '</span>'
+		. '<span class="er-pt-lien-titre"' . ( preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '' ) . '>' . esc_html( $titre ) . '</span></span>'
+		. '<span class="er-pt-lien-fleche" aria-hidden="true">→</span></a>';
+}
+add_shortcode( 'er_pt_lien', 'er_pt_lien' );
 
 /**
  * Le contenu de la page type : le pattern patterns/page-type.php, rendu.
@@ -285,23 +396,3 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 </script>
 	<?php
 }
-
-add_action(
-	'wp_head',
-	function () {
-		if ( is_page( 'page-type' ) ) {
-			er_pt_essai(
-				'texte',
-				'Essai du module texte et boutons',
-				array(
-					'a' => 'Actuel',
-					'b' => 'Fléchés',
-					'c' => 'Pleins',
-					'd' => 'En marge',
-					'e' => 'Grands liens',
-				)
-			);
-		}
-	},
-	1
-);
