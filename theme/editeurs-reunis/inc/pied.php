@@ -114,6 +114,8 @@ function er_pied_html() {
 		array( $compte, __( 'Mon compte', 'editeurs-reunis' ) ),
 		array( er_lien( 'conditions-generales-de-vente/' ), __( 'Conditions générales de vente', 'editeurs-reunis' ) ),
 		array( er_lien( 'livraison-et-retours/' ), __( 'Livraison et retours', 'editeurs-reunis' ) ),
+		// La rétractation en ligne, visible sur chaque page (extension, inc/vente-a-distance.php).
+		array( function_exists( 'er_retractation_url' ) ? er_retractation_url() : er_lien( 'retractation/' ), function_exists( 'er_retractation_libelle' ) ? er_retractation_libelle() : __( 'Renoncer au contrat ici', 'editeurs-reunis' ) ),
 		array( er_lien( 'faq/' ), __( 'Questions fréquentes', 'editeurs-reunis' ) ),
 		array( er_lien( 'politique-de-confidentialite/' ), __( 'Politique de confidentialité', 'editeurs-reunis' ) ),
 		array( er_lien( 'mentions-legales/' ), __( 'Mentions légales', 'editeurs-reunis' ) ),

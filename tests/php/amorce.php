@@ -93,6 +93,18 @@ function sanitize_key( $k ) {
 function sanitize_text_field( $t ) {
 	return trim( wp_strip_all_tags( $t ) );
 }
+function sanitize_textarea_field( $t ) {
+	return trim( strip_tags( (string) $t ) );
+}
+function sanitize_email( $t ) {
+	return preg_replace( '/[^a-zA-Z0-9.@_+\-]/', '', trim( (string) $t ) );
+}
+function is_email( $t ) {
+	return (bool) filter_var( $t, FILTER_VALIDATE_EMAIL );
+}
+function wp_hash( $t ) {
+	return hash_hmac( 'md5', (string) $t, 'sel-des-tests' );
+}
 function wp_unslash( $v ) {
 	return is_string( $v ) ? stripslashes( $v ) : $v;
 }
@@ -383,6 +395,7 @@ foreach ( array(
 	'plugin/er-librairie/inc/traducteurs-editeurs.php',
 	'plugin/er-librairie/inc/oeuvres-collectives.php',
 	'plugin/er-librairie/inc/prix-du-livre.php',
+	'plugin/er-librairie/inc/vente-a-distance.php',
 	'plugin/er-librairie/inc/bascule.php',
 	'plugin/er-librairie/inc/donnees-structurees.php',
 	'plugin/er-librairie/inc/personnes.php',

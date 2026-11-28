@@ -73,3 +73,45 @@
 	.er-branche-image img { aspect-ratio: 3 / 2 !important; object-position: 50% 25%; }
 	.er-fiche-couverture { max-width: 70%; }
 }
+
+/* La rétractation en ligne (extension, inc/vente-a-distance.php) : le formulaire, dans la colonne du texte ; les
+   champs soulignés comme celui de la lettre du pied de page. */
+.er-retr { max-width: 560px; margin-block: 2rem 4rem; }
+.er-retr-titre { margin: 0 0 1rem; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+.er-retr-intro, .er-retr-declaration { margin: 0 0 2rem; }
+.er-retr-declaration { font-size: 1.25rem; font-weight: 500; }
+.er-retr-ligne { display: flex; flex-direction: column; gap: 6px; margin: 0 0 1.75rem; }
+.er-retr-libelle { font-size: 0.875rem; }
+.er-retr-champ {
+	padding: 10px 0;
+	border: 0;
+	border-bottom: 1.5px solid var(--wp--preset--color--contrast);
+	border-radius: 0;
+	background: transparent;
+	color: var(--wp--preset--color--contrast);
+	font: inherit;
+	font-size: 1.125rem;
+}
+@media (max-width: 781px) { .er-retr-champ { font-size: 16px; } }
+textarea.er-retr-champ { resize: vertical; }
+.er-retr-champ:focus-visible { outline: none; box-shadow: 0 1.5px 0 var(--wp--preset--color--contrast); }
+.er-retr-champ[aria-invalid="true"] { border-bottom-color: #b3261e; }
+.er-retr-aide { font-size: 0.8125rem; color: var(--wp--preset--color--discret); }
+.er-retr-erreur { font-size: 0.875rem; color: #b3261e; }
+.er-retr-piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.er-retr-recap { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.5rem; margin: 0 0 2rem; }
+.er-retr-recap dt { color: var(--wp--preset--color--discret); }
+.er-retr-recap dd { margin: 0; }
+.er-retr-boutons { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin: 0; }
+.er-retr-bouton {
+	padding: 16px 28px;
+	border: 0;
+	border-radius: 0;
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	font: inherit;
+	font-weight: 500;
+	cursor: pointer;
+}
+.er-retr-bouton:focus-visible { outline: 2px solid var(--wp--preset--color--contrast); outline-offset: 3px; }
+.er-retr-lien { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }

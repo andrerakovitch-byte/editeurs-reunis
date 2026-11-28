@@ -37,6 +37,7 @@ require __DIR__ . '/inc/extraits.php';
 require __DIR__ . '/inc/traducteurs-editeurs.php';
 require __DIR__ . '/inc/oeuvres-collectives.php';
 require __DIR__ . '/inc/prix-du-livre.php';
+require __DIR__ . '/inc/vente-a-distance.php';
 require __DIR__ . '/inc/bascule.php';
 require __DIR__ . '/inc/donnees-structurees.php';
 require __DIR__ . '/inc/liens-livres.php';
