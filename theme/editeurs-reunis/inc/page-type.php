@@ -407,3 +407,23 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 </script>
 	<?php
 }
+
+// L'essai des voiles (28 nov. 2026, à l'essai) : sur tout le site, « ?voile=b » ; les réglages sont dans
+// assets/css/29-en-tete-retenu.css (html[data-er-voile]).
+add_action(
+	'wp_head',
+	function () {
+		er_pt_essai(
+			'voile',
+			'Essai des voiles',
+			array(
+				'a' => 'Actuel',
+				'b' => 'Plus opaque',
+				'c' => 'Laiteux',
+				'd' => 'Givré',
+				'e' => 'Plein',
+			)
+		);
+	},
+	1
+);

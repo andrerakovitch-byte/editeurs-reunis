@@ -83,11 +83,18 @@
 /* Accrochée en haut de l'écran sur ordinateur, une fois passée (Z8c, 27 nov., à l'essai ; assets/js/entete.js) :
    56 px, le nom du centre sur une ligne, plus petit ; un voile blanc translucide, la page passe dessous, floutée (le
    voile de Z8d). Sur le voile, les noms pâlis au survol gardent le gris des noms : le gris très pâle s'y perdait. */
+/* Le voile, partout où la page passe dessous (la barre accrochée, le rond du menu au téléphone) : son opacité, son
+   flou, sa saturation, réglés une fois ici. L'essai des voiles (28 nov. 2026, « ?voile=b ») les fait varier. */
+:root { --er-voile: 80%; --er-voile-flou: 20px; --er-voile-sature: 160%; }
+html[data-er-voile="b"] { --er-voile: 90%; --er-voile-flou: 24px; --er-voile-sature: 130%; }
+html[data-er-voile="c"] { --er-voile: 94%; --er-voile-flou: 32px; --er-voile-sature: 100%; }
+html[data-er-voile="d"] { --er-voile: 88%; --er-voile-flou: 48px; --er-voile-sature: 60%; }
+html[data-er-voile="e"] { --er-voile: 100%; --er-voile-flou: 0px; --er-voile-sature: 100%; }
 @media (min-width: 782px) {
 	header.er-haut.est-compacte .er-barre {
-		background-color: color-mix(in srgb, var(--wp--preset--color--base) 80%, transparent) !important;
-		-webkit-backdrop-filter: saturate(160%) blur(20px);
-		backdrop-filter: saturate(160%) blur(20px);
+		background-color: color-mix(in srgb, var(--wp--preset--color--base) var(--er-voile), transparent) !important;
+		-webkit-backdrop-filter: saturate(var(--er-voile-sature)) blur(var(--er-voile-flou));
+		backdrop-filter: saturate(var(--er-voile-sature)) blur(var(--er-voile-flou));
 	}
 	html.er-em-ouvert header.er-haut.est-compacte .er-mn .er-em-bouton[aria-expanded="false"] { color: var(--er-gris-nom); }
 	/* Le plan (≡) ouvert après avoir descendu : la barre compacte s'efface aussi, sinon ses premières entrées
@@ -377,9 +384,9 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 		right: var(--er-menu-droite, var(--wp--style--root--padding-right, 20px));
 		z-index: 3;
 		border-radius: 50%;
-		background: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
-		-webkit-backdrop-filter: saturate(160%) blur(16px);
-		backdrop-filter: saturate(160%) blur(16px);
+		background: color-mix(in srgb, var(--wp--preset--color--base) var(--er-voile), transparent);
+		-webkit-backdrop-filter: saturate(var(--er-voile-sature)) blur(var(--er-voile-flou));
+		backdrop-filter: saturate(var(--er-voile-sature)) blur(var(--er-voile-flou));
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.12);
 	}
 	html.er-em-plan-ouvert header.er-haut.est-flottant .er-em-menu { box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
