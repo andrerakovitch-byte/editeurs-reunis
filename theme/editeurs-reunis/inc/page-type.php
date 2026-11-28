@@ -129,7 +129,7 @@ function er_pt_livres( $att = array() ) {
 	}
 	$html = '';
 	foreach ( wc_get_products( $args ) as $livre ) {
-		$html .= '<div class="er-pt-livre">' . er_recherche_vue( $livre ) . '</div>'; // er_recherche_vue() échappe.
+		$html .= '<div class="er-pt-livre">' . er_recherche_vue( $livre, false ) . '</div>'; // Hors de la librairie, sans prix ; er_recherche_vue() échappe.
 	}
 	return $html ? '<div class="er-pt-livres-grille">' . $html . '</div>' : '';
 }
@@ -232,7 +232,7 @@ function er_pt_lien( $att = array() ) {
 				);
 				$livre  = $livres ? $livres[0] : null;
 			}
-			return $livre ? '<div class="er-pt-lien er-pt-lien-livre">' . er_recherche_vue( $livre ) . '</div>' : ''; // er_recherche_vue() échappe.
+			return $livre ? '<div class="er-pt-lien er-pt-lien-livre">' . er_recherche_vue( $livre, false ) . '</div>' : ''; // Sans prix ; er_recherche_vue() échappe.
 		case 'evenement':
 			if ( ! $id ) {
 				$maintenant = ( new DateTimeImmutable( 'now', new DateTimeZone( 'Europe/Paris' ) ) )->modify( '-2 hours' )->format( 'Y-m-d H:i' );
@@ -432,7 +432,7 @@ add_filter(
 				if ( ! $livre ) {
 					return $m[0];
 				}
-				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-modele="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre ) . '</div>';
+				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-modele="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre, false ) . '</div>';
 				return '<a ' . $m[1] . 'href="' . $m[2] . '"' . $m[3] . ' data-apercu-livre="' . (int) $livre->get_id() . '">';
 			},
 			$html

@@ -901,8 +901,7 @@ function er_evt_bloc_livres( $id ) {
 		$html            .= '<li class="er-evt-livre"><a href="' . esc_url( get_permalink( $pid ) ) . '">'
 			. '<span class="er-evt-livre-couverture">' . $p->get_image( 'woocommerce_thumbnail' ) . '</span>'
 			. '<span class="er-evt-livre-auteur">' . esc_html( implode( ', ', is_wp_error( $auteurs_du_livre ) ? array() : $auteurs_du_livre ) ) . '</span>'
-			. '<span class="er-evt-livre-titre">' . esc_html( $p->get_name() ) . '</span></a>'
-			. '<span class="er-evt-livre-prix">' . ( $p->is_in_stock() ? esc_html( html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $p ) ) ), ENT_QUOTES, 'UTF-8' ) ) : esc_html__( 'épuisé pour l’instant', 'er-librairie' ) ) . '</span></li>';
+			. '<span class="er-evt-livre-titre">' . esc_html( $p->get_name() ) . '</span></a></li>'; // Hors de la librairie, sans prix (28 nov. 2026).
 	}
 	return $html ? '<section class="er-evt-livres"><h2 class="er-evt-section">' . esc_html__( 'À la librairie', 'er-librairie' ) . '</h2><ul>' . $html . '</ul></section>' : '';
 }

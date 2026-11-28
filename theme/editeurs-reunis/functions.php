@@ -650,11 +650,18 @@ function er_prix_texte( $produit ) {
  * coupe jamais, ou « épuisé pour l'instant » à sa place. Le même balisage que le script de la recherche
  * (assets/js/recherche.js, livre()) ; le menu Librairie et le dernier livre arrivé de la recherche s'en servent.
  *
+ * Hors de la librairie (une page du centre, le journal, l'accueil…), pas de prix : l'auteur seul (André, 28 nov.
+ * 2026 : « le prix du livre étant unique, ça ne sert pas grand-chose de l'afficher si tôt dans le parcours »).
+ *
  * @param WC_Product $produit     Le livre.
  * @param string     $auteur      L'auteur (vide quand on le sait déjà).
+ * @param bool       $avec_prix   Le prix (dans la librairie, le menu Librairie, la recherche) ; sinon l'auteur seul.
  * @return string Le HTML (échappé), vide s'il n'y a rien à dire.
  */
-function er_livre_sous( $produit, $auteur = '' ) {
+function er_livre_sous( $produit, $auteur = '', $avec_prix = true ) {
+	if ( ! $avec_prix ) {
+		return '' !== $auteur ? '<span class="er-r-vue-coupe"' . ( preg_match( '/\p{Cyrillic}/u', $auteur ) ? ' lang="ru"' : '' ) . '>' . esc_html( $auteur ) . '</span>' : '';
+	}
 	$prix = $produit->is_in_stock() ? er_prix_texte( $produit ) : __( 'épuisé pour l’instant', 'editeurs-reunis' );
 	if ( '' === $auteur && '' !== $prix ) {
 		$prix = mb_strtoupper( mb_substr( $prix, 0, 1 ) ) . mb_substr( $prix, 1 ); // « Épuisé pour l'instant », seul.

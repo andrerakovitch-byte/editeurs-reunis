@@ -100,13 +100,8 @@ function er_index_livre( $produit, $quand ) {
 	$auteurs = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) );
 	$auteurs = is_array( $auteurs ) ? array_slice( $auteurs, 0, 2 ) : array();
 	$ru      = preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '';
-	$prix    = '';
-	if ( ! $produit->is_in_stock() ) {
-		$prix = __( 'épuisé pour l’instant', 'editeurs-reunis' );
-	} elseif ( '' !== $produit->get_price() ) {
-		$prix = html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $produit ) ) ), ENT_QUOTES, 'UTF-8' );
-	}
-	$achat = $produit->is_purchasable() && $produit->is_in_stock();
+	$prix    = ''; // L'accueil n'est pas la librairie : pas de prix (28 nov. 2026).
+	$achat   = $produit->is_purchasable() && $produit->is_in_stock();
 	$image = (int) $produit->get_image_id();
 	$typo  = function_exists( 'er_couverture_a_remplacer' ) && er_couverture_a_remplacer( $produit );
 	return er_index_ligne(

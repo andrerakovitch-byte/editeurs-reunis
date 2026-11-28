@@ -75,11 +75,11 @@ function er_critere_courant( $champ ) {
  *
  * @param WC_Product $livre Le livre.
  */
-function er_recherche_vue( $livre ) {
+function er_recherche_vue( $livre, $avec_prix = true ) {
 	$id     = $livre->get_id();
 	$titre  = html_entity_decode( $livre->get_name(), ENT_QUOTES, 'UTF-8' );
 	$auteur = function_exists( 'er_em_auteurs' ) ? er_em_auteurs( $id ) : '';
-	$sous   = er_livre_sous( $livre, $auteur );
+	$sous   = er_livre_sous( $livre, $auteur, $avec_prix );
 	$image  = $livre->get_image_id() ? wp_get_attachment_image_url( $livre->get_image_id(), 'medium' ) : '';
 	$lang   = preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '';
 	return '<a class="er-r-lien er-r-vue" href="' . esc_url( get_permalink( $id ) ) . '"><span class="er-r-vue-cadre">'

@@ -76,9 +76,6 @@
 			el.className = 'er-apercu er-apercu-carte er-apercu-' + mode;
 			el.innerHTML = source.innerHTML;
 			el.querySelectorAll( 'a' ).forEach( function ( a ) { a.removeAttribute( 'href' ); a.setAttribute( 'tabindex', '-1' ); } );
-			// Sans le prix : le titre et l'auteur seulement (André, 28 nov.).
-			el.querySelectorAll( '.er-r-vue-prix' ).forEach( function ( p ) { p.remove(); } );
-			el.querySelectorAll( '.er-r-vue-coupe' ).forEach( function ( c ) { c.textContent = c.textContent.replace( /[\s\u00a0]*·[\s\u00a0]*$/, '' ); } );
 			document.body.appendChild( el );
 			var r = lien.getBoundingClientRect();
 			var largeur = el.offsetWidth, hauteur = el.offsetHeight;

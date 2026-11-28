@@ -490,12 +490,11 @@ function er_carte_livre( $pid ) {
 		return '';
 	}
 	$auteurs = wp_get_post_terms( $pid, 'auteur', array( 'fields' => 'names' ) );
-	$prix    = $p->is_in_stock() ? html_entity_decode( wp_strip_all_tags( wc_price( wc_get_price_to_display( $p ) ) ), ENT_QUOTES, 'UTF-8' ) : __( 'épuisé pour l’instant', 'er-librairie' );
+	// Un sujet, un article : hors de la librairie, sans prix (28 nov. 2026).
 	return '<li class="er-evt-livre"><a href="' . esc_url( get_permalink( $pid ) ) . '">'
 		. '<span class="er-evt-livre-couverture">' . $p->get_image( 'woocommerce_thumbnail' ) . '</span>'
 		. '<span class="er-evt-livre-auteur">' . esc_html( implode( ', ', is_wp_error( $auteurs ) ? array() : $auteurs ) ) . '</span>'
-		. '<span class="er-evt-livre-titre">' . esc_html( $p->get_name() ) . '</span></a>'
-		. '<span class="er-evt-livre-prix">' . esc_html( $prix ) . '</span></li>';
+		. '<span class="er-evt-livre-titre">' . esc_html( $p->get_name() ) . '</span></a></li>';
 }
 
 /**

@@ -500,9 +500,7 @@ function er_expo_rattache( $r ) {
 			$livre  = function_exists( 'wc_get_product' ) ? wc_get_product( $r ) : null;
 			$noms   = wp_get_post_terms( $r, 'auteur', array( 'fields' => 'names' ) );
 			$parts  = is_wp_error( $noms ) || ! $noms ? array() : array( esc_html( implode( ', ', $noms ) ) );
-			if ( $livre ) {
-				$parts[] = $livre->is_in_stock() && $livre->get_price() ? wp_strip_all_tags( wc_price( (float) $livre->get_price() ) ) : esc_html__( 'Épuisé pour l’instant', 'er-librairie' );
-			}
+			// Hors de la librairie, sans prix (28 nov. 2026).
 			$faits = implode( ' · ', $parts );
 			break;
 		case 'er_media':
