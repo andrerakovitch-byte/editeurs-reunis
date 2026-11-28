@@ -166,7 +166,7 @@ function er_pt_journal( $att = array() ) {
 		$genre  = $genre instanceof WP_Term ? $genre->name : '';
 		$titre  = html_entity_decode( get_the_title( $p ), ENT_QUOTES, 'UTF-8' );
 		$html  .= '<li><a class="er-pt-ligne" href="' . esc_url( get_permalink( $p ) ) . '">'
-			. '<span class="er-pt-ligne-date">' . esc_html( wp_date( 'j M Y', get_post_timestamp( $p ) ) ) . '</span>'
+			. '<span class="er-pt-ligne-date">' . esc_html( er_pt_date_courte( $p->ID ) ) . '</span>'
 			. '<span class="er-pt-ligne-genre">' . esc_html( $genre ) . '</span>'
 			. '<span class="er-pt-ligne-titre"' . ( preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '' ) . '>' . esc_html( $titre ) . '</span>'
 			. '<span class="er-pt-ligne-fleche" aria-hidden="true">→</span></a></li>';
@@ -174,6 +174,17 @@ function er_pt_journal( $att = array() ) {
 	return $html ? '<ul class="er-pt-lignes">' . $html . '</ul>' : '';
 }
 add_shortcode( 'er_pt_journal', 'er_pt_journal' );
+
+/**
+ * La date courte d'un article, comme sur l'accueil : « 21 oct. 2026 ».
+ *
+ * @param int $id L'article.
+ */
+function er_pt_date_courte( $id ) {
+	$ts     = (int) get_post_timestamp( $id );
+	$fuseau = new DateTimeZone( 'Europe/Paris' );
+	return ( function_exists( 'er_index_jour' ) ? er_index_jour( $ts ) : wp_date( 'j M', $ts, $fuseau ) ) . "\u{00A0}" . wp_date( 'Y', $ts, $fuseau );
+}
 
 /**
  * Un lien de la marge (28 nov. 2026) : une ligne entre deux filets, ce que c'est et quand en petit, le titre, la flèche ;
@@ -265,7 +276,7 @@ function er_pt_lien( $att = array() ) {
 			}
 			$genre = $id && function_exists( 'er_journal_genre' ) ? er_journal_genre( $id ) : null;
 			$genre = $genre instanceof WP_Term ? $genre->name : '';
-			$sur   = ( '' !== $genre ? $genre : __( 'Le journal', 'editeurs-reunis' ) ) . ( $id ? ' · ' . wp_date( 'j M Y', get_post_timestamp( $id ) ) : '' );
+			$sur   = ( '' !== $genre ? $genre : __( 'Le journal', 'editeurs-reunis' ) ) . ( $id ? ' · ' . er_pt_date_courte( $id ) : '' );
 			break;
 		default:
 			if ( '' === $att['lien'] || '' === $att['titre'] ) {
