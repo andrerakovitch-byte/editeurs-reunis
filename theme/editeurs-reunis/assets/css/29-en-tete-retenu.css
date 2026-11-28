@@ -83,10 +83,10 @@
 /* Accrochée en haut de l'écran sur ordinateur, une fois passée (Z8c, 27 nov., à l'essai ; assets/js/entete.js) :
    56 px, le nom du centre sur une ligne, plus petit ; un voile blanc translucide, la page passe dessous, floutée (le
    voile de Z8d). Sur le voile, les noms pâlis au survol gardent le gris des noms : le gris très pâle s'y perdait. */
-/* Le voile, partout où la page passe dessous (la barre accrochée, le rond du menu au téléphone) : laiteux (C, retenu
-   le 28 nov. 2026 sur l'essai des voiles) : 94 %, un flou de 32 px, les couleurs non avivées ; on ne devine plus
-   qu'une ombre qui passe. Réglé une fois ici. */
-:root { --er-voile: 94%; --er-voile-flou: 32px; --er-voile-sature: 100%; }
+/* Le voile, partout où la page passe dessous (la barre accrochée, le rond du menu au téléphone) : plus opaque (B,
+   retenu le 28 nov. 2026 sur l'essai des voiles, après le laiteux) : 90 %, un flou de 24 px, les couleurs un peu
+   avivées ; on les devine encore, en discret. Réglé une fois ici. */
+:root { --er-voile: 90%; --er-voile-flou: 24px; --er-voile-sature: 130%; }
 @media (min-width: 782px) {
 	header.er-haut.est-compacte .er-barre {
 		background-color: color-mix(in srgb, var(--wp--preset--color--base) var(--er-voile), transparent) !important;
