@@ -85,7 +85,7 @@
    voile de Z8d). Sur le voile, les noms pâlis au survol gardent le gris des noms : le gris très pâle s'y perdait. */
 @media (min-width: 782px) {
 	header.er-haut.est-compacte .er-barre {
-		background-color: rgba(255, 255, 255, 0.8) !important;
+		background-color: color-mix(in srgb, var(--wp--preset--color--base) 80%, transparent) !important;
 		-webkit-backdrop-filter: saturate(160%) blur(20px);
 		backdrop-filter: saturate(160%) blur(20px);
 	}
@@ -377,7 +377,7 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 		right: var(--er-menu-droite, var(--wp--style--root--padding-right, 20px));
 		z-index: 3;
 		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.82);
+		background: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
 		-webkit-backdrop-filter: saturate(160%) blur(16px);
 		backdrop-filter: saturate(160%) blur(16px);
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 6px 18px rgba(0, 0, 0, 0.12);

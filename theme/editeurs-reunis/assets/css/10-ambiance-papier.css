@@ -32,7 +32,7 @@
 	--wp--preset--color--aplat-vert: #2F4943;
 	--wp--preset--color--aplat-brun: #2C1F17;
 }
-.er-ambiance-papier header.wp-block-template-part { background-color: #FFFFFF; }
+.er-ambiance-papier header.wp-block-template-part { background-color: var(--wp--preset--color--base); }
 .er-ambiance-papier header.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier footer.wp-block-template-part .er-aplat-pervenche,
 .er-ambiance-papier .er-librairie-entete .er-aplat-pervenche { background: var(--wp--preset--color--accent); }

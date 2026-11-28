@@ -42,7 +42,7 @@
 	position: fixed;
 	inset: 0;
 	z-index: 1;
-	background: rgba(255, 255, 255, 0.82);
+	background: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 250ms ease, visibility 250ms;

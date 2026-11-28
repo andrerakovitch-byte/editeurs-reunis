@@ -21,7 +21,7 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-recherche { position: fixed; inset: var(--er-recherche-haut, 56px) 0 0 0; z-index: 9990; }
 .er-recherche[hidden] { display: none; }
 /* Le voile blanc des menus : la page pâlit derrière ; un clic dessus referme. */
-.er-recherche-voile { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.82); }
+.er-recherche-voile { position: absolute; inset: 0; background: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent); }
 .er-recherche-panneau {
 	position: relative;
 	max-height: 100%;
