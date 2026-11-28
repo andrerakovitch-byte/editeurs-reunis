@@ -79,7 +79,7 @@ function er_pt_rendez_vous() {
 	$image = get_post_thumbnail_id( $id ) ? wp_get_attachment_image( get_post_thumbnail_id( $id ), 'large', false, array( 'loading' => 'lazy', 'sizes' => '(max-width: 781px) 100vw, 40vw' ) ) : '';
 	return '<div class="er-pt-rdv-corps"><div class="er-pt-rdv-texte">'
 		. ( $quand ? '<p class="er-pt-rdv-quand">' . esc_html( function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) : $quand ) . '</p>' : '' )
-		. '<h2 class="er-pt-rdv-titre"><a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $titre ) . '</a></h2>'
+		. '<h3 class="er-pt-rdv-titre"><a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $titre ) . '</a></h3>'
 		. '<p class="er-pt-rdv-action"><a class="er-pt-pilule" href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $bouton ) . '</a></p></div>'
 		. ( $image ? '<figure class="er-pt-rdv-image">' . $image . '</figure>' : '' ) . '</div>';
 }

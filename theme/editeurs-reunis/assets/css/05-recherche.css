@@ -183,6 +183,7 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-mn-livre-sous { display: flex; align-items: baseline; font-size: 0.8125rem; line-height: 1.4; color: var(--wp--preset--color--discret); }
 .er-r-vue-coupe { flex: 0 1000 auto; min-width: 0; margin-inline-end: 0.25em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .er-r-vue-prix { flex: 0 1 auto; min-width: 0; }
+.er-r-vue-montant { flex-shrink: 0; white-space: nowrap; } /* « 16,00 € » d'un bloc, même dans une colonne étroite. */
 .er-r-grille:has(.er-r-vue:hover) .er-r-vue:not(:hover) .er-r-vue-titre { color: #8C8C87; }
 /* Avant de taper, le dernier livre arrivé : le même dessin, un cadre plus bas. */
 .er-recherche-pistes .er-r-vue-cadre { height: 140px; }

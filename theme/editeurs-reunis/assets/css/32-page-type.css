@@ -60,10 +60,11 @@
 .er-pt-texte { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; padding-block: 96px; }
 .er-pt-texte > * { grid-column: 4 / span 6; }
 .er-pt-texte > * + * { margin-top: 1.25em !important; }
-.er-pt-texte p { font-size: 1rem; line-height: 1.65; }
-.er-pt-texte > .er-pt-amorce { font-size: 1.1875rem; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
-.er-pt-texte > .er-pt-intertitre { font-size: 1.25rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.005em; }
-.er-pt-texte > .er-pt-intertitre + * { margin-top: 1em !important; }
+.er-pt-texte p { font-size: 1.0625rem; line-height: 1.65; }
+.er-pt-texte > .er-pt-amorce { font-size: 1.25rem; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
+/* L'intertitre : un vrai titre, comme ceux des livres et du journal, pour que la page se lise en le parcourant. */
+.er-pt-texte > .er-pt-intertitre { font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; }
+.er-pt-texte > .er-pt-intertitre + * { margin-top: 32px !important; }
 .er-pt-texte > .er-pt-boutons { margin-top: 2rem !important; gap: 8px; }
 .er-pt-boutons .wp-block-button__link { padding: 0.6em 1.2em; font-size: 0.8125rem; }
 
@@ -80,8 +81,8 @@
 .er-pt-rdv-corps { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
 .er-pt-rdv-texte { grid-column: 1 / span 6; }
 .er-pt-rdv-quand { margin: 0 0 20px; font-size: 0.9375rem; font-weight: 500; color: var(--wp--preset--color--accent); }
-.er-pt-rdv-titre { margin: 0; font-size: clamp(2rem, 3.2vw, 2.875rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: pretty; }
-.er-pt-rdv-titre a { color: inherit; text-decoration: none; }
+.er-pt-rdv .er-pt-rdv-titre { margin: 0; color: var(--wp--preset--color--base); font-size: clamp(2rem, 3.2vw, 2.875rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.025em; text-wrap: pretty; }
+.er-pt-rdv .er-pt-rdv-titre a { color: inherit; text-decoration: none; }
 .er-pt-rdv-titre a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.12em; }
 .er-pt-rdv-action { margin: 36px 0 0; }
 .er-pt-pilule {

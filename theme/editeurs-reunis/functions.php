@@ -660,7 +660,7 @@ function er_livre_sous( $produit, $auteur = '' ) {
 		$prix = mb_strtoupper( mb_substr( $prix, 0, 1 ) ) . mb_substr( $prix, 1 ); // « Épuisé pour l'instant », seul.
 	}
 	return ( '' !== $auteur ? '<span class="er-r-vue-coupe"' . ( preg_match( '/\p{Cyrillic}/u', $auteur ) ? ' lang="ru"' : '' ) . '>' . esc_html( $auteur ) . ( '' !== $prix ? "\u{00A0}·" : '' ) . '</span>' : '' )
-		. ( '' !== $prix ? '<span class="er-r-vue-prix">' . esc_html( $prix ) . '</span>' : '' );
+		. ( '' !== $prix ? '<span class="er-r-vue-prix' . ( $produit->is_in_stock() ? ' er-r-vue-montant' : '' ) . '">' . esc_html( $prix ) . '</span>' : '' );
 }
 
 /**
