@@ -410,15 +410,20 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	.er-mn-outils .er-loupe, .er-mn-outils .er-sac { display: none; }
 }
 
-/* La tête de page (S1, T1) : sur le blanc, 400 px ; le grand titre en bas à gauche ; le triptyque à droite. */
+/* La tête de page (S1, T1) : sur le blanc ; le grand titre en bas à gauche ; le triptyque à droite. Sa taille est
+   celle du menu qui s'ouvre (André, 28 nov. 2026), à toutes les largeurs : 446 px, le panneau avec ses filets, qui la
+   couvre tout juste ; suivie de sa bande (une rubrique, un rayon), la tête et la bande font ensemble ces 446 px. Le
+   titre calé à 36 px du bas, comme sur une page de texte (32-page-type.css). */
 .er-tete {
 	display: flex;
 	align-items: flex-end;
-	height: 400px;
-	padding: 0 var(--wp--style--root--padding-right, 5rem) 64px var(--wp--style--root--padding-left, 5rem);
+	height: 446px;
+	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 	background: var(--wp--preset--color--base);
 	border-bottom: 0;
 }
+.er-tete:has(+ .er-bande-repere + .er-bande),
+.er-tete:has(+ .wp-block-post-content > .er-bande-repere:first-child) { height: calc(446px - 50px); }
 .er-tete-corps { width: 100%; margin-top: 0; column-gap: 24px; align-items: end; }
 .er-tete-titres, .er-tete-avec-image .er-tete-titres { grid-column: 1 / span 7; }
 .er-tete-titre { font-weight: 500; line-height: 0.95; letter-spacing: -0.045em; text-wrap: balance; }
@@ -466,11 +471,10 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 .er-bande.est-accrochee .er-bande-nom { border-inline-end-color: var(--wp--preset--color--filet); }
 
 @media (max-width: 1100px) {
-	.er-tete { height: 340px; }
 	.er-tpq, .er-tete-image { height: 220px; }
 }
 @media (max-width: 781px) {
-	.er-tete { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
+	.er-tete, .er-tete:has(+ .er-bande-repere + .er-bande), .er-tete:has(+ .wp-block-post-content > .er-bande-repere:first-child) { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-tete-corps, .er-tete-avec-image .er-tete-corps { display: flex; flex-direction: column; align-items: stretch; gap: 24px; margin-top: 0; }
 	.er-tete-titre-grand { font-size: 3rem; }
 	.er-tete-titre-moyen { font-size: 2.5rem; }
