@@ -202,7 +202,10 @@ function er_liens_ancre( $id, $texte ) {
 	if ( function_exists( 'pll_get_post' ) && function_exists( 'pll_current_language' ) && pll_current_language() ) {
 		$id = (int) pll_get_post( $id ) ?: $id;
 	}
-	wp_enqueue_script( 'er-vignettes' );
+	// Le thème peut montrer son propre aperçu à la place de la vignette (filtre er_vignettes_actives).
+	if ( apply_filters( 'er_vignettes_actives', true ) ) {
+		wp_enqueue_script( 'er-vignettes' );
+	}
 	return '<a class="er-lien-livre" href="' . esc_url( get_permalink( $id ) ) . '" data-livre="' . (int) $id . '">' . $texte . '</a>';
 }
 

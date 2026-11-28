@@ -4,7 +4,8 @@
  * le C, dans la marge, était préféré mais plus compliqué). Partout où un texte cite un livre par un lien vers sa
  * fiche : une page, un article du journal, une rencontre, une exposition.
  *
- * Le serveur reconnaît les liens du texte (sans classe : les cartes ont la leur) qui mènent à la fiche d'un livre,
+ * Le serveur reconnaît les titres liés (er-librairie, liens-livres.php : leur ancienne vignette s'efface) et les autres
+ * liens du texte (sans classe : les cartes ont la leur) qui mènent à la fiche d'un livre,
  * leur donne l'identifiant du livre (data-apercu-livre ; data-livre est aux liens du menu Librairie) et pose leurs
  * cartes, cachées, à la fin du contenu : le dessin de la recherche (principe 13), sans prix hors de la librairie.
  * assets/js/apercu-livre.js les montre au survol, avec une souris seulement. Le dessin : assets/css/33-apercu-livre.css.
@@ -26,16 +27,24 @@ function er_apercu_livres( $html ) {
 	$html   = preg_replace_callback(
 		'#<a\s([^>]*?)href="([^"]+)"([^>]*)>#i',
 		function ( $m ) use ( &$cartes ) {
-			// Un lien du texte n'a pas de classe ; une carte, une ligne, un bouton en ont une.
-			if ( preg_match( '/\sclass=|data-apercu-livre/i', ' ' . $m[1] . $m[3] ) ) {
+			$attributs = ' ' . $m[1] . $m[3];
+			if ( false !== strpos( $attributs, 'data-apercu-livre' ) ) {
 				return $m[0];
 			}
-			$chemin = (string) wp_parse_url( html_entity_decode( $m[2] ), PHP_URL_PATH );
-			if ( ! preg_match( '#/livre/([^/]+)/?$#', $chemin, $s ) ) {
+			// Un titre lié (er-librairie, liens-livres.php) porte déjà son livre ; un autre lien du texte n'a pas de
+			// classe. Une carte, une ligne, un bouton en ont une : pas d'aperçu.
+			if ( preg_match( '/class="er-lien-livre"/', $attributs ) && preg_match( '/data-livre="(\d+)"/', $attributs, $d ) ) {
+				$livre = wc_get_product( (int) $d[1] );
+			} elseif ( preg_match( '/\sclass=/i', $attributs ) ) {
 				return $m[0];
+			} else {
+				$chemin = (string) wp_parse_url( html_entity_decode( $m[2] ), PHP_URL_PATH );
+				if ( ! preg_match( '#/livre/([^/]+)/?$#', $chemin, $s ) ) {
+					return $m[0];
+				}
+				$page  = get_page_by_path( rawurldecode( $s[1] ), OBJECT, 'product' );
+				$livre = $page ? wc_get_product( $page->ID ) : null;
 			}
-			$page  = get_page_by_path( rawurldecode( $s[1] ), OBJECT, 'product' );
-			$livre = $page ? wc_get_product( $page->ID ) : null;
 			if ( ! $livre || 'publish' !== $livre->get_status() ) {
 				return $m[0];
 			}
@@ -50,6 +59,9 @@ function er_apercu_livres( $html ) {
 	wp_enqueue_script( 'er-apercu-livre', get_theme_file_uri( 'assets/js/apercu-livre.js' ), array(), wp_get_theme()->get( 'Version' ) . '.' . filemtime( get_theme_file_path( 'assets/js/apercu-livre.js' ) ), true );
 	return $html . '<div class="er-apercus" hidden>' . implode( '', $cartes ) . '</div>';
 }
+
+// La vignette des titres liés (er-librairie, assets/js/vignettes.js) laisse la place à cet aperçu.
+add_filter( 'er_vignettes_actives', '__return_false' );
 
 add_filter(
 	'render_block_core/post-content',
