@@ -129,8 +129,9 @@
 	line-height: 1.35;
 	text-align: left;
 }
-/* La flèche en bloc en ligne : le soulignement du survol ne la prend pas. */
-.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; display: inline-block; text-decoration: none; transition: transform 200ms ease; }
+/* La flèche hors du flux, à droite : le soulignement du survol ne la prend pas. */
+.er-pt-boutons .wp-block-button > .wp-block-button__link { position: relative; padding-right: 28px; }
+.er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; position: absolute; top: 14px; right: 0; transition: transform 200ms ease; }
 /* Au survol, le filet reste gris (la pilule cernée le passait à l'encre). */
 .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); border-color: var(--wp--preset--color--filet); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
