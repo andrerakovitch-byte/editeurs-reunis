@@ -186,9 +186,11 @@ html.er-panier-ouvert body { overflow: visible !important; }
 .er-r-vue-montant { flex-shrink: 0; white-space: nowrap; } /* « 16,00 € » d'un bloc, même dans une colonne étroite. */
 .er-r-grille:has(.er-r-vue:hover) .er-r-vue:not(:hover) .er-r-vue-titre { color: #8C8C87; }
 /* Le livre a le même dessin partout, même dans le contenu d'une page, où les liens sont soulignés (et ne le sont plus
-   au survol) : jamais souligné ; au survol, la couverture se soulève et, dans une rangée, les autres titres pâlissent. */
+   au survol) : le titre n'est souligné qu'au survol, la ligne grise jamais ; la couverture se soulève et, dans une
+   rangée, les autres titres pâlissent. */
 a.er-r-vue { color: inherit; text-decoration: none; }
 a.er-r-vue:hover { text-decoration: none; }
+a.er-r-vue:hover .er-r-vue-titre, a.er-r-vue:focus-visible .er-r-vue-titre { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .er-pt-livres-grille:has(.er-r-vue:hover) .er-r-vue:not(:hover) .er-r-vue-titre { color: #8C8C87; }
 /* Avant de taper, le dernier livre arrivé : le même dessin, un cadre plus bas. */
 .er-recherche-pistes .er-r-vue-cadre { height: 140px; }
