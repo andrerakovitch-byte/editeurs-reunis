@@ -83,7 +83,10 @@ function er_pt_rendez_vous() {
 		. ( $quand ? '<p class="er-pt-rdv-quand">' . esc_html( function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $quand, 0, 1 ) ) . mb_substr( $quand, 1 ) : $quand ) . '</p>' : '' )
 		. '<h3 class="er-pt-rdv-titre"><a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $titre ) . '</a></h3>'
 		. '<p class="er-pt-rdv-action"><a class="er-pt-pilule" href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html( $bouton ) . '</a></p></div>'
-		. ( $image ? '<figure class="er-pt-rdv-image">' . $image . '</figure>' : '' ) . '</div>';
+		. ( $image ? '<figure class="er-pt-rdv-image">' . $image . '</figure>' : '' )
+		// Une photo d'ambiance (la Comédie-Française), pour l'essai du rendez-vous (« ?rdv=c »).
+		. '<figure class="er-pt-rdv-ambiance" aria-hidden="true"><img src="' . esc_url( content_url( 'uploads/2026/11/er-cf-bleu-nuit.jpg' ) ) . '" alt="" loading="lazy"></figure>'
+		. '</div>';
 }
 add_shortcode( 'er_pt_rendez_vous', 'er_pt_rendez_vous' );
 
@@ -407,3 +410,24 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 </script>
 	<?php
 }
+
+// L'essai du rendez-vous (28 nov. 2026, à l'essai) : « ?rdv=b » sur la page type (32-page-type.css, html[data-er-rdv]).
+add_action(
+	'wp_head',
+	function () {
+		if ( is_page( 'page-type' ) ) {
+			er_pt_essai(
+				'rdv',
+				'Essai du rendez-vous',
+				array(
+					'a' => 'Actuel',
+					'b' => 'Sans image',
+					'c' => 'Photo d’ambiance',
+					'd' => 'Sur le blanc',
+					'e' => 'Pleine photo',
+				)
+			);
+		}
+	},
+	1
+);
