@@ -26,7 +26,6 @@ require get_template_directory() . '/inc/essai.php';
 require get_template_directory() . '/inc/essai-menus.php';
 require get_template_directory() . '/inc/menus.php';
 require get_template_directory() . '/inc/page-type.php';
-require get_template_directory() . '/inc/essai-blancs.php';
 
 /**
  * La typographie française de nos textes, en un seul endroit : une espace insécable avant « ; : ! ? » et dans les

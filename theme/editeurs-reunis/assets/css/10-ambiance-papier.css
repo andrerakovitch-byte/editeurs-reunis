@@ -25,9 +25,9 @@
 .er-ambiance-papier header.wp-block-template-part,
 .er-ambiance-papier footer.wp-block-template-part,
 .er-ambiance-papier .er-librairie-entete {
-	--wp--preset--color--base: #FFFFFF;
-	--wp--preset--color--doux: #F6F6F4;
-	--wp--preset--color--filet: #DADAD6;
+	--wp--preset--color--base: #FEFCF8;
+	--wp--preset--color--doux: #F7F5F1;
+	--wp--preset--color--filet: #DBD9D4;
 	--wp--preset--color--aplat-nuit: #101642;
 	--wp--preset--color--aplat-vert: #2F4943;
 	--wp--preset--color--aplat-brun: #2C1F17;
