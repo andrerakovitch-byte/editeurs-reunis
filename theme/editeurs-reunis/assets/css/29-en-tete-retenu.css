@@ -461,6 +461,9 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	border-block: 1px solid var(--wp--preset--color--filet);
 }
 .er-bande.est-accrochee { box-shadow: none; }
+/* Le sommaire d'une page de texte ne s'accroche plus (28 nov. 2026) : il reste en tête de la page et part avec elle. La
+   bande accrochée est gardée pour la librairie (ses rayons) et les rubriques. */
+.er-bande.er-bande-sommaire { position: relative; top: auto; }
 .er-bande-liste { gap: 0 26px; }
 .er-bande-lien { font-size: 0.9375rem; font-weight: 400; color: var(--wp--preset--color--contrast); }
 .er-bande-lien[aria-current], .er-bande-lien.est-courant { font-weight: 600; }
