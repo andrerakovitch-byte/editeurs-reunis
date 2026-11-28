@@ -25,7 +25,7 @@
 	}
 
 	function modele( id ) {
-		return modeles.querySelector( '.er-apercu-modele[data-livre="' + id + '"]' );
+		return modeles.querySelector( '.er-apercu-modele[data-modele="' + id + '"]' );
 	}
 
 	function fermer() {

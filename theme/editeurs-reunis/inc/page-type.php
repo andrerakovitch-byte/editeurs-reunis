@@ -432,7 +432,7 @@ add_filter(
 				if ( ! $livre ) {
 					return $m[0];
 				}
-				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-livre="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre ) . '</div>';
+				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-modele="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre ) . '</div>';
 				return '<a ' . $m[1] . 'href="' . $m[2] . '"' . $m[3] . ' data-apercu-livre="' . (int) $livre->get_id() . '">';
 			},
 			$html
