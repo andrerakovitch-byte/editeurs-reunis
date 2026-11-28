@@ -215,9 +215,10 @@
 /* Sur un grand écran (essais du 28 nov.) : à 3 840 px, la couverture gardait ses 680 px dans une moitié de 1 920, un
    timbre dans un champ gris. Elle grandit avec l'écran (30 % de la largeur, sans dépasser la fenêtre) et se centre. */
 @media (min-width: 1680px) {
-	/* Le bloc de la galerie se bornait à 512 px ; l'image, à sa taille d'origine : la hauteur la fixe désormais. */
+	/* Le bloc de la galerie se bornait à 512 px ; l'image, à sa taille d'origine : la hauteur la fixe désormais (quatre
+	   classes, pour passer devant « .woocommerce div.product div.images img { height: auto } » de WooCommerce). */
 	.er-fiche-couverture-colle .wp-block-woocommerce-product-image-gallery { max-width: none; }
-	.er-fiche-couverture-colle .woocommerce-product-gallery__image img {
+	.er-fiche-moities .er-fiche-couverture .er-fiche-couverture-colle .woocommerce-product-gallery__image img {
 		height: min(max(680px, 30vw), calc(100svh - 240px));
 		max-height: none;
 		max-width: 100%;
