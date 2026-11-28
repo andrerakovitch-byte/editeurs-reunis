@@ -8,7 +8,9 @@
 	z-index: 2; /* la photo qui suit la souris passe sur le triptyque */
 	display: flex;
 	align-items: flex-end;
-	height: 446px;
+	/* 446 px jusqu'à 1 440 de large ; au-delà, le blanc grandit dans la même proportion (31 % de la largeur), sans
+	   dépasser 55 % de la hauteur de la fenêtre : la composition de 1 440 px, à toutes les tailles (28 nov.). */
+	height: max(446px, min(31vw, 55svh));
 	box-sizing: border-box;
 	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 	background: var(--wp--preset--color--base);
@@ -99,9 +101,10 @@
 .er-ap-suit-photo.est-visible { opacity: 1; }
 
 /* Le triptyque de l'accueil : bord à bord, 720 px (560 jusqu'au 27 nov.) ; en arrivant, le bas de l'écran le coupe.
-   Au téléphone, seulement sa photo de droite (AG3). Au-delà de 1 800 px de large, il grandit avec l'écran (40 % de la
-   largeur, 1 100 px au plus) : à 3 840 px, fixé à 720, il devenait un bandeau panoramique (essais du 28 nov.). */
-.er-ap-triptyque .er-tpq { height: clamp(720px, 40vw, 1100px); }
+   Au téléphone, seulement sa photo de droite (AG3). Au-delà de 1 600 px de large, il grandit avec l'écran, à 45 % de
+   la largeur : chaque photo reste un peu en hauteur (3 pour 4 environ), au lieu du bandeau panoramique qu'il devenait
+   fixé à 720 (essais et demande d'André, 28 nov.). */
+.er-ap-triptyque .er-tpq { height: max(720px, 45vw); }
 
 @media (max-width: 1100px) {
 	.er-ap { height: 340px; }

@@ -70,7 +70,7 @@
 	text-transform: uppercase;
 	color: var(--wp--preset--color--discret);
 }
-.er-plus-loin__titre { margin: 0.75rem 0 0; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; }
+.er-plus-loin__titre { margin: 0.75rem 0 0; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; }
 .er-plus-loin__resume { margin: 0.9rem 0 0; max-width: 46rem; font-size: 1.0625rem; line-height: 1.5; color: var(--wp--preset--color--encre-2); }
 .er-plus-loin__ouverture { padding-bottom: 1.75rem; }
 
@@ -78,10 +78,14 @@
    doux, de marge à marge ; les suivants sous un filet noir. */
 .er-pl-module { padding-top: 4.5rem; }
 .er-pl-module__g { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 3.5rem; align-items: start; }
+/* Le corps d'un module se borne à 52 rem (28 nov., André : « les modules sont beaucoup trop gros par rapport à la
+   taille du livre ») : une vignette fait environ un tiers de la couverture du livre de la page, une vedette moins de
+   la moitié ; la page garde son livre au premier plan. */
+.er-pl-module__corps { max-width: 52rem; }
 .er-pl-module:not(.er-pl-module--fond) .er-pl-module__g { background-image: linear-gradient(var(--wp--preset--color--contrast), var(--wp--preset--color--contrast)); background-size: calc(100% - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right)) 1px; background-position: var(--wp--style--root--padding-left) 0; background-repeat: no-repeat; padding-top: 1.75rem; }
 .er-pl-module--fond { margin-top: 1.5rem; padding-block: 4.5rem; background: var(--wp--preset--color--doux); }
 .er-pl-module__tete { display: flex; flex-direction: column; gap: 0.6rem; }
-.er-pl-module__titre { margin: 0; font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+.er-pl-module__titre { margin: 0; font-size: clamp(1.25rem, 1.6vw, 1.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
 .er-pl-module__titre em { font-weight: 600; }
 .er-pl-module__ligne { margin: 0; font-size: 0.875rem; line-height: 1.5; color: var(--wp--preset--color--discret); }
 .er-pl-module--fond .er-pl-module__ligne { color: var(--wp--preset--color--encre-2); }
@@ -155,14 +159,14 @@
 .er-pl-ligne__achat .er-reco-prix { font-size: 0.875rem; font-weight: 600; }
 
 /* Un seul livre en grand : la case à gauche, la phrase en grand à droite. */
-.er-pl-vedette { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); gap: 3rem; align-items: center; }
-.er-pl-vedette__case { padding: 2.5rem 3rem; }
-.er-pl-vedette__texte { gap: 0.6rem; }
-.er-pl-vedette__titre { font-size: 1.875rem; }
-.er-pl-vedette__auteur { font-size: 0.9375rem; }
-.er-pl-vedette__phrase { margin-top: 0.4rem; font-size: 1.5rem; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; }
-.er-pl-vedette__achat { margin-top: 0.75rem; gap: 1.125rem; }
-.er-pl-vedette__achat .er-reco-prix { font-size: 1.25rem; font-weight: 600; }
+.er-pl-vedette { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 28rem); gap: 2.5rem; align-items: center; }
+.er-pl-vedette__case { padding: 1.75rem 2rem; }
+.er-pl-vedette__texte { gap: 0.5rem; }
+.er-pl-vedette__titre { font-size: 1.25rem; }
+.er-pl-vedette__auteur { font-size: 0.875rem; }
+.er-pl-vedette__phrase { margin-top: 0.3rem; font-size: 1.125rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
+.er-pl-vedette__achat { margin-top: 0.6rem; gap: 1rem; }
+.er-pl-vedette__achat .er-reco-prix { font-size: 1rem; font-weight: 600; }
 /* En vedette, « Ajouter au panier » reste écrit en toutes lettres, même là où les cartes du rayonnage n'ont plus qu'un « + ». */
 .er-pl-vedette .er-carte__ajouter { width: auto; height: 2.75rem; padding: 0 1.5rem; font-size: 0.875rem; background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
 .er-pl-vedette .er-carte__ajouter::before { content: none; }
@@ -200,7 +204,7 @@
 .er-pl-carte a {
 	box-sizing: border-box;
 	height: 100%;
-	min-height: 15rem;
+	min-height: 12rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.125rem;
@@ -210,8 +214,8 @@
 	text-decoration: none;
 }
 .er-pl-carte__genre { display: flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
-.er-pl-carte__lettre { margin-top: auto; font-size: 5.5rem; font-weight: 600; line-height: 0.9; color: rgba(255, 255, 255, 0.24); }
-.er-pl-carte__titre { font-size: 1.375rem; font-weight: 600; line-height: 1.25; }
+.er-pl-carte__lettre { margin-top: auto; font-size: 4rem; font-weight: 600; line-height: 0.9; color: rgba(255, 255, 255, 0.24); }
+.er-pl-carte__titre { font-size: 1.125rem; font-weight: 600; line-height: 1.25; }
 .er-pl-carte--er_exposition .er-pl-carte__titre { font-style: italic; }
 .er-pl-carte__meta { font-size: 0.875rem; color: rgba(255, 255, 255, 0.78); }
 .er-pl-carte a:hover .er-pl-carte__titre { text-decoration: underline; text-underline-offset: 0.15em; }
@@ -267,7 +271,7 @@
 	.er-pl-vedette__case { aspect-ratio: auto; justify-self: start; padding: 1.375rem 1.75rem; }
 	.er-pl-vedette__case img { max-height: 200px; }
 	.er-pl-vedette__case .er-couverture-typo { height: 200px; }
-	.er-pl-vedette__titre { font-size: 1.375rem; }
+	.er-pl-vedette__titre { font-size: 1.25rem; }
 	.er-pl-vedette__phrase { font-size: 1.0625rem; line-height: 1.4; }
 	.er-pl-ligne { grid-template-columns: 72px minmax(0, 1fr); column-gap: 1rem; }
 	.er-pl-ligne__case img { max-height: 104px; }
