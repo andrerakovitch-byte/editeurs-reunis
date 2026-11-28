@@ -25,6 +25,7 @@ require get_template_directory() . '/inc/pied.php';
 require get_template_directory() . '/inc/essai.php';
 require get_template_directory() . '/inc/essai-menus.php';
 require get_template_directory() . '/inc/menus.php';
+require get_template_directory() . '/inc/page-type.php';
 
 /**
  * La typographie française de nos textes, en un seul endroit : une espace insécable avant « ; : ! ? » et dans les
@@ -262,6 +263,7 @@ add_action(
 	'init',
 	function () {
 		register_block_pattern_category( 'editeurs-reunis', array( 'label' => 'Les Éditeurs réunis' ) ); // Le nom de la maison ne se traduit pas.
+		register_block_pattern_category( 'er-modules', array( 'label' => __( 'Les modules d’une page', 'editeurs-reunis' ) ) ); // inc/page-type.php
 
 		register_block_style(
 			'core/button',
