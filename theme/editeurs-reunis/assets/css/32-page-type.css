@@ -79,6 +79,14 @@
 .er-pt-photo-marge > .wp-block-image .wp-element-caption { margin: 0 !important; }
 .er-pt-photo-marge > .wp-block-image + * { margin-top: 48px !important; }
 
+/* La section sur deux colonnes (28 nov. 2026) : l'intertitre sur la première colonne du triptyque, comme les titres des
+   livres et du journal ; le texte coule sur les deux autres, chaque colonne de la largeur d'une colonne de lecture. */
+.er-pt-deux-colonnes > .er-pt-intertitre { grid-column: 1; grid-row: 1 / span 2; align-self: start; max-width: 11em; }
+.er-pt-texte > .er-pt-colonnes { grid-column: 2 / span 2; grid-row: 1; max-width: calc(56em + 40px); margin-top: 0 !important; column-count: 2; column-gap: 40px; }
+.er-pt-colonnes > p { margin-block: 0 !important; orphans: 3; widows: 3; }
+.er-pt-colonnes > p + p { margin-top: 1.25em !important; }
+.er-pt-deux-colonnes > .er-pt-boutons { grid-column: 2; }
+
 /* Le rendez-vous : l'aplat du centre, de bord à bord, la seule rupture de la page. Sans rendez-vous, rien. */
 .er-pt-rdv { padding-block: 96px; background: var(--wp--preset--color--maison-centre); color: var(--wp--preset--color--base); }
 .er-pt-rdv:not(:has(.er-pt-rdv-corps)) { display: none; }
@@ -152,6 +160,10 @@
 	.er-pt-photo-marge > .wp-block-image .wp-element-caption { grid-column: 9 / span 4; }
 	.er-pt-rdv-texte { grid-column: 1 / span 7; }
 	.er-pt-livres-grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	/* Deux colonnes de 290 px seraient trop étroites : l'intertitre au-dessus, le texte sur toute la largeur. */
+	.er-pt-deux-colonnes > .er-pt-intertitre { grid-column: 1 / -1; grid-row: auto; max-width: 16em; }
+	.er-pt-texte > .er-pt-colonnes { grid-column: 1 / -1; grid-row: auto; margin-top: 32px !important; }
+	.er-pt-deux-colonnes > .er-pt-boutons { grid-column: 1 / -1; }
 }
 
 @media (max-width: 781px) {
@@ -205,4 +217,6 @@
 	.er-pt-ligne-genre { grid-column: 2; }
 	.er-pt-ligne-titre { grid-column: 1 / -1; }
 	.er-pt-ligne-fleche { display: none; }
+	.er-pt-colonnes { column-count: 1; }
+	.er-pt-texte > .er-pt-colonnes { margin-top: 24px !important; }
 }

@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 1;
+const ER_PAGE_TYPE_VERSION = 2;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -183,7 +183,9 @@ function er_page_type_contenu() {
 }
 
 // La page « Page type » (/page-type/), dans le gabarit « Page en modules, pleine largeur » : créée au premier passage,
-// récrite quand ER_PAGE_TYPE_VERSION augmente. Hors des moteurs, comme toute la bêta.
+// récrite quand ER_PAGE_TYPE_VERSION augmente, sauf si quelqu'un l'a retouchée dans l'éditeur depuis (son contenu ne
+// répond plus à l'empreinte de la dernière écriture) : la page de l'équipe passe avant. Hors des moteurs, comme toute
+// la bêta.
 add_action(
 	'init',
 	function () {
@@ -196,7 +198,13 @@ add_action(
 		if ( ! add_option( 'er_page_type_verrou', time(), '', false ) ) {
 			return;
 		}
-		$page    = get_page_by_path( 'page-type' );
+		$page      = get_page_by_path( 'page-type' );
+		$empreinte = (string) get_option( 'er_page_type_empreinte' );
+		if ( $page && '' !== $empreinte && md5( $page->post_content ) !== $empreinte ) {
+			update_option( 'er_page_type_version', ER_PAGE_TYPE_VERSION, false );
+			delete_option( 'er_page_type_verrou' );
+			return;
+		}
 		$donnees = array(
 			'post_type'    => 'page',
 			'post_status'  => 'publish',
@@ -211,6 +219,7 @@ add_action(
 				pll_set_post_language( $id, pll_default_language() );
 			}
 			update_option( 'er_page_type_version', ER_PAGE_TYPE_VERSION, false );
+			update_option( 'er_page_type_empreinte', md5( (string) get_post_field( 'post_content', $id, 'raw' ) ), false );
 		}
 		delete_option( 'er_page_type_verrou' );
 	},

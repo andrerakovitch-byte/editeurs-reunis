@@ -16,13 +16,13 @@
 include __DIR__ . '/pt-ouverture.php';
 include __DIR__ . '/pt-triptyque.php';
 include __DIR__ . '/pt-texte.php';
-include __DIR__ . '/pt-section.php';
+include __DIR__ . '/pt-deux-colonnes.php';
 include __DIR__ . '/pt-diptyque.php';
 include __DIR__ . '/pt-photo-marge.php';
 include __DIR__ . '/pt-rendez-vous.php';
 include __DIR__ . '/pt-livres.php';
 $er_pt_intertitre = 'La mémoire de la dissidence';
-include __DIR__ . '/pt-section.php';
+include __DIR__ . '/pt-deux-colonnes.php';
 unset( $er_pt_intertitre );
 include __DIR__ . '/pt-journal.php';
 include __DIR__ . '/pt-frise.php';
