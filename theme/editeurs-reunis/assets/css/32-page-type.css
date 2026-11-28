@@ -299,3 +299,26 @@
 	.er-pt-deux-colonnes > .er-pt-boutons { padding-inline-start: 0; }
 	.er-pt-texte > .er-pt-colonnes { margin-top: 24px !important; }
 }
+
+/* --------------------------------------------------------------------------
+   L'aperçu d'un livre au survol de son lien dans le texte (28 nov. 2026, à l'essai sur la page type, « ?survol=a » ;
+   assets/js/apercu-livre.js). La carte est celle de la recherche (principe 13). Avec une souris seulement.
+   -------------------------------------------------------------------------- */
+.er-apercus[hidden] { display: none !important; }
+.er-apercu { position: absolute; top: 0; left: 0; z-index: 60; pointer-events: none; opacity: 0; transition: opacity 220ms ease, transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.er-apercu.est-vu { opacity: 1; }
+/* A, la couverture qui suit : la couverture seule, avec son ombre, qui suit la souris. */
+.er-apercu-suit { position: fixed; transition: opacity 220ms ease; will-change: transform; }
+.er-apercu-suit img { display: block; width: auto; height: 180px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 18px 32px rgba(0, 0, 0, 0.2); }
+/* B, la carte au-dessus, sur un fond blanc qui la détache du texte ; C, dans la marge de gauche, posée sur la page. */
+.er-apercu-carte .er-r-vue { display: block; color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-apercu-carte .er-r-vue-cadre { height: 180px; }
+.er-apercu-carte .er-r-vue-cadre img { max-height: 76%; max-width: 62%; }
+.er-apercu-b { width: 212px; padding: 12px 12px 14px; background: var(--wp--preset--color--base); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 14px 36px rgba(0, 0, 0, 0.14); transform: translateY(6px); }
+.er-apercu-b.est-vu { transform: none; }
+.er-apercu-c { width: 240px; transform: translateX(-10px); }
+.er-apercu-c .er-r-vue-cadre { height: 220px; }
+.er-apercu-c.est-vu { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+	.er-apercu, .er-apercu-b, .er-apercu-c { transition: opacity 120ms ease; transform: none; }
+}

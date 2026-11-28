@@ -19,7 +19,7 @@
 <p class="er-pt-amorce">Depuis 2016, le centre réunit autour d’un livre, d’une œuvre ou d’un témoin ceux qui lisent, écrivent et traduisent. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet. Curabitur blandit tempus porttitor, nullam quis risus eget urna mollis ornare vel eu leo.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum, vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur.</p>
+<p>Ce mois-ci, on y a présenté les nouvelles traductions des <a href="<?php echo esc_url( home_url( '/livre/cahiers-de-voronej/' ) ); ?>"><em>Cahiers de Voronej</em></a> d’Ossip Mandelstam et du <a href="<?php echo esc_url( home_url( '/livre/le-troisieme-livre/' ) ); ?>"><em>Troisième Livre</em></a> de Nadejda Mandelstam ; le 30 novembre, Nicolas Werth y parle d’<a href="<?php echo esc_url( home_url( '/livre/adieu-ma-russie/' ) ); ?>"><em>Adieu ma Russie</em></a>. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
 <p>Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis.</p>

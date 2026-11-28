@@ -28,7 +28,7 @@
 <p>Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum, vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+<p>Etiam porta sem malesuada magna mollis euismod, comme dans <a href="<?php echo esc_url( home_url( '/livre/la-roue-rouge-chapitres-choisis/' ) ); ?>"><em>La Roue rouge</em></a>, d’Alexandre Soljenitsyne. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>

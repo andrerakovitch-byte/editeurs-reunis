@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 6;
+const ER_PAGE_TYPE_VERSION = 7;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -407,3 +407,68 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 </script>
 	<?php
 }
+
+/**
+ * Les liens vers un livre dans le texte d'une page (28 nov. 2026, à l'essai sur la page type) : chacun prend la classe
+ * « er-lien-livre » et l'identifiant du livre ; leurs cartes (le dessin de la recherche, principe 13) attendent à la fin
+ * du contenu, cachées, et assets/js/apercu-livre.js les montre au survol, dans le dessin choisi (« ?survol=a »).
+ */
+add_filter(
+	'render_block_core/post-content',
+	function ( $html ) {
+		if ( ! is_page( 'page-type' ) || ! function_exists( 'wc_get_product' ) || ! function_exists( 'er_recherche_vue' ) ) {
+			return $html;
+		}
+		$cartes = array();
+		$html   = preg_replace_callback(
+			'#<a\s([^>]*?)href="([^"]+)"([^>]*)>#i',
+			function ( $m ) use ( &$cartes ) {
+				$chemin = (string) wp_parse_url( html_entity_decode( $m[2] ), PHP_URL_PATH );
+				if ( false !== strpos( $m[0], 'er-r-' ) || ! preg_match( '#/livre/([^/]+)/?$#', $chemin, $s ) ) {
+					return $m[0];
+				}
+				$page  = get_page_by_path( rawurldecode( $s[1] ), OBJECT, 'product' );
+				$livre = $page ? wc_get_product( $page->ID ) : null;
+				if ( ! $livre ) {
+					return $m[0];
+				}
+				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-livre="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre ) . '</div>';
+				return '<a ' . $m[1] . 'href="' . $m[2] . '"' . $m[3] . ' data-livre="' . (int) $livre->get_id() . '">';
+			},
+			$html
+		);
+		if ( ! $cartes ) {
+			return $html;
+		}
+		return $html . '<div class="er-apercus" hidden>' . implode( '', $cartes ) . '</div>';
+	},
+	20
+);
+
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( ! is_page( 'page-type' ) ) {
+			return;
+		}
+		wp_enqueue_script( 'er-apercu-livre', get_theme_file_uri( 'assets/js/apercu-livre.js' ), array(), wp_get_theme()->get( 'Version' ) . '.' . filemtime( get_theme_file_path( 'assets/js/apercu-livre.js' ) ), true );
+	}
+);
+
+add_action(
+	'wp_head',
+	function () {
+		if ( is_page( 'page-type' ) ) {
+			er_pt_essai(
+				'survol',
+				'Essai des aperçus de livres',
+				array(
+					'a' => 'La couverture qui suit',
+					'b' => 'La carte au-dessus',
+					'c' => 'Dans la marge',
+				)
+			);
+		}
+	},
+	1
+);
