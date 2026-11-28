@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 4;
+const ER_PAGE_TYPE_VERSION = 5;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -227,4 +227,71 @@ add_action(
 		delete_option( 'er_page_type_verrou' );
 	},
 	40
+);
+
+/**
+ * L'essai des chapôs (28 nov. 2026, à l'essai) : sur la page type seulement, « ?chapo=b » (a, b, c, d, e) pose un
+ * dessin du chapô et ouvre un petit sélecteur en bas à gauche ; le navigateur le retient, « × » referme l'essai. Les
+ * dessins sont dans assets/css/32-page-type.css (html[data-er-chapo]).
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! is_page( 'page-type' ) ) {
+			return;
+		}
+		$dessins = array(
+			'a' => 'Actuel',
+			'b' => 'Grand',
+			'c' => 'Décalé',
+			'd' => 'Deux tons',
+			'e' => 'Étroit',
+		);
+		?>
+<script id="er-essai-chapo">
+(function () {
+	var D = <?php echo wp_json_encode( $dessins ); ?>, K = 'er-chapo', r = document.documentElement;
+	function poser(c) { if (c && D[c]) { r.setAttribute('data-er-chapo', c); } else { r.removeAttribute('data-er-chapo'); } }
+	try {
+		var q = new URLSearchParams(location.search).get('chapo');
+		if (null !== q) { q = q.toLowerCase(); if (D[q]) { localStorage.setItem(K, q); } else { localStorage.removeItem(K); } }
+		var c = localStorage.getItem(K);
+		if (!c || !D[c]) { return; }
+		poser(c);
+		document.addEventListener('DOMContentLoaded', function () {
+			var s = document.createElement('div'), h = '';
+			s.setAttribute('role', 'group');
+			s.setAttribute('aria-label', 'Essai des chapôs');
+			s.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:99999;display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08),0 6px 18px rgba(0,0,0,.14);font:500 12px/1 Montserrat,system-ui,sans-serif;color:#1C1C1C';
+			Object.keys(D).forEach(function (k) {
+				h += '<button type="button" data-chapo="' + k + '" style="height:30px;padding:0 12px;border:0;border-radius:999px;background:transparent;font:inherit;color:inherit;cursor:pointer">' + k.toUpperCase() + ' · ' + D[k] + '</button>';
+			});
+			h += '<button type="button" data-fermer aria-label="Refermer l’essai" style="width:30px;height:30px;border:0;border-radius:50%;background:transparent;font:inherit;font-size:16px;color:#6B6B66;cursor:pointer">×</button>';
+			s.innerHTML = h;
+			function marquer(k) {
+				s.querySelectorAll('[data-chapo]').forEach(function (b) {
+					var oui = b.getAttribute('data-chapo') === k;
+					b.style.background = oui ? '#EEECE6' : 'transparent';
+					b.style.fontWeight = oui ? '700' : '500';
+					b.setAttribute('aria-pressed', oui ? 'true' : 'false');
+				});
+			}
+			s.addEventListener('click', function (e) {
+				var b = e.target.closest('button');
+				if (!b) { return; }
+				if (b.hasAttribute('data-fermer')) { localStorage.removeItem(K); poser(null); s.remove(); return; }
+				var k = b.getAttribute('data-chapo');
+				localStorage.setItem(K, k);
+				poser(k);
+				marquer(k);
+			});
+			marquer(c);
+			document.body.appendChild(s);
+		});
+	} catch (e) {}
+})();
+</script>
+		<?php
+	},
+	1
 );
