@@ -422,7 +422,9 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	background: var(--wp--preset--color--base);
 	border-bottom: 0;
 }
-.er-tete:has(+ .er-bande-repere + .er-bande),
+/* (Le fil d'Ariane des moteurs, un script, se glisse entre la tête et la bande.) */
+.er-tete:has(+ .er-bande-repere),
+.er-tete:has(+ script + .er-bande-repere),
 .er-tete:has(+ .wp-block-post-content > .er-bande-repere:first-child) { height: calc(446px - 50px); }
 .er-tete-corps { width: 100%; margin-top: 0; column-gap: 24px; align-items: end; }
 .er-tete-titres, .er-tete-avec-image .er-tete-titres { grid-column: 1 / span 7; }
@@ -474,7 +476,7 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	.er-tpq, .er-tete-image { height: 220px; }
 }
 @media (max-width: 781px) {
-	.er-tete, .er-tete:has(+ .er-bande-repere + .er-bande), .er-tete:has(+ .wp-block-post-content > .er-bande-repere:first-child) { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
+	.er-tete, .er-tete:has(+ .er-bande-repere), .er-tete:has(+ script + .er-bande-repere), .er-tete:has(+ .wp-block-post-content > .er-bande-repere:first-child) { height: auto; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-tete-corps, .er-tete-avec-image .er-tete-corps { display: flex; flex-direction: column; align-items: stretch; gap: 24px; margin-top: 0; }
 	.er-tete-titre-grand { font-size: 3rem; }
 	.er-tete-titre-moyen { font-size: 2.5rem; }
