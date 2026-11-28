@@ -57,9 +57,9 @@
 .er-pt-frise .wp-block-image img { aspect-ratio: 3 / 5; }
 
 /* Le texte : haut et étroit plutôt que large et court (28 nov. 2026). Sur la colonne du milieu du triptyque, une
-   cinquantaine de signes par ligne ; jamais plus de 32em sur un très grand écran. */
+   cinquantaine de signes par ligne ; jamais plus de 28em, sur une tablette comme sur un très grand écran. */
 .er-pt-texte { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; padding-block: 96px; }
-.er-pt-texte > * { grid-column: 2; max-width: 32em; }
+.er-pt-texte > * { grid-column: 2; max-width: 28em; }
 .er-pt-texte > * + * { margin-top: 1.25em !important; }
 .er-pt-texte p { font-size: 1.0625rem; line-height: 1.65; }
 .er-pt-texte > .er-pt-amorce { font-size: 1.25rem; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
@@ -146,7 +146,7 @@
 @media (max-width: 1100px) {
 	.er-pt-texte > *,
 	.er-pt-texte > .er-pt-boutons { grid-column: 2 / span 2; }
-	.er-pt-photo-marge > .wp-block-image { max-width: 32em; grid-template-columns: minmax(0, 1fr); }
+	.er-pt-photo-marge > .wp-block-image { max-width: 28em; grid-template-columns: minmax(0, 1fr); }
 	.er-pt-photo-marge > .wp-block-image .wp-element-caption { margin-top: 10px !important; }
 	.er-pt-rdv-texte { grid-column: 1 / span 7; }
 	.er-pt-livres-grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
