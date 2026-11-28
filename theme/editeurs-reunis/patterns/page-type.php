@@ -9,7 +9,7 @@
  *
  * La page type d'une page de texte qui informe (inc/page-type.php) : ses modules, dans l'ordre où ils racontent. Chacun
  * est aussi un pattern à part (« Les modules d'une page ») : on les réarrange, on en retire, on en ajoute. La tête (le
- * titre de la page, calé en bas d'un blanc de la hauteur des menus) vient du gabarit « Page de texte »
+ * titre de la page, calé en bas d'un blanc de la taille d'un menu ouvert) vient du gabarit « Page de texte »
  * (templates/page-texte.html) : la page ne la porte pas.
  *
  * @package editeurs-reunis

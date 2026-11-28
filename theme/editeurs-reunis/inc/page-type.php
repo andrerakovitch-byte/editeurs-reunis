@@ -1,8 +1,8 @@
 <?php
 /**
  * La page type d'une page de texte qui informe (28 nov. 2026, d'après « La Fondation » de la Fondation Cartier et les
- * pages thématiques de la National Academies) : la tête du gabarit « Page de texte » (le titre de la page, calé en bas
- * d'un blanc de la hauteur d'un menu ouvert, comme la phrase de l'accueil), le triptyque, un chapô en grand, puis des
+ * pages thématiques de la National Academies) : la tête du gabarit « Page de texte » (le titre de la page en grand,
+ * calé en bas d'un blanc de la taille d'un menu ouvert), le triptyque, un chapô en grand, puis des
  * modules qui racontent dans l'ordre où on les lit,
  * chacun réarrangeable dans l'éditeur (patterns/pt-*.php, catégorie « Les modules d'une page ») : le texte en colonne,
  * une section sur deux colonnes, les photos (triptyque, diptyque, photo en marge,

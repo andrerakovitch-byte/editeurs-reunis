@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------------------
    La page type d'une page de texte qui informe (28 nov. 2026 ; inc/page-type.php, patterns/pt-*.php) : d'après
-   « La Fondation » de la Fondation Cartier, dans la direction artistique de l'accueil. La tête calée sur le menu,
+   « La Fondation » de la Fondation Cartier, dans la direction artistique de l'accueil. La tête à la taille du menu,
    le triptyque, puis le chapô en grand ; le texte haut et étroit, sur la colonne du milieu du triptyque ; les photos de marge à marge ; des
    filets gris entre les étages ; un seul aplat, le rendez-vous. Chaque module est un groupe .er-pt, réarrangeable.
    -------------------------------------------------------------------------- */
@@ -21,26 +21,24 @@
 }
 .er-pt-rdv + .er-pt-filet { background-image: none; }
 
-/* La tête d'une page de texte (le gabarit « Page de texte », templates/page-texte.html) : le gabarit des têtes, calé
-   sur le menu qui s'ouvre. Un blanc de 446 px, la hauteur d'un menu ouvert avec ses filets, qui le couvre tout juste ;
-   le titre de la page calé en bas, à 36 px, à la place et à la taille de la phrase de l'accueil (31-accueil-phrase.css).
-   Au-delà de 1 440 px, le blanc grandit dans la même proportion. */
+/* La tête d'une page de texte (le gabarit « Page de texte », templates/page-texte.html) : la taille des têtes est
+   celle du menu qui s'ouvre, 446 px avec ses filets, à toutes les largeurs : un menu ouvert la couvre tout juste. Le
+   titre de la page en grand, calé en bas (36 px du bord). */
 .er-tete-texte {
 	display: flex;
 	align-items: flex-end;
-	height: max(446px, min(31vw, 55svh));
+	height: 446px;
 	box-sizing: border-box;
 	margin: 0 !important;
 	padding: 0 var(--wp--style--root--padding-right, 5rem) 36px var(--wp--style--root--padding-left, 5rem);
 }
 .er-tete-texte > .er-tete-texte-titre {
-	width: 75%;
-	max-width: 20em;
+	max-width: 13em;
 	margin: 0;
-	font-size: clamp(2.125rem, 3.35vw, 3rem);
+	font-size: clamp(2.75rem, 6.6vw, 6rem);
 	font-weight: 500;
-	line-height: 1.08;
-	letter-spacing: -0.035em;
+	line-height: 0.98;
+	letter-spacing: -0.04em;
 	text-wrap: balance;
 }
 .er-tete-texte + .wp-block-post-content { margin-block-start: 0 !important; }
@@ -175,7 +173,6 @@
 	.er-pt-photo-marge > .wp-block-image .wp-element-caption { grid-column: 9 / span 4; }
 	.er-pt-rdv-texte { grid-column: 1 / span 7; }
 	.er-pt-livres-grille { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-	.er-tete-texte { height: 340px; }
 	/* Deux colonnes de 290 px seraient trop étroites : l'intertitre au-dessus, le texte sur toute la largeur. */
 	.er-pt-deux-colonnes > .er-pt-intertitre { grid-column: 1 / -1; grid-row: auto; max-width: 16em; }
 	.er-pt-texte > .er-pt-colonnes { grid-column: 1 / -1; grid-row: auto; margin-top: 32px !important; }
@@ -184,7 +181,6 @@
 
 @media (max-width: 781px) {
 	.er-tete-texte { height: auto; min-height: 280px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
-	.er-tete-texte > .er-tete-texte-titre { width: auto; font-size: 2.125rem; line-height: 1.08; letter-spacing: -0.03em; }
 	.er-pt-intro { padding-block: 0 56px; }
 	.er-pt-texte,
 	.er-pt-livres,
