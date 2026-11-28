@@ -215,8 +215,15 @@
 /* Sur un grand écran (essais du 28 nov.) : à 3 840 px, la couverture gardait ses 680 px dans une moitié de 1 920, un
    timbre dans un champ gris. Elle grandit avec l'écran (30 % de la largeur, sans dépasser la fenêtre) et se centre. */
 @media (min-width: 1680px) {
-	.er-fiche-couverture-colle .woocommerce-product-gallery__image img { max-height: min(max(680px, 30vw), calc(100svh - 240px)); margin-inline: auto; }
-	.er-fiche-couverture-colle .woocommerce-product-gallery__image { text-align: center; }
+	/* Le bloc de la galerie se bornait à 512 px ; l'image, à sa taille d'origine : la hauteur la fixe désormais. */
+	.er-fiche-couverture-colle .wp-block-woocommerce-product-image-gallery { max-width: none; }
+	.er-fiche-couverture-colle .woocommerce-product-gallery__image img {
+		height: min(max(680px, 30vw), calc(100svh - 240px));
+		max-height: none;
+		max-width: 100%;
+		object-fit: contain;
+		margin-inline: auto;
+	}
 }
 .er-fiche-moities .er-fiche-texte > .wp-block-woocommerce-breadcrumbs { margin-bottom: 2rem; }
 .er-fiche-moities .er-fiche-titre { font-size: clamp(2.5rem, 4.2vw, 5rem); line-height: 1.02; letter-spacing: -0.03em; }
