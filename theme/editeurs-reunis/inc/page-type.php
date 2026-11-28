@@ -1,8 +1,9 @@
 <?php
 /**
  * La page type d'une page de texte qui informe (28 nov. 2026, d'après « La Fondation » de la Fondation Cartier et les
- * pages thématiques de la National Academies) : la tête du gabarit « Page de texte, avec sa tête » (le titre et le
- * triptyque, comme sur toutes les pages), un chapô en grand, puis des modules qui racontent dans l'ordre où on les lit,
+ * pages thématiques de la National Academies) : la tête du gabarit « Page de texte » (le titre de la page, calé en bas
+ * d'un blanc de la hauteur d'un menu ouvert, comme la phrase de l'accueil), le triptyque, un chapô en grand, puis des
+ * modules qui racontent dans l'ordre où on les lit,
  * chacun réarrangeable dans l'éditeur (patterns/pt-*.php, catégorie « Les modules d'une page ») : le texte en colonne,
  * une section sur deux colonnes, les photos (triptyque, diptyque, photo en marge,
  * frise), le rendez-vous en aplat (la seule rupture de couleur), les livres, le journal, « Pour aller plus loin ».
@@ -23,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  * La version du contenu de la page « Page type » : on l'augmente pour la récrire d'après les patterns, tant que la page
  * est un essai. Le jour où l'on y travaille dans l'éditeur, on cesse de l'augmenter.
  */
-const ER_PAGE_TYPE_VERSION = 3;
+const ER_PAGE_TYPE_VERSION = 4;
 
 /**
  * Une photo de la Comédie-Française, en bloc image (dans la médiathèque : er-cf-<nom>.jpg).
@@ -183,7 +184,7 @@ function er_page_type_contenu() {
 	return (string) ob_get_clean();
 }
 
-// La page « Page type » (/page-type/), dans le gabarit « Page de texte, avec sa tête » : créée au premier passage,
+// La page « Page type » (/page-type/), dans le gabarit « Page de texte » : créée au premier passage,
 // récrite quand ER_PAGE_TYPE_VERSION augmente, sauf si quelqu'un l'a retouchée dans l'éditeur depuis (son contenu ne
 // répond plus à l'empreinte de la dernière écriture) : la page de l'équipe passe avant. Hors des moteurs, comme toute
 // la bêta.

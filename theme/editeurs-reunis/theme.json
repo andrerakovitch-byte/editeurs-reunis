@@ -171,7 +171,7 @@
 	"customTemplates": [
 		{"name": "page-sans-titre", "title": "Page sans titre", "postTypes": ["page"]},
 		{"name": "page-modules", "title": "Page en modules, pleine largeur", "postTypes": ["page"]},
-		{"name": "page-texte", "title": "Page de texte, avec sa tête (en modules, pleine largeur)", "postTypes": ["page"]},
+		{"name": "page-texte", "title": "Page de texte : la tête calée sur le menu, puis les modules", "postTypes": ["page"]},
 		{"name": "page-large", "title": "Page large (une liste : les événements)", "postTypes": ["page"]},
 		{"name": "page-exemple", "title": "Page d’exemple (maquette)", "postTypes": ["page"]},
 		{"name": "page-exemple-librairie", "title": "Page d’exemple (maquette), avec les rayons de la librairie", "postTypes": ["page"]},

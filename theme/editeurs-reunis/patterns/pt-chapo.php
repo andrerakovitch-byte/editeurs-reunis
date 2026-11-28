@@ -3,9 +3,9 @@
  * Title: Le chapô en grand
  * Slug: editeurs-reunis/pt-chapo
  * Categories: er-modules
- * Description: Juste sous la tête de la page : en deux ou trois phrases, ce que la page raconte.
+ * Description: En tête du texte : en deux ou trois phrases, ce que la page raconte.
  *
- * La tête (le titre et le triptyque) vient du gabarit « Page de texte, avec sa tête » : la page ne la porte pas.
+ * La tête (le titre de la page) vient du gabarit « Page de texte » : la page ne la porte pas.
  * Un module de la page type d'une page de texte qui informe (inc/page-type.php, assets/css/32-page-type.css).
  *
  * @package editeurs-reunis

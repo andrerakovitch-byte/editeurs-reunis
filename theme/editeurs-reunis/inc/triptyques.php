@@ -58,8 +58,6 @@ function er_triptyques() {
 		'trouver'     => array( 'facade', 'peintre', 'khokhloma' ),
 		// L'accueil, sous la phrase, bord à bord (Y3b, 26 nov.) : les filés de la librairie, en attendant les siens.
 		'accueil'     => array( 'cf-creme', 'cf-fenetre', 'cf-visage' ),
-		// La page type d'une page de texte (inc/page-type.php) : les filés, comme le reste de la page.
-		'page-type'   => array( 'cf-fenetre', 'cf-bleu-nuit', 'cf-creme' ),
 	);
 }
 
@@ -76,7 +74,6 @@ function er_triptyque_de_la_page( $maison ) {
 		'ymca-press'                  => 'edition',
 		'ymca-press/histoire'         => 'histoire',
 		'nous-trouver'                => 'trouver',
-		'page-type'                   => 'page-type',
 	);
 	if ( isset( $pages[ $chemin ] ) ) {
 		return $pages[ $chemin ];
