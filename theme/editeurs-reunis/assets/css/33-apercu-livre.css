@@ -1,0 +1,28 @@
+/* --------------------------------------------------------------------------
+   L'aperçu d'un livre au survol de son lien dans un texte (inc/apercu-livre.php, assets/js/apercu-livre.js ; retenu
+   le 28 nov. 2026) : la carte de la recherche (principe 13), sans prix, au-dessus du lien, sur un fond blanc
+   légèrement ombré qui la détache du texte. Avec une souris seulement.
+   -------------------------------------------------------------------------- */
+.er-apercus[hidden] { display: none !important; }
+.er-apercu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 60;
+	width: 212px;
+	padding: 12px 12px 14px;
+	background: var(--wp--preset--color--base);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 14px 36px rgba(0, 0, 0, 0.14);
+	pointer-events: none;
+	opacity: 0;
+	transform: translateY(6px);
+	transition: opacity 220ms ease, transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.er-apercu.est-dessous { transform: translateY(-6px); }
+.er-apercu.est-vu { opacity: 1; transform: none; }
+.er-apercu .er-r-vue { display: block; color: var(--wp--preset--color--contrast); text-decoration: none; }
+.er-apercu .er-r-vue-cadre { height: 180px; }
+.er-apercu .er-r-vue-cadre img { max-height: 76%; max-width: 62%; }
+@media (prefers-reduced-motion: reduce) {
+	.er-apercu, .er-apercu.est-dessous { transition: opacity 120ms ease; transform: none; }
+}
