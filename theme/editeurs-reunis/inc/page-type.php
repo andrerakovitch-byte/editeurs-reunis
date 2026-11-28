@@ -409,8 +409,8 @@ function er_pt_essai( $cle, $libelle, $dessins ) {
 }
 
 /**
- * Les liens vers un livre dans le texte d'une page (28 nov. 2026, à l'essai sur la page type) : chacun prend la classe
- * « er-lien-livre » et l'identifiant du livre ; leurs cartes (le dessin de la recherche, principe 13) attendent à la fin
+ * Les liens vers un livre dans le texte d'une page (28 nov. 2026, à l'essai sur la page type) : chacun prend
+ * l'identifiant de son livre (data-apercu-livre ; data-livre est aux liens du menu Librairie) ; leurs cartes (le dessin de la recherche, principe 13) attendent à la fin
  * du contenu, cachées, et assets/js/apercu-livre.js les montre au survol, dans le dessin choisi (« ?survol=a »).
  */
 add_filter(
@@ -433,7 +433,7 @@ add_filter(
 					return $m[0];
 				}
 				$cartes[ $livre->get_id() ] = '<div class="er-apercu-modele" data-livre="' . (int) $livre->get_id() . '">' . er_recherche_vue( $livre ) . '</div>';
-				return '<a ' . $m[1] . 'href="' . $m[2] . '"' . $m[3] . ' data-livre="' . (int) $livre->get_id() . '">';
+				return '<a ' . $m[1] . 'href="' . $m[2] . '"' . $m[3] . ' data-apercu-livre="' . (int) $livre->get_id() . '">';
 			},
 			$html
 		);

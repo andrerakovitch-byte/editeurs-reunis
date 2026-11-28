@@ -1,6 +1,6 @@
 /**
  * L'aperçu d'un livre au survol de son lien, dans le texte d'une page (28 nov. 2026, à l'essai sur la page type).
- * Le serveur a donné à chaque lien l'identifiant de son livre (data-livre) et posé les cartes, cachées, à la fin du
+ * Le serveur a donné à chaque lien l'identifiant de son livre (data-apercu-livre) et posé les cartes, cachées, à la fin du
  * contenu (.er-apercus) : le dessin de la recherche. Trois dessins, selon html[data-er-survol] (inc/page-type.php) :
  * - a, la couverture qui suit : la couverture seule, qui suit la souris avec un peu de retard ;
  * - b, la carte au-dessus : la carte du livre, posée au-dessus du lien, là où la souris l'a touché ;
@@ -55,7 +55,7 @@
 
 	function ouvrir( lien, e ) {
 		var mode = dessin();
-		var source = modele( lien.getAttribute( 'data-livre' ) );
+		var source = modele( lien.getAttribute( 'data-apercu-livre' ) );
 		if ( ! mode || ! source ) {
 			return;
 		}
@@ -110,7 +110,7 @@
 	}
 
 	document.addEventListener( 'mouseover', function ( e ) {
-		var lien = e.target.closest && e.target.closest( 'a[data-livre]' );
+		var lien = e.target.closest && e.target.closest( 'a[data-apercu-livre]' );
 		if ( ! lien || ( actuel && actuel.lien === lien ) ) {
 			return;
 		}
@@ -125,7 +125,7 @@
 		if ( vers && actuel.lien.contains( vers ) ) {
 			return;
 		}
-		if ( e.target.closest && e.target.closest( 'a[data-livre]' ) === actuel.lien ) {
+		if ( e.target.closest && e.target.closest( 'a[data-apercu-livre]' ) === actuel.lien ) {
 			fermer();
 		}
 	} );
