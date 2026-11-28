@@ -109,7 +109,7 @@ html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-butto
 html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); }
 html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
 /* D, en marge : les lignes sur la dernière colonne du triptyque, à la hauteur du début du texte. */
-html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 3; grid-row: 1 / span 3; align-self: start; max-width: 20em; margin-top: 0.35em !important; }
+html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 3; grid-row: 1 / span 3; align-self: start; max-width: 18em; margin-top: 0.35em !important; margin-inline-start: 40px; }
 /* C, pleins : la première pilule pleine, à l'encre, la seconde cernée ; plus grandes. */
 html[data-er-texte="c"] .er-pt-boutons { gap: 10px; }
 html[data-er-texte="c"] .er-pt-boutons .wp-block-button > .wp-block-button__link { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; font-size: 0.875rem; }
@@ -236,7 +236,7 @@ html[data-er-texte="e"] .er-pt-boutons:has(a:hover) .wp-block-button > .wp-block
 	.er-tete-texte { height: auto; min-height: 280px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-pt-intro { padding-block: 0 56px; }
 	.er-pt-intro > .er-pt-chapo { grid-column: 1 / -1; }
-	html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 1 / -1; grid-row: auto; max-width: none; margin-top: 2rem !important; }
+	html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 1 / -1; grid-row: auto; max-width: none; margin-top: 2rem !important; margin-inline-start: 0; }
 	.er-pt-texte,
 	.er-pt-livres,
 	.er-pt-journal { padding-block: 56px; }
