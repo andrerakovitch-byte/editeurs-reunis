@@ -84,6 +84,56 @@
 .er-pt-texte > .er-pt-boutons { margin-top: 2rem !important; gap: 8px; }
 .er-pt-boutons .wp-block-button__link { padding: 0.6em 1.2em; font-size: 0.8125rem; }
 
+/* L'essai du module texte et boutons (28 nov. 2026, à l'essai ; inc/page-type.php, « ?texte=b ») : cinq dessins des
+   boutons, à comparer sur la page même. A, l'actuel, ci-dessus : deux pilules cernées. */
+/* B, fléchés, et D, en marge : des lignes entre deux filets, le nom à gauche, la flèche à droite. */
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons { flex-direction: column; flex-wrap: nowrap; gap: 0; border-bottom: 1px solid var(--wp--preset--color--filet); }
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button { width: 100%; }
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 14px 0;
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--filet);
+	border-radius: 0;
+	background: none;
+	color: var(--wp--preset--color--contrast);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	text-align: left;
+}
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "→"; transition: transform 200ms ease; }
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); }
+html:is([data-er-texte="b"], [data-er-texte="d"]) .er-pt-boutons .wp-block-button > .wp-block-button__link:hover::after { transform: translateX(4px); }
+/* D, en marge : les lignes sur la dernière colonne du triptyque, à la hauteur du début du texte. */
+html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 3; grid-row: 1 / span 3; align-self: start; max-width: 20em; margin-top: 0.35em !important; }
+/* C, pleins : la première pilule pleine, à l'encre, la seconde cernée ; plus grandes. */
+html[data-er-texte="c"] .er-pt-boutons { gap: 10px; }
+html[data-er-texte="c"] .er-pt-boutons .wp-block-button > .wp-block-button__link { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; font-size: 0.875rem; }
+html[data-er-texte="c"] .er-pt-boutons .wp-block-button:first-child > .wp-block-button__link { background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); border-color: var(--wp--preset--color--contrast); }
+html[data-er-texte="c"] .er-pt-boutons .wp-block-button:first-child > .wp-block-button__link:hover { background: var(--wp--preset--color--encre-2); border-color: var(--wp--preset--color--encre-2); }
+/* E, grands liens : les noms en grand, l'un sous l'autre, la flèche après ; au survol, les autres en gris. */
+html[data-er-texte="e"] .er-pt-boutons { flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 2.5rem !important; }
+html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link {
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	color: var(--wp--preset--color--contrast);
+	font-size: clamp(1.5rem, 2.2vw, 2rem);
+	font-weight: 500;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	text-align: left;
+	transition: color 300ms ease;
+}
+html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link::after { content: "\00a0→"; }
+html[data-er-texte="e"] .er-pt-boutons .wp-block-button > .wp-block-button__link:hover { background: none; color: var(--wp--preset--color--contrast); }
+html[data-er-texte="e"] .er-pt-boutons:has(a:hover) .wp-block-button > .wp-block-button__link:not(:hover) { color: #8C8C87; }
+
 /* La photo dans le texte : sa grandeur d'avant (de la quatrième à la neuvième colonne sur douze), sa légende dans la
    marge de droite ; le texte reprend dessous, dans la colonne étroite. */
 .er-pt-photo-marge { padding-top: 0; }
@@ -186,6 +236,7 @@
 	.er-tete-texte { height: auto; min-height: 280px; padding: 40px var(--wp--style--root--padding-right, 1.25rem) 28px var(--wp--style--root--padding-left, 1.25rem); }
 	.er-pt-intro { padding-block: 0 56px; }
 	.er-pt-intro > .er-pt-chapo { grid-column: 1 / -1; }
+	html[data-er-texte="d"] .er-pt-texte:not(.er-pt-deux-colonnes) > .er-pt-boutons { grid-column: 1 / -1; grid-row: auto; max-width: none; margin-top: 2rem !important; }
 	.er-pt-texte,
 	.er-pt-livres,
 	.er-pt-journal { padding-block: 56px; }
