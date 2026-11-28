@@ -1,11 +1,13 @@
 <?php
 /**
- * Title: Le chapô en grand
+ * Title: Le chapô en deux tons
  * Slug: editeurs-reunis/pt-chapo
  * Categories: er-modules
- * Description: En tête du texte : en deux ou trois phrases, ce que la page raconte.
+ * Description: En tête du texte, sur les deux dernières colonnes : ce que la page raconte, la première phrase à l'encre, la suite en gris.
  *
- * La tête (le titre de la page) vient du gabarit « Page de texte » : la page ne la porte pas.
+ * La suite en gris : un span de classe « er-pt-chapo-suite » autour des phrases qui suivent la première (dans
+ * l’éditeur, « Modifier en HTML »). La tête (le titre de
+ * la page) vient du gabarit « Page de texte » : la page ne la porte pas.
  * Un module de la page type d'une page de texte qui informe (inc/page-type.php, assets/css/32-page-type.css).
  *
  * @package editeurs-reunis
