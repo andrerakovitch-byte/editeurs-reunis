@@ -432,7 +432,7 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 12px;
-	height: 288px;
+	height: clamp(288px, 20vw, 560px); /* 288 px jusqu'à 1 440 de large, puis avec l'écran : fixé, il devenait un bandeau (essais du 28 nov.). */
 }
 .er-tpq-image { position: relative; display: block; overflow: hidden; height: 100%; background: var(--wp--preset--color--doux); }
 .er-tpq-image img {
@@ -446,7 +446,7 @@ html.er-em-plan-ouvert .er-mn-outils { border-inline-start-color: transparent; }
 }
 .er-tpq-aplat { display: block; width: 100%; height: 100%; }
 /* Une personne : son portrait à la place du triptyque, en hauteur, à droite. */
-.er-tete-image { grid-column: 10 / -1; justify-self: end; height: 288px; aspect-ratio: auto; background: none; }
+.er-tete-image { grid-column: 10 / -1; justify-self: end; height: clamp(288px, 20vw, 560px); aspect-ratio: auto; background: none; }
 .er-tete-image img { width: auto; height: 100%; max-width: 100%; }
 
 /* La bande : sur le blanc, entre deux filets ; l'entrée courante en demi-gras. */

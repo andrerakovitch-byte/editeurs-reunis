@@ -212,6 +212,12 @@
 .er-fiche-couverture-colle { position: sticky; top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--er-ligne, 48px) + 48px); }
 .er-fiche-couverture-colle .woocommerce-product-gallery__image img { max-height: min(680px, calc(100svh - 240px)); width: auto !important; }
 .er-fiche-moities > .er-fiche-texte { padding: 48px var(--wp--style--root--padding-right) 96px 64px; }
+/* Sur un grand écran (essais du 28 nov.) : à 3 840 px, la couverture gardait ses 680 px dans une moitié de 1 920, un
+   timbre dans un champ gris. Elle grandit avec l'écran (30 % de la largeur, sans dépasser la fenêtre) et se centre. */
+@media (min-width: 1680px) {
+	.er-fiche-couverture-colle .woocommerce-product-gallery__image img { max-height: min(max(680px, 30vw), calc(100svh - 240px)); margin-inline: auto; }
+	.er-fiche-couverture-colle .woocommerce-product-gallery__image { text-align: center; }
+}
 .er-fiche-moities .er-fiche-texte > .wp-block-woocommerce-breadcrumbs { margin-bottom: 2rem; }
 .er-fiche-moities .er-fiche-titre { font-size: clamp(2.5rem, 4.2vw, 5rem); line-height: 1.02; letter-spacing: -0.03em; }
 .er-fiche-moities .er-fiche-resume { max-width: 42.5rem; }

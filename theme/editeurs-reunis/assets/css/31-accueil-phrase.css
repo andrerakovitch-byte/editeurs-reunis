@@ -27,6 +27,7 @@
 	display: grid;
 	align-items: end;
 	font-size: clamp(2.125rem, 3.35vw, 3rem); /* 48 px dès 1 440 ; un peu moins avant, pour tenir en trois lignes */
+	max-width: 20em; /* Sa largeur à 1 440 px, au plus : sur un très grand écran, la même coupe des lignes (à 3 840 px, elle tenait sur une ligne de 101 signes). */
 	font-weight: 500;
 	line-height: 1.08;
 	letter-spacing: -0.035em;
@@ -98,8 +99,9 @@
 .er-ap-suit-photo.est-visible { opacity: 1; }
 
 /* Le triptyque de l'accueil : bord à bord, 720 px (560 jusqu'au 27 nov.) ; en arrivant, le bas de l'écran le coupe.
-   Au téléphone, seulement sa photo de droite (AG3). */
-.er-ap-triptyque .er-tpq { height: 720px; }
+   Au téléphone, seulement sa photo de droite (AG3). Au-delà de 1 800 px de large, il grandit avec l'écran (40 % de la
+   largeur, 1 100 px au plus) : à 3 840 px, fixé à 720, il devenait un bandeau panoramique (essais du 28 nov.). */
+.er-ap-triptyque .er-tpq { height: clamp(720px, 40vw, 1100px); }
 
 @media (max-width: 1100px) {
 	.er-ap { height: 340px; }

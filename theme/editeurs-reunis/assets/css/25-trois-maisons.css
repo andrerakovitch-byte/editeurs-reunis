@@ -19,6 +19,7 @@
 .er-tm-corps {
 	padding-top: 3.5rem;
 	font-size: clamp(1.6875rem, 3.2vw, 2.875rem); /* 46 px à 1440, 27 px au téléphone. */
+	max-width: 28em; /* Sa largeur à 1 440 px, au plus : dès 2 560 px, les lignes faisaient 96 signes (essais du 28 nov.). */
 	font-weight: 500;
 	line-height: 1.13;
 	letter-spacing: -0.025em;
