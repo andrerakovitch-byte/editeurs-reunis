@@ -75,7 +75,8 @@ function er_index_ligne( $ligne ) {
 }
 
 /**
- * Un livre de la librairie : son éditeur et sa langue, son prix, « Ajouter au panier ».
+ * Un livre de la librairie : son éditeur et sa langue, « Voir le livre » (ni prix ni panier sur l'accueil, 28 nov. 2026 :
+ * plus sérieux, moins commerce).
  *
  * @param WC_Product $produit Le livre.
  * @param string     $quand   « Nouveauté » ou « Parution ».
@@ -100,8 +101,7 @@ function er_index_livre( $produit, $quand ) {
 	$auteurs = wp_get_post_terms( $id, 'auteur', array( 'fields' => 'names' ) );
 	$auteurs = is_array( $auteurs ) ? array_slice( $auteurs, 0, 2 ) : array();
 	$ru      = preg_match( '/\p{Cyrillic}/u', $titre ) ? ' lang="ru"' : '';
-	$prix    = ''; // L'accueil n'est pas la librairie : pas de prix (28 nov. 2026).
-	$achat   = $produit->is_purchasable() && $produit->is_in_stock();
+	$prix    = ''; // L'accueil n'est pas la librairie : pas de prix, et la fiche plutôt que le panier (28 nov. 2026).
 	$image = (int) $produit->get_image_id();
 	$typo  = function_exists( 'er_couverture_a_remplacer' ) && er_couverture_a_remplacer( $produit );
 	return er_index_ligne(
@@ -116,8 +116,8 @@ function er_index_livre( $produit, $quand ) {
 			'produit'     => $produit,
 			'legende'     => $legende,
 			'prix'        => $prix,
-			'action'      => $achat ? __( 'Ajouter au panier', 'editeurs-reunis' ) : __( 'Voir le livre', 'editeurs-reunis' ),
-			'action_lien' => $achat ? $produit->add_to_cart_url() : get_permalink( $id ),
+			'action'      => __( 'Voir le livre', 'editeurs-reunis' ),
+			'action_lien' => get_permalink( $id ),
 		)
 	);
 }
